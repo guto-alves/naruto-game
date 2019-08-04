@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/fundoImageView"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/layout_map_blank2" />
+
+    <ImageView
+        android:id="@+id/spriteImageView"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/fundoImageView"
+        app:layout_constraintEnd_toEndOf="@+id/fundoImageView"
+        app:layout_constraintStart_toStartOf="@+id/fundoImageView"
+        app:layout_constraintTop_toTopOf="@+id/fundoImageView"
+        app:srcCompat="@drawable/layout_sprites_1" />
+
+</android.support.constraint.ConstraintLayout>

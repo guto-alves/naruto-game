@@ -1,0 +1,81 @@
+<resources>
+    <string name="app_name">Naruto Game</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_tools">Tools</string>
+    <string name="menu_share">Share</string>
+    <string name="menu_send">Send</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="recuperar_senha">Recuperar Senha</string>
+    <string name="digite_o_email_da_sua_conta">Digite o email da sua conta</string>
+    <string name="hall_da_fama">Hall da fama</string>
+    <string name="confirmar_senha">Confirmar Senha</string>
+    <string name="senha">Senha</string>
+    <string name="email">Email</string>
+    <string name="cadastrar">Cadastrar</string>
+    <string name="esqueceu_a_senha">Esqueceu a Senha?</string>
+    <string name="noticias">Notícias</string>
+    <string name="title">Title</string>
+
+    <string-array name="sexos_array1">
+        <item>Masculino</item>
+        <item>Feminino</item>
+    </string-array>
+
+    <string-array name="sexos_array2">
+        <item>Feminino</item>
+        <item>Masculino</item>
+    </string-array>
+
+    <string-array name="chat_channel_array">
+        <item>Vila</item>
+        <item>Mundo</item>
+    </string-array>
+
+    <string name="title_activity_logado_selecionar">LogadoSelecionarActivity</string>
+    <string name="title_activity_personagem_logado">PersonagemLogadoActivity</string>
+    <string name="alterar_senha">Alterar Senha</string>
+    <string name="redigite_a_nova_senha">Redigite a Nova Senha</string>
+    <string name="nova_senha">Nova Senha</string>
+    <string name="senha_atual">Senha Atual</string>
+    <string name="criar_personagem">Criar Personagem</string>
+    <string name="escolha_seu_personagem">ESCOLHA SEU PERSONAGEM</string>
+    <string name="taijutsu">Taijutsu</string>
+    <string name="ninjustu">Ninjustu</string>
+    <string name="nome">Nome</string>
+    <string name="cep">CEP</string>
+    <string name="cidade">Cidade</string>
+    <string name="bairro">Bairro</string>
+    <string name="estado">Estado</string>
+    <string name="nome_completo">Nome Completo</string>
+
+    <!-- Tículos seções -->
+    <string name="home">HOME</string>
+    <string name="crie_sua_conta">CRIE SUA CONTA</string>
+    <string name="esqueci_minha_senha">ESQUECI MINHA SENHA</string>
+    <string name="genjutsu">Genjutsu</string>
+    <string name="agilidade">Agilidade</string>
+    <string name="forca">Força</string>
+    <string name="resistencia">Resistência</string>
+    <string name="energia">Energia</string>
+    <string name="vida">Vida</string>
+    <string name="determinacao">Determinação</string>
+    <string name="esquiva">Esquiva</string>
+    <string name="enviar_alteracoes">Enviar Alterações</string>
+    <string name="endereco_completo">Endereço Completo</string>
+    <string name="data_de_nascimento">Data de Nascimento</string>
+    <string name="chat_naruto_game">CHAT NARUTO GAME</string>
+    <string name="bukijutsu">Bukijutsu</string>
+    <string name="treinar">Treinar</string>
+
+</resources>
