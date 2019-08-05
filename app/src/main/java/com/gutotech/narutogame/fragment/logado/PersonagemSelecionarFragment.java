@@ -9,7 +9,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,7 +29,7 @@ import com.google.firebase.storage.StorageReference;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.activity.LogadoSelecionarActivity;
 import com.gutotech.narutogame.activity.PersonagemLogadoActivity;
-import com.gutotech.narutogame.adapter.PequenasAdapter;
+import com.gutotech.narutogame.adapter.ProfilesPequenasAdapter;
 import com.gutotech.narutogame.config.ConfigFirebase;
 import com.gutotech.narutogame.helper.RecyclerItemClickListener;
 import com.gutotech.narutogame.model.Personagem;
@@ -43,7 +42,7 @@ public class PersonagemSelecionarFragment extends Fragment {
     private ImageView profile;
 
     private RecyclerView pequenasRecyclerView;
-    private PequenasAdapter adapter;
+    private ProfilesPequenasAdapter adapter;
     private List<Integer> pequenasLista = new ArrayList<>();
     private Personagem personagemSelecionado;
 
@@ -120,7 +119,7 @@ public class PersonagemSelecionarFragment extends Fragment {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         pequenasRecyclerView.setLayoutManager(layoutManager);
         pequenasRecyclerView.setHasFixedSize(true);
-        adapter = new PequenasAdapter(getActivity(), pequenasLista);
+        adapter = new ProfilesPequenasAdapter(getActivity(), pequenasLista);
         pequenasRecyclerView.setAdapter(adapter);
         pequenasRecyclerView.addOnItemTouchListener(new RecyclerItemClickListener(
                 getActivity(), pequenasRecyclerView, new RecyclerItemClickListener.OnItemClickListener() {

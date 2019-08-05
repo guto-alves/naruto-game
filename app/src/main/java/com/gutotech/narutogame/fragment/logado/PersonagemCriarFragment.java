@@ -3,7 +3,6 @@ package com.gutotech.narutogame.fragment.logado;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
@@ -18,17 +17,11 @@ import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.StorageReference;
 import com.gutotech.narutogame.R;
-import com.gutotech.narutogame.adapter.PequenasAdapter;
+import com.gutotech.narutogame.adapter.ProfilesPequenasAdapter;
 import com.gutotech.narutogame.config.ConfigFirebase;
+import com.gutotech.narutogame.config.Storage;
 import com.gutotech.narutogame.helper.RecyclerItemClickListener;
 import com.gutotech.narutogame.model.Atributos;
 import com.gutotech.narutogame.model.Jutsu;
@@ -47,9 +40,9 @@ public class PersonagemCriarFragment extends Fragment {
 
     private EditText nickEditText;
 
-    private TextView vilaEscolhidaTextView;
-    private String vilaSelecionada = "Folha";
-    private int numVila = 1;
+    private TextView vilaSelecionadaTextView;
+    private String vilaSelecionada;
+    private int numVila;
 
     private String classeSelecionada;
 
@@ -57,7 +50,7 @@ public class PersonagemCriarFragment extends Fragment {
     private TextView nomePersonagemSelecionadoTextView;
 
     private RecyclerView personagensRecyclerView;
-    private PequenasAdapter adapter;
+    private ProfilesPequenasAdapter adapter;
     private List<Integer> pequenasLista = new ArrayList<>();
 
     private FirebaseAuth auth;
@@ -85,11 +78,13 @@ public class PersonagemCriarFragment extends Fragment {
         atributos.setResistencia(1);
         atributos.setEnergia(10);
         classeSelecionada = "Taijutsu";
+        vilaSelecionada = "Folha";
+        numVila = 1;
         personagem.setIdProfile(1);
 
         nickEditText = view.findViewById(R.id.nickCriarEditText);
 
-        vilaEscolhidaTextView = view.findViewById(R.id.vilaEscolhidaTextView);
+        vilaSelecionadaTextView = view.findViewById(R.id.vilaSelecionadaTextView);
         RadioGroup vilasRadioGroup = view.findViewById(R.id.vilasRadioGroup);
         vilasRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -98,42 +93,42 @@ public class PersonagemCriarFragment extends Fragment {
                     case R.id.folhaRadioButton:
                         vilaSelecionada = "Folha";
                         numVila = 1;
-                        vilaEscolhidaTextView.setText(vilaSelecionada);
+                        vilaSelecionadaTextView.setText(vilaSelecionada);
                         break;
                     case R.id.areiaRadioButton:
                         vilaSelecionada = "Areia";
                         numVila = 2;
-                        vilaEscolhidaTextView.setText(vilaSelecionada);
+                        vilaSelecionadaTextView.setText(vilaSelecionada);
                         break;
                     case R.id.nevoaRadioButton:
                         vilaSelecionada = "Névoa";
                         numVila = 3;
-                        vilaEscolhidaTextView.setText(vilaSelecionada);
+                        vilaSelecionadaTextView.setText(vilaSelecionada);
                         break;
                     case R.id.pedraRadioButton:
                         vilaSelecionada = "Pedra";
                         numVila = 4;
-                        vilaEscolhidaTextView.setText(vilaSelecionada);
+                        vilaSelecionadaTextView.setText(vilaSelecionada);
                         break;
                     case R.id.nuvemRadioButton:
                         vilaSelecionada = "Nuvem";
                         numVila = 5;
-                        vilaEscolhidaTextView.setText(vilaSelecionada);
+                        vilaSelecionadaTextView.setText(vilaSelecionada);
                         break;
                     case R.id.akatsukiRadioButton:
                         vilaSelecionada = "Akatsuki";
                         numVila = 6;
-                        vilaEscolhidaTextView.setText(vilaSelecionada);
+                        vilaSelecionadaTextView.setText(vilaSelecionada);
                         break;
                     case R.id.somRadioButton:
                         vilaSelecionada = "Som";
                         numVila = 7;
-                        vilaEscolhidaTextView.setText(vilaSelecionada);
+                        vilaSelecionadaTextView.setText(vilaSelecionada);
                         break;
                     case R.id.chuvaRadioButton:
                         vilaSelecionada = "Chuva";
                         numVila = 8;
-                        vilaEscolhidaTextView.setText(vilaSelecionada);
+                        vilaSelecionadaTextView.setText(vilaSelecionada);
                         break;
                 }
             }
@@ -220,25 +215,15 @@ public class PersonagemCriarFragment extends Fragment {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         personagensRecyclerView.setLayoutManager(layoutManager);
         personagensRecyclerView.setHasFixedSize(true);
-        adapter = new PequenasAdapter(getActivity(), pequenasLista);
+        adapter = new ProfilesPequenasAdapter(getActivity(), pequenasLista);
         personagensRecyclerView.setAdapter(adapter);
         personagensRecyclerView.addOnItemTouchListener(new RecyclerItemClickListener(
                 getActivity(), personagensRecyclerView, new RecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                StorageReference imagemRef = ConfigFirebase.getStorage()
-                        .child("images")
-                        .child("profile")
-                        .child(String.valueOf(pequenasLista.get(position)))
-                        .child("1.png");
-
-                Glide.with(getActivity())
-                        .using(new FirebaseImageLoader())
-                        .load(imagemRef)
-                        .into(profileImageView);
+                Storage.baixarProfile(getActivity(), profileImageView, pequenasLista.get(position));
 
                 personagem.setIdProfile(pequenasLista.get(position));
-
                 nomePersonagemSelecionadoTextView.setText(Helper.nomeDoPersonagem(personagem.getIdProfile()));
             }
 
@@ -291,12 +276,7 @@ public class PersonagemCriarFragment extends Fragment {
         personagem.setJutsus(jutsus);
         personagem.salvar();
 
-        AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
-        alert.setTitle("NINJA CRIADO COM SUCESSO");
-        alert.setMessage("Parabéns você acaba de criar seu personagem no Naruto Game.\n" +
-                "Selecione seu personagem e comece agora mesmo seu treinamento");
-        alert.create();
-        alert.show();
+        exibirAlerta();
     }
 
 
@@ -328,10 +308,13 @@ public class PersonagemCriarFragment extends Fragment {
         }
     }
 
-    private void changeToFragment(Fragment fragment) {
-        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.conteiner, fragment);
-        transaction.commit();
+    private void exibirAlerta() {
+        AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
+        alert.setTitle("NINJA CRIADO COM SUCESSO");
+        alert.setMessage("Parabéns você acaba de criar seu personagem no Naruto Game.\n" +
+                "Selecione seu personagem e comece agora mesmo seu treinamento");
+        alert.create();
+        alert.show();
     }
 
     private void recuperarImagensPequenas() {
@@ -343,7 +326,12 @@ public class PersonagemCriarFragment extends Fragment {
         }
 
         adapter.notifyDataSetChanged();
+    }
 
+    private void changeToFragment(Fragment fragment) {
+        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.conteiner, fragment);
+        transaction.commit();
     }
 
     @Override

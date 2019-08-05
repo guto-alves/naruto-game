@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.google.firebase.storage.StorageReference;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.config.ConfigFirebase;
+import com.gutotech.narutogame.config.Storage;
 import com.gutotech.narutogame.fragment.personagemlogado.academia.AcademiaJustuFragment;
 import com.gutotech.narutogame.model.Jutsu;
 
@@ -40,12 +41,8 @@ public class JutsusAprenderAdapter extends RecyclerView.Adapter<JutsusAprenderAd
     public void onBindViewHolder(@NonNull final MyViewHolder myViewHolder, int i) {
         final Jutsu jutsu = jutsusList.get(i);
 
-        StorageReference imagemJutsuReference = ConfigFirebase.getStorage()
-                .child("images")
-                .child("jutsu")
-                .child(jutsu.getClasse())
-                .child(jutsu.getNomeImagem() + ".jpg");
-        ConfigFirebase.downloadImage(context, imagemJutsuReference, myViewHolder.jutsuImageView);
+        Storage.baixarJutsu(context, myViewHolder.jutsuImageView, jutsu.getClasse(), jutsu.getNomeImagem());
+
         myViewHolder.jutsuImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

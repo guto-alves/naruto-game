@@ -11,6 +11,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.security.SecureRandom;
+
 public class ConfigFirebase {
     private static DatabaseReference database;
     private static FirebaseAuth auth;
@@ -32,12 +34,5 @@ public class ConfigFirebase {
         if (storage == null)
             storage = FirebaseStorage.getInstance().getReference();
         return storage;
-    }
-
-    public static void downloadImage(Context context, StorageReference imageReference, ImageView imageView) {
-        Glide.with(context)
-                .using(new FirebaseImageLoader())
-                .load(imageReference)
-                .into(imageView);
     }
 }

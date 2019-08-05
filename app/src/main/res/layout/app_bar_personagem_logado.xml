@@ -45,7 +45,8 @@
                     android:text="@string/home"
                     android:textColor="@android:color/white"
                     android:textSize="18sp"
-                    android:typeface="serif"
+                    android:typeface="normal"
+                    app:fontFamily="casual"
                     app:layout_constraintBottom_toBottomOf="@+id/imageView12"
                     app:layout_constraintStart_toStartOf="@+id/imageView12"
                     app:layout_constraintTop_toTopOf="@+id/imageView12" />

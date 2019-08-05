@@ -151,7 +151,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/vilaEscolhidaTextView"
+                    android:id="@+id/vilaSelecionadaTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Folha"

@@ -34,6 +34,7 @@ import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.activity.PersonagemLogadoActivity;
 import com.gutotech.narutogame.adapter.JutsusAdapter;
 import com.gutotech.narutogame.config.ConfigFirebase;
+import com.gutotech.narutogame.config.Storage;
 import com.gutotech.narutogame.helper.RecyclerItemClickListener;
 import com.gutotech.narutogame.model.BatalhaPVP;
 import com.gutotech.narutogame.model.Formulas;
@@ -135,12 +136,7 @@ public class DojoBatalhaPVPFragment extends Fragment {
             }
         });
         ImageView profilePlayerImageView = view.findViewById(R.id.profileMeImageView);
-        StorageReference profileRef = ConfigFirebase.getStorage()
-                .child("images")
-                .child("profile")
-                .child(String.valueOf(player.getIdProfile()))
-                .child(player.getFotoAtual() + ".png");
-        ConfigFirebase.downloadImage(getActivity(), profileRef, profilePlayerImageView);
+        Storage.baixarProfile(getActivity(), profilePlayerImageView, player.getIdProfile(), player.getFotoAtual());
 
         TextView nickPlayerTextView = view.findViewById(R.id.nickMeTextView);
         nickPlayerTextView.setText(player.getNick());
@@ -263,12 +259,7 @@ public class DojoBatalhaPVPFragment extends Fragment {
             }
         });
 
-        StorageReference profileRef2 = ConfigFirebase.getStorage()
-                .child("images")
-                .child("profile")
-                .child(String.valueOf(Oponente.oponente.getIdProfile()))
-                .child(Oponente.oponente.getFotoAtual() + ".png");
-        ConfigFirebase.downloadImage(getActivity(), profileRef2, profileOpoImageView);
+        Storage.baixarProfile(getActivity(), profileOpoImageView, Oponente.oponente.getIdProfile(), Oponente.oponente.getFotoAtual());
 
         nickOpoTextView.setText(Oponente.oponente.getNick());
         graduELvlOpoTextView.setText(String.format(Locale.getDefault(), "%s - Lvl %d", Oponente.oponente.getGraducao(), Oponente.oponente.getLevel()));

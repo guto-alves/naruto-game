@@ -34,6 +34,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:background="#271C15"
+            android:elevation="5dp"
             android:orientation="vertical"
             android:padding="10dp"
             app:layout_constraintEnd_toEndOf="parent"

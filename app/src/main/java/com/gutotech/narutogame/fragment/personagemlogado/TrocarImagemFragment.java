@@ -16,6 +16,7 @@ import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.activity.PersonagemLogadoActivity;
 import com.gutotech.narutogame.adapter.ProfilesAdapter;
 import com.gutotech.narutogame.config.ConfigFirebase;
+import com.gutotech.narutogame.config.Storage;
 import com.gutotech.narutogame.fragment.personagemlogado.personagem.PersonagemStatusFragment;
 import com.gutotech.narutogame.model.Personagem;
 import com.gutotech.narutogame.publicentities.Helper;
@@ -46,12 +47,8 @@ public class TrocarImagemFragment extends Fragment {
                     public void onClick(DialogInterface dialog, int which) {
                         PersonagemOn.personagem.setFotoAtual(position + 1);
 
-                        StorageReference profileRef = ConfigFirebase.getStorage()
-                                .child("images")
-                                .child("profile")
-                                .child(String.valueOf(PersonagemOn.personagem.getIdProfile()))
-                                .child(PersonagemOn.personagem.getFotoAtual() + ".png");
-                        ConfigFirebase.downloadImage(getActivity(), profileRef, PersonagemLogadoActivity.profileLogadoimageView);
+                        Storage.baixarProfile(getActivity(), PersonagemLogadoActivity.profileLogadoimageView, PersonagemOn.personagem.getIdProfile(), PersonagemOn.personagem.getFotoAtual());
+
                         PersonagemOn.personagem.salvar();
 
                         changeFragment(new PersonagemStatusFragment());

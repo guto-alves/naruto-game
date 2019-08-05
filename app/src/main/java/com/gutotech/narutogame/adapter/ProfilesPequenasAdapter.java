@@ -16,11 +16,11 @@ import com.gutotech.narutogame.config.ConfigFirebase;
 
 import java.util.List;
 
-public class PequenasAdapter extends RecyclerView.Adapter<PequenasAdapter.MyViewHolder> {
+public class ProfilesPequenasAdapter extends RecyclerView.Adapter<ProfilesPequenasAdapter.MyViewHolder> {
     private List<Integer> pequenasList;
     private Context context;
 
-    public PequenasAdapter(Context context, List<Integer> pequenasList) {
+    public ProfilesPequenasAdapter(Context context, List<Integer> pequenasList) {
         this.context = context;
         this.pequenasList = pequenasList;
     }

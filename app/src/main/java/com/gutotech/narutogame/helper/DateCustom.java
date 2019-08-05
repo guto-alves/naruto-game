@@ -1,11 +1,17 @@
 package com.gutotech.narutogame.helper;
 
 import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 public class DateCustom {
 
     public static String dataAtual() {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("d/MM/yyyy");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+        return simpleDateFormat.format(System.currentTimeMillis());
+    }
+
+    public static String horarioAtual() {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
         return simpleDateFormat.format(System.currentTimeMillis());
     }
 

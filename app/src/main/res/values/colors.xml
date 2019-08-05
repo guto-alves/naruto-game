@@ -6,10 +6,10 @@
 
     <color name="colorVerde">#0BD96C</color>
     <color name="colorTituloSecao">#F3E6C4</color>
-    <color name="colorTextos">#C6DDE6</color>
+    <color name="colorTextos">#D1D8F1</color>
 
     <color name="colorItem1">#423727</color>
     <color name="colorItem2">#271C15</color>
 
-
+    <color name="colorAmarela">#F9C863</color>
 </resources>

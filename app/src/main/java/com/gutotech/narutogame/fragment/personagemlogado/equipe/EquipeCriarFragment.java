@@ -14,14 +14,10 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.storage.StorageReference;
 import com.gutotech.narutogame.R;
-import com.gutotech.narutogame.config.ConfigFirebase;
+import com.gutotech.narutogame.config.Storage;
 import com.gutotech.narutogame.model.Equipe;
 import com.gutotech.narutogame.publicentities.PersonagemOn;
-
-import java.security.SecureRandom;
 
 public class EquipeCriarFragment extends Fragment {
     private TextInputEditText nomeEquipeTextInput;
@@ -38,13 +34,8 @@ public class EquipeCriarFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_equipe_criar, container, false);
 
-        ImageView imagemMsg = view.findViewById(R.id.imagemMsg);
-        StorageReference referenceImagemMsg = ConfigFirebase.getStorage()
-                .child("images")
-                .child("msg")
-                .child(String.valueOf(PersonagemOn.personagem.getNumVila()))
-                .child((new SecureRandom().nextInt(6) + 1) + ".png");
-        ConfigFirebase.downloadImage(getActivity(), referenceImagemMsg, imagemMsg);
+        ImageView imagemMsg = view.findViewById(R.id.personagemMsg);
+        Storage.baixarImagemParaMsg(getActivity(), imagemMsg, PersonagemOn.personagem.getNumVila());
 
         nomeEquipeTextInput = view.findViewById(R.id.nomeEqpTextInput);
 

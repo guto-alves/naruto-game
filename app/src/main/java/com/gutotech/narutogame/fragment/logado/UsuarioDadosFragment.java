@@ -11,17 +11,16 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
+import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.Toast;
 
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.config.ConfigFirebase;
+import com.gutotech.narutogame.config.Storage;
 import com.gutotech.narutogame.model.Player;
 
 public class UsuarioDadosFragment extends Fragment {
@@ -49,12 +48,15 @@ public class UsuarioDadosFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_usuario_dados, container, false);
 
-        player = new Player();
+        ImageView personagemMsg = view.findViewById(R.id.personagemMsg);
+        Storage.baixarImagemParaMsg(getActivity(), personagemMsg);
 
         playerReference = ConfigFirebase.getDatabase()
                 .child("player")
                 .child(ConfigFirebase.getAuth().getCurrentUser().getUid());
         recuperarPlayer();
+
+        final ImageView personagemMsg2 = view.findViewById(R.id.imagemMsg2);
 
         nomeEditText = view.findViewById(R.id.editTextNome);
         emailEditText = view.findViewById(R.id.editTextEmail);
@@ -100,6 +102,7 @@ public class UsuarioDadosFragment extends Fragment {
                     player.setEstado(estadoEditText.getText().toString());
                     player.salvar();
 
+                    Storage.baixarImagemParaMsg(getActivity(), personagemMsg2);
                     mgsSucessoConstraintLayout.setVisibility(View.VISIBLE);
                 }
             }
@@ -114,6 +117,7 @@ public class UsuarioDadosFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 player = dataSnapshot.getValue(Player.class);
                 exibirDados();
+                playerReference.removeEventListener(valueEventListenerPlayer);
             }
 
             @Override
@@ -122,12 +126,10 @@ public class UsuarioDadosFragment extends Fragment {
         });
     }
 
-    private void exibirDados() {
-        if (!player.getNome().isEmpty())
-            nomeEditText.setText(player.getNome());
 
-        if (!player.getEmail().isEmpty())
-            emailEditText.setText(player.getEmail());
+    private void exibirDados() {
+        nomeEditText.setText(player.getNome());
+        emailEditText.setText(player.getEmail());
 
         ArrayAdapter<CharSequence> adapter;
         sexo = player.getSexo();
@@ -138,22 +140,22 @@ public class UsuarioDadosFragment extends Fragment {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sexoSpinner.setAdapter(adapter);
 
-        if (!player.getDataNascimento().isEmpty())
+        if (player.getDataNascimento() != null)
             dataNascimentoEditText.setText(player.getDataNascimento());
 
-        if (!player.getCep().isEmpty())
+        if (player.getCep() != null)
             cepEditText.setText(player.getCep());
 
-        if (!player.getEndereco().isEmpty())
+        if (player.getEndereco() != null)
             enderecoEditText.setText(player.getEndereco());
 
-        if (!player.getCidade().isEmpty())
+        if (player.getCidade() != null)
             cidadeEditText.setText(player.getCidade());
 
-        if (!player.getBairro().isEmpty())
+        if (player.getBairro() != null)
             bairroEditText.setText(player.getBairro());
 
-        if (!player.getEstado().isEmpty())
+        if (player.getEstado() != null)
             estadoEditText.setText(player.getEstado());
     }
 
@@ -168,17 +170,13 @@ public class UsuarioDadosFragment extends Fragment {
             return false;
         }
 
-        if (data.isEmpty()) {
-            dataNascimentoEditText.setError("Data de nascimento inválida");
-            return false;
+        if (!data.isEmpty()) {
+            if (!data.matches("\\d{2}/\\d{2}/\\d{4}")) {
+                dataNascimentoEditText.setError("Data de nascimento inválida\n(ex.: dd/mm/aaaa)");
+                return false;
+            }
         }
 
         return true;
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        playerReference.removeEventListener(valueEventListenerPlayer);
     }
 }

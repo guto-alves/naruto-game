@@ -41,6 +41,7 @@ import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.adapter.MensagensAdapter;
 import com.gutotech.narutogame.adapter.MenuPersonagemLogadoExpandableAdapter;
 import com.gutotech.narutogame.config.ConfigFirebase;
+import com.gutotech.narutogame.config.Storage;
 import com.gutotech.narutogame.fragment.logado.PersonagemCriarFragment;
 import com.gutotech.narutogame.fragment.logado.PersonagemSelecionarFragment;
 import com.gutotech.narutogame.fragment.logado.SenhaTrocarFragment;
@@ -122,19 +123,10 @@ public class PersonagemLogadoActivity extends AppCompatActivity {
         View headerView = navigationView.getHeaderView(0);
 
         ImageView topoLogadoimageView = headerView.findViewById(R.id.topoLogadoImageView);
-        StorageReference imageTopoRef = ConfigFirebase.getStorage()
-                .child("images")
-                .child("topo-logado")
-                .child(personagem.getIdProfile() + ".jpg");
-        ConfigFirebase.downloadImage(getApplicationContext(), imageTopoRef, topoLogadoimageView);
+        Storage.baixarTopoLogado(getApplicationContext(), topoLogadoimageView, PersonagemOn.personagem.getIdProfile());
 
         profileLogadoimageView = findViewById(R.id.perfilPersonagemOnImageView);
-        StorageReference profileRef = ConfigFirebase.getStorage()
-                .child("images")
-                .child("profile")
-                .child(String.valueOf(personagem.getIdProfile()))
-                .child(personagem.getFotoAtual() + ".png");
-        ConfigFirebase.downloadImage(getApplicationContext(), profileRef, profileLogadoimageView);
+        Storage.baixarProfile(getApplicationContext(), profileLogadoimageView, personagem.getIdProfile(), personagem.getFotoAtual());
 
         TextView nickPersonagemOnTextView = findViewById(R.id.nickPersonagemOnTextView);
         nickPersonagemOnTextView.setText(PersonagemOn.personagem.getNick());

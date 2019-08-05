@@ -25,6 +25,7 @@ import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.storage.StorageReference;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.config.ConfigFirebase;
+import com.gutotech.narutogame.config.Storage;
 import com.gutotech.narutogame.model.Player;
 import com.gutotech.narutogame.publicentities.PersonagemOn;
 
@@ -43,12 +44,7 @@ public class CadastroFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_cadastro, container, false);
 
         ImageView personagemMsg = view.findViewById(R.id.personagemMsgImagem);
-        StorageReference referenceImagemMsg = ConfigFirebase.getStorage()
-                .child("images")
-                .child("msg")
-                .child(String.valueOf(new SecureRandom().nextInt(8) + 1))
-                .child((new SecureRandom().nextInt(6) + 1) + ".png");
-        ConfigFirebase.downloadImage(getActivity(), referenceImagemMsg, personagemMsg);
+        Storage.baixarImagemParaMsg(getActivity(), personagemMsg);
 
         nomeCompletoEditText = view.findViewById(R.id.nomeCompletoEditText);
         emailEditText = view.findViewById(R.id.emailEditText);

@@ -3,7 +3,6 @@ package com.gutotech.narutogame.fragment.personagemlogado.combates;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.os.SystemClock;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -13,35 +12,26 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Chronometer;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.firebase.ui.storage.images.FirebaseImageLoader;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.storage.StorageReference;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.activity.PersonagemLogadoActivity;
 import com.gutotech.narutogame.adapter.JutsusAdapter;
-import com.gutotech.narutogame.adapter.LogAdapter;
-import com.gutotech.narutogame.adapter.PequenasAdapter;
 import com.gutotech.narutogame.config.ConfigFirebase;
+import com.gutotech.narutogame.config.Storage;
 import com.gutotech.narutogame.helper.RecyclerItemClickListener;
 import com.gutotech.narutogame.model.Formulas;
 import com.gutotech.narutogame.model.Jutsu;
 import com.gutotech.narutogame.model.Personagem;
 import com.gutotech.narutogame.publicentities.NPC;
 import com.gutotech.narutogame.publicentities.PersonagemOn;
-
-import org.w3c.dom.Text;
 
 import java.util.Locale;
 
@@ -107,12 +97,7 @@ public class DojoBatalhaLutadorFragment extends Fragment {
             }
         });
         ImageView profileOpoImageView = view.findViewById(R.id.profileOpoImageView);
-        StorageReference profileRef2 = ConfigFirebase.getStorage()
-                .child("images")
-                .child("profile")
-                .child(String.valueOf(NPC.npc.getIdProfile()))
-                .child(NPC.npc.getFotoAtual() + ".png");
-        ConfigFirebase.downloadImage(getActivity(), profileRef2, profileOpoImageView);
+        Storage.baixarProfile(getActivity(), profileOpoImageView, NPC.npc.getIdProfile(), NPC.npc.getFotoAtual());
 
         TextView nickOpoTextView = view.findViewById(R.id.nickOpoTextView);
         nickOpoTextView.setText(NPC.npc.getNick());
@@ -140,12 +125,7 @@ public class DojoBatalhaLutadorFragment extends Fragment {
             }
         });
         ImageView profilePlayerImageView = view.findViewById(R.id.profileMeImageView);
-        StorageReference profileRef = ConfigFirebase.getStorage()
-                .child("images")
-                .child("profile")
-                .child(String.valueOf(player.getIdProfile()))
-                .child(player.getFotoAtual() + ".png");
-        ConfigFirebase.downloadImage(getActivity(), profileRef, profilePlayerImageView);
+        Storage.baixarProfile(getActivity(), profilePlayerImageView, player.getIdProfile(), player.getFotoAtual());
 
         TextView nickPlayerTextView = view.findViewById(R.id.nickMeTextView);
         nickPlayerTextView.setText(player.getNick());

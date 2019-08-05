@@ -50,7 +50,7 @@ public class RamensRecyclerAdapter extends RecyclerView.Adapter<RamensRecyclerAd
         myViewHolder.requerImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, ramen.getNome(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Nenhum requerimento", Toast.LENGTH_SHORT).show();
             }
         });
         myViewHolder.descricaoTextView.setText(ramen.getDescricao());

@@ -44,7 +44,7 @@
             app:layout_constraintTop_toTopOf="@+id/imageView24" />
 
         <ImageView
-            android:id="@+id/imagemMsg"
+            android:id="@+id/personagemMsg"
             android:layout_width="120dp"
             android:layout_height="0dp"
             android:layout_marginTop="8dp"
@@ -82,7 +82,7 @@
             android:orientation="vertical"
             app:layout_constraintBottom_toTopOf="@+id/imageView22"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imagemMsg"
+            app:layout_constraintStart_toEndOf="@+id/personagemMsg"
             app:layout_constraintTop_toBottomOf="@+id/imageView21">
 
             <TextView

@@ -12,24 +12,18 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.firebase.ui.storage.images.FirebaseImageLoader;
-import com.google.android.gms.auth.api.signin.internal.Storage;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.StorageReference;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.config.ConfigFirebase;
+import com.gutotech.narutogame.config.Storage;
 import com.gutotech.narutogame.model.Formulas;
 import com.gutotech.narutogame.model.Personagem;
 import com.gutotech.narutogame.publicentities.NPC;
 import com.gutotech.narutogame.publicentities.PersonagemOn;
-
-import java.security.SecureRandom;
 
 public class BatalhasDojoNPCFragment extends Fragment {
     private final int MAX_NPC_DIARIO = 5;
@@ -50,14 +44,9 @@ public class BatalhasDojoNPCFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_batalhas_dojo_npc, container, false);
 
-        // Confjgura MSG
-        ImageView imagemMsg = view.findViewById(R.id.imagemMsg);
-        StorageReference referenceImagemMsg = ConfigFirebase.getStorage()
-                .child("images")
-                .child("msg")
-                .child(String.valueOf(PersonagemOn.personagem.getNumVila()))
-                .child((new SecureRandom().nextInt(6) + 1) + ".png");
-        ConfigFirebase.downloadImage(getActivity(), referenceImagemMsg, imagemMsg);
+        // Confjgura msg
+        ImageView imagemMsg = view.findViewById(R.id.personagemMsg);
+        Storage.baixarImagemParaMsg(getActivity(), imagemMsg, PersonagemOn.personagem.getNumVila());
 
         ProgressBar combatesNPCDiarioProgressBar = view.findViewById(R.id.combatesNPCDiarioProgressBar);
         combatesNPCDiarioProgressBar.setMax(MAX_NPC_DIARIO);
@@ -84,12 +73,7 @@ public class BatalhasDojoNPCFragment extends Fragment {
 
                 // config EU
                 ImageView profileMeImageView = view.findViewById(R.id.profileMeImageView);
-                StorageReference referenceProfileMe = ConfigFirebase.getStorage()
-                        .child("images")
-                        .child("profile")
-                        .child(String.valueOf(PersonagemOn.personagem.getIdProfile()))
-                        .child(PersonagemOn.personagem.getFotoAtual() + ".png");
-                ConfigFirebase.downloadImage(getActivity(), referenceProfileMe, profileMeImageView);
+                Storage.baixarProfile(getActivity(), profileMeImageView, PersonagemOn.personagem.getIdProfile(), PersonagemOn.personagem.getFotoAtual());
 
                 TextView nickMeTextView = view.findViewById(R.id.nickMeTextView);
                 nickMeTextView.setText(PersonagemOn.personagem.getNick());
@@ -135,12 +119,7 @@ public class BatalhasDojoNPCFragment extends Fragment {
     }
 
     private void atualizarTela() {
-        StorageReference referenceProfileNPC = ConfigFirebase.getStorage()
-                .child("images")
-                .child("profile")
-                .child(String.valueOf(NPC.npc.getIdProfile()))
-                .child(NPC.npc.getFotoAtual() + ".png");
-        ConfigFirebase.downloadImage(getActivity(), referenceProfileNPC, profileNPCImageView);
+        Storage.baixarProfile(getActivity(), profileNPCImageView, NPC.npc.getIdProfile(), NPC.npc.getFotoAtual());
 
         nickNPCTextView.setText(NPC.npc.getNick());
 

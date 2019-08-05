@@ -4,6 +4,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Exclude;
 import com.gutotech.narutogame.config.ConfigFirebase;
 
+import java.util.List;
+
 public class Player {
     private String id;
     private String nome;
@@ -40,7 +42,7 @@ public class Player {
 
     public void salvar() {
         DatabaseReference reference = ConfigFirebase.getDatabase();
-        DatabaseReference player = reference.child("player").child(id);
+        DatabaseReference player = reference.child("player").child(ConfigFirebase.getAuth().getCurrentUser().getUid());
 
         player.setValue(this);
     }
