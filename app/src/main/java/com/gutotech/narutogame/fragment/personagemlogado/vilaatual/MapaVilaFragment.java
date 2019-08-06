@@ -2,9 +2,6 @@ package com.gutotech.narutogame.fragment.personagemlogado.vilaatual;
 
 
 import android.annotation.SuppressLint;
-import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -22,23 +19,17 @@ import android.widget.GridView;
 import android.widget.PopupMenu;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.firebase.ui.storage.images.FirebaseImageLoader;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.StorageReference;
 import com.gutotech.narutogame.R;
-import com.gutotech.narutogame.adapter.MapaAdapter;
+import com.gutotech.narutogame.adapter.MapaGridAdapter;
 import com.gutotech.narutogame.config.ConfigFirebase;
 import com.gutotech.narutogame.model.Personagem;
 import com.gutotech.narutogame.publicentities.PersonagemOn;
 
-import java.net.URI;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,7 +39,7 @@ public class MapaVilaFragment extends Fragment {
     private final int TAMANHO_MAPA = 140;
 
     private List<Personagem> personagensNoMapa = new ArrayList<>();
-    private MapaAdapter mapaAdapter;
+    private MapaGridAdapter mapaAdapter;
 
     private Personagem personagemOn = PersonagemOn.personagem;
 
@@ -94,7 +85,7 @@ public class MapaVilaFragment extends Fragment {
         else if (vila.equals("Chuva"))
             mapa.setBackgroundResource(R.drawable.layout_mapa_8);
 
-        mapaAdapter = new MapaAdapter(getActivity(), TAMANHO_MAPA, personagensNoMapa);
+        mapaAdapter = new MapaGridAdapter(getActivity(), TAMANHO_MAPA, personagensNoMapa);
         mapa.setAdapter(mapaAdapter);
 
         mapa.setOnItemClickListener(new AdapterView.OnItemClickListener() {

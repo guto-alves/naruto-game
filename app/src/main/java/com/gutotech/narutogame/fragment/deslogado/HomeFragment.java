@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,6 +28,7 @@ import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.activity.LogadoSelecionarActivity;
@@ -35,21 +37,19 @@ import com.gutotech.narutogame.config.ConfigFirebase;
 import com.gutotech.narutogame.helper.RecyclerItemClickListener;
 import com.gutotech.narutogame.model.Noticia;
 import com.gutotech.narutogame.model.Player;
-import com.gutotech.narutogame.publicentities.ContentFragment;
-import com.gutotech.narutogame.publicentities.NewsPublic;
+import com.gutotech.narutogame.publicentities.CurrentFragment;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class HomeFragment extends Fragment {
     private EditText emailEditText, senhaEditText;
-    private ImageButton jogarButton;
 
     private RecyclerView noticiasRecyclerView;
     private NoticiasAdapter noticiasAdapter;
     private List<Noticia> noticiaList = new ArrayList<>();
 
-    private DatabaseReference referenceNoticia;
+    private Query noticiasQuery;
     private ValueEventListener valueEventListener;
 
     private FirebaseAuth auth;
@@ -65,9 +65,10 @@ public class HomeFragment extends Fragment {
         emailEditText = view.findViewById(R.id.emailLoginEditText);
         senhaEditText = view.findViewById(R.id.senhaLoginEditText);
         TextView esqueceuSenhaTextView = view.findViewById(R.id.esqueceuASenhaTextView);
-        jogarButton = view.findViewById(R.id.jogarImageButton);
+        ImageButton jogarButton = view.findViewById(R.id.jogarImageButton);
 
-        if (ContentFragment.home_deslogado) {
+        Bundle bundle = getArguments();
+        if (bundle == null) {
             esqueceuSenhaTextView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -98,7 +99,8 @@ public class HomeFragment extends Fragment {
         configurarRecyclerNoticias();
 
         auth = ConfigFirebase.getAuth();
-        referenceNoticia = ConfigFirebase.getDatabase().child("noticia");
+        DatabaseReference referenceNoticia = ConfigFirebase.getDatabase().child("noticia");
+        noticiasQuery = referenceNoticia.orderByKey();
 
         return view;
     }
@@ -115,8 +117,16 @@ public class HomeFragment extends Fragment {
         noticiasRecyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getActivity(), noticiasRecyclerView, new RecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                NewsPublic.setNoticia(noticiaList.get(position));
-                changeTo(new LerNoticiaFragment());
+                CurrentFragment.LER_NOTICIA = 1;
+                TextView textView = getActivity().findViewById(R.id.tituloSecaoTextView);
+                textView.setText("LER NOTÍCIA");
+
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("noticia", noticiaList.get(position));
+
+                LerNoticiaFragment lerNoticiaFragment = new LerNoticiaFragment();
+                lerNoticiaFragment.setArguments(bundle);
+                changeTo(lerNoticiaFragment);
             }
 
             @Override
@@ -173,15 +183,21 @@ public class HomeFragment extends Fragment {
         return valid;
     }
 
+    public void changeTo(Fragment fragment) {
+        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.conteiner, fragment);
+        transaction.commit();
+    }
+
     private void recuperarNoticias() {
-        valueEventListener = referenceNoticia.addValueEventListener(new ValueEventListener() {
+        valueEventListener = noticiasQuery.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 noticiaList.clear();
 
                 for (DataSnapshot data : dataSnapshot.getChildren()) {
                     Noticia noticia = data.getValue(Noticia.class);
-                    noticiaList.add(noticia);
+                    noticiaList.add(0, noticia);
                 }
                 noticiasAdapter.notifyDataSetChanged();
             }
@@ -190,12 +206,6 @@ public class HomeFragment extends Fragment {
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
-    }
-
-    public void changeTo(Fragment fragment) {
-        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.conteiner, fragment);
-        transaction.commit();
     }
 
     @Override
@@ -207,6 +217,6 @@ public class HomeFragment extends Fragment {
     @Override
     public void onStop() {
         super.onStop();
-        referenceNoticia.removeEventListener(valueEventListener);
+        noticiasQuery.removeEventListener(valueEventListener);
     }
 }

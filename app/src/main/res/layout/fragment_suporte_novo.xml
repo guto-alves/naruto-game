@@ -94,14 +94,14 @@
 
                 <EditText
                     android:id="@+id/dataQuandoOcorreuEditText"
-                    android:layout_width="150dp"
+                    android:layout_width="120dp"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="8dp"
                     android:background="@android:color/white" />
 
                 <Spinner
                     android:id="@+id/quandoHorasSpinner"
-                    android:layout_width="25dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="8dp"
                     android:background="@android:color/white"
@@ -109,7 +109,7 @@
 
                 <Spinner
                     android:id="@+id/quandoMinutosSpinner"
-                    android:layout_width="25dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@android:color/white"
                     android:padding="5dp" />
@@ -166,7 +166,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="65dp"
-                    android:text="Arquivo"
+                    android:text="@string/arquivo"
                     android:textColor="@color/colorTextos"
                     android:textStyle="bold" />
 

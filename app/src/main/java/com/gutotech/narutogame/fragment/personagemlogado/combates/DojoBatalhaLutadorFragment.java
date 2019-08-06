@@ -84,8 +84,8 @@ public class DojoBatalhaLutadorFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_dojo_batalha_lutador, container, false);
-
-        PersonagemLogadoActivity.tituloSecao.setText("DESAFIO DOJO");
+        TextView tituloSecao = getActivity().findViewById(R.id.tituloSecaoTextView);
+        tituloSecao.setText("DESAFIO DOJO");
 
         // CONFIGURA NPC
         npcFormulas = NPC.npc.getAtributos().getFormulas();

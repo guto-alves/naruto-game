@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.activity.PersonagemLogadoActivity;
@@ -27,8 +28,8 @@ public class HospitalQuartoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_hospital_quarto, container, false);
-
-        PersonagemLogadoActivity.tituloSecao.setText("QUARTO DO HOSPITAL");
+        TextView tituloSecao = getActivity().findViewById(R.id.tituloSecaoTextView);
+        tituloSecao.setText("QUARTO DO HOSPITAL");
 
         Button pagarMedicoButton = view.findViewById(R.id.pagarMedicoButton);
         pagarMedicoButton.setOnClickListener(new View.OnClickListener() {
@@ -57,6 +58,7 @@ public class HospitalQuartoFragment extends Fragment {
                 }
             }
         });
+
         return view;
     }
 

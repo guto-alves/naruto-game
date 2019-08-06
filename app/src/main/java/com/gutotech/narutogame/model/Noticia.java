@@ -1,6 +1,8 @@
 package com.gutotech.narutogame.model;
 
-public class Noticia {
+import java.io.Serializable;
+
+public class Noticia implements Serializable {
     private String id;
     private String data;
     private String titulo;
@@ -54,5 +56,21 @@ public class Noticia {
 
     public void setPor(String por) {
         this.por = por;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public int getLikes() {
+        return likes;
+    }
+
+    public void setLikes(int likes) {
+        this.likes = likes;
     }
 }

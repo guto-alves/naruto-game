@@ -37,19 +37,24 @@
                     android:id="@+id/tituloSecaoTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginLeft="32dp"
-                    android:layout_marginTop="10dp"
-                    android:paddingLeft="16dp"
-                    android:paddingRight="16dp"
+                    android:layout_marginTop="14dp"
                     android:text="@string/home"
                     android:textColor="@android:color/white"
                     android:textSize="18sp"
+                    android:textStyle="bold"
                     android:typeface="normal"
                     app:fontFamily="casual"
                     app:layout_constraintBottom_toBottomOf="@+id/imageView12"
-                    app:layout_constraintStart_toStartOf="@+id/imageView12"
-                    app:layout_constraintTop_toTopOf="@+id/imageView12" />
+                    app:layout_constraintStart_toStartOf="@+id/guideline15"
+                    app:layout_constraintTop_toTopOf="@+id/imageView12"
+                    app:layout_constraintVertical_bias="0.4" />
+
+                <android.support.constraint.Guideline
+                    android:id="@+id/guideline15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.09" />
             </android.support.constraint.ConstraintLayout>
 
         </android.support.v7.widget.Toolbar>

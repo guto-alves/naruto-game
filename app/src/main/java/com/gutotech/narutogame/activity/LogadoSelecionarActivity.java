@@ -22,7 +22,6 @@ import com.gutotech.narutogame.fragment.logado.PersonagemSelecionarFragment;
 import com.gutotech.narutogame.fragment.logado.SenhaTrocarFragment;
 import com.gutotech.narutogame.fragment.logado.SuporteFragment;
 import com.gutotech.narutogame.fragment.logado.UsuarioDadosFragment;
-import com.gutotech.narutogame.publicentities.ContentFragment;
 import com.gutotech.narutogame.publicentities.CurrentFragment;
 
 import java.util.ArrayList;
@@ -37,7 +36,7 @@ public class LogadoSelecionarActivity extends AppCompatActivity {
     final int GROUP_PERSONAGEM = 1;
     final int GROUP_PRINCIPAL = 2;
 
-    public static TextView tituloSecaoTextView;
+    private TextView tituloSecaoTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,8 +93,9 @@ public class LogadoSelecionarActivity extends AppCompatActivity {
                     switch (childPosition) {
                         case 0:
                             tituloSecaoTextView.setText("HOME");
-                            ContentFragment.home_deslogado = false;
-                            changeFragment(new HomeFragment());
+                            HomeFragment homeFragment = new HomeFragment();
+                            homeFragment.setArguments(new Bundle());
+                            changeFragment(homeFragment);
                             break;
                         case 1:
                             tituloSecaoTextView.setText("HALL DA FAMA");
@@ -133,7 +133,6 @@ public class LogadoSelecionarActivity extends AppCompatActivity {
         itemsFromPersonagem.add("Criar Personagem");
         childList.put(groupList.get(1), itemsFromPersonagem);
 
-
         List<String> itemsFromPrincipal = new ArrayList<>();
         itemsFromPrincipal.add("Home");
         itemsFromPrincipal.add("Hall da Fama");
@@ -153,7 +152,10 @@ public class LogadoSelecionarActivity extends AppCompatActivity {
             drawer.closeDrawer(GravityCompat.START);
         } else if (CurrentFragment.LER_NOTICIA == 1) {
             CurrentFragment.LER_NOTICIA = 0;
-            changeFragment(new HomeFragment());
+            tituloSecaoTextView.setText("HOME");
+            HomeFragment homeFragment = new HomeFragment();
+            homeFragment.setArguments(new Bundle());
+            changeFragment(homeFragment);
         } else {
             super.onBackPressed();
         }

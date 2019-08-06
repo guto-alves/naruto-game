@@ -35,7 +35,7 @@ public class SuporteFragment extends Fragment {
 
     private Query myTickets;
     private ValueEventListener valueEventListenerTickets;
-    public static ConstraintLayout msgConstraint2;
+
 
     public SuporteFragment() {
     }
@@ -49,7 +49,8 @@ public class SuporteFragment extends Fragment {
         if (bundle != null) {
             ImageView personagemMsg2 = view.findViewById(R.id.personagemMsg2);
             Storage.baixarImagemParaMsg(getActivity(), personagemMsg2);
-            msgConstraint2 = view.findViewById(R.id.msgConstraint2);
+            ConstraintLayout msgConstraint2 = view.findViewById(R.id.msgConstraint2);
+            msgConstraint2.setVisibility(View.VISIBLE);
         }
 
         ImageView personagemMsg = view.findViewById(R.id.personagemMsg);
@@ -92,7 +93,6 @@ public class SuporteFragment extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
             }
         });
     }

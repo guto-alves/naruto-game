@@ -2,7 +2,6 @@ package com.gutotech.narutogame.fragment.logado;
 
 import android.Manifest;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -29,18 +28,17 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.activity.LogadoSelecionarActivity;
 import com.gutotech.narutogame.config.ConfigFirebase;
 import com.gutotech.narutogame.helper.DateCustom;
-import com.gutotech.narutogame.helper.Permissao;
-import com.gutotech.narutogame.model.Player;
 import com.gutotech.narutogame.model.Ticket;
 
 import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
 
@@ -54,9 +52,6 @@ public class SuporteNovoFragment extends Fragment {
 
     private Ticket ticket;
 
-    private String[] permissoesNecessarias = {
-            Manifest.permission.READ_EXTERNAL_STORAGE,
-    };
 
     private ImageButton anexarImageButton;
     private TextView nomeDoArquivoTextView;
@@ -68,10 +63,12 @@ public class SuporteNovoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_suporte_novo, container, false);
-        LogadoSelecionarActivity.tituloSecaoTextView.setText("SUPORTE - NOVO TICKET DE SUPORTE");
+        TextView tituloSecao = getActivity().findViewById(R.id.tituloSecaoTextView);
+        tituloSecao.setText("SUPORTE - NOVO TICKET DE SUPORTE");
 
         ticket = new Ticket();
         ticket.setCategoria("Bug");
+        ticket.setHoraOcorrido("00:00");
 
         ArrayAdapter<CharSequence> adapter;
 
@@ -116,13 +113,19 @@ public class SuporteNovoFragment extends Fragment {
         });
 
         final Spinner horasSpinner = view.findViewById(R.id.quandoHorasSpinner);
-        adapter = ArrayAdapter.createFromResource(getActivity(), R.array.sexos_array1, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        horasSpinner.setAdapter(adapter);
+        final Spinner minutosSpinner = view.findViewById(R.id.quandoMinutosSpinner);
+
+        List<String> horasList = new ArrayList<>();
+        for (int i = 0; i < 24; i++)
+            horasList.add(String.format(Locale.getDefault(), "%02d", i));
+
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, horasList);
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        horasSpinner.setAdapter(arrayAdapter);
         horasSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
+                ticket.setHoraOcorrido(String.format(Locale.getDefault(), "%s:%s", horasSpinner.getSelectedItem(), minutosSpinner.getSelectedItem()));
             }
 
             @Override
@@ -130,10 +133,13 @@ public class SuporteNovoFragment extends Fragment {
             }
         });
 
-        final Spinner minutosSpinner = view.findViewById(R.id.quandoMinutosSpinner);
-        adapter = ArrayAdapter.createFromResource(getActivity(), R.array.sexos_array1, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        minutosSpinner.setAdapter(adapter);
+        List<String> minutosList = new ArrayList<>();
+        for (int i = 0; i < 60; i++)
+            minutosList.add(String.format(Locale.getDefault(), "%02d", i));
+
+        ArrayAdapter<String> minutosAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, minutosList);
+        minutosAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        minutosSpinner.setAdapter(minutosAdapter);
         minutosSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -148,14 +154,6 @@ public class SuporteNovoFragment extends Fragment {
         final TextView caracteresRestantesTextView = view.findViewById(R.id.caracteresRestantesTextView);
 
         descricaoEditText = view.findViewById(R.id.descricaoEditText);
-        descricaoEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                int caracteresRestante = 5000 - descricaoEditText.getText().toString().length();
-
-                caracteresRestantesTextView.setText("Caracteres restantes: " + caracteresRestante);
-            }
-        });
         descricaoEditText.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
@@ -166,15 +164,15 @@ public class SuporteNovoFragment extends Fragment {
             }
         });
 
-        // validar permissões
-        Permissao.validarPermissoes(permissoesNecessarias, getActivity(), 1);
-
         nomeDoArquivoTextView = view.findViewById(R.id.nomeDoArquivoTextView);
+
+        // pedir permisssões
+        requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
+
         anexarImageButton = view.findViewById(R.id.anexarImageButton);
         anexarImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 if (intent.resolveActivity(getActivity().getPackageManager()) != null)
                     startActivityForResult(intent, 200);
@@ -207,13 +205,12 @@ public class SuporteNovoFragment extends Fragment {
                     salvarTicket(ticket);
 
                     SuporteFragment suporteFragment = new SuporteFragment();
-                    Bundle bundle = new Bundle();
-                    bundle.putInt("ticket criado", 1);
-                    suporteFragment.setArguments(bundle);
+                    suporteFragment.setArguments(new Bundle());
                     changeToFragment(suporteFragment);
                 }
             }
         });
+
         return view;
     }
 
@@ -223,6 +220,35 @@ public class SuporteNovoFragment extends Fragment {
                 .push();
 
         ticketReference.setValue(ticket);
+    }
+
+    private boolean validarCampos(String titulo, String data, String descricao) {
+        String errorMessage = "";
+
+        if (titulo.isEmpty())
+            errorMessage = "Título invalido\n";
+
+        if (descricao.isEmpty())
+            errorMessage += "Descrição invalida\n";
+
+        if (!data.matches("\\d{2}/\\d{2}/\\d{4}"))
+            errorMessage += "Data inválida";
+
+        if (errorMessage.isEmpty())
+            return true;
+        else {
+            exibirAlerta(errorMessage);
+            return false;
+        }
+    }
+
+    private void exibirAlerta(String message) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle("PROBLEMA");
+        builder.setMessage("Os seguintes problemas impediram que seu ticket fosse criado:\n\n" + message);
+        builder.setPositiveButton("OK", null);
+        builder.setCancelable(false);
+        builder.create().show();
     }
 
     @Override
@@ -280,57 +306,24 @@ public class SuporteNovoFragment extends Fragment {
         }
     }
 
-    private boolean validarCampos(String titulo, String data, String descricao) {
-        String errorMessage = "";
-
-        if (titulo.isEmpty())
-            errorMessage = "Título invalido\n";
-
-        if (descricao.isEmpty())
-            errorMessage += "Descrição invalida\n";
-
-        if (!data.matches("\\d{2}/\\d{2}/\\d{4}")) {
-            errorMessage += "Data inválida";
-        }
-
-        if (errorMessage.isEmpty())
-            return true;
-        else {
-            exibirAlerta(errorMessage);
-            return false;
-        }
-    }
-
-    private void exibirAlerta(String message) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle("PROBLEMA");
-        builder.setMessage("Os seguintes problemas impediram que seu ticket fosse criado:\n\n" + message);
-        builder.setPositiveButton("OK", null);
-        builder.setCancelable(false);
-        builder.create().show();
-    }
-
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
         for (int permissaoResultado : grantResults) {
-            if (permissaoResultado == PackageManager.PERMISSION_DENIED)
+            if (permissaoResultado == PackageManager.PERMISSION_DENIED) {
+                anexarImageButton.setEnabled(false);
                 alertaValidacaoPermissao();
+            }
         }
     }
 
     private void alertaValidacaoPermissao() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("Permissões Negadas");
-        builder.setMessage("Para fazer o upload imagem é necessário aceitar as permissões");
+        builder.setMessage("Para anexar uma imagem do problema é necessário aceitar a permissão");
         builder.setCancelable(false);
-        builder.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                anexarImageButton.setEnabled(false);
-            }
-        });
+        builder.setPositiveButton("Confirmar", null);
         builder.create();
         builder.show();
     }

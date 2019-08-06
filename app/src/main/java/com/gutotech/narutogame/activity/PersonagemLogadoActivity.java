@@ -75,12 +75,14 @@ import com.gutotech.narutogame.model.Mensagem;
 import com.gutotech.narutogame.model.Personagem;
 import com.gutotech.narutogame.publicentities.PersonagemOn;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 public class PersonagemLogadoActivity extends AppCompatActivity {
-    public static TextView tituloSecao;
+    private TextView tituloSecao;
     final int GROUP_USUARIO = 0;
     final int GROUP_PERSONAGEM = 1;
     final int GROUP_ACADEMIA = 2;

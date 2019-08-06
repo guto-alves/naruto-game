@@ -3,21 +3,31 @@ package com.gutotech.narutogame.fragment.logado;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.GridView;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.adapter.ProfilesPequenasAdapter;
 import com.gutotech.narutogame.config.ConfigFirebase;
@@ -26,6 +36,7 @@ import com.gutotech.narutogame.helper.RecyclerItemClickListener;
 import com.gutotech.narutogame.model.Atributos;
 import com.gutotech.narutogame.model.Jutsu;
 import com.gutotech.narutogame.model.Personagem;
+import com.gutotech.narutogame.model.Player;
 import com.gutotech.narutogame.model.ResumoCombates;
 import com.gutotech.narutogame.model.ResumoMissoes;
 import com.gutotech.narutogame.publicentities.Helper;
@@ -49,11 +60,19 @@ public class PersonagemCriarFragment extends Fragment {
     private ImageView profileImageView;
     private TextView nomePersonagemSelecionadoTextView;
 
-    private RecyclerView personagensRecyclerView;
+    private GridView profilesPequenasGridView;
     private ProfilesPequenasAdapter adapter;
     private List<Integer> pequenasLista = new ArrayList<>();
+    private List<Integer> profilesGrupoAtual = new ArrayList<>();
+
+    private TextView grupoAtualTextView;
+    private int grupoAtual = 0;
 
     private FirebaseAuth auth;
+
+    private Player player;
+    private DatabaseReference playerReference;
+    private ValueEventListener valueEventListenerPlayer;
 
     public PersonagemCriarFragment() {
     }
@@ -64,6 +83,10 @@ public class PersonagemCriarFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_personagem_criar, container, false);
 
         auth = ConfigFirebase.getAuth();
+        playerReference = ConfigFirebase.getDatabase()
+                .child("player")
+                .child(auth.getCurrentUser().getUid());
+        recuperarPlayer();
 
         personagem = new Personagem();
         atributos = new Atributos();
@@ -192,18 +215,66 @@ public class PersonagemCriarFragment extends Fragment {
         nomePersonagemSelecionadoTextView = view.findViewById(R.id.nomePersonagemSelecionadoTextView);
         profileImageView = view.findViewById(R.id.profileCriarImageView);
 
-        personagensRecyclerView = view.findViewById(R.id.personagensCriarRecyclerView);
-        configurarRecycler();
+        grupoAtualTextView = view.findViewById(R.id.grupoAtualTextView);
+        profilesPequenasGridView = view.findViewById(R.id.profilesPequenasGridView);
+        configurarGriView();
+
+        ImageButton voltarButton = view.findViewById(R.id.voltarImageButton);
+        voltarButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (grupoAtual - 1 >= 0)
+                    grupoAtual--;
+                else
+                    grupoAtual = 19;
+
+                carregarGrupoAtual();
+            }
+        });
+
+        ImageButton avancarButton = view.findViewById(R.id.avancarImageButton);
+        avancarButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (grupoAtual + 1 < 20)
+                    grupoAtual++;
+                else
+                    grupoAtual = 0;
+
+                carregarGrupoAtual();
+            }
+        });
 
         Button criarPersonagemButton = view.findViewById(R.id.criarPersonagemButton);
         criarPersonagemButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String nick = nickEditText.getText().toString();
+                final String nick = nickEditText.getText().toString();
 
                 if (validarNick(nick)) {
-                    salvarPersonagem(nick);
-                    changeToFragment(new PersonagemSelecionarFragment());
+                    DatabaseReference personagensRef = ConfigFirebase.getDatabase().child("personagem");
+
+                    Query pesquisarNickRepetidoQuery = personagensRef.orderByKey().equalTo(nick);
+
+                    pesquisarNickRepetidoQuery.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            Personagem personagemResult = dataSnapshot.getValue(Personagem.class);
+
+                            if (personagemResult == null) {
+                                salvarPersonagem(nick);
+                                changeToFragment(new PersonagemSelecionarFragment());
+                            } else {
+                                exibirAlerta("Aviso!", "Os seguintes problemas evitaram que a operação fosse completada:\n" +
+                                        "\nJá existe um personagem com o nome escolhido");
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                        }
+                    });
+
                 }
             }
         });
@@ -211,74 +282,106 @@ public class PersonagemCriarFragment extends Fragment {
         return view;
     }
 
-    private void configurarRecycler() {
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
-        personagensRecyclerView.setLayoutManager(layoutManager);
-        personagensRecyclerView.setHasFixedSize(true);
-        adapter = new ProfilesPequenasAdapter(getActivity(), pequenasLista);
-        personagensRecyclerView.setAdapter(adapter);
-        personagensRecyclerView.addOnItemTouchListener(new RecyclerItemClickListener(
-                getActivity(), personagensRecyclerView, new RecyclerItemClickListener.OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
-                Storage.baixarProfile(getActivity(), profileImageView, pequenasLista.get(position));
+    private void carregarGrupoAtual() {
+        int from = grupoAtual * 6;
+        int to = from + 6;
 
-                personagem.setIdProfile(pequenasLista.get(position));
-                nomePersonagemSelecionadoTextView.setText(Helper.nomeDoPersonagem(personagem.getIdProfile()));
-            }
+        profilesGrupoAtual.clear();
 
-            @Override
-            public void onLongItemClick(View view, int position) {
-            }
+        for (Integer i : pequenasLista.subList(from, to))
+            profilesGrupoAtual.add(i);
 
+        adapter.notifyDataSetChanged();
+
+        grupoAtualTextView.setText(String.valueOf(grupoAtual + 1));
+    }
+
+    private void configurarGriView() {
+        recuperarImagensPequenas();
+        adapter = new ProfilesPequenasAdapter(getActivity(), profilesGrupoAtual);
+        carregarGrupoAtual();
+        profilesPequenasGridView.setAdapter(adapter);
+        profilesPequenasGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Storage.baixarProfile(getActivity(), profileImageView, profilesGrupoAtual.get(position));
+
+                personagem.setIdProfile(profilesGrupoAtual.get(position));
+                nomePersonagemSelecionadoTextView.setText(Helper.nomeDoPersonagem(personagem.getIdProfile()));
             }
+        });
+    }
+
+    private void recuperarImagensPequenas() {
+        for (int i = 1; i <= 265; i++) {
+            if (Helper.nomeDoPersonagem(i) != null)
+                pequenasLista.add(i);
         }
-        ));
     }
 
     private void salvarPersonagem(String nick) {
-        personagem.setIdPlayer(auth.getCurrentUser().getUid());
-        personagem.setNick(nick);
-        personagem.setLevel(1);
-        personagem.setGraducao("Estudante");
-        personagem.setRyous(500);
-        personagem.setVila(vilaSelecionada);
-        personagem.setNumVila(numVila);
-        personagem.setClasse(classeSelecionada);
-        personagem.setAtributos(atributos);
-        personagem.setFotoAtual(1);
-        personagem.setExpUpar(1200);
-        personagem.setPontos(1000);
-        personagem.setResumoCombates(new ResumoCombates());
-        personagem.setResumoMissoes(new ResumoMissoes());
-        personagem.setMapa_posicao(-1);
+        if (player != null) {
+            if (player.getPersonagens() == null)
+                player.setPersonagens(new ArrayList<String>());
 
-        PersonagemOn.personagem = personagem;
-        personagem.atualizarAtributos();
-        personagem.getAtributos().getFormulas().setVidaAtual(personagem.getAtributos().getFormulas().getVida());
-        personagem.getAtributos().getFormulas().setChakraAtual(personagem.getAtributos().getFormulas().getChakra());
-        personagem.getAtributos().getFormulas().setStaminaAtual(personagem.getAtributos().getFormulas().getStamina());
+            player.getPersonagens().add(nick);
 
-        List<Jutsu> jutsus = new ArrayList<>();
-        if (personagem.getClasse().equals("Ninjutsu") || personagem.getClasse().equals("Genjutsu")) {
-            jutsus.add(new Jutsu(0, "defesa_2_mao", 1, 0, 0, 5, 0, 3, 10, 3, "def", "basico"));
-            jutsus.add(new Jutsu(1, "defesa_acrobatica", 1, 0, 0, 5, 0, 3, 15, 4, "def", "basico"));
-            jutsus.add(new Jutsu(2, "soco", 1, 0, 5, 0, 0, 3, 8, 1, "atk", "basico"));
-            jutsus.add(new Jutsu(3, "chute", 1, 0, 8, 0, 0, 3, 11, 2, "atk", "basico"));
-        } else {
-            jutsus.add(new Jutsu(0, "defesa_2_mao", 1, 0, 0, 5, 0, 3, 3, 10, "def", "basico"));
-            jutsus.add(new Jutsu(1, "defesa_acrobatica", 1, 0, 0, 5, 0, 3, 4, 15, "def", "basico"));
-            jutsus.add(new Jutsu(2, "soco", 1, 5, 0, 0, 0, 3, 1, 8, "atk", "basico"));
-            jutsus.add(new Jutsu(3, "chute", 1, 8, 0, 0, 0, 3, 2, 11, "atk", "basico"));
-        }
-        personagem.setJutsus(jutsus);
-        personagem.salvar();
+            personagem.setIdPlayer(auth.getCurrentUser().getUid());
+            personagem.setNick(nick);
+            personagem.setLevel(1);
+            personagem.setGraducao("Estudante");
+            personagem.setRyous(500);
+            personagem.setVila(vilaSelecionada);
+            personagem.setNumVila(numVila);
+            personagem.setClasse(classeSelecionada);
+            personagem.setAtributos(atributos);
+            personagem.setFotoAtual(1);
+            personagem.setExpUpar(1200);
+            personagem.setPontos(1000);
+            personagem.setResumoCombates(new ResumoCombates());
+            personagem.setResumoMissoes(new ResumoMissoes());
+            personagem.setMapa_posicao(-1);
 
-        exibirAlerta();
+            PersonagemOn.personagem = personagem;
+            personagem.atualizarAtributos();
+            personagem.getAtributos().getFormulas().setVidaAtual(personagem.getAtributos().getFormulas().getVida());
+            personagem.getAtributos().getFormulas().setChakraAtual(personagem.getAtributos().getFormulas().getChakra());
+            personagem.getAtributos().getFormulas().setStaminaAtual(personagem.getAtributos().getFormulas().getStamina());
+
+            List<Jutsu> jutsus = new ArrayList<>();
+            if (personagem.getClasse().equals("Ninjutsu") || personagem.getClasse().equals("Genjutsu")) {
+                jutsus.add(new Jutsu(0, "defesa_2_mao", 1, 0, 0, 5, 0, 3, 10, 3, "def", "basico"));
+                jutsus.add(new Jutsu(1, "defesa_acrobatica", 1, 0, 0, 5, 0, 3, 15, 4, "def", "basico"));
+                jutsus.add(new Jutsu(2, "soco", 1, 0, 5, 0, 0, 3, 8, 1, "atk", "basico"));
+                jutsus.add(new Jutsu(3, "chute", 1, 0, 8, 0, 0, 3, 11, 2, "atk", "basico"));
+            } else {
+                jutsus.add(new Jutsu(0, "defesa_2_mao", 1, 0, 0, 5, 0, 3, 3, 10, "def", "basico"));
+                jutsus.add(new Jutsu(1, "defesa_acrobatica", 1, 0, 0, 5, 0, 3, 4, 15, "def", "basico"));
+                jutsus.add(new Jutsu(2, "soco", 1, 5, 0, 0, 0, 3, 1, 8, "atk", "basico"));
+                jutsus.add(new Jutsu(3, "chute", 1, 8, 0, 0, 0, 3, 2, 11, "atk", "basico"));
+            }
+            personagem.setJutsus(jutsus);
+            personagem.salvar();
+
+            exibirAlerta("NINJA CRIADO COM SUCESSO", "Parabéns você acaba de criar seu personagem no Naruto Game.\n" +
+                    "Selecione seu personagem e comece agora mesmo seu treinamento");
+        } else
+            Toast.makeText(getActivity(), "Erro: sem conecção com a internet!", Toast.LENGTH_SHORT).show();
     }
 
+    private void recuperarPlayer() {
+        valueEventListenerPlayer = playerReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                player = dataSnapshot.getValue(Player.class);
+                playerReference.removeEventListener(valueEventListenerPlayer);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
+    }
 
     private boolean validarNick(String nick) {
         if (nick.isEmpty()) {
@@ -299,33 +402,17 @@ public class PersonagemCriarFragment extends Fragment {
         if (message.isEmpty())
             return true;
         else {
-            AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
-            alert.setTitle("Aviso!");
-            alert.setMessage("Os seguintes problemas evitaram que a operação fosse completada:\n\n" + message);
-            alert.create();
-            alert.show();
+            exibirAlerta("Aviso!", "Os seguintes problemas evitaram que a operação fosse completada:\n\n" + message);
             return false;
         }
     }
 
-    private void exibirAlerta() {
+    private void exibirAlerta(String titulo, String mensagem) {
         AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
-        alert.setTitle("NINJA CRIADO COM SUCESSO");
-        alert.setMessage("Parabéns você acaba de criar seu personagem no Naruto Game.\n" +
-                "Selecione seu personagem e comece agora mesmo seu treinamento");
+        alert.setTitle(titulo);
+        alert.setMessage(mensagem);
         alert.create();
         alert.show();
-    }
-
-    private void recuperarImagensPequenas() {
-        pequenasLista.clear();
-
-        for (int i = 1; i < 265; i++) {
-            if (Helper.isValidIdProfile(i))
-                pequenasLista.add(i);
-        }
-
-        adapter.notifyDataSetChanged();
     }
 
     private void changeToFragment(Fragment fragment) {

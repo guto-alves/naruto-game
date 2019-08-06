@@ -17,12 +17,12 @@ import com.gutotech.narutogame.publicentities.PersonagemOn;
 
 import java.util.List;
 
-public class MapaAdapter extends BaseAdapter {
+public class MapaGridAdapter extends BaseAdapter {
     private int tamanho;
     private Context context;
     private List<Personagem> personagensNoMapa;
 
-    public MapaAdapter(Context context, int tamanho, List<Personagem> personagens) {
+    public MapaGridAdapter(Context context, int tamanho, List<Personagem> personagens) {
         this.context = context;
         this.tamanho = tamanho;
         this.personagensNoMapa = personagens;

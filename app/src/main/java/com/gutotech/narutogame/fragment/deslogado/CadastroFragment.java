@@ -30,6 +30,7 @@ import com.gutotech.narutogame.model.Player;
 import com.gutotech.narutogame.publicentities.PersonagemOn;
 
 import java.security.SecureRandom;
+import java.util.ArrayList;
 
 public class CadastroFragment extends Fragment {
     private EditText nomeCompletoEditText, emailEditText, senhaEditText, confirmarSenhaEditText;

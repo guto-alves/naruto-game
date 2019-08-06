@@ -32,7 +32,6 @@ public class Personagem implements Serializable {
 
     private boolean fuiPego;
     private String nickOponente;
-    private int numFuiPego;
     private int mapa_posicao;
     private String idBatalhaAtual;
 
@@ -46,13 +45,11 @@ public class Personagem implements Serializable {
     }
 
     public void salvar() {
-        DatabaseReference reference = ConfigFirebase.getDatabase();
-        DatabaseReference personagens = reference
+        DatabaseReference personagemReference = ConfigFirebase.getDatabase()
                 .child("personagem")
-                .child(ConfigFirebase.getAuth().getCurrentUser().getUid())
                 .child(nick);
 
-        personagens.setValue(this);
+        personagemReference.setValue(this);
     }
 
     public void atualizarAtributos() {

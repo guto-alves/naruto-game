@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,8 +32,11 @@ import com.gutotech.narutogame.activity.LogadoSelecionarActivity;
 import com.gutotech.narutogame.activity.PersonagemLogadoActivity;
 import com.gutotech.narutogame.adapter.ProfilesPequenasAdapter;
 import com.gutotech.narutogame.config.ConfigFirebase;
+import com.gutotech.narutogame.config.Storage;
 import com.gutotech.narutogame.helper.RecyclerItemClickListener;
 import com.gutotech.narutogame.model.Personagem;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +45,7 @@ public class PersonagemSelecionarFragment extends Fragment {
     private TextView nick, level, graducao, ryous, vila;
     private ImageView profile;
 
-    private RecyclerView pequenasRecyclerView;
+    private GridView profilesPequenasGridView;
     private ProfilesPequenasAdapter adapter;
     private List<Integer> pequenasLista = new ArrayList<>();
     private Personagem personagemSelecionado;
@@ -62,8 +66,7 @@ public class PersonagemSelecionarFragment extends Fragment {
 
         auth = ConfigFirebase.getAuth();
         personagensRef = ConfigFirebase.getDatabase()
-                .child("personagem")
-                .child(auth.getCurrentUser().getUid());
+                .child("personagem");
 
         profile = view.findViewById(R.id.profileSelecionarImageView);
         nick = view.findViewById(R.id.nickTextView);
@@ -94,7 +97,6 @@ public class PersonagemSelecionarFragment extends Fragment {
                     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                     builder.setTitle("Naruto Game diz:");
                     builder.setMessage("Você quer realmente deletar esse ninja?");
-
                     builder.setNegativeButton("Cancelar", null);
                     builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         @Override
@@ -109,48 +111,26 @@ public class PersonagemSelecionarFragment extends Fragment {
             }
         });
 
-        pequenasRecyclerView = view.findViewById(R.id.pequenasSelecionarRecyclerView);
-        configurarRecyclerView();
+        profilesPequenasGridView = view.findViewById(R.id.profilesPequenasGridView);
+        configurarGridView();
 
         return view;
     }
 
-    private void configurarRecyclerView() {
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
-        pequenasRecyclerView.setLayoutManager(layoutManager);
-        pequenasRecyclerView.setHasFixedSize(true);
+    private void configurarGridView() {
         adapter = new ProfilesPequenasAdapter(getActivity(), pequenasLista);
-        pequenasRecyclerView.setAdapter(adapter);
-        pequenasRecyclerView.addOnItemTouchListener(new RecyclerItemClickListener(
-                getActivity(), pequenasRecyclerView, new RecyclerItemClickListener.OnItemClickListener() {
+        profilesPequenasGridView.setAdapter(adapter);
+        profilesPequenasGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(View view, int position) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 personagemSelecionado = personagensList.get(position);
                 mudarDePersonagem();
             }
-
-            @Override
-            public void onLongItemClick(View view, int position) {
-            }
-
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            }
-        }
-        ));
+        });
     }
 
     private void mudarDePersonagem() {
-        StorageReference imagemProfileRef = ConfigFirebase.getStorage()
-                .child("images")
-                .child("profile")
-                .child(String.valueOf(personagemSelecionado.getIdProfile()))
-                .child(personagemSelecionado.getFotoAtual() + ".png");
-
-        Glide.with(getActivity())
-                .using(new FirebaseImageLoader())
-                .load(imagemProfileRef)
-                .into(profile);
+        Storage.baixarProfile(getActivity(), profile, personagemSelecionado.getIdProfile(), personagemSelecionado.getFotoAtual());
 
         nick.setText(personagemSelecionado.getNick());
         level.setText(String.valueOf(personagemSelecionado.getLevel()));
@@ -187,10 +167,9 @@ public class PersonagemSelecionarFragment extends Fragment {
                 }
 
                 if (personagensList.size() == 0) {
-                    LogadoSelecionarActivity.tituloSecaoTextView.setText("CRIAR PERSONAGEM");
+                    mudarTituloSecao("CRIAR PERSONAGEM");
                     changeTo(new PersonagemCriarFragment());
                 } else {
-                    LogadoSelecionarActivity.tituloSecaoTextView.setText("SELECIONE SEU PERSONAGEM");
                     for (int i = 0; i < personagensList.size(); i++)
                         pequenasLista.add(personagensList.get(i).getIdProfile());
 
@@ -205,6 +184,11 @@ public class PersonagemSelecionarFragment extends Fragment {
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
+    }
+
+    private void mudarTituloSecao(String titulo) {
+        TextView tituloSecao = getActivity().findViewById(R.id.tituloSecaoTextView);
+        tituloSecao.setText(titulo);
     }
 
     @Override

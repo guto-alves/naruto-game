@@ -191,10 +191,10 @@ public class Helper {
                 return "Ei";
             case 126:
                 return "Kushina Uzumaki";
-            case 129:
-                return "Danzou Shimura";
             case 127:
                 return "Sakumo Hatake";
+            case 129:
+                return "Danzou Shimura";
             case 131:
                 return "Hanabi Hyuuga";
             case 132:
@@ -275,12 +275,12 @@ public class Helper {
                 return "Metal Lee";
             case 249:
                 return "Himawari Uzumaki";
-            case 261:
-                return "Iwabee Yuino";
             case 259:
                 return "Ashura Ootsutsuki";
             case 260:
                 return "Indra Ootsutsuki";
+            case 261:
+                return "Iwabee Yuino";
             case 265:
                 return "Sumire";
             default:
@@ -522,14 +522,14 @@ public class Helper {
                 return 2;
             case 249:
                 return 2;
-            case 261:
-                return 2;
             case 259:
-                return 2;
+                return 3;
             case 260:
-                return 2;
+                return 4;
+            case 261:
+                return 5;
             case 265:
-                return 2;
+                return 5;
             default:
                 return -1;
         }

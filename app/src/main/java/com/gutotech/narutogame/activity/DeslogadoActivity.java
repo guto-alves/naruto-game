@@ -1,7 +1,5 @@
 package com.gutotech.narutogame.activity;
 
-import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -17,15 +15,12 @@ import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.firebase.auth.FirebaseAuth;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.adapter.MenuLogadoExpandableLisViewAdapter;
-import com.gutotech.narutogame.config.ConfigFirebase;
 import com.gutotech.narutogame.fragment.deslogado.CadastroFragment;
 import com.gutotech.narutogame.fragment.deslogado.HalldafamaFragment;
 import com.gutotech.narutogame.fragment.deslogado.HomeFragment;
 import com.gutotech.narutogame.fragment.deslogado.RecuperarSenhaFragment;
-import com.gutotech.narutogame.publicentities.ContentFragment;
 import com.gutotech.narutogame.publicentities.CurrentFragment;
 
 import java.util.ArrayList;
@@ -36,6 +31,7 @@ public class DeslogadoActivity extends AppCompatActivity {
     private List<Integer> groupList;
     private HashMap<Integer, List<String>> childList;
 
+    private TextView tituloSecaoTextView;
     private final int GROUP_PRINCIPAL = 0;
 
     @Override
@@ -64,7 +60,7 @@ public class DeslogadoActivity extends AppCompatActivity {
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        final TextView tituloSecaoTextView = findViewById(R.id.tituloSecaoTextView);
+        tituloSecaoTextView = findViewById(R.id.tituloSecaoTextView);
 
         buildMenu();
         ExpandableListView expandableListView = findViewById(R.id.expanded_menu_main);
@@ -77,7 +73,6 @@ public class DeslogadoActivity extends AppCompatActivity {
                     switch (childPosition) {
                         case 0:
                             tituloSecaoTextView.setText(R.string.home);
-                            ContentFragment.home_deslogado = true;
                             changeFragment(new HomeFragment());
                             break;
                         case 1:
@@ -135,6 +130,7 @@ public class DeslogadoActivity extends AppCompatActivity {
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else if (CurrentFragment.LER_NOTICIA == 1) {
+            tituloSecaoTextView.setText("HOME");
             CurrentFragment.LER_NOTICIA = 0;
             changeFragment(new HomeFragment());
         } else {

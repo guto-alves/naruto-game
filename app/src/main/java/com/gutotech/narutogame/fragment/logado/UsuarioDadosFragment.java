@@ -126,7 +126,6 @@ public class UsuarioDadosFragment extends Fragment {
         });
     }
 
-
     private void exibirDados() {
         nomeEditText.setText(player.getNome());
         emailEditText.setText(player.getEmail());

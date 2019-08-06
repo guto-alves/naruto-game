@@ -19,6 +19,8 @@ public class NoticiasAdapter extends RecyclerView.Adapter<NoticiasAdapter.MyView
     private List<Noticia> noticiaList;
     private Context context;
 
+    private final int NOTICIA_TROFEU = 1;
+
     public NoticiasAdapter(Context context, List<Noticia> noticiaList) {
         this.noticiaList = noticiaList;
         this.context = context;
@@ -27,7 +29,12 @@ public class NoticiasAdapter extends RecyclerView.Adapter<NoticiasAdapter.MyView
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recycler_noticias, viewGroup, false);
+        View view;
+        if (i == 0)
+            view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recycler_noticias_trofeu, viewGroup, false);
+        else
+            view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recycler_noticias, viewGroup, false);
+
         return new MyViewHolder(view);
     }
 
@@ -36,6 +43,9 @@ public class NoticiasAdapter extends RecyclerView.Adapter<NoticiasAdapter.MyView
         myViewHolder.dateTextView.setText(noticiaList.get(i).getData());
         myViewHolder.titleTextView.setText(noticiaList.get(i).getTitulo());
         myViewHolder.postedByTextView.setText("postado por " + noticiaList.get(i).getPor());
+
+        if (i == 0)
+            myViewHolder.messageTextView.setText(noticiaList.get(i).getMensagem());
 
         if (i % 2 == 0) {
             myViewHolder.detalheImageView.setImageResource(R.drawable.layout_home_detalhe);
@@ -51,9 +61,18 @@ public class NoticiasAdapter extends RecyclerView.Adapter<NoticiasAdapter.MyView
         return noticiaList.size();
     }
 
+    @Override
+    public int getItemViewType(int position) {
+        if (position == 0)
+            return 0;
+        else
+            return 1;
+    }
+
     public class MyViewHolder extends RecyclerView.ViewHolder {
         private TextView dateTextView;
         private TextView titleTextView;
+        private TextView messageTextView;
         private TextView postedByTextView;
         private ImageView detalheImageView;
         private LinearLayout bg_linear;
@@ -63,6 +82,7 @@ public class NoticiasAdapter extends RecyclerView.Adapter<NoticiasAdapter.MyView
 
             dateTextView = itemView.findViewById(R.id.dateTextView);
             titleTextView = itemView.findViewById(R.id.titleTextView);
+            messageTextView = itemView.findViewById(R.id.messageTextView);
             postedByTextView = itemView.findViewById(R.id.postedByTextView);
             detalheImageView = itemView.findViewById(R.id.detalheImageView);
             bg_linear = itemView.findViewById(R.id.linearbgnoticia);

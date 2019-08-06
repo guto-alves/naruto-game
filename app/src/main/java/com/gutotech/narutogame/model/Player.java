@@ -19,6 +19,9 @@ public class Player {
     private String bairro;
     private String cidade;
 
+    private List<String> personagens;
+
+
     public Player() {
     }
 
@@ -134,5 +137,13 @@ public class Player {
 
     public void setCidade(String cidade) {
         this.cidade = cidade;
+    }
+
+    public List<String> getPersonagens() {
+        return personagens;
+    }
+
+    public void setPersonagens(List<String> personagens) {
+        this.personagens = personagens;
     }
 }
