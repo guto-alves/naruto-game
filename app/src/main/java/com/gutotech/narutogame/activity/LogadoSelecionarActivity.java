@@ -1,6 +1,7 @@
 package com.gutotech.narutogame.activity;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
@@ -13,8 +14,13 @@ import android.support.v7.widget.Toolbar;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.adapter.MenuLogadoExpandableLisViewAdapter;
+import com.gutotech.narutogame.config.ConfigFirebase;
 import com.gutotech.narutogame.fragment.deslogado.HalldafamaFragment;
 import com.gutotech.narutogame.fragment.deslogado.HomeFragment;
 import com.gutotech.narutogame.fragment.logado.PersonagemCriarFragment;
@@ -22,7 +28,9 @@ import com.gutotech.narutogame.fragment.logado.PersonagemSelecionarFragment;
 import com.gutotech.narutogame.fragment.logado.SenhaTrocarFragment;
 import com.gutotech.narutogame.fragment.logado.SuporteFragment;
 import com.gutotech.narutogame.fragment.logado.UsuarioDadosFragment;
+import com.gutotech.narutogame.model.Player;
 import com.gutotech.narutogame.publicentities.CurrentFragment;
+import com.gutotech.narutogame.publicentities.PlayerOn;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -46,6 +54,8 @@ public class LogadoSelecionarActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
+
+        recuperarPlayerOn();
 
         tituloSecaoTextView = findViewById(R.id.tituloSecaoTextView);
         tituloSecaoTextView.setText("SELECIONE SEU PERSONAGEM");
@@ -112,6 +122,23 @@ public class LogadoSelecionarActivity extends AppCompatActivity {
         expandableListView.expandGroup(0);
         expandableListView.expandGroup(1);
         expandableListView.expandGroup(2);
+    }
+
+    private void recuperarPlayerOn() {
+        DatabaseReference playerReference = ConfigFirebase.getDatabase()
+                .child("player")
+                .child(ConfigFirebase.getAuth().getCurrentUser().getUid());
+
+        playerReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                PlayerOn.player = dataSnapshot.getValue(Player.class);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
     }
 
     private void buildMenu() {

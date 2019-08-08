@@ -56,7 +56,6 @@ public class Personagem implements Serializable {
         atributos.atualizarFormula();
     }
 
-    @Exclude
     public String getIdPlayer() {
         return idPlayer;
     }

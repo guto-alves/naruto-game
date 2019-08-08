@@ -25,6 +25,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.StorageReference;
 import com.gutotech.narutogame.R;
@@ -53,7 +54,8 @@ public class PersonagemSelecionarFragment extends Fragment {
     private List<Personagem> personagensList = new ArrayList<>();
 
     private FirebaseAuth auth;
-    private DatabaseReference personagensRef;
+
+    private Query personagensQuery;
     private ValueEventListener valueEventListenerPersonagens;
 
     public PersonagemSelecionarFragment() {
@@ -65,8 +67,9 @@ public class PersonagemSelecionarFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_personagem_selecionar, container, false);
 
         auth = ConfigFirebase.getAuth();
-        personagensRef = ConfigFirebase.getDatabase()
-                .child("personagem");
+        DatabaseReference personagensReference = ConfigFirebase.getDatabase().child("personagem");
+        personagensQuery = personagensReference.orderByChild("idPlayer").equalTo(auth.getCurrentUser().getUid());
+        recuperarPersonagens();
 
         profile = view.findViewById(R.id.profileSelecionarImageView);
         nick = view.findViewById(R.id.nickTextView);
@@ -156,7 +159,7 @@ public class PersonagemSelecionarFragment extends Fragment {
     }
 
     private void recuperarPersonagens() {
-        valueEventListenerPersonagens = personagensRef.addValueEventListener(new ValueEventListener() {
+        valueEventListenerPersonagens = personagensQuery.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 personagensList.clear();
@@ -200,6 +203,6 @@ public class PersonagemSelecionarFragment extends Fragment {
     @Override
     public void onStop() {
         super.onStop();
-        personagensRef.removeEventListener(valueEventListenerPersonagens);
+        personagensQuery.removeEventListener(valueEventListenerPersonagens);
     }
 }

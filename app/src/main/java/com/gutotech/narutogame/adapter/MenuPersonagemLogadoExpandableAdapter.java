@@ -95,7 +95,7 @@ public class MenuPersonagemLogadoExpandableAdapter extends BaseExpandableListAda
         return convertView;
     }
 
-    // colocar alguam condição e retornar false para não ouvir o clique
+    // colocar alguma condição e retornar false para não ouvir o clique
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {
         return true;

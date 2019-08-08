@@ -21,7 +21,6 @@ public class Player {
 
     private List<String> personagens;
 
-
     public Player() {
     }
 

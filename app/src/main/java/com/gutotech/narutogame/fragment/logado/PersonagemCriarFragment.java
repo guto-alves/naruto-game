@@ -32,7 +32,6 @@ import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.adapter.ProfilesPequenasAdapter;
 import com.gutotech.narutogame.config.ConfigFirebase;
 import com.gutotech.narutogame.config.Storage;
-import com.gutotech.narutogame.helper.RecyclerItemClickListener;
 import com.gutotech.narutogame.model.Atributos;
 import com.gutotech.narutogame.model.Jutsu;
 import com.gutotech.narutogame.model.Personagem;
@@ -41,6 +40,7 @@ import com.gutotech.narutogame.model.ResumoCombates;
 import com.gutotech.narutogame.model.ResumoMissoes;
 import com.gutotech.narutogame.publicentities.Helper;
 import com.gutotech.narutogame.publicentities.PersonagemOn;
+import com.gutotech.narutogame.publicentities.PlayerOn;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -70,10 +70,6 @@ public class PersonagemCriarFragment extends Fragment {
 
     private FirebaseAuth auth;
 
-    private Player player;
-    private DatabaseReference playerReference;
-    private ValueEventListener valueEventListenerPlayer;
-
     public PersonagemCriarFragment() {
     }
 
@@ -83,10 +79,6 @@ public class PersonagemCriarFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_personagem_criar, container, false);
 
         auth = ConfigFirebase.getAuth();
-        playerReference = ConfigFirebase.getDatabase()
-                .child("player")
-                .child(auth.getCurrentUser().getUid());
-        recuperarPlayer();
 
         personagem = new Personagem();
         atributos = new Atributos();
@@ -320,11 +312,11 @@ public class PersonagemCriarFragment extends Fragment {
     }
 
     private void salvarPersonagem(String nick) {
-        if (player != null) {
-            if (player.getPersonagens() == null)
-                player.setPersonagens(new ArrayList<String>());
+        if (PlayerOn.player != null) {
+            if (PlayerOn.player.getPersonagens() == null)
+                PlayerOn.player.setPersonagens(new ArrayList<String>());
 
-            player.getPersonagens().add(nick);
+            PlayerOn.player.getPersonagens().add(nick);
 
             personagem.setIdPlayer(auth.getCurrentUser().getUid());
             personagem.setNick(nick);
@@ -369,20 +361,6 @@ public class PersonagemCriarFragment extends Fragment {
             Toast.makeText(getActivity(), "Erro: sem conecção com a internet!", Toast.LENGTH_SHORT).show();
     }
 
-    private void recuperarPlayer() {
-        valueEventListenerPlayer = playerReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                player = dataSnapshot.getValue(Player.class);
-                playerReference.removeEventListener(valueEventListenerPlayer);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-            }
-        });
-    }
-
     private boolean validarNick(String nick) {
         if (nick.isEmpty()) {
             nickEditText.setError("Campo obrigatório");
@@ -419,11 +397,5 @@ public class PersonagemCriarFragment extends Fragment {
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.conteiner, fragment);
         transaction.commit();
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        recuperarImagensPequenas();
     }
 }
