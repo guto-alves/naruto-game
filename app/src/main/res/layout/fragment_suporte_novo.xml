@@ -105,14 +105,16 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="8dp"
                     android:background="@android:color/white"
-                    android:padding="5dp" />
+                    android:padding="5dp"
+                    android:spinnerMode="dialog" />
 
                 <Spinner
                     android:id="@+id/quandoMinutosSpinner"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@android:color/white"
-                    android:padding="5dp" />
+                    android:padding="5dp"
+                    android:spinnerMode="dialog" />
             </LinearLayout>
 
             <TextView

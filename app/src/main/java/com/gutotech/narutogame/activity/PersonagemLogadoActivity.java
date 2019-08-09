@@ -97,10 +97,6 @@ public class PersonagemLogadoActivity extends AppCompatActivity {
     private List<String> groupListText;
     private HashMap<String, List<String>> childList;
 
-    private Personagem personagem;
-
-    public static ImageView profileLogadoimageView;
-
     private boolean chatAberto = false;
     private List<Mensagem> mensagensList = new ArrayList<>();
     private MensagensAdapter mensagensAdapter;
@@ -115,9 +111,8 @@ public class PersonagemLogadoActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Bundle bundle = getIntent().getExtras();
-        personagem = (Personagem) bundle.getSerializable("personagemlogado");
-        PersonagemOn.personagem = personagem;
+        PersonagemOn.personagem.setOn(true);
+        PersonagemOn.personagem.salvar();
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
 
@@ -127,8 +122,8 @@ public class PersonagemLogadoActivity extends AppCompatActivity {
         ImageView topoLogadoimageView = headerView.findViewById(R.id.topoLogadoImageView);
         Storage.baixarTopoLogado(getApplicationContext(), topoLogadoimageView, PersonagemOn.personagem.getIdProfile());
 
-        profileLogadoimageView = findViewById(R.id.perfilPersonagemOnImageView);
-        Storage.baixarProfile(getApplicationContext(), profileLogadoimageView, personagem.getIdProfile(), personagem.getFotoAtual());
+        ImageView profileLogadoimageView = findViewById(R.id.profilePersonagemOnImageView);
+        Storage.baixarProfile(getApplicationContext(), profileLogadoimageView, PersonagemOn.personagem.getIdProfile(), PersonagemOn.personagem.getFotoAtual());
 
         TextView nickPersonagemOnTextView = findViewById(R.id.nickPersonagemOnTextView);
         nickPersonagemOnTextView.setText(PersonagemOn.personagem.getNick());
@@ -315,7 +310,7 @@ public class PersonagemLogadoActivity extends AppCompatActivity {
                             break;
                     }
                 } else if (groupPosition == GROUP_VILA_ATUAL) {
-                    if (personagem.getGraducao().equals("Estudante")) {
+                    if (PersonagemOn.personagem.getGraducao().equals("Estudante")) {
                         switch (childPosition) {
                             case 0:
                                 tituloSecao.setText("TAREFAS INICIAIS");
@@ -367,7 +362,7 @@ public class PersonagemLogadoActivity extends AppCompatActivity {
                             break;
                     }
                 } else if (groupPosition == GROUP_EQUIPE) {
-                    if (!personagem.getGraducao().equals("Estudante")) {
+                    if (!PersonagemOn.personagem.getGraducao().equals("Estudante")) {
                         switch (childPosition) {
                             case 0:
                                 changeFragment(new UsuarioDadosFragment());
@@ -378,7 +373,7 @@ public class PersonagemLogadoActivity extends AppCompatActivity {
                         }
                     }
                 } else if (groupPosition == GROUP_ORG) {
-                    if (!personagem.getGraducao().equals("Estudante")) {
+                    if (!PersonagemOn.personagem.getGraducao().equals("Estudante")) {
                         switch (childPosition) {
                             case 0:
                                 changeFragment(new UsuarioDadosFragment());
@@ -535,7 +530,7 @@ public class PersonagemLogadoActivity extends AppCompatActivity {
         childList.put(groupListText.get(3), itemsSensei);
 
         List<String> itemsVilaAtual = new ArrayList<>();
-        if (personagem.getGraducao().equals("Estudante"))
+        if (PersonagemOn.personagem.getGraducao().equals("Estudante"))
             itemsVilaAtual.add("Taferas");
         else {
             itemsVilaAtual.add("Mapa da Vila");
@@ -553,7 +548,7 @@ public class PersonagemLogadoActivity extends AppCompatActivity {
 
         List<String> itemsEquipe = new ArrayList<>();
         List<String> itemsOrg = new ArrayList<>();
-        if (!personagem.getGraducao().equals("Estudante")) {
+        if (!PersonagemOn.personagem.getGraducao().equals("Estudante")) {
             itemsEquipe.add("Participar");
             itemsEquipe.add("Ser Líder");
 
@@ -594,5 +589,7 @@ public class PersonagemLogadoActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         mensagensReference.removeEventListener(valueEventListenerMensagens);
+        PersonagemOn.personagem.setOn(false);
+        PersonagemOn.personagem.salvar();
     }
 }

@@ -3,14 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
     android:background="@drawable/layout_pagina_repeat"
     tools:context=".fragment.personagemlogado.TrocarImagemFragment">
 
-
     <GridView
         android:id="@+id/profilesGridView"
-        android:layout_width="match_parent"
+        android:layout_width="435dp"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:numColumns="auto_fit" />
+        android:numColumns="3" />
 </LinearLayout>

@@ -36,6 +36,7 @@ import com.gutotech.narutogame.config.ConfigFirebase;
 import com.gutotech.narutogame.config.Storage;
 import com.gutotech.narutogame.helper.RecyclerItemClickListener;
 import com.gutotech.narutogame.model.Personagem;
+import com.gutotech.narutogame.publicentities.PersonagemOn;
 
 import org.w3c.dom.Text;
 
@@ -43,17 +44,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PersonagemSelecionarFragment extends Fragment {
+    private ImageView profileImageView;
     private TextView nick, level, graducao, ryous, vila;
-    private ImageView profile;
 
     private GridView profilesPequenasGridView;
     private ProfilesPequenasAdapter adapter;
-    private List<Integer> pequenasLista = new ArrayList<>();
+    private List<Integer> profilesPequenaList = new ArrayList<>();
     private Personagem personagemSelecionado;
 
     private List<Personagem> personagensList = new ArrayList<>();
-
-    private FirebaseAuth auth;
 
     private Query personagensQuery;
     private ValueEventListener valueEventListenerPersonagens;
@@ -66,12 +65,11 @@ public class PersonagemSelecionarFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_personagem_selecionar, container, false);
 
-        auth = ConfigFirebase.getAuth();
         DatabaseReference personagensReference = ConfigFirebase.getDatabase().child("personagem");
-        personagensQuery = personagensReference.orderByChild("idPlayer").equalTo(auth.getCurrentUser().getUid());
-        recuperarPersonagens();
+        personagensQuery = personagensReference.orderByChild("idPlayer")
+                .equalTo(ConfigFirebase.getAuth().getCurrentUser().getUid());
 
-        profile = view.findViewById(R.id.profileSelecionarImageView);
+        profileImageView = view.findViewById(R.id.profileSelecionarImageView);
         nick = view.findViewById(R.id.nickTextView);
         level = view.findViewById(R.id.levelTextView);
         graducao = view.findViewById(R.id.graducaoTextView);
@@ -83,9 +81,8 @@ public class PersonagemSelecionarFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (personagemSelecionado != null) {
-                    Intent intent = new Intent(getActivity(), PersonagemLogadoActivity.class);
-                    intent.putExtra("personagemlogado", personagemSelecionado);
-                    startActivity(intent);
+                    PersonagemOn.personagem = personagemSelecionado;
+                    startActivity(new Intent(getActivity(), PersonagemLogadoActivity.class));
                     getActivity().finish();
                 } else
                     Toast.makeText(getActivity(), "Nenhum personagem selecionado", Toast.LENGTH_SHORT).show();
@@ -121,7 +118,7 @@ public class PersonagemSelecionarFragment extends Fragment {
     }
 
     private void configurarGridView() {
-        adapter = new ProfilesPequenasAdapter(getActivity(), pequenasLista);
+        adapter = new ProfilesPequenasAdapter(getActivity(), profilesPequenaList);
         profilesPequenasGridView.setAdapter(adapter);
         profilesPequenasGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -133,7 +130,7 @@ public class PersonagemSelecionarFragment extends Fragment {
     }
 
     private void mudarDePersonagem() {
-        Storage.baixarProfile(getActivity(), profile, personagemSelecionado.getIdProfile(), personagemSelecionado.getFotoAtual());
+        Storage.baixarProfile(getActivity(), profileImageView, personagemSelecionado.getIdProfile(), personagemSelecionado.getFotoAtual());
 
         nick.setText(personagemSelecionado.getNick());
         level.setText(String.valueOf(personagemSelecionado.getLevel()));
@@ -145,17 +142,10 @@ public class PersonagemSelecionarFragment extends Fragment {
     private void deletarNinja() {
         DatabaseReference personagem = ConfigFirebase.getDatabase()
                 .child("personagem")
-                .child(auth.getCurrentUser().getUid())
                 .child(personagemSelecionado.getNick());
 
         personagem.removeValue();
         changeTo(new PersonagemSelecionarFragment());
-    }
-
-    private void changeTo(Fragment fragment) {
-        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.conteiner, fragment);
-        transaction.commit();
     }
 
     private void recuperarPersonagens() {
@@ -174,7 +164,7 @@ public class PersonagemSelecionarFragment extends Fragment {
                     changeTo(new PersonagemCriarFragment());
                 } else {
                     for (int i = 0; i < personagensList.size(); i++)
-                        pequenasLista.add(personagensList.get(i).getIdProfile());
+                        profilesPequenaList.add(personagensList.get(i).getIdProfile());
 
                     adapter.notifyDataSetChanged();
 
@@ -187,6 +177,12 @@ public class PersonagemSelecionarFragment extends Fragment {
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
+    }
+
+    private void changeTo(Fragment fragment) {
+        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.conteiner, fragment);
+        transaction.commit();
     }
 
     private void mudarTituloSecao(String titulo) {

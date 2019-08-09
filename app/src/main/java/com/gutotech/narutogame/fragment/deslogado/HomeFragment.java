@@ -38,6 +38,7 @@ import com.gutotech.narutogame.helper.RecyclerItemClickListener;
 import com.gutotech.narutogame.model.Noticia;
 import com.gutotech.narutogame.model.Player;
 import com.gutotech.narutogame.publicentities.CurrentFragment;
+import com.gutotech.narutogame.publicentities.PlayerOn;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,9 +51,11 @@ public class HomeFragment extends Fragment {
     private List<Noticia> noticiaList = new ArrayList<>();
 
     private Query noticiasQuery;
-    private ValueEventListener valueEventListener;
+    private ValueEventListener valueEventListenerNoticias;
 
     private FirebaseAuth auth;
+    private DatabaseReference playerReference;
+    private ValueEventListener valueEventListenerPlayer;
 
     public HomeFragment() {
     }
@@ -69,15 +72,6 @@ public class HomeFragment extends Fragment {
 
         Bundle bundle = getArguments();
         if (bundle == null) {
-            esqueceuSenhaTextView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    TextView textView = getActivity().findViewById(R.id.tituloSecaoTextView);
-                    textView.setText("ESQUECI MINHA SENHA");
-                    changeTo(new RecuperarSenhaFragment());
-                }
-            });
-
             jogarButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -88,6 +82,15 @@ public class HomeFragment extends Fragment {
                         logarPlayer(new Player(email, senha));
                 }
             });
+
+            esqueceuSenhaTextView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    TextView textView = getActivity().findViewById(R.id.tituloSecaoTextView);
+                    textView.setText("ESQUECI MINHA SENHA");
+                    changeTo(new RecuperarSenhaFragment());
+                }
+            });
         } else {
             emailEditText.setVisibility(View.GONE);
             senhaEditText.setVisibility(View.GONE);
@@ -95,12 +98,13 @@ public class HomeFragment extends Fragment {
             jogarButton.setVisibility(View.GONE);
         }
 
-        noticiasRecyclerView = view.findViewById(R.id.noticiasRecyclerView);
-        configurarRecyclerNoticias();
-
         auth = ConfigFirebase.getAuth();
+
         DatabaseReference referenceNoticia = ConfigFirebase.getDatabase().child("noticia");
         noticiasQuery = referenceNoticia.orderByKey();
+
+        noticiasRecyclerView = view.findViewById(R.id.noticiasRecyclerView);
+        configurarRecyclerNoticias();
 
         return view;
     }
@@ -139,15 +143,33 @@ public class HomeFragment extends Fragment {
         }));
     }
 
-    public void logarPlayer(Player player) {
+    public void logarPlayer(final Player player) {
         auth.signInWithEmailAndPassword(
                 player.getEmail(), player.getSenha()
         ).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    startActivity(new Intent(getActivity(), LogadoSelecionarActivity.class));
-                    getActivity().finish();
+                    Toast.makeText(getActivity(), "Aguarde...", Toast.LENGTH_LONG).show();
+
+                    playerReference = ConfigFirebase.getDatabase()
+                            .child("player").child(auth.getCurrentUser().getUid());
+
+                    valueEventListenerPlayer = playerReference.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            PlayerOn.player = dataSnapshot.getValue(Player.class);
+
+                            startActivity(new Intent(getActivity(), LogadoSelecionarActivity.class));
+                            getActivity().finish();
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                        }
+                    });
+
+
                 } else {
                     String excecao;
 
@@ -164,6 +186,26 @@ public class HomeFragment extends Fragment {
 
                     Toast.makeText(getActivity(), excecao, Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+    }
+
+    private void recuperarNoticias() {
+        valueEventListenerNoticias = noticiasQuery.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                noticiaList.clear();
+
+                for (DataSnapshot data : dataSnapshot.getChildren()) {
+                    Noticia noticia = data.getValue(Noticia.class);
+                    noticiaList.add(0, noticia);
+                }
+
+                noticiasAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
     }
@@ -189,25 +231,6 @@ public class HomeFragment extends Fragment {
         transaction.commit();
     }
 
-    private void recuperarNoticias() {
-        valueEventListener = noticiasQuery.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                noticiaList.clear();
-
-                for (DataSnapshot data : dataSnapshot.getChildren()) {
-                    Noticia noticia = data.getValue(Noticia.class);
-                    noticiaList.add(0, noticia);
-                }
-                noticiasAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-            }
-        });
-    }
-
     @Override
     public void onStart() {
         super.onStart();
@@ -217,6 +240,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onStop() {
         super.onStop();
-        noticiasQuery.removeEventListener(valueEventListener);
+        noticiasQuery.removeEventListener(valueEventListenerNoticias);
+        playerReference.removeEventListener(valueEventListenerPlayer);
     }
 }

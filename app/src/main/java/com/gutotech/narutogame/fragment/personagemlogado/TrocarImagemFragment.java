@@ -5,11 +5,14 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.ImageView;
 
 import com.google.firebase.storage.StorageReference;
 import com.gutotech.narutogame.R;
@@ -23,7 +26,6 @@ import com.gutotech.narutogame.publicentities.Helper;
 import com.gutotech.narutogame.publicentities.PersonagemOn;
 
 public class TrocarImagemFragment extends Fragment {
-    private GridView gridView;
 
     public TrocarImagemFragment() {
     }
@@ -33,7 +35,7 @@ public class TrocarImagemFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_trocar_imagem, container, false);
 
-        gridView = view.findViewById(R.id.profilesGridView);
+        GridView gridView = view.findViewById(R.id.profilesGridView);
         ProfilesAdapter profilesAdapter = new ProfilesAdapter(getActivity(), Helper.quantasImagens(PersonagemOn.personagem.getIdProfile()));
         gridView.setAdapter(profilesAdapter);
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -47,11 +49,13 @@ public class TrocarImagemFragment extends Fragment {
                     public void onClick(DialogInterface dialog, int which) {
                         PersonagemOn.personagem.setFotoAtual(position + 1);
 
-                        Storage.baixarProfile(getActivity(), PersonagemLogadoActivity.profileLogadoimageView, PersonagemOn.personagem.getIdProfile(), PersonagemOn.personagem.getFotoAtual());
+                        ImageView profileLogadoimageView = getActivity().findViewById(R.id.profilePersonagemOnImageView);
+                        Storage.baixarProfile(getActivity(), profileLogadoimageView, PersonagemOn.personagem.getIdProfile(), PersonagemOn.personagem.getFotoAtual());
 
                         PersonagemOn.personagem.salvar();
 
-                        changeFragment(new PersonagemStatusFragment());
+                        DrawerLayout drawer = getActivity().findViewById(R.id.drawer_layout);
+                        drawer.openDrawer(GravityCompat.START);
                     }
                 });
                 builder.setNegativeButton("Cancelar", null);

@@ -1,14 +1,10 @@
 package com.gutotech.narutogame.fragment.logado;
 
-
 import android.app.AlertDialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,9 +16,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -35,12 +29,10 @@ import com.gutotech.narutogame.config.Storage;
 import com.gutotech.narutogame.model.Atributos;
 import com.gutotech.narutogame.model.Jutsu;
 import com.gutotech.narutogame.model.Personagem;
-import com.gutotech.narutogame.model.Player;
 import com.gutotech.narutogame.model.ResumoCombates;
 import com.gutotech.narutogame.model.ResumoMissoes;
 import com.gutotech.narutogame.publicentities.Helper;
 import com.gutotech.narutogame.publicentities.PersonagemOn;
-import com.gutotech.narutogame.publicentities.PlayerOn;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,7 +60,8 @@ public class PersonagemCriarFragment extends Fragment {
     private TextView grupoAtualTextView;
     private int grupoAtual = 0;
 
-    private FirebaseAuth auth;
+    private ValueEventListener valueEventListenerNickRepetido;
+    private Query nickRepetidoQuery;
 
     public PersonagemCriarFragment() {
     }
@@ -77,8 +70,6 @@ public class PersonagemCriarFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_personagem_criar, container, false);
-
-        auth = ConfigFirebase.getAuth();
 
         personagem = new Personagem();
         atributos = new Atributos();
@@ -241,33 +232,10 @@ public class PersonagemCriarFragment extends Fragment {
         criarPersonagemButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String nick = nickEditText.getText().toString();
+                String nick = nickEditText.getText().toString();
 
-                if (validarNick(nick)) {
-                    DatabaseReference personagensRef = ConfigFirebase.getDatabase().child("personagem");
-
-                    Query pesquisarNickRepetidoQuery = personagensRef.orderByKey().equalTo(nick);
-
-                    pesquisarNickRepetidoQuery.addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            Personagem personagemResult = dataSnapshot.getValue(Personagem.class);
-
-                            if (personagemResult == null) {
-                                salvarPersonagem(nick);
-                                changeToFragment(new PersonagemSelecionarFragment());
-                            } else {
-                                exibirAlerta("Aviso!", "Os seguintes problemas evitaram que a operação fosse completada:\n" +
-                                        "\nJá existe um personagem com o nome escolhido");
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-                        }
-                    });
-
-                }
+                if (validarNick(nick))
+                    verificarNickRepetido(nick);
             }
         });
 
@@ -280,8 +248,7 @@ public class PersonagemCriarFragment extends Fragment {
 
         profilesGrupoAtual.clear();
 
-        for (Integer i : pequenasLista.subList(from, to))
-            profilesGrupoAtual.add(i);
+        profilesGrupoAtual.addAll(pequenasLista.subList(from, to));
 
         adapter.notifyDataSetChanged();
 
@@ -311,54 +278,74 @@ public class PersonagemCriarFragment extends Fragment {
         }
     }
 
-    private void salvarPersonagem(String nick) {
-        if (PlayerOn.player != null) {
-            if (PlayerOn.player.getPersonagens() == null)
-                PlayerOn.player.setPersonagens(new ArrayList<String>());
+    private void verificarNickRepetido(final String nick) {
+        DatabaseReference personagensRef = ConfigFirebase.getDatabase().child("personagem");
 
-            PlayerOn.player.getPersonagens().add(nick);
+        nickRepetidoQuery = personagensRef.orderByKey().equalTo(nick);
 
-            personagem.setIdPlayer(auth.getCurrentUser().getUid());
-            personagem.setNick(nick);
-            personagem.setLevel(1);
-            personagem.setGraducao("Estudante");
-            personagem.setRyous(500);
-            personagem.setVila(vilaSelecionada);
-            personagem.setNumVila(numVila);
-            personagem.setClasse(classeSelecionada);
-            personagem.setAtributos(atributos);
-            personagem.setFotoAtual(1);
-            personagem.setExpUpar(1200);
-            personagem.setPontos(1000);
-            personagem.setResumoCombates(new ResumoCombates());
-            personagem.setResumoMissoes(new ResumoMissoes());
-            personagem.setMapa_posicao(-1);
+        valueEventListenerNickRepetido = nickRepetidoQuery.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Personagem personagemResult = dataSnapshot.getValue(Personagem.class);
 
-            PersonagemOn.personagem = personagem;
-            personagem.atualizarAtributos();
-            personagem.getAtributos().getFormulas().setVidaAtual(personagem.getAtributos().getFormulas().getVida());
-            personagem.getAtributos().getFormulas().setChakraAtual(personagem.getAtributos().getFormulas().getChakra());
-            personagem.getAtributos().getFormulas().setStaminaAtual(personagem.getAtributos().getFormulas().getStamina());
+                nickRepetidoQuery.removeEventListener(valueEventListenerNickRepetido);
 
-            List<Jutsu> jutsus = new ArrayList<>();
-            if (personagem.getClasse().equals("Ninjutsu") || personagem.getClasse().equals("Genjutsu")) {
-                jutsus.add(new Jutsu(0, "defesa_2_mao", 1, 0, 0, 5, 0, 3, 10, 3, "def", "basico"));
-                jutsus.add(new Jutsu(1, "defesa_acrobatica", 1, 0, 0, 5, 0, 3, 15, 4, "def", "basico"));
-                jutsus.add(new Jutsu(2, "soco", 1, 0, 5, 0, 0, 3, 8, 1, "atk", "basico"));
-                jutsus.add(new Jutsu(3, "chute", 1, 0, 8, 0, 0, 3, 11, 2, "atk", "basico"));
-            } else {
-                jutsus.add(new Jutsu(0, "defesa_2_mao", 1, 0, 0, 5, 0, 3, 3, 10, "def", "basico"));
-                jutsus.add(new Jutsu(1, "defesa_acrobatica", 1, 0, 0, 5, 0, 3, 4, 15, "def", "basico"));
-                jutsus.add(new Jutsu(2, "soco", 1, 5, 0, 0, 0, 3, 1, 8, "atk", "basico"));
-                jutsus.add(new Jutsu(3, "chute", 1, 8, 0, 0, 0, 3, 2, 11, "atk", "basico"));
+                if (personagemResult == null) {
+                    salvarPersonagem(nick);
+                    changeToFragment(new PersonagemSelecionarFragment());
+                } else
+                    exibirAlerta("Aviso!", "Os seguintes problemas evitaram que a operação fosse completada:\n" +
+                            "\nJá existe um personagem com o nome escolhido");
             }
-            personagem.setJutsus(jutsus);
-            personagem.salvar();
 
-            exibirAlerta("NINJA CRIADO COM SUCESSO", "Parabéns você acaba de criar seu personagem no Naruto Game.\n" +
-                    "Selecione seu personagem e comece agora mesmo seu treinamento");
-        } else
-            Toast.makeText(getActivity(), "Erro: sem conecção com a internet!", Toast.LENGTH_SHORT).show();
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
+    }
+
+    private void salvarPersonagem(String nick) {
+        personagem.setIdPlayer(ConfigFirebase.getAuth().getCurrentUser().getUid());
+        personagem.setNick(nick);
+        personagem.setLevel(1);
+        personagem.setGraducao("Estudante");
+        personagem.setRyous(500);
+        personagem.setVila(vilaSelecionada);
+        personagem.setNumVila(numVila);
+        personagem.setClasse(classeSelecionada);
+        personagem.setAtributos(atributos);
+        personagem.setFotoAtual(1);
+        personagem.setExpUpar(1200);
+        personagem.setPontos(1000);
+        personagem.setResumoCombates(new ResumoCombates());
+        personagem.setResumoMissoes(new ResumoMissoes());
+        personagem.setMapa_posicao(-1);
+
+        PersonagemOn.personagem = personagem;
+        personagem.atualizarAtributos();
+        personagem.getAtributos().getFormulas().setVidaAtual(personagem.getAtributos().getFormulas().getVida());
+        personagem.getAtributos().getFormulas().setChakraAtual(personagem.getAtributos().getFormulas().getChakra());
+        personagem.getAtributos().getFormulas().setStaminaAtual(personagem.getAtributos().getFormulas().getStamina());
+
+        List<Jutsu> jutsus = new ArrayList<>();
+        if (personagem.getClasse().equals("Ninjutsu") || personagem.getClasse().equals("Genjutsu")) {
+            jutsus.add(new Jutsu(0, "defesa_2_mao", 1, 0, 0, 5, 0, 3, 10, 3, "def", "basico"));
+            jutsus.add(new Jutsu(1, "defesa_acrobatica", 1, 0, 0, 5, 0, 3, 15, 4, "def", "basico"));
+            jutsus.add(new Jutsu(2, "soco", 1, 0, 5, 0, 0, 3, 8, 1, "atk", "basico"));
+            jutsus.add(new Jutsu(3, "chute", 1, 0, 8, 0, 0, 3, 11, 2, "atk", "basico"));
+        } else {
+            jutsus.add(new Jutsu(0, "defesa_2_mao", 1, 0, 0, 5, 0, 3, 3, 10, "def", "basico"));
+            jutsus.add(new Jutsu(1, "defesa_acrobatica", 1, 0, 0, 5, 0, 3, 4, 15, "def", "basico"));
+            jutsus.add(new Jutsu(2, "soco", 1, 5, 0, 0, 0, 3, 1, 8, "atk", "basico"));
+            jutsus.add(new Jutsu(3, "chute", 1, 8, 0, 0, 0, 3, 2, 11, "atk", "basico"));
+        }
+        personagem.setJutsus(jutsus);
+
+        personagem.setOn(false);
+        personagem.salvar();
+
+        exibirAlerta("NINJA CRIADO COM SUCESSO", "Parabéns você acaba de criar seu personagem no Naruto Game.\n" +
+                "Selecione seu personagem e comece agora mesmo seu treinamento");
     }
 
     private boolean validarNick(String nick) {

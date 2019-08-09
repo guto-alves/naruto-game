@@ -86,5 +86,8 @@
     <string name="bukijutsu">Bukijutsu</string>
     <string name="treinar">Treinar</string>
     <string name="arquivo">Arquivo</string>
+    <string name="treinamento_manual">Treinamento Manual</string>
+    <string name="quantidade">Quantidade</string>
+    <string name="trocar_imagem">Trocar Imagem</string>
 
 </resources>

@@ -99,7 +99,6 @@ public class BatalhasDojoNPCFragment extends Fragment {
     private void recuperarPersonagem() {
         final DatabaseReference reference = ConfigFirebase.getDatabase()
                 .child("personagem")
-                .child(ConfigFirebase.getAuth().getCurrentUser().getUid())
                 .child(PersonagemOn.personagem.getNick());
 
         valueEventListener = reference.addValueEventListener(new ValueEventListener() {

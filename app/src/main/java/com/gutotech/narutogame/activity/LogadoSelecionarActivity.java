@@ -55,8 +55,6 @@ public class LogadoSelecionarActivity extends AppCompatActivity {
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
 
-        recuperarPlayerOn();
-
         tituloSecaoTextView = findViewById(R.id.tituloSecaoTextView);
         tituloSecaoTextView.setText("SELECIONE SEU PERSONAGEM");
         changeFragment(new PersonagemSelecionarFragment());
@@ -124,23 +122,6 @@ public class LogadoSelecionarActivity extends AppCompatActivity {
         expandableListView.expandGroup(2);
     }
 
-    private void recuperarPlayerOn() {
-        DatabaseReference playerReference = ConfigFirebase.getDatabase()
-                .child("player")
-                .child(ConfigFirebase.getAuth().getCurrentUser().getUid());
-
-        playerReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                PlayerOn.player = dataSnapshot.getValue(Player.class);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-            }
-        });
-    }
-
     private void buildMenu() {
         groupList = new ArrayList<>();
         childList = new HashMap<>();
@@ -183,8 +164,7 @@ public class LogadoSelecionarActivity extends AppCompatActivity {
             HomeFragment homeFragment = new HomeFragment();
             homeFragment.setArguments(new Bundle());
             changeFragment(homeFragment);
-        } else {
+        } else
             super.onBackPressed();
-        }
     }
 }
