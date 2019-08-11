@@ -73,22 +73,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="8dp"
-            android:background="@android:color/transparent"
+            android:background="@drawable/selector_buttons_topo"
             app:srcCompat="@drawable/layout_icones_friend" />
 
         <ImageButton
-            android:id="@+id/mensageiroImageButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="8dp"
-            android:background="@android:color/transparent"
+            android:background="@drawable/selector_buttons_topo"
+            android:onClick="goMensageiro"
             app:srcCompat="@drawable/layout_topo_logado_icone_smensageiro2" />
 
         <ImageButton
-            android:id="@+id/logoutImageButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
+            android:background="@drawable/selector_buttons_topo"
+            android:onClick="logout"
             app:srcCompat="@drawable/layout_logout" />
 
     </LinearLayout>
@@ -103,11 +103,11 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
-            android:id="@+id/imageButton3"
+            android:id="@+id/rotinasDoJogoImageButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="8dp"
-            android:background="@android:color/transparent"
+            android:background="@drawable/selector_buttons_topo"
             app:srcCompat="@drawable/layout_topo_logado_icones_relogio" />
 
         <ImageButton
@@ -115,14 +115,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="8dp"
-            android:background="@android:color/transparent"
+            android:background="@drawable/selector_buttons_topo"
             app:srcCompat="@drawable/layout_topo_logado_icones_kage" />
 
         <ImageButton
-            android:id="@+id/imageButton5"
+            android:id="@+id/irFidelidadeImageButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
+            android:background="@drawable/selector_buttons_topo"
+            android:onClick="goFidelidade"
             app:srcCompat="@drawable/layout_icones_gift2" />
     </LinearLayout>
 
@@ -162,7 +163,7 @@
         </LinearLayout>
 
         <android.support.constraint.ConstraintLayout
-            android:layout_width="150dp"
+            android:layout_width="110dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="3dp"
             android:layout_marginRight="3dp">

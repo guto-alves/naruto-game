@@ -52,7 +52,6 @@ public class SuporteNovoFragment extends Fragment {
 
     private Ticket ticket;
 
-
     private ImageButton anexarImageButton;
     private TextView nomeDoArquivoTextView;
 

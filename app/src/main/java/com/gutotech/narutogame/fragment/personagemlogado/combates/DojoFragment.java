@@ -13,8 +13,6 @@ import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItemAdapter;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItems;
 
 public class DojoFragment extends Fragment {
-    private ViewPager viewPager;
-    private SmartTabLayout smartTabLayout;
 
     public DojoFragment() {
     }
@@ -31,10 +29,10 @@ public class DojoFragment extends Fragment {
                 .create()
         );
 
-        viewPager = view.findViewById(R.id.viewpager);
+        ViewPager viewPager = view.findViewById(R.id.viewpager);
         viewPager.setAdapter(adapter);
 
-        smartTabLayout = view.findViewById(R.id.smarttablayout);
+        SmartTabLayout smartTabLayout = view.findViewById(R.id.smarttablayout);
         smartTabLayout.setViewPager(viewPager);
 
         return view;

@@ -164,7 +164,7 @@ public class DojoBatalhaLutadorFragment extends Fragment {
 
                     if (LUTA_STATUS == Status.GANHOU) {
                         titleMsg.setText("COMBATE ENCERRADO!");
-                        messageMsg.setText("Parabéns! Você venceu o combate!Como recompensa você estará recebendo RY$ 134 e 0 pontos de experiência");
+                        messageMsg.setText("Parabéns! Você venceu o combate!Como recompensa você estará recebendo RY$ 0 e 315 pontos de experiência");
                         textoParaLinkMsg.setText("Voltar ao ");
                         linkMsg.setText("Dojo");
                         linkMsg.setOnClickListener(new View.OnClickListener() {
@@ -199,7 +199,6 @@ public class DojoBatalhaLutadorFragment extends Fragment {
 
                     finalizarLuta();
                 }
-
 
                 startTimer();
             }
@@ -325,7 +324,9 @@ public class DojoBatalhaLutadorFragment extends Fragment {
                             changeToFragment(new HospitalQuartoFragment());
                         }
                     });
-                    PersonagemOn.personagem.getResumoCombates().setDerNPC(PersonagemOn.personagem.getResumoCombates().getDerNPC() + 1);
+
+                    LUTA_STATUS = Status.PERDEU;
+
                     finalizarLuta();
                 }
             }
@@ -340,11 +341,14 @@ public class DojoBatalhaLutadorFragment extends Fragment {
         if (LUTA_STATUS == Status.GANHOU) {
             PersonagemOn.personagem.getResumoCombates().setVitNPC(PersonagemOn.personagem.getResumoCombates().getVitNPC() + 1);
             PersonagemOn.personagem.setExpAtual(PersonagemOn.personagem.getExpAtual() + 315);
+
         } else if (LUTA_STATUS == Status.PERDEU) {
             PersonagemOn.personagem.getResumoCombates().setDerNPC(PersonagemOn.personagem.getResumoCombates().getDerNPC() + 1);
-        }
+        } else
+            PersonagemOn.personagem.getResumoCombates().setEmpNPC(PersonagemOn.personagem.getResumoCombates().getEmpNPC() + 1);
 
         PersonagemOn.personagem.setCombatesNPCDiarios(PersonagemOn.personagem.getCombatesNPCDiarios() + 1);
+
         PersonagemOn.personagem.salvar();
     }
 

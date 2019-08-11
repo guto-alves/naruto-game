@@ -159,10 +159,14 @@ public class PersonagemSelecionarFragment extends Fragment {
                     personagensList.add(personagem);
                 }
 
+                personagensQuery.removeEventListener(valueEventListenerPersonagens);
+
                 if (personagensList.size() == 0) {
                     mudarTituloSecao("CRIAR PERSONAGEM");
                     changeTo(new PersonagemCriarFragment());
                 } else {
+                    classificarPersonagensPorLvl();
+
                     for (int i = 0; i < personagensList.size(); i++)
                         profilesPequenaList.add(personagensList.get(i).getIdProfile());
 
@@ -177,6 +181,20 @@ public class PersonagemSelecionarFragment extends Fragment {
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
+    }
+
+    private void classificarPersonagensPorLvl() {
+        final int QTD_PERSONAGENS = personagensList.size();
+
+        for (int i = 0; i < QTD_PERSONAGENS - 1; i++) {
+            for (int j = i + 1; j < QTD_PERSONAGENS; j++) {
+                if (personagensList.get(i).getLevel() < personagensList.get(j).getLevel()) {
+                    Personagem temp_personagem = personagensList.get(i);
+                    personagensList.set(i, personagensList.get(j));
+                    personagensList.set(j, temp_personagem);
+                }
+            }
+        }
     }
 
     private void changeTo(Fragment fragment) {
@@ -194,11 +212,5 @@ public class PersonagemSelecionarFragment extends Fragment {
     public void onStart() {
         super.onStart();
         recuperarPersonagens();
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        personagensQuery.removeEventListener(valueEventListenerPersonagens);
     }
 }

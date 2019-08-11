@@ -25,21 +25,30 @@ public class Personagem implements Serializable {
     private int posicao;
     private boolean on;
 
+    private List<String> titulos;
+
     private int combatesNPCDiarios;
     private ResumoCombates resumoCombates;
     private ResumoMissoes resumoMissoes;
+    private List<Integer> tarefasConcluidasIDs;
+
     private Atributos atributos;
+
+    private String equipe;
+    private String org;
 
     private boolean fuiPego;
     private String nickOponente;
     private int mapa_posicao;
     private String idBatalhaAtual;
 
-
     private List<Jutsu> jutsus;
     private Jutsu jutsuSelecionado;
 
     private Bolsa bolsa;
+
+    private boolean emMissao;
+    private Missao missaoAtual;
 
     public Personagem() {
     }
@@ -50,6 +59,14 @@ public class Personagem implements Serializable {
                 .child(nick);
 
         personagemReference.setValue(this);
+    }
+
+    public List<String> getTitulos() {
+        return titulos;
+    }
+
+    public void setTitulos(List<String> titulos) {
+        this.titulos = titulos;
     }
 
     public void atualizarAtributos() {
@@ -189,18 +206,17 @@ public class Personagem implements Serializable {
     }
 
     public void setExpAtual(int expAtual) {
-        if (getExpAtual() + expAtual > getExpUpar()) {
-            setLevel(getLevel() + 1);
+        if (expAtual > getExpUpar()) {
+            expAtual = expAtual - getExpUpar();
             setExpUpar(getExpUpar() + 1200);
-            setExpAtual(getExpAtual() + expAtual - getExpUpar());
+            setLevel(getLevel() + 1);
             atualizarAtributos();
             atributos.getFormulas().setVidaAtual(atributos.getFormulas().getVida());
             atributos.getFormulas().setChakraAtual(atributos.getFormulas().getChakra());
             atributos.getFormulas().setStaminaAtual(atributos.getFormulas().getStamina());
-            salvar();
-        } else {
-            this.expAtual = expAtual;
         }
+
+        this.expAtual = expAtual;
     }
 
     public int getExpUpar() {
@@ -273,5 +289,45 @@ public class Personagem implements Serializable {
 
     public void setOn(boolean on) {
         this.on = on;
+    }
+
+    public List<Integer> getTarefasConcluidas() {
+        return tarefasConcluidasIDs;
+    }
+
+    public void setTarefasConcluidas(List<Integer> tarefasConcluidas) {
+        this.tarefasConcluidasIDs = tarefasConcluidas;
+    }
+
+    public boolean isEmMissao() {
+        return emMissao;
+    }
+
+    public void setEmMissao(boolean emMissao) {
+        this.emMissao = emMissao;
+    }
+
+    public Missao getMissaoAtual() {
+        return missaoAtual;
+    }
+
+    public void setMissaoAtual(Missao missaoAtual) {
+        this.missaoAtual = missaoAtual;
+    }
+
+    public String getEquipe() {
+        return equipe;
+    }
+
+    public void setEquipe(String equipe) {
+        this.equipe = equipe;
+    }
+
+    public String getOrg() {
+        return org;
+    }
+
+    public void setOrg(String org) {
+        this.org = org;
     }
 }

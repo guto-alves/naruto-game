@@ -53,10 +53,6 @@ public class HomeFragment extends Fragment {
     private Query noticiasQuery;
     private ValueEventListener valueEventListenerNoticias;
 
-    private FirebaseAuth auth;
-    private DatabaseReference playerReference;
-    private ValueEventListener valueEventListenerPlayer;
-
     public HomeFragment() {
     }
 
@@ -98,7 +94,6 @@ public class HomeFragment extends Fragment {
             jogarButton.setVisibility(View.GONE);
         }
 
-        auth = ConfigFirebase.getAuth();
 
         DatabaseReference referenceNoticia = ConfigFirebase.getDatabase().child("noticia");
         noticiasQuery = referenceNoticia.orderByKey();
@@ -144,32 +139,17 @@ public class HomeFragment extends Fragment {
     }
 
     public void logarPlayer(final Player player) {
+        FirebaseAuth auth = ConfigFirebase.getAuth();
         auth.signInWithEmailAndPassword(
                 player.getEmail(), player.getSenha()
         ).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    Toast.makeText(getActivity(), "Aguarde...", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), "Aguarde...", Toast.LENGTH_SHORT).show();
 
-                    playerReference = ConfigFirebase.getDatabase()
-                            .child("player").child(auth.getCurrentUser().getUid());
-
-                    valueEventListenerPlayer = playerReference.addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            PlayerOn.player = dataSnapshot.getValue(Player.class);
-
-                            startActivity(new Intent(getActivity(), LogadoSelecionarActivity.class));
-                            getActivity().finish();
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-                        }
-                    });
-
-
+                    startActivity(new Intent(getActivity(), LogadoSelecionarActivity.class));
+                    getActivity().finish();
                 } else {
                     String excecao;
 
@@ -241,6 +221,5 @@ public class HomeFragment extends Fragment {
     public void onStop() {
         super.onStop();
         noticiasQuery.removeEventListener(valueEventListenerNoticias);
-        playerReference.removeEventListener(valueEventListenerPlayer);
     }
 }

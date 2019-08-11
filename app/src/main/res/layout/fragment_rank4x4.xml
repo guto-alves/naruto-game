@@ -3,14 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.personagemlogado.personagem.SorteNinjaFragment">
+    tools:context=".fragment.personagemlogado.ranking.Rank4x4Fragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:text="SORTE NINJA"
-        android:textSize="24sp" />
+        android:text="RANK 4X4" />
 
 </FrameLayout>

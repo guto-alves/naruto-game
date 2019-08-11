@@ -7,7 +7,7 @@ import com.gutotech.narutogame.publicentities.PersonagemOn;
 public class Equipe {
     private String nome;
     private int level;
-    private int exp;
+    private int expAtual;
     private int expUpar;
 
     private int posicao;
@@ -27,7 +27,6 @@ public class Equipe {
     public void salvar() {
         DatabaseReference reference = ConfigFirebase.getDatabase()
                 .child("equipe")
-                .child(String.valueOf(PersonagemOn.personagem.getNumVila()))
                 .child(nome);
         reference.setValue(this);
     }
@@ -80,12 +79,13 @@ public class Equipe {
         this.level = level;
     }
 
-    public int getExp() {
-        return exp;
+    public int getExpAtual() {
+        return expAtual;
     }
 
-    public void setExp(int exp) {
-        this.exp = exp;
+    public void setExpAtual(int expAtual) {
+
+        this.expAtual = expAtual;
     }
 
     public int getExpUpar() {
@@ -102,5 +102,29 @@ public class Equipe {
 
     public void setQuantidadeMembros(int quantidadeMembros) {
         this.quantidadeMembros = quantidadeMembros;
+    }
+
+    public int getPosicao() {
+        return posicao;
+    }
+
+    public void setPosicao(int posicao) {
+        this.posicao = posicao;
+    }
+
+    public int getPontos() {
+        return pontos;
+    }
+
+    public void setPontos(int pontos) {
+        this.pontos = pontos;
+    }
+
+    public String getVila() {
+        return vila;
+    }
+
+    public void setVila(String vila) {
+        this.vila = vila;
     }
 }

@@ -63,8 +63,8 @@ public class JutsusAprenderAdapter extends RecyclerView.Adapter<JutsusAprenderAd
         myViewHolder.treinarJutsuButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AcademiaJustuFragment.msgConstraintLayout.setVisibility(View.VISIBLE);
                 AcademiaJustuFragment.jutsuAprendidoTextView.setText(jutsu.getNome());
+                AcademiaJustuFragment.msgConstraintLayout.setVisibility(View.VISIBLE);
             }
         });
     }
