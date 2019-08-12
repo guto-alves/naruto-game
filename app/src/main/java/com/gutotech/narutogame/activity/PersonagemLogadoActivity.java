@@ -1,8 +1,12 @@
 package com.gutotech.narutogame.activity;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -26,6 +30,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -37,7 +42,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.StorageReference;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.adapter.MensagensAdapter;
 import com.gutotech.narutogame.adapter.MenuPersonagemLogadoExpandableAdapter;
@@ -77,12 +81,10 @@ import com.gutotech.narutogame.fragment.personagemlogado.vilaatual.MissoesEspera
 import com.gutotech.narutogame.fragment.personagemlogado.vilaatual.MissoesFragment;
 import com.gutotech.narutogame.fragment.personagemlogado.vilaatual.NinjaShopFragment;
 import com.gutotech.narutogame.fragment.personagemlogado.vilaatual.RamenShopFragment;
+import com.gutotech.narutogame.helper.DateCustom;
 import com.gutotech.narutogame.model.Bolsa;
 import com.gutotech.narutogame.model.Mensagem;
-import com.gutotech.narutogame.model.Personagem;
 import com.gutotech.narutogame.publicentities.PersonagemOn;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -90,6 +92,10 @@ import java.util.List;
 import java.util.Locale;
 
 public class PersonagemLogadoActivity extends AppCompatActivity {
+    private View headerView;
+
+    private ImageButton fidelidadeImageButton;
+
     private TextView tituloSecao;
 
     private ExpandableListView menuExpandableListView;
@@ -109,8 +115,6 @@ public class PersonagemLogadoActivity extends AppCompatActivity {
     private HashMap<String, List<String>> childList = new HashMap<>();
     private MenuPersonagemLogadoExpandableAdapter menuAdapter;
 
-    private View headerView;
-
     private boolean chatAberto = false;
     private String channer;
     private List<Mensagem> mensagensList = new ArrayList<>();
@@ -120,6 +124,19 @@ public class PersonagemLogadoActivity extends AppCompatActivity {
 
     private DatabaseReference personagemOnReference;
     private ValueEventListener valueEventListenerPersonagemOn;
+
+    private Dialog rotinasDialog;
+    private TextView heallingTextView;
+    private TextView rankNinjaTextView;
+    private TextView diversasRotinasTextView;
+
+    private final long millis_DiversasRotinas = 86400000l;
+    private final long millis_Healling = 120000;
+    private final long millis_RANKNINJA = 7200000;
+
+    private CountDownTimer heallingTimer;
+    private CountDownTimer rankNinjaTimer;
+    private CountDownTimer diversasRotinasTimer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -136,6 +153,8 @@ public class PersonagemLogadoActivity extends AppCompatActivity {
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         headerView = navigationView.getHeaderView(0);
+
+        fidelidadeImageButton = headerView.findViewById(R.id.irFidelidadeImageButton);
 
         ImageView topoLogadoimageView = headerView.findViewById(R.id.topoLogadoImageView);
         Storage.baixarTopoLogado(getApplicationContext(), topoLogadoimageView, PersonagemOn.personagem.getIdProfile());
@@ -171,6 +190,27 @@ public class PersonagemLogadoActivity extends AppCompatActivity {
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
+        configurarChat();
+
+        menuExpandableListView = findViewById(R.id.expanded_menu_main);
+        buildMenu();
+        menuAdapter = new MenuPersonagemLogadoExpandableAdapter(PersonagemLogadoActivity.this, groupListText, groupListImage, childList);
+        configurarMenuExpandable();
+
+        rotinasDialog = new Dialog(this);
+        rotinasDialog.setContentView(R.layout.custompopup_rotinas_do_jogo);
+        rotinasDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        heallingTextView = rotinasDialog.findViewById(R.id.heallingTextView);
+        rankNinjaTextView = rotinasDialog.findViewById(R.id.rankNinjaTextView);
+        diversasRotinasTextView = rotinasDialog.findViewById(R.id.diversasRotinasTextView);
+
+        tituloSecao = findViewById(R.id.tituloSecaoTextView);
+        tituloSecao.setText("STATUS DO PERSONAGEM");
+        changeFragment(new PersonagemStatusFragment());
+    }
+
+    private void configurarChat() {
         // CONFIGURA CHAT
         channer = PersonagemOn.personagem.getVila();
         mensagensReference = ConfigFirebase.getDatabase()
@@ -239,10 +279,9 @@ public class PersonagemLogadoActivity extends AppCompatActivity {
                 }
             }
         });
+    }
 
-        menuExpandableListView = findViewById(R.id.expanded_menu_main);
-        buildMenu();
-        menuAdapter = new MenuPersonagemLogadoExpandableAdapter(PersonagemLogadoActivity.this, groupListText, groupListImage, childList);
+    private void configurarMenuExpandable() {
         menuExpandableListView.setAdapter(menuAdapter);
         menuExpandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
@@ -467,10 +506,6 @@ public class PersonagemLogadoActivity extends AppCompatActivity {
                 return false;
             }
         });
-
-        tituloSecao = findViewById(R.id.tituloSecaoTextView);
-        tituloSecao.setText("STATUS DO PERSONAGEM");
-        changeFragment(new PersonagemStatusFragment());
     }
 
     private void enviarMensagem(Mensagem mensagem) {
@@ -499,60 +534,55 @@ public class PersonagemLogadoActivity extends AppCompatActivity {
         });
     }
 
-    private void recuperarPersonagemOn() {
-        personagemOnReference = ConfigFirebase.getDatabase().child("personagem").child(PersonagemOn.personagem.getNick());
-        valueEventListenerPersonagemOn = personagemOnReference.addValueEventListener(new ValueEventListener() {
+    private void startHeallingTimer(long millis) {
+        heallingTimer = new CountDownTimer(millis, 1000) {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                atualizarInformacoes();
+            public void onTick(long millisUntilFinished) {
+
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+            public void onFinish() {
+                startHeallingTimer(120000);
             }
-        });
+        }.start();
+    }
+
+    private void startRankNinjaTimer(long millis) {
+        rankNinjaTimer = new CountDownTimer(millis, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+
+            }
+
+            @Override
+            public void onFinish() {
+                startRankNinjaTimer(7200000);
+            }
+        }.start();
+    }
+
+    private void startDiversasRotinasTimer(long millis) {
+        diversasRotinasTimer = new CountDownTimer(millis, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                diversasRotinasTextView.setText(String.format(Locale.getDefault(), "Diversas Rotinas: %s", DateCustom.getHorario(millisUntilFinished)));
+            }
+
+            @Override
+            public void onFinish() {
+
+            }
+        }.start();
+    }
+
+    public void showPopupRotinas(View view) {
+        rotinasDialog.show();
     }
 
     @SuppressLint("RestrictedApi")
     private void exibirBolsa(View view) {
-        MenuBuilder menuBuilder = new MenuBuilder(getApplicationContext());
-        MenuInflater menuInflater = new MenuInflater(getApplicationContext());
-        menuInflater.inflate(R.menu.pop_menu_bolsa, menuBuilder);
 
-        MenuPopupHelper menuPopupHelper = new MenuPopupHelper(getApplicationContext(), menuBuilder, view);
-        menuPopupHelper.setForceShowIcon(true);
-
-        Bolsa bolsa = PersonagemOn.personagem.getBolsa();
-        if (bolsa != null) {
-            if (bolsa.getRamenList().size() > 0) {
-                menuBuilder.add("Ramen");
-            } else {
-
-            }
-        }
-
-        menuBuilder.setCallback(new MenuBuilder.Callback() {
-            @Override
-            public boolean onMenuItemSelected(MenuBuilder menuBuilder, MenuItem menuItem) {
-
-                switch (menuItem.getItemId()) {
-                    case R.id.infoNinja:
-                        return true;
-                    case R.id.batalharMenu:
-                        return true;
-                    default:
-                        return false;
-                }
-            }
-
-            @Override
-            public void onMenuModeChange(MenuBuilder menuBuilder) {
-            }
-        });
-
-        menuBuilder.findItem(R.id.nomeJutsu).setTitle("%s       x%d");
-
-        menuBuilder.findItem(R.id.atkOuDefJutsu).setIcon(R.drawable.layout_icones_atk_magico);
     }
 
     private void buildMenu() {
@@ -640,7 +670,6 @@ public class PersonagemLogadoActivity extends AppCompatActivity {
 
         List<String> itemsEquipe = new ArrayList<>();
         List<String> itemsOrg = new ArrayList<>();
-
         if (!PersonagemOn.personagem.isEmMissao()) {
             if (!PersonagemOn.personagem.getGraducao().equals("Estudante")) {
                 itemsEquipe.add("Participar");
@@ -660,7 +689,26 @@ public class PersonagemLogadoActivity extends AppCompatActivity {
         childList.put(groupListText.get(8), itemsRanking);
     }
 
+    private void recuperarPersonagemOn() {
+        personagemOnReference = ConfigFirebase.getDatabase().child("personagem").child(PersonagemOn.personagem.getNick());
+        valueEventListenerPersonagemOn = personagemOnReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                atualizarInformacoes();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
+    }
+
     public void atualizarInformacoes() {
+        if (PersonagemOn.personagem.isTemRecompensaFidelidade())
+            fidelidadeImageButton.setImageResource(R.drawable.layout_icones_gift);
+        else
+            fidelidadeImageButton.setImageResource(R.drawable.layout_icones_gift2);
+
         TextView lvlAtual = headerView.findViewById(R.id.lvlAtualTextView);
         lvlAtual.setText(String.valueOf(PersonagemOn.personagem.getLevel()));
 
@@ -676,6 +724,33 @@ public class PersonagemLogadoActivity extends AppCompatActivity {
 
         TextView ryous = headerView.findViewById(R.id.ryousTextView);
         ryous.setText(String.valueOf(PersonagemOn.personagem.getRyous()));
+
+        TextView vidaTextView = headerView.findViewById(R.id.vidaTextView);
+        vidaTextView.setText(String.format(Locale.getDefault(), "%d/%d",
+                PersonagemOn.personagem.getAtributos().getFormulas().getVidaAtual(),
+                PersonagemOn.personagem.getAtributos().getFormulas().getVida()));
+
+        TextView chakraTextView = headerView.findViewById(R.id.chakraTextView);
+        chakraTextView.setText(String.format(Locale.getDefault(), "%d/%d",
+                PersonagemOn.personagem.getAtributos().getFormulas().getChakraAtual(),
+                PersonagemOn.personagem.getAtributos().getFormulas().getChakra()));
+
+        TextView staminaTextView = headerView.findViewById(R.id.staminaTextView);
+        staminaTextView.setText(String.format(Locale.getDefault(), "%d/%d",
+                PersonagemOn.personagem.getAtributos().getFormulas().getStaminaAtual(),
+                PersonagemOn.personagem.getAtributos().getFormulas().getStamina()));
+
+        ProgressBar vidaProgressBar = headerView.findViewById(R.id.vidaProgressBar);
+        vidaProgressBar.setMax(PersonagemOn.personagem.getAtributos().getFormulas().getVida());
+        vidaProgressBar.setProgress(PersonagemOn.personagem.getAtributos().getFormulas().getVidaAtual());
+
+        ProgressBar chakraProgressBar = headerView.findViewById(R.id.chakraProgressBar);
+        chakraProgressBar.setMax(PersonagemOn.personagem.getAtributos().getFormulas().getChakra());
+        chakraProgressBar.setProgress(PersonagemOn.personagem.getAtributos().getFormulas().getChakraAtual());
+
+        ProgressBar staminaProgressBar = headerView.findViewById(R.id.staminaProgressBar);
+        staminaProgressBar.setMax(PersonagemOn.personagem.getAtributos().getFormulas().getStamina());
+        staminaProgressBar.setProgress(PersonagemOn.personagem.getAtributos().getFormulas().getStaminaAtual());
 
         TextView classe = findViewById(R.id.classeTextView);
         classe.setText(String.valueOf(PersonagemOn.personagem.getClasse()));
@@ -739,6 +814,9 @@ public class PersonagemLogadoActivity extends AppCompatActivity {
         super.onStart();
         recuperarPersonagemOn();
         recuperarMensagens();
+
+        long millis = millis_DiversasRotinas;
+        startDiversasRotinasTimer(millis);
     }
 
     @Override

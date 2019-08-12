@@ -101,7 +101,19 @@ public class PersonagemSelecionarFragment extends Fragment {
                     builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            deletarNinja();
+                            if (PersonagemOn.personagem == null)
+                                deletarNinja();
+                            else {
+                                if (personagemSelecionado.getNick().equals(PersonagemOn.personagem.getNick())) {
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                                    builder.setTitle("Aviso!");
+                                    builder.setMessage("Você não pode remover esse personagem estando logado nele!");
+                                    builder.setPositiveButton("Fechar", null);
+                                    builder.create().show();
+                                } else
+                                    deletarNinja();
+                            }
+
                         }
                     });
                     builder.create();

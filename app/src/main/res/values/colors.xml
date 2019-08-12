@@ -12,4 +12,11 @@
     <color name="colorItem2">#271C15</color>
 
     <color name="colorAmarela">#F9C863</color>
+
+    <color name="colorBgBarrasTopo">#16100D</color>
+    <color name="colorVida">#FB4604</color>
+    <color name="colorChakra">#246FD2</color>
+    <color name="colorStamina">#AF7219</color>
+    <color name="colorExp">#36B976</color>
+
 </resources>

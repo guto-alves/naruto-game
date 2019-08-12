@@ -97,7 +97,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
-        android:background="@drawable/layout_bg_atribuito_clas"
+        android:background="@drawable/layout_bg_atributo_cla"
         android:gravity="center"
         android:orientation="vertical"
         android:padding="4dp"

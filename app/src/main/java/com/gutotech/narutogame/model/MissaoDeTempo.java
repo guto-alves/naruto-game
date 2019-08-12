@@ -1,6 +1,6 @@
 package com.gutotech.narutogame.model;
 
-import com.gutotech.narutogame.myinterface.MissaoAceitaListener;
+import com.gutotech.narutogame.myinterface.MyListener;
 
 import java.io.Serializable;
 
@@ -8,11 +8,12 @@ public class MissaoDeTempo extends Missao implements Serializable {
     private long millisDuracao;
     private int expRecompensa;
     private double ryousRecompensa;
+    private long millisStopped;
 
     public MissaoDeTempo() {
     }
 
-    public MissaoDeTempo(int id, String titulo, String descricao, String graduacao, int level, String rank, String dataConcluida, String horarioConcluido, MissaoAceitaListener listener, long millisDuracao, int expRecompensa, double ryousRecompensa) {
+    public MissaoDeTempo(int id, String titulo, String descricao, String graduacao, int level, String rank, String dataConcluida, String horarioConcluido, MyListener listener, long millisDuracao, int expRecompensa, double ryousRecompensa) {
         super(id, titulo, descricao, graduacao, level, rank, dataConcluida, horarioConcluido, listener);
         this.millisDuracao = millisDuracao;
         this.expRecompensa = expRecompensa;
@@ -41,5 +42,13 @@ public class MissaoDeTempo extends Missao implements Serializable {
 
     public void setRyousRecompensa(double ryousRecompensa) {
         this.ryousRecompensa = ryousRecompensa;
+    }
+
+    public long getMillisStopped() {
+        return millisStopped;
+    }
+
+    public void setMillisStopped(long millisStopped) {
+        this.millisStopped = millisStopped;
     }
 }

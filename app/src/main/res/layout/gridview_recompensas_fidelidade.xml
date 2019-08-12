@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="170dp"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:background="@drawable/layout_bg_balao_fidelity"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingLeft="8dp"
+    android:paddingTop="8dp"
+    android:paddingRight="8dp"
+    android:paddingBottom="8dp">
+
+    <ImageView
+        android:id="@+id/diaImageView"
+        android:layout_width="85dp"
+        android:layout_height="85dp"
+        app:srcCompat="@drawable/layout_fidelity_1" />
+
+    <TextView
+        android:id="@+id/diaTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:gravity="center"
+        android:text="Logar 1 dia(s) seguidos"
+        android:textColor="@color/colorTextos"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/recompensaTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:gravity="center"
+        android:text="100 de Ryous"
+        android:textColor="@color/colorTextos" />
+
+    <Button
+        android:id="@+id/receberButton"
+        style="@style/ButtonTheme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Receber" />
+</LinearLayout>

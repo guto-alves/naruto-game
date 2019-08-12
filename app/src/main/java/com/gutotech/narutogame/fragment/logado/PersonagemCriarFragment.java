@@ -320,6 +320,8 @@ public class PersonagemCriarFragment extends Fragment {
         personagem.setResumoCombates(new ResumoCombates());
         personagem.setResumoMissoes(new ResumoMissoes());
         personagem.setMapa_posicao(-1);
+        personagem.setDiasLogadosFidelidade(1);
+        personagem.setTemRecompensaFidelidade(true);
 
         PersonagemOn.personagem = personagem;
         personagem.atualizarAtributos();

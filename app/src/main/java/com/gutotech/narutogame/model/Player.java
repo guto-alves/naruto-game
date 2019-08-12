@@ -4,7 +4,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Exclude;
 import com.gutotech.narutogame.config.ConfigFirebase;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Player {
     private String id;
@@ -18,6 +20,7 @@ public class Player {
     private String estado;
     private String bairro;
     private String cidade;
+    private int creditosVip;
 
     public Player() {
     }
@@ -43,7 +46,6 @@ public class Player {
     public void salvar() {
         DatabaseReference reference = ConfigFirebase.getDatabase();
         DatabaseReference player = reference.child("player").child(ConfigFirebase.getAuth().getCurrentUser().getUid());
-
         player.setValue(this);
     }
 
@@ -134,5 +136,13 @@ public class Player {
 
     public void setCidade(String cidade) {
         this.cidade = cidade;
+    }
+
+    public int getCreditosVip() {
+        return creditosVip;
+    }
+
+    public void setCreditosVip(int creditosVip) {
+        this.creditosVip = creditosVip;
     }
 }

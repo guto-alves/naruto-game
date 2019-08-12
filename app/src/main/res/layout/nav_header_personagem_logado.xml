@@ -48,6 +48,7 @@
             android:id="@+id/imageView31"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="3dp"
             android:layout_marginRight="3dp"
             app:srcCompat="@drawable/layout_icones_gold" />
 
@@ -90,7 +91,6 @@
             android:background="@drawable/selector_buttons_topo"
             android:onClick="logout"
             app:srcCompat="@drawable/layout_logout" />
-
     </LinearLayout>
 
     <LinearLayout
@@ -103,11 +103,12 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
-            android:id="@+id/rotinasDoJogoImageButton"
+            android:id="@+id/rotinasImageButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="8dp"
             android:background="@drawable/selector_buttons_topo"
+            android:onClick="showPopupRotinas"
             app:srcCompat="@drawable/layout_topo_logado_icones_relogio" />
 
         <ImageButton
@@ -152,7 +153,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="LVL"
-                android:textColor="@color/colorTextos" />
+                android:textColor="@color/colorTextos"
+                android:textSize="12dp" />
 
             <TextView
                 android:id="@+id/lvlAtualTextView"
@@ -173,6 +175,7 @@
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:progressDrawable="@drawable/progressbar_exp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.6"
@@ -185,7 +188,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
-                android:text="EXP: 0/1200"
                 android:textColor="@android:color/white"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/expProgressBar"
@@ -203,7 +205,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="LVL"
-                android:textColor="@color/colorTextos" />
+                android:textColor="@color/colorTextos"
+                android:textSize="12dp" />
 
             <TextView
                 android:id="@+id/lvlProxTextView"
@@ -221,5 +224,126 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.5" />
+
+    <LinearLayout
+        android:layout_width="90dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/topoLogadoImageView"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imageView37"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="3dp"
+                app:srcCompat="@drawable/layout_icones_p_hp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/vidaTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <ProgressBar
+                    android:id="@+id/vidaProgressBar"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp"
+                    android:progressDrawable="@drawable/progressbar_vida" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="3dp"
+                app:srcCompat="@drawable/layout_icones_p_chakra" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/chakraTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <ProgressBar
+                    android:id="@+id/chakraProgressBar"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp"
+                    android:progressDrawable="@drawable/progressbar_chakra" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="3dp"
+                app:srcCompat="@drawable/layout_icones_p_stamina" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/staminaTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <ProgressBar
+                    android:id="@+id/staminaProgressBar"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp"
+                    android:progressDrawable="@drawable/progressbar_stamina" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

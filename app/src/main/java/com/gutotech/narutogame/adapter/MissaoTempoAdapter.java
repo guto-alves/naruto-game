@@ -12,18 +12,17 @@ import android.widget.TextView;
 
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.model.MissaoDeTempo;
-import com.gutotech.narutogame.model.Tarefa;
 import com.gutotech.narutogame.publicentities.PersonagemOn;
 
 import java.util.List;
 
-public class TarefasAdapter extends RecyclerView.Adapter<TarefasAdapter.MyViewHolder> {
+public class MissaoTempoAdapter extends RecyclerView.Adapter<MissaoTempoAdapter.MyViewHolder> {
     private Context context;
-    private List<MissaoDeTempo> tarefas;
+    private List<MissaoDeTempo> missaoDeTempos;
 
-    public TarefasAdapter(Context context, List<MissaoDeTempo> tarefas) {
+    public MissaoTempoAdapter(Context context, List<MissaoDeTempo> tarefas) {
         this.context = context;
-        this.tarefas = tarefas;
+        this.missaoDeTempos = tarefas;
     }
 
     @NonNull
@@ -35,20 +34,20 @@ public class TarefasAdapter extends RecyclerView.Adapter<TarefasAdapter.MyViewHo
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, final int i) {
-        final MissaoDeTempo tarefa = tarefas.get(i);
+        final MissaoDeTempo missao = missaoDeTempos.get(i);
 
-        myViewHolder.titulo.setText(tarefa.getTitulo());
-        myViewHolder.descricao.setText(tarefa.getDescricao());
-        myViewHolder.graduacao.setText(tarefa.getGraduacao());
-        myViewHolder.level.setText("Lvl. " + tarefa.getLevel());
+        myViewHolder.titulo.setText(missao.getTitulo());
+        myViewHolder.descricao.setText(missao.getDescricao());
+        myViewHolder.graduacao.setText(missao.getGraduacao());
+        myViewHolder.level.setText("Lvl. " + missao.getLevel());
 
-        if (tarefa.getLevel() > PersonagemOn.personagem.getLevel())
+        if (missao.getLevel() > PersonagemOn.personagem.getLevel())
             myViewHolder.aceitar.setEnabled(false);
         else {
             myViewHolder.aceitar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    tarefa.aceitarMissao(i);
+                    missao.aceitarMissao(i);
                 }
             });
         }
@@ -61,7 +60,7 @@ public class TarefasAdapter extends RecyclerView.Adapter<TarefasAdapter.MyViewHo
 
     @Override
     public int getItemCount() {
-        return tarefas.size();
+        return missaoDeTempos.size();
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {

@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.SystemClock;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -15,13 +16,8 @@ import android.widget.TextView;
 
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.fragment.personagemlogado.personagem.PersonagemStatusFragment;
-import com.gutotech.narutogame.model.Missao;
 import com.gutotech.narutogame.model.MissaoDeTempo;
-import com.gutotech.narutogame.model.Personagem;
-import com.gutotech.narutogame.model.Tarefa;
 import com.gutotech.narutogame.publicentities.PersonagemOn;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +25,8 @@ import java.util.Locale;
 
 public class MissoesEsperaFragment extends Fragment {
     private ConstraintLayout msgMissaoEspera;
+    private TextView tituloMissao;
+    private TextView descricaoMissao;
     private Button cancelarMissaoButton;
     private TextView tempoConclusaoTextView;
     private CountDownTimer timer;
@@ -38,7 +36,9 @@ public class MissoesEsperaFragment extends Fragment {
     private TextView ryRecompensaTextView;
     private Button finalizarMissaoButton;
 
-    private Missao missao;
+    private MissaoDeTempo missao;
+
+    private boolean esperandoFinalizar;
 
     public MissoesEsperaFragment() {
     }
@@ -48,51 +48,18 @@ public class MissoesEsperaFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_missoes_espera, container, false);
 
-        missao = PersonagemOn.personagem.getMissaoAtual();
+        missao = PersonagemOn.personagem.getMissaoDeTempo();
 
+        msgMissaoEspera = view.findViewById(R.id.msgConstraint1);
+        tituloMissao = view.findViewById(R.id.msgTitleTextView);
+        descricaoMissao = view.findViewById(R.id.msgMensagem);
+        tempoConclusaoTextView = view.findViewById(R.id.tempoConclusaoTextView);
+        cancelarMissaoButton = view.findViewById(R.id.cancelarMissaoButton);
 
         msgMissaoConcluida = view.findViewById(R.id.msgConstraint2);
         expRecompensaTextView = view.findViewById(R.id.expRecompensaTextView);
         ryRecompensaTextView = view.findViewById(R.id.ryRecompensaTextView);
         finalizarMissaoButton = view.findViewById(R.id.finalizarMissaoButton);
-
-        msgMissaoEspera = view.findViewById(R.id.msgConstraint1);
-        tempoConclusaoTextView = view.findViewById(R.id.tempoConclusaoTextView);
-        cancelarMissaoButton = view.findViewById(R.id.cancelarMissaoButton);
-
-        if (missao. () >= 0){
-            mudarTituloSecao("STATUS DA MISSÃO");
-
-            TextView tituloTarefa = view.findViewById(R.id.msgTitleTextView);
-            tituloTarefa.setText(missao.getTitulo());
-
-            TextView descricaoTarefa = view.findViewById(R.id.msgMensagem);
-            descricaoTarefa.setText(missao.getDescricao());
-
-            cancelarMissaoButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setTitle("Naruto Game diz:");
-                    builder.setMessage("Você que realmente cancelar essa missão ? Todo o seu tempo gasto até agora será perdido.");
-                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            PersonagemOn.personagem.setEmMissao(false);
-                            PersonagemOn.personagem.setMissaoAtual(null);
-                            PersonagemOn.personagem.salvar();
-                            mudarTituloSecao("STATUS DO PERSONAGEM");
-                            changeToFragment(new PersonagemStatusFragment());
-                        }
-                    });
-                    builder.setNegativeButton("Cancelar", null);
-                    builder.create().show();
-                }
-            });
-
-            startTimer();
-        } else
-        configurarMsgMissaoConcluida();
 
         return view;
     }
@@ -101,7 +68,7 @@ public class MissoesEsperaFragment extends Fragment {
         timer = new CountDownTimer(missao.getMillisDuracao(), 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                PersonagemOn.personagem.getMissaoAtual().setMillisDuracao(millisUntilFinished);
+                missao.setMillisDuracao(millisUntilFinished);
                 int horas = (int) millisUntilFinished / 1000 / 60 / 60;
                 int minutos = (int) millisUntilFinished / 1000 / 60;
                 int segundos = (int) millisUntilFinished / 1000 % 60;
@@ -113,6 +80,33 @@ public class MissoesEsperaFragment extends Fragment {
                 configurarMsgMissaoConcluida();
             }
         }.start();
+    }
+
+    private void configurarMsgMissaoEspera() {
+        mudarTituloSecao("STATUS DA MISSÃO");
+        tituloMissao.setText(missao.getTitulo());
+        descricaoMissao.setText(missao.getDescricao());
+
+        cancelarMissaoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle("Naruto Game diz:");
+                builder.setMessage("Você que realmente cancelar essa missão ? Todo o seu tempo gasto até agora será perdido.");
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        PersonagemOn.personagem.setEmMissao(false);
+                        PersonagemOn.personagem.setMissaoDeTempo(null);
+                        PersonagemOn.personagem.salvar();
+                        mudarTituloSecao("STATUS DO PERSONAGEM");
+                        changeToFragment(new PersonagemStatusFragment());
+                    }
+                });
+                builder.setNegativeButton("Cancelar", null);
+                builder.create().show();
+            }
+        });
     }
 
     private void configurarMsgMissaoConcluida() {
@@ -131,15 +125,34 @@ public class MissoesEsperaFragment extends Fragment {
                 PersonagemOn.personagem.setExpAtual(PersonagemOn.personagem.getExpAtual() + missao.getExpRecompensa());
                 PersonagemOn.personagem.setRyous(PersonagemOn.personagem.getRyous() + (long) missao.getRyousRecompensa());
 
-                List<Integer> tarefasConcluidas = PersonagemOn.personagem.getTarefasConcluidas();
-                if (tarefasConcluidas == null)
-                    tarefasConcluidas = new ArrayList<>();
+                if (missao.getRank().equals("tarefa")) {
+                    List<Integer> tarefasConcluidas = PersonagemOn.personagem.getTarefasConcluidas();
 
-                tarefasConcluidas.add(missao.getId());
+                    if (tarefasConcluidas == null)
+                        tarefasConcluidas = new ArrayList<>();
 
-                PersonagemOn.personagem.setTarefasConcluidas(tarefasConcluidas);
+                    tarefasConcluidas.add(missao.getId());
+                    PersonagemOn.personagem.setTarefasConcluidas(tarefasConcluidas);
 
-                PersonagemOn.personagem.setMissaoAtual(null);
+                    PersonagemOn.personagem.getResumoMissoes().setTarefas(PersonagemOn.personagem.getResumoMissoes().getTarefas() + 1);
+
+                } else if (missao.getRank().equals("D")) {
+                    PersonagemOn.personagem.getResumoMissoes().setRankD(PersonagemOn.personagem.getResumoMissoes().getRankD() + 1);
+
+                } else if (missao.getRank().equals("C")) {
+                    PersonagemOn.personagem.getResumoMissoes().setRankC(PersonagemOn.personagem.getResumoMissoes().getRankC() + 1);
+
+                } else if (missao.getRank().equals("B")) {
+                    PersonagemOn.personagem.getResumoMissoes().setRankB(PersonagemOn.personagem.getResumoMissoes().getRankB() + 1);
+
+                } else if (missao.getRank().equals("A")) {
+                    PersonagemOn.personagem.getResumoMissoes().setRankA(PersonagemOn.personagem.getResumoMissoes().getRankA() + 1);
+
+                } else if (missao.getRank().equals("S")) {
+                    PersonagemOn.personagem.getResumoMissoes().setRankS(PersonagemOn.personagem.getResumoMissoes().getRankS() + 1);
+                }
+
+                PersonagemOn.personagem.setMissaoDeTempo(null);
                 PersonagemOn.personagem.salvar();
                 changeToFragment(new PersonagemStatusFragment());
             }
@@ -158,16 +171,32 @@ public class MissoesEsperaFragment extends Fragment {
     }
 
     @Override
-    public void onStop() {
-        super.onStop();
-        timer.cancel();
-        PersonagemOn.personagem.salvar();
+    public void onStart() {
+        super.onStart();
+
+        missao.setMillisStopped(missao.getMillisStopped() > 0 ? System.currentTimeMillis() - missao.getMillisStopped() : 0);
+
+        if (missao.getMillisStopped() > missao.getMillisDuracao()) {
+            missao.setMillisDuracao(0);
+            configurarMsgMissaoConcluida();
+            esperandoFinalizar = true;
+        } else {
+            configurarMsgMissaoEspera();
+            missao.setMillisDuracao(missao.getMillisDuracao() - missao.getMillisStopped());
+            missao.setMillisStopped(0);
+            startTimer();
+            esperandoFinalizar = false;
+        }
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
-        timer.cancel();
-        PersonagemOn.personagem.salvar();
+    public void onStop() {
+        super.onStop();
+
+        if (!esperandoFinalizar) {
+            timer.cancel();
+            missao.setMillisStopped(System.currentTimeMillis());
+            PersonagemOn.personagem.salvar();
+        }
     }
 }

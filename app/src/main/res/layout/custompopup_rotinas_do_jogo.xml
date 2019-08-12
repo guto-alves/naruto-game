@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="250dp"
+    android:layout_height="550dp"
+    android:background="#E1000000"
+    android:elevation="10dp"
+    android:orientation="vertical"
+    android:padding="5dp">
+
+    <TextView
+        android:id="@+id/textView74"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="Rotinas do Jogo"
+        android:textColor="@android:color/holo_blue_dark" />
+
+    <TextView
+        android:id="@+id/heallingTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Healing: 00:00:53"
+        android:textColor="@android:color/holo_blue_dark" />
+
+    <TextView
+        android:id="@+id/textView76"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Recupera 20% dos seus atributos."
+        android:textColor="@color/colorTextos" />
+
+    <TextView
+        android:id="@+id/missaoNPCVilaTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Missão NPC Vila: 11:47:05"
+        android:textColor="@android:color/holo_blue_dark" />
+
+    <TextView
+        android:id="@+id/textView78"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tempo da finalização das missão de invasão."
+        android:textColor="@color/colorTextos" />
+
+    <TextView
+        android:id="@+id/rankNinjaTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cura do Guardião e Ranking Ninja: 00:47:05"
+        android:textColor="@android:color/holo_blue_dark" />
+
+    <TextView
+        android:id="@+id/textView80"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Recupera 50% de todos os atributos do npc guardião e Atualiza o ranking de ninjas"
+        android:textColor="@color/colorTextos" />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ranking Equipe e Conquista: 00:47:05"
+        android:textColor="@android:color/holo_blue_dark" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Atualiza o ranking de equipes e conquista"
+        android:textColor="@color/colorTextos" />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ranking Organização: 00:47:05"
+        android:textColor="@android:color/holo_blue_dark" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Atualiza o ranking de organização"
+        android:textColor="@color/colorTextos" />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Bijuu: 20:18:05"
+        android:textColor="@android:color/holo_blue_dark" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Recupera 50% de todos os atributos do npc guardião e Atualiza o ranking de ninjas"
+        android:textColor="@color/colorTextos" />
+
+
+    <TextView
+        android:id="@+id/diversasRotinasTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Diversas Rotinas: 20:47:05"
+        android:textColor="@android:color/holo_blue_dark" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Libera o treino de atributos e de jutsus Limpa os Tickets de Hospital, Histórico de Combates e Livro de Registros. Limpa o exp diário ganho nas equipes Renova os combates npcs diários e os contadores de treino dos duelos  Libera a Diplomacia para votação ( Somente na Sexta-feira )"
+        android:textColor="@color/colorTextos" />
+</LinearLayout>

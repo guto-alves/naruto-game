@@ -70,4 +70,12 @@ public class Storage {
                 .child(nomeImage + ".jpg");
         downloadImage(context, imageReference, imageView);
     }
+
+    public static void baixarFidelityDia(Context context, ImageView imageView, int dia) {
+        StorageReference imageReference = ConfigFirebase.getStorage()
+                .child("images")
+                .child("fidelity")
+                .child(dia + ".png");
+        downloadImage(context, imageReference, imageView);
+    }
 }

@@ -1,6 +1,7 @@
 package com.gutotech.narutogame.model;
 
-import com.gutotech.narutogame.myinterface.MissaoAceitaListener;
+import com.google.firebase.database.Exclude;
+import com.gutotech.narutogame.myinterface.MyListener;
 
 import java.io.Serializable;
 
@@ -13,13 +14,12 @@ public class Missao implements Serializable {
     private String rank;
     private String dataConcluida;
     private String horarioConcluido;
-    private MissaoAceitaListener listener;
+    private MyListener listener;
 
     public Missao() {
-
     }
 
-    public Missao(int id, String titulo, String descricao, String graduacao, int level, String rank, String dataConcluida, String horarioConcluido, MissaoAceitaListener listener) {
+    public Missao(int id, String titulo, String descricao, String graduacao, int level, String rank, String dataConcluida, String horarioConcluido, MyListener listener) {
         this.id = id;
         this.titulo = titulo;
         this.descricao = descricao;
@@ -99,11 +99,12 @@ public class Missao implements Serializable {
         this.horarioConcluido = horarioConcluido;
     }
 
-    public MissaoAceitaListener getListener() {
+    @Exclude
+    public MyListener getListener() {
         return listener;
     }
 
-    public void setListener(MissaoAceitaListener listener) {
+    public void setListener(MyListener listener) {
         this.listener = listener;
     }
 }

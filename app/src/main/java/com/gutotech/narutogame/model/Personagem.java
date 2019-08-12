@@ -1,7 +1,6 @@
 package com.gutotech.narutogame.model;
 
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.Exclude;
 import com.gutotech.narutogame.config.ConfigFirebase;
 
 import java.io.Serializable;
@@ -18,24 +17,25 @@ public class Personagem implements Serializable {
     private long ryous;
     private int idProfile;
     private int fotoAtual;
-    private int expAtual;
-    private int expUpar;
 
-    private int pontos;
-    private int posicao;
-    private boolean on;
+    private int diasLogadosFidelidade;
+    private boolean temRecompensaFidelidade;
 
     private List<String> titulos;
 
-    private int combatesNPCDiarios;
-    private ResumoCombates resumoCombates;
-    private ResumoMissoes resumoMissoes;
-    private List<Integer> tarefasConcluidasIDs;
-
     private Atributos atributos;
 
-    private String equipe;
-    private String org;
+    private int expAtual;
+    private int expUpar;
+
+    private int combatesNPCDiarios;
+    private ResumoCombates resumoCombates;
+
+    private ResumoMissoes resumoMissoes;
+    private boolean emMissao;
+    private MissaoDeTempo missaoDeTempo;
+    private MissaoEspecial missaoEspecial;
+    private List<Integer> tarefasConcluidasIDs;
 
     private boolean fuiPego;
     private String nickOponente;
@@ -47,8 +47,12 @@ public class Personagem implements Serializable {
 
     private Bolsa bolsa;
 
-    private boolean emMissao;
-    private Missao missaoAtual;
+    private String equipe;
+    private String org;
+
+    private int pontos;
+    private int posicao;
+    private boolean on;
 
     public Personagem() {
     }
@@ -57,7 +61,6 @@ public class Personagem implements Serializable {
         DatabaseReference personagemReference = ConfigFirebase.getDatabase()
                 .child("personagem")
                 .child(nick);
-
         personagemReference.setValue(this);
     }
 
@@ -206,7 +209,7 @@ public class Personagem implements Serializable {
     }
 
     public void setExpAtual(int expAtual) {
-        if (expAtual > getExpUpar()) {
+        if (expAtual >= getExpUpar()) {
             expAtual = expAtual - getExpUpar();
             setExpUpar(getExpUpar() + 1200);
             setLevel(getLevel() + 1);
@@ -307,12 +310,20 @@ public class Personagem implements Serializable {
         this.emMissao = emMissao;
     }
 
-    public Missao getMissaoAtual() {
-        return missaoAtual;
+    public MissaoDeTempo getMissaoDeTempo() {
+        return missaoDeTempo;
     }
 
-    public void setMissaoAtual(Missao missaoAtual) {
-        this.missaoAtual = missaoAtual;
+    public void setMissaoDeTempo(MissaoDeTempo missaoDeTempo) {
+        this.missaoDeTempo = missaoDeTempo;
+    }
+
+    public MissaoEspecial getMissaoEspecial() {
+        return missaoEspecial;
+    }
+
+    public void setMissaoEspecial(MissaoEspecial missaoEspecial) {
+        this.missaoEspecial = missaoEspecial;
     }
 
     public String getEquipe() {
@@ -329,5 +340,21 @@ public class Personagem implements Serializable {
 
     public void setOrg(String org) {
         this.org = org;
+    }
+
+    public int getDiasLogadosFidelidade() {
+        return diasLogadosFidelidade;
+    }
+
+    public void setDiasLogadosFidelidade(int diasLogadosFidelidade) {
+        this.diasLogadosFidelidade = diasLogadosFidelidade;
+    }
+
+    public boolean isTemRecompensaFidelidade() {
+        return temRecompensaFidelidade;
+    }
+
+    public void setTemRecompensaFidelidade(boolean temRecompensaFidelidade) {
+        this.temRecompensaFidelidade = temRecompensaFidelidade;
     }
 }

@@ -31,7 +31,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.gutotech.narutogame.R;
-import com.gutotech.narutogame.activity.LogadoSelecionarActivity;
 import com.gutotech.narutogame.config.ConfigFirebase;
 import com.gutotech.narutogame.helper.DateCustom;
 import com.gutotech.narutogame.model.Ticket;
@@ -189,10 +188,10 @@ public class SuporteNovoFragment extends Fragment {
                 if (validarCampos(titulo, data, descricao)) {
                     ticket.setTitulo(titulo);
                     ticket.setDataOcorrido(data);
-                    ticket.setDataCriacao(DateCustom.dataAtual());
-                    ticket.setDataAtualizacao(DateCustom.dataAtual());
+                    ticket.setDataCriacao(DateCustom.getData());
+                    ticket.setDataAtualizacao(DateCustom.getData());
 
-                    String horario = DateCustom.horarioAtual();
+                    String horario = DateCustom.getHorario();
                     ticket.setHoraCriacao(horario);
                     ticket.setHoraAtualizacao(horario);
 

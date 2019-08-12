@@ -153,7 +153,7 @@ Sair de sua Equipe e ajudar outra em Eventos não te dá Experiência caso já t
             android:layout_marginLeft="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            android:background="@drawable/layout_bg_atribuito_clas"
+            android:background="@drawable/layout_bg_atributo_cla"
             android:orientation="vertical"
             android:padding="5dp"
             app:layout_constraintEnd_toEndOf="parent"
