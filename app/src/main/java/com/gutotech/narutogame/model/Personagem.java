@@ -11,6 +11,7 @@ public class Personagem implements Serializable {
     private String nick;
     private int level;
     private String graducao;
+    private int idGraducao;
     private String classe;
     private String vila;
     private int numVila;

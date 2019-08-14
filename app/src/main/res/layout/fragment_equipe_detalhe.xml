@@ -235,7 +235,7 @@ Sair de sua Equipe e ajudar outra em Eventos não te dá Experiência caso já t
                         android:orientation="horizontal">
 
                         <Button
-                            android:id="@+id/button"
+                            android:id="@+id/pgtoRyousButton"
                             style="@style/ButtonTheme"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"

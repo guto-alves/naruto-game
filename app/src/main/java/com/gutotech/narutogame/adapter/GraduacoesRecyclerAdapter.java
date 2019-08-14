@@ -3,6 +3,7 @@ package com.gutotech.narutogame.adapter;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,59 +16,53 @@ import android.widget.Toast;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.config.Storage;
 import com.gutotech.narutogame.fragment.personagemlogado.academia.AcademiaJustuFragment;
+import com.gutotech.narutogame.model.Graduacao;
 import com.gutotech.narutogame.model.Jutsu;
 
 import java.util.List;
 
-public class GraduacoesAdapter extends RecyclerView.Adapter<GraduacoesAdapter.MyViewHolder> {
+public class GraduacoesRecyclerAdapter extends RecyclerView.Adapter<GraduacoesRecyclerAdapter.MyViewHolder> {
     private Context context;
-    private List<Jutsu> jutsusList;
 
-    public GraduacoesAdapter(Context context, List<Jutsu> jutsusList) {
-        this.jutsusList = jutsusList;
+    public GraduacoesRecyclerAdapter(Context context) {
         this.context = context;
     }
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View itemLista = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recycler_jutsu_aprender, viewGroup, false);
-        return new MyViewHolder(itemLista);
+        View itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recycler_graducao, viewGroup, false);
+        return new MyViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder myViewHolder, int i) {
-        final Jutsu jutsu = jutsusList.get(i);
+        int idGraduacao = i + 1;
 
-        Storage.baixarJutsu(context, myViewHolder.jutsuImageView, jutsu.getClasse(), jutsu.getNomeImagem());
-
-        myViewHolder.jutsuImageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-        myViewHolder.nomeTextView.setText(jutsu.getNome());
-        myViewHolder.descricaoTextView.setText(jutsu.getDescricao());
+        myViewHolder.nomeTextView.setText(Graduacao.getGraducao(idGraduacao));
+        myViewHolder.descricaoTextView.setText(Graduacao.getDescricao(idGraduacao));
 
         myViewHolder.requerImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, jutsu.getNome(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Nenhum requerimento", Toast.LENGTH_SHORT).show();
             }
         });
 
-        myViewHolder.treinarJutsuButton.setOnClickListener(new View.OnClickListener() {
+        myViewHolder.graduarButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AcademiaJustuFragment.msgConstraintLayout.setVisibility(View.VISIBLE);
-                AcademiaJustuFragment.jutsuAprendidoTextView.setText(jutsu.getNome());
+
             }
         });
+
+        if (i % 2 == 0)
+            myViewHolder.bgConstraint.setBackgroundColor(context.getResources().getColor(R.color.colorItem1));
+        else
+            myViewHolder.bgConstraint.setBackgroundColor(context.getResources().getColor(R.color.colorItem2));
     }
 
-    private void exibirAlerta(String message) {
+    private void exibirRequerimentos(String message) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle("Aviso!");
         builder.setMessage(message);
@@ -79,24 +74,24 @@ public class GraduacoesAdapter extends RecyclerView.Adapter<GraduacoesAdapter.My
 
     @Override
     public int getItemCount() {
-        return jutsusList.size();
+        return 6; // total de graduações
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        private ImageView jutsuImageView;
         private TextView nomeTextView;
         private TextView descricaoTextView;
         private ImageView requerImageView;
-        private Button treinarJutsuButton;
+        private Button graduarButton;
+        private ConstraintLayout bgConstraint;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            jutsuImageView = itemView.findViewById(R.id.jutsuImageView);
-            nomeTextView = itemView.findViewById(R.id.nomeJutsuTextView);
-            descricaoTextView = itemView.findViewById(R.id.descriJutsuTextView);
+            nomeTextView = itemView.findViewById(R.id.nomeGraduacaoTextView);
+            descricaoTextView = itemView.findViewById(R.id.descriGraduacaoTextView);
             requerImageView = itemView.findViewById(R.id.requerImageView);
-            treinarJutsuButton = itemView.findViewById(R.id.treinarJutsuButton);
+            graduarButton = itemView.findViewById(R.id.graduarButton);
+            bgConstraint = itemView.findViewById(R.id.bgConstraint);
         }
     }
 }

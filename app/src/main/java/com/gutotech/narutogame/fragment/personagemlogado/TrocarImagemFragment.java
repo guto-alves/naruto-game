@@ -67,10 +67,4 @@ public class TrocarImagemFragment extends Fragment {
 
         return view;
     }
-
-    private void changeFragment(Fragment fragment) {
-        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.conteiner, fragment);
-        transaction.commit();
-    }
 }
