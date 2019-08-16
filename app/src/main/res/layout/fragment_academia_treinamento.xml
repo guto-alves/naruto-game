@@ -127,7 +127,7 @@ Terça-Feira, é o dia que é renovado o limite semanal, mesmo que você não te
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:background="#1D140F"
-            android:visibility="visible"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -366,10 +366,11 @@ Terça-Feira, é o dia que é renovado o limite semanal, mesmo que você não te
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="3dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:orientation="horizontal"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.494"
             app:layout_constraintStart_toStartOf="parent"
@@ -495,6 +496,7 @@ Terça-Feira, é o dia que é renovado o limite semanal, mesmo que você não te
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:orientation="vertical"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout4">
@@ -577,12 +579,11 @@ Terça-Feira, é o dia que é renovado o limite semanal, mesmo que você não te
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:background="#1D140F"
-            android:visibility="visible"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout11"
-            tools:layout_editor_absoluteY="330dp">
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout11">
 
             <ImageView
                 android:id="@+id/imageView2422"
@@ -691,25 +692,24 @@ Terça-Feira, é o dia que é renovado o limite semanal, mesmo que você não te
 
         </android.support.constraint.ConstraintLayout>
 
-        <!-- -->
+        <!-- Msg Pontos de Treino -->
         <android.support.constraint.ConstraintLayout
             android:id="@+id/msgTemPontosConstraint"
             android:layout_width="match_parent"
-            android:layout_height="210dp"
+            android:layout_height="150dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:background="#1D140F"
-            android:visibility="visible"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/msgNaoTemPontosConstraint"
-            tools:layout_editor_absoluteY="330dp">
+            app:layout_constraintTop_toBottomOf="@+id/msgNaoTemPontosConstraint">
 
             <ImageView
-                android:id="@+id/imageView24221"
+                android:id="@+id/imageView242214"
                 android:layout_width="wrap_content"
                 android:layout_height="39dp"
                 android:scaleType="center"
@@ -726,7 +726,7 @@ Terça-Feira, é o dia que é renovado o limite semanal, mesmo que você não te
                 android:src="@drawable/layout_msg_topo"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/imageView24221" />
+                app:layout_constraintTop_toTopOf="@+id/imageView242214" />
 
             <ImageView
                 android:id="@+id/personagemMsg221"
@@ -833,11 +833,226 @@ Terça-Feira, é o dia que é renovado o limite semanal, mesmo que você não te
                         android:textSize="12dp" />
 
                 </LinearLayout>
-
             </LinearLayout>
-
         </android.support.constraint.ConstraintLayout>
 
+        <LinearLayout
+            android:id="@+id/linearLayout112"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:orientation="vertical"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/msgTemPontosConstraint">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:text="//"
+                    android:textColor="@android:color/holo_blue_light"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="PRÓXIMO PONTO DE HABILIDADE"
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:typeface="serif" />
+            </LinearLayout>
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ProgressBar
+                    android:id="@+id/proxPontoHabProgressBar"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginBottom="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/proxPontoHabiTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:text="0/8000"
+                    android:textColor="@android:color/white"
+                    app:layout_constraintBottom_toBottomOf="@+id/proxPontoHabProgressBar"
+                    app:layout_constraintStart_toStartOf="@+id/proxPontoHabProgressBar"
+                    app:layout_constraintTop_toTopOf="@+id/proxPontoHabProgressBar" />
+            </android.support.constraint.ConstraintLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Quando a barra de treinamento se completar, você receberá um ponto para treinar seus atributos! Porém seu desafio será cada vez mais dificil!"
+                android:textAlignment="center"
+                android:textColor="@color/colorTextos"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/constraintLayout5"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:background="#1D140F"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout112">
+
+            <ImageView
+                android:id="@+id/imageView24221"
+                android:layout_width="wrap_content"
+                android:layout_height="39dp"
+                android:scaleType="center"
+                android:src="@drawable/layout_pagina_repeat"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageView212214"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY"
+                android:src="@drawable/layout_msg_topo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/imageView24221" />
+
+            <ImageView
+                android:id="@+id/personagemMsg2214"
+                android:layout_width="130dp"
+                android:layout_height="0dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/layout_msg_1_1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageView232214"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY"
+                android:src="@drawable/layout_msg_rodape2"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageView222214"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY"
+                android:src="@drawable/layout_msg_rodape1"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView232214"
+                app:layout_constraintEnd_toEndOf="@+id/imageView232214"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/imageView232214" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toTopOf="@+id/imageView222214"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/personagemMsg2214"
+                app:layout_constraintTop_toBottomOf="@+id/imageView212214">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:text="TREINO DO ATRIBUTO ENERGIA"
+                    android:textColor="#FFD274"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="3dp"
+                        android:text="Cada ponto de Energia adquirido atraves do Treino de Atributos vale: 2 pontos de vida e 4 pontos de chakra e stamina.\n\nPara saber maiores detalhes entre na página de Fórmulas do Jogo e veja o valor original do Atributo Energia."
+                        android:textColor="@color/colorTextos"
+                        android:textSize="12dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" />
+            </LinearLayout>
+        </android.support.constraint.ConstraintLayout>
+
+        <ImageView
+            android:id="@+id/imageView38"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:scaleType="fitXY"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.488"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout5"
+            app:srcCompat="@drawable/layout_barras_secoes_1" />
+
+        <TextView
+            android:id="@+id/textView81"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:text="PONTOS DISTRIBUIDOS"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            app:fontFamily="casual"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView38"
+            app:layout_constraintStart_toStartOf="@+id/imageView38"
+            app:layout_constraintTop_toTopOf="@+id/imageView38" />
 
     </android.support.constraint.ConstraintLayout>
 </ScrollView>
