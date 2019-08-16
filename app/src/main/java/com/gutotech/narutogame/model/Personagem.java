@@ -38,6 +38,14 @@ public class Personagem implements Serializable {
     private MissaoEspecial missaoEspecial;
     private List<Integer> tarefasConcluidasIDs;
 
+    private List<Atributo> atributosDistribuitos;
+
+    // informações extras
+    private int totalTreino;
+    private int totalPontosDistribuitos;
+    private int totalPontosLivres;
+    private long totalHorasJogadas;
+
     private boolean fuiPego;
     private String nickOponente;
     private int mapa_posicao;
@@ -51,9 +59,13 @@ public class Personagem implements Serializable {
     private String equipe;
     private String org;
 
+    private int rankVila;
+    private int rankGeral;
     private int pontos;
     private int posicao;
     private boolean on;
+
+    private String ultimoLogin;
 
     public Personagem() {
     }
@@ -357,5 +369,77 @@ public class Personagem implements Serializable {
 
     public void setTemRecompensaFidelidade(boolean temRecompensaFidelidade) {
         this.temRecompensaFidelidade = temRecompensaFidelidade;
+    }
+
+    public List<Atributo> getAtributosDistribuitos() {
+        return atributosDistribuitos;
+    }
+
+    public void setAtributosDistribuitos(List<Atributo> atributosDistribuitos) {
+        this.atributosDistribuitos = atributosDistribuitos;
+    }
+
+    public int getTotalTreino() {
+        return totalTreino;
+    }
+
+    public void setTotalTreino(int totalTreino) {
+        this.totalTreino = totalTreino;
+    }
+
+    public int getTotalPontosDistribuitos() {
+        return totalPontosDistribuitos;
+    }
+
+    public void setTotalPontosDistribuitos(int totalPontosDistribuitos) {
+        this.totalPontosDistribuitos = totalPontosDistribuitos;
+    }
+
+    public int getTotalPontosLivres() {
+        return totalPontosLivres;
+    }
+
+    public void setTotalPontosLivres(int totalPontosLivres) {
+        this.totalPontosLivres = totalPontosLivres;
+    }
+
+    public long getTotalHorasJogadas() {
+        return totalHorasJogadas;
+    }
+
+    public void setTotalHorasJogadas(long totalHorasJogadas) {
+        this.totalHorasJogadas = totalHorasJogadas;
+    }
+
+    public int getIdGraducao() {
+        return idGraducao;
+    }
+
+    public void setIdGraducao(int idGraducao) {
+        this.idGraducao = idGraducao;
+    }
+
+    public String getUltimoLogin() {
+        return ultimoLogin;
+    }
+
+    public void setUltimoLogin(String ultimoLogin) {
+        this.ultimoLogin = ultimoLogin;
+    }
+
+    public int getRankVila() {
+        return rankVila;
+    }
+
+    public void setRankVila(int rankVila) {
+        this.rankVila = rankVila;
+    }
+
+    public int getRankGeral() {
+        return rankGeral;
+    }
+
+    public void setRankGeral(int rankGeral) {
+        this.rankGeral = rankGeral;
     }
 }

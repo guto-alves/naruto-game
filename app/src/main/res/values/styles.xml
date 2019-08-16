@@ -28,7 +28,7 @@
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <!-- Theme for Buttons. -->
-    <style name="ButtonTheme">
+    <style name="ButtonTheme" parent="Widget.AppCompat.Button.Colored">
         <item name="android:background">@drawable/selector_button</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textStyle">bold</item>

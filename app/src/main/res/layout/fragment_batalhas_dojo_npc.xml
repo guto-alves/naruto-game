@@ -114,7 +114,7 @@
                         android:layout_height="24dp"
                         android:layout_marginStart="8dp"
                         android:layout_marginLeft="8dp"
-                        android:progressDrawable="@drawable/layout_barra_cheia_151_editada"
+                        android:background="@drawable/progressbar_atributo"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -147,7 +147,6 @@
             android:textSize="10sp"
             android:visibility="gone" />
 
-
         <LinearLayout
             android:id="@+id/linearLutador"
             android:layout_width="match_parent"
@@ -155,7 +154,6 @@
             android:gravity="center"
             android:orientation="vertical"
             android:visibility="gone">
-
 
             <LinearLayout
 

@@ -1054,5 +1054,17 @@ Terça-Feira, é o dia que é renovado o limite semanal, mesmo que você não te
             app:layout_constraintStart_toStartOf="@+id/imageView38"
             app:layout_constraintTop_toTopOf="@+id/imageView38" />
 
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/pontosDistribuidosRecyclerView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView38" />
+
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

@@ -26,6 +26,7 @@ import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.adapter.ProfilesPequenasAdapter;
 import com.gutotech.narutogame.config.ConfigFirebase;
 import com.gutotech.narutogame.config.Storage;
+import com.gutotech.narutogame.model.Atributo;
 import com.gutotech.narutogame.model.Atributos;
 import com.gutotech.narutogame.model.Jutsu;
 import com.gutotech.narutogame.model.Personagem;
@@ -323,11 +324,25 @@ public class PersonagemCriarFragment extends Fragment {
         personagem.setDiasLogadosFidelidade(1);
         personagem.setTemRecompensaFidelidade(true);
 
+        List<Atributo> atributosDistribuidos = new ArrayList<>();
+        atributosDistribuidos.add(new Atributo(Atributo.TAI, R.drawable.layout_icones_tai, 0));
+        atributosDistribuidos.add(new Atributo(Atributo.BUK, R.drawable.layout_icones_ken, 0));
+        atributosDistribuidos.add(new Atributo(Atributo.NIN, R.drawable.layout_icones_nin, 0));
+        atributosDistribuidos.add(new Atributo(Atributo.GEN, R.drawable.layout_icones_gen, 0));
+        atributosDistribuidos.add(new Atributo(Atributo.SELO, R.drawable.layout_icones_conhe, 0));
+        atributosDistribuidos.add(new Atributo(Atributo.AGI, R.drawable.layout_icones_agi, 0));
+        atributosDistribuidos.add(new Atributo(Atributo.FOR, R.drawable.layout_icones_forc, 0));
+        atributosDistribuidos.add(new Atributo(Atributo.INTE, R.drawable.layout_icones_inte, 0));
+        atributosDistribuidos.add(new Atributo(Atributo.ENER, R.drawable.layout_icones_ene, 0));
+        atributosDistribuidos.add(new Atributo(Atributo.RES, R.drawable.layout_icones_defense, 0));
+        personagem.setAtributosDistribuitos(atributosDistribuidos);
+
         PersonagemOn.personagem = personagem;
         personagem.atualizarAtributos();
         personagem.getAtributos().getFormulas().setVidaAtual(personagem.getAtributos().getFormulas().getVida());
         personagem.getAtributos().getFormulas().setChakraAtual(personagem.getAtributos().getFormulas().getChakra());
         personagem.getAtributos().getFormulas().setStaminaAtual(personagem.getAtributos().getFormulas().getStamina());
+
 
         List<Jutsu> jutsus = new ArrayList<>();
         if (personagem.getClasse().equals("Ninjutsu") || personagem.getClasse().equals("Genjutsu")) {
