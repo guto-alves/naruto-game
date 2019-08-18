@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
@@ -14,16 +13,11 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 
-import com.google.firebase.storage.StorageReference;
 import com.gutotech.narutogame.R;
-import com.gutotech.narutogame.activity.PersonagemLogadoActivity;
 import com.gutotech.narutogame.adapter.ProfilesAdapter;
-import com.gutotech.narutogame.config.ConfigFirebase;
 import com.gutotech.narutogame.config.Storage;
-import com.gutotech.narutogame.fragment.personagemlogado.personagem.PersonagemStatusFragment;
-import com.gutotech.narutogame.model.Personagem;
-import com.gutotech.narutogame.publicentities.Helper;
-import com.gutotech.narutogame.publicentities.PersonagemOn;
+import com.gutotech.narutogame.helper.Helper;
+import com.gutotech.narutogame.model.PersonagemOn;
 
 public class TrocarImagemFragment extends Fragment {
 

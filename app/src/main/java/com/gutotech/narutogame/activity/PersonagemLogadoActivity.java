@@ -2,7 +2,6 @@ package com.gutotech.narutogame.activity;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
-import android.app.Person;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -13,12 +12,8 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.view.menu.MenuBuilder;
-import android.support.v7.view.menu.MenuPopupHelper;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -30,7 +25,6 @@ import android.support.v7.widget.Toolbar;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.Chronometer;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
 import android.widget.ImageButton;
@@ -85,15 +79,13 @@ import com.gutotech.narutogame.fragment.personagemlogado.vilaatual.MissoesFragme
 import com.gutotech.narutogame.fragment.personagemlogado.vilaatual.NinjaShopFragment;
 import com.gutotech.narutogame.fragment.personagemlogado.vilaatual.RamenShopFragment;
 import com.gutotech.narutogame.helper.DateCustom;
-import com.gutotech.narutogame.model.Bolsa;
 import com.gutotech.narutogame.model.Mensagem;
-import com.gutotech.narutogame.publicentities.PersonagemOn;
+import com.gutotech.narutogame.model.PersonagemOn;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-import java.util.Timer;
 
 public class PersonagemLogadoActivity extends AppCompatActivity implements Runnable {
     private View headerView;

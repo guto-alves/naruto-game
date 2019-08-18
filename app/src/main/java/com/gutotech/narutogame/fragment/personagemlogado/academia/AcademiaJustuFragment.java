@@ -35,7 +35,7 @@ public class AcademiaJustuFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_academia_jutsu, container, false);
 
-        msgConstraintLayout = view.findViewById(R.id.msgConstraint);
+        msgConstraintLayout = view.findViewById(R.id.msgConstraint2);
         jutsuAprendidoTextView = view.findViewById(R.id.jutsuAprendidoTextView);
 
         jutsusRecyclerView = view.findViewById(R.id.jutsusAprenderRecyclerView);
@@ -55,7 +55,6 @@ public class AcademiaJustuFragment extends Fragment {
                 adapter.notifyDataSetChanged();
             }
         });
-
 
         Button ninjutsusButton = view.findViewById(R.id.ninbutton);
         ninjutsusButton.setOnClickListener(new View.OnClickListener() {

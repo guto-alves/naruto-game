@@ -8,7 +8,7 @@
     tools:context=".fragment.personagemlogado.combates.HospitalQuartoFragment">
 
     <android.support.constraint.ConstraintLayout
-        android:id="@+id/msgLinear"
+        android:id="@+id/msgConstraint"
         android:layout_width="match_parent"
         android:layout_height="271dp"
         android:layout_marginStart="8dp"
@@ -20,7 +20,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/msgLinear2">
+        app:layout_constraintTop_toBottomOf="@+id/msgConstraint2">
 
         <ImageView
             android:id="@+id/imageView24"

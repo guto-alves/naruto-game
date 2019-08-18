@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.KeyEvent;
@@ -47,7 +48,7 @@ public class SuporteNovoFragment extends Fragment {
     private EditText quandoOcorreuEditText;
     private CalendarView calendarView;
 
-    private EditText descricaoEditText;
+    private TextInputEditText descricaoEditText;
 
     private Ticket ticket;
 
@@ -149,18 +150,7 @@ public class SuporteNovoFragment extends Fragment {
             }
         });
 
-        final TextView caracteresRestantesTextView = view.findViewById(R.id.caracteresRestantesTextView);
-
         descricaoEditText = view.findViewById(R.id.descricaoEditText);
-        descricaoEditText.setOnKeyListener(new View.OnKeyListener() {
-            @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                int caracteresRestante = 5000 - descricaoEditText.getText().toString().length() - 1;
-                exibirAlerta("teste");
-                caracteresRestantesTextView.setText(String.valueOf(caracteresRestante));
-                return false;
-            }
-        });
 
         nomeDoArquivoTextView = view.findViewById(R.id.nomeDoArquivoTextView);
 

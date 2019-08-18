@@ -1,4 +1,4 @@
-package com.gutotech.narutogame.publicentities;
+package com.gutotech.narutogame.helper;
 
 public class Helper {
 
@@ -265,6 +265,8 @@ public class Helper {
                 return "Sarada Uchiha";
             case 237:
                 return "Mitsuki";
+            case 238:
+                return "Kaguya Ootsutsuki";
             case 245:
                 return "Inojin Yamanaka";
             case 246:
@@ -291,15 +293,15 @@ public class Helper {
     public static int quantasImagens(int idProfile) {
         switch (idProfile) {
             case 1:
-                return 20; // 200
+                return 200;
             case 2:
-                return 20; // 215
+                return 215;
             case 3:
-                return 20; // 44
+                return 44;
             case 4:
-                return 10; // 83
+                return 83;
             case 42:
-                return 10; // 97
+                return 97;
             case 43:
                 return 16;
             case 44:
@@ -307,7 +309,7 @@ public class Helper {
             case 46:
                 return 36;
             case 47:
-                return 34;
+                return 35;
             case 50:
                 return 4;
             case 51:
@@ -317,7 +319,7 @@ public class Helper {
             case 53:
                 return 51;
             case 54:
-                return 31;
+                return 32;
             case 55:
                 return 86;
             case 56:
@@ -331,119 +333,119 @@ public class Helper {
             case 60:
                 return 69;
             case 61:
-                return 2;
+                return 29;
             case 62:
-                return 2;
+                return 34;
             case 63:
-                return 2;
+                return 45;
             case 64:
-                return 2;
+                return 8;
             case 65:
-                return 2;
+                return 3;
             case 66:
-                return 2;
+                return 5;
             case 67:
-                return 2;
+                return 6;
             case 69:
-                return 2;
+                return 52;
             case 70:
-                return 2;
+                return 9;
             case 71:
-                return 2;
+                return 17;
             case 72:
-                return 2;
+                return 10;
             case 73:
-                return 2;
+                return 16;
             case 74:
-                return 2;
+                return 5;
             case 75:
-                return 2;
+                return 31;
             case 76:
-                return 2;
+                return 46;
             case 77:
-                return 2;
+                return 10;
             case 78:
-                return 2;
+                return 30;
             case 79:
-                return 2;
+                return 23;
             case 80:
                 return 2;
             case 81:
-                return 2;
+                return 15;
             case 84:
-                return 2;
+                return 63;
             case 85:
-                return 2;
+                return 18;
             case 86:
                 return 2;
             case 87:
-                return 2;
+                return 11;
             case 88:
-                return 2;
+                return 17;
             case 89:
-                return 2;
+                return 3;
             case 90:
-                return 2;
+                return 24;
             case 91:
-                return 2;
+                return 24;
             case 94:
-                return 2;
+                return 34;
             case 95:
-                return 2;
+                return 35;
             case 98:
-                return 2;
+                return 12;
             case 99:
-                return 2;
+                return 32;
             case 100:
-                return 2;
+                return 19;
             case 101:
-                return 2;
+                return 48;
             case 102:
-                return 2;
+                return 41;
             case 103:
-                return 2;
+                return 27;
             case 104:
                 return 74;
             case 105:
-                return 2;
+                return 32;
             case 109:
-                return 2;
+                return 23;
             case 110:
-                return 2;
+                return 23;
             case 111:
-                return 2;
+                return 4;
             case 112:
-                return 2;
+                return 10;
             case 113:
-                return 2;
+                return 34;
             case 115:
-                return 2;
+                return 5;
             case 116:
-                return 2;
+                return 20;
             case 117:
-                return 2;
+                return 22;
             case 118:
-                return 2;
+                return 18;
             case 119:
-                return 2;
+                return 36;
             case 120:
-                return 2;
+                return 17;
             case 121:
-                return 2;
+                return 26;
             case 122:
                 return 55;
             case 123:
-                return 2;
+                return 6;
             case 125:
-                return 2;
+                return 22;
             case 126:
-                return 2;
-            case 129:
-                return 2;
+                return 22;
             case 127:
-                return 2;
+                return 6;
+            case 129:
+                return 16;
             case 131:
-                return 2;
+                return 10;
             case 132:
                 return 2;
             case 136:
@@ -511,17 +513,19 @@ public class Helper {
             case 236:
                 return 2;
             case 237:
+                return 7;
+            case 238:
                 return 2;
             case 245:
-                return 2;
+                return 7;
             case 246:
                 return 2;
             case 247:
-                return 2;
+                return 5;
             case 248:
-                return 2;
+                return 5;
             case 249:
-                return 2;
+                return 4;
             case 259:
                 return 3;
             case 260:

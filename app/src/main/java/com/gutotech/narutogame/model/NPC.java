@@ -1,7 +1,6 @@
-package com.gutotech.narutogame.publicentities;
+package com.gutotech.narutogame.model;
 
-import com.gutotech.narutogame.model.Jutsu;
-import com.gutotech.narutogame.model.Personagem;
+import com.gutotech.narutogame.helper.Helper;
 
 import java.security.SecureRandom;
 

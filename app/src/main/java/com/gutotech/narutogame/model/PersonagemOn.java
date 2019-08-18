@@ -1,4 +1,4 @@
-package com.gutotech.narutogame.publicentities;
+package com.gutotech.narutogame.model;
 
 import com.gutotech.narutogame.model.Personagem;
 

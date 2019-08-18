@@ -22,15 +22,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
-import com.google.firebase.storage.StorageReference;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.config.ConfigFirebase;
 import com.gutotech.narutogame.config.Storage;
 import com.gutotech.narutogame.model.Player;
-import com.gutotech.narutogame.publicentities.PersonagemOn;
-
-import java.security.SecureRandom;
-import java.util.ArrayList;
 
 public class CadastroFragment extends Fragment {
     private EditText nomeCompletoEditText, emailEditText, senhaEditText, confirmarSenhaEditText;

@@ -20,18 +20,15 @@ import android.widget.PopupMenu;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.google.firebase.storage.StorageReference;
 import com.gutotech.narutogame.R;
-import com.gutotech.narutogame.activity.PersonagemLogadoActivity;
 import com.gutotech.narutogame.adapter.JutsusAdapter;
-import com.gutotech.narutogame.config.ConfigFirebase;
 import com.gutotech.narutogame.config.Storage;
 import com.gutotech.narutogame.helper.RecyclerItemClickListener;
 import com.gutotech.narutogame.model.Formulas;
 import com.gutotech.narutogame.model.Jutsu;
 import com.gutotech.narutogame.model.Personagem;
-import com.gutotech.narutogame.publicentities.NPC;
-import com.gutotech.narutogame.publicentities.PersonagemOn;
+import com.gutotech.narutogame.model.NPC;
+import com.gutotech.narutogame.model.PersonagemOn;
 
 import java.util.Locale;
 
@@ -221,7 +218,7 @@ public class DojoBatalhaLutadorFragment extends Fragment {
         //logCombateRecycler.setAdapter();
 
         // Configura msg
-        msgLinear2 = view.findViewById(R.id.msgLinear2);
+        msgLinear2 = view.findViewById(R.id.msgConstraint2);
         imagemMsg = view.findViewById(R.id.imagemMsg2);
         titleMsg = view.findViewById(R.id.msgTitleTextView2);
         messageMsg = view.findViewById(R.id.msgMensagem2);

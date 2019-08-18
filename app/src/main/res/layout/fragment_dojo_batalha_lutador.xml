@@ -13,7 +13,7 @@
         tools:context=".fragment.personagemlogado.combates.DojoBatalhaLutadorFragment">
 
         <android.support.constraint.ConstraintLayout
-            android:id="@+id/msgLinear2"
+            android:id="@+id/msgConstraint2"
             android:layout_width="match_parent"
             android:layout_height="180dp"
             android:layout_marginStart="8dp"
@@ -148,7 +148,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/msgLinear2">
+            app:layout_constraintTop_toBottomOf="@id/msgConstraint2">
 
             <LinearLayout
                 android:id="@+id/linearLayout6"

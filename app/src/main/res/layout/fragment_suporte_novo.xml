@@ -125,26 +125,21 @@
                 android:textColor="@color/colorTextos"
                 android:textStyle="bold" />
 
-            <EditText
-                android:id="@+id/descricaoEditText"
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginRight="16dp"
+                android:layout_height="match_parent"
                 android:background="@android:color/white"
-                android:ems="10"
-                android:gravity="start|top"
-                android:inputType="textMultiLine"
-                android:maxLength="5000"
-                android:padding="3dp" />
+                app:counterEnabled="true"
+                app:counterMaxLength="5000">
 
-            <TextView
-                android:id="@+id/caracteresRestantesTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:text="Caracteres restantes: 5000"
-                android:textColor="@color/colorTextos"
-                android:textSize="12sp" />
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/descricaoEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="170dp"
+                    android:gravity="start|top"
+                    android:inputType="textMultiLine"
+                    android:padding="3dp" />
+            </android.support.design.widget.TextInputLayout>
 
             <TextView
                 android:id="@+id/textView467"

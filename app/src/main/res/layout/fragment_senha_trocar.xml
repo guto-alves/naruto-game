@@ -13,7 +13,7 @@
         tools:context=".fragment.logado.SenhaTrocarFragment">
 
         <android.support.constraint.ConstraintLayout
-            android:id="@+id/msgLinear"
+            android:id="@+id/msgConstraint"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:layout_marginStart="8dp"
@@ -129,7 +129,7 @@
             android:textColorHint="#8BADBB"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/msgLinear" />
+            app:layout_constraintTop_toBottomOf="@+id/msgConstraint" />
 
         <EditText
             android:id="@+id/novaSenhaEditText"
@@ -170,7 +170,7 @@
         <Button
             android:id="@+id/alterarSenhaButton"
             style="@style/ButtonTheme"
-            android:layout_width="wrap_content"
+            android:layout_width="130dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"

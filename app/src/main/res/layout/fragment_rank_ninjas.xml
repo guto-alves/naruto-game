@@ -81,8 +81,9 @@
 
                     <Spinner
                         android:id="@+id/vilasSpinner"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/white" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -101,8 +102,9 @@
 
                     <Spinner
                         android:id="@+id/graduacaoSpinner"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/white" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -121,8 +123,9 @@
 
                     <Spinner
                         android:id="@+id/posicaoSpinner"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/white" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -163,13 +166,15 @@
                     <Spinner
                         android:id="@+id/onlineSpinner"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/white" />
                 </LinearLayout>
 
             </LinearLayout>
 
             <Button
                 android:id="@+id/filtrarButton"
+                style="@style/ButtonTheme"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Filtrar" />
@@ -269,21 +274,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_begin="170dp" />
+            app:layout_constraintGuide_begin="163dp" />
 
         <android.support.constraint.Guideline
             android:id="@+id/guideline46"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.62" />
+            app:layout_constraintGuide_percent="0.6" />
 
         <android.support.constraint.Guideline
             android:id="@+id/guideline47"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.5" />
+            app:layout_constraintGuide_percent="0.48" />
 
         <TextView
             android:id="@+id/textView88"
@@ -316,6 +321,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.7250608" />
+            app:layout_constraintGuide_percent="0.71" />
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

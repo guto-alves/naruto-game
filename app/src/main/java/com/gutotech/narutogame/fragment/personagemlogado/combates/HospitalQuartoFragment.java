@@ -12,14 +12,11 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.gutotech.narutogame.R;
-import com.gutotech.narutogame.activity.PersonagemLogadoActivity;
 import com.gutotech.narutogame.fragment.personagemlogado.personagem.PersonagemStatusFragment;
 import com.gutotech.narutogame.model.Formulas;
-import com.gutotech.narutogame.model.Personagem;
-import com.gutotech.narutogame.publicentities.PersonagemOn;
+import com.gutotech.narutogame.model.PersonagemOn;
 
 public class HospitalQuartoFragment extends Fragment {
-
 
     public HospitalQuartoFragment() {
     }

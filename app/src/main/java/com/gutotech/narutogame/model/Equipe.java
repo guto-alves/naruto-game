@@ -2,7 +2,6 @@ package com.gutotech.narutogame.model;
 
 import com.google.firebase.database.DatabaseReference;
 import com.gutotech.narutogame.config.ConfigFirebase;
-import com.gutotech.narutogame.publicentities.PersonagemOn;
 
 public class Equipe {
     private String nome;

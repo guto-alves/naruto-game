@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.os.SystemClock;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -17,7 +16,7 @@ import android.widget.TextView;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.fragment.personagemlogado.personagem.PersonagemStatusFragment;
 import com.gutotech.narutogame.model.MissaoDeTempo;
-import com.gutotech.narutogame.publicentities.PersonagemOn;
+import com.gutotech.narutogame.model.PersonagemOn;
 
 import java.util.ArrayList;
 import java.util.List;

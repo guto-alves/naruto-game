@@ -8,7 +8,7 @@
     tools:context=".fragment.personagemlogado.combates.DojoRandomWaitFragment">
 
     <android.support.constraint.ConstraintLayout
-        android:id="@+id/msgLinear"
+        android:id="@+id/msgConstraint"
         android:layout_width="match_parent"
         android:layout_height="235dp"
         android:layout_marginStart="8dp"
@@ -132,6 +132,6 @@
         android:text="Cancelar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/msgLinear" />
+        app:layout_constraintTop_toBottomOf="@+id/msgConstraint" />
 
 </android.support.constraint.ConstraintLayout>

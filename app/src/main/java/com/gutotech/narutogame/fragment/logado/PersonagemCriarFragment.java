@@ -28,12 +28,14 @@ import com.gutotech.narutogame.config.ConfigFirebase;
 import com.gutotech.narutogame.config.Storage;
 import com.gutotech.narutogame.model.Atributo;
 import com.gutotech.narutogame.model.Atributos;
+import com.gutotech.narutogame.model.Classe;
 import com.gutotech.narutogame.model.Jutsu;
 import com.gutotech.narutogame.model.Personagem;
 import com.gutotech.narutogame.model.ResumoCombates;
 import com.gutotech.narutogame.model.ResumoMissoes;
-import com.gutotech.narutogame.publicentities.Helper;
-import com.gutotech.narutogame.publicentities.PersonagemOn;
+import com.gutotech.narutogame.helper.Helper;
+import com.gutotech.narutogame.model.PersonagemOn;
+import com.gutotech.narutogame.model.Vilas;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -84,9 +86,9 @@ public class PersonagemCriarFragment extends Fragment {
         atributos.setSelo(3);
         atributos.setResistencia(1);
         atributos.setEnergia(10);
-        classeSelecionada = "Taijutsu";
-        vilaSelecionada = "Folha";
+        vilaSelecionada = Vilas.FOLHA;
         numVila = 1;
+        classeSelecionada = Classe.TAI;
         personagem.setIdProfile(1);
 
         nickEditText = view.findViewById(R.id.nickCriarEditText);
@@ -98,42 +100,42 @@ public class PersonagemCriarFragment extends Fragment {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch (checkedId) {
                     case R.id.folhaRadioButton:
-                        vilaSelecionada = "Folha";
+                        vilaSelecionada = Vilas.FOLHA;
                         numVila = 1;
                         vilaSelecionadaTextView.setText(vilaSelecionada);
                         break;
                     case R.id.areiaRadioButton:
-                        vilaSelecionada = "Areia";
+                        vilaSelecionada = Vilas.AREIA;
                         numVila = 2;
                         vilaSelecionadaTextView.setText(vilaSelecionada);
                         break;
                     case R.id.nevoaRadioButton:
-                        vilaSelecionada = "Névoa";
+                        vilaSelecionada = Vilas.NEVOA;
                         numVila = 3;
                         vilaSelecionadaTextView.setText(vilaSelecionada);
                         break;
                     case R.id.pedraRadioButton:
-                        vilaSelecionada = "Pedra";
+                        vilaSelecionada = Vilas.PEDRA;
                         numVila = 4;
                         vilaSelecionadaTextView.setText(vilaSelecionada);
                         break;
                     case R.id.nuvemRadioButton:
-                        vilaSelecionada = "Nuvem";
+                        vilaSelecionada = Vilas.NUVEM;
                         numVila = 5;
                         vilaSelecionadaTextView.setText(vilaSelecionada);
                         break;
                     case R.id.akatsukiRadioButton:
-                        vilaSelecionada = "Akatsuki";
+                        vilaSelecionada = Vilas.AKATSUKI;
                         numVila = 6;
                         vilaSelecionadaTextView.setText(vilaSelecionada);
                         break;
                     case R.id.somRadioButton:
-                        vilaSelecionada = "Som";
+                        vilaSelecionada = Vilas.SOM;
                         numVila = 7;
                         vilaSelecionadaTextView.setText(vilaSelecionada);
                         break;
                     case R.id.chuvaRadioButton:
-                        vilaSelecionada = "Chuva";
+                        vilaSelecionada = Vilas.CHUVA;
                         numVila = 8;
                         vilaSelecionadaTextView.setText(vilaSelecionada);
                         break;
@@ -147,7 +149,7 @@ public class PersonagemCriarFragment extends Fragment {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch (checkedId) {
                     case R.id.taiRadioButton:
-                        classeSelecionada = "Taijutsu";
+                        classeSelecionada = Classe.TAI;
                         atributos.setTaijutsu(10);
                         atributos.setBukijutsu(1);
                         atributos.setNinjutsu(1);
@@ -158,7 +160,7 @@ public class PersonagemCriarFragment extends Fragment {
                         atributos.setSelo(3);
                         break;
                     case R.id.ninRadioButton:
-                        classeSelecionada = "Ninjutsu";
+                        classeSelecionada = Classe.NIN;
                         atributos.setTaijutsu(1);
                         atributos.setBukijutsu(1);
                         atributos.setNinjutsu(10);
@@ -169,7 +171,7 @@ public class PersonagemCriarFragment extends Fragment {
                         atributos.setSelo(3);
                         break;
                     case R.id.genRadioButton:
-                        classeSelecionada = "Genjutsu";
+                        classeSelecionada = Classe.GEN;
                         atributos.setTaijutsu(1);
                         atributos.setBukijutsu(1);
                         atributos.setNinjutsu(1);
@@ -180,7 +182,7 @@ public class PersonagemCriarFragment extends Fragment {
                         atributos.setSelo(3);
                         break;
                     case R.id.bukRadioButton:
-                        classeSelecionada = "Bukijutsu";
+                        classeSelecionada = Classe.BUK;
                         atributos.setTaijutsu(1);
                         atributos.setBukijutsu(10);
                         atributos.setNinjutsu(1);
@@ -199,8 +201,8 @@ public class PersonagemCriarFragment extends Fragment {
         nomePersonagemSelecionadoTextView = view.findViewById(R.id.nomePersonagemSelecionadoTextView);
         profileImageView = view.findViewById(R.id.profileCriarImageView);
 
-        grupoAtualTextView = view.findViewById(R.id.grupoAtualTextView);
         profilesPequenasGridView = view.findViewById(R.id.profilesPequenasGridView);
+        grupoAtualTextView = view.findViewById(R.id.grupoAtualTextView);
         configurarGriView();
 
         ImageButton voltarButton = view.findViewById(R.id.voltarImageButton);
@@ -342,7 +344,6 @@ public class PersonagemCriarFragment extends Fragment {
         personagem.getAtributos().getFormulas().setVidaAtual(personagem.getAtributos().getFormulas().getVida());
         personagem.getAtributos().getFormulas().setChakraAtual(personagem.getAtributos().getFormulas().getChakra());
         personagem.getAtributos().getFormulas().setStaminaAtual(personagem.getAtributos().getFormulas().getStamina());
-
 
         List<Jutsu> jutsus = new ArrayList<>();
         if (personagem.getClasse().equals("Ninjutsu") || personagem.getClasse().equals("Genjutsu")) {

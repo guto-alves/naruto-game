@@ -15,7 +15,7 @@
         tools:context=".fragment.deslogado.CadastroFragment">
 
         <android.support.constraint.ConstraintLayout
-            android:id="@+id/msgLinear2"
+            android:id="@+id/msgConstraint2"
             android:layout_width="0dp"
             android:layout_height="210dp"
             android:layout_marginStart="8dp"
@@ -112,7 +112,6 @@ Após seu cadastro será enviando um email para que você confirme seu cadastro,
                     android:textSize="10sp" />
 
             </LinearLayout>
-
         </android.support.constraint.ConstraintLayout>
 
         <EditText
@@ -132,7 +131,7 @@ Após seu cadastro será enviando um email para que você confirme seu cadastro,
             android:textColor="@android:color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/msgLinear2" />
+            app:layout_constraintTop_toBottomOf="@+id/msgConstraint2" />
 
         <EditText
             android:id="@+id/emailEditText"

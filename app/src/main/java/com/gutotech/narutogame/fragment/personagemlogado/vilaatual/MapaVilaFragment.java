@@ -28,7 +28,7 @@ import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.adapter.MapaGridAdapter;
 import com.gutotech.narutogame.config.ConfigFirebase;
 import com.gutotech.narutogame.model.Personagem;
-import com.gutotech.narutogame.publicentities.PersonagemOn;
+import com.gutotech.narutogame.model.PersonagemOn;
 
 import java.security.SecureRandom;
 import java.util.ArrayList;

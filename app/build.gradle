@@ -37,6 +37,7 @@ dependencies {
 
     implementation 'com.ogaclejapan.smarttablayout:library:1.7.0@aar'
     implementation 'com.ogaclejapan.smarttablayout:utils-v4:1.7.0@aar'
+    implementation 'com.github.GrenderG:Toasty:1.4.2'
 }
 
 apply plugin: 'com.google.gms.google-services'

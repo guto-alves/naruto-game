@@ -15,16 +15,13 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 import com.gutotech.narutogame.R;
-import com.gutotech.narutogame.activity.PersonagemLogadoActivity;
 import com.gutotech.narutogame.config.ConfigFirebase;
 import com.gutotech.narutogame.fragment.personagemlogado.personagem.PersonagemStatusFragment;
 import com.gutotech.narutogame.model.BatalhaPVP;
 import com.gutotech.narutogame.model.Personagem;
-import com.gutotech.narutogame.publicentities.Oponente;
-import com.gutotech.narutogame.publicentities.PersonagemOn;
+import com.gutotech.narutogame.model.Oponente;
+import com.gutotech.narutogame.model.PersonagemOn;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 public class DojoRandomWaitFragment extends Fragment {

@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.model.MissaoDeTempo;
-import com.gutotech.narutogame.publicentities.PersonagemOn;
+import com.gutotech.narutogame.model.PersonagemOn;
 
 import java.util.List;
 

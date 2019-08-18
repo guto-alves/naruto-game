@@ -8,7 +8,7 @@
     tools:context=".fragment.personagemlogado.equipe.EquipeParticiparFragment">
 
     <android.support.constraint.ConstraintLayout
-        android:id="@+id/msgLinear2"
+        android:id="@+id/msgConstraint2"
         android:layout_width="match_parent"
         android:layout_height="170dp"
         android:layout_marginStart="8dp"
@@ -120,7 +120,7 @@
         android:src="@drawable/layout_barras_secoes_1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/msgLinear2" />
+        app:layout_constraintTop_toBottomOf="@+id/msgConstraint2" />
 
     <TextView
         android:id="@+id/textView31"

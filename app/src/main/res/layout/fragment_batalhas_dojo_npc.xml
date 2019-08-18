@@ -15,7 +15,7 @@
         tools:context=".fragment.personagemlogado.combates.BatalhasDojoNPCFragment">
 
         <android.support.constraint.ConstraintLayout
-            android:id="@+id/msgLinear"
+            android:id="@+id/msgConstraint"
             android:layout_width="match_parent"
             android:layout_height="220dp"
             android:layout_marginLeft="16dp"

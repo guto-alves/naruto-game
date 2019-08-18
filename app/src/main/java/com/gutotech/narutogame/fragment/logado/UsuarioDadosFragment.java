@@ -79,7 +79,7 @@ public class UsuarioDadosFragment extends Fragment {
             }
         });
 
-        final ConstraintLayout mgsSucessoConstraintLayout = view.findViewById(R.id.msgLinear2);
+        final ConstraintLayout mgsSucessoConstraintLayout = view.findViewById(R.id.msgConstraint2);
 
         Button enviarAlteracoesButton = view.findViewById(R.id.enviarAlteracoesButton);
         enviarAlteracoesButton.setOnClickListener(new View.OnClickListener() {

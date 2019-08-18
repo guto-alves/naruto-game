@@ -9,6 +9,7 @@ import java.util.List;
 public class Personagem implements Serializable {
     private String idPlayer;
     private String nick;
+    private String titulo;
     private int level;
     private String graducao;
     private int idGraducao;
@@ -441,5 +442,13 @@ public class Personagem implements Serializable {
 
     public void setRankGeral(int rankGeral) {
         this.rankGeral = rankGeral;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
 }

@@ -10,19 +10,27 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.adapter.PontosDistribuitosRecyclerAdapter;
 import com.gutotech.narutogame.model.Atributo;
 import com.gutotech.narutogame.myinterface.MyListener;
-import com.gutotech.narutogame.publicentities.PersonagemOn;
+import com.gutotech.narutogame.model.PersonagemOn;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class AcademiaTreinamentoFragment extends Fragment implements MyListener {
     private PontosDistribuitosRecyclerAdapter pontosDistribuitosAdapter;
+
+    private TextView gastaraChakraTextView;
+    private TextView gastaraStaminaTextView;
+
+    private TextView limeteTreinamentoSemanalTextView;
+    private ProgressBar limeteTreinamentoSemanalProgressBar;
 
     public AcademiaTreinamentoFragment() {
     }
@@ -32,8 +40,10 @@ public class AcademiaTreinamentoFragment extends Fragment implements MyListener 
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_academia_treinamento, container, false);
 
-        Spinner qtdTreinoSpinner = view.findViewById(R.id.qtdTreinoSpinner);
+        gastaraChakraTextView = view.findViewById(R.id.gastaraChakraTextView);
+        gastaraStaminaTextView = view.findViewById(R.id.gastaraStaminaTextView);
 
+        Spinner qtdTreinoSpinner = view.findViewById(R.id.qtdTreinoSpinner);
         ArrayList<String> treinos = new ArrayList<>();
         for (int i = 0; i < 15; i++)
             treinos.add(++i + "");
@@ -55,6 +65,17 @@ public class AcademiaTreinamentoFragment extends Fragment implements MyListener 
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
+
+        Button treinarButton = view.findViewById(R.id.treinarButton);
+        treinarButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        limeteTreinamentoSemanalTextView = view.findViewById(R.id.limeteTreinamentoSemanalTextView);
+        limeteTreinamentoSemanalProgressBar = view.findViewById(R.id.limeteTreinamentoSemanalProgressBar);
 
         RecyclerView pontosDistribuidosRecyclerView = view.findViewById(R.id.pontosDistribuidosRecyclerView);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());

@@ -22,8 +22,8 @@ import com.gutotech.narutogame.config.ConfigFirebase;
 import com.gutotech.narutogame.config.Storage;
 import com.gutotech.narutogame.model.Formulas;
 import com.gutotech.narutogame.model.Personagem;
-import com.gutotech.narutogame.publicentities.NPC;
-import com.gutotech.narutogame.publicentities.PersonagemOn;
+import com.gutotech.narutogame.model.NPC;
+import com.gutotech.narutogame.model.PersonagemOn;
 
 public class BatalhasDojoNPCFragment extends Fragment {
     private final int MAX_NPC_DIARIO = 5;

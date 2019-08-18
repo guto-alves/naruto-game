@@ -17,7 +17,7 @@ import android.widget.RadioGroup;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.config.Storage;
 import com.gutotech.narutogame.model.Equipe;
-import com.gutotech.narutogame.publicentities.PersonagemOn;
+import com.gutotech.narutogame.model.PersonagemOn;
 
 public class EquipeCriarFragment extends Fragment {
     private TextInputEditText nomeEquipeTextInput;

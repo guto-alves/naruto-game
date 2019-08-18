@@ -22,7 +22,7 @@ import com.gutotech.narutogame.config.Storage;
 import com.gutotech.narutogame.model.Player;
 import com.gutotech.narutogame.model.RecompensaFidelidade;
 import com.gutotech.narutogame.myinterface.MyListener;
-import com.gutotech.narutogame.publicentities.PersonagemOn;
+import com.gutotech.narutogame.model.PersonagemOn;
 
 import java.util.ArrayList;
 import java.util.List;

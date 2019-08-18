@@ -1,7 +1,5 @@
 package com.gutotech.narutogame.model;
 
-import com.gutotech.narutogame.publicentities.PersonagemOn;
-
 public class Graduacao {
     private int idGraducao;
 

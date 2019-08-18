@@ -8,7 +8,7 @@
     tools:context=".fragment.deslogado.RecuperarSenhaFragment">
 
     <android.support.constraint.ConstraintLayout
-        android:id="@+id/msgLinear"
+        android:id="@+id/msgConstraint"
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:layout_margin="8dp"

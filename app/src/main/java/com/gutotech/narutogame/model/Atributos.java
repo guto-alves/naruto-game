@@ -15,7 +15,6 @@ package com.gutotech.narutogame.model;
  */
 
 import com.google.firebase.database.Exclude;
-import com.gutotech.narutogame.publicentities.PersonagemOn;
 
 import java.io.Serializable;
 

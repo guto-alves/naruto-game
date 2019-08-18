@@ -12,10 +12,7 @@ import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.firebase.storage.StorageReference;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.config.ConfigFirebase;
-import com.gutotech.narutogame.model.Personagem;
-import com.gutotech.narutogame.publicentities.PersonagemOn;
-
-import java.util.List;
+import com.gutotech.narutogame.model.PersonagemOn;
 
 public class ProfilesAdapter extends BaseAdapter {
     private int tamanho;

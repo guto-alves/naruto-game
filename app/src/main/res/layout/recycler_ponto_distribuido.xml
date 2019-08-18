@@ -26,7 +26,6 @@
             android:id="@+id/nomeAtributoTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Atributo"
             android:textColor="@color/colorTextos"
             android:textSize="12sp" />
     </LinearLayout>
@@ -62,8 +61,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline42"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/layout_icones_gen" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ProgressBar
         android:id="@+id/qtdAtributoProgressBar"

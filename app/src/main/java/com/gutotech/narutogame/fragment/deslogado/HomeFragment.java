@@ -1,8 +1,11 @@
 package com.gutotech.narutogame.fragment.deslogado;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
+import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.DividerItemDecoration;
@@ -32,26 +35,47 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.activity.LogadoSelecionarActivity;
+import com.gutotech.narutogame.adapter.EstatisticasNinjaRecyclerAdapter;
 import com.gutotech.narutogame.adapter.NoticiasAdapter;
 import com.gutotech.narutogame.config.ConfigFirebase;
+import com.gutotech.narutogame.helper.Helper;
 import com.gutotech.narutogame.helper.RecyclerItemClickListener;
+import com.gutotech.narutogame.model.EstatisticaNinja;
 import com.gutotech.narutogame.model.Noticia;
+import com.gutotech.narutogame.model.Personagem;
 import com.gutotech.narutogame.model.Player;
 import com.gutotech.narutogame.publicentities.CurrentFragment;
-import com.gutotech.narutogame.publicentities.PlayerOn;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import es.dmoral.toasty.Toasty;
+
 public class HomeFragment extends Fragment {
-    private EditText emailEditText, senhaEditText;
+    private TextInputEditText emailEditText, senhaEditText;
+    private ImageButton jogarButton;
+    private TextView esqueceuSenhaTextView;
 
     private RecyclerView noticiasRecyclerView;
     private NoticiasAdapter noticiasAdapter;
     private List<Noticia> noticiaList = new ArrayList<>();
-
     private Query noticiasQuery;
     private ValueEventListener valueEventListenerNoticias;
+
+    private RecyclerView estatisticasNinjasRecyclerView;
+    private EstatisticasNinjaRecyclerAdapter estatisticasAdapter;
+    private DatabaseReference jogadoresReference;
+    private ValueEventListener valueEventListenerJogadores;
+    private final int TOTAL_NINJAS = 121;
+    private EstatisticaNinja[] estatisticasNinja = new EstatisticaNinja[TOTAL_NINJAS];
+
+    private int kageEVilaAtual = 1;
+    private CountDownTimer timer;
+    private ImageView vilaImageView;
+    private TextView nomeKageTextView;
+    private TextView levelKageTextView;
+
+    private Dialog aguardeDialog;
 
     public HomeFragment() {
     }
@@ -63,55 +87,69 @@ public class HomeFragment extends Fragment {
 
         emailEditText = view.findViewById(R.id.emailLoginEditText);
         senhaEditText = view.findViewById(R.id.senhaLoginEditText);
-        TextView esqueceuSenhaTextView = view.findViewById(R.id.esqueceuASenhaTextView);
-        ImageButton jogarButton = view.findViewById(R.id.jogarImageButton);
+        esqueceuSenhaTextView = view.findViewById(R.id.esqueceuASenhaTextView);
+        jogarButton = view.findViewById(R.id.jogarImageButton);
 
         Bundle bundle = getArguments();
-        if (bundle == null) {
-            jogarButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    String email = emailEditText.getText().toString();
-                    String senha = senhaEditText.getText().toString();
-
-                    if (validarCampos(email, senha))
-                        logarPlayer(new Player(email, senha));
-                }
-            });
-
-            esqueceuSenhaTextView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    TextView textView = getActivity().findViewById(R.id.tituloSecaoTextView);
-                    textView.setText("ESQUECI MINHA SENHA");
-                    changeTo(new RecuperarSenhaFragment());
-                }
-            });
-        } else {
+        if (bundle == null)
+            configurarLogin();
+        else {
             emailEditText.setVisibility(View.GONE);
             senhaEditText.setVisibility(View.GONE);
             esqueceuSenhaTextView.setVisibility(View.GONE);
             jogarButton.setVisibility(View.GONE);
         }
 
-
-        DatabaseReference referenceNoticia = ConfigFirebase.getDatabase().child("noticia");
-        noticiasQuery = referenceNoticia.orderByKey();
-
         noticiasRecyclerView = view.findViewById(R.id.noticiasRecyclerView);
-        configurarRecyclerNoticias();
+        configurarNoticias();
+
+        estatisticasNinjasRecyclerView = view.findViewById(R.id.estatisticasRecyclerView);
+        configurarEstatisticas();
+
+        vilaImageView = view.findViewById(R.id.vilaImageView);
+        nomeKageTextView = view.findViewById(R.id.nomeKageTextView);
+        levelKageTextView = view.findViewById(R.id.levelKageTextView);
+        configurarKagesEVilas();
 
         return view;
     }
 
-    private void configurarRecyclerNoticias() {
+    public void configurarLogin() {
+        jogarButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String email = emailEditText.getText().toString();
+                String senha = senhaEditText.getText().toString();
+
+                if (validarCampos(email, senha)) {
+                    aguardeDialog = new Dialog(getActivity());
+                    aguardeDialog.setContentView(R.layout.dialog_progressbar);
+                    aguardeDialog.setCancelable(false);
+                    aguardeDialog.show();
+                    logarPlayer(new Player(email, senha));
+                }
+            }
+        });
+
+        esqueceuSenhaTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TextView textView = getActivity().findViewById(R.id.tituloSecaoTextView);
+                textView.setText("ESQUECI MINHA SENHA");
+                changeTo(new RecuperarSenhaFragment());
+            }
+        });
+    }
+
+    public void configurarNoticias() {
+        DatabaseReference referenceNoticia = ConfigFirebase.getDatabase().child("noticia");
+        noticiasQuery = referenceNoticia.orderByKey();
+
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         noticiasRecyclerView.setLayoutManager(layoutManager);
         noticiasRecyclerView.setHasFixedSize(true);
-        noticiasRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), LinearLayout.VERTICAL));
-
+        noticiasRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), LinearLayout.HORIZONTAL));
         noticiasAdapter = new NoticiasAdapter(getActivity(), noticiaList);
-
         noticiasRecyclerView.setAdapter(noticiasAdapter);
         noticiasRecyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getActivity(), noticiasRecyclerView, new RecyclerItemClickListener.OnItemClickListener() {
             @Override
@@ -138,16 +176,28 @@ public class HomeFragment extends Fragment {
         }));
     }
 
+    public void configurarEstatisticas() {
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        estatisticasNinjasRecyclerView.setLayoutManager(layoutManager);
+        estatisticasNinjasRecyclerView.setHasFixedSize(true);
+        estatisticasAdapter = new EstatisticasNinjaRecyclerAdapter(getActivity(), estatisticasNinja);
+        estatisticasNinjasRecyclerView.setAdapter(estatisticasAdapter);
+    }
+
+    public void configurarKagesEVilas() {
+        changeKagesEVilas();
+    }
+
     public void logarPlayer(final Player player) {
         FirebaseAuth auth = ConfigFirebase.getAuth();
+
         auth.signInWithEmailAndPassword(
                 player.getEmail(), player.getSenha()
         ).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
+                aguardeDialog.dismiss();
                 if (task.isSuccessful()) {
-                    Toast.makeText(getActivity(), "Aguarde...", Toast.LENGTH_SHORT).show();
-
                     startActivity(new Intent(getActivity(), LogadoSelecionarActivity.class));
                     getActivity().finish();
                 } else {
@@ -164,7 +214,7 @@ public class HomeFragment extends Fragment {
                         e.printStackTrace();
                     }
 
-                    Toast.makeText(getActivity(), excecao, Toast.LENGTH_SHORT).show();
+                    Toasty.error(getActivity(), excecao, Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -188,6 +238,103 @@ public class HomeFragment extends Fragment {
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
+    }
+
+    private void carregarEstatiscasNinjas() {
+        int counter = 0;
+        for (int i = 1; i < 266; i++) {
+            if (Helper.nomeDoPersonagem(i) != null) {
+                estatisticasNinja[counter] = new EstatisticaNinja();
+                estatisticasNinja[counter].setIdProfile(i);
+                counter++;
+            }
+        }
+
+        jogadoresReference = ConfigFirebase.getDatabase().child("personagem");
+
+        valueEventListenerJogadores = jogadoresReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot data : dataSnapshot.getChildren()) {
+                    Personagem personagem = data.getValue(Personagem.class);
+
+                    int idProfile = personagem.getIdProfile();
+
+                    for (int i = 0; i < TOTAL_NINJAS; i++) {
+                        if (estatisticasNinja[i].getIdProfile() == idProfile)
+                            estatisticasNinja[i].setFrequencia(estatisticasNinja[i].getFrequencia() + 1);
+                    }
+                }
+                classificarEstatisticas();
+                estatisticasAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
+    }
+
+    private void classificarEstatisticas() {
+        for (int i = 0; i < TOTAL_NINJAS - 1; i++) {
+            for (int j = 0; j < TOTAL_NINJAS; j++) {
+                if (estatisticasNinja[i].getFrequencia() > estatisticasNinja[j].getFrequencia()) {
+                    EstatisticaNinja aux = estatisticasNinja[i];
+                    estatisticasNinja[i] = estatisticasNinja[j];
+                    estatisticasNinja[j] = aux;
+                }
+            }
+        }
+    }
+
+    private void changeKagesEVilas() {
+        timer = new CountDownTimer(5000, 5000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                switch (kageEVilaAtual) {
+                    case 1:
+                        vilaImageView.setImageResource(R.drawable.layout_home_kages_1);
+                        levelKageTextView.setText("Hokage - Level 1");
+                        break;
+                    case 2:
+                        vilaImageView.setImageResource(R.drawable.layout_home_kages_2);
+                        levelKageTextView.setText("Kazekage - Level 1");
+                        break;
+                    case 3:
+                        vilaImageView.setImageResource(R.drawable.layout_home_kages_3);
+                        levelKageTextView.setText("Mizukage - Level 1");
+                        break;
+                    case 4:
+                        vilaImageView.setImageResource(R.drawable.layout_home_kages_4);
+                        levelKageTextView.setText("Tsuchikage - Level 1");
+                        break;
+                    case 5:
+                        vilaImageView.setImageResource(R.drawable.layout_home_kages_5);
+                        levelKageTextView.setText("Raikage - Level 1");
+                        break;
+                    case 6:
+                        vilaImageView.setImageResource(R.drawable.layout_home_kages_6);
+                        levelKageTextView.setText("Líder - Level 1");
+                        break;
+                    case 7:
+                        vilaImageView.setImageResource(R.drawable.layout_home_kages_7);
+                        levelKageTextView.setText("Otokage - Level 1");
+                        break;
+                    case 8:
+                        vilaImageView.setImageResource(R.drawable.layout_home_kages_8);
+                        levelKageTextView.setText("Amekage - Level 1");
+                        break;
+                }
+            }
+
+            @Override
+            public void onFinish() {
+                if (++kageEVilaAtual > 8)
+                    kageEVilaAtual = 1;
+
+                changeKagesEVilas();
+            }
+        }.start();
     }
 
     private boolean validarCampos(String email, String senha) {
@@ -215,11 +362,16 @@ public class HomeFragment extends Fragment {
     public void onStart() {
         super.onStart();
         recuperarNoticias();
+        carregarEstatiscasNinjas();
     }
 
     @Override
     public void onStop() {
         super.onStop();
+
+        timer.cancel();
+
+        jogadoresReference.removeEventListener(valueEventListenerJogadores);
         noticiasQuery.removeEventListener(valueEventListenerNoticias);
     }
 }

@@ -13,7 +13,7 @@ import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.model.MissaoDeTempo;
 import com.gutotech.narutogame.myinterface.MyListener;
 import com.gutotech.narutogame.adapter.MissaoTempoAdapter;
-import com.gutotech.narutogame.publicentities.PersonagemOn;
+import com.gutotech.narutogame.model.PersonagemOn;
 
 import java.util.ArrayList;
 import java.util.List;

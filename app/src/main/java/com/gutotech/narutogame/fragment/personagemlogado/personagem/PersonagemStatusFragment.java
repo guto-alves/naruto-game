@@ -13,7 +13,7 @@ import com.gutotech.narutogame.model.Formulas;
 import com.gutotech.narutogame.model.Personagem;
 import com.gutotech.narutogame.model.ResumoCombates;
 import com.gutotech.narutogame.model.ResumoMissoes;
-import com.gutotech.narutogame.publicentities.PersonagemOn;
+import com.gutotech.narutogame.model.PersonagemOn;
 
 public class PersonagemStatusFragment extends Fragment {
     private Personagem personagem;
