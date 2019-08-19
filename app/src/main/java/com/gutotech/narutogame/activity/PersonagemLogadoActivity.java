@@ -14,6 +14,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.KeyEvent;
 import android.view.View;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -22,6 +23,8 @@ import android.support.v4.widget.DrawerLayout;
 
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -194,7 +197,7 @@ public class PersonagemLogadoActivity extends AppCompatActivity implements Runna
         configurarMenuExpandable();
 
         rotinasDialog = new Dialog(this);
-        rotinasDialog.setContentView(R.layout.custompopup_rotinas_do_jogo);
+        rotinasDialog.setContentView(R.layout.dialog_rotinas_do_jogo);
         rotinasDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
         heallingTextView = rotinasDialog.findViewById(R.id.heallingTextView);
@@ -207,22 +210,28 @@ public class PersonagemLogadoActivity extends AppCompatActivity implements Runna
     }
 
     private void configurarChat() {
-        // CONFIGURA CHAT
         channer = PersonagemOn.personagem.getVila();
         mensagensReference = ConfigFirebase.getDatabase()
                 .child("chat")
                 .child(channer);
 
-        ImageView chatTopoImageView = findViewById(R.id.topoChatImageView);
+        final ImageView chatTopoImageView = findViewById(R.id.topoChatImageView);
         chatTopoImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 LinearLayout chatMensagens = findViewById(R.id.chatMensagens);
 
+                Animation animation;
+
                 if (chatAberto) {
+                    animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_out);
+                    chatTopoImageView.startAnimation(animation);
                     chatMensagens.setVisibility(View.GONE);
                     chatAberto = false;
+
                 } else {
+                    animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_in);
+                    chatTopoImageView.startAnimation(animation);
                     chatMensagens.setVisibility(View.VISIBLE);
                     chatAberto = true;
                 }
@@ -262,6 +271,19 @@ public class PersonagemLogadoActivity extends AppCompatActivity implements Runna
         });
 
         final EditText mensagemEditText = findViewById(R.id.mensagemEditText);
+        mensagemEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                String mensagem = mensagemEditText.getText().toString();
+
+                if (!mensagem.isEmpty()) {
+                    enviarMensagem(new Mensagem(PersonagemOn.personagem.getNick(), mensagem));
+                    mensagemEditText.setText("");
+                }
+
+                return false;
+            }
+        });
 
         FloatingActionButton floatingActionButton = findViewById(R.id.fabEnviarMensagem);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
@@ -576,9 +598,11 @@ public class PersonagemLogadoActivity extends AppCompatActivity implements Runna
         rotinasDialog.show();
     }
 
-    @SuppressLint("RestrictedApi")
-    private void exibirBolsa(View view) {
-
+    public void exibirBolsa(View view) {
+        Dialog dialogBolsa = new Dialog(this);
+        dialogBolsa.setContentView(R.layout.dialog_bolsa);
+        dialogBolsa.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialogBolsa.show();
     }
 
     private void buildMenu() {
@@ -827,7 +851,6 @@ public class PersonagemLogadoActivity extends AppCompatActivity implements Runna
         super.onStop();
         personagemOnReference.removeEventListener(valueEventListenerPersonagemOn);
         mensagensReference.removeEventListener(valueEventListenerMensagens);
-
 
         PersonagemOn.personagem.setOn(false);
         PersonagemOn.personagem.setUltimoLogin(String.format(Locale.getDefault(), "%s às %s", DateCustom.getData(), DateCustom.getHorario()));

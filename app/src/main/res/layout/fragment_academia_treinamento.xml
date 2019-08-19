@@ -1066,5 +1066,6 @@ Terça-Feira, é o dia que é renovado o limite semanal, mesmo que você não te
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView38" />
 
+
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

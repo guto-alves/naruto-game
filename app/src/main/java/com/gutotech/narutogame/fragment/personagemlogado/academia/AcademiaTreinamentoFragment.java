@@ -74,8 +74,8 @@ public class AcademiaTreinamentoFragment extends Fragment implements MyListener 
             }
         });
 
-        limeteTreinamentoSemanalTextView = view.findViewById(R.id.limeteTreinamentoSemanalTextView);
-        limeteTreinamentoSemanalProgressBar = view.findViewById(R.id.limeteTreinamentoSemanalProgressBar);
+//        limeteTreinamentoSemanalTextView = view.findViewById(R.id.limeteTreinamentoSemanalTextView);
+//        limeteTreinamentoSemanalProgressBar = view.findViewById(R.id.limeteTreinamentoSemanalProgressBar);
 
         RecyclerView pontosDistribuidosRecyclerView = view.findViewById(R.id.pontosDistribuidosRecyclerView);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());

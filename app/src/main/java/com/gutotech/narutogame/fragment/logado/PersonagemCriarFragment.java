@@ -327,7 +327,7 @@ public class PersonagemCriarFragment extends Fragment {
         personagem.setTemRecompensaFidelidade(true);
 
         List<Atributo> atributosDistribuidos = new ArrayList<>();
-        atributosDistribuidos.add(new Atributo(Atributo.TAI, R.drawable.layout_icones_tai, 0));
+        atributosDistribuidos.add(new Atributo(Atributo.TAI, R.drawable.layout_icones_ene, 0));
         atributosDistribuidos.add(new Atributo(Atributo.BUK, R.drawable.layout_icones_ken, 0));
         atributosDistribuidos.add(new Atributo(Atributo.NIN, R.drawable.layout_icones_nin, 0));
         atributosDistribuidos.add(new Atributo(Atributo.GEN, R.drawable.layout_icones_gen, 0));

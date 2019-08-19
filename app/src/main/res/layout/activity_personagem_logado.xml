@@ -429,7 +429,8 @@
                                     android:background="@android:color/white"
                                     android:ems="10"
                                     android:inputType="textPersonName"
-                                    android:maxLength="25" />
+                                    android:maxLength="25"
+                                    android:imeOptions="actionSend"/>
 
                             </LinearLayout>
 
