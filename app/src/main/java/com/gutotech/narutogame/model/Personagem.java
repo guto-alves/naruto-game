@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.util.List;
 
 public class Personagem implements Serializable {
+    // info gerais
     private String idPlayer;
     private String nick;
     private String titulo;
@@ -19,33 +20,27 @@ public class Personagem implements Serializable {
     private long ryous;
     private int idProfile;
     private int fotoAtual;
+    private List<String> titulos;
 
     private int diasLogadosFidelidade;
     private boolean temRecompensaFidelidade;
 
-    private List<String> titulos;
-
     private Atributos atributos;
+    private List<Atributo> atributosDistribuitos;
 
     private int expAtual;
     private int expUpar;
 
+    // info combates
     private int combatesNPCDiarios;
     private ResumoCombates resumoCombates;
 
+    // missões
     private ResumoMissoes resumoMissoes;
     private boolean emMissao;
     private MissaoDeTempo missaoDeTempo;
     private MissaoEspecial missaoEspecial;
     private List<Integer> tarefasConcluidasIDs;
-
-    private List<Atributo> atributosDistribuitos;
-
-    // informações extras
-    private int totalTreino;
-    private int totalPontosDistribuitos;
-    private int totalPontosLivres;
-    private long totalHorasJogadas;
 
     private boolean fuiPego;
     private String nickOponente;
@@ -54,6 +49,12 @@ public class Personagem implements Serializable {
 
     private List<Jutsu> jutsus;
     private Jutsu jutsuSelecionado;
+
+    // informações extras
+    private int totalTreino;
+    private int totalPontosDistribuitos;
+    private int totalPontosLivres;
+    private long totalHorasJogadas;
 
     private Bolsa bolsa;
 

@@ -39,11 +39,11 @@ public class RamensRecyclerAdapter extends RecyclerView.Adapter<RamensRecyclerAd
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder myViewHolder, int i) {
         final Ramen ramen = ramenList.get(i);
+
         myViewHolder.ramenImageView.setImageResource(ramen.getResIdImagem());
         myViewHolder.ramenImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
             }
         });
         myViewHolder.nomeTextView.setText(ramen.getNome());
@@ -68,17 +68,17 @@ public class RamensRecyclerAdapter extends RecyclerView.Adapter<RamensRecyclerAd
         myViewHolder.comprarButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (myViewHolder.qtdeEditText.getText().toString().isEmpty()) {
-
-
-                } else {
+                if (!myViewHolder.qtdeEditText.getText().toString().isEmpty()) {
                     int quantidade = Integer.parseInt(myViewHolder.qtdeEditText.getText().toString());
+                    int total_a_pagar = ramen.getValor() * quantidade;
 
-                    if (PersonagemOn.personagem.getRyous() >= ramen.getValor() * quantidade) {
+                    if (PersonagemOn.personagem.getRyous() >= total_a_pagar) {
+                        PersonagemOn.personagem.setRyous(PersonagemOn.personagem.getRyous() - total_a_pagar);
+                        PersonagemOn.personagem.getBolsa().getRamensList().add(ramen);
+                        PersonagemOn.personagem.salvar();
                         exibirAlerta("Item(s) comprado(s) com sucesso");
-                    } else {
+                    } else
                         exibirAlerta("Você não tem ryous suficientes para comprar essa quantidade");
-                    }
                 }
             }
         });

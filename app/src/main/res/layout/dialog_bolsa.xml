@@ -11,7 +11,7 @@
     <!-- Ramens -->
     <LinearLayout
         android:id="@+id/linearLayoutRamens"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
@@ -23,24 +23,11 @@
             android:text="Ramen"
             android:textColor="@android:color/white" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/ramensRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="51dp" />
 
-            <ImageView
-                android:id="@+id/imageView44"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
-                app:srcCompat="@drawable/layout_comidas_nissin" />
-
-            <ImageView
-                android:id="@+id/imageView45"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/layout_comidas_ramen" />
-        </LinearLayout>
     </LinearLayout>
 
     <!-- Pergaminhos -->

@@ -28,9 +28,11 @@ import com.gutotech.narutogame.config.ConfigFirebase;
 import com.gutotech.narutogame.config.Storage;
 import com.gutotech.narutogame.model.Atributo;
 import com.gutotech.narutogame.model.Atributos;
+import com.gutotech.narutogame.model.Bolsa;
 import com.gutotech.narutogame.model.Classe;
 import com.gutotech.narutogame.model.Jutsu;
 import com.gutotech.narutogame.model.Personagem;
+import com.gutotech.narutogame.model.Ramen;
 import com.gutotech.narutogame.model.ResumoCombates;
 import com.gutotech.narutogame.model.ResumoMissoes;
 import com.gutotech.narutogame.helper.Helper;
@@ -346,7 +348,7 @@ public class PersonagemCriarFragment extends Fragment {
         personagem.getAtributos().getFormulas().setStaminaAtual(personagem.getAtributos().getFormulas().getStamina());
 
         List<Jutsu> jutsus = new ArrayList<>();
-        if (personagem.getClasse().equals("Ninjutsu") || personagem.getClasse().equals("Genjutsu")) {
+        if (personagem.getClasse().equals(Classe.NIN) || personagem.getClasse().equals(Classe.GEN)) {
             jutsus.add(new Jutsu(0, "defesa_2_mao", 1, 0, 0, 5, 0, 3, 10, 3, "def", "basico"));
             jutsus.add(new Jutsu(1, "defesa_acrobatica", 1, 0, 0, 5, 0, 3, 15, 4, "def", "basico"));
             jutsus.add(new Jutsu(2, "soco", 1, 0, 5, 0, 0, 3, 8, 1, "atk", "basico"));
@@ -358,6 +360,14 @@ public class PersonagemCriarFragment extends Fragment {
             jutsus.add(new Jutsu(3, "chute", 1, 8, 0, 0, 0, 3, 2, 11, "atk", "basico"));
         }
         personagem.setJutsus(jutsus);
+
+        Bolsa bolsa = new Bolsa();
+        List<Ramen> ramens = new ArrayList<>();
+        ramens.add(new Ramen(R.drawable.layout_comidas_nissin, "Merenda Ninja",
+                "Super macarrão reforçado para uso nos intervalos das tarefas ninjas",
+                100, 25, 5));
+        bolsa.setRamensList(ramens);
+        personagem.setBolsa(bolsa);
 
         personagem.setOn(false);
         personagem.salvar();

@@ -90,7 +90,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
-public class PersonagemLogadoActivity extends AppCompatActivity implements Runnable {
+public class PersonagemLogadoActivity extends AppCompatActivity {
     private View headerView;
 
     private ImageButton fidelidadeImageButton;
@@ -843,7 +843,13 @@ public class PersonagemLogadoActivity extends AppCompatActivity implements Runna
 
     private void inicializarCounterHorasJogadas() {
         Handler handler = new Handler();
-        handler.postDelayed(this, 1000);
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                PersonagemOn.personagem.setTotalHorasJogadas(PersonagemOn.personagem.getTotalHorasJogadas() + 1);
+            }
+        };
+        handler.postDelayed(runnable, 1000);
     }
 
     @Override
@@ -856,10 +862,5 @@ public class PersonagemLogadoActivity extends AppCompatActivity implements Runna
         PersonagemOn.personagem.setUltimoLogin(String.format(Locale.getDefault(), "%s às %s", DateCustom.getData(), DateCustom.getHorario()));
 
         PersonagemOn.personagem.salvar();
-    }
-
-    @Override
-    public void run() {
-        PersonagemOn.personagem.setTotalHorasJogadas(PersonagemOn.personagem.getTotalHorasJogadas() + 1);
     }
 }

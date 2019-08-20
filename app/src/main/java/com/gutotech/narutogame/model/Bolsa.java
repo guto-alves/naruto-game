@@ -1,26 +1,40 @@
 package com.gutotech.narutogame.model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Bolsa {
-    List<Ramen> ramenList;
-    List<Pergaminho> pergaminhoList;
-    List<Jutsu> armasList;
+public class Bolsa implements Serializable {
+    private List<Ramen> ramensList;
+    private List<Pergaminho> pergaminhosList;
+    private List<Jutsu> armasList;
 
-    public List<Ramen> getRamenList() {
-        return ramenList;
+    public Bolsa() {
     }
 
-    public void setRamenList(List<Ramen> ramenList) {
-        this.ramenList = ramenList;
+    public Bolsa(List<Ramen> ramensList) {
+        this.ramensList = ramensList;
     }
 
-    public List<Pergaminho> getPergaminhoList() {
-        return pergaminhoList;
+    public Bolsa(List<Ramen> ramensList, List<Pergaminho> pergaminhosList, List<Jutsu> armasList) {
+        this.ramensList = ramensList;
+        this.pergaminhosList = pergaminhosList;
+        this.armasList = armasList;
     }
 
-    public void setPergaminhoList(List<Pergaminho> pergaminhoList) {
-        this.pergaminhoList = pergaminhoList;
+    public List<Ramen> getRamensList() {
+        return ramensList;
+    }
+
+    public void setRamensList(List<Ramen> ramensList) {
+        this.ramensList = ramensList;
+    }
+
+    public List<Pergaminho> getPergaminhosList() {
+        return pergaminhosList;
+    }
+
+    public void setPergaminhosList(List<Pergaminho> pergaminhosList) {
+        this.pergaminhosList = pergaminhosList;
     }
 
     public List<Jutsu> getArmasList() {

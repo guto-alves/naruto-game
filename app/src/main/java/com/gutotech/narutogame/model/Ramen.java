@@ -1,6 +1,8 @@
 package com.gutotech.narutogame.model;
 
-public class Ramen {
+import java.io.Serializable;
+
+public class Ramen implements Serializable {
     private int resIdImagem;
     private String nome;
     private String descricao;

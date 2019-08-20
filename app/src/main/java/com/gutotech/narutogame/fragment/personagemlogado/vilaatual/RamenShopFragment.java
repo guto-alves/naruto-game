@@ -18,10 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RamenShopFragment extends Fragment {
-    private RecyclerView ramensRecyclerView;
     private List<Ramen> ramenList = new ArrayList<>();
-
-    private RamensRecyclerAdapter adapter;
 
     public RamenShopFragment() {
     }
@@ -31,12 +28,12 @@ public class RamenShopFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_ramem_shop, container, false);
 
-        ramensRecyclerView = view.findViewById(R.id.ramensRecyclerView);
+        RecyclerView ramensRecyclerView = view.findViewById(R.id.ramensRecyclerView);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         ramensRecyclerView.setLayoutManager(layoutManager);
         inicializarRamens();
         ramensRecyclerView.setHasFixedSize(true);
-        adapter = new RamensRecyclerAdapter(getActivity(), ramenList);
+        RamensRecyclerAdapter adapter = new RamensRecyclerAdapter(getActivity(), ramenList);
         ramensRecyclerView.setAdapter(adapter);
 
         return view;
