@@ -16,16 +16,45 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="recuperar_senha">Recuperar Senha</string>
     <string name="digite_o_email_da_sua_conta">Digite o email da sua conta</string>
     <string name="hall_da_fama">Hall da fama</string>
     <string name="confirmar_senha">Confirmar Senha</string>
+
+    <!-- Textos -->
     <string name="senha">Senha</string>
     <string name="email">Email</string>
-    <string name="cadastrar">Cadastrar</string>
     <string name="esqueceu_a_senha">Esqueceu a Senha?</string>
     <string name="noticias">Notícias</string>
     <string name="title">Title</string>
+
+    <!-- Buttons -->
+    <string name="button_cadastrar">Cadastrar</string>
+    <string name="button_recuperar_senha">Recuperar Senha</string>
+    <string name="button_enviar_alteracoes">Enviar Alterações</string>
+    <string name="button_alterar_senha">Alterar Senha</string>
+    <string name="button_abrir_ticket_de_suporte">Abrir Ticket de Suporte</string>
+    <string name="button_criar">Criar</string>
+    <string name="button_jogar">Jogar</string>
+    <string name="button_remover">Remover</string>
+    <string name="button_criar_personagem">Criar Personagem</string>
+    <string name="button_trocar_imagem">Trocar Imagem</string>
+    <string name="button_treinar">Treinar</string>
+    <string name="button_entrar_no_cla">Entrar no Clã</string>
+    <string name="button_abandonar_cla">Abandonar Clã</string>
+    <string name="button_aceitar_pacto">Aceitar Pacto</string>
+    <string name="button_quebrar_pacto">Quebrar Pacto</string>
+    <string name="button_duelar">Duelar</string>
+    <string name="button_jogar_sorte">Jogar!</string>
+    <string name="button_receber">Receber</string>
+    <string name="button_recebido">Recebido</string>
+    <string name="button_nao_recebido">Não Recebido</string>
+    <string name="button_graduar">Graduar</string>
+    <string name="button_virar_aluno">Virar Aluno</string>
+    <string name="button_aceitar">Aceitar</string>
+    <string name="button_cancelar_missao">Cancelar Missão</string>
+    <string name="button_finalizar">Finalizar</string>
+    <string name="button_ir_para_a_fila">Ir para a fila</string>
+    <string name="button_filtrar">Filtrar</string>
 
     <string-array name="sexos_array1">
         <item>Masculino</item>
@@ -42,7 +71,7 @@
         <item>Mundo</item>
     </string-array>
 
-    <string-array name="categorias_array">
+    <string-array name="ticket_categorias_array">
         <item>Bug</item>
         <item>VIP</item>
         <item>Dúvidas</item>
@@ -52,11 +81,9 @@
 
     <string name="title_activity_logado_selecionar">LogadoSelecionarActivity</string>
     <string name="title_activity_personagem_logado">PersonagemLogadoActivity</string>
-    <string name="alterar_senha">Alterar Senha</string>
     <string name="redigite_a_nova_senha">Redigite a Nova Senha</string>
     <string name="nova_senha">Nova Senha</string>
     <string name="senha_atual">Senha Atual</string>
-    <string name="criar_personagem">Criar Personagem</string>
     <string name="escolha_seu_personagem">ESCOLHA SEU PERSONAGEM</string>
     <string name="taijutsu">Taijutsu</string>
     <string name="ninjustu">Ninjustu</string>
@@ -67,10 +94,70 @@
     <string name="estado">Estado</string>
     <string name="nome_completo">Nome Completo</string>
 
-    <!-- Tículos seções -->
-    <string name="home">HOME</string>
-    <string name="crie_sua_conta">CRIE SUA CONTA</string>
-    <string name="esqueci_minha_senha">ESQUECI MINHA SENHA</string>
+
+    <!-- Títulos das seções -->
+    <!-- DESLOGADO -->
+    <string name="secao_home">HOME</string>
+    <string name="secao_crie_sua_conta">CRIE SUA CONTA</string>
+    <string name="secao_esqueci_minha_senha">ESQUECI MINHA SENHA</string>
+    <string name="secao_hall_da_fama">HALL DA FAMA</string>
+
+    <!-- PERSONAGEM LOGADO -->
+    <!-- Grupo Usuário -->
+    <string name="secao_dados_da_conta">DADOS DA CONTA</string>
+    <string name="secao_mensageiro">MENSAGEIRO</string>
+    <string name="secao_formulas">FÓRMULAS</string>
+    <string name="secao_trocar_senha">TROQUE SUA SENHA</string>
+    <string name="secao_criar_personagem">CRIAR PERSONAGEM</string>
+    <string name="secao_selecione_seu_personagem">SELECIONE SEU PERSONAGEM</string>
+    <string name="secao_suporte">SUPORTE</string>
+
+    <!-- Grupo Personagem -->
+    <string name="secao_status_do_personagem">STATUS DO PERSONAGEM</string>
+    <string name="secao_clas">CLÃS</string>
+    <string name="secao_invocacoes">INVOCAÇÕES</string>
+    <string name="secao_modo_historia">MODO HISTÓRIA</string>
+    <string name="secao_sorte_ninja">SORTE NINJA</string>
+    <string name="secao_fidelidade_ninja">FIDELIDADE NINJA</string>
+
+    <!-- Grupo Academia -->
+    <string name="secao_graduacoes">GRADUAÇÕES</string>
+    <string name="secao_treinamento_de_atributos">TREINAMENTO DE ATRIBUTOS</string>
+    <string name="secao_treinamento_de_jutsus">TREINAMENTO DE JUTSUS</string>
+    <string name="secao_jutsus_ninjas">JUTSUS NINJAS</string>
+
+    <!-- Grupo Sensei -->
+    <string name="secao_sensei">SENSEI</string>
+    <string name="secao_desafios">DESAFIOS</string>
+
+    <!-- Grupo Vila atual -->
+    <string name="secao_tarefas_iniciais">TAREFAS INICIAIS</string>
+    <string name="secao_ramen_shop">RAMEM SHOP</string>
+    <string name="secao_ninja_shop">NINJA SHOP</string>
+    <string name="secao_mapa_da_vila">MAPA DA VILA</string>
+    <string name="secao_missoes">MISSÕES</string>
+    <string name="secao_status_da_missao">STATUS DA MISSÃO</string>
+
+    <!-- Grupo Combates -->
+    <string name="secao_dojo">DOJO</string>
+    <string name="secao_dojo_4x4">DOJO 4X4</string>
+    <string name="secao_arena">ARENA</string>
+    <string name="secao_historico_de_batalha">HISTÓRICO DE BATALHA</string>
+
+    <!-- Grupo Equipe e Organização -->
+    <string name="secao_participar">PARTICIPAR</string>
+    <string name="secao_ser_lider">SER LIDER</string>
+    <string name="secao_equipe_detalhe">EQUIPE</string>
+    <string name="secao_org_detalhe">ORGANIZAÇÃO</string>
+
+    <!-- Grupo Ranking -->
+    <string name="secao_ranking_de_ninjas">RANKING DE NINJAS</string>
+    <string name="secao_ranking_de_4x4">RANKING DE 4x4</string>
+    <string name="secao_ranking_de_equipes">RANKING DE EQUIPES</string>
+
+
+    <!-- Atributos -->
+    <string name="bukijutsu">Bukijutsu</string>
     <string name="genjutsu">Genjutsu</string>
     <string name="agilidade">Agilidade</string>
     <string name="forca">Força</string>
@@ -79,15 +166,12 @@
     <string name="vida">Vida</string>
     <string name="determinacao">Determinação</string>
     <string name="esquiva">Esquiva</string>
-    <string name="enviar_alteracoes">Enviar Alterações</string>
+
+    <string name="chat_naruto_game">CHAT NARUTO GAME</string>
     <string name="endereco_completo">Endereço Completo</string>
     <string name="data_de_nascimento">Data de Nascimento</string>
-    <string name="chat_naruto_game">CHAT NARUTO GAME</string>
-    <string name="bukijutsu">Bukijutsu</string>
-    <string name="treinar">Treinar</string>
     <string name="arquivo">Arquivo</string>
     <string name="treinamento_manual">Treinamento Manual</string>
     <string name="quantidade">Quantidade</string>
-    <string name="trocar_imagem">Trocar Imagem</string>
 
 </resources>

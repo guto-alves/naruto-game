@@ -32,9 +32,9 @@ public class LogadoSelecionarActivity extends AppCompatActivity {
     private List<Integer> groupList;
     private HashMap<Integer, List<String>> childList;
 
-    final int GROUP_USUARIO = 0;
-    final int GROUP_PERSONAGEM = 1;
-    final int GROUP_PRINCIPAL = 2;
+    private final int GROUP_USUARIO = 0;
+    private final int GROUP_PERSONAGEM = 1;
+    private final int GROUP_PRINCIPAL = 2;
 
     private TextView tituloSecaoTextView;
 
@@ -48,7 +48,7 @@ public class LogadoSelecionarActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         tituloSecaoTextView = findViewById(R.id.tituloSecaoTextView);
-        tituloSecaoTextView.setText("SELECIONE SEU PERSONAGEM");
+        tituloSecaoTextView.setText(R.string.secao_selecione_seu_personagem);
         changeFragment(new PersonagemSelecionarFragment());
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -67,38 +67,38 @@ public class LogadoSelecionarActivity extends AppCompatActivity {
                 if (groupPosition == GROUP_USUARIO) {
                     switch (childPosition) {
                         case 0:
-                            tituloSecaoTextView.setText("DADOS DA CONTA");
+                            tituloSecaoTextView.setText(R.string.secao_dados_da_conta);
                             changeFragment(new UsuarioDadosFragment());
                             break;
                         case 1:
-                            tituloSecaoTextView.setText("TROQUE SUA SENHA");
+                            tituloSecaoTextView.setText(R.string.secao_trocar_senha);
                             changeFragment(new SenhaTrocarFragment());
                             break;
                         case 2:
-                            tituloSecaoTextView.setText("SUPORTE");
+                            tituloSecaoTextView.setText(R.string.secao_suporte);
                             changeFragment(new SuporteFragment());
                     }
                 } else if (groupPosition == GROUP_PERSONAGEM) {
                     switch (childPosition) {
                         case 0:
-                            tituloSecaoTextView.setText("SELECIONE SEU PERSONAGEM");
+                            tituloSecaoTextView.setText(R.string.secao_selecione_seu_personagem);
                             changeFragment(new PersonagemSelecionarFragment());
                             break;
                         case 1:
-                            tituloSecaoTextView.setText("CRIAR PERSONAGEM");
+                            tituloSecaoTextView.setText(R.string.secao_criar_personagem);
                             changeFragment(new PersonagemCriarFragment());
                             break;
                     }
                 } else if (groupPosition == GROUP_PRINCIPAL) {
                     switch (childPosition) {
                         case 0:
-                            tituloSecaoTextView.setText("HOME");
+                            tituloSecaoTextView.setText(R.string.secao_home);
                             HomeFragment homeFragment = new HomeFragment();
                             homeFragment.setArguments(new Bundle());
                             changeFragment(homeFragment);
                             break;
                         case 1:
-                            tituloSecaoTextView.setText("HALL DA FAMA");
+                            tituloSecaoTextView.setText(R.string.secao_hall_da_fama);
                             changeFragment(new HalldafamaFragment());
                             break;
                     }

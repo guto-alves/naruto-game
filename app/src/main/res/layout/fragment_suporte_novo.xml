@@ -192,12 +192,11 @@
                     style="@style/ButtonTheme"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Criar"
+                    android:text="@string/button_criar"
                     android:textSize="14sp" />
             </LinearLayout>
 
         </LinearLayout>
-
 
         <CalendarView
             android:id="@+id/calendarView"

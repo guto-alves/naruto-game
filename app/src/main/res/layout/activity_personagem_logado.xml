@@ -97,7 +97,7 @@
                     style="@style/ButtonTheme"
                     android:layout_width="140dp"
                     android:layout_height="wrap_content"
-                    android:text="@string/trocar_imagem" />
+                    android:text="@string/button_trocar_imagem" />
 
                 <!-- INFORMAÇÕES SOBRE O PERSONAGEM-->
                 <LinearLayout

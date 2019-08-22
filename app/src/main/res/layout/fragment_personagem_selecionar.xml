@@ -190,7 +190,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginLeft="24dp"
-            android:text="SELECIONE SEU PERSONAGEM"
+            android:text="@string/secao_selecione_seu_personagem"
             android:textColor="@android:color/white"
             android:typeface="serif"
             app:layout_constraintBottom_toBottomOf="@+id/imageView6"
@@ -215,14 +215,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="6dp"
-                android:text="Jogar" />
+                android:text="@string/button_jogar" />
 
             <Button
                 android:id="@+id/removerButton"
                 style="@style/ButtonTheme"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Remover" />
+                android:text="@string/button_remover" />
         </LinearLayout>
 
         <GridView

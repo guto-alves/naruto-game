@@ -45,6 +45,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.adapter.MensagensAdapter;
 import com.gutotech.narutogame.adapter.MenuPersonagemLogadoExpandableAdapter;
+import com.gutotech.narutogame.adapter.RamensBolsaRecyclerAdapter;
 import com.gutotech.narutogame.config.ConfigFirebase;
 import com.gutotech.narutogame.config.Storage;
 import com.gutotech.narutogame.fragment.logado.PersonagemCriarFragment;
@@ -60,6 +61,7 @@ import com.gutotech.narutogame.fragment.personagemlogado.academia.PersonagemJuts
 import com.gutotech.narutogame.fragment.personagemlogado.combates.ArenaFragment;
 import com.gutotech.narutogame.fragment.personagemlogado.combates.Dojo4x4Fragment;
 import com.gutotech.narutogame.fragment.personagemlogado.combates.DojoFragment;
+import com.gutotech.narutogame.fragment.personagemlogado.combates.LogBatalhaFragment;
 import com.gutotech.narutogame.fragment.personagemlogado.equipe.EquipeCriarFragment;
 import com.gutotech.narutogame.fragment.personagemlogado.equipe.EquipeParticiparFragment;
 import com.gutotech.narutogame.fragment.personagemlogado.personagem.ClasFragment;
@@ -92,7 +94,6 @@ import java.util.Locale;
 
 public class PersonagemLogadoActivity extends AppCompatActivity {
     private View headerView;
-
     private ImageButton fidelidadeImageButton;
 
     private TextView tituloSecao;
@@ -307,31 +308,31 @@ public class PersonagemLogadoActivity extends AppCompatActivity {
                 if (groupPosition == GROUP_USUARIO) {
                     switch (childPosition) {
                         case 0:
-                            tituloSecao.setText("DADOS DA CONTA");
+                            tituloSecao.setText(R.string.secao_dados_da_conta);
                             changeFragment(new UsuarioDadosFragment());
                             break;
                         case 1:
-                            tituloSecao.setText("MENSAGEIRO");
+                            tituloSecao.setText(R.string.secao_mensageiro);
                             changeFragment(new MensagensFragment());
                             break;
                         case 2:
-                            tituloSecao.setText("FÓRMULAS");
+                            tituloSecao.setText(R.string.secao_formulas);
                             changeFragment(new FormulasFragment());
                             break;
                         case 3:
-                            tituloSecao.setText("TROQUE SUA SENHA");
+                            tituloSecao.setText(R.string.secao_trocar_senha);
                             changeFragment(new SenhaTrocarFragment());
                             break;
                         case 4:
-                            tituloSecao.setText("CRIAR PERSONAGEM");
+                            tituloSecao.setText(R.string.secao_criar_personagem);
                             changeFragment(new PersonagemCriarFragment());
                             break;
                         case 5:
-                            tituloSecao.setText("SELECIONE SEU PERSONAGEM");
+                            tituloSecao.setText(R.string.secao_selecione_seu_personagem);
                             changeFragment(new PersonagemSelecionarFragment());
                             break;
                         case 6:
-                            tituloSecao.setText("SUPORTE");
+                            tituloSecao.setText(R.string.secao_suporte);
                             changeFragment(new SuporteFragment());
                             break;
                         case 7:
@@ -342,38 +343,38 @@ public class PersonagemLogadoActivity extends AppCompatActivity {
                     if (PersonagemOn.personagem.isEmMissao()) {
                         switch (childPosition) {
                             case 0:
-                                tituloSecao.setText("STATUS DO PERSONAGEM");
+                                tituloSecao.setText(R.string.secao_status_do_personagem);
                                 changeFragment(new PersonagemStatusFragment());
                                 break;
                             case 1:
-                                tituloSecao.setText("FIDELIDADE NINJA");
+                                tituloSecao.setText(R.string.secao_fidelidade_ninja);
                                 changeFragment(new FidelidadeFragment());
                                 break;
                         }
                     } else {
                         switch (childPosition) {
                             case 0:
-                                tituloSecao.setText("STATUS DO PERSONAGEM");
+                                tituloSecao.setText(R.string.secao_status_do_personagem);
                                 changeFragment(new PersonagemStatusFragment());
                                 break;
                             case 1:
-                                tituloSecao.setText("CLÃS");
+                                tituloSecao.setText(R.string.secao_clas);
                                 changeFragment(new ClasFragment());
                                 break;
                             case 2:
-                                tituloSecao.setText("INVOCAÇÕES");
+                                tituloSecao.setText(R.string.secao_invocacoes);
                                 changeFragment(new InvocacaoFragment());
                                 break;
                             case 3:
-                                tituloSecao.setText("MODO HISTÓRIA");
+                                tituloSecao.setText(R.string.secao_modo_historia);
                                 changeFragment(new HistoriaFragment());
                                 break;
                             case 4:
-                                tituloSecao.setText("SORTE NINJA");
+                                tituloSecao.setText(R.string.secao_status_do_personagem);
                                 changeFragment(new SorteNinjaFragment());
                                 break;
                             case 5:
-                                tituloSecao.setText("FIDELIDADE NINJA");
+                                tituloSecao.setText(R.string.secao_fidelidade_ninja);
                                 changeFragment(new FidelidadeFragment());
                                 break;
                         }
@@ -382,30 +383,26 @@ public class PersonagemLogadoActivity extends AppCompatActivity {
                     if (!PersonagemOn.personagem.isEmMissao()) {
                         switch (childPosition) {
                             case 0:
-                                tituloSecao.setText("GRADUAÇÕES");
+                                tituloSecao.setText(R.string.secao_graduacoes);
                                 changeFragment(new GraduacoesFragment());
                                 break;
                             case 1:
-                                tituloSecao.setText("TREINAMENTO DE ATRIBUTOS");
+                                tituloSecao.setText(R.string.secao_treinamento_de_atributos);
                                 changeFragment(new AcademiaTreinamentoFragment());
                                 break;
                             case 2:
-                                tituloSecao.setText("TREINAMENTO DE JUTSUS");
+                                tituloSecao.setText(R.string.secao_treinamento_de_jutsus);
                                 changeFragment(new PersonagemJutsuFragment());
                                 break;
                             case 3:
-                                tituloSecao.setText("JUTSUS NINJAS");
+                                tituloSecao.setText(R.string.secao_jutsus_ninjas);
                                 changeFragment(new AcademiaJustuFragment());
                                 break;
                         }
                     }
                 } else if (groupPosition == GROUP_SENSEI) {
                     if (PersonagemOn.personagem.isEmMissao()) {
-                        switch (childPosition) {
-                            case 0:
-                                changeFragment(new SenseiFragment());
-                                break;
-                        }
+                        changeFragment(new SenseiFragment());
                     } else {
                         switch (childPosition) {
                             case 0:
@@ -419,43 +416,39 @@ public class PersonagemLogadoActivity extends AppCompatActivity {
 
                 } else if (groupPosition == GROUP_VILA_ATUAL) {
                     if (PersonagemOn.personagem.isEmMissao()) {
-                        switch (childPosition) {
-                            case 0:
-                                tituloSecao.setText("STATUS DA MISSÃO");
-                                changeFragment(new MissoesEsperaFragment());
-                                break;
-                        }
+                        tituloSecao.setText(R.string.secao_status_da_missao);
+                        changeFragment(new MissoesEsperaFragment());
                     } else if (PersonagemOn.personagem.getGraducao().equals("Estudante")) {
                         switch (childPosition) {
                             case 0:
-                                tituloSecao.setText("TAREFAS INICIAIS");
+                                tituloSecao.setText(R.string.secao_tarefas_iniciais);
                                 changeFragment(new LicoesFragment());
                                 break;
                             case 1:
-                                tituloSecao.setText("RAMEM SHOP");
+                                tituloSecao.setText(R.string.secao_ramen_shop);
                                 changeFragment(new RamenShopFragment());
                                 break;
                             case 2:
-                                tituloSecao.setText("NINJA SHOP");
+                                tituloSecao.setText(R.string.secao_ninja_shop);
                                 changeFragment(new NinjaShopFragment());
                                 break;
                         }
                     } else {
                         switch (childPosition) {
                             case 0:
-                                tituloSecao.setText("MAPA DA VILA");
+                                tituloSecao.setText(R.string.secao_mapa_da_vila);
                                 changeFragment(new MapaVilaFragment());
                                 break;
                             case 1:
-                                tituloSecao.setText("MISSÕES");
+                                tituloSecao.setText(R.string.secao_missoes);
                                 changeFragment(new MissoesFragment());
                                 break;
                             case 2:
-                                tituloSecao.setText("RAMEM SHOP");
+                                tituloSecao.setText(R.string.secao_ramen_shop);
                                 changeFragment(new RamenShopFragment());
                                 break;
                             case 3:
-                                tituloSecao.setText("NINJA SHOP");
+                                tituloSecao.setText(R.string.secao_ninja_shop);
                                 changeFragment(new NinjaShopFragment());
                                 break;
                         }
@@ -464,16 +457,20 @@ public class PersonagemLogadoActivity extends AppCompatActivity {
                     if (!PersonagemOn.personagem.isEmMissao()) {
                         switch (childPosition) {
                             case 0:
-                                tituloSecao.setText("DOJO");
+                                tituloSecao.setText(R.string.secao_dojo);
                                 changeFragment(new DojoFragment());
                                 break;
                             case 1:
-                                tituloSecao.setText("DOJO 4X4");
+                                tituloSecao.setText(R.string.secao_dojo_4x4);
                                 changeFragment(new Dojo4x4Fragment());
                                 break;
                             case 2:
-                                tituloSecao.setText("ARENA");
+                                tituloSecao.setText(R.string.secao_arena);
                                 changeFragment(new ArenaFragment());
+                                break;
+                            case 3:
+                                tituloSecao.setText(R.string.secao_historico_de_batalha);
+                                changeFragment(new LogBatalhaFragment());
                                 break;
                         }
                     }
@@ -506,15 +503,15 @@ public class PersonagemLogadoActivity extends AppCompatActivity {
                 } else if (groupPosition == GROUP_RANKING) {
                     switch (childPosition) {
                         case 0:
-                            tituloSecao.setText("RANKING DE NINJAS");
+                            tituloSecao.setText(R.string.secao_ranking_de_ninjas);
                             changeFragment(new RankNinjasFragment());
                             break;
                         case 1:
-                            tituloSecao.setText("RANKING DE 4x4");
+                            tituloSecao.setText(R.string.secao_ranking_de_4x4);
                             changeFragment(new Rank4x4Fragment());
                             break;
                         case 2:
-                            tituloSecao.setText("RANKING DE EQUIPES");
+                            tituloSecao.setText(R.string.secao_ranking_de_equipes);
                             changeFragment(new RankEquipesFragment());
                             break;
                     }
@@ -601,6 +598,11 @@ public class PersonagemLogadoActivity extends AppCompatActivity {
     public void exibirBolsa(View view) {
         Dialog dialogBolsa = new Dialog(this);
         dialogBolsa.setContentView(R.layout.dialog_bolsa);
+        RecyclerView ramensRecyclerView = dialogBolsa.findViewById(R.id.ramensRecyclerView);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        ramensRecyclerView.setLayoutManager(layoutManager);
+        ramensRecyclerView.setHasFixedSize(true);
+        ramensRecyclerView.setAdapter(new RamensBolsaRecyclerAdapter(this));
         dialogBolsa.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialogBolsa.show();
     }
@@ -786,13 +788,13 @@ public class PersonagemLogadoActivity extends AppCompatActivity {
     }
 
     public void goFidelidade(View view) {
-        tituloSecao.setText("FIDELIDADE NINJA");
+        tituloSecao.setText(R.string.secao_fidelidade_ninja);
         changeFragment(new FidelidadeFragment());
         closeDrawer();
     }
 
     public void goMensageiro(View view) {
-        tituloSecao.setText("MENSAGEIRO");
+        tituloSecao.setText(R.string.secao_mensageiro);
         changeFragment(new MensagensFragment());
         closeDrawer();
     }

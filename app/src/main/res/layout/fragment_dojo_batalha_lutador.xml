@@ -393,7 +393,6 @@
                             android:src="@drawable/layout_combates_stats" />
                     </LinearLayout>
 
-
                     <ImageView
                         android:id="@+id/profileOpoImageView"
                         android:layout_width="145dp"

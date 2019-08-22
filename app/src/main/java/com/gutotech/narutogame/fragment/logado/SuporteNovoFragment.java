@@ -72,7 +72,7 @@ public class SuporteNovoFragment extends Fragment {
         ArrayAdapter<CharSequence> adapter;
 
         final Spinner categoriaSpinner = view.findViewById(R.id.categoriaSpinner);
-        adapter = ArrayAdapter.createFromResource(getActivity(), R.array.categorias_array, android.R.layout.simple_spinner_item);
+        adapter = ArrayAdapter.createFromResource(getActivity(), R.array.ticket_categorias_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         categoriaSpinner.setAdapter(adapter);
         categoriaSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

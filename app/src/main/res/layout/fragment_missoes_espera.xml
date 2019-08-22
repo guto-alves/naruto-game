@@ -266,7 +266,7 @@
                     android:id="@+id/finalizarMissaoButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Finalizar" />
+                    android:text="@string/button_finalizar" />
 
             </LinearLayout>
         </android.support.constraint.ConstraintLayout>
@@ -280,7 +280,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            android:text="Cancelar Missão"
+            android:text="@string/button_cancelar_missao"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/msgConstraint1" />

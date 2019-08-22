@@ -104,7 +104,7 @@
                 style="@style/ButtonTheme"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/recuperar_senha"
+                android:text="@string/button_recuperar_senha"
                 android:textColor="@android:color/white" />
 
         </LinearLayout>

@@ -271,7 +271,7 @@
                 style="@style/ButtonTheme"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Aceitar" />
+                android:text="@string/button_aceitar" />
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

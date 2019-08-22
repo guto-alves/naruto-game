@@ -78,10 +78,10 @@ public class RecompensasFidelidadeAdapter extends BaseAdapter {
             receberButton.setEnabled(false);
 
             if (dia >= diasLogadosFidelidade) {
-                receberButton.setText("Não Recebido");
+                receberButton.setText(R.string.button_nao_recebido);
                 receberButton.setBackgroundColor(Color.RED);
             } else {
-                receberButton.setText("Recebido");
+                receberButton.setText(R.string.button_recebido);
                 receberButton.setBackgroundColor(Color.GREEN);
             }
         }

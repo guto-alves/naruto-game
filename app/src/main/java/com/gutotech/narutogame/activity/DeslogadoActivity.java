@@ -72,19 +72,19 @@ public class DeslogadoActivity extends AppCompatActivity {
                 if (groupPosition == GROUP_PRINCIPAL) {
                     switch (childPosition) {
                         case 0:
-                            tituloSecaoTextView.setText(R.string.home);
+                            tituloSecaoTextView.setText(R.string.secao_home);
                             changeFragment(new HomeFragment());
                             break;
                         case 1:
-                            tituloSecaoTextView.setText(R.string.crie_sua_conta);
+                            tituloSecaoTextView.setText(R.string.secao_crie_sua_conta);
                             changeFragment(new CadastroFragment());
                             break;
                         case 2:
-                            tituloSecaoTextView.setText(R.string.esqueci_minha_senha);
+                            tituloSecaoTextView.setText(R.string.secao_esqueci_minha_senha);
                             changeFragment(new RecuperarSenhaFragment());
                             break;
                         case 3:
-                            tituloSecaoTextView.setText("HALL DA FAMA");
+                            tituloSecaoTextView.setText(R.string.secao_hall_da_fama);
                             changeFragment(new HalldafamaFragment());
                             break;
                     }
@@ -130,7 +130,7 @@ public class DeslogadoActivity extends AppCompatActivity {
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else if (CurrentFragment.LER_NOTICIA == 1) {
-            tituloSecaoTextView.setText("HOME");
+            tituloSecaoTextView.setText(R.string.secao_home);
             CurrentFragment.LER_NOTICIA = 0;
             changeFragment(new HomeFragment());
         } else {
