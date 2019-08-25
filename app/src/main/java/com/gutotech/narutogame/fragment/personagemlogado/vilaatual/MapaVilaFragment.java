@@ -61,8 +61,8 @@ public class MapaVilaFragment extends Fragment {
         if (personagemOn.getMapa_posicao() == -1) {
             personagemOn.setMapa_posicao(new SecureRandom().nextInt(TAMANHO_MAPA));
         }
-        referenceMapa = ConfigFirebase.getDatabase().child("mapa").child(personagemOn.getVila());
-        DatabaseReference referenceEntrarNoMapa = ConfigFirebase.getDatabase().child("mapa").child(personagemOn.getVila()).child(personagemOn.getNick());
+        referenceMapa = ConfigFirebase.getDatabase().child("mapa_da_vila").child(personagemOn.getVila());
+        DatabaseReference referenceEntrarNoMapa = ConfigFirebase.getDatabase().child("mapa_da_vila").child(personagemOn.getVila()).child(personagemOn.getNick());
         referenceEntrarNoMapa.setValue(personagemOn);
 
         mapa = view.findViewById(R.id.mapavila);

@@ -1,6 +1,5 @@
 package com.gutotech.narutogame.activity;
 
-import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
@@ -45,7 +44,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.adapter.MensagensAdapter;
 import com.gutotech.narutogame.adapter.MenuPersonagemLogadoExpandableAdapter;
-import com.gutotech.narutogame.adapter.RamensBolsaRecyclerAdapter;
+import com.gutotech.narutogame.adapter.BolsaRamensAdapter;
 import com.gutotech.narutogame.config.ConfigFirebase;
 import com.gutotech.narutogame.config.Storage;
 import com.gutotech.narutogame.fragment.logado.PersonagemCriarFragment;
@@ -602,7 +601,7 @@ public class PersonagemLogadoActivity extends AppCompatActivity {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         ramensRecyclerView.setLayoutManager(layoutManager);
         ramensRecyclerView.setHasFixedSize(true);
-        ramensRecyclerView.setAdapter(new RamensBolsaRecyclerAdapter(this));
+        ramensRecyclerView.setAdapter(new BolsaRamensAdapter(this));
         dialogBolsa.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialogBolsa.show();
     }

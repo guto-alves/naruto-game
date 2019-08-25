@@ -5,6 +5,8 @@
 
     <item android:drawable="@drawable/layout_bg_button_orange" android:state_focused="true" />
 
+    <item android:drawable="@android:color/darker_gray" android:state_enabled="false" />
+
     <item android:drawable="@drawable/layout_bg_button" />
 
 </selector>

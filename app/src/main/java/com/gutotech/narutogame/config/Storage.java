@@ -78,4 +78,29 @@ public class Storage {
                 .child(dia + ".png");
         downloadImage(context, imageReference, imageView);
     }
+
+    public static void baixarRamenImage(Context context, ImageView imageView, String nomeImage) {
+        StorageReference imageReference = ConfigFirebase.getStorage()
+                .child("images")
+                .child("comidas")
+                .child(nomeImage + ".jpg");
+        downloadImage(context, imageReference, imageView);
+    }
+
+    public static void baixarArmaImage(Context context, ImageView imageView, String nomeImage, String alcance) {
+        StorageReference imageReference = ConfigFirebase.getStorage()
+                .child("images")
+                .child("armas")
+                .child(alcance)
+                .child(nomeImage + ".jpg");
+        downloadImage(context, imageReference, imageView);
+    }
+
+    public static void baixarPergaminhoImage(Context context, ImageView imageView, String nomeImage) {
+        StorageReference imageReference = ConfigFirebase.getStorage()
+                .child("images")
+                .child("pergaminhos")
+                .child(nomeImage + ".png");
+        downloadImage(context, imageReference, imageView);
+    }
 }

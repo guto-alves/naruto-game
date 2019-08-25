@@ -30,6 +30,7 @@ import com.gutotech.narutogame.model.Atributo;
 import com.gutotech.narutogame.model.Atributos;
 import com.gutotech.narutogame.model.Bolsa;
 import com.gutotech.narutogame.model.Classe;
+import com.gutotech.narutogame.model.ItemShop;
 import com.gutotech.narutogame.model.Jutsu;
 import com.gutotech.narutogame.model.Personagem;
 import com.gutotech.narutogame.model.Ramen;
@@ -363,9 +364,9 @@ public class PersonagemCriarFragment extends Fragment {
 
         Bolsa bolsa = new Bolsa();
         List<Ramen> ramens = new ArrayList<>();
-        ramens.add(new Ramen(R.drawable.layout_comidas_nissin, "Merenda Ninja",
+        ramens.add(new Ramen("nissin", "Merenda Ninja",
                 "Super macarrão reforçado para uso nos intervalos das tarefas ninjas",
-                100, 25, 5));
+                25, ItemShop.TipoPgto.RYOUS, 5, 0, 1, 100));
         bolsa.setRamensList(ramens);
         personagem.setBolsa(bolsa);
 

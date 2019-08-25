@@ -10,20 +10,21 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.gutotech.narutogame.R;
+import com.gutotech.narutogame.config.Storage;
 import com.gutotech.narutogame.model.PersonagemOn;
 import com.gutotech.narutogame.model.Ramen;
 
-public class RamensBolsaRecyclerAdapter extends RecyclerView.Adapter<RamensBolsaRecyclerAdapter.MyViewHolder> {
+public class BolsaRamensAdapter extends RecyclerView.Adapter<BolsaRamensAdapter.MyViewHolder> {
     private Context context;
 
-    public RamensBolsaRecyclerAdapter(Context context) {
+    public BolsaRamensAdapter(Context context) {
         this.context = context;
     }
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View itemLista = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recycler_ramens, viewGroup, false);
+        View itemLista = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recycler_shop_item, viewGroup, false);
         return new MyViewHolder(itemLista);
     }
 
@@ -31,14 +32,14 @@ public class RamensBolsaRecyclerAdapter extends RecyclerView.Adapter<RamensBolsa
     public void onBindViewHolder(@NonNull final MyViewHolder myViewHolder, int i) {
         Ramen ramen = PersonagemOn.personagem.getBolsa().getRamensList().get(i);
 
-        myViewHolder.itemImageView.setImageResource(ramen.getResIdImagem());
+        Storage.baixarRamenImage(context, myViewHolder.itemImageView, ramen.getImage());
         myViewHolder.itemImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
             }
         });
 
-        myViewHolder.quantidadeTextView.setText("x" + ramen.getQuantidade());
+        myViewHolder.quantidadeTextView.setText("x" + ramen.getInventario());
     }
 
     @Override

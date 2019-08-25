@@ -2,16 +2,18 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bgLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#423727"
+    android:layout_marginBottom="2dp"
+    android:background="@color/colorItem1"
     android:orientation="horizontal"
     android:padding="3dp">
 
     <ImageView
-        android:id="@+id/ramenImageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/itemImageView"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -29,11 +31,11 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
-        app:layout_constraintStart_toEndOf="@+id/ramenImageView"
+        app:layout_constraintStart_toEndOf="@+id/itemImageView"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/nomeRamenTextView"
+            android:id="@+id/nomeItemTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Misso Gyoza-Ramen Reforçado "
@@ -42,7 +44,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/descriRamenTextView"
+            android:id="@+id/descriTextView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="Super macarrão reforçado para uso nos intervalos das tarefas ninjas"
@@ -62,17 +64,19 @@
         app:srcCompat="@drawable/layout_requer" />
 
     <TextView
-        android:id="@+id/ryousTextView"
+        android:id="@+id/valorTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
+        android:gravity="center"
         android:text="RY$ 25"
         android:textColor="#BFD4DC"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/qtdEditText"
         app:layout_constraintStart_toStartOf="@+id/guideline8"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -81,11 +85,7 @@
         style="@style/EditTextTheme"
         android:layout_width="30dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:ems="10"
         android:inputType="numberSigned"
@@ -93,11 +93,10 @@
         android:text="1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
-        app:layout_constraintStart_toEndOf="@+id/ryousTextView"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/comprarRamenButton"
+        android:id="@+id/comprarButton"
         style="@style/ButtonTheme"
         android:layout_width="wrap_content"
         android:layout_height="35dp"
@@ -132,5 +131,5 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.5571776" />
+        app:layout_constraintGuide_percent="0.54" />
 </android.support.constraint.ConstraintLayout>

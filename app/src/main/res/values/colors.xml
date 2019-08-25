@@ -13,4 +13,8 @@
 
     <color name="colorAmarela">#E3EDA4</color>
 
+    <color name="colorBgDialog">#E1000000</color>
+
+    <color name="colorBgButton">#676767</color>
+
 </resources>
