@@ -213,7 +213,6 @@
                 android:id="@+id/jogarSelecionarButton"
                 style="@style/ButtonTheme"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:layout_marginRight="6dp"
                 android:text="@string/button_jogar" />
 
@@ -221,7 +220,6 @@
                 android:id="@+id/removerButton"
                 style="@style/ButtonTheme"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:text="@string/button_remover" />
         </LinearLayout>
 

@@ -97,7 +97,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
-                    android:text="INFORMAÇÕES SOBRE EQUIPES"
+                    android:text="Nome missão"
                     android:textColor="#FFD274"
                     android:textSize="12sp"
                     android:textStyle="bold" />
@@ -106,9 +106,10 @@
                     android:id="@+id/msgMensagem"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
                     android:gravity="center|start"
                     android:paddingRight="3dp"
-                    android:text="Quem disse que sua caminhada para se tornar um Shinobi seria fácil? Você ainda tem muito que aprender, vá para a segunda lição. "
+                    android:text="Descrição"
                     android:textColor="#D1D8F1"
                     android:textSize="10sp" />
 
@@ -116,7 +117,7 @@
                     android:id="@+id/tempoConclusaoTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Conclusão da missão em: 00:00:34"
+                    android:text="Conclusão da missão em: --:--:--"
                     android:textColor="@android:color/holo_orange_dark" />
             </LinearLayout>
         </android.support.constraint.ConstraintLayout>
@@ -264,8 +265,9 @@
 
                 <Button
                     android:id="@+id/finalizarMissaoButton"
+                    style="@style/ButtonTheme"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="35dp"
                     android:text="@string/button_finalizar" />
 
             </LinearLayout>
@@ -273,8 +275,8 @@
 
         <Button
             android:id="@+id/cancelarMissaoButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/ButtonTheme"
+            android:layout_width="150dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="16dp"

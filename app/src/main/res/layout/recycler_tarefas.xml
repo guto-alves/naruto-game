@@ -7,13 +7,11 @@
     android:layout_height="wrap_content"
     android:layout_marginBottom="5dp"
     android:background="@color/colorItem1"
-    android:padding="5dp">
+    android:padding="3dp">
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -126,12 +124,10 @@
 
     <Button
         android:id="@+id/aceitarTarefaButton"
+        style="@style/ButtonTheme"
         android:layout_width="60dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
         android:text="@string/button_aceitar"
-        android:textSize="8sp"
+        android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
