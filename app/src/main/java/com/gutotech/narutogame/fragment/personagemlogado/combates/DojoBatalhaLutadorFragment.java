@@ -14,6 +14,8 @@ import android.view.LayoutInflater;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
@@ -152,6 +154,9 @@ public class DojoBatalhaLutadorFragment extends Fragment {
             @Override
             public void onItemClick(View view, int position) {
                 countDownTimer.cancel();
+
+                Animation animation = AnimationUtils.loadAnimation(getActivity(), R.anim.fade_out);
+                view.startAnimation(animation);
 
                 realizarAtaques(player.getJutsus().get(position), NPC.atacar());
                 atualizarLuta();

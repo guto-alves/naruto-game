@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
@@ -189,7 +190,11 @@ public class ItemShopRecyclerAdapter extends RecyclerView.Adapter<ItemShopRecycl
         if (!validarRequerimentos(numGraduacao, level)) {
             graduacaoTextView.setTextColor(Color.RED);
             levelTextView.setTextColor(Color.RED);
+        } else {
+            graduacaoTextView.setPaintFlags(graduacaoTextView.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+            levelTextView.setPaintFlags(levelTextView.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
         }
+
         dialog.show();
     }
 
