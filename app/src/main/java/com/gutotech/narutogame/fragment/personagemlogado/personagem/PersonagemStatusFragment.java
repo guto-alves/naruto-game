@@ -2,6 +2,7 @@ package com.gutotech.narutogame.fragment.personagemlogado.personagem;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,32 +39,8 @@ public class PersonagemStatusFragment extends Fragment {
     private TextView rankDTextView;
     private TextView tarefasTextView;
 
-    // Atributos
-    private TextView taijutsu;
-    private TextView bukijutsu;
-    private TextView ninjutsu;
-    private TextView genjutsu;
-    private TextView forca;
-    private TextView agilidade;
-    private TextView inteligencia;
-    private TextView selo;
-    private TextView resistencia;
-    private TextView energia;
-
-    // Fórmulas
-    private TextView vida;
-    private TextView chakra;
-    private TextView stamina;
-    private TextView atkTaiBuki;
-    private TextView atkNinGen;
-    private TextView defTaiBuki;
-    private TextView defNinGen;
-    private TextView precisao;
-    private TextView concentracao;
-    private TextView percepcao;
-    private TextView conviccao;
-    private TextView esquiva;
-    private TextView determinacao;
+    private RecyclerView atributosRecyclerView;
+    private RecyclerView formulasRecyclerView;
 
     public PersonagemStatusFragment() {
     }
@@ -96,31 +73,8 @@ public class PersonagemStatusFragment extends Fragment {
         rankDTextView = view.findViewById(R.id.rankDTextView);
         tarefasTextView = view.findViewById(R.id.tarefasTextView);
 
-        // atributos e fórmulas
-        taijutsu = view.findViewById(R.id.taiTextView);
-        bukijutsu = view.findViewById(R.id.bukTextView);
-        ninjutsu = view.findViewById(R.id.ninTextView);
-        genjutsu = view.findViewById(R.id.genTextView);
-        forca = view.findViewById(R.id.forcTextView);
-        agilidade = view.findViewById(R.id.agiTextView);
-        inteligencia = view.findViewById(R.id.inteTextView);
-        selo = view.findViewById(R.id.seloTextView);
-        resistencia = view.findViewById(R.id.resTextView);
-        energia = view.findViewById(R.id.eneTextView);
-
-        vida = view.findViewById(R.id.hpTextView);
-        chakra = view.findViewById(R.id.chakTextView);
-        stamina = view.findViewById(R.id.staTextView);
-        atkTaiBuki = view.findViewById(R.id.atkTaiBukTextView);
-        atkNinGen = view.findViewById(R.id.atkNinGenTextView);
-        defTaiBuki = view.findViewById(R.id.defTaiBukTextView);
-        defNinGen = view.findViewById(R.id.defNinGenTextView);
-        precisao = view.findViewById(R.id.precisaoTextView);
-        concentracao = view.findViewById(R.id.concTextView);
-        percepcao = view.findViewById(R.id.percTextView);
-        conviccao = view.findViewById(R.id.convTextView);
-        esquiva = view.findViewById(R.id.esquivaTextView);
-        determinacao = view.findViewById(R.id.deterTextView);
+        atributosRecyclerView = view.findViewById(R.id.atributosRecyclerView);
+        formulasRecyclerView = view.findViewById(R.id.formulasRecyclerView);
 
         carregarResumos();
         carregarAtribuitos();
@@ -157,29 +111,9 @@ public class PersonagemStatusFragment extends Fragment {
         Atributos atributos = personagem.getAtributos();
         Formulas formulas = personagem.getAtributos().getFormulas();
 
-        taijutsu.setText(String.valueOf(atributos.getTaijutsu()));
-        bukijutsu.setText(String.valueOf(atributos.getBukijutsu()));
-        ninjutsu.setText(String.valueOf(atributos.getNinjutsu()));
-        genjutsu.setText(String.valueOf(atributos.getGenjutsu()));
-        forca.setText(String.valueOf(atributos.getForca()));
-        agilidade.setText(String.valueOf(atributos.getAgilidade()));
-        inteligencia.setText(String.valueOf(atributos.getInteligencia()));
-        selo.setText(String.valueOf(atributos.getSelo()));
-        resistencia.setText(String.valueOf(atributos.getResistencia()));
-        energia.setText(String.valueOf(atributos.getEnergia()));
+    }
 
-        vida.setText(String.valueOf(formulas.getVida()));
-        chakra.setText(String.valueOf(formulas.getChakra()));
-        stamina.setText(String.valueOf(formulas.getStamina()));
-        atkTaiBuki.setText(String.valueOf(formulas.getAtkTaiBuki()));
-        atkNinGen.setText(String.valueOf(formulas.getAtkNinGen()));
-        defTaiBuki.setText(String.valueOf(formulas.getDefTaiBuki()));
-        defNinGen.setText(String.valueOf(formulas.getDefNinGen()));
-        precisao.setText(String.valueOf(formulas.getPrecisao()));
-        concentracao.setText(String.valueOf(formulas.getConcentracao()));
-        percepcao.setText(String.valueOf(formulas.getPercepcao()));
-        conviccao.setText(String.valueOf(formulas.getConviccao()));
-        esquiva.setText(String.valueOf(formulas.getEsquiva()));
-        determinacao.setText(String.valueOf(formulas.getDeterminacao()));
+    private void carregarFormulas() {
+
     }
 }
