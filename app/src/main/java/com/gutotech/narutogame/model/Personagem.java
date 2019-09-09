@@ -35,17 +35,17 @@ public class Personagem implements Serializable {
     private int combatesNPCDiarios;
     private ResumoCombates resumoCombates;
 
+    private boolean fuiPego;
+    private String nickOponente;
+    private int mapa_posicao;
+    private String idBatalhaAtual;
+
     // missões
     private ResumoMissoes resumoMissoes;
     private boolean emMissao;
     private MissaoDeTempo missaoDeTempo;
     private MissaoEspecial missaoEspecial;
     private List<Integer> tarefasConcluidasIDs;
-
-    private boolean fuiPego;
-    private String nickOponente;
-    private int mapa_posicao;
-    private String idBatalhaAtual;
 
     private List<Jutsu> jutsus;
     private Jutsu jutsuSelecionado;

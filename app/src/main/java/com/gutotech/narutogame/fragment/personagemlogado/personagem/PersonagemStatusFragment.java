@@ -2,6 +2,7 @@ package com.gutotech.narutogame.fragment.personagemlogado.personagem;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -74,10 +75,13 @@ public class PersonagemStatusFragment extends Fragment {
         tarefasTextView = view.findViewById(R.id.tarefasTextView);
 
         atributosRecyclerView = view.findViewById(R.id.atributosRecyclerView);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        atributosRecyclerView.setLayoutManager(layoutManager);
+        atributosRecyclerView.setHasFixedSize(true);
+        //atributosRecyclerView.setAdapter();
         formulasRecyclerView = view.findViewById(R.id.formulasRecyclerView);
 
         carregarResumos();
-        carregarAtribuitos();
 
         return view;
     }
