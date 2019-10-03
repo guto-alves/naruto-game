@@ -25,3 +25,9 @@
   <img src="https://user-images.githubusercontent.com/48946749/66050610-e61f8a00-e503-11e9-95ae-3cb179460adf.png" height="300">
   <img src="https://user-images.githubusercontent.com/48946749/66057296-da859080-e50e-11e9-9fa6-141c94fb8bba.png" height="300">
 </a>
+
+# Instalação
+
+Se você deseja testar o aplicativo no modo Produção, baixe o apk clicando no link abaixo:
+
+[Android .apk installer](https://drive.google.com/file/d/1z69NVvapnB9EfXKj2fanieOqD8M1tK_S/view)
