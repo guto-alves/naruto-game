@@ -26,7 +26,7 @@
   <img src="https://user-images.githubusercontent.com/48946749/66057296-da859080-e50e-11e9-9fa6-141c94fb8bba.png" height="300">
 </a>
 
-# Instalação
+# Download
 
 Se você deseja testar o aplicativo no modo Produção, baixe o apk clicando no link abaixo:
 
