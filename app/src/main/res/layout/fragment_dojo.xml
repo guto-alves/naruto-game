@@ -1,49 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     tools:context=".fragment.personagemlogado.combates.DojoFragment">
 
-    <com.ogaclejapan.smarttablayout.SmartTabLayout
-        android:id="@+id/smarttablayout"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="@color/colorPrimary"
-        app:stl_indicatorAlwaysInCenter="false"
-        app:stl_indicatorWithoutPadding="false"
-        app:stl_indicatorInFront="false"
-        app:stl_indicatorInterpolation="smart"
-        app:stl_indicatorGravity="bottom"
-        app:stl_indicatorColor="@android:color/white"
-        app:stl_indicatorThickness="4dp"
-        app:stl_indicatorWidth="auto"
-        app:stl_indicatorCornerRadius="2dp"
-        app:stl_overlineColor="#4D000000"
-        app:stl_overlineThickness="0dp"
-        app:stl_underlineColor="#4D000000"
-        app:stl_underlineThickness="1dp"
-        app:stl_dividerColor="@android:color/transparent"
-        app:stl_dividerThickness="1dp"
-        app:stl_defaultTabBackground="?attr/selectableItemBackground"
-        app:stl_defaultTabTextAllCaps="true"
-        app:stl_defaultTabTextColor="@android:color/white"
-        app:stl_defaultTabTextSize="12sp"
-        app:stl_defaultTabTextHorizontalPadding="16dp"
-        app:stl_defaultTabTextMinWidth="0dp"
-        app:stl_distributeEvenly="true"
-        app:stl_clickable="true"
-        app:stl_titleOffset="24dp"
-        app:stl_drawDecorationAfterTab="false"
-        />
-
-    <android.support.v4.view.ViewPager
-        android:id="@+id/viewpager"
+    <FrameLayout
+        android:id="@+id/frameConteiner"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/smarttablayout"
-        />
+        android:layout_above="@id/bottom_navigation"></FrameLayout>
 
-</LinearLayout>
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorPrimary"
+        app:itemIconTint="@drawable/nav_item_color_state"
+        app:itemTextColor="@drawable/nav_item_color_state"
+        app:menu="@menu/bottom_navigation_menu_dojo"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="36dp" />
+</RelativeLayout>

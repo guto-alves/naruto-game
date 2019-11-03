@@ -173,5 +173,7 @@
     <string name="arquivo">Arquivo</string>
     <string name="treinamento_manual">Treinamento Manual</string>
     <string name="quantidade">Quantidade</string>
+    <string name="batalhas_do_dojo_npc">Batalhas do Dojo NPC</string>
+    <string name="batalhas_do_dojo_pvp">Batalhas do Dojo PVP</string>
 
 </resources>
