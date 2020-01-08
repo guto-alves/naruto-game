@@ -7,13 +7,13 @@
     android:background="@drawable/layout_pagina_repeat"
     android:fillViewport="true">
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".fragment.personagemlogado.personagem.FidelidadeFragment">
+        tools:context=".view.fragment.personagemlogado.personagem.FidelidadeFragment">
 
         <!-- Mensagem sobre a seção -->
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/msgConstraint1"
             android:layout_width="match_parent"
             android:layout_height="200dp"
@@ -113,7 +113,7 @@
                     android:textColor="#D1D8F1"
                     android:textSize="10sp" />
             </LinearLayout>
-        </android.support.constraint.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <GridView
             android:id="@+id/recompensasReceberGridView"
@@ -132,5 +132,5 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/msgConstraint1" />
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

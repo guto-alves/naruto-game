@@ -7,10 +7,10 @@
     android:background="@drawable/layout_pagina_repeat"
     android:fillViewport="true">
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".fragment.personagemlogado.personagem.SorteNinjaFragment">
+        tools:context=".view.fragment.personagemlogado.personagem.SorteNinjaFragment">
 
         <ImageView
             android:id="@+id/baseImageView"
@@ -121,7 +121,7 @@
             app:layout_constraintStart_toStartOf="@+id/guideline41"
             app:layout_constraintTop_toTopOf="@+id/imageView41" />
 
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/itensSorteNinjaRecyclerView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -133,14 +133,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView41" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline40"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.41" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline41"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -197,5 +197,5 @@
             tools:layout_editor_absoluteX="63dp"
             tools:layout_editor_absoluteY="36dp" />
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

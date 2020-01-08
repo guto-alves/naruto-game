@@ -7,10 +7,10 @@
     android:background="@drawable/layout_pagina_repeat"
     android:fillViewport="true">
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".fragment.personagemlogado.vilaatual.MapaVilaFragment">
+        tools:context=".view.fragment.personagemlogado.vilaatual.MapaVilaFragment">
 
         <GridView
             android:id="@+id/mapavila"
@@ -67,7 +67,7 @@
 
         </LinearLayout>
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="395dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -286,13 +286,13 @@
             </LinearLayout>
 
 
-            <android.support.constraint.Guideline
+            <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline58"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 app:layout_constraintGuide_percent="0.5012658" />
-        </android.support.constraint.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

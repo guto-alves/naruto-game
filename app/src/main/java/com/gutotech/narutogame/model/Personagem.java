@@ -1,7 +1,7 @@
 package com.gutotech.narutogame.model;
 
 import com.google.firebase.database.DatabaseReference;
-import com.gutotech.narutogame.config.ConfigFirebase;
+import com.gutotech.narutogame.config.FirebaseConfig;
 
 import java.io.Serializable;
 import java.util.List;
@@ -73,7 +73,7 @@ public class Personagem implements Serializable {
     }
 
     public void salvar() {
-        DatabaseReference personagemReference = ConfigFirebase.getDatabase()
+        DatabaseReference personagemReference = FirebaseConfig.getDatabase()
                 .child("personagem")
                 .child(nick);
         personagemReference.setValue(this);

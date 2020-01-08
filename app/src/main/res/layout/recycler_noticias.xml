@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:layout_marginBottom="3dp">
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
@@ -33,7 +33,7 @@
             app:layout_constraintStart_toStartOf="@+id/detalheImageView"
             app:layout_constraintTop_toTopOf="@+id/detalheImageView" />
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
         android:id="@+id/linearbgnoticia"

@@ -7,10 +7,10 @@
     android:background="@drawable/layout_pagina_repeat"
     android:fillViewport="true">
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".fragment.personagemlogado.ranking.RankNinjasFragment">
+        tools:context=".view.fragment.personagemlogado.ranking.RankNinjasFragment">
 
 
         <ImageView
@@ -195,7 +195,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/filtrosLinear" />
 
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rankNinjasRecyclerView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -262,28 +262,28 @@
             app:layout_constraintStart_toStartOf="@+id/guideline47"
             app:layout_constraintTop_toTopOf="@+id/imageView42" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline44"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.14" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline45"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_begin="163dp" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline46"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.6" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline47"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -316,11 +316,11 @@
             app:layout_constraintStart_toStartOf="@+id/guideline46"
             app:layout_constraintTop_toTopOf="@+id/imageView42" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline48"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.71" />
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

@@ -7,13 +7,13 @@
     android:background="@drawable/layout_pagina_repeat"
     android:fillViewport="true">
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".fragment.personagemlogado.vilaatual.MissoesEsperaFragment">
+        tools:context=".view.fragment.personagemlogado.vilaatual.MissoesEsperaFragment">
 
         <!-- Mensagem de Missão em espera -->
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/msgConstraint1"
             android:layout_width="match_parent"
             android:layout_height="220dp"
@@ -120,10 +120,10 @@
                     android:text="Conclusão da missão em: --:--:--"
                     android:textColor="@android:color/holo_orange_dark" />
             </LinearLayout>
-        </android.support.constraint.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <!-- Mensagem de Missão concluída-->
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/msgConstraint2"
             android:layout_width="match_parent"
             android:layout_height="270dp"
@@ -271,7 +271,7 @@
                     android:text="@string/button_finalizar" />
 
             </LinearLayout>
-        </android.support.constraint.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <Button
             android:id="@+id/cancelarMissaoButton"
@@ -288,5 +288,5 @@
             app:layout_constraintTop_toBottomOf="@+id/msgConstraint1" />
 
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

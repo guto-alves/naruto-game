@@ -6,13 +6,13 @@
     android:layout_height="match_parent"
     android:fillViewport="true">
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/layout_pagina_repeat"
-        tools:context=".fragment.personagemlogado.academia.AcademiaTreinamentoFragment">
+        tools:context=".view.fragment.personagemlogado.academia.AcademiaTreinamentoFragment">
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/msgConstraint1"
             android:layout_width="match_parent"
             android:layout_height="300dp"
@@ -115,9 +115,9 @@ Terça-Feira, é o dia que é renovado o limite semanal, mesmo que você não te
 
             </LinearLayout>
 
-        </android.support.constraint.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/msgTreinamentoConcluido"
             android:layout_width="match_parent"
             android:layout_height="210dp"
@@ -317,7 +317,7 @@ Terça-Feira, é o dia que é renovado o limite semanal, mesmo que você não te
 
             </LinearLayout>
 
-        </android.support.constraint.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ImageView
             android:id="@+id/imageView27"
@@ -360,7 +360,7 @@ Terça-Feira, é o dia que é renovado o limite semanal, mesmo que você não te
             app:layout_constraintStart_toStartOf="@+id/guideline23"
             app:layout_constraintTop_toTopOf="@+id/imageView27" />
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout4"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -463,23 +463,23 @@ Terça-Feira, é o dia que é renovado o limite semanal, mesmo que você não te
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <android.support.constraint.Guideline
+            <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline25"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 app:layout_constraintGuide_percent="0.57" />
 
-            <android.support.constraint.Guideline
+            <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline26"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 app:layout_constraintGuide_percent="0.75" />
 
-        </android.support.constraint.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline23"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -527,7 +527,7 @@ Terça-Feira, é o dia que é renovado o limite semanal, mesmo que você não te
                     android:typeface="serif" />
             </LinearLayout>
 
-            <android.support.constraint.ConstraintLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -558,7 +558,7 @@ Terça-Feira, é o dia que é renovado o limite semanal, mesmo que você não te
                     app:layout_constraintBottom_toBottomOf="@+id/limeteTreinamentoSemanalProgressBar"
                     app:layout_constraintStart_toStartOf="@+id/limeteTreinamentoSemanalProgressBar"
                     app:layout_constraintTop_toTopOf="@+id/limeteTreinamentoSemanalProgressBar" />
-            </android.support.constraint.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
                 android:id="@+id/textView55"
@@ -570,7 +570,7 @@ Terça-Feira, é o dia que é renovado o limite semanal, mesmo que você não te
                 android:textSize="12sp" />
         </LinearLayout>
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/msgNaoTemPontosConstraint"
             android:layout_width="match_parent"
             android:layout_height="210dp"
@@ -690,10 +690,10 @@ Terça-Feira, é o dia que é renovado o limite semanal, mesmo que você não te
 
             </LinearLayout>
 
-        </android.support.constraint.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <!-- Msg Pontos de Treino -->
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/msgTemPontosConstraint"
             android:layout_width="match_parent"
             android:layout_height="150dp"
@@ -834,7 +834,7 @@ Terça-Feira, é o dia que é renovado o limite semanal, mesmo que você não te
 
                 </LinearLayout>
             </LinearLayout>
-        </android.support.constraint.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <LinearLayout
             android:id="@+id/linearLayout112"
@@ -874,7 +874,7 @@ Terça-Feira, é o dia que é renovado o limite semanal, mesmo que você não te
                     android:typeface="serif" />
             </LinearLayout>
 
-            <android.support.constraint.ConstraintLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -905,7 +905,7 @@ Terça-Feira, é o dia que é renovado o limite semanal, mesmo que você não te
                     app:layout_constraintBottom_toBottomOf="@+id/proxPontoHabProgressBar"
                     app:layout_constraintStart_toStartOf="@+id/proxPontoHabProgressBar"
                     app:layout_constraintTop_toTopOf="@+id/proxPontoHabProgressBar" />
-            </android.support.constraint.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
                 android:layout_width="match_parent"
@@ -917,7 +917,7 @@ Terça-Feira, é o dia que é renovado o limite semanal, mesmo que você não te
         </LinearLayout>
 
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout5"
             android:layout_width="match_parent"
             android:layout_height="220dp"
@@ -1022,7 +1022,7 @@ Terça-Feira, é o dia que é renovado o limite semanal, mesmo que você não te
                     android:layout_height="wrap_content"
                     android:orientation="horizontal" />
             </LinearLayout>
-        </android.support.constraint.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ImageView
             android:id="@+id/imageView38"
@@ -1054,7 +1054,7 @@ Terça-Feira, é o dia que é renovado o limite semanal, mesmo que você não te
             app:layout_constraintStart_toStartOf="@+id/imageView38"
             app:layout_constraintTop_toTopOf="@+id/imageView38" />
 
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/pontosDistribuidosRecyclerView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -1067,5 +1067,5 @@ Terça-Feira, é o dia que é renovado o limite semanal, mesmo que você não te
             app:layout_constraintTop_toBottomOf="@+id/imageView38" />
 
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

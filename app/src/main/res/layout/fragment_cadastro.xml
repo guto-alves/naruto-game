@@ -7,14 +7,14 @@
     android:layout_height="match_parent"
     android:fillViewport="true">
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/layout_pagina_repeat"
         android:paddingBottom="8dp"
-        tools:context=".fragment.deslogado.CadastroFragment">
+        tools:context=".view.fragment.deslogado.CadastroFragment">
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/msgConstraint2"
             android:layout_width="0dp"
             android:layout_height="210dp"
@@ -112,7 +112,7 @@ Após seu cadastro será enviando um email para que você confirme seu cadastro,
                     android:textSize="10sp" />
 
             </LinearLayout>
-        </android.support.constraint.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <EditText
             android:id="@+id/nomeCompletoEditText"
@@ -219,5 +219,5 @@ Após seu cadastro será enviando um email para que você confirme seu cadastro,
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/sexo_spinner" />
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

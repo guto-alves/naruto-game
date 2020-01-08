@@ -6,12 +6,12 @@
     android:layout_height="match_parent"
     android:background="@drawable/layout_pagina_repeat">
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".fragment.personagemlogado.vilaatual.NinjaShopFragment">
+        tools:context=".view.fragment.personagemlogado.vilaatual.NinjaShopFragment">
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/msgConstraint2"
             android:layout_width="match_parent"
             android:layout_height="240dp"
@@ -109,7 +109,7 @@
                     android:textColor="#D1D8F1"
                     android:textSize="10sp" />
 
-                <android.support.constraint.ConstraintLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -133,9 +133,9 @@
                         app:layout_constraintBottom_toBottomOf="@+id/armasQuinzenalProgressBar"
                         app:layout_constraintStart_toStartOf="@+id/armasQuinzenalProgressBar"
                         app:layout_constraintTop_toTopOf="@+id/armasQuinzenalProgressBar" />
-                </android.support.constraint.ConstraintLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
-        </android.support.constraint.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <LinearLayout
             android:id="@+id/linearLayout17"
@@ -246,7 +246,7 @@
             app:layout_constraintTop_toTopOf="@+id/imageView45"
             app:layout_constraintVertical_bias="0.484" />
 
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/itensShopRecyclerView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -258,26 +258,26 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView45" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline55"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.36" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline56"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.77" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline57"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.55" />
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

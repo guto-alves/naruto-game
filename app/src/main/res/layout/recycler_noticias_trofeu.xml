@@ -7,7 +7,7 @@
     android:layout_marginBottom="3dp"
     android:background="#423727">
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent">
 
@@ -35,7 +35,7 @@
             app:layout_constraintStart_toStartOf="@+id/detalheImageView"
             app:layout_constraintTop_toTopOf="@+id/detalheImageView" />
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageView
         android:id="@+id/imageView26"

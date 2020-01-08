@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/layout_pagina_repeat"
-    tools:context=".fragment.personagemlogado.combates.Dojo4x4Fragment">
+    tools:context=".view.fragment.personagemlogado.combates.Dojo4x4Fragment">
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/msgConstraint2"
         android:layout_width="0dp"
         android:layout_height="290dp"
@@ -104,7 +104,7 @@
                 android:textColor="#D1D8F1"
                 android:textSize="10sp" />
 
-            <android.support.constraint.ConstraintLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -130,7 +130,7 @@
                     app:layout_constraintBottom_toBottomOf="@+id/progressBar2"
                     app:layout_constraintStart_toStartOf="@+id/progressBar2"
                     app:layout_constraintTop_toTopOf="@+id/progressBar2" />
-            </android.support.constraint.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
                 android:layout_width="match_parent"
@@ -147,6 +147,6 @@
                 android:textColor="@android:color/holo_orange_dark"
                 android:textSize="12sp" />
         </LinearLayout>
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

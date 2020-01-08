@@ -8,11 +8,11 @@
     android:layout_height="match_parent"
     android:fillViewport="true">
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/layout_pagina_repeat"
-        tools:context=".fragment.logado.PersonagemSelecionarFragment">
+        tools:context=".view.fragment.logado.PersonagemSelecionarFragment">
 
         <ImageView
             android:id="@+id/profileSelecionarImageView"
@@ -238,6 +238,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView6" />
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>

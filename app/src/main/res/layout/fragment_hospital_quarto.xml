@@ -5,9 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/layout_pagina_repeat"
-    tools:context=".fragment.personagemlogado.combates.HospitalQuartoFragment">
+    tools:context=".view.fragment.personagemlogado.combates.HospitalQuartoFragment">
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/msgConstraint"
         android:layout_width="match_parent"
         android:layout_height="271dp"
@@ -127,6 +127,6 @@
 
         </LinearLayout>
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>

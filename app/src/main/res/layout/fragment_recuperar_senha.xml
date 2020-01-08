@@ -5,9 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/layout_pagina_repeat"
-    tools:context=".fragment.deslogado.RecuperarSenhaFragment">
+    tools:context=".view.fragment.deslogado.RecuperarSenhaFragment">
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/msgConstraint"
         android:layout_width="match_parent"
         android:layout_height="300dp"
@@ -109,6 +109,6 @@
 
         </LinearLayout>
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>

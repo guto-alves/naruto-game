@@ -1,7 +1,7 @@
 package com.gutotech.narutogame.model;
 
 import com.google.firebase.database.DatabaseReference;
-import com.gutotech.narutogame.config.ConfigFirebase;
+import com.gutotech.narutogame.config.FirebaseConfig;
 
 public class Equipe {
     private String nome;
@@ -24,7 +24,7 @@ public class Equipe {
     }
 
     public void salvar() {
-        DatabaseReference reference = ConfigFirebase.getDatabase()
+        DatabaseReference reference = FirebaseConfig.getDatabase()
                 .child("equipe")
                 .child(nome);
         reference.setValue(this);

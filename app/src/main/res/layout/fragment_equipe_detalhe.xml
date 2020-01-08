@@ -6,13 +6,13 @@
     android:layout_height="match_parent"
     android:fillViewport="true">
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/layout_pagina_repeat"
-        tools:context=".fragment.personagemlogado.equipe.EquipeDetalheFragment">
+        tools:context=".view.fragment.personagemlogado.equipe.EquipeDetalheFragment">
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/msgConstraint1"
             android:layout_width="match_parent"
             android:layout_height="220dp"
@@ -113,9 +113,9 @@ Sair de sua Equipe e ajudar outra em Eventos não te dá Experiência caso já t
                     android:textColor="#D1D8F1"
                     android:textSize="10sp" />
             </LinearLayout>
-        </android.support.constraint.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"
             android:layout_height="200dp"
             android:layout_marginStart="8dp"
@@ -144,7 +144,7 @@ Sair de sua Equipe e ajudar outra em Eventos não te dá Experiência caso já t
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-        </android.support.constraint.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <LinearLayout
             android:layout_width="0dp"
@@ -198,7 +198,7 @@ Sair de sua Equipe e ajudar outra em Eventos não te dá Experiência caso já t
                     android:layout_weight="1"
                     android:orientation="vertical">
 
-                    <android.support.constraint.ConstraintLayout
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
@@ -226,7 +226,7 @@ Sair de sua Equipe e ajudar outra em Eventos não te dá Experiência caso já t
                             app:layout_constraintBottom_toBottomOf="@+id/progressBar"
                             app:layout_constraintStart_toStartOf="@+id/progressBar"
                             app:layout_constraintTop_toTopOf="@+id/progressBar" />
-                    </android.support.constraint.ConstraintLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -286,5 +286,5 @@ Sair de sua Equipe e ajudar outra em Eventos não te dá Experiência caso já t
         </LinearLayout>
 
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

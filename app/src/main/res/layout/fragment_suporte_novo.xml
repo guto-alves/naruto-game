@@ -6,11 +6,11 @@
     android:layout_height="match_parent"
     android:fillViewport="true">
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/layout_pagina_repeat"
-        tools:context=".fragment.logado.SuporteNovoFragment">
+        tools:context=".view.fragment.logado.SuporteNovoFragment">
 
         <LinearLayout
             android:id="@+id/linearLayout9"
@@ -125,21 +125,21 @@
                 android:textColor="@color/colorTextos"
                 android:textStyle="bold" />
 
-            <android.support.design.widget.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@android:color/white"
                 app:counterEnabled="true"
                 app:counterMaxLength="5000">
 
-                <android.support.design.widget.TextInputEditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/descricaoEditText"
                     android:layout_width="match_parent"
                     android:layout_height="170dp"
                     android:gravity="start|top"
                     android:inputType="textMultiLine"
                     android:padding="3dp" />
-            </android.support.design.widget.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:id="@+id/textView467"
@@ -210,7 +210,7 @@
             app:layout_constraintStart_toStartOf="@+id/linearLayout9"
             app:layout_constraintTop_toTopOf="@+id/guideline20" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline20"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -218,5 +218,5 @@
             app:layout_constraintGuide_percent="0.17" />
 
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

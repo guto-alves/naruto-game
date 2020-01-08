@@ -12,9 +12,9 @@
         android:background="@drawable/layout_pagina_repeat"
         android:gravity="center|top"
         android:orientation="vertical"
-        tools:context=".fragment.personagemlogado.combates.BatalhasDojoNPCFragment">
+        tools:context=".view.fragment.personagemlogado.combates.BatalhasDojoNPCFragment">
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/msgConstraint"
             android:layout_width="match_parent"
             android:layout_height="220dp"
@@ -103,7 +103,7 @@
                     android:textColor="#D1D8F1"
                     android:textSize="10sp" />
 
-                <android.support.constraint.ConstraintLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
@@ -131,11 +131,11 @@
                         app:layout_constraintBottom_toBottomOf="@+id/combatesNPCDiarioProgressBar"
                         app:layout_constraintStart_toStartOf="@+id/combatesNPCDiarioProgressBar"
                         app:layout_constraintTop_toTopOf="@+id/combatesNPCDiarioProgressBar" />
-                </android.support.constraint.ConstraintLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
             </LinearLayout>
 
-        </android.support.constraint.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
             android:id="@+id/statusDojoNPCTextView"
@@ -175,7 +175,7 @@
                         android:layout_height="160dp"
                         android:src="@drawable/layout_profile_1_1" />
 
-                    <android.support.constraint.ConstraintLayout
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="160dp"
                         android:layout_height="28dp">
 
@@ -203,7 +203,7 @@
                             app:layout_constraintEnd_toEndOf="@+id/imageView8"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="@+id/imageView8" />
-                    </android.support.constraint.ConstraintLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
                 </LinearLayout>
 
                 <LinearLayout
@@ -232,7 +232,7 @@
                         android:layout_height="160dp"
                         android:src="@drawable/layout_profile_1_1" />
 
-                    <android.support.constraint.ConstraintLayout
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="160dp"
                         android:layout_height="28dp">
 
@@ -262,7 +262,7 @@
                             app:layout_constraintEnd_toEndOf="@+id/imageView9"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="@+id/imageView9" />
-                    </android.support.constraint.ConstraintLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
                 </LinearLayout>
             </LinearLayout>
 

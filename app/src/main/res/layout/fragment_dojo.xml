@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.personagemlogado.combates.DojoFragment">
+    tools:context=".view.fragment.personagemlogado.combates.DojoFragment">
 
     <FrameLayout
         android:id="@+id/frameConteiner"
@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         android:layout_above="@id/bottom_navigation"></FrameLayout>
 
-    <android.support.design.widget.BottomNavigationView
+    <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
