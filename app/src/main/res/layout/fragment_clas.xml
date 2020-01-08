@@ -11,7 +11,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".view.fragment.personagemlogado.personagem.ClasFragment">
+        tools:context=".ui.personagemlogado.personagem.ClasFragment">
 
         <ImageView
             android:id="@+id/imageView32"

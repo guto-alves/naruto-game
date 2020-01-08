@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.activity.DeslogadoActivity">
+    tools:context=".ui.deslogado.DeslogadoActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -31,7 +31,8 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/layout_titulo_secao2" />
+                    app:srcCompat="@drawable/layout_titulo_secao2"
+                    android:contentDescription="@string/titulo_da_secao" />
 
                 <TextView
                     android:id="@+id/tituloSecaoTextView"

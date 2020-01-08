@@ -11,7 +11,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".view.fragment.logado.PersonagemCriarFragment">
+        tools:context=".ui.logado.PersonagemCriarFragment">
 
         <LinearLayout
             android:id="@+id/linearLayout4"

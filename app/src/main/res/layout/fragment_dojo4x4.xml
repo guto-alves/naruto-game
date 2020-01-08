@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/layout_pagina_repeat"
-    tools:context=".view.fragment.personagemlogado.combates.Dojo4x4Fragment">
+    tools:context=".ui.personagemlogado.combates.Dojo4x4Fragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/msgConstraint2"

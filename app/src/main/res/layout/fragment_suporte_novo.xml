@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/layout_pagina_repeat"
-        tools:context=".view.fragment.logado.SuporteNovoFragment">
+        tools:context=".ui.logado.SuporteNovoFragment">
 
         <LinearLayout
             android:id="@+id/linearLayout9"

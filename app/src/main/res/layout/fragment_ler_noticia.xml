@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/layout_pagina_repeat"
-    tools:context=".view.fragment.deslogado.LerNoticiaFragment">
+    tools:context=".ui.deslogado.lernoticia.LerNoticiaFragment">
 
     <ImageView
         android:id="@+id/imageView3"

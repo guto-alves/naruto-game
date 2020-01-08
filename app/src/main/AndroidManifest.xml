@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".view.activity.SplashActivity"
+            android:name=".ui.SplashActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@style/Splash">
 
@@ -23,17 +23,17 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.activity.PersonagemLogadoActivity"
+            android:name=".ui.personagemlogado.PersonagemLogadoActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="@string/title_activity_personagem_logado"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".view.activity.LogadoSelecionarActivity"
+            android:name=".ui.logado.LogadoSelecionarActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="@string/title_activity_logado_selecionar"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".view.activity.DeslogadoActivity"
+            android:name=".ui.deslogado.DeslogadoActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar"></activity>

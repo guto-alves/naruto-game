@@ -12,7 +12,7 @@
         android:background="@drawable/layout_pagina_repeat"
         android:gravity="center|top"
         android:orientation="vertical"
-        tools:context=".view.fragment.personagemlogado.combates.BatalhasDojoNPCFragment">
+        tools:context=".ui.personagemlogado.combates.BatalhasDojoNPCFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/msgConstraint"

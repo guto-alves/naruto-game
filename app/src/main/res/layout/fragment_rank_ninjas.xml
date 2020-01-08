@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".view.fragment.personagemlogado.ranking.RankNinjasFragment">
+        tools:context=".ui.personagemlogado.ranking.RankNinjasFragment">
 
 
         <ImageView

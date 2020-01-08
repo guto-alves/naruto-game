@@ -18,17 +18,14 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="digite_o_email_da_sua_conta">Digite o email da sua conta</string>
     <string name="hall_da_fama">Hall da fama</string>
-    <string name="confirmar_senha">Confirmar Senha</string>
 
     <!-- Textos -->
-    <string name="senha">Senha</string>
-    <string name="email">Email</string>
     <string name="esqueceu_a_senha">Esqueceu a Senha?</string>
     <string name="noticias">Notícias</string>
     <string name="title">Title</string>
 
     <!-- Buttons -->
-    <string name="button_cadastrar">Cadastrar</string>
+
     <string name="button_recuperar_senha">Recuperar Senha</string>
     <string name="button_enviar_alteracoes">Enviar Alterações</string>
     <string name="button_alterar_senha">Alterar Senha</string>
@@ -92,13 +89,11 @@
     <string name="cidade">Cidade</string>
     <string name="bairro">Bairro</string>
     <string name="estado">Estado</string>
-    <string name="nome_completo">Nome Completo</string>
 
 
     <!-- Títulos das seções -->
     <!-- DESLOGADO -->
     <string name="secao_home">HOME</string>
-    <string name="secao_crie_sua_conta">CRIE SUA CONTA</string>
     <string name="secao_esqueci_minha_senha">ESQUECI MINHA SENHA</string>
     <string name="secao_hall_da_fama">HALL DA FAMA</string>
 
@@ -175,5 +170,22 @@
     <string name="quantidade">Quantidade</string>
     <string name="batalhas_do_dojo_npc">Batalhas do Dojo NPC</string>
     <string name="batalhas_do_dojo_pvp">Batalhas do Dojo PVP</string>
+    <string name="titulo_da_secao">Título da seção</string>
 
+    <!-- Secao cadastro -->
+    <string name="secao_cadastro">CRIE SUA CONTA</string>
+    <string name="agora_falta_pouco">AGORA FALTA POUCO!</string>
+    <string name="preencha_os_dados_abaixo_para_criar_sua_conta">Preencha os dados abaixo para criar sua conta do Naruto Game e ter seu personagem nessa aventura. Após seu cadastro será enviando um email para que você confirme seu cadastro, portanto é necessário informar um EMAIL VÁLIDO, para que possa jogar Naruto Game!</string>
+    <string name="nome_completo">Nome Completo</string>
+    <string name="email">Email</string>
+    <string name="senha">Senha</string>
+    <string name="confirmar_senha">Confirmar Senha</string>
+    <string name="button_cadastrar">Cadastrar</string>
+    <string name="cadastro_concluido">PARABÉNS SEU CADASTRO FOI CONCLUÍDO COM SUCESSO!</string>
+    <string name="failure_senha_invalida">Campo \'Senha\' com valor inválido! No mínimo são requeridos 6 caractéres e os caractéres permitidos são: 0–9 A-Z _.</string>
+    <string name="failure_email_invalido">Campo \'Email\' com valor inválido! Verifique o dado e tente novamente</string>
+    <string name="failure_email_ja_existe">O endereço de email especificado ja está cadastrado, por favor use um endereço de e-mail diferente.</string>
+    <string name="failure_error_ao_cadastrar">Erro ao realizar cadastro</string>
+    <string name="failure_senhas_diferentes">Campo \'Senha\' e \'Confirmar Senha\' com valores diferentes! Verifique os dados e tente novamente.</string>
+    <string name="campo_nome">Campo \"nome\" é obrigatório</string>
 </resources>

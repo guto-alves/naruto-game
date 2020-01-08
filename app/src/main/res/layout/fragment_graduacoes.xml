@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".view.fragment.personagemlogado.academia.GraduacoesFragment">
+        tools:context=".ui.personagemlogado.academia.GraduacoesFragment">
 
         <ImageView
             android:id="@+id/imageView25"
