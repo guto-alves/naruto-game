@@ -13,10 +13,10 @@ public class Equipe {
     private int pontos;
     private String vila;
 
-    private Personagem lider;
-    private Personagem integrante1;
-    private Personagem integrante2;
-    private Personagem integrante3;
+    private Character lider;
+    private Character integrante1;
+    private Character integrante2;
+    private Character integrante3;
     private int quantidadeMembros;
 
     public Equipe() {
@@ -30,35 +30,35 @@ public class Equipe {
         reference.setValue(this);
     }
 
-    public Personagem getLider() {
+    public Character getLider() {
         return lider;
     }
 
-    public void setLider(Personagem lider) {
+    public void setLider(Character lider) {
         this.lider = lider;
     }
 
-    public Personagem getIntegrante1() {
+    public Character getIntegrante1() {
         return integrante1;
     }
 
-    public void setIntegrante1(Personagem integrante1) {
+    public void setIntegrante1(Character integrante1) {
         this.integrante1 = integrante1;
     }
 
-    public Personagem getIntegrante2() {
+    public Character getIntegrante2() {
         return integrante2;
     }
 
-    public void setIntegrante2(Personagem integrante2) {
+    public void setIntegrante2(Character integrante2) {
         this.integrante2 = integrante2;
     }
 
-    public Personagem getIntegrante3() {
+    public Character getIntegrante3() {
         return integrante3;
     }
 
-    public void setIntegrante3(Personagem integrante3) {
+    public void setIntegrante3(Character integrante3) {
         this.integrante3 = integrante3;
     }
 

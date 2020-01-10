@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".ui.personagemlogado.personagem.FidelidadeFragment">
+        tools:context=".ui.onlinecharacter.character.FidelidadeFragment">
 
         <!-- Mensagem sobre a seção -->
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -109,7 +109,7 @@
                     android:gravity="center|start"
                     android:paddingEnd="3dp"
                     android:paddingRight="3dp"
-                    android:text="Ao logar diariamente você pode coletar recompensas para seu personagem. Você deve entrar no jogo durante 8 dias seguidos para conseguir todas as recompensas e começar de novo. Caso você não logue um dos dias, o contador irá retornar para o primeiro dia."
+                    android:text="Ao logar diariamente você pode coletar recompensas para seu character. Você deve entrar no jogo durante 8 dias seguidos para conseguir todas as recompensas e começar de novo. Caso você não logue um dos dias, o contador irá retornar para o primeiro dia."
                     android:textColor="#D1D8F1"
                     android:textSize="10sp" />
             </LinearLayout>

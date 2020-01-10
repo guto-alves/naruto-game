@@ -11,7 +11,7 @@ import com.bumptech.glide.Glide;
 import com.google.firebase.storage.StorageReference;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.firebase.FirebaseConfig;
-import com.gutotech.narutogame.data.model.Personagem;
+import com.gutotech.narutogame.data.model.Character;
 import com.gutotech.narutogame.data.model.PersonagemOn;
 
 import java.util.List;
@@ -19,9 +19,9 @@ import java.util.List;
 public class MapaGridAdapter extends BaseAdapter {
     private int tamanho;
     private Context context;
-    private List<Personagem> personagensNoMapa;
+    private List<Character> personagensNoMapa;
 
-    public MapaGridAdapter(Context context, int tamanho, List<Personagem> personagens) {
+    public MapaGridAdapter(Context context, int tamanho, List<Character> personagens) {
         this.context = context;
         this.tamanho = tamanho;
         this.personagensNoMapa = personagens;
@@ -53,11 +53,11 @@ public class MapaGridAdapter extends BaseAdapter {
         ImageView spriteImageView = convertView.findViewById(R.id.spriteImageView);
 
         for (int i = 0; i < personagensNoMapa.size(); i++) {
-            Personagem personagem = personagensNoMapa.get(i);
+            Character character = personagensNoMapa.get(i);
 
-            if (personagem.getMapa_posicao() == position) {
-                if (personagem.getVila().equals(PersonagemOn.personagem.getVila())) {
-                    if (personagem.getNick().equals(PersonagemOn.personagem.getNick()))
+            if (character.getMapa_posicao() == position) {
+                if (character.getVila().equals(PersonagemOn.character.getVila())) {
+                    if (character.getNick().equals(PersonagemOn.character.getNick()))
                         fundoImageView.setImageResource(R.drawable.layout_map_me2);
                     else
                         fundoImageView.setImageResource(R.drawable.layout_map_green2);
@@ -67,7 +67,7 @@ public class MapaGridAdapter extends BaseAdapter {
                 StorageReference imagemRef = FirebaseConfig.getStorage()
                         .child("images")
                         .child("sprites")
-                        .child(personagem.getIdProfile() + ".png");
+                        .child(character.getIdProfile() + ".png");
 
                 Glide.with(context)
                         .load(imagemRef)

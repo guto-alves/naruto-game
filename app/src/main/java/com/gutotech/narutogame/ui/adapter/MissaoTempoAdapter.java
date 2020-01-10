@@ -41,7 +41,7 @@ public class MissaoTempoAdapter extends RecyclerView.Adapter<MissaoTempoAdapter.
         myViewHolder.graduacao.setText(missao.getGraduacao());
         myViewHolder.level.setText("Lvl. " + missao.getLevel());
 
-        if (missao.getLevel() > PersonagemOn.personagem.getLevel()) {
+        if (missao.getLevel() > PersonagemOn.character.getLevel()) {
             myViewHolder.aceitar.setEnabled(false);
             myViewHolder.aceitar.setOnClickListener(null);
         } else {

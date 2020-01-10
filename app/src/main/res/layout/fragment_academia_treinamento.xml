@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/layout_pagina_repeat"
-        tools:context=".ui.personagemlogado.academia.AcademiaTreinamentoFragment">
+        tools:context=".ui.onlinecharacter.academia.AcademiaTreinamentoFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/msgConstraint1"
@@ -107,9 +107,9 @@
                     android:layout_height="wrap_content"
                     android:gravity="center|start"
                     android:paddingRight="3dp"
-                    android:text="Seu personagem é capaz de treinar seus atributos desde o level 1 e esse treinamento possui um limite diário. Quanto mais você treinar, melhor serão seus resultados em luta no dojo e contra seus inimigos.
+                    android:text="Seu character é capaz de treinar seus atributos desde o level 1 e esse treinamento possui um limite diário. Quanto mais você treinar, melhor serão seus resultados em luta no dojo e contra seus inimigos.
 Os dias NÃO treinados vão se acumulando: Por exemplo, se você não pode treinar na terça e na quarta, na quinta-feira você poderá treinar o equivalente de terça, quarta e quinta.
-Terça-Feira, é o dia que é renovado o limite semanal, mesmo que você não tenha treinado, portanto tente sempre treinar seu limite semanal até segunda feira.\n\nO treinamento de atributos é a chave de ter um bom personagem, portanto, jamais deixe de treina-lo!"
+Terça-Feira, é o dia que é renovado o limite semanal, mesmo que você não tenha treinado, portanto tente sempre treinar seu limite semanal até segunda feira.\n\nO treinamento de atributos é a chave de ter um bom character, portanto, jamais deixe de treina-lo!"
                     android:textColor="#D1D8F1"
                     android:textSize="10sp" />
 
@@ -391,7 +391,7 @@ Terça-Feira, é o dia que é renovado o limite semanal, mesmo que você não te
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Você pode fazer o treino manual várias vezes por dia."
+                    android:text="Você pode fazer o treino manual várias vezes by dia."
                     android:textColor="@color/colorTextos" />
 
                 <LinearLayout
@@ -458,7 +458,7 @@ Terça-Feira, é o dia que é renovado o limite semanal, mesmo que você não te
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="@string/button_treinar"
+                android:text="@string/train"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -564,7 +564,7 @@ Terça-Feira, é o dia que é renovado o limite semanal, mesmo que você não te
                 android:id="@+id/textView55"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Todos os ninjas podem treinar o seu limite diário normalmente, para aqueles que não conseguirem treinar o limite no mesmo dia, podem treinar no dia seguinte e assim consecutivamente. O limite de treino diário, aumenta conforme sua graduação, um Jounin tem mais limite por dia que um Estudante, por exemplo.  "
+                android:text="Todos os ninjas podem treinar o seu limite diário normalmente, para aqueles que não conseguirem treinar o limite no mesmo dia, podem treinar no dia seguinte e assim consecutivamente. O limite de treino diário, aumenta conforme sua graduação, um Jounin tem mais limite by dia que um Estudante, by exemplo.  "
                 android:textAlignment="center"
                 android:textColor="@color/colorTextos"
                 android:textSize="12sp" />

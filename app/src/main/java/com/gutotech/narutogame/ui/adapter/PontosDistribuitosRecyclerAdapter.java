@@ -26,7 +26,7 @@ public class PontosDistribuitosRecyclerAdapter extends RecyclerView.Adapter<Pont
 
     public PontosDistribuitosRecyclerAdapter(Context context) {
         this.context = context;
-        atributosDistribuidos = PersonagemOn.personagem.getAtributosDistribuitos();
+        atributosDistribuidos = PersonagemOn.character.getAtributosDistribuitos();
 
         for (Atributo atributo : atributosDistribuidos) {
             if (atributo.getQuantidade() > max)

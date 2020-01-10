@@ -6,43 +6,37 @@ import com.gutotech.narutogame.data.firebase.FirebaseConfig;
 
 public class Player {
     private String id;
-    private String nome;
+    private String name;
     private String email;
-    private String senha;
-    private String sexo;
-    private String dataNascimento;
-    private String endereco;
-    private String cep;
-    private String estado;
-    private String bairro;
-    private String cidade;
-    private int creditosVip;
+    private String password;
+    private String sex;
+    private String dateOfBirth;
+    private String address;
+    private String zipCode;
+    private String state;
+    private String neighborhood;
+    private String city;
+    private int vipCredits;
 
     public Player() {
     }
 
-    public Player(String email, String senha) {
+    public Player(String email, String password) {
         this.email = email;
-        this.senha = senha;
+        this.password = password;
     }
 
-    public Player(String nome, String email, String senha) {
-        this.nome = nome;
+    public Player(String name, String email, String password) {
+        this.name = name;
         this.email = email;
-        this.senha = senha;
+        this.password = password;
     }
 
-    public Player(String nome, String email, String senha, String sexo) {
-        this.nome = nome;
+    public Player(String name, String email, String password, String sex) {
+        this.name = name;
         this.email = email;
-        this.senha = senha;
-        this.sexo = sexo;
-    }
-
-    public void salvar() {
-        DatabaseReference reference = FirebaseConfig.getDatabase();
-        DatabaseReference player = reference.child("player").child(FirebaseConfig.getAuth().getCurrentUser().getUid());
-        player.setValue(this);
+        this.password = password;
+        this.sex = sex;
     }
 
     @Exclude
@@ -54,12 +48,12 @@ public class Player {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getEmail() {
@@ -70,75 +64,75 @@ public class Player {
         this.email = email;
     }
 
-    public String getSenha() {
-        return senha;
+    public String getPassword() {
+        return password;
     }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public String getSexo() {
-        return sexo;
+    public String getSex() {
+        return sex;
     }
 
-    public void setSexo(String sexo) {
-        this.sexo = sexo;
+    public void setSex(String sex) {
+        this.sex = sex;
     }
 
-    public String getDataNascimento() {
-        return dataNascimento;
+    public String getDateOfBirth() {
+        return dateOfBirth;
     }
 
-    public void setDataNascimento(String dataNascimento) {
-        this.dataNascimento = dataNascimento;
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
-    public String getEndereco() {
-        return endereco;
+    public String getAddress() {
+        return address;
     }
 
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public String getCep() {
-        return cep;
+    public String getZipCode() {
+        return zipCode;
     }
 
-    public void setCep(String cep) {
-        this.cep = cep;
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
     }
 
-    public String getEstado() {
-        return estado;
+    public String getState() {
+        return state;
     }
 
-    public void setEstado(String estado) {
-        this.estado = estado;
+    public void setState(String state) {
+        this.state = state;
     }
 
-    public String getBairro() {
-        return bairro;
+    public String getNeighborhood() {
+        return neighborhood;
     }
 
-    public void setBairro(String bairro) {
-        this.bairro = bairro;
+    public void setNeighborhood(String neighborhood) {
+        this.neighborhood = neighborhood;
     }
 
-    public String getCidade() {
-        return cidade;
+    public String getCity() {
+        return city;
     }
 
-    public void setCidade(String cidade) {
-        this.cidade = cidade;
+    public void setCity(String city) {
+        this.city = city;
     }
 
-    public int getCreditosVip() {
-        return creditosVip;
+    public int getVipCredits() {
+        return vipCredits;
     }
 
-    public void setCreditosVip(int creditosVip) {
-        this.creditosVip = creditosVip;
+    public void setVipCredits(int vipCredits) {
+        this.vipCredits = vipCredits;
     }
 }

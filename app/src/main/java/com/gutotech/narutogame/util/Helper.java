@@ -2,45 +2,6 @@ package com.gutotech.narutogame.util;
 
 public class Helper {
 
-    public static boolean isValidIdProfile(int idProfile) {
-        if (((
-                idProfile >= 5 && idProfile <= 41) ||
-                idProfile == 45 ||
-                idProfile == 48 ||
-                idProfile == 49 ||
-                idProfile == 68 ||
-                idProfile == 82 ||
-                idProfile == 83 ||
-                idProfile == 92 ||
-                idProfile == 93 ||
-                idProfile == 96 ||
-                idProfile == 97 ||
-                (idProfile >= 106 && idProfile <= 108) ||
-                idProfile == 114 || // tirei
-                idProfile == 124 || // tirei
-                idProfile == 128 ||
-                idProfile == 130 ||
-                idProfile == 133 ||
-                idProfile == 134 ||
-                idProfile == 135 || // tirei
-                idProfile == 144 || // tirei
-                idProfile == 145 ||
-                idProfile == 146 ||
-                idProfile == 148 ||
-                idProfile == 150 ||
-                idProfile == 152 ||
-                idProfile == 154 ||
-                idProfile == 156 || // tirei
-                idProfile == 157 || // tirei
-                idProfile == 158 ||
-                idProfile == 159 ||
-                idProfile == 162  // tirei
-        ))
-            return false;
-
-        return true;
-    }
-
     public static String nomeDoPersonagem(int idProfile) {
         switch (idProfile) {
             case 1:
@@ -538,5 +499,4 @@ public class Helper {
                 return -1;
         }
     }
-
 }

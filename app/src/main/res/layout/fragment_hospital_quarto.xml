@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/layout_pagina_repeat"
-    tools:context=".ui.personagemlogado.combates.HospitalQuartoFragment">
+    tools:context=".ui.onlinecharacter.combates.HospitalQuartoFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/msgConstraint"
@@ -121,7 +121,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center|start"
-                android:text="Ou você pode esperar gratuitamente um ninja médico de plantão te salvar, recuperando seu personagem por completo no máximo de 10 minutos. ( 20% do total de seus atributos à cada 2 minutos )"
+                android:text="Ou você pode esperar gratuitamente um ninja médico de plantão te salvar, recuperando seu character by completo no máximo de 10 minutos. ( 20% do total de seus atributos à cada 2 minutos )"
                 android:textColor="@color/colorVerde"
                 android:textSize="10sp" />
 

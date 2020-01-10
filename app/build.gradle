@@ -11,6 +11,7 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         android.defaultConfig.vectorDrawables.useSupportLibrary = true
+        resConfigs "en", "pt"
     }
     buildTypes {
         release {
@@ -43,11 +44,19 @@ dependencies {
 
     // Firebase
     implementation 'com.google.firebase:firebase-auth:19.2.0'
+    implementation 'com.firebaseui:firebase-ui-auth:4.3.1'
+    implementation 'com.google.android.gms:play-services-auth:17.0.0'
+    implementation 'com.facebook.android:facebook-android-sdk:4.42.0'
+    implementation 'com.facebook.android:facebook-login:4.42.0'
     implementation 'com.google.firebase:firebase-database:19.2.0'
     implementation 'com.google.firebase:firebase-storage:19.1.0'
-    implementation'com.firebaseui:firebase-ui-storage:2.0.1'
+    implementation 'com.firebaseui:firebase-ui-storage:2.0.1'
 
+    // Toasty
     implementation 'com.github.GrenderG:Toasty:1.4.2'
+
+    // MaskFormatter
+    implementation 'com.github.rtoshiro.mflibrary:mflibrary:1.0.0'
 }
 
 apply plugin: 'com.google.gms.google-services'

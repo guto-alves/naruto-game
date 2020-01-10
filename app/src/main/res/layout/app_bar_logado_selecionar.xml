@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.logado.LogadoSelecionarActivity">
+    tools:context=".ui.loggedin.LogadoSelecionarActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -38,7 +38,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="14dp"
-                    android:text="@string/secao_home"
+                    android:text="@string/section_home"
                     android:textColor="@android:color/white"
                     android:textSize="18sp"
                     android:textStyle="bold"

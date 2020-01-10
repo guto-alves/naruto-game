@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".ui.personagemlogado.academia.AcademiaJustuFragment">
+        tools:context=".ui.onlinecharacter.academia.AcademiaJustuFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/msgConstraint"
@@ -115,7 +115,7 @@
                     android:layout_marginBottom="5dp"
                     android:gravity="center|start"
                     android:paddingRight="3dp"
-                    android:text="( Jutsus que não são da mesma Classe do seu personagem possuem requerimentos dobrados. )"
+                    android:text="( Jutsus que não são da mesma Classe do seu character possuem requerimentos dobrados. )"
                     android:textColor="@android:color/holo_blue_light"
                     android:textSize="10sp" />
 

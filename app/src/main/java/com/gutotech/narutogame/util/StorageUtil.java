@@ -46,6 +46,16 @@ public class StorageUtil {
         downloadImage(context, imageReference, imageView);
     }
 
+    public static void downloadSmallProfile(Context context, ImageView imageView, int profileId) {
+        StorageReference imageRef = FirebaseConfig.getStorage()
+                .child("images")
+                .child("criacao")
+                .child("pequenas")
+                .child(profileId + ".png");
+        downloadImage(context, imageRef, imageView);
+
+    }
+
     public static void baixarProfile(Context context, ImageView imageView, int idProfile, int currentProfile) {
         StorageReference imageReference = FirebaseConfig.getStorage()
                 .child("images")

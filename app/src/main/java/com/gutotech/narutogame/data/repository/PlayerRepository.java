@@ -1,45 +1,52 @@
 package com.gutotech.narutogame.data.repository;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
-import com.google.firebase.auth.FirebaseAuthUserCollisionException;
-import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
-import com.gutotech.narutogame.R;
+import androidx.annotation.NonNull;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 import com.gutotech.narutogame.data.firebase.FirebaseConfig;
 import com.gutotech.narutogame.data.model.Player;
-import com.gutotech.narutogame.ui.deslogado.cadastro.CadastroListener;
 
 public class PlayerRepository {
+    private static PlayerRepository instance;
 
-    public PlayerRepository() {
+    private PlayerRepository() {
     }
 
-    public void registerPlayer(final Player player, CadastroListener listener) {
-        final FirebaseAuth mAuth = FirebaseConfig.getAuth();
+    public static PlayerRepository getInstance() {
+        if (instance == null)
+            instance = new PlayerRepository();
+        return instance;
+    }
 
-        mAuth.createUserWithEmailAndPassword(player.getEmail(), player.getSenha()
-        ).addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                player.setId(mAuth.getCurrentUser().getUid());
-                player.salvar();
-                listener.onSuccess(R.string.cadastro_concluido);
-            } else {
-                int resId;
+    public void savePlayer(Player player) {
+        DatabaseReference playerRef = FirebaseConfig.getDatabase()
+                .child("players").child(FirebaseConfig.getAuth().getCurrentUser().getUid());
 
-                try {
-                    throw task.getException();
-                } catch (FirebaseAuthWeakPasswordException e) {
-                    resId = R.string.failure_senha_invalida;
-                } catch (FirebaseAuthInvalidCredentialsException e) {
-                    resId = R.string.failure_email_invalido;
-                } catch (FirebaseAuthUserCollisionException e) {
-                    resId = R.string.failure_email_ja_existe;
-                } catch (Exception e) {
-                    resId = R.string.failure_error_ao_cadastrar;
-                }
+        playerRef.setValue(player);
+    }
 
-                listener.onFailure(resId);
+    public void getCurrentPlayer(CallBack callBack) {
+        DatabaseReference playerReference = FirebaseConfig.getDatabase()
+                .child("players")
+                .child(FirebaseConfig.getAuth().getCurrentUser().getUid());
+
+        playerReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Player player = dataSnapshot.getValue(Player.class);
+                callBack.onPlayerReceived(player);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
+    }
+
+    public interface CallBack {
+        void onPlayerReceived(Player player);
     }
 }

@@ -64,9 +64,9 @@ public class RecompensasFidelidadeAdapter extends BaseAdapter {
 
         Button receberButton = convertView.findViewById(R.id.receberButton);
 
-        final int diasLogadosFidelidade = PersonagemOn.personagem.getDiasLogadosFidelidade();
+        final int diasLogadosFidelidade = PersonagemOn.character.getDiasLogadosFidelidade();
 
-        if (dia == diasLogadosFidelidade && PersonagemOn.personagem.isTemRecompensaFidelidade()) {
+        if (dia == diasLogadosFidelidade && PersonagemOn.character.isTemRecompensaFidelidade()) {
             receberButton.setOnClickListener(new View.OnClickListener() {
 
                 @Override
@@ -81,7 +81,7 @@ public class RecompensasFidelidadeAdapter extends BaseAdapter {
                 receberButton.setText(R.string.button_nao_recebido);
                 receberButton.setBackgroundColor(Color.RED);
             } else {
-                receberButton.setText(R.string.button_recebido);
+                receberButton.setText(R.string.received);
                 receberButton.setBackgroundColor(Color.GREEN);
             }
         }

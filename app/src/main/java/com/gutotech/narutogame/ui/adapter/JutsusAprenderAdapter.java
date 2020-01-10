@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.util.StorageUtil;
-import com.gutotech.narutogame.ui.personagemlogado.academia.AcademiaJustuFragment;
+import com.gutotech.narutogame.ui.onlinecharacter.academia.AcademiaJustuFragment;
 import com.gutotech.narutogame.data.model.Jutsu;
 
 import java.util.List;

@@ -16,17 +16,17 @@ import android.widget.TextView;
 import com.google.firebase.storage.StorageReference;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.firebase.FirebaseConfig;
+import com.gutotech.narutogame.data.model.Character;
 import com.gutotech.narutogame.util.StorageUtil;
-import com.gutotech.narutogame.data.model.Personagem;
 import com.gutotech.narutogame.data.model.Vilas;
 
 import java.util.List;
 
 public class RankingNinjasRecyclerAdapter extends RecyclerView.Adapter<RankingNinjasRecyclerAdapter.MyViewHolder> {
     private Context context;
-    private List<Personagem> ninjas;
+    private List<Character> ninjas;
 
-    public RankingNinjasRecyclerAdapter(Context context, List<Personagem> ninjas) {
+    public RankingNinjasRecyclerAdapter(Context context, List<Character> ninjas) {
         this.context = context;
         this.ninjas = ninjas;
     }
@@ -40,31 +40,31 @@ public class RankingNinjasRecyclerAdapter extends RecyclerView.Adapter<RankingNi
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, final int i) {
-        final Personagem personagem = ninjas.get(i);
+        final Character character = ninjas.get(i);
 
         StorageReference imageReference = FirebaseConfig.getStorage()
-                .child("images").child("dojo").child(personagem.getIdProfile() + ".png");
+                .child("images").child("dojo").child(character.getIdProfile() + ".png");
 
         StorageUtil.downloadImage(context, imageReference, myViewHolder.personagemImageView);
 
         myViewHolder.posicaoTextView.setText(1 + "°");
-        myViewHolder.nickTextView.setText(personagem.getNick());
+        myViewHolder.nickTextView.setText(character.getNick());
         myViewHolder.nickTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                exibirProfile(personagem);
+                exibirProfile(character);
             }
         });
-        myViewHolder.tituloTextView.setText(personagem.getTitulo());
-        myViewHolder.pontosTextView.setText(String.valueOf(personagem.getPontos()));
-        myViewHolder.levelTextView.setText(String.valueOf(personagem.getLevel()));
+        myViewHolder.tituloTextView.setText(character.getTitulo());
+        myViewHolder.pontosTextView.setText(String.valueOf(character.getPontos()));
+        myViewHolder.levelTextView.setText(String.valueOf(character.getLevel()));
 
-        if (personagem.isOn())
+        if (character.isOn())
             myViewHolder.onlineImageView.setImageResource(R.drawable.layout_on);
         else
             myViewHolder.onlineImageView.setImageResource(R.drawable.layout_off);
 
-        switch (personagem.getVila()) {
+        switch (character.getVila()) {
             case Vilas.FOLHA:
                 myViewHolder.vilaImageView.setImageResource(R.drawable.layout_bandanas_1);
                 break;
@@ -97,24 +97,24 @@ public class RankingNinjasRecyclerAdapter extends RecyclerView.Adapter<RankingNi
             myViewHolder.bgConstraint.setBackgroundColor(context.getResources().getColor(R.color.colorItem2));
     }
 
-    private void exibirProfile(Personagem personagem) {
+    private void exibirProfile(Character character) {
         Dialog profileDialog = new Dialog(context);
         profileDialog.setContentView(R.layout.dialog_acao_profile);
 
         ImageView profileLogadoimageView = profileDialog.findViewById(R.id.profilePersonagemOnImageView);
-        StorageUtil.baixarProfile(context, profileLogadoimageView, personagem.getIdProfile(), personagem.getFotoAtual());
+        StorageUtil.baixarProfile(context, profileLogadoimageView, character.getIdProfile(), character.getFotoAtual());
 
         TextView nickPersonagemOnTextView = profileDialog.findViewById(R.id.nickPersonagemOnTextView);
-        nickPersonagemOnTextView.setText(personagem.getNick());
+        nickPersonagemOnTextView.setText(character.getNick());
 
         TextView classe = profileDialog.findViewById(R.id.classeTextView);
-        classe.setText(String.valueOf(personagem.getClasse()));
+        classe.setText(String.valueOf(character.getClasse()));
 
         TextView vila = profileDialog.findViewById(R.id.vilaTextView);
-        vila.setText(String.valueOf(personagem.getVila()));
+        vila.setText(String.valueOf(character.getVila()));
 
         TextView level = profileDialog.findViewById(R.id.levelTextView);
-        level.setText(String.valueOf(personagem.getLevel()));
+        level.setText(String.valueOf(character.getLevel()));
 
         profileDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         profileDialog.show();

@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/layout_pagina_repeat"
-        tools:context=".ui.logado.SuporteNovoFragment">
+        tools:context=".ui.loggedin.support.SuporteNovoFragment">
 
         <LinearLayout
             android:id="@+id/linearLayout9"
@@ -192,7 +192,7 @@
                     style="@style/ButtonTheme"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/button_criar"
+                    android:text="@string/create"
                     android:textSize="14sp" />
             </LinearLayout>
 

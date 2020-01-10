@@ -106,10 +106,10 @@ public class ItemShopRecyclerAdapter extends RecyclerView.Adapter<ItemShopRecycl
                         int quantidade = Integer.parseInt(myViewHolder.qtdeEditText.getText().toString());
                         int total_a_pagar = itemShop.getValor() * quantidade;
 
-                        if (PersonagemOn.personagem.getRyous() >= total_a_pagar) {
-                            PersonagemOn.personagem.setRyous(PersonagemOn.personagem.getRyous() - total_a_pagar);
-                            PersonagemOn.personagem.getBolsa().getRamensList().add((Ramen) itemShop);
-                            PersonagemOn.personagem.salvar();
+                        if (PersonagemOn.character.getRyous() >= total_a_pagar) {
+                            PersonagemOn.character.setRyous(PersonagemOn.character.getRyous() - total_a_pagar);
+                            PersonagemOn.character.getBolsa().getRamensList().add((Ramen) itemShop);
+                            PersonagemOn.character.salvar();
                             exibirAlerta("Item(s) comprado(s) com sucesso");
                         } else
                             exibirAlerta("Você não tem ryous suficientes para comprar essa quantidade");
@@ -171,7 +171,7 @@ public class ItemShopRecyclerAdapter extends RecyclerView.Adapter<ItemShopRecycl
     }
 
     private boolean validarRequerimentos(int graduacao, int level) {
-        return PersonagemOn.personagem.getIdGraducao() >= graduacao && PersonagemOn.personagem.getLevel() >= level;
+        return PersonagemOn.character.getIdGraducao() >= graduacao && PersonagemOn.character.getLevel() >= level;
     }
 
     private void exibirRequerimentos(int numGraduacao, String graduacao, int level) {

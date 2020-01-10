@@ -11,7 +11,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".ui.personagemlogado.personagem.ClasFragment">
+        tools:context=".ui.onlinecharacter.character.ClasFragment">
 
         <ImageView
             android:id="@+id/imageView32"
@@ -332,7 +332,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            android:text="@string/button_entrar_no_cla"
+            android:text="@string/enter_the_clan"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView61" />
@@ -388,7 +388,7 @@
             android:id="@+id/textView62"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/nome"
+            android:text="@string/name"
             android:textColor="@android:color/white"
             android:textSize="12sp"
             android:textStyle="bold"

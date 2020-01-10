@@ -6,7 +6,7 @@ import java.security.SecureRandom;
 
 public class NPC {
     private static final SecureRandom random = new SecureRandom();
-    public static Personagem npc;
+    public static Character npc;
 
     public static Jutsu atacar() {
         return npc.getJutsus().get(random.nextInt(npc.getJutsus().size()));

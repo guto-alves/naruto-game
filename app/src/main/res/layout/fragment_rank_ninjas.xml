@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".ui.personagemlogado.ranking.RankNinjasFragment">
+        tools:context=".ui.onlinecharacter.ranking.RankNinjasFragment">
 
 
         <ImageView
@@ -224,7 +224,7 @@
             android:id="@+id/textView85"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/nome"
+            android:text="@string/name"
             android:textColor="@android:color/white"
             android:textSize="12sp"
             android:textStyle="bold"

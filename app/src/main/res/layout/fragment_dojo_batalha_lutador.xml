@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".ui.personagemlogado.combates.DojoBatalhaLutadorFragment">
+        tools:context=".ui.onlinecharacter.combates.DojoBatalhaLutadorFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/msgConstraint2"

@@ -38,12 +38,12 @@ public class Atributos implements Serializable {
 
     @Exclude
     public void atualizarFormula() {
-        int adicionalPorLevel_18 = PersonagemOn.personagem.getLevel() * 18;
-        int adicionalPorLevel_9 = PersonagemOn.personagem.getLevel() * 9;
+        int adicionalPorLevel_18 = PersonagemOn.character.getLevel() * 18;
+        int adicionalPorLevel_9 = PersonagemOn.character.getLevel() * 9;
 
         formulas.setVida(getEnergia() * 6 + (adicionalPorLevel_18));
 
-        if (PersonagemOn.personagem.getClasse().equals("Ninjutsu") || PersonagemOn.personagem.getClasse().equals("Genjutsu")) {
+        if (PersonagemOn.character.getClasse().equals("Ninjutsu") || PersonagemOn.character.getClasse().equals("Genjutsu")) {
             formulas.setChakra(getEnergia() * 6 + getNinjutsu() * 14 + getGenjutsu() * 7 + adicionalPorLevel_18);
             formulas.setStamina(getEnergia() * 6 + getTaijutsu() * 7 + getBukijutsu() * 7 + adicionalPorLevel_9);
         } else {

@@ -7,7 +7,7 @@ public class Pergaminho extends ItemShop {
     }
 
     public Pergaminho(String image, String vila) {
-        super(image, "Pergaminho de Teletransporte para " + vila, "Ao utilizar esse pergaminho seu personagem é automaticamamente teletransportado para o mapa da vila da " + vila, TipoItem.PERGAMINHO, 2, TipoPgto.CREDITO, 0, 1, 0);
+        super(image, "Pergaminho de Teletransporte para " + vila, "Ao utilizar esse pergaminho seu character é automaticamamente teletransportado para o mapa da vila da " + vila, TipoItem.PERGAMINHO, 2, TipoPgto.CREDITO, 0, 1, 0);
         this.vila = vila;
     }
 

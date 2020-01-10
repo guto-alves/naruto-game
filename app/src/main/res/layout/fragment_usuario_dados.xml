@@ -1,388 +1,369 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fillViewport="true">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.gutotech.narutogame.ui.loggedin.accountinfo.UserDataViewModel" />
+    </data>
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/layout_pagina_repeat"
-        tools:context=".ui.logado.UsuarioDadosFragment">
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        tools:context=".ui.loggedin.accountinfo.UserDataFragment">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/msgConstraint2"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="160dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:background="#1D140F"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_height="wrap_content"
+            android:background="@drawable/layout_pagina_repeat"
+            android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/imageView242"
-                android:layout_width="wrap_content"
-                android:layout_height="39dp"
-                android:scaleType="center"
-                android:src="@drawable/layout_pagina_repeat"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageView
-                android:id="@+id/imageView212"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:scaleType="fitXY"
-                android:src="@drawable/layout_msg_topo"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/imageView242" />
-
-            <ImageView
-                android:id="@+id/imagemMsg2"
-                android:layout_width="120dp"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/msgConstraint2"
+                android:layout_width="match_parent"
                 android:layout_height="160dp"
-                android:src="@drawable/layout_msg_1_1"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:background="#1D140F"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
-                android:id="@+id/imageView232"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:scaleType="fitXY"
-                android:src="@drawable/layout_msg_rodape2"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent" />
+                <ImageView
+                    android:id="@+id/imageView242"
+                    android:layout_width="wrap_content"
+                    android:layout_height="39dp"
+                    android:scaleType="center"
+                    android:src="@drawable/layout_pagina_repeat"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/imageView222"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:scaleType="fitXY"
-                android:src="@drawable/layout_msg_rodape1"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView232"
-                app:layout_constraintEnd_toEndOf="@+id/imageView232"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/imageView232" />
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:gravity="center_vertical"
-                android:orientation="vertical"
-                app:layout_constraintBottom_toTopOf="@+id/imageView222"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imagemMsg2"
-                app:layout_constraintTop_toBottomOf="@+id/imageView212">
-
-                <TextView
-                    android:id="@+id/msgTitleTextView2"
-                    android:layout_width="match_parent"
+                <ImageView
+                    android:id="@+id/imageView212"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:text="DADOS CADASTRAIS ATUALIZADOS"
-                    android:textColor="#FFD274"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
+                    android:scaleType="fitXY"
+                    android:src="@drawable/layout_msg_topo"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/imageView242" />
 
-                <TextView
-                    android:id="@+id/msgMensagem2"
-                    android:layout_width="match_parent"
+                <ImageView
+                    android:id="@+id/imagemMsg2"
+                    android:layout_width="120dp"
+                    android:layout_height="160dp"
+                    android:src="@drawable/layout_msg_1_1"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/imageView232"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:gravity="center|start"
-                    android:paddingRight="3dp"
-                    android:text="Seus dados cadastrais foram editados com sucesso."
-                    android:textColor="#D1D8F1"
-                    android:textSize="10sp" />
+                    android:scaleType="fitXY"
+                    android:src="@drawable/layout_msg_rodape2"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent" />
 
-            </LinearLayout>
+                <ImageView
+                    android:id="@+id/imageView222"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/layout_msg_rodape1"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageView232"
+                    app:layout_constraintEnd_toEndOf="@+id/imageView232"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/imageView232" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toTopOf="@+id/imageView222"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imagemMsg2"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView212">
 
+                    <TextView
+                        android:id="@+id/msgTitleTextView2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:text="@string/dados_cadastrais_atualizados"
+                        android:textColor="#FFD274"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/msgConstraint"
-            android:layout_width="match_parent"
-            android:layout_height="180dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:background="#1D140F"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/msgConstraint2">
+                    <TextView
+                        android:id="@+id/msgMensagem2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center|start"
+                        android:paddingRight="3dp"
+                        android:text="@string/seus_dados_cadastrais_foram_editados_com_sucesso"
+                        android:textColor="#D1D8F1"
+                        android:textSize="10sp" />
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <ImageView
-                android:id="@+id/imageView24"
-                android:layout_width="wrap_content"
-                android:layout_height="39dp"
-                android:scaleType="center"
-                android:src="@drawable/layout_pagina_repeat"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageView
-                android:id="@+id/imageView21"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:scaleType="fitXY"
-                android:src="@drawable/layout_msg_topo"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/imageView24" />
-
-            <ImageView
-                android:id="@+id/personagemMsg"
-                android:layout_width="120dp"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/msgConstraint"
+                android:layout_width="match_parent"
                 android:layout_height="180dp"
-                android:src="@drawable/layout_msg_1_1"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:background="#1D140F"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/msgConstraint2">
 
-            <ImageView
-                android:id="@+id/imageView23"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:scaleType="fitXY"
-                android:src="@drawable/layout_msg_rodape2"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent" />
+                <ImageView
+                    android:id="@+id/imageView24"
+                    android:layout_width="wrap_content"
+                    android:layout_height="39dp"
+                    android:scaleType="center"
+                    android:src="@drawable/layout_pagina_repeat"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/imageView22"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:scaleType="fitXY"
-                android:src="@drawable/layout_msg_rodape1"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView23"
-                app:layout_constraintEnd_toEndOf="@+id/imageView23"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/imageView23" />
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:gravity="center_vertical"
-                android:orientation="vertical"
-                app:layout_constraintBottom_toTopOf="@+id/imageView22"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/personagemMsg"
-                app:layout_constraintTop_toBottomOf="@+id/imageView21">
-
-                <TextView
-                    android:id="@+id/msgTitleTextView"
-                    android:layout_width="match_parent"
+                <ImageView
+                    android:id="@+id/imageView21"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:text="MANTENHA SEU CADASTRO ATUALIZADO"
-                    android:textColor="#FFD274"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
+                    android:scaleType="fitXY"
+                    android:src="@drawable/layout_msg_topo"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/imageView24" />
 
-                <TextView
-                    android:id="@+id/msgMensagem"
-                    android:layout_width="match_parent"
+                <ImageView
+                    android:id="@+id/personagemMsg"
+                    android:layout_width="120dp"
+                    android:layout_height="180dp"
+                    android:src="@drawable/layout_msg_1_1"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/imageView23"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:gravity="center|start"
-                    android:paddingRight="3dp"
-                    android:text="Mantenha seus dados cadastrais atualizados e corretos para que possamos enviar prêmios caso você ganhe algo no jogo."
-                    android:textColor="#D1D8F1"
-                    android:textSize="10sp" />
+                    android:scaleType="fitXY"
+                    android:src="@drawable/layout_msg_rodape2"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent" />
 
-            </LinearLayout>
+                <ImageView
+                    android:id="@+id/imageView22"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/layout_msg_rodape1"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageView23"
+                    app:layout_constraintEnd_toEndOf="@+id/imageView23"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/imageView23" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toTopOf="@+id/imageView22"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/personagemMsg"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView21">
 
-        <EditText
-            android:id="@+id/editTextNome"
-            style="@style/EditTextTheme"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginLeft="32dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginRight="32dp"
-            android:ems="10"
-            android:hint="@string/nome"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/msgConstraint"
-            app:layout_constraintVertical_chainStyle="packed" />
+                    <TextView
+                        android:id="@+id/msgTitleTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:text="@string/mantenha_seu_cadastro_atualizado"
+                        android:textColor="#FFD274"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
 
-        <EditText
-            android:id="@+id/editTextEmail"
-            style="@style/EditTextTheme"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginLeft="32dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginRight="32dp"
-            android:ems="10"
-            android:hint="@string/email"
-            android:inputType="textEmailAddress"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextNome" />
+                    <TextView
+                        android:id="@+id/msgMensagem"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center|start"
+                        android:paddingEnd="3dp"
+                        android:paddingRight="3dp"
+                        android:text="@string/mantenha_seus_dados_cadastrais_atualizados"
+                        android:textColor="#D1D8F1"
+                        android:textSize="12sp" />
 
-        <Spinner
-            android:id="@+id/sexoSpinner"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginLeft="32dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginRight="32dp"
-            android:layout_marginBottom="8dp"
-            android:background="@android:color/white"
-            android:padding="5dp"
-            app:layout_constraintBottom_toTopOf="@+id/editTextData"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextEmail" />
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <EditText
-            android:id="@+id/editTextData"
-            style="@style/EditTextTheme"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginLeft="32dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginRight="32dp"
-            android:ems="10"
-            android:hint="@string/data_de_nascimento"
-            android:inputType="date"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sexoSpinner" />
+            <EditText
+                style="@style/EditTextTheme"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginRight="32dp"
+                android:ems="10"
+                android:hint="@string/name"
+                android:inputType="textCapWords|textCapSentences"
+                android:text="@{viewModel.player.name}" />
 
-        <EditText
-            android:id="@+id/editTextCidade"
-            style="@style/EditTextTheme"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginLeft="32dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginRight="32dp"
-            android:ems="10"
-            android:hint="@string/cidade"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextEndereco" />
+            <EditText
+                style="@style/EditTextTheme"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginRight="32dp"
+                android:ems="10"
+                android:enabled="false"
+                android:hint="@string/email"
+                android:inputType="textEmailAddress"
+                android:text="@={viewModel.player.email}" />
 
-        <EditText
-            android:id="@+id/editTextBairro"
-            style="@style/EditTextTheme"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginLeft="32dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginRight="32dp"
-            android:ems="10"
-            android:hint="@string/bairro"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextCidade" />
+            <Spinner
+                android:id="@+id/sexoSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginRight="32dp"
+                android:layout_marginBottom="8dp"
+                android:background="@android:color/white"
+                android:padding="5dp" />
 
-        <EditText
-            android:id="@+id/EditTextEstado"
-            style="@style/EditTextTheme"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginLeft="32dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginRight="32dp"
-            android:ems="10"
-            android:hint="@string/estado"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextBairro" />
+            <EditText
+                android:id="@+id/dateOfBirthEditText"
+                style="@style/EditTextTheme"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginRight="32dp"
+                android:ems="10"
+                android:hint="@string/birthday"
+                android:inputType="date"
+                android:text="@={viewModel.player.dateOfBirth}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sexoSpinner" />
 
-        <EditText
-            android:id="@+id/EditTextCep"
-            style="@style/EditTextTheme"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginLeft="32dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginRight="32dp"
-            android:ems="10"
-            android:hint="@string/cep"
-            android:inputType="number"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextData" />
+            <EditText
+                style="@style/EditTextTheme"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginRight="32dp"
+                android:ems="10"
+                android:hint="@string/full_address"
+                android:inputType="textCapWords|textCapSentences"
+                android:text="@={viewModel.player.address}" />
 
-        <EditText
-            android:id="@+id/editTextEndereco"
-            style="@style/EditTextTheme"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginLeft="32dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginRight="32dp"
-            android:ems="10"
-            android:hint="@string/endereco_completo"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/EditTextCep" />
+            <EditText
+                style="@style/EditTextTheme"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginRight="32dp"
+                android:ems="10"
+                android:hint="@string/zip_code"
+                android:inputType="numberSigned"
+                android:text="@={viewModel.player.zipCode}" />
 
-        <Button
-            android:id="@+id/enviarAlteracoesButton"
-            style="@style/ButtonTheme"
-            android:layout_width="170dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:text="@string/button_enviar_alteracoes"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/EditTextEstado" />
+            <EditText
+                style="@style/EditTextTheme"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginRight="32dp"
+                android:ems="10"
+                android:hint="@string/hint_city"
+                android:inputType="textCapWords|textCapSentences"
+                android:text="@={viewModel.player.city}" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <EditText
+                android:id="@+id/editTextBairro"
+                style="@style/EditTextTheme"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginRight="32dp"
+                android:ems="10"
+                android:hint="@string/hint_neighborhood"
+                android:inputType="textCapWords|textCapSentences"
+                android:text="@={viewModel.player.neighborhood}" />
 
-</ScrollView>
+            <EditText
+                style="@style/EditTextTheme"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginRight="32dp"
+                android:ems="10"
+                android:hint="@string/hint_state"
+                android:inputType="textPersonName"
+                android:text="@={viewModel.player.state}" />
+
+            <Button
+                style="@style/ButtonTheme"
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:onClick="@{viewModel::submitChanges}"
+                android:text="@string/button_submit_changes" />
+        </LinearLayout>
+    </ScrollView>
+</layout>

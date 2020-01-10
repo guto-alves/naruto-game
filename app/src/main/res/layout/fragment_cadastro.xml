@@ -6,7 +6,7 @@
 
         <variable
             name="viewmodel"
-            type="com.gutotech.narutogame.ui.fragment.deslogado.CadastroViewModel" />
+            type="com.gutotech.narutogame.ui.loggedout.cadastro.CadastroViewModel" />
     </data>
 
     <ScrollView
@@ -99,7 +99,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"
-                        android:text="@string/agora_falta_pouco"
+                        android:text="@string/just_a_bit_now"
                         android:textColor="#FFD274"
                         android:textSize="12sp"
                         android:textStyle="bold" />
@@ -111,7 +111,7 @@
                         android:gravity="center|start"
                         android:paddingEnd="3dp"
                         android:paddingRight="3dp"
-                        android:text="@string/preencha_os_dados_abaixo_para_criar_sua_conta"
+                        android:text="@string/fullfill_the_form_below"
                         android:textColor="#D1D8F1"
                         android:textSize="12sp" />
 
@@ -133,9 +133,9 @@
                     style="@style/EditTextTheme"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/nome_completo"
+                    android:hint="@string/full_name"
                     android:inputType="textCapWords|textCapSentences"
-                    android:text="@={viewmodel.player.nome}" />
+                    android:text="@={viewmodel.player.name}" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -171,9 +171,9 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="32dp"
                     android:layout_marginRight="32dp"
-                    android:hint="@string/senha"
+                    android:hint="@string/password"
                     android:inputType="textPassword"
-                    android:text="@={viewmodel.player.senha}" />
+                    android:text="@={viewmodel.player.password}" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -189,7 +189,7 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="32dp"
                     android:layout_marginRight="32dp"
-                    android:hint="@string/confirmar_senha"
+                    android:hint="@string/confirm_password"
                     android:inputType="textPassword"
                     android:text="@={viewmodel.confirmaSenha}" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -215,7 +215,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="16dp"
                 android:onClick="@{() -> viewmodel.cadastrar()}"
-                android:text="@string/button_cadastrar" />
+                android:text="@string/signup" />
 
         </LinearLayout>
     </ScrollView>

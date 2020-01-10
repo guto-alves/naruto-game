@@ -19,7 +19,7 @@ public class Graduacao {
     }
 
     public static String getGraducao(int idGraducao) {
-        String vila = PersonagemOn.personagem.getVila();
+        String vila = PersonagemOn.character.getVila();
 
         if (vila.equals(Vilas.FOLHA)) {
             switch (idGraducao) {
@@ -163,7 +163,7 @@ public class Graduacao {
     }
 
     public static String getDescricao(int idGraducao) {
-        String vila = PersonagemOn.personagem.getVila();
+        String vila = PersonagemOn.character.getVila();
 
         if (vila.equals("Folha") || vila.equals("Areia") || vila.equals("Névoa") || vila.equals("Pedra") || vila.equals("Nuvem") || vila.equals("Som") || vila.equals("Chuva")) {
             switch (idGraducao) {

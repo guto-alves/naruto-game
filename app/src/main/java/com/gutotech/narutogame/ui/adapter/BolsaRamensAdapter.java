@@ -30,7 +30,7 @@ public class BolsaRamensAdapter extends RecyclerView.Adapter<BolsaRamensAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder myViewHolder, int i) {
-        Ramen ramen = PersonagemOn.personagem.getBolsa().getRamensList().get(i);
+        Ramen ramen = PersonagemOn.character.getBolsa().getRamensList().get(i);
 
         StorageUtil.baixarRamenImage(context, myViewHolder.itemImageView, ramen.getImage());
         myViewHolder.itemImageView.setOnClickListener(new View.OnClickListener() {
@@ -44,7 +44,7 @@ public class BolsaRamensAdapter extends RecyclerView.Adapter<BolsaRamensAdapter.
 
     @Override
     public int getItemCount() {
-        return PersonagemOn.personagem.getBolsa().getRamensList().size();
+        return PersonagemOn.character.getBolsa().getRamensList().size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {

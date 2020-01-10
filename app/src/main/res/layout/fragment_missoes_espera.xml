@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".ui.personagemlogado.vilaatual.MissoesEsperaFragment">
+        tools:context=".ui.onlinecharacter.vilaatual.MissoesEsperaFragment">
 
         <!-- Mensagem de Missão em espera -->
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -268,7 +268,7 @@
                     style="@style/ButtonTheme"
                     android:layout_width="wrap_content"
                     android:layout_height="35dp"
-                    android:text="@string/button_finalizar" />
+                    android:text="@string/finish" />
 
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>

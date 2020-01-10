@@ -1,5 +1,5 @@
 package com.gutotech.narutogame.data.model;
 
 public class PersonagemOn {
-    public static Personagem personagem = new Personagem();
+    public static Character character = new Character();
 }

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/layout_pagina_repeat"
-    tools:context=".ui.personagemlogado.combates.DojoRandomWaitFragment">
+    tools:context=".ui.onlinecharacter.combates.DojoRandomWaitFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/msgConstraint"
@@ -111,7 +111,7 @@
                 android:layout_marginTop="3pt"
                 android:gravity="center|start"
                 android:paddingRight="3dp"
-                android:text="Recomendamos que você não saia dessa página, pois se encontrarmos um oponente, não conseguiremos te mandar para batalha e você poderá perder por inatividade."
+                android:text="Recomendamos que você não saia dessa página, pois se encontrarmos um oponente, não conseguiremos te mandar para batalha e você poderá perder by inatividade."
                 android:textColor="@android:color/holo_orange_dark"
                 android:textSize="10sp" />
 

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/layout_pagina_repeat"
-    tools:context=".ui.personagemlogado.combates.Dojo4x4Fragment">
+    tools:context=".ui.onlinecharacter.combates.Dojo4x4Fragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/msgConstraint2"
@@ -100,7 +100,7 @@
                 android:layout_marginBottom="8dp"
                 android:gravity="center|start"
                 android:paddingRight="3dp"
-                android:text="Agora você pode listar seu personagem para Batalhas 4x4 sem ter Equipes. As batalhas serão niveladas pela média de level dos jogadores de ambas Equipes e por dia todos jogadores poderão vencer 5 combates."
+                android:text="Agora você pode listar seu character para Batalhas 4x4 sem ter Equipes. As batalhas serão niveladas pela média de level dos jogadores de ambas Equipes e by dia todos jogadores poderão vencer 5 combates."
                 android:textColor="#D1D8F1"
                 android:textSize="10sp" />
 

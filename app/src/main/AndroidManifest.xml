@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.gutotech.narutogame">
 
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
@@ -11,6 +12,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_application_id" />
+
         <activity
             android:name=".ui.SplashActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
@@ -23,17 +29,17 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.personagemlogado.PersonagemLogadoActivity"
+            android:name=".ui.onlinecharacter.PersonagemLogadoActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="@string/title_activity_personagem_logado"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ui.logado.LogadoSelecionarActivity"
+            android:name=".ui.loggedin.LogadoSelecionarActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="@string/title_activity_logado_selecionar"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ui.deslogado.DeslogadoActivity"
+            android:name=".ui.loggedout.DeslogadoActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar"></activity>

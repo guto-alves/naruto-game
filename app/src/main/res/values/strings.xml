@@ -1,55 +1,47 @@
 <resources>
     <string name="app_name">Naruto Game</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="facebook_application_id" translatable="false">495030854754869</string>
+    <string name="facebook_login_protocol_scheme" translatable="false">fb495030854754869</string>
+
+    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
+    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
-    <string name="menu_tools">Tools</string>
-    <string name="menu_share">Share</string>
-    <string name="menu_send">Send</string>
-
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="digite_o_email_da_sua_conta">Digite o email da sua conta</string>
-    <string name="hall_da_fama">Hall da fama</string>
+    <string name="type_your_account_email">Type your account email</string>
+    <string name="hall_da_fama">Hall of Fame</string>
 
     <!-- Textos -->
-    <string name="esqueceu_a_senha">Esqueceu a Senha?</string>
-    <string name="noticias">Notícias</string>
+    <string name="forgot_password">Forget Password?</string>
+    <string name="news">News</string>
     <string name="title">Title</string>
 
     <!-- Buttons -->
 
-    <string name="button_recuperar_senha">Recuperar Senha</string>
-    <string name="button_enviar_alteracoes">Enviar Alterações</string>
-    <string name="button_alterar_senha">Alterar Senha</string>
+    <string name="recover_password">Recover Password</string>
+    <string name="button_submit_changes">Submit Changes</string>
+    <string name="change_password">Change Password</string>
     <string name="button_abrir_ticket_de_suporte">Abrir Ticket de Suporte</string>
-    <string name="button_criar">Criar</string>
-    <string name="button_jogar">Jogar</string>
-    <string name="button_remover">Remover</string>
-    <string name="button_criar_personagem">Criar Personagem</string>
+    <string name="create">Create</string>
+    <string name="Play">Play</string>
+    <string name="remove">Remove</string>
     <string name="button_trocar_imagem">Trocar Imagem</string>
-    <string name="button_treinar">Treinar</string>
-    <string name="button_entrar_no_cla">Entrar no Clã</string>
+    <string name="train">Train</string>
+    <string name="enter_the_clan">Enter the Clan</string>
     <string name="button_abandonar_cla">Abandonar Clã</string>
     <string name="button_aceitar_pacto">Aceitar Pacto</string>
     <string name="button_quebrar_pacto">Quebrar Pacto</string>
     <string name="button_duelar">Duelar</string>
     <string name="button_jogar_sorte">Jogar!</string>
-    <string name="button_receber">Receber</string>
-    <string name="button_recebido">Recebido</string>
+    <string name="receive">Receive</string>
     <string name="button_nao_recebido">Não Recebido</string>
     <string name="button_graduar">Graduar</string>
     <string name="button_virar_aluno">Virar Aluno</string>
     <string name="button_aceitar">Aceitar</string>
     <string name="button_cancelar_missao">Cancelar Missão</string>
-    <string name="button_finalizar">Finalizar</string>
+    <string name="finish">Finalizar</string>
     <string name="button_ir_para_a_fila">Ir para a fila</string>
     <string name="button_filtrar">Filtrar</string>
 
@@ -78,37 +70,27 @@
 
     <string name="title_activity_logado_selecionar">LogadoSelecionarActivity</string>
     <string name="title_activity_personagem_logado">PersonagemLogadoActivity</string>
-    <string name="redigite_a_nova_senha">Redigite a Nova Senha</string>
-    <string name="nova_senha">Nova Senha</string>
-    <string name="senha_atual">Senha Atual</string>
+    <string name="redigite_a_nova_senha" translatable="false">Redigite a Nova Senha</string>
+    <string name="new_password">New Password</string>
+    <string name="current_password">Current password</string>
     <string name="escolha_seu_personagem">ESCOLHA SEU PERSONAGEM</string>
     <string name="taijutsu">Taijutsu</string>
     <string name="ninjustu">Ninjustu</string>
-    <string name="nome">Nome</string>
-    <string name="cep">CEP</string>
-    <string name="cidade">Cidade</string>
-    <string name="bairro">Bairro</string>
-    <string name="estado">Estado</string>
-
 
     <!-- Títulos das seções -->
-    <!-- DESLOGADO -->
-    <string name="secao_home">HOME</string>
-    <string name="secao_esqueci_minha_senha">ESQUECI MINHA SENHA</string>
-    <string name="secao_hall_da_fama">HALL DA FAMA</string>
 
     <!-- PERSONAGEM LOGADO -->
     <!-- Grupo Usuário -->
-    <string name="secao_dados_da_conta">DADOS DA CONTA</string>
+    <string name="section_account_info">ACCOUNT INFO</string>
     <string name="secao_mensageiro">MENSAGEIRO</string>
     <string name="secao_formulas">FÓRMULAS</string>
-    <string name="secao_trocar_senha">TROQUE SUA SENHA</string>
-    <string name="secao_criar_personagem">CRIAR PERSONAGEM</string>
+    <string name="section_change_password">CHANGE YOUR PASSWORD</string>
+    <string name="section_create_character">CREATE NEW CHARACTER</string>
     <string name="secao_selecione_seu_personagem">SELECIONE SEU PERSONAGEM</string>
-    <string name="secao_suporte">SUPORTE</string>
+    <string name="section_support">SUPPORT</string>
 
-    <!-- Grupo Personagem -->
-    <string name="secao_status_do_personagem">STATUS DO PERSONAGEM</string>
+    <!-- Grupo Character -->
+    <string name="section_character_status">CHARACTER STATUS</string>
     <string name="secao_clas">CLÃS</string>
     <string name="secao_invocacoes">INVOCAÇÕES</string>
     <string name="secao_modo_historia">MODO HISTÓRIA</string>
@@ -117,7 +99,7 @@
 
     <!-- Grupo Academia -->
     <string name="secao_graduacoes">GRADUAÇÕES</string>
-    <string name="secao_treinamento_de_atributos">TREINAMENTO DE ATRIBUTOS</string>
+    <string name="section_attribute_training">ATTRIBUTE TRAINING</string>
     <string name="secao_treinamento_de_jutsus">TREINAMENTO DE JUTSUS</string>
     <string name="secao_jutsus_ninjas">JUTSUS NINJAS</string>
 
@@ -136,7 +118,7 @@
     <!-- Grupo Combates -->
     <string name="secao_dojo">DOJO</string>
     <string name="secao_dojo_4x4">DOJO 4X4</string>
-    <string name="secao_arena">ARENA</string>
+    <string name="section_arena" translatable="false">ARENA</string>
     <string name="secao_historico_de_batalha">HISTÓRICO DE BATALHA</string>
 
     <!-- Grupo Equipe e Organização -->
@@ -156,15 +138,13 @@
     <string name="genjutsu">Genjutsu</string>
     <string name="agilidade">Agilidade</string>
     <string name="forca">Força</string>
-    <string name="resistencia">Resistência</string>
+    <string name="resistencia" translatable="false">Resistência</string>
     <string name="energia">Energia</string>
     <string name="vida">Vida</string>
     <string name="determinacao">Determinação</string>
     <string name="esquiva">Esquiva</string>
 
     <string name="chat_naruto_game">CHAT NARUTO GAME</string>
-    <string name="endereco_completo">Endereço Completo</string>
-    <string name="data_de_nascimento">Data de Nascimento</string>
     <string name="arquivo">Arquivo</string>
     <string name="treinamento_manual">Treinamento Manual</string>
     <string name="quantidade">Quantidade</string>
@@ -173,19 +153,66 @@
     <string name="titulo_da_secao">Título da seção</string>
 
     <!-- Secao cadastro -->
-    <string name="secao_cadastro">CRIE SUA CONTA</string>
-    <string name="agora_falta_pouco">AGORA FALTA POUCO!</string>
-    <string name="preencha_os_dados_abaixo_para_criar_sua_conta">Preencha os dados abaixo para criar sua conta do Naruto Game e ter seu personagem nessa aventura. Após seu cadastro será enviando um email para que você confirme seu cadastro, portanto é necessário informar um EMAIL VÁLIDO, para que possa jogar Naruto Game!</string>
-    <string name="nome_completo">Nome Completo</string>
-    <string name="email">Email</string>
-    <string name="senha">Senha</string>
-    <string name="confirmar_senha">Confirmar Senha</string>
-    <string name="button_cadastrar">Cadastrar</string>
+    <string name="section_create_account">CREATE YOUR ACCOUNT</string>
+    <string name="just_a_bit_now">JUST A BIT NOW!</string>
+    <string name="fullfill_the_form_below"> Fulfill the form below to create your account and starts your adventure.
+You will receive an email to confirm your account, then you NEED TO USE AN VALID EMAIL to play Naruto Game!</string>
+    <string name="full_name">Full name</string>
+    <string name="email" translatable="false">Email</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="signup">Signup</string>
     <string name="cadastro_concluido">PARABÉNS SEU CADASTRO FOI CONCLUÍDO COM SUCESSO!</string>
     <string name="failure_senha_invalida">Campo \'Senha\' com valor inválido! No mínimo são requeridos 6 caractéres e os caractéres permitidos são: 0–9 A-Z _.</string>
     <string name="failure_email_invalido">Campo \'Email\' com valor inválido! Verifique o dado e tente novamente</string>
-    <string name="failure_email_ja_existe">O endereço de email especificado ja está cadastrado, por favor use um endereço de e-mail diferente.</string>
+    <string name="failure_email_ja_existe">O endereço de email especificado ja está cadastrado, by favor use um endereço de e-mail diferente.</string>
     <string name="failure_error_ao_cadastrar">Erro ao realizar cadastro</string>
     <string name="failure_senhas_diferentes">Campo \'Senha\' e \'Confirmar Senha\' com valores diferentes! Verifique os dados e tente novamente.</string>
-    <string name="campo_nome">Campo \"nome\" é obrigatório</string>
+    <string name="campo_nome">Campo \"name\" é obrigatório</string>
+
+    <!-- Secao home -->
+    <string name="section_home" translatable="false">HOME</string>
+    <string name="play">Play</string>
+    <string name="kages_amp_vilas" translatable="false"><![CDATA[Kages & Vilas]]></string>
+
+    <!-- Secao ler noticia -->
+    <string name="secao_ler_noticia">READ NEWS</string>
+    <string name="leave_your_comment">Leave your comment</string>
+    <string name="by">- by</string>
+    <string name="comment">Comment</string>
+    <string name="full_address">Full Address</string>
+    <string name="ninjas_statistics">Ninja Statistics</string>
+    <string name="if_you_do_not_remember_your_password">If you do not remember your password, type your email account below and click \"send\". In a few minutes you will receive your new password</string>
+
+    <!-- Section recover password-->
+    <string name="section_i_forgot_my_password">"I FORGOT MY PASSWORD "</string>
+    <string name="password_was_sent">THE PASSWORD WAS SENT SUCCESSFULLY</string>
+
+
+    <string name="section_hall_of_fame">HALL OF FAME</string>
+    <string name="password_sent_description">In few minutes you will receive an email to change your password. Only the link sent to you can change the password. Remember: copy and keep safe your password.</string>
+    <string name="email_not_found">Email not found</string>
+    <string name="create_character">Create Character</string>
+    <string name="received">Received</string>
+    <string name="birthday">Birthday</string>
+    <string name="home" translatable="false">Home</string>
+
+    <!-- Select character -->
+    <string name="label_grade">Grade:</string>
+    <string name="label_level" translatable="false">Level:</string>
+    <string name="label_village">Village:</string>
+    <string name="label_ryous" translatable="false">Ryous:</string>
+    <string name="dados_cadastrais_atualizados">DADOS CADASTRAIS ATUALIZADOS</string>
+    <string name="seus_dados_cadastrais_foram_editados_com_sucesso">Seus dados cadastrais foram editados com sucesso.</string>
+    <string name="mantenha_seu_cadastro_atualizado">MANTENHA SEU CADASTRO ATUALIZADO</string>
+    <string name="mantenha_seus_dados_cadastrais_atualizados">Mantenha seus dados cadastrais atualizados e corretos para que possamos enviar prêmios caso você ganhe algo no jogo.</string>
+
+    <!-- Account info -->
+    <string name="name">Name</string>
+    <string name="zip_code">Zip Code</string>
+    <string name="hint_city">City</string>
+    <string name="hint_neighborhood">Neighborhood</string>
+    <string name="hint_state">State</string>
+    <string name="label_name">Name:</string>
+
 </resources>

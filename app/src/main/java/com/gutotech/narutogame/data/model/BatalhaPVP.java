@@ -1,8 +1,8 @@
 package com.gutotech.narutogame.data.model;
 
 public class BatalhaPVP {
-    private Personagem player1;
-    private Personagem player2;
+    private Character player1;
+    private Character player2;
 
     private String ganhador;
     private String quemAtaca;
@@ -11,19 +11,19 @@ public class BatalhaPVP {
     private Jutsu acaoPlayer1;
     private Jutsu acaoPlayer2;
 
-    public Personagem getPlayer1() {
+    public Character getPlayer1() {
         return player1;
     }
 
-    public void setPlayer1(Personagem player1) {
+    public void setPlayer1(Character player1) {
         this.player1 = player1;
     }
 
-    public Personagem getPlayer2() {
+    public Character getPlayer2() {
         return player2;
     }
 
-    public void setPlayer2(Personagem player2) {
+    public void setPlayer2(Character player2) {
         this.player2 = player2;
     }
 
