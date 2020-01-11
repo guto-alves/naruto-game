@@ -105,8 +105,6 @@ public class DojoBatalhaPVPFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_dojo_batalha_pv, container, false);
-        TextView tituloSecao = getActivity().findViewById(R.id.tituloSecaoTextView);
-        tituloSecao.setText("DESAFIO PVP");
 
         batalhaPvpReference = FirebaseConfig.getDatabase()
                 .child("batalha_dojo_pvp")
@@ -135,7 +133,7 @@ public class DojoBatalhaPVPFragment extends Fragment {
             }
         });
         ImageView profilePlayerImageView = view.findViewById(R.id.profileMeImageView);
-        StorageUtil.baixarProfile(getActivity(), profilePlayerImageView, player.getIdProfile(), player.getFotoAtual());
+        StorageUtil.downloadProfile(getActivity(), profilePlayerImageView, player.getIdProfile(), player.getFotoAtual());
 
         TextView nickPlayerTextView = view.findViewById(R.id.nickMeTextView);
         nickPlayerTextView.setText(player.getNick());
@@ -258,7 +256,7 @@ public class DojoBatalhaPVPFragment extends Fragment {
             }
         });
 
-        StorageUtil.baixarProfile(getActivity(), profileOpoImageView, Oponente.oponente.getIdProfile(), Oponente.oponente.getFotoAtual());
+        StorageUtil.downloadProfile(getActivity(), profileOpoImageView, Oponente.oponente.getIdProfile(), Oponente.oponente.getFotoAtual());
 
         nickOpoTextView.setText(Oponente.oponente.getNick());
         graduELvlOpoTextView.setText(String.format(Locale.getDefault(), "%s - Lvl %d", Oponente.oponente.getGraducao(), Oponente.oponente.getLevel()));
@@ -518,7 +516,7 @@ public class DojoBatalhaPVPFragment extends Fragment {
 
     private void changeToFragment(Fragment fragment) {
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.conteiner, fragment).commit();
+        transaction.replace(R.id.container, fragment).commit();
     }
 
     @Override

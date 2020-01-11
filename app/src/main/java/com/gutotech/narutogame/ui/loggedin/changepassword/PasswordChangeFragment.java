@@ -32,7 +32,7 @@ public class PasswordChangeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_senha_trocar, container, false);
 
         ImageView personagemMsg = view.findViewById(R.id.personagemMsg);
-        StorageUtil.baixarImagemParaMsg(getActivity(), personagemMsg);
+        StorageUtil.downloadProfileForMsg(getActivity(), personagemMsg);
 
         auth = FirebaseConfig.getAuth();
 

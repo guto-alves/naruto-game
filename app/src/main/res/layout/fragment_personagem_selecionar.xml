@@ -220,7 +220,7 @@
                     style="@style/ButtonTheme"
                     android:layout_width="wrap_content"
                     android:layout_marginRight="6dp"
-                    android:onClick="@{viewModel::onPlayButtonPressed}"
+                    android:onClick="@{()-> viewModel.onPlayButtonPressed()}"
                     android:text="@string/Play" />
 
                 <Button

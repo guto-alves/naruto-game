@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
@@ -21,10 +20,8 @@ import com.google.firebase.database.ValueEventListener;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.Character;
 import com.gutotech.narutogame.ui.adapter.CharactersRecyclerViewAdapter;
-import com.gutotech.narutogame.util.StorageUtil;
 import com.gutotech.narutogame.data.model.Atributos;
 import com.gutotech.narutogame.data.model.Classe;
-import com.gutotech.narutogame.util.Helper;
 import com.gutotech.narutogame.data.model.Vilas;
 
 import java.util.ArrayList;
@@ -84,48 +81,48 @@ public class CharacterCreateFragment extends Fragment {
         vilasRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                switch (checkedId) {
-                    case R.id.folhaRadioButton:
-                        vilaSelecionada = Vilas.FOLHA;
-                        numVila = 1;
-                        vilaSelecionadaTextView.setText(vilaSelecionada);
-                        break;
-                    case R.id.areiaRadioButton:
-                        vilaSelecionada = Vilas.AREIA;
-                        numVila = 2;
-                        vilaSelecionadaTextView.setText(vilaSelecionada);
-                        break;
-                    case R.id.nevoaRadioButton:
-                        vilaSelecionada = Vilas.NEVOA;
-                        numVila = 3;
-                        vilaSelecionadaTextView.setText(vilaSelecionada);
-                        break;
-                    case R.id.pedraRadioButton:
-                        vilaSelecionada = Vilas.PEDRA;
-                        numVila = 4;
-                        vilaSelecionadaTextView.setText(vilaSelecionada);
-                        break;
-                    case R.id.nuvemRadioButton:
-                        vilaSelecionada = Vilas.NUVEM;
-                        numVila = 5;
-                        vilaSelecionadaTextView.setText(vilaSelecionada);
-                        break;
-                    case R.id.akatsukiRadioButton:
-                        vilaSelecionada = Vilas.AKATSUKI;
-                        numVila = 6;
-                        vilaSelecionadaTextView.setText(vilaSelecionada);
-                        break;
-                    case R.id.somRadioButton:
-                        vilaSelecionada = Vilas.SOM;
-                        numVila = 7;
-                        vilaSelecionadaTextView.setText(vilaSelecionada);
-                        break;
-                    case R.id.chuvaRadioButton:
-                        vilaSelecionada = Vilas.CHUVA;
-                        numVila = 8;
-                        vilaSelecionadaTextView.setText(vilaSelecionada);
-                        break;
-                }
+//                switch (checkedId) {
+//                    case R.id.folhaRadioButton:
+//                        vilaSelecionada = Vilas.FOLHA;
+//                        numVila = 1;
+//                        vilaSelecionadaTextView.setText(vilaSelecionada);
+//                        break;
+//                    case R.id.areiaRadioButton:
+//                        vilaSelecionada = Vilas.AREIA;
+//                        numVila = 2;
+//                        vilaSelecionadaTextView.setText(vilaSelecionada);
+//                        break;
+//                    case R.id.nevoaRadioButton:
+//                        vilaSelecionada = Vilas.NEVOA;
+//                        numVila = 3;
+//                        vilaSelecionadaTextView.setText(vilaSelecionada);
+//                        break;
+//                    case R.id.pedraRadioButton:
+//                        vilaSelecionada = Vilas.PEDRA;
+//                        numVila = 4;
+//                        vilaSelecionadaTextView.setText(vilaSelecionada);
+//                        break;
+//                    case R.id.nuvemRadioButton:
+//                        vilaSelecionada = Vilas.NUVEM;
+//                        numVila = 5;
+//                        vilaSelecionadaTextView.setText(vilaSelecionada);
+//                        break;
+//                    case R.id.akatsukiRadioButton:
+//                        vilaSelecionada = Vilas.AKATSUKI;
+//                        numVila = 6;
+//                        vilaSelecionadaTextView.setText(vilaSelecionada);
+//                        break;
+//                    case R.id.somRadioButton:
+//                        vilaSelecionada = Vilas.SOM;
+//                        numVila = 7;
+//                        vilaSelecionadaTextView.setText(vilaSelecionada);
+//                        break;
+//                    case R.id.chuvaRadioButton:
+//                        vilaSelecionada = Vilas.CHUVA;
+//                        numVila = 8;
+//                        vilaSelecionadaTextView.setText(vilaSelecionada);
+//                        break;
+//                }
             }
         });
 
@@ -234,19 +231,18 @@ public class CharacterCreateFragment extends Fragment {
     }
 
     private void configurarGriView() {
-        recuperarImagensPequenas();
-        adapter = new CharactersRecyclerViewAdapter(getActivity(), );
+//        adapter = new CharactersRecyclerViewAdapter(getActivity(), );
         carregarGrupoAtual();
         profilesRecyclerView.setAdapter(adapter);
-        profilesRecyclerView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                StorageUtil.baixarProfile(getActivity(), profileImageView, profilesGrupoAtual.get(position));
-
-                character.setIdProfile(profilesGrupoAtual.get(position));
-                nomePersonagemSelecionadoTextView.setText(Helper.nomeDoPersonagem(character.getIdProfile()));
-            }
-        });
+//        profilesRecyclerView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                StorageUtil.downloadProfile(getActivity(), profileImageView, profilesGrupoAtual.get(position));
+//
+//                character.setIdProfile(profilesGrupoAtual.get(position));
+//                nomePersonagemSelecionadoTextView.setText(Helper.nomeDoPersonagem(character.getIdProfile()));
+//            }
+//        });
     }
 
     private void exibirAlerta(String titulo, String mensagem) {
@@ -259,7 +255,7 @@ public class CharacterCreateFragment extends Fragment {
 
     private void changeToFragment(Fragment fragment) {
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.conteiner, fragment);
+        transaction.replace(R.id.container, fragment);
         transaction.commit();
     }
 }

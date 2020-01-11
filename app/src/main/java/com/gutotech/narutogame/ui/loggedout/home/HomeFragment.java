@@ -28,6 +28,7 @@ import com.gutotech.narutogame.ui.adapter.NinjaStatisticsRecyclerViewAdapter;
 import com.gutotech.narutogame.ui.adapter.NewsAdapter;
 import com.gutotech.narutogame.ui.loggedout.AuthListener;
 import com.gutotech.narutogame.ui.loggedin.LogadoSelecionarActivity;
+import com.gutotech.narutogame.util.FragmentUtil;
 import com.gutotech.narutogame.util.RecyclerItemClickListener;
 import com.gutotech.narutogame.ui.loggedout.recuperarsenha.RecuperarSenhaFragment;
 
@@ -61,9 +62,7 @@ public class HomeFragment extends Fragment implements AuthListener {
 
         TextView esqueceuSenhaTextView = root.findViewById(R.id.esqueceuASenhaTextView);
         esqueceuSenhaTextView.setOnClickListener(v -> {
-            TextView textView = getActivity().findViewById(R.id.tituloSecaoTextView);
-            textView.setText(R.string.section_i_forgot_my_password);
-            changeTo(new RecuperarSenhaFragment());
+            FragmentUtil.changeToFragment(getActivity(), new RecuperarSenhaFragment());
         });
 
 //        Bundle bundle = getArguments();
@@ -89,6 +88,8 @@ public class HomeFragment extends Fragment implements AuthListener {
         aguardeDialog = new Dialog(getActivity());
         aguardeDialog.setContentView(R.layout.dialog_progressbar);
         aguardeDialog.setCancelable(false);
+
+        FragmentUtil.setSectionTitle(getActivity(), R.string.section_home);
 
         return root;
     }
@@ -132,12 +133,6 @@ public class HomeFragment extends Fragment implements AuthListener {
 
         ninjaStatisticsAdapter = new NinjaStatisticsRecyclerViewAdapter(getActivity());
         ninjaStatisticsRecyclerView.setAdapter(ninjaStatisticsAdapter);
-    }
-
-    public void changeTo(Fragment fragment) {
-        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.conteiner, fragment);
-        transaction.commit();
     }
 
     @Override

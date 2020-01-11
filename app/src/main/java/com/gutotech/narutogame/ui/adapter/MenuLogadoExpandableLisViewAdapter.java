@@ -67,7 +67,7 @@ public class MenuLogadoExpandableLisViewAdapter extends BaseExpandableListAdapte
             convertView = layoutInflater.inflate(R.layout.expandable_list_group, null, false);
         }
 
-        ImageView imageView = convertView.findViewById(R.id.categoriaImageView);
+        ImageView imageView = convertView.findViewById(R.id.menuTitleImageView);
 
         int groupId = (int) getGroup(groupPosition);
 

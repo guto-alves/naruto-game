@@ -12,11 +12,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <meta-data
-            android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/facebook_application_id" />
-
         <activity
             android:name=".ui.SplashActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
@@ -40,7 +35,6 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.loggedout.DeslogadoActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>

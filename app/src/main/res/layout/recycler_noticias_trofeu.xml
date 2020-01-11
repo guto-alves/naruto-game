@@ -67,7 +67,7 @@
             android:layout_height="35dp"
             android:text="Estamos investigando uma situação onde os botões para ativação dos ranges de ataque de 1 e de 5 levels pode ser clicado, como"
             android:textAlignment="center"
-            android:textColor="@color/colorTextos" />
+            android:textColor="@color/colorText" />
 
         <TextView
             android:id="@+id/postedByTextView"

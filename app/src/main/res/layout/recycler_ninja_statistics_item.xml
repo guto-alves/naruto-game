@@ -32,7 +32,7 @@
             android:id="@+id/totalPlayersTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorTexts"
+            android:textColor="@color/colorText"
             android:textSize="12sp" />
     </LinearLayout>
 

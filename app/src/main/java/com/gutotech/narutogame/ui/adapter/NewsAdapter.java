@@ -64,7 +64,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
     public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int position) {
         if (newsList != null) {
             News news = newsList.get(position);
-            myViewHolder.dateTextView.setText(news.getData());
+            myViewHolder.dateTextView.setText(news.getDate());
             myViewHolder.titleTextView.setText(news.getTitle());
             myViewHolder.postedByTextView.setText("postado por " + news.getBy());
 

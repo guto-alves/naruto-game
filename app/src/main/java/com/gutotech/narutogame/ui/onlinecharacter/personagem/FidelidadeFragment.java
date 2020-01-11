@@ -1,6 +1,5 @@
 package com.gutotech.narutogame.ui.onlinecharacter.personagem;
 
-
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -39,7 +38,7 @@ public class FidelidadeFragment extends Fragment implements MyListener {
         View view = inflater.inflate(R.layout.fragment_fidelidade, container, false);
 
         ImageView personagemMsgImageView = view.findViewById(R.id.personagemMsg);
-        StorageUtil.baixarImagemParaMsg(getActivity(), personagemMsgImageView, PersonagemOn.character.getNumVila());
+        StorageUtil.downloadProfileForMsg(getActivity(), personagemMsgImageView, PersonagemOn.character.getNumVila());
 
         GridView recompensasReceberGridView = view.findViewById(R.id.recompensasReceberGridView);
 
@@ -75,13 +74,13 @@ public class FidelidadeFragment extends Fragment implements MyListener {
                 break;
             case CREDITO:
                 DatabaseReference playerReference = FirebaseConfig.getDatabase()
-                        .child("player").child(FirebaseConfig.getAuth().getCurrentUser().getUid());
+                        .child("players").child(FirebaseConfig.getAuth().getCurrentUser().getUid());
                 playerReference.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         Player player = dataSnapshot.getValue(Player.class);
                         player.setVipCredits(player.getVipCredits() + recompensa.getQuantidade());
-                        player.salvar();
+//                        player.salvar();
                     }
 
                     @Override
@@ -103,7 +102,7 @@ public class FidelidadeFragment extends Fragment implements MyListener {
 
     private void changeTo(Fragment fragment) {
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.conteiner, fragment);
+        transaction.replace(R.id.container, fragment);
         transaction.commit();
     }
 }

@@ -137,7 +137,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:text="Caso a fila demore é porque o jogo não está conseguindo formar batalhas no momento."
-                android:textColor="@color/colorVerde"
+                android:textColor="@color/colorGreen"
                 android:textSize="12sp" />
 
             <TextView

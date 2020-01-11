@@ -298,7 +298,7 @@
                 android:layout_marginRight="8dp"
                 android:layout_marginBottom="16dp"
                 android:text="@string/create_character"
-                android:onClick="@{viewModel::createCharacter}"
+                android:onClick="@{() -> viewModel.createCharacter()}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

@@ -46,7 +46,8 @@ public class CharacterCreateViewModel extends ViewModel {
 //        else {
 //            exibirAlerta("Aviso!", "Os seguintes problemas evitaram que a operação fosse completada:\n\n" + message);
 //            return false;
-        }
+//        }
+        return false;
     }
 
 //    private void salvarPersonagem(String nick) {

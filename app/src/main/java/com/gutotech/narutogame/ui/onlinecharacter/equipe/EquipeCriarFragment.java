@@ -35,7 +35,7 @@ public class EquipeCriarFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_equipe_criar, container, false);
 
         ImageView imagemMsg = view.findViewById(R.id.personagemMsg);
-        StorageUtil.baixarImagemParaMsg(getActivity(), imagemMsg, PersonagemOn.character.getNumVila());
+        StorageUtil.downloadProfileForMsg(getActivity(), imagemMsg, PersonagemOn.character.getNumVila());
 
         nomeEquipeTextInput = view.findViewById(R.id.nomeEqpTextInput);
 

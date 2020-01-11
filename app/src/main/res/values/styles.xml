@@ -9,6 +9,7 @@
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
         <item name="android:windowFullscreen">true</item>
+        <item name="android:windowBackground">@drawable/layout_pagina_repeat</item>
     </style>
 
     <style name="Splash" parent="Theme.AppCompat.Light.NoActionBar">
@@ -39,6 +40,12 @@
     <style name="EditTextTheme">
         <item name="android:background">@android:color/white</item>
         <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <style name="EditTextCustomTheme">
+        <item name="android:background">@drawable/layout_cadastro_rapido_input</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:padding">8dp</item>
     </style>
 
 </resources>

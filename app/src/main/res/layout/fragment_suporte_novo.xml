@@ -41,7 +41,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="50dp"
                     android:text="Categoria"
-                    android:textColor="@color/colorTextos"
+                    android:textColor="@color/colorText"
                     android:textStyle="bold" />
 
                 <Spinner
@@ -65,7 +65,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="75dp"
                     android:text="Título"
-                    android:textColor="@color/colorTextos"
+                    android:textColor="@color/colorText"
                     android:textStyle="bold" />
 
                 <EditText
@@ -89,7 +89,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
                     android:text="Quando ocorreu"
-                    android:textColor="@color/colorTextos"
+                    android:textColor="@color/colorText"
                     android:textStyle="bold" />
 
                 <EditText
@@ -122,7 +122,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:text="Descrição"
-                android:textColor="@color/colorTextos"
+                android:textColor="@color/colorText"
                 android:textStyle="bold" />
 
             <com.google.android.material.textfield.TextInputLayout
@@ -146,7 +146,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Possui alguma imagem do problema? Use os campos de arquivo abaixo para adiciona-las"
-                android:textColor="@color/colorTextos"
+                android:textColor="@color/colorText"
                 android:textStyle="bold" />
 
             <include layout="@layout/divisor" />
@@ -164,7 +164,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="65dp"
                     android:text="@string/arquivo"
-                    android:textColor="@color/colorTextos"
+                    android:textColor="@color/colorText"
                     android:textStyle="bold" />
 
                 <ImageButton
@@ -177,7 +177,7 @@
                     android:id="@+id/nomeDoArquivoTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/colorTextos" />
+                    android:textColor="@color/colorText" />
 
             </LinearLayout>
 

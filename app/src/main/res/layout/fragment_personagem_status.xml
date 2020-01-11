@@ -94,7 +94,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Vitórias Dojo PVP: "
-                        android:textColor="@color/colorVerde" />
+                        android:textColor="@color/colorGreen" />
 
                     <TextView
                         android:id="@+id/vitDojoTextView"
@@ -115,7 +115,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Vitórias Mapa PVP: "
-                        android:textColor="@color/colorVerde" />
+                        android:textColor="@color/colorGreen" />
 
                     <TextView
                         android:id="@+id/vitMapaTextView"
@@ -136,7 +136,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Vitórias 4x4 Dojo: "
-                        android:textColor="@color/colorVerde" />
+                        android:textColor="@color/colorGreen" />
 
                     <TextView
                         android:id="@+id/vit4x4TextView"
@@ -357,7 +357,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Rank A: "
-                        android:textColor="@color/colorVerde" />
+                        android:textColor="@color/colorGreen" />
 
                     <TextView
                         android:id="@+id/rankATextView"
@@ -377,7 +377,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Rank B: "
-                        android:textColor="@color/colorVerde" />
+                        android:textColor="@color/colorGreen" />
 
                     <TextView
                         android:id="@+id/rankBTextView"
@@ -397,7 +397,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Rank C: "
-                        android:textColor="@color/colorVerde" />
+                        android:textColor="@color/colorGreen" />
 
                     <TextView
                         android:id="@+id/rankCTextView"
@@ -417,7 +417,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Rank D: "
-                        android:textColor="@color/colorVerde" />
+                        android:textColor="@color/colorGreen" />
 
                     <TextView
                         android:id="@+id/rankDTextView"
@@ -437,7 +437,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Tarefas: "
-                        android:textColor="@color/colorVerde" />
+                        android:textColor="@color/colorGreen" />
 
                     <TextView
                         android:id="@+id/tarefasTextView"

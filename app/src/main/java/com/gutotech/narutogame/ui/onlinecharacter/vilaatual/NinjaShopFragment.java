@@ -39,7 +39,7 @@ public class NinjaShopFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_ninja_shop, container, false);
 
         ImageView imagemMsg2 = view.findViewById(R.id.imagemMsg2);
-        StorageUtil.baixarImagemParaMsg(getActivity(), imagemMsg2, PersonagemOn.character.getNumVila());
+        StorageUtil.downloadProfileForMsg(getActivity(), imagemMsg2, PersonagemOn.character.getNumVila());
 
         ProgressBar armasQuinzenalProgressBar = view.findViewById(R.id.armasQuinzenalProgressBar);
         TextView armasQuinzenalTextView = view.findViewById(R.id.armasQuinzenalTextView);

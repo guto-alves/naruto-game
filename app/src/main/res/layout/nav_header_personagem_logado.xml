@@ -57,7 +57,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="550"
-            android:textColor="@color/colorTextos" />
+            android:textColor="@color/colorText" />
     </LinearLayout>
 
     <LinearLayout
@@ -153,7 +153,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="LVL"
-                android:textColor="@color/colorTextos"
+                android:textColor="@color/colorText"
                 android:textSize="12dp" />
 
             <TextView
@@ -161,7 +161,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="1"
-                android:textColor="@color/colorTextos" />
+                android:textColor="@color/colorText" />
         </LinearLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -205,7 +205,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="LVL"
-                android:textColor="@color/colorTextos"
+                android:textColor="@color/colorText"
                 android:textSize="12dp" />
 
             <TextView
@@ -213,7 +213,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="2"
-                android:textColor="@color/colorTextos" />
+                android:textColor="@color/colorText" />
         </LinearLayout>
 
     </LinearLayout>

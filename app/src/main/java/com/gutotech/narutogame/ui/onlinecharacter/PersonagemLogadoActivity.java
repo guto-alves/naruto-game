@@ -7,21 +7,29 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+
 import androidx.annotation.NonNull;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.KeyEvent;
 import android.view.View;
+
 import androidx.core.view.GravityCompat;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+
 import com.google.android.material.navigation.NavigationView;
+
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
@@ -95,8 +103,6 @@ public class PersonagemLogadoActivity extends AppCompatActivity {
     private View headerView;
     private ImageButton fidelidadeImageButton;
 
-    private TextView tituloSecao;
-
     private ExpandableListView menuExpandableListView;
 
     final int GROUP_USUARIO = 0;
@@ -159,30 +165,21 @@ public class PersonagemLogadoActivity extends AppCompatActivity {
         StorageUtil.baixarTopoLogado(getApplicationContext(), topoLogadoimageView, PersonagemOn.character.getIdProfile());
 
         ImageView profileLogadoimageView = findViewById(R.id.profilePersonagemOnImageView);
-        StorageUtil.baixarProfile(getApplicationContext(), profileLogadoimageView, PersonagemOn.character.getIdProfile(), PersonagemOn.character.getFotoAtual());
+        StorageUtil.downloadProfile(getApplicationContext(), profileLogadoimageView, PersonagemOn.character.getIdProfile(), PersonagemOn.character.getFotoAtual());
 
         TextView nickPersonagemOnTextView = findViewById(R.id.nickPersonagemOnTextView);
         nickPersonagemOnTextView.setText(PersonagemOn.character.getNick());
 
         Button trocarImagem = findViewById(R.id.trocarImagemButton);
-        trocarImagem.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                tituloSecao.setText("TROCAR IMAGEM");
-                changeFragment(new TrocarImagemFragment());
+        trocarImagem.setOnClickListener(v -> {
+            changeFragment(new TrocarImagemFragment());
 
-                DrawerLayout drawer = findViewById(R.id.drawer_layout);
-                drawer.closeDrawer(GravityCompat.START);
-            }
+            DrawerLayout drawer1 = findViewById(R.id.drawer_layout);
+            drawer1.closeDrawer(GravityCompat.START);
         });
 
         ImageView bolsaImageView = findViewById(R.id.bolsaImageView);
-        bolsaImageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                exibirBolsa(v);
-            }
-        });
+        bolsaImageView.setOnClickListener(this::exibirBolsa);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -204,8 +201,6 @@ public class PersonagemLogadoActivity extends AppCompatActivity {
         rankNinjaTextView = rotinasDialog.findViewById(R.id.rankNinjaTextView);
         diversasRotinasTextView = rotinasDialog.findViewById(R.id.diversasRotinasTextView);
 
-        tituloSecao = findViewById(R.id.tituloSecaoTextView);
-        tituloSecao.setText("STATUS DO PERSONAGEM");
         changeFragment(new PersonagemStatusFragment());
     }
 
@@ -216,25 +211,22 @@ public class PersonagemLogadoActivity extends AppCompatActivity {
                 .child(channer);
 
         final ImageView chatTopoImageView = findViewById(R.id.topoChatImageView);
-        chatTopoImageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                LinearLayout chatMensagens = findViewById(R.id.chatMensagens);
+        chatTopoImageView.setOnClickListener(v -> {
+            LinearLayout chatMensagens = findViewById(R.id.chatMensagens);
 
-                Animation animation;
+            Animation animation;
 
-                if (chatAberto) {
-                    animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_out);
-                    chatTopoImageView.startAnimation(animation);
-                    chatMensagens.setVisibility(View.GONE);
-                    chatAberto = false;
+            if (chatAberto) {
+                animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_out);
+                chatTopoImageView.startAnimation(animation);
+                chatMensagens.setVisibility(View.GONE);
+                chatAberto = false;
 
-                } else {
-                    animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_in);
-                    chatTopoImageView.startAnimation(animation);
-                    chatMensagens.setVisibility(View.VISIBLE);
-                    chatAberto = true;
-                }
+            } else {
+                animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_in);
+                chatTopoImageView.startAnimation(animation);
+                chatMensagens.setVisibility(View.VISIBLE);
+                chatAberto = true;
             }
         });
 
@@ -307,31 +299,24 @@ public class PersonagemLogadoActivity extends AppCompatActivity {
                 if (groupPosition == GROUP_USUARIO) {
                     switch (childPosition) {
                         case 0:
-                            tituloSecao.setText(R.string.section_account_info);
                             changeFragment(new UserDataFragment());
                             break;
                         case 1:
-                            tituloSecao.setText(R.string.secao_mensageiro);
                             changeFragment(new MensagensFragment());
                             break;
                         case 2:
-                            tituloSecao.setText(R.string.secao_formulas);
                             changeFragment(new FormulasFragment());
                             break;
                         case 3:
-                            tituloSecao.setText(R.string.section_change_password);
                             changeFragment(new PasswordChangeFragment());
                             break;
                         case 4:
-                            tituloSecao.setText(R.string.section_create_character);
                             changeFragment(new CharacterCreateFragment());
                             break;
                         case 5:
-                            tituloSecao.setText(R.string.secao_selecione_seu_personagem);
                             changeFragment(new PersonagemSelecionarFragment());
                             break;
                         case 6:
-                            tituloSecao.setText(R.string.section_support);
                             changeFragment(new SuporteFragment());
                             break;
                         case 7:
@@ -342,38 +327,30 @@ public class PersonagemLogadoActivity extends AppCompatActivity {
                     if (PersonagemOn.character.isEmMissao()) {
                         switch (childPosition) {
                             case 0:
-                                tituloSecao.setText(R.string.section_character_status);
                                 changeFragment(new PersonagemStatusFragment());
                                 break;
                             case 1:
-                                tituloSecao.setText(R.string.secao_fidelidade_ninja);
                                 changeFragment(new FidelidadeFragment());
                                 break;
                         }
                     } else {
                         switch (childPosition) {
                             case 0:
-                                tituloSecao.setText(R.string.section_character_status);
                                 changeFragment(new PersonagemStatusFragment());
                                 break;
                             case 1:
-                                tituloSecao.setText(R.string.secao_clas);
                                 changeFragment(new ClasFragment());
                                 break;
                             case 2:
-                                tituloSecao.setText(R.string.secao_invocacoes);
                                 changeFragment(new InvocacaoFragment());
                                 break;
                             case 3:
-                                tituloSecao.setText(R.string.secao_modo_historia);
                                 changeFragment(new HistoriaFragment());
                                 break;
                             case 4:
-                                tituloSecao.setText(R.string.section_character_status);
                                 changeFragment(new SorteNinjaFragment());
                                 break;
                             case 5:
-                                tituloSecao.setText(R.string.secao_fidelidade_ninja);
                                 changeFragment(new FidelidadeFragment());
                                 break;
                         }
@@ -382,19 +359,15 @@ public class PersonagemLogadoActivity extends AppCompatActivity {
                     if (!PersonagemOn.character.isEmMissao()) {
                         switch (childPosition) {
                             case 0:
-                                tituloSecao.setText(R.string.secao_graduacoes);
                                 changeFragment(new GraduacoesFragment());
                                 break;
                             case 1:
-                                tituloSecao.setText(R.string.section_attribute_training);
                                 changeFragment(new AcademiaTreinamentoFragment());
                                 break;
                             case 2:
-                                tituloSecao.setText(R.string.secao_treinamento_de_jutsus);
                                 changeFragment(new PersonagemJutsuFragment());
                                 break;
                             case 3:
-                                tituloSecao.setText(R.string.secao_jutsus_ninjas);
                                 changeFragment(new AcademiaJustuFragment());
                                 break;
                         }
@@ -415,39 +388,31 @@ public class PersonagemLogadoActivity extends AppCompatActivity {
 
                 } else if (groupPosition == GROUP_VILA_ATUAL) {
                     if (PersonagemOn.character.isEmMissao()) {
-                        tituloSecao.setText(R.string.secao_status_da_missao);
                         changeFragment(new MissoesEsperaFragment());
                     } else if (PersonagemOn.character.getGraducao().equals("Estudante")) {
                         switch (childPosition) {
                             case 0:
-                                tituloSecao.setText(R.string.secao_tarefas_iniciais);
                                 changeFragment(new LicoesFragment());
                                 break;
                             case 1:
-                                tituloSecao.setText(R.string.secao_ramen_shop);
                                 changeFragment(new RamenShopFragment());
                                 break;
                             case 2:
-                                tituloSecao.setText(R.string.secao_ninja_shop);
                                 changeFragment(new NinjaShopFragment());
                                 break;
                         }
                     } else {
                         switch (childPosition) {
                             case 0:
-                                tituloSecao.setText(R.string.secao_mapa_da_vila);
                                 changeFragment(new MapaVilaFragment());
                                 break;
                             case 1:
-                                tituloSecao.setText(R.string.secao_missoes);
                                 changeFragment(new MissoesFragment());
                                 break;
                             case 2:
-                                tituloSecao.setText(R.string.secao_ramen_shop);
                                 changeFragment(new RamenShopFragment());
                                 break;
                             case 3:
-                                tituloSecao.setText(R.string.secao_ninja_shop);
                                 changeFragment(new NinjaShopFragment());
                                 break;
                         }
@@ -456,19 +421,15 @@ public class PersonagemLogadoActivity extends AppCompatActivity {
                     if (!PersonagemOn.character.isEmMissao()) {
                         switch (childPosition) {
                             case 0:
-                                tituloSecao.setText(R.string.secao_dojo);
                                 changeFragment(new DojoFragment());
                                 break;
                             case 1:
-                                tituloSecao.setText(R.string.secao_dojo_4x4);
                                 changeFragment(new Dojo4x4Fragment());
                                 break;
                             case 2:
-                                tituloSecao.setText(R.string.section_arena);
                                 changeFragment(new ArenaFragment());
                                 break;
                             case 3:
-                                tituloSecao.setText(R.string.secao_historico_de_batalha);
                                 changeFragment(new LogBatalhaFragment());
                                 break;
                         }
@@ -502,15 +463,12 @@ public class PersonagemLogadoActivity extends AppCompatActivity {
                 } else if (groupPosition == GROUP_RANKING) {
                     switch (childPosition) {
                         case 0:
-                            tituloSecao.setText(R.string.secao_ranking_de_ninjas);
                             changeFragment(new RankNinjasFragment());
                             break;
                         case 1:
-                            tituloSecao.setText(R.string.secao_ranking_de_4x4);
                             changeFragment(new Rank4x4Fragment());
                             break;
                         case 2:
-                            tituloSecao.setText(R.string.secao_ranking_de_equipes);
                             changeFragment(new RankEquipesFragment());
                             break;
                     }
@@ -787,13 +745,11 @@ public class PersonagemLogadoActivity extends AppCompatActivity {
     }
 
     public void goFidelidade(View view) {
-        tituloSecao.setText(R.string.secao_fidelidade_ninja);
         changeFragment(new FidelidadeFragment());
         closeDrawer();
     }
 
     public void goMensageiro(View view) {
-        tituloSecao.setText(R.string.secao_mensageiro);
         changeFragment(new MensagensFragment());
         closeDrawer();
     }
@@ -811,7 +767,7 @@ public class PersonagemLogadoActivity extends AppCompatActivity {
 
     private void changeFragment(Fragment fragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.conteiner, fragment);
+        transaction.replace(R.id.container, fragment);
         transaction.commit();
     }
 

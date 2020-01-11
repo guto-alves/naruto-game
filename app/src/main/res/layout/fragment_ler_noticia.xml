@@ -81,7 +81,7 @@
                         android:id="@+id/dateTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{viewmodel.news.data}"
+                        android:text="@{viewmodel.news.date}"
                         android:textColor="@android:color/white"
                         android:textSize="12sp" />
                 </LinearLayout>
@@ -148,7 +148,6 @@
                 android:ems="10"
                 android:gravity="start|top"
                 android:inputType="textMultiLine"
-                android:text="@={}"
                 android:textColor="@android:color/black" />
 
             <Button

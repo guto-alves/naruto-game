@@ -22,7 +22,7 @@ public class Dojo4x4Fragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_dojo4x4, container, false);
 
         ImageView personagemMsgImagem = view.findViewById(R.id.personagemMsgImagem);
-        StorageUtil.baixarImagemParaMsg(getActivity(), personagemMsgImagem, PersonagemOn.character.getNumVila());
+        StorageUtil.downloadProfileForMsg(getActivity(), personagemMsgImagem, PersonagemOn.character.getNumVila());
 
         return view;
     }

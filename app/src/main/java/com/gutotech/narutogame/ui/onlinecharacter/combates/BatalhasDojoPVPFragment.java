@@ -33,6 +33,6 @@ public class BatalhasDojoPVPFragment extends Fragment {
 
     private void changeToFragment(Fragment fragment) {
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.conteiner, fragment).commit();
+        transaction.replace(R.id.container, fragment).commit();
     }
 }

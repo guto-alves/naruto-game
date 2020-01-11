@@ -68,7 +68,7 @@ public class MenuPersonagemLogadoExpandableAdapter extends BaseExpandableListAda
             convertView = layoutInflater.inflate(R.layout.expandable_logado_list_group, null, false);
         }
 
-        ImageView categoriaImageView = convertView.findViewById(R.id.categoriaImageView);
+        ImageView categoriaImageView = convertView.findViewById(R.id.menuTitleImageView);
         TextView categoriaTextView = convertView.findViewById(R.id.categoriaTextView);
 
         categoriaTextView.setText(groupListText.get(groupPosition));

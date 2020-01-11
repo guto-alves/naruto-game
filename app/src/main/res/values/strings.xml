@@ -1,7 +1,5 @@
 <resources>
     <string name="app_name">Naruto Game</string>
-    <string name="facebook_application_id" translatable="false">495030854754869</string>
-    <string name="facebook_login_protocol_scheme" translatable="false">fb495030854754869</string>
 
     <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
     <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
@@ -9,6 +7,8 @@
     <string name="action_settings">Settings</string>
 
     <!-- TODO: Remove or change this placeholder text -->
+    <string name="section_title">Section title</string>
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="type_your_account_email">Type your account email</string>
     <string name="hall_da_fama">Hall of Fame</string>
@@ -74,7 +74,7 @@
     <string name="new_password">New Password</string>
     <string name="current_password">Current password</string>
     <string name="escolha_seu_personagem">ESCOLHA SEU PERSONAGEM</string>
-    <string name="taijutsu">Taijutsu</string>
+    <string name="taijutsu" translatable="false">Taijutsu</string>
     <string name="ninjustu">Ninjustu</string>
 
     <!-- Títulos das seções -->
@@ -134,8 +134,8 @@
 
 
     <!-- Atributos -->
-    <string name="bukijutsu">Bukijutsu</string>
-    <string name="genjutsu">Genjutsu</string>
+    <string name="bukijutsu" translatable="false">Bukijutsu</string>
+    <string name="genjutsu" translatable="false">Genjutsu</string>
     <string name="agilidade">Agilidade</string>
     <string name="forca">Força</string>
     <string name="resistencia" translatable="false">Resistência</string>
@@ -150,7 +150,6 @@
     <string name="quantidade">Quantidade</string>
     <string name="batalhas_do_dojo_npc">Batalhas do Dojo NPC</string>
     <string name="batalhas_do_dojo_pvp">Batalhas do Dojo PVP</string>
-    <string name="titulo_da_secao">Título da seção</string>
 
     <!-- Secao cadastro -->
     <string name="section_create_account">CREATE YOUR ACCOUNT</string>
@@ -214,5 +213,9 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="hint_neighborhood">Neighborhood</string>
     <string name="hint_state">State</string>
     <string name="label_name">Name:</string>
+    <string name="section_support_new_ticket">SUPPORT - NEW SUPPORT TICKET</string>
+    <string name="section_dojo_challenge">DOJO CHALLENGE</string>
+    <string name="create_an_account">Create an Account</string>
+    <string name="forgot_my_password">I forgot my password</string>
 
 </resources>

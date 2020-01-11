@@ -216,7 +216,7 @@ Terça-Feira, é o dia que é renovado o limite semanal, mesmo que você não te
                         android:layout_height="wrap_content"
                         android:layout_marginRight="3dp"
                         android:text="Você gastou"
-                        android:textColor="@color/colorTextos"
+                        android:textColor="@color/colorText"
                         android:textSize="12dp" />
 
                     <TextView
@@ -262,7 +262,7 @@ Terça-Feira, é o dia que é renovado o limite semanal, mesmo que você não te
                         android:layout_height="wrap_content"
                         android:layout_marginRight="3dp"
                         android:text="Você ganhou"
-                        android:textColor="@color/colorTextos"
+                        android:textColor="@color/colorText"
                         android:textSize="12dp" />
 
                     <TextView
@@ -271,14 +271,14 @@ Terça-Feira, é o dia que é renovado o limite semanal, mesmo que você não te
                         android:layout_height="wrap_content"
                         android:layout_marginRight="3dp"
                         android:text="N"
-                        android:textColor="@color/colorVerde" />
+                        android:textColor="@color/colorGreen" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="3dp"
                         android:text="Pontos de Experiência "
-                        android:textColor="@color/colorTextos"
+                        android:textColor="@color/colorText"
                         android:textSize="12dp" />
 
                 </LinearLayout>
@@ -294,7 +294,7 @@ Terça-Feira, é o dia que é renovado o limite semanal, mesmo que você não te
                         android:layout_height="wrap_content"
                         android:layout_marginRight="3dp"
                         android:text="Você ganhou"
-                        android:textColor="@color/colorTextos"
+                        android:textColor="@color/colorText"
                         android:textSize="12dp" />
 
                     <TextView
@@ -303,14 +303,14 @@ Terça-Feira, é o dia que é renovado o limite semanal, mesmo que você não te
                         android:layout_height="wrap_content"
                         android:layout_marginRight="3dp"
                         android:text="N"
-                        android:textColor="@color/colorVerde" />
+                        android:textColor="@color/colorGreen" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="3dp"
                         android:text="em pontos de habilidade."
-                        android:textColor="@color/colorTextos"
+                        android:textColor="@color/colorText"
                         android:textSize="12dp" />
 
                 </LinearLayout>
@@ -392,7 +392,7 @@ Terça-Feira, é o dia que é renovado o limite semanal, mesmo que você não te
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="Você pode fazer o treino manual várias vezes by dia."
-                    android:textColor="@color/colorTextos" />
+                    android:textColor="@color/colorText" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -406,7 +406,7 @@ Terça-Feira, é o dia que é renovado o limite semanal, mesmo que você não te
                         android:layout_height="wrap_content"
                         android:layout_marginRight="3dp"
                         android:text="Você gastará N"
-                        android:textColor="@color/colorTextos" />
+                        android:textColor="@color/colorText" />
 
                     <ImageView
                         android:id="@+id/imageView28"
@@ -427,7 +427,7 @@ Terça-Feira, é o dia que é renovado o limite semanal, mesmo que você não te
                         android:layout_height="wrap_content"
                         android:layout_marginRight="3dp"
                         android:text="Você gastará N"
-                        android:textColor="@color/colorTextos" />
+                        android:textColor="@color/colorText" />
 
                     <ImageView
                         android:id="@+id/imageView281"
@@ -566,7 +566,7 @@ Terça-Feira, é o dia que é renovado o limite semanal, mesmo que você não te
                 android:layout_height="wrap_content"
                 android:text="Todos os ninjas podem treinar o seu limite diário normalmente, para aqueles que não conseguirem treinar o limite no mesmo dia, podem treinar no dia seguinte e assim consecutivamente. O limite de treino diário, aumenta conforme sua graduação, um Jounin tem mais limite by dia que um Estudante, by exemplo.  "
                 android:textAlignment="center"
-                android:textColor="@color/colorTextos"
+                android:textColor="@color/colorText"
                 android:textSize="12sp" />
         </LinearLayout>
 
@@ -667,7 +667,7 @@ Terça-Feira, é o dia que é renovado o limite semanal, mesmo que você não te
                         android:layout_height="wrap_content"
                         android:layout_marginRight="3dp"
                         android:text="Continue treinando, só faltam"
-                        android:textColor="@color/colorTextos"
+                        android:textColor="@color/colorText"
                         android:textSize="12dp" />
 
                     <TextView
@@ -676,7 +676,7 @@ Terça-Feira, é o dia que é renovado o limite semanal, mesmo que você não te
                         android:layout_height="wrap_content"
                         android:layout_marginRight="3dp"
                         android:text="N"
-                        android:textColor="@color/colorVerde" />
+                        android:textColor="@color/colorGreen" />
 
                 </LinearLayout>
 
@@ -685,7 +685,7 @@ Terça-Feira, é o dia que é renovado o limite semanal, mesmo que você não te
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Pontos de Treinamento para conseguir mais um Ponto de Habilidade para distribuir em seus Atributos."
-                    android:textColor="@color/colorTextos"
+                    android:textColor="@color/colorText"
                     android:textSize="12dp" />
 
             </LinearLayout>
@@ -790,7 +790,7 @@ Terça-Feira, é o dia que é renovado o limite semanal, mesmo que você não te
                         android:layout_height="wrap_content"
                         android:layout_marginRight="3dp"
                         android:text="Você tem "
-                        android:textColor="@color/colorTextos"
+                        android:textColor="@color/colorText"
                         android:textSize="12dp" />
 
                     <TextView
@@ -798,7 +798,7 @@ Terça-Feira, é o dia que é renovado o limite semanal, mesmo que você não te
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="N Pontos Livres"
-                        android:textColor="@color/colorVerde"
+                        android:textColor="@color/colorGreen"
                         android:textSize="12dp" />
 
                 </LinearLayout>
@@ -813,7 +813,7 @@ Terça-Feira, é o dia que é renovado o limite semanal, mesmo que você não te
                         android:layout_height="wrap_content"
                         android:layout_marginRight="3dp"
                         android:text="sendo "
-                        android:textColor="@color/colorTextos"
+                        android:textColor="@color/colorText"
                         android:textSize="12dp" />
 
                     <TextView
@@ -829,7 +829,7 @@ Terça-Feira, é o dia que é renovado o limite semanal, mesmo que você não te
                         android:layout_height="wrap_content"
                         android:layout_marginRight="3dp"
                         android:text=" para distribuir em seus Atributos."
-                        android:textColor="@color/colorTextos"
+                        android:textColor="@color/colorText"
                         android:textSize="12dp" />
 
                 </LinearLayout>
@@ -912,7 +912,7 @@ Terça-Feira, é o dia que é renovado o limite semanal, mesmo que você não te
                 android:layout_height="wrap_content"
                 android:text="Quando a barra de treinamento se completar, você receberá um ponto para treinar seus atributos! Porém seu desafio será cada vez mais dificil!"
                 android:textAlignment="center"
-                android:textColor="@color/colorTextos"
+                android:textColor="@color/colorText"
                 android:textSize="12sp" />
         </LinearLayout>
 
@@ -1012,7 +1012,7 @@ Terça-Feira, é o dia que é renovado o limite semanal, mesmo que você não te
                         android:layout_height="wrap_content"
                         android:layout_marginRight="3dp"
                         android:text="Cada ponto de Energia adquirido atraves do Treino de Atributos vale: 2 pontos de vida e 4 pontos de chakra e stamina.\n\nPara saber maiores detalhes entre na página de Fórmulas do Jogo e veja o valor original do Atributo Energia."
-                        android:textColor="@color/colorTextos"
+                        android:textColor="@color/colorText"
                         android:textSize="12dp" />
 
                 </LinearLayout>

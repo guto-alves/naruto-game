@@ -33,7 +33,7 @@ public class UserDataFragment extends Fragment {
         MaskTextWatcher textWatcher = new MaskTextWatcher(binding.dateOfBirthEditText, maskFormatter);
         binding.dateOfBirthEditText.addTextChangedListener(textWatcher);
 
-        StorageUtil.baixarImagemParaMsg(getActivity(), binding.personagemMsg);
+        StorageUtil.downloadProfileForMsg(getActivity(), binding.personagemMsg);
 
         binding.sexoSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

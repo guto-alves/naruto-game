@@ -7,11 +7,9 @@
     android:orientation="vertical">
 
     <ImageView
-        android:id="@+id/categoriaImageView"
+        android:id="@+id/menuTitleImageView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:scaleType="fitXY"
         app:srcCompat="@drawable/layout_principal" />
 
 </LinearLayout>

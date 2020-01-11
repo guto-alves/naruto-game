@@ -4,9 +4,6 @@ import android.os.Bundle;
 
 import com.google.android.material.navigation.NavigationView;
 
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.view.View;
 
 import androidx.core.view.GravityCompat;
@@ -18,15 +15,14 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.gutotech.narutogame.R;
-import com.gutotech.narutogame.ui.adapter.MenuLogadoExpandableLisViewAdapter;
-import com.gutotech.narutogame.ui.loggedout.cadastro.CadastroFragment;
+import com.gutotech.narutogame.ui.adapter.ExpandableAdapter;
+import com.gutotech.narutogame.ui.loggedout.registration.RegistrationFragment;
 import com.gutotech.narutogame.ui.loggedout.halldafama.HalldafamaFragment;
 import com.gutotech.narutogame.ui.loggedout.home.HomeFragment;
 import com.gutotech.narutogame.ui.loggedout.recuperarsenha.RecuperarSenhaFragment;
-import com.gutotech.narutogame.publicentities.CurrentFragment;
+import com.gutotech.narutogame.util.FragmentUtil;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -34,10 +30,11 @@ import java.util.List;
 
 public class DeslogadoActivity extends AppCompatActivity {
     private List<Integer> groupList;
-    private HashMap<Integer, List<String>> childList;
+    private HashMap<Integer, List<Integer>> childList;
 
-    private TextView tituloSecaoTextView;
     private final int GROUP_PRINCIPAL = 0;
+
+    private DrawerLayout drawer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,57 +48,47 @@ public class DeslogadoActivity extends AppCompatActivity {
         View headerView = navigationView.getHeaderView(0);
 
         ImageView logoImageView = headerView.findViewById(R.id.logoImageView);
-        logoImageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                changeFragment(new HomeFragment());
-                closeDrawer();
-            }
+        logoImageView.setOnClickListener(v -> {
+            FragmentUtil.changeToFragment(DeslogadoActivity.this, new HomeFragment());
+            drawer.closeDrawer(GravityCompat.START);
         });
 
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        tituloSecaoTextView = findViewById(R.id.tituloSecaoTextView);
-
         buildMenu();
         ExpandableListView expandableListView = findViewById(R.id.expanded_menu_main);
-        MenuLogadoExpandableLisViewAdapter adapter = new MenuLogadoExpandableLisViewAdapter(this, groupList, childList);
-        expandableListView.setAdapter(adapter);
-        expandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
-            @Override
-            public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
-                if (groupPosition == GROUP_PRINCIPAL) {
-                    switch (childPosition) {
-                        case 0:
-                            tituloSecaoTextView.setText(R.string.section_home);
-                            changeFragment(new HomeFragment());
-                            break;
-                        case 1:
-                            tituloSecaoTextView.setText(R.string.section_create_account);
-                            changeFragment(new CadastroFragment());
-                            break;
-                        case 2:
-                            tituloSecaoTextView.setText(R.string.section_i_forgot_my_password);
-                            changeFragment(new RecuperarSenhaFragment());
-                            break;
-                        case 3:
-                            tituloSecaoTextView.setText(R.string.section_hall_of_fame);
-                            changeFragment(new HalldafamaFragment());
-                            break;
-                    }
-                }
 
-                closeDrawer();
-                return false;
+        ExpandableAdapter adapter = new ExpandableAdapter(this, groupList, childList);
+
+        expandableListView.setAdapter(adapter);
+        expandableListView.setOnChildClickListener((parent, v, groupPosition, childPosition, id) -> {
+            if (groupPosition == GROUP_PRINCIPAL) {
+                switch (childPosition) {
+                    case 0:
+                        FragmentUtil.changeToFragment(DeslogadoActivity.this, new HomeFragment());
+                        break;
+                    case 1:
+                        FragmentUtil.changeToFragment(DeslogadoActivity.this, new RegistrationFragment());
+                        break;
+                    case 2:
+                        FragmentUtil.changeToFragment(DeslogadoActivity.this, new RecuperarSenhaFragment());
+                        break;
+                    case 3:
+                        FragmentUtil.changeToFragment(DeslogadoActivity.this, new HalldafamaFragment());
+                        break;
+                }
             }
+
+            drawer.closeDrawer(GravityCompat.START);
+            return false;
         });
         expandableListView.expandGroup(0);
 
-        changeFragment(new CadastroFragment());
+        FragmentUtil.changeToFragment(this, new RegistrationFragment());
     }
 
     private void buildMenu() {
@@ -110,34 +97,18 @@ public class DeslogadoActivity extends AppCompatActivity {
 
         groupList.add(R.drawable.layout_principal);
 
-        List<String> itemsFromTitle1 = new ArrayList<>();
-        itemsFromTitle1.add("Home");
-        itemsFromTitle1.add("Crie sua conta");
-        itemsFromTitle1.add("Esqueci minha senha");
-        itemsFromTitle1.add("Hall da fama");
-        childList.put(groupList.get(GROUP_PRINCIPAL), itemsFromTitle1);
-    }
-
-    private void changeFragment(Fragment fragment) {
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.conteiner, fragment);
-        transaction.commit();
-    }
-
-    private void closeDrawer() {
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
+        List<Integer> items = new ArrayList<>();
+        items.add(R.string.home);
+        items.add(R.string.create_an_account);
+        items.add(R.string.forgot_my_password);
+        items.add(R.string.hall_da_fama);
+        childList.put(0, items);
     }
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        } else if (CurrentFragment.LER_NOTICIA == 1) {
-            tituloSecaoTextView.setText(R.string.section_home);
-            CurrentFragment.LER_NOTICIA = 0;
-            changeFragment(new HomeFragment());
         } else {
             super.onBackPressed();
         }

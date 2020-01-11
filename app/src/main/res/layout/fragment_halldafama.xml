@@ -5,12 +5,4 @@
     android:layout_height="match_parent"
     tools:context=".ui.loggedout.halldafama.HalldafamaFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="HALL DA FAMA"
-        android:textSize="24dp" />
-
 </FrameLayout>

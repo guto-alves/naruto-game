@@ -46,7 +46,7 @@ public class BatalhasDojoNPCFragment extends Fragment {
 
         // Confjgura msg
         ImageView imagemMsg = view.findViewById(R.id.personagemMsg);
-        StorageUtil.baixarImagemParaMsg(getActivity(), imagemMsg, PersonagemOn.character.getNumVila());
+        StorageUtil.downloadProfileForMsg(getActivity(), imagemMsg, PersonagemOn.character.getNumVila());
 
         ProgressBar combatesNPCDiarioProgressBar = view.findViewById(R.id.combatesNPCDiarioProgressBar);
         combatesNPCDiarioProgressBar.setMax(MAX_NPC_DIARIO);
@@ -73,7 +73,7 @@ public class BatalhasDojoNPCFragment extends Fragment {
 
                 // config EU
                 ImageView profileMeImageView = view.findViewById(R.id.profileMeImageView);
-                StorageUtil.baixarProfile(getActivity(), profileMeImageView, PersonagemOn.character.getIdProfile(), PersonagemOn.character.getFotoAtual());
+                StorageUtil.downloadProfile(getActivity(), profileMeImageView, PersonagemOn.character.getIdProfile(), PersonagemOn.character.getFotoAtual());
 
                 TextView nickMeTextView = view.findViewById(R.id.nickMeTextView);
                 nickMeTextView.setText(PersonagemOn.character.getNick());
@@ -118,7 +118,7 @@ public class BatalhasDojoNPCFragment extends Fragment {
     }
 
     private void atualizarTela() {
-        StorageUtil.baixarProfile(getActivity(), profileNPCImageView, NPC.npc.getIdProfile(), NPC.npc.getFotoAtual());
+        StorageUtil.downloadProfile(getActivity(), profileNPCImageView, NPC.npc.getIdProfile(), NPC.npc.getFotoAtual());
 
         nickNPCTextView.setText(NPC.npc.getNick());
 
@@ -128,6 +128,6 @@ public class BatalhasDojoNPCFragment extends Fragment {
 
     private void changeToFragment(Fragment fragment) {
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.conteiner, fragment).commit();
+        transaction.replace(R.id.container, fragment).commit();
     }
 }

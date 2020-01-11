@@ -363,7 +363,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:text="0 Pontos Disponiveis para ( Conc, Conv, Perp ou Det )"
-            android:textColor="@color/colorVerde"
+            android:textColor="@color/colorGreen"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

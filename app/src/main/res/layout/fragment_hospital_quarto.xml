@@ -122,7 +122,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center|start"
                 android:text="Ou você pode esperar gratuitamente um ninja médico de plantão te salvar, recuperando seu character by completo no máximo de 10 minutos. ( 20% do total de seus atributos à cada 2 minutos )"
-                android:textColor="@color/colorVerde"
+                android:textColor="@color/colorGreen"
                 android:textSize="10sp" />
 
         </LinearLayout>

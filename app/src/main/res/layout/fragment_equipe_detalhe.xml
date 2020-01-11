@@ -178,7 +178,7 @@ Sair de sua Equipe e ajudar outra em Eventos não te dá Experiência caso já t
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="LEVEL"
-                        android:textColor="@color/colorTextos"
+                        android:textColor="@color/colorText"
                         android:textSize="12sp" />
 
                     <TextView
@@ -263,7 +263,7 @@ Sair de sua Equipe e ajudar outra em Eventos não te dá Experiência caso já t
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="MÁX. LEVEL"
-                        android:textColor="@color/colorTextos"
+                        android:textColor="@color/colorText"
                         android:textSize="12sp" />
 
                     <TextView

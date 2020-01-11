@@ -40,8 +40,6 @@ public class LogadoSelecionarActivity extends AppCompatActivity {
     private final int GROUP_PERSONAGEM = 1;
     private final int GROUP_PRINCIPAL = 2;
 
-    private TextView tituloSecaoTextView;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,10 +48,6 @@ public class LogadoSelecionarActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
-
-        tituloSecaoTextView = findViewById(R.id.tituloSecaoTextView);
-        tituloSecaoTextView.setText(R.string.secao_selecione_seu_personagem);
-        changeFragment(new PersonagemSelecionarFragment());
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -65,57 +59,49 @@ public class LogadoSelecionarActivity extends AppCompatActivity {
         ExpandableListView expandableListView = findViewById(R.id.expanded_menu_main);
         MenuLogadoExpandableLisViewAdapter adapter = new MenuLogadoExpandableLisViewAdapter(this, groupList, childList);
         expandableListView.setAdapter(adapter);
-        expandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
-            @Override
-            public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
-                if (groupPosition == GROUP_USUARIO) {
-                    switch (childPosition) {
-                        case 0:
-                            tituloSecaoTextView.setText(R.string.section_account_info);
-                            changeFragment(new UserDataFragment());
-                            break;
-                        case 1:
-                            tituloSecaoTextView.setText(R.string.section_change_password);
-                            changeFragment(new PasswordChangeFragment());
-                            break;
-                        case 2:
-                            tituloSecaoTextView.setText(R.string.section_support);
-                            changeFragment(new SuporteFragment());
-                    }
-                } else if (groupPosition == GROUP_PERSONAGEM) {
-                    switch (childPosition) {
-                        case 0:
-                            tituloSecaoTextView.setText(R.string.secao_selecione_seu_personagem);
-                            changeFragment(new PersonagemSelecionarFragment());
-                            break;
-                        case 1:
-                            tituloSecaoTextView.setText(R.string.section_create_character);
-                            changeFragment(new CharacterCreateFragment());
-                            break;
-                    }
-                } else if (groupPosition == GROUP_PRINCIPAL) {
-                    switch (childPosition) {
-                        case 0:
-                            tituloSecaoTextView.setText(R.string.section_home);
-                            HomeFragment homeFragment = new HomeFragment();
-                            homeFragment.setArguments(new Bundle());
-                            changeFragment(homeFragment);
-                            break;
-                        case 1:
-                            tituloSecaoTextView.setText(R.string.section_hall_of_fame);
-                            changeFragment(new HalldafamaFragment());
-                            break;
-                    }
+        expandableListView.setOnChildClickListener((parent, v, groupPosition, childPosition, id) -> {
+            if (groupPosition == GROUP_USUARIO) {
+                switch (childPosition) {
+                    case 0:
+                        changeFragment(new UserDataFragment());
+                        break;
+                    case 1:
+                        changeFragment(new PasswordChangeFragment());
+                        break;
+                    case 2:
+                        changeFragment(new SuporteFragment());
                 }
-
-                DrawerLayout drawer = findViewById(R.id.drawer_layout);
-                drawer.closeDrawer(GravityCompat.START);
-                return false;
+            } else if (groupPosition == GROUP_PERSONAGEM) {
+                switch (childPosition) {
+                    case 0:
+                        changeFragment(new PersonagemSelecionarFragment());
+                        break;
+                    case 1:
+                        changeFragment(new CharacterCreateFragment());
+                        break;
+                }
+            } else if (groupPosition == GROUP_PRINCIPAL) {
+                switch (childPosition) {
+                    case 0:
+                        HomeFragment homeFragment = new HomeFragment();
+                        homeFragment.setArguments(new Bundle());
+                        changeFragment(homeFragment);
+                        break;
+                    case 1:
+                        changeFragment(new HalldafamaFragment());
+                        break;
+                }
             }
+
+            DrawerLayout drawer1 = findViewById(R.id.drawer_layout);
+            drawer1.closeDrawer(GravityCompat.START);
+            return false;
         });
         expandableListView.expandGroup(0);
         expandableListView.expandGroup(1);
         expandableListView.expandGroup(2);
+
+        changeFragment(new PersonagemSelecionarFragment());
     }
 
     private void buildMenu() {
@@ -145,7 +131,7 @@ public class LogadoSelecionarActivity extends AppCompatActivity {
 
     public void changeFragment(Fragment fragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.conteiner, fragment);
+        transaction.replace(R.id.container, fragment);
         transaction.commit();
     }
 
@@ -156,7 +142,6 @@ public class LogadoSelecionarActivity extends AppCompatActivity {
             drawer.closeDrawer(GravityCompat.START);
         } else if (CurrentFragment.LER_NOTICIA == 1) {
             CurrentFragment.LER_NOTICIA = 0;
-            tituloSecaoTextView.setText(R.string.section_home);
             HomeFragment homeFragment = new HomeFragment();
             homeFragment.setArguments(new Bundle());
             changeFragment(homeFragment);

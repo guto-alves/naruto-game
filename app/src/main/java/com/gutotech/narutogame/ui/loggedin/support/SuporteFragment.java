@@ -47,13 +47,13 @@ public class SuporteFragment extends Fragment {
         Bundle bundle = getArguments();
         if (bundle != null) {
             ImageView personagemMsg2 = view.findViewById(R.id.personagemMsg2);
-            StorageUtil.baixarImagemParaMsg(getActivity(), personagemMsg2);
+            StorageUtil.downloadProfileForMsg(getActivity(), personagemMsg2);
             ConstraintLayout msgConstraint2 = view.findViewById(R.id.msgConstraint2);
             msgConstraint2.setVisibility(View.VISIBLE);
         }
 
         ImageView personagemMsg = view.findViewById(R.id.personagemMsg);
-        StorageUtil.baixarImagemParaMsg(getActivity(), personagemMsg);
+        StorageUtil.downloadProfileForMsg(getActivity(), personagemMsg);
 
         DatabaseReference ticketsReference = FirebaseConfig.getDatabase().child("tickets");
         myTickets = ticketsReference.orderByChild("email").equalTo(FirebaseConfig.getAuth().getCurrentUser().getEmail());
@@ -98,6 +98,6 @@ public class SuporteFragment extends Fragment {
 
     private void changeToFragment(Fragment fragment) {
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.conteiner, fragment).commit();
+        transaction.replace(R.id.container, fragment).commit();
     }
 }

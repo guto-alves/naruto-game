@@ -103,18 +103,18 @@ public class Shop {
 
     public List<ItemShop> getPergaminhos() {
         itensList.clear();
-        itensList.add(new Pergaminho("1", Vilas.FOLHA));
-        itensList.add(new Pergaminho("2", Vilas.FONTES_TERMAIS));
-        itensList.add(new Pergaminho("3", Vilas.NEVE));
-        itensList.add(new Pergaminho("4", Vilas.CACHOEIRA));
-        itensList.add(new Pergaminho("5", Vilas.CHUVA));
-        itensList.add(new Pergaminho("6", Vilas.SOM));
-        itensList.add(new Pergaminho("7", Vilas.AKATSUKI));
-        itensList.add(new Pergaminho("8", Vilas.NUVEM));
-        itensList.add(new Pergaminho("9", Vilas.PEDRA));
-        itensList.add(new Pergaminho("10", Vilas.NEVOA));
-        itensList.add(new Pergaminho("11", Vilas.AREIA));
-        itensList.add(new Pergaminho("12", Vilas.GRAMA));
+//        itensList.add(new Pergaminho("1", Vilas.FOLHA));
+//        itensList.add(new Pergaminho("2", Vilas.FONTES_TERMAIS));
+//        itensList.add(new Pergaminho("3", Vilas.NEVE));
+//        itensList.add(new Pergaminho("4", Vilas.CACHOEIRA));
+//        itensList.add(new Pergaminho("5", Vilas.CHUVA));
+//        itensList.add(new Pergaminho("6", Vilas.SOM));
+//        itensList.add(new Pergaminho("7", Vilas.AKATSUKI));
+//        itensList.add(new Pergaminho("8", Vilas.NUVEM));
+//        itensList.add(new Pergaminho("9", Vilas.PEDRA));
+//        itensList.add(new Pergaminho("10", Vilas.NEVOA));
+//        itensList.add(new Pergaminho("11", Vilas.AREIA));
+//        itensList.add(new Pergaminho("12", Vilas.GRAMA));
         return itensList;
     }
 }

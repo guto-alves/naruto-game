@@ -44,7 +44,7 @@ public class TrocarImagemFragment extends Fragment {
                         PersonagemOn.character.setFotoAtual(position + 1);
 
                         ImageView profileLogadoimageView = getActivity().findViewById(R.id.profilePersonagemOnImageView);
-                        StorageUtil.baixarProfile(getActivity(), profileLogadoimageView, PersonagemOn.character.getIdProfile(), PersonagemOn.character.getFotoAtual());
+                        StorageUtil.downloadProfile(getActivity(), profileLogadoimageView, PersonagemOn.character.getIdProfile(), PersonagemOn.character.getFotoAtual());
 
                         PersonagemOn.character.salvar();
 

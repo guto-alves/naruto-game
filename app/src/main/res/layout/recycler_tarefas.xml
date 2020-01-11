@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Você esta indo bem! Mais algumas lições e quem sabe você pode se tornar um Genin. Continue sua árdua jornada de sucesso."
-            android:textColor="@color/colorTextos"
+            android:textColor="@color/colorText"
             android:textSize="12sp" />
     </LinearLayout>
 
@@ -66,7 +66,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:text="00:01:00"
-        android:textColor="@color/colorVerde"
+        android:textColor="@color/colorGreen"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline35"
@@ -80,7 +80,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:text="RY$ 25.00"
-        android:textColor="@color/colorVerde"
+        android:textColor="@color/colorGreen"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline36"

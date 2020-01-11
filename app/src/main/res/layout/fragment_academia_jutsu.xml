@@ -147,7 +147,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Meus Jutsus"
-                        android:textColor="@color/colorVerde"
+                        android:textColor="@color/colorGreen"
                         android:textSize="8sp" />
 
                 </LinearLayout>
@@ -289,7 +289,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text=" 60 de experiência"
-                        android:textColor="@color/colorVerde"
+                        android:textColor="@color/colorGreen"
                         android:textSize="10sp" />
 
                 </LinearLayout>

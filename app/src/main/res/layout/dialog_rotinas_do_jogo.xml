@@ -3,7 +3,6 @@
     android:layout_width="250dp"
     android:layout_height="550dp"
     android:background="@color/colorBgDialog"
-    android:elevation="10dp"
     android:orientation="vertical"
     android:padding="5dp">
 
@@ -27,7 +26,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Recupera 20% dos seus atributos."
-        android:textColor="@color/colorTextos" />
+        android:textColor="@color/colorText" />
 
     <TextView
         android:id="@+id/missaoNPCVilaTextView"
@@ -41,7 +40,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Tempo da finalização das missão de invasão."
-        android:textColor="@color/colorTextos" />
+        android:textColor="@color/colorText" />
 
     <TextView
         android:id="@+id/rankNinjaTextView"
@@ -55,8 +54,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Recupera 50% de todos os atributos do npc guardião e Atualiza o ranking de ninjas"
-        android:textColor="@color/colorTextos" />
-
+        android:textColor="@color/colorText" />
 
     <TextView
         android:layout_width="match_parent"
@@ -68,8 +66,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Atualiza o ranking de equipes e conquista"
-        android:textColor="@color/colorTextos" />
-
+        android:textColor="@color/colorText" />
 
     <TextView
         android:layout_width="match_parent"
@@ -81,7 +78,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Atualiza o ranking de organização"
-        android:textColor="@color/colorTextos" />
+        android:textColor="@color/colorText" />
 
 
     <TextView
@@ -94,7 +91,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Recupera 50% de todos os atributos do npc guardião e Atualiza o ranking de ninjas"
-        android:textColor="@color/colorTextos" />
+        android:textColor="@color/colorText" />
 
 
     <TextView
@@ -108,5 +105,5 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Libera o treino de atributos e de jutsus Limpa os Tickets de Hospital, Histórico de Combates e Livro de Registros. Limpa o exp diário ganho nas equipes Renova os combates npcs diários e os contadores de treino dos duelos  Libera a Diplomacia para votação ( Somente na Sexta-feira )"
-        android:textColor="@color/colorTextos" />
+        android:textColor="@color/colorText" />
 </LinearLayout>

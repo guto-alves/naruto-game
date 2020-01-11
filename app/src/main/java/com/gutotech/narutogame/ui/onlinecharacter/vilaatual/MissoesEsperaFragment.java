@@ -159,13 +159,13 @@ public class MissoesEsperaFragment extends Fragment {
     }
 
     private void mudarTituloSecao(String titulo) {
-        TextView tituloSecao = getActivity().findViewById(R.id.tituloSecaoTextView);
-        tituloSecao.setText(titulo);
+//        TextView tituloSecao = getActivity().findViewById(R.id.tituloSecaoTextView);
+//        tituloSecao.setText(titulo);
     }
 
     private void changeToFragment(Fragment fragment) {
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.conteiner, fragment);
+        transaction.replace(R.id.container, fragment);
         transaction.commit();
     }
 

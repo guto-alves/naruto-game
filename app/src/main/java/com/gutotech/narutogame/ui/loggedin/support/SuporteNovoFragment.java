@@ -8,10 +8,14 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+
 import androidx.annotation.NonNull;
+
 import com.google.android.material.textfield.TextInputEditText;
+
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +38,7 @@ import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.firebase.FirebaseConfig;
 import com.gutotech.narutogame.util.DateCustom;
 import com.gutotech.narutogame.data.model.Ticket;
+import com.gutotech.narutogame.util.FragmentUtil;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
@@ -54,15 +59,12 @@ public class SuporteNovoFragment extends Fragment {
     private ImageButton anexarImageButton;
     private TextView nomeDoArquivoTextView;
 
-    public SuporteNovoFragment() {
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_suporte_novo, container, false);
-        TextView tituloSecao = getActivity().findViewById(R.id.tituloSecaoTextView);
-        tituloSecao.setText("SUPORTE - NOVO TICKET DE SUPORTE");
+
+        FragmentUtil.setSectionTitle(getActivity(), R.string.section_support_new_ticket);
 
         ticket = new Ticket();
         ticket.setCategoria("Bug");
@@ -317,6 +319,6 @@ public class SuporteNovoFragment extends Fragment {
 
     private void changeToFragment(Fragment fragment) {
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.conteiner, fragment).commit();
+        transaction.replace(R.id.container, fragment).commit();
     }
 }

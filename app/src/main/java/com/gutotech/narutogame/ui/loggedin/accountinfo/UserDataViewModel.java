@@ -29,7 +29,7 @@ public class UserDataViewModel extends ViewModel {
         if (validatePlayer()) {
             mRepository.savePlayer(player.getValue());
 
-//            StorageUtil.baixarImagemParaMsg(getActivity(), personagemMsg2);
+//            StorageUtil.downloadProfileForMsg(getActivity(), personagemMsg2);
 //            mgsSucessoConstraintLayout.setVisibility(View.VISIBLE);
         }
     }

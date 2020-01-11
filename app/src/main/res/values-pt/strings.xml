@@ -4,7 +4,6 @@
     <string name="confirm_password">Confirmar Senha</string>
     <string name="current_password">Senha atual</string>
     <string name="comment">Comentar</string>
-    <string name="hint_city">Cidade</string>
     <string name="zip_code">CEP</string>
     <string name="leave_your_comment">Deixe seu comentário</string>
     <string name="news">Nóticias</string>
@@ -26,7 +25,6 @@
     <string name="Play">Jogar</string>
     <string name="forgot_password">Esqueceu a Senha?</string>
     <string name="ninjas_statistics">Estatísticas Ninjas</string>
-    <string name="state">Estado</string>
     <string name="if_you_do_not_remember_your_password">Se você não lembra mais a sua password, digite seu e-mail na qual fez o cadastro abaixo e clique em \"enviar\". Dentro de alguns instantes você receberá sua nova password em seu email</string>
     <string name="type_your_account_email">Digite o email da sua conta</string>
     <string name="section_change_password">TROQUE SUA SENHA</string>
@@ -42,7 +40,7 @@
     <string name="receive">Receber</string>
     <string name="birthday">Data de Nascimento</string>
     <string name="email_not_found">Email não encontrado</string>
-    <string name="hall_da_fama">Hall da fama</string>
+    <string name="hall_da_fama">Hall da Fama</string>
     <string name="section_hall_of_fame">HALL DA FAMA</string>
     <string name="label_village">Vila:</string>
     <string name="recover_password">Recuperar Senha</string>
@@ -55,4 +53,9 @@
     <string name="hint_state">Estado</string>
     <string name="hint_city">Cidade</string>
     <string name="label_name">Name:</string>
+    <string name="section_title">Título da seção</string>
+    <string name="title">Títutlo</string>
+    <string name="section_support_new_ticket">SUPPORT - NEW SUPPORT TICKET</string>
+    <string name="section_dojo_challenge">DOJO CHALLENGE</string>
+    <string name="forgot_my_password">Esqueci minha senha</string>
 </resources>

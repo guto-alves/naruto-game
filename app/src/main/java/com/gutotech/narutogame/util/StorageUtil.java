@@ -11,6 +11,7 @@ import com.gutotech.narutogame.data.firebase.FirebaseConfig;
 import java.security.SecureRandom;
 
 public class StorageUtil {
+    private static SecureRandom random = new SecureRandom();
 
     public static void downloadImage(Context context, StorageReference imageReference, ImageView imageView) {
         Glide.with(context)
@@ -19,30 +20,39 @@ public class StorageUtil {
                 .into(imageView);
     }
 
-    public static void baixarImagemParaMsg(Context context, ImageView imageView) {
+    public static void downloadProfileForMsg(Context context, ImageView imageView) {
         StorageReference imageReference = FirebaseConfig.getStorage()
                 .child("images")
                 .child("msg")
-                .child(String.valueOf(new SecureRandom().nextInt(8) + 1))
-                .child((new SecureRandom().nextInt(6) + 1) + ".png");
+                .child(generateVillageId())
+                .child(generateProfileId() + ".png");
         downloadImage(context, imageReference, imageView);
     }
 
-    public static void baixarImagemParaMsg(Context context, ImageView imageView, int vila) {
+    public static void downloadProfileForMsg(Context context, ImageView imageView, int villageId) {
         StorageReference imageReference = FirebaseConfig.getStorage()
                 .child("images")
                 .child("msg")
-                .child(String.valueOf(vila))
-                .child((new SecureRandom().nextInt(6) + 1) + ".png");
+                .child(String.valueOf(villageId))
+                .child(generateProfileId() + ".png");
         downloadImage(context, imageReference, imageView);
     }
 
-    public static void baixarProfile(Context context, ImageView imageView, int idProfile) {
+    public static void downloadProfile(Context context, ImageView imageView, int profileId) {
+        StorageReference imageReference = FirebaseConfig.getStorage()
+                .child("images")
+                .child("profile")
+                .child(String.valueOf(profileId))
+                .child("1.png");
+        downloadImage(context, imageReference, imageView);
+    }
+
+    public static void downloadProfile(Context context, ImageView imageView, int idProfile, int currentProfile) {
         StorageReference imageReference = FirebaseConfig.getStorage()
                 .child("images")
                 .child("profile")
                 .child(String.valueOf(idProfile))
-                .child("1.png");
+                .child(currentProfile + ".png");
         downloadImage(context, imageReference, imageView);
     }
 
@@ -53,16 +63,6 @@ public class StorageUtil {
                 .child("pequenas")
                 .child(profileId + ".png");
         downloadImage(context, imageRef, imageView);
-
-    }
-
-    public static void baixarProfile(Context context, ImageView imageView, int idProfile, int currentProfile) {
-        StorageReference imageReference = FirebaseConfig.getStorage()
-                .child("images")
-                .child("profile")
-                .child(String.valueOf(idProfile))
-                .child(currentProfile + ".png");
-        downloadImage(context, imageReference, imageView);
     }
 
     public static void baixarTopoLogado(Context context, ImageView imageView, int idProfile) {
@@ -113,5 +113,13 @@ public class StorageUtil {
                 .child("pergaminhos")
                 .child(nomeImage + ".png");
         downloadImage(context, imageReference, imageView);
+    }
+
+    private static String generateVillageId() {
+        return String.valueOf(new SecureRandom().nextInt(8) + 1);
+    }
+
+    private static String generateProfileId() {
+        return String.valueOf(random.nextInt(6) + 1);
     }
 }

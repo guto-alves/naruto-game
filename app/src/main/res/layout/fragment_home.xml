@@ -42,7 +42,7 @@
                     android:inputType="textEmailAddress"
                     android:paddingLeft="8dp"
                     android:paddingRight="8dp"
-                    android:text="@{viewmodel.email}"
+                    android:text="@={viewmodel.email}"
                     android:textColor="@android:color/white" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -67,7 +67,7 @@
                     android:inputType="textPassword"
                     android:paddingStart="8dp"
                     android:paddingLeft="8dp"
-                    android:text="@{viewmodel.password}"
+                    android:text="@={viewmodel.password}"
                     android:textColor="@android:color/white" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -123,7 +123,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/news"
-                    android:textColor="@color/colorTexts"
+                    android:textColor="@color/colorText"
                     android:textSize="24sp"
                     android:textStyle="italic"
                     android:typeface="serif"
@@ -174,7 +174,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/ninjas_statistics"
-                    android:textColor="@color/colorTexts"
+                    android:textColor="@color/colorText"
                     android:textSize="24sp"
                     android:textStyle="italic"
                     android:typeface="serif"
@@ -220,7 +220,7 @@
                     android:layout_marginEnd="24dp"
                     android:layout_marginRight="24dp"
                     android:text="@string/kages_amp_vilas"
-                    android:textColor="@color/colorTexts"
+                    android:textColor="@color/colorText"
                     android:textSize="24sp"
                     android:textStyle="italic"
                     android:typeface="serif"

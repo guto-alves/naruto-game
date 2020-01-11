@@ -6,15 +6,16 @@ import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.firebase.FirebaseConfig;
 import com.gutotech.narutogame.ui.loggedout.AuthListener;
-import com.gutotech.narutogame.ui.loggedout.cadastro.CadastroListener;
+import com.gutotech.narutogame.ui.loggedout.registration.RegistrationListener;
 
 public class AuthRepository {
     private static AuthRepository instance;
 
-    private FirebaseAuth mAuth;
+    private static FirebaseAuth mAuth;
 
     private AuthRepository() {
         mAuth = FirebaseConfig.getAuth();
@@ -26,7 +27,7 @@ public class AuthRepository {
         return instance;
     }
 
-    public void registerPlayer(String email, String password, CadastroListener listener) {
+    public void registerPlayer(String email, String password, RegistrationListener listener) {
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 mAuth.getCurrentUser().getUid();
@@ -51,6 +52,18 @@ public class AuthRepository {
         });
     }
 
+    private void sendEmailVerification() {
+        mAuth.useAppLanguage();
+        FirebaseUser user = mAuth.getCurrentUser();
+
+        user.sendEmailVerification()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+
+                    }
+                });
+    }
+
     public void loginPlayer(String email, String password) {
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
@@ -72,7 +85,8 @@ public class AuthRepository {
         });
     }
 
-    public void recoverPassword(String emailAddress, AuthListener listener) {
+    public void sendPasswordResetEmail(String emailAddress, AuthListener listener) {
+        mAuth.useAppLanguage();
         mAuth.sendPasswordResetEmail(emailAddress).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
 //                            Log.d(TAG, "Email sent.");
@@ -82,12 +96,30 @@ public class AuthRepository {
     }
 
     public void changePassword(String newPassword) {
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseUser user = mAuth.getCurrentUser();
 
         user.updatePassword(newPassword).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
 //                Log.d(TAG, "User password updated.");
             }
         });
+    }
+
+
+    public void updateProfile(String newName) {
+        FirebaseUser user = mAuth.getCurrentUser();
+
+        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                .setDisplayName(newName).build();
+
+        user.updateProfile(profileUpdates).addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+
+            }
+        });
+    }
+
+    public void signOut() {
+        mAuth.signOut();
     }
 }

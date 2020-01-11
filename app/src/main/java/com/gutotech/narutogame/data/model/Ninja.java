@@ -1,7 +1,5 @@
 package com.gutotech.narutogame.data.model;
 
-import java.util.EnumSet;
-
 public enum Ninja {
     NARUTO(1, "Naruto Uzumaki"),
     SASUKE(2, "Sasuke Uchiha"),
@@ -131,7 +129,6 @@ public enum Ninja {
     Ninja(int id, String name) {
         this.id = id;
         this.name = name;
-        EnumSet.
     }
 
     public int getId() {

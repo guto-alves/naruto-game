@@ -20,6 +20,6 @@ public class RecuperarSenhaViewModel extends ViewModel {
     }
 
     public void recoverPassword() {
-        mAuthRepository.recoverPassword(emailAddress, mAuthListener);
+        mAuthRepository.sendPasswordResetEmail(emailAddress, mAuthListener);
     }
 }

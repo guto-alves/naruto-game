@@ -3,6 +3,7 @@ package com.gutotech.narutogame.ui.onlinecharacter.combates;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -10,6 +11,7 @@ import androidx.appcompat.view.menu.MenuBuilder;
 import androidx.appcompat.view.menu.MenuPopupHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
 import android.view.View;
@@ -25,6 +27,7 @@ import android.widget.TextView;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.Character;
 import com.gutotech.narutogame.ui.adapter.JutsusAdapter;
+import com.gutotech.narutogame.util.FragmentUtil;
 import com.gutotech.narutogame.util.StorageUtil;
 import com.gutotech.narutogame.util.RecyclerItemClickListener;
 import com.gutotech.narutogame.data.model.Formulas;
@@ -83,8 +86,7 @@ public class DojoBatalhaLutadorFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_dojo_batalha_lutador, container, false);
-        TextView tituloSecao = getActivity().findViewById(R.id.tituloSecaoTextView);
-        tituloSecao.setText("DESAFIO DOJO");
+        FragmentUtil.setSectionTitle(getActivity(), R.string.section_dojo_challenge);
 
         // CONFIGURA NPC
         npcFormulas = NPC.npc.getAtributos().getFormulas();
@@ -96,7 +98,7 @@ public class DojoBatalhaLutadorFragment extends Fragment {
             }
         });
         ImageView profileOpoImageView = view.findViewById(R.id.profileOpoImageView);
-        StorageUtil.baixarProfile(getActivity(), profileOpoImageView, NPC.npc.getIdProfile(), NPC.npc.getFotoAtual());
+        StorageUtil.downloadProfile(getActivity(), profileOpoImageView, NPC.npc.getIdProfile(), NPC.npc.getFotoAtual());
 
         TextView nickOpoTextView = view.findViewById(R.id.nickOpoTextView);
         nickOpoTextView.setText(NPC.npc.getNick());
@@ -124,7 +126,7 @@ public class DojoBatalhaLutadorFragment extends Fragment {
             }
         });
         ImageView profilePlayerImageView = view.findViewById(R.id.profileMeImageView);
-        StorageUtil.baixarProfile(getActivity(), profilePlayerImageView, player.getIdProfile(), player.getFotoAtual());
+        StorageUtil.downloadProfile(getActivity(), profilePlayerImageView, player.getIdProfile(), player.getFotoAtual());
 
         TextView nickPlayerTextView = view.findViewById(R.id.nickMeTextView);
         nickPlayerTextView.setText(player.getNick());
@@ -400,6 +402,6 @@ public class DojoBatalhaLutadorFragment extends Fragment {
 
     private void changeToFragment(Fragment fragment) {
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.conteiner, fragment).commit();
+        transaction.replace(R.id.container, fragment).commit();
     }
 }

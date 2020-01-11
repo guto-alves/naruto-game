@@ -228,7 +228,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Como recompensa você receberá:"
-                    android:textColor="@color/colorTextos"
+                    android:textColor="@color/colorText"
                     android:textSize="10sp" />
 
                 <LinearLayout
@@ -242,7 +242,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="5dp"
                         android:text="N"
-                        android:textColor="@color/colorVerde"
+                        android:textColor="@color/colorGreen"
                         android:textSize="12sp" />
 
                     <TextView
@@ -250,7 +250,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Pontos de Experiência"
-                        android:textColor="@color/colorTextos"
+                        android:textColor="@color/colorText"
                         android:textSize="12sp" />
                 </LinearLayout>
 

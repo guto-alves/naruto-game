@@ -38,8 +38,6 @@ public class DojoRandomWaitFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_dojo_random_wait, container, false);
-        TextView tituloSecao = getActivity().findViewById(R.id.tituloSecaoTextView);
-        tituloSecao.setText("PROCURANDO OPONENTES");
 
         PersonagemOn.character.setIdBatalhaAtual("");
 
@@ -152,7 +150,7 @@ public class DojoRandomWaitFragment extends Fragment {
 
     private void changeToFragment(Fragment fragment) {
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.conteiner, fragment).commit();
+        transaction.replace(R.id.container, fragment).commit();
     }
 
     @Override

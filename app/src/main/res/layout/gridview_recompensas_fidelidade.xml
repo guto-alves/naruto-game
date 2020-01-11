@@ -25,7 +25,7 @@
         android:layout_marginBottom="5dp"
         android:gravity="center"
         android:text="Logar 1 dia(s) seguidos"
-        android:textColor="@color/colorTextos"
+        android:textColor="@color/colorText"
         android:textSize="18sp" />
 
     <TextView
@@ -35,7 +35,7 @@
         android:layout_marginBottom="16dp"
         android:gravity="center"
         android:text="100 de Ryous"
-        android:textColor="@color/colorTextos" />
+        android:textColor="@color/colorText" />
 
     <Button
         android:id="@+id/receberButton"

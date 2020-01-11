@@ -16,7 +16,7 @@ public class HomeViewModel extends ViewModel {
     private MutableLiveData<List<News>> news = new MutableLiveData<>();
 
     public String email;
-    public String senha;
+    public String password;
 
     private AuthRepository mAuthRepository;
     private AuthListener mAuthListener;
@@ -28,7 +28,7 @@ public class HomeViewModel extends ViewModel {
     public int kageEVilaAtual = 1;
 
     public HomeViewModel() {
-        mAuthRepository = new AuthRepository();
+        mAuthRepository = AuthRepository.getInstance();
         mNewsRepository = new NewsRepository();
         mNinjaStatisticsRepository = new NinjaStatisticsRepository();
     }
@@ -42,8 +42,8 @@ public class HomeViewModel extends ViewModel {
     }
 
     public void jogar() {
-        if (validarCampos(email, senha)) {
-            mAuthRepository.loginPlayer(email, senha);
+        if (validarCampos(email, password)) {
+            mAuthRepository.loginPlayer(email, password);
         }
     }
 

@@ -1,8 +1,8 @@
-package com.gutotech.narutogame.ui.loggedout.cadastro;
+package com.gutotech.narutogame.ui.loggedout.registration;
 
 import androidx.annotation.StringRes;
 
-public interface CadastroListener {
+public interface RegistrationListener {
     void onSuccess(@StringRes int resId);
 
     void onFailure(@StringRes int resId);

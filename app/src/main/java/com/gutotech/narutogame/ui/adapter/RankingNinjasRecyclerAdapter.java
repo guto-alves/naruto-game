@@ -18,7 +18,6 @@ import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.firebase.FirebaseConfig;
 import com.gutotech.narutogame.data.model.Character;
 import com.gutotech.narutogame.util.StorageUtil;
-import com.gutotech.narutogame.data.model.Vilas;
 
 import java.util.List;
 
@@ -65,30 +64,30 @@ public class RankingNinjasRecyclerAdapter extends RecyclerView.Adapter<RankingNi
             myViewHolder.onlineImageView.setImageResource(R.drawable.layout_off);
 
         switch (character.getVila()) {
-            case Vilas.FOLHA:
-                myViewHolder.vilaImageView.setImageResource(R.drawable.layout_bandanas_1);
-                break;
-            case Vilas.AREIA:
-                myViewHolder.vilaImageView.setImageResource(R.drawable.layout_bandanas_2);
-                break;
-            case Vilas.NEVOA:
-                myViewHolder.vilaImageView.setImageResource(R.drawable.layout_bandanas_3);
-                break;
-            case Vilas.PEDRA:
-                myViewHolder.vilaImageView.setImageResource(R.drawable.layout_bandanas_4);
-                break;
-            case Vilas.NUVEM:
-                myViewHolder.vilaImageView.setImageResource(R.drawable.layout_bandanas_5);
-                break;
-            case Vilas.AKATSUKI:
-                myViewHolder.vilaImageView.setImageResource(R.drawable.layout_bandanas_6);
-                break;
-            case Vilas.SOM:
-                myViewHolder.vilaImageView.setImageResource(R.drawable.layout_bandanas_7);
-                break;
-            case Vilas.CHUVA:
-                myViewHolder.vilaImageView.setImageResource(R.drawable.layout_bandanas_8);
-                break;
+//            case Vilas.FOLHA.name:
+//                myViewHolder.vilaImageView.setImageResource(R.drawable.layout_bandanas_1);
+//                break;
+//            case Vilas.AREIA.name:
+//                myViewHolder.vilaImageView.setImageResource(R.drawable.layout_bandanas_2);
+//                break;
+//            case Vilas.NEVOA.name:
+//                myViewHolder.vilaImageView.setImageResource(R.drawable.layout_bandanas_3);
+//                break;
+//            case Vilas.PEDRA.name:
+//                myViewHolder.vilaImageView.setImageResource(R.drawable.layout_bandanas_4);
+//                break;
+//            case Vilas.NUVEM.name:
+//                myViewHolder.vilaImageView.setImageResource(R.drawable.layout_bandanas_5);
+//                break;
+//            case Vilas.AKATSUKI.name:
+//                myViewHolder.vilaImageView.setImageResource(R.drawable.layout_bandanas_6);
+//                break;
+//            case Vilas.SOM.name:
+//                myViewHolder.vilaImageView.setImageResource(R.drawable.layout_bandanas_7);
+//                break;
+//            case Vilas.CHUVA.name:
+//                myViewHolder.vilaImageView.setImageResource(R.drawable.layout_bandanas_8);
+//                break;
         }
 
         if (i % 2 == 0)
@@ -102,7 +101,7 @@ public class RankingNinjasRecyclerAdapter extends RecyclerView.Adapter<RankingNi
         profileDialog.setContentView(R.layout.dialog_acao_profile);
 
         ImageView profileLogadoimageView = profileDialog.findViewById(R.id.profilePersonagemOnImageView);
-        StorageUtil.baixarProfile(context, profileLogadoimageView, character.getIdProfile(), character.getFotoAtual());
+        StorageUtil.downloadProfile(context, profileLogadoimageView, character.getIdProfile(), character.getFotoAtual());
 
         TextView nickPersonagemOnTextView = profileDialog.findViewById(R.id.nickPersonagemOnTextView);
         nickPersonagemOnTextView.setText(character.getNick());
