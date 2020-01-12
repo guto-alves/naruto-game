@@ -7,19 +7,18 @@
     <string name="action_settings">Settings</string>
 
     <!-- TODO: Remove or change this placeholder text -->
+    <string name="action_error">Error</string>
+    <string name="hello_blank_fragment">Hello</string>
     <string name="section_title">Section title</string>
 
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="type_your_account_email">Type your account email</string>
     <string name="hall_da_fama">Hall of Fame</string>
 
     <!-- Textos -->
-    <string name="forgot_password">Forget Password?</string>
     <string name="news">News</string>
     <string name="title">Title</string>
 
     <!-- Buttons -->
-
     <string name="recover_password">Recover Password</string>
     <string name="button_submit_changes">Submit Changes</string>
     <string name="change_password">Change Password</string>
@@ -46,13 +45,13 @@
     <string name="button_filtrar">Filtrar</string>
 
     <string-array name="sexos_array1">
-        <item>Masculino</item>
-        <item>Feminino</item>
+        <item>Male</item>
+        <item>Female</item>
     </string-array>
 
     <string-array name="sexos_array2">
-        <item>Feminino</item>
-        <item>Masculino</item>
+        <item>Female</item>
+        <item>Male</item>
     </string-array>
 
     <string-array name="chat_channel_array">
@@ -75,7 +74,7 @@
     <string name="current_password">Current password</string>
     <string name="escolha_seu_personagem">ESCOLHA SEU PERSONAGEM</string>
     <string name="taijutsu" translatable="false">Taijutsu</string>
-    <string name="ninjustu">Ninjustu</string>
+    <string name="ninjustu" translatable="false">Ninjustu</string>
 
     <!-- Títulos das seções -->
 
@@ -109,8 +108,8 @@
 
     <!-- Grupo Vila atual -->
     <string name="secao_tarefas_iniciais">TAREFAS INICIAIS</string>
-    <string name="secao_ramen_shop">RAMEM SHOP</string>
-    <string name="secao_ninja_shop">NINJA SHOP</string>
+    <string name="section_ramen_shop" translatable="false">RAMEM SHOP</string>
+    <string name="section_ninja_shop" translatable="false">NINJA SHOP</string>
     <string name="secao_mapa_da_vila">MAPA DA VILA</string>
     <string name="secao_missoes">MISSÕES</string>
     <string name="secao_status_da_missao">STATUS DA MISSÃO</string>
@@ -144,15 +143,16 @@
     <string name="determinacao">Determinação</string>
     <string name="esquiva">Esquiva</string>
 
-    <string name="chat_naruto_game">CHAT NARUTO GAME</string>
+    <string name="chat_naruto_game" translatable="false">CHAT NARUTO GAME</string>
     <string name="arquivo">Arquivo</string>
     <string name="treinamento_manual">Treinamento Manual</string>
     <string name="quantidade">Quantidade</string>
     <string name="batalhas_do_dojo_npc">Batalhas do Dojo NPC</string>
     <string name="batalhas_do_dojo_pvp">Batalhas do Dojo PVP</string>
 
-    <!-- Secao cadastro -->
+    <!-- Section sign up -->
     <string name="section_create_account">CREATE YOUR ACCOUNT</string>
+    <string name="create_an_account">Create an Account</string>
     <string name="just_a_bit_now">JUST A BIT NOW!</string>
     <string name="fullfill_the_form_below"> Fulfill the form below to create your account and starts your adventure.
 You will receive an email to confirm your account, then you NEED TO USE AN VALID EMAIL to play Naruto Game!</string>
@@ -161,40 +161,46 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="password">Password</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="signup">Signup</string>
-    <string name="cadastro_concluido">PARABÉNS SEU CADASTRO FOI CONCLUÍDO COM SUCESSO!</string>
-    <string name="failure_senha_invalida">Campo \'Senha\' com valor inválido! No mínimo são requeridos 6 caractéres e os caractéres permitidos são: 0–9 A-Z _.</string>
-    <string name="failure_email_invalido">Campo \'Email\' com valor inválido! Verifique o dado e tente novamente</string>
-    <string name="failure_email_ja_existe">O endereço de email especificado ja está cadastrado, by favor use um endereço de e-mail diferente.</string>
-    <string name="failure_error_ao_cadastrar">Erro ao realizar cadastro</string>
-    <string name="failure_senhas_diferentes">Campo \'Senha\' e \'Confirmar Senha\' com valores diferentes! Verifique os dados e tente novamente.</string>
-    <string name="campo_nome">Campo \"name\" é obrigatório</string>
+    <string name="accont_created_successfuly">ACCOUNT CREATED SUCCESSFULY</string>
+    <string name="email_verification_sent" translatable="false">You will receive an email soon</string>
+    <string name="invalid_password">Invalid password</string>
+    <string name="invalid_email">Invalid email</string>
+    <string name="weak_password">Weak Password</string>
+    <string name="error_to_the_signup">Error to the signup</string>
+    <string name="name_field_requered">The name field is requered</string>
+    <string name="email_field_requered">The email field is requered</string>
+    <string name="password_field_requered">The password field is requered</string>
+    <string name="confirm_password_field_requered">The confirm password field is requered</string>
+    <string name="email_already_exists">Email already exists</string>
+    <string name="different_passwords">The \'Password\' and \'Confirm Password\' fields are different</string>
 
-    <!-- Secao home -->
+    <!-- Section home -->
     <string name="section_home" translatable="false">HOME</string>
-    <string name="play">Play</string>
+    <string name="home" translatable="false">Home</string>
+    <string name="forgot_password">Forget Password?</string>
+    <string name="button_play">Play</string>
+    <string name="ninjas_statistics">Ninja Statistics</string>
+    <string name="email_not_found">Email not found</string>
     <string name="kages_amp_vilas" translatable="false"><![CDATA[Kages & Vilas]]></string>
 
-    <!-- Secao ler noticia -->
-    <string name="secao_ler_noticia">READ NEWS</string>
+    <!-- Section read news-->
+    <string name="section_read_news">READ NEWS</string>
     <string name="leave_your_comment">Leave your comment</string>
     <string name="by">- by</string>
     <string name="comment">Comment</string>
-    <string name="full_address">Full Address</string>
-    <string name="ninjas_statistics">Ninja Statistics</string>
+
     <string name="if_you_do_not_remember_your_password">If you do not remember your password, type your email account below and click \"send\". In a few minutes you will receive your new password</string>
 
     <!-- Section recover password-->
     <string name="section_i_forgot_my_password">"I FORGOT MY PASSWORD "</string>
     <string name="password_was_sent">THE PASSWORD WAS SENT SUCCESSFULLY</string>
 
-
+    <!-- Section Hall of Fame-->
     <string name="section_hall_of_fame">HALL OF FAME</string>
     <string name="password_sent_description">In few minutes you will receive an email to change your password. Only the link sent to you can change the password. Remember: copy and keep safe your password.</string>
-    <string name="email_not_found">Email not found</string>
     <string name="create_character">Create Character</string>
     <string name="received">Received</string>
     <string name="birthday">Birthday</string>
-    <string name="home" translatable="false">Home</string>
 
     <!-- Select character -->
     <string name="label_grade">Grade:</string>
@@ -208,14 +214,19 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
 
     <!-- Account info -->
     <string name="name">Name</string>
+    <string name="full_address">Full Address</string>
     <string name="zip_code">Zip Code</string>
     <string name="hint_city">City</string>
     <string name="hint_neighborhood">Neighborhood</string>
     <string name="hint_state">State</string>
     <string name="label_name">Name:</string>
+
+    <!-- Suppport -->
     <string name="section_support_new_ticket">SUPPORT - NEW SUPPORT TICKET</string>
+
     <string name="section_dojo_challenge">DOJO CHALLENGE</string>
-    <string name="create_an_account">Create an Account</string>
+
     <string name="forgot_my_password">I forgot my password</string>
+    <string name="account_is_not_registered">Account is not registered</string>
 
 </resources>

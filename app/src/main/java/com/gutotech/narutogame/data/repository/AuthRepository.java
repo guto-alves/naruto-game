@@ -1,5 +1,10 @@
 package com.gutotech.narutogame.data.repository;
 
+import android.util.Log;
+
+import androidx.annotation.StringRes;
+
+import com.google.firebase.auth.ActionCodeSettings;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthInvalidUserException;
@@ -8,79 +13,67 @@ import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.gutotech.narutogame.R;
-import com.gutotech.narutogame.data.firebase.FirebaseConfig;
 import com.gutotech.narutogame.ui.loggedout.AuthListener;
-import com.gutotech.narutogame.ui.loggedout.registration.RegistrationListener;
 
 public class AuthRepository {
-    private static AuthRepository instance;
+    private static AuthRepository sInstance;
 
     private static FirebaseAuth mAuth;
 
     private AuthRepository() {
-        mAuth = FirebaseConfig.getAuth();
+        mAuth = FirebaseAuth.getInstance();
     }
 
     public static AuthRepository getInstance() {
-        if (instance == null)
-            instance = new AuthRepository();
-        return instance;
+        if (sInstance == null)
+            sInstance = new AuthRepository();
+        return sInstance;
     }
 
-    public void registerPlayer(String email, String password, RegistrationListener listener) {
+    public void registerPlayer(String name, String email, String password, Completable emitter) {
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
-                mAuth.getCurrentUser().getUid();
-                listener.onSuccess(R.string.cadastro_concluido);
+                emitter.onComplete();
+                updateProfile(name, null);
             } else {
                 int resId;
 
                 try {
                     throw task.getException();
                 } catch (FirebaseAuthWeakPasswordException e) {
-                    resId = R.string.failure_senha_invalida;
+                    resId = R.string.weak_password;
                 } catch (FirebaseAuthInvalidCredentialsException e) {
-                    resId = R.string.failure_email_invalido;
+                    resId = R.string.invalid_email;
                 } catch (FirebaseAuthUserCollisionException e) {
-                    resId = R.string.failure_email_ja_existe;
+                    resId = R.string.email_already_exists;
                 } catch (Exception e) {
-                    resId = R.string.failure_error_ao_cadastrar;
+                    resId = R.string.error_to_the_signup;
                 }
 
-                listener.onFailure(resId);
+                emitter.onError(resId);
             }
         });
     }
 
-    private void sendEmailVerification() {
-        mAuth.useAppLanguage();
-        FirebaseUser user = mAuth.getCurrentUser();
-
-        user.sendEmailVerification()
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-
-                    }
-                });
-    }
-
-    public void loginPlayer(String email, String password) {
+    public void loginPlayer(String email, String password, final Completable emitter) {
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
-
+                emitter.onComplete();
             } else {
-                String excecao;
+                int resId;
 
                 try {
                     throw task.getException();
                 } catch (FirebaseAuthInvalidUserException e) {
-                    excecao = "Conta não está cadastrada";
+                    resId = R.string.account_is_not_registered;
                 } catch (FirebaseAuthInvalidCredentialsException e) {
-                    excecao = "Email e senha não correspendem";
+                    resId = "Email e senha não correspendem";
                 } catch (Exception e) {
-                    excecao = "Erro ao entrar: " + e.getMessage();
+                    resId = "Erro ao entrar: " + e.getMessage();
                     e.printStackTrace();
                 }
+
+                emitter.onError(resId);
             }
         });
     }
@@ -95,31 +88,73 @@ public class AuthRepository {
         });
     }
 
-    public void changePassword(String newPassword) {
-        FirebaseUser user = mAuth.getCurrentUser();
-
-        user.updatePassword(newPassword).addOnCompleteListener(task -> {
+    public void updatePassword(String newPassword, Completable emitter) {
+        getCurrentUser().updatePassword(newPassword).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
+                emitter.onComplete();
 //                Log.d(TAG, "User password updated.");
+            } else {
+                emitter.onError(R.string.invalid_password);
             }
         });
     }
 
 
-    public void updateProfile(String newName) {
-        FirebaseUser user = mAuth.getCurrentUser();
-
+    public void updateProfile(String newName, final Completable emitter) {
         UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                 .setDisplayName(newName).build();
 
-        user.updateProfile(profileUpdates).addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-
+        getCurrentUser().updateProfile(profileUpdates).addOnCompleteListener(task -> {
+            if (emitter != null) {
+                if (task.isSuccessful()) {
+                    emitter.onComplete();
+                } else {
+                    emitter.onError(R.string.action_error);
+                }
+            } else {
+                sendEmailVerification();
             }
         });
+    }
+
+    private void sendEmailVerification() {
+        mAuth.useAppLanguage();
+
+        String url = "https://gutotech.page.link/Fc4u/verify?uid=" + getUid();
+        ActionCodeSettings actionCodeSettings = ActionCodeSettings.newBuilder()
+                .setUrl(url)
+                .setAndroidPackageName("com.gutotech.narutogame", false, null)
+                .setDynamicLinkDomain("gutotech.page.link")
+                .setHandleCodeInApp(true)
+                .build();
+
+        getCurrentUser().sendEmailVerification(actionCodeSettings)
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        Log.d("AuthRepository", "Email sent.");
+                    }
+                });
+    }
+
+    public FirebaseUser getCurrentUser() {
+        return mAuth.getCurrentUser();
+    }
+
+    public String getUid() {
+        return getCurrentUser().getUid();
+    }
+
+    public boolean isSignedin() {
+        return getCurrentUser() != null;
     }
 
     public void signOut() {
         mAuth.signOut();
+    }
+
+    public interface Completable {
+        void onComplete();
+
+        void onError(@StringRes int resId);
     }
 }

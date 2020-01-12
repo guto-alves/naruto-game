@@ -2,12 +2,14 @@ package com.gutotech.narutogame.ui.loggedin.support;
 
 
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +22,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.gutotech.narutogame.R;
+import com.gutotech.narutogame.data.repository.AuthRepository;
 import com.gutotech.narutogame.ui.adapter.TicketsAdapter;
 import com.gutotech.narutogame.data.firebase.FirebaseConfig;
 import com.gutotech.narutogame.util.StorageUtil;
@@ -56,16 +59,12 @@ public class SuporteFragment extends Fragment {
         StorageUtil.downloadProfileForMsg(getActivity(), personagemMsg);
 
         DatabaseReference ticketsReference = FirebaseConfig.getDatabase().child("tickets");
-        myTickets = ticketsReference.orderByChild("email").equalTo(FirebaseConfig.getAuth().getCurrentUser().getEmail());
+        myTickets = ticketsReference.orderByChild("email").equalTo(
+                AuthRepository.getInstance().getCurrentUser().getEmail());
         recuperarTickets();
 
         Button abrirTicketButton = view.findViewById(R.id.abrirTictketButton);
-        abrirTicketButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                changeToFragment(new SuporteNovoFragment());
-            }
-        });
+        abrirTicketButton.setOnClickListener(v -> changeToFragment(new SuporteNovoFragment()));
 
         RecyclerView ticketsRecyclerView = view.findViewById(R.id.ticketsRecyclerView);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());

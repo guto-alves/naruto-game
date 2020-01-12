@@ -34,23 +34,20 @@ public class PasswordChangeFragment extends Fragment {
         ImageView personagemMsg = view.findViewById(R.id.personagemMsg);
         StorageUtil.downloadProfileForMsg(getActivity(), personagemMsg);
 
-        auth = FirebaseConfig.getAuth();
+//        auth = FirebaseConfig.getAuth();
 
         senhaAtualEditText = view.findViewById(R.id.senhaAtualEditText);
         novaSenhaEditText = view.findViewById(R.id.novaSenhaEditText);
         confirmarNovaSenhaEditText = view.findViewById(R.id.confirNovaSenhaEditText);
 
         Button alterarSenhaButton = view.findViewById(R.id.alterarSenhaButton);
-        alterarSenhaButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String senhaAtual = senhaAtualEditText.getText().toString();
-                String novaSenha1 = novaSenhaEditText.getText().toString();
-                String novaSenha2 = confirmarNovaSenhaEditText.getText().toString();
+        alterarSenhaButton.setOnClickListener(v -> {
+            String senhaAtual = senhaAtualEditText.getText().toString();
+            String novaSenha1 = novaSenhaEditText.getText().toString();
+            String novaSenha2 = confirmarNovaSenhaEditText.getText().toString();
 
-                if (validarNovaSenha(senhaAtual, novaSenha1, novaSenha2)) {
-                    // Atualizar a senha
-                }
+            if (validarNovaSenha(senhaAtual, novaSenha1, novaSenha2)) {
+                // Atualizar a senha
             }
         });
 

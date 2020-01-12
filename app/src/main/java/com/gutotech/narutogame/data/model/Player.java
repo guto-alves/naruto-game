@@ -1,15 +1,10 @@
 package com.gutotech.narutogame.data.model;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.Exclude;
-import com.gutotech.narutogame.data.firebase.FirebaseConfig;
-
 public class Player {
     private String id;
     private String name;
     private String email;
     private String password;
-    private String sex;
     private String dateOfBirth;
     private String address;
     private String zipCode;
@@ -32,14 +27,6 @@ public class Player {
         this.password = password;
     }
 
-    public Player(String name, String email, String password, String sex) {
-        this.name = name;
-        this.email = email;
-        this.password = password;
-        this.sex = sex;
-    }
-
-    @Exclude
     public String getId() {
         return id;
     }
@@ -70,14 +57,6 @@ public class Player {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getSex() {
-        return sex;
-    }
-
-    public void setSex(String sex) {
-        this.sex = sex;
     }
 
     public String getDateOfBirth() {

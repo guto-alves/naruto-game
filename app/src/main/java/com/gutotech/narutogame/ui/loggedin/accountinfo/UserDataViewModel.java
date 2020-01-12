@@ -27,7 +27,7 @@ public class UserDataViewModel extends ViewModel {
 
     public void submitChanges() {
         if (validatePlayer()) {
-            mRepository.savePlayer(player.getValue());
+            mRepository.insertPlayer(player.getValue());
 
 //            StorageUtil.downloadProfileForMsg(getActivity(), personagemMsg2);
 //            mgsSucessoConstraintLayout.setVisibility(View.VISIBLE);

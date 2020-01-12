@@ -36,6 +36,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.firebase.FirebaseConfig;
+import com.gutotech.narutogame.data.repository.AuthRepository;
 import com.gutotech.narutogame.util.DateCustom;
 import com.gutotech.narutogame.data.model.Ticket;
 import com.gutotech.narutogame.util.FragmentUtil;
@@ -188,7 +189,7 @@ public class SuporteNovoFragment extends Fragment {
 
                     ticket.setDescricao(descricao);
                     ticket.setStatus("Novo");
-                    ticket.setEmail(FirebaseConfig.getAuth().getCurrentUser().getEmail());
+                    ticket.setEmail(AuthRepository.getInstance().getCurrentUser().getEmail());
                     ticket.setUltimoAResponder("--");
 
                     salvarTicket(ticket);

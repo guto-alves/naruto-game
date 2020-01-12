@@ -6,7 +6,6 @@ import android.os.Bundle;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -18,11 +17,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.databinding.FragmentHomeBinding;
+import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.adapter.KagesAndVilasViewPagerAdapter;
 import com.gutotech.narutogame.ui.adapter.NinjaStatisticsRecyclerViewAdapter;
 import com.gutotech.narutogame.ui.adapter.NewsAdapter;
@@ -34,35 +33,30 @@ import com.gutotech.narutogame.ui.loggedout.recuperarsenha.RecuperarSenhaFragmen
 
 import es.dmoral.toasty.Toasty;
 
-public class HomeFragment extends Fragment implements AuthListener {
-    private HomeViewModel mHomeViewModel;
-
+public class HomeFragment extends Fragment implements AuthListener, SectionFragment {
     private RecyclerView newsRecyclerView;
     private NewsAdapter newsAdapter;
 
     private RecyclerView ninjaStatisticsRecyclerView;
     private NinjaStatisticsRecyclerViewAdapter ninjaStatisticsAdapter;
 
-    private Dialog aguardeDialog;
-
-    public HomeFragment() {
-    }
+    private Dialog waitDialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        mHomeViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
+        HomeViewModel mHomeViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
+
         FragmentHomeBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false);
-        View root = binding.getRoot();
         binding.setViewmodel(mHomeViewModel);
+        View root = binding.getRoot();
 
         mHomeViewModel.setAuthListener(this);
 
         mHomeViewModel.getNews().observe(this, news -> newsAdapter.setNewsList(news));
 
-        TextView esqueceuSenhaTextView = root.findViewById(R.id.esqueceuASenhaTextView);
-        esqueceuSenhaTextView.setOnClickListener(v -> {
-            FragmentUtil.changeToFragment(getActivity(), new RecuperarSenhaFragment());
+        binding.forgotPasswordTextView.setOnClickListener(v -> {
+            FragmentUtil.goTo(getActivity(), new RecuperarSenhaFragment());
         });
 
 //        Bundle bundle = getArguments();
@@ -85,9 +79,9 @@ public class HomeFragment extends Fragment implements AuthListener {
         KagesAndVilasViewPagerAdapter viewPagerAdapter = new KagesAndVilasViewPagerAdapter(getActivity());
         viewPager.setAdapter(viewPagerAdapter);
 
-        aguardeDialog = new Dialog(getActivity());
-        aguardeDialog.setContentView(R.layout.dialog_progressbar);
-        aguardeDialog.setCancelable(false);
+        waitDialog = new Dialog(getActivity());
+        waitDialog.setContentView(R.layout.dialog_wait);
+        waitDialog.setCancelable(false);
 
         FragmentUtil.setSectionTitle(getActivity(), R.string.section_home);
 
@@ -128,7 +122,6 @@ public class HomeFragment extends Fragment implements AuthListener {
     }
 
     public void setUpNinjaStatistics() {
-        ninjaStatisticsRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         ninjaStatisticsRecyclerView.setHasFixedSize(true);
 
         ninjaStatisticsAdapter = new NinjaStatisticsRecyclerViewAdapter(getActivity());
@@ -137,19 +130,24 @@ public class HomeFragment extends Fragment implements AuthListener {
 
     @Override
     public void onStarted() {
-        aguardeDialog.show();
+        waitDialog.show();
     }
 
     @Override
     public void onSuccess() {
-        aguardeDialog.dismiss();
+        waitDialog.dismiss();
         startActivity(new Intent(getActivity(), LogadoSelecionarActivity.class));
         getActivity().finish();
     }
 
     @Override
     public void onFailure(int resId) {
-        aguardeDialog.dismiss();
+        waitDialog.dismiss();
         Toasty.error(getActivity(), resId, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public int getDescription() {
+        return R.string.home;
     }
 }

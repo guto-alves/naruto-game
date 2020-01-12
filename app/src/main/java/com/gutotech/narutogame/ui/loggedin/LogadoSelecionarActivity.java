@@ -5,8 +5,6 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.view.View;
-
 import androidx.core.view.GravityCompat;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -15,11 +13,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.widget.ExpandableListView;
-import android.widget.TextView;
 
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.ui.adapter.MenuLogadoExpandableLisViewAdapter;
-import com.gutotech.narutogame.ui.loggedout.halldafama.HalldafamaFragment;
+import com.gutotech.narutogame.ui.loggedout.halloffame.HallOfFameFragment;
 import com.gutotech.narutogame.ui.loggedout.home.HomeFragment;
 import com.gutotech.narutogame.publicentities.CurrentFragment;
 import com.gutotech.narutogame.ui.loggedin.accountinfo.UserDataFragment;
@@ -88,7 +85,7 @@ public class LogadoSelecionarActivity extends AppCompatActivity {
                         changeFragment(homeFragment);
                         break;
                     case 1:
-                        changeFragment(new HalldafamaFragment());
+                        changeFragment(new HallOfFameFragment());
                         break;
                 }
             }

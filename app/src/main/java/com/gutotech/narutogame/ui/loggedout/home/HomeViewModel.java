@@ -1,20 +1,23 @@
 package com.gutotech.narutogame.ui.loggedout.home;
 
+import android.text.TextUtils;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.News;
 import com.gutotech.narutogame.data.repository.AuthRepository;
 import com.gutotech.narutogame.data.repository.NewsRepository;
 import com.gutotech.narutogame.data.repository.NinjaStatisticsRepository;
 import com.gutotech.narutogame.ui.loggedout.AuthListener;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
 
 public class HomeViewModel extends ViewModel {
-    private MutableLiveData<List<News>> news = new MutableLiveData<>();
-
     public String email;
     public String password;
 
@@ -22,8 +25,11 @@ public class HomeViewModel extends ViewModel {
     private AuthListener mAuthListener;
 
     private NewsRepository mNewsRepository;
-
     private NinjaStatisticsRepository mNinjaStatisticsRepository;
+
+    private MutableLiveData<List<News>> news = new MutableLiveData<>();
+
+    private MutableLiveData<List<NinjaStatisticsRepository>> ninjaStatistics;
 
     public int kageEVilaAtual = 1;
 
@@ -37,26 +43,26 @@ public class HomeViewModel extends ViewModel {
         return news;
     }
 
-    public void setAuthListener(AuthListener mAuthListener) {
-        this.mAuthListener = mAuthListener;
+    public void setAuthListener(AuthListener authListener) {
+        mAuthListener = authListener;
     }
 
-    public void jogar() {
-        if (validarCampos(email, password)) {
+    public void onPlayButtonPressed() {
+        mAuthListener.onStarted();
+
+        if (validateFields()) {
             mAuthRepository.loginPlayer(email, password);
         }
     }
 
-    private boolean validarCampos(String email, String senha) {
+    private boolean validateFields() {
         boolean valid = true;
 
-        if (email.isEmpty()) {
-//            emailEditText.setError("Preencha o email");
+        if (TextUtils.isEmpty(email)) {
+            mAuthListener.onFailure(R.string.email_field_requered);
             valid = false;
-        }
-
-        if (senha.isEmpty()) {
-//            senhaEditText.setError("Preencha a senha");
+        } else if (TextUtils.isEmpty(password)) {
+            mAuthListener.onFailure(R.string.password_field_requered);
             valid = false;
         }
         return valid;

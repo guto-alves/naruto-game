@@ -17,7 +17,7 @@
     <string name="by">- postado por</string>
     <string name="create">Criar</string>
     <string name="change_password">Alterar Senha</string>
-    <string name="play">Jogar</string>
+    <string name="button_play">Jogar</string>
     <string name="full_address">Endereço Completo</string>
     <string name="remove">Remover</string>
     <string name="enter_the_clan">Entrar no Clã</string>
@@ -58,4 +58,26 @@
     <string name="section_support_new_ticket">SUPPORT - NEW SUPPORT TICKET</string>
     <string name="section_dojo_challenge">DOJO CHALLENGE</string>
     <string name="forgot_my_password">Esqueci minha senha</string>
+
+    <string-array name="sexos_array1">
+        <item>Masculino</item>
+        <item>Feminino</item>
+    </string-array>
+    <string name="invalid_email">Campo \'Email\' com valor inválido!</string>
+    <string name="invalid_password">Campo \'Senha\' com valor inválido! No mínimo são requeridos 6 caractéres e os caractéres permitidos são: 0–9 A-Z _.</string>
+    <string name="signup">Cadastrar-se</string>
+    <string name="name_field_requered">Campo \"Nome Completo\" é obrigatório</string>
+    <string name="email_already_exists">O endereço de email especificado ja está cadastrado, por favor use um endereço de email diferente</string>
+    <string name="different_passwords">Campo \'Senha\' e \'Confirmar Senha\' com valores diferentes! Verifique os dados e tente novamente</string>
+    <string name="accont_created_successfuly">PARABÉNS SEU CADASTRO FOI CONCLUÍDO COM SUCESSO!</string>
+    <string name="error_to_the_signup">Erro ao realizar cadastro</string>
+    <string name="create_an_account">Crie sua conta</string>
+    <string name="weak_password">Senha fraca</string>
+    <string name="section_read_news">LER NOTÍCIAS</string>
+    <string name="email_field_requered">Campo \'Email\' é obrigatório</string>
+    <string name="confirm_password_field_requered">Campo \'Confirmar Senha\' é obrigatório</string>
+    <string name="password_field_requered">Campo \"Senha\" é obrigatório</string>
+    <string name="action_error">Erro</string>
+    <string name="account_is_not_registered">Conta não está cadastrada</string>
+
 </resources>

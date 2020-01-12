@@ -17,7 +17,7 @@ public class FragmentUtil {
         sectionTitleTextView.setText(resId);
     }
 
-    public static void changeToFragment(FragmentActivity activity, Fragment fragment) {
+    public static void goTo(FragmentActivity activity, Fragment fragment) {
         FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.container, fragment);
         transaction.commit();

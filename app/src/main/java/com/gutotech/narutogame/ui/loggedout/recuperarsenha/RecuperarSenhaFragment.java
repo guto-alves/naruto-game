@@ -13,12 +13,13 @@ import android.view.ViewGroup;
 
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.databinding.FragmentRecuperarSenhaBinding;
+import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.loggedout.AuthListener;
 import com.gutotech.narutogame.util.FragmentUtil;
 
 import es.dmoral.toasty.Toasty;
 
-public class RecuperarSenhaFragment extends Fragment implements AuthListener {
+public class RecuperarSenhaFragment extends Fragment implements AuthListener, SectionFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -53,5 +54,10 @@ public class RecuperarSenhaFragment extends Fragment implements AuthListener {
     @Override
     public void onFailure(int resId) {
         Toasty.error(getActivity(), R.string.email_not_found, Toasty.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public int getDescription() {
+        return R.string.recover_password;
     }
 }

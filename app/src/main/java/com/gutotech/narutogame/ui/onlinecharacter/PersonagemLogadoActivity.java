@@ -143,6 +143,8 @@ public class PersonagemLogadoActivity extends AppCompatActivity {
     private CountDownTimer rankNinjaTimer;
     private CountDownTimer diversasRotinasTimer;
 
+    private DrawerLayout drawer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -154,7 +156,7 @@ public class PersonagemLogadoActivity extends AppCompatActivity {
         PersonagemOn.character.setOn(true);
         PersonagemOn.character.salvar();
 
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        drawer = findViewById(R.id.drawer_layout);
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         headerView = navigationView.getHeaderView(0);
@@ -174,8 +176,7 @@ public class PersonagemLogadoActivity extends AppCompatActivity {
         trocarImagem.setOnClickListener(v -> {
             changeFragment(new TrocarImagemFragment());
 
-            DrawerLayout drawer1 = findViewById(R.id.drawer_layout);
-            drawer1.closeDrawer(GravityCompat.START);
+            drawer.closeDrawer(GravityCompat.START);
         });
 
         ImageView bolsaImageView = findViewById(R.id.bolsaImageView);
@@ -759,8 +760,8 @@ public class PersonagemLogadoActivity extends AppCompatActivity {
     }
 
     private void deslogar() {
-        FirebaseAuth auth = FirebaseConfig.getAuth();
-        auth.signOut();
+//        FirebaseAuth auth = FirebaseConfig.getAuth();
+//        auth.signOut();
         startActivity(new Intent(PersonagemLogadoActivity.this, DeslogadoActivity.class));
         finish();
     }
@@ -772,7 +773,6 @@ public class PersonagemLogadoActivity extends AppCompatActivity {
     }
 
     private void closeDrawer() {
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
     }
 

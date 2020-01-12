@@ -23,7 +23,6 @@
             android:orientation="vertical">
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputLayout3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
@@ -34,20 +33,16 @@
                 android:textColorHint="@color/colorAccent">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/emailLoginEditText"
+                    android:id="@+id/emailEditText"
+                    style="@style/EditTextCustomTheme"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:background="@drawable/layout_cadastro_rapido_input"
                     android:hint="@string/email"
                     android:inputType="textEmailAddress"
-                    android:paddingLeft="8dp"
-                    android:paddingRight="8dp"
-                    android:text="@={viewmodel.email}"
-                    android:textColor="@android:color/white" />
+                    android:text="@={viewmodel.email}" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputLayout4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
@@ -59,35 +54,29 @@
                 app:passwordToggleEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/senhaLoginEditText"
+                    android:id="@+id/passwordEditText"
+                    style="@style/EditTextCustomTheme"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:background="@drawable/layout_cadastro_rapido_input"
+                    android:fontFamily="sans-serif"
                     android:hint="@string/password"
                     android:inputType="textPassword"
-                    android:paddingStart="8dp"
-                    android:paddingLeft="8dp"
-                    android:text="@={viewmodel.password}"
-                    android:textColor="@android:color/white" />
+                    android:text="@={viewmodel.password}" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <ImageButton
-                android:id="@+id/jogarImageButton"
+                android:id="@+id/playImageButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
                 android:background="@android:color/transparent"
-                android:contentDescription="@string/play"
-                android:onClick="@{() -> viewmodel.jogar()}"
+                android:contentDescription="@string/button_play"
+                android:onClick="@{() -> viewmodel.onPlayButtonPressed()}"
                 android:src="@drawable/layout_jogar" />
 
             <TextView
-                android:id="@+id/esqueceuASenhaTextView"
+                android:id="@+id/forgotPasswordTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

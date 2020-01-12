@@ -15,6 +15,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 import com.gutotech.narutogame.R;
+import com.gutotech.narutogame.data.repository.AuthRepository;
 import com.gutotech.narutogame.ui.adapter.RecompensasFidelidadeAdapter;
 import com.gutotech.narutogame.data.firebase.FirebaseConfig;
 import com.gutotech.narutogame.util.StorageUtil;
@@ -74,7 +75,7 @@ public class FidelidadeFragment extends Fragment implements MyListener {
                 break;
             case CREDITO:
                 DatabaseReference playerReference = FirebaseConfig.getDatabase()
-                        .child("players").child(FirebaseConfig.getAuth().getCurrentUser().getUid());
+                        .child("players").child(AuthRepository.getInstance().getCurrentUser().getUid());
                 playerReference.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

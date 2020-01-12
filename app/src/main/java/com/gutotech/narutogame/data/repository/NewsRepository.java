@@ -17,14 +17,14 @@ public class NewsRepository {
     private Query newsQuery;
     private ValueEventListener valueEventListener;
 
-    private List<News> newsList;
-
     public NewsRepository() {
         newsList = new ArrayList<>();
 
         DatabaseReference newsRef = FirebaseConfig.getDatabase().child("news");
         newsQuery = newsRef.orderByKey();
     }
+
+    private List<News> newsList;
 
     public void getAllNews(Callback callback) {
         valueEventListener = newsQuery.addValueEventListener(new ValueEventListener() {

@@ -10,32 +10,53 @@ import com.gutotech.narutogame.data.firebase.FirebaseConfig;
 import com.gutotech.narutogame.data.model.Player;
 
 public class PlayerRepository {
-    private static PlayerRepository instance;
+    private static PlayerRepository sInstance;
 
     private PlayerRepository() {
     }
 
     public static PlayerRepository getInstance() {
-        if (instance == null)
-            instance = new PlayerRepository();
-        return instance;
+        if (sInstance == null)
+            sInstance = new PlayerRepository();
+        return sInstance;
     }
 
-    public void savePlayer(Player player) {
+    public void insertPlayer(Player player) {
         DatabaseReference playerRef = FirebaseConfig.getDatabase()
-                .child("players").child(FirebaseConfig.getAuth().getCurrentUser().getUid());
+                .child("players")
+                .child(player.getId());
 
         playerRef.setValue(player);
     }
 
+    /*
+    private void writeNewPost(String userId, String username, String title, String body) {
+        // Create new post at /user-posts/$userid/$postid and at
+        // /posts/$postid simultaneously
+        String key = mDatabase.child("posts").push().getKey();
+        Post post = new Post(userId, username, title, body);
+        Map<String, Object> postValues = post.toMap();
+
+        Map<String, Object> childUpdates = new HashMap<>();
+        childUpdates.put("/posts/" + key, postValues);
+        childUpdates.put("/user-posts/" + userId + "/" + key, postValues);
+
+        mDatabase.updateChildren(childUpdates);
+    }
+    */
+
     public void getCurrentPlayer(CallBack callBack) {
         DatabaseReference playerReference = FirebaseConfig.getDatabase()
                 .child("players")
-                .child(FirebaseConfig.getAuth().getCurrentUser().getUid());
+                .child(AuthRepository.getInstance().getCurrentUser().getUid());
 
         playerReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                if (dataSnapshot.exists()) {
+//
+//                }
+
                 Player player = dataSnapshot.getValue(Player.class);
                 callBack.onPlayerReceived(player);
             }
