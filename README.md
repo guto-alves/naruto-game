@@ -28,8 +28,5 @@ Naruto RPG Online Android App
   <img src="https://user-images.githubusercontent.com/48946749/66057296-da859080-e50e-11e9-9fa6-141c94fb8bba.png" height="300">
 </a>
 
-# Download
 
-If you want to test the app in Production mode, download the apk by clicking the link below:
 
-[Android .apk installer](https://drive.google.com/file/d/1z69NVvapnB9EfXKj2fanieOqD8M1tK_S/view)
