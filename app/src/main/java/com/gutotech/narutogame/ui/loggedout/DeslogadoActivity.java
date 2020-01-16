@@ -24,7 +24,7 @@ import com.gutotech.narutogame.ui.loggedout.signup.SignupFragment;
 import com.gutotech.narutogame.ui.loggedout.halloffame.HallOfFameFragment;
 import com.gutotech.narutogame.ui.loggedout.home.HomeFragment;
 import com.gutotech.narutogame.ui.loggedout.recuperarsenha.RecuperarSenhaFragment;
-import com.gutotech.narutogame.util.FragmentUtil;
+import com.gutotech.narutogame.utils.FragmentUtil;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -75,33 +75,6 @@ public class DeslogadoActivity extends AppCompatActivity {
         expandableListView.expandGroup(0);
 
         FragmentUtil.goTo(this, (Fragment) sectionsHashMap.get(0).get(0));
-
-//        FirebaseDynamicLinks . getInstance ()
-//                . getDynamicLink ( getIntent ())
-//                . addOnSuccessListener ( este , novo OnSuccessListener < PendingDynamicLinkData > () {
-//            @Sobrepor
-//            public void onSuccess ( PendingDynamicLinkData pendingDynamicLinkData ) {
-//                // Obter link direto do resultado (pode ser nulo se nenhum link for encontrado)
-//                Uri deepLink = nulo ;
-//                if ( pendingDynamicLinkData ! = null ) {
-//                    deepLink = pendingDynamicLinkData . getLink ();
-//                }
-//
-//
-//                // Manipule o link direto. Por exemplo, abra o link
-//                // conteúdo ou aplique crédito promocional ao usuário
-//                // conta.
-//                // ...
-//
-//                // ...
-//            }
-//        })
-//        . addOnFailureListener ( este , novo OnFailureListener () {
-//            @Sobrepor
-//            vazio público onFailure  ( @NonNull Exception e ) {
-//                Log . W ( TAG , "getDynamicLink: onFailure" , e );
-//            }
-//        });
     }
 
     private void buildMenu() {

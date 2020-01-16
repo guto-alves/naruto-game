@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.gutotech.narutogame.R;
-import com.gutotech.narutogame.util.StorageUtil;
+import com.gutotech.narutogame.utils.StorageUtil;
 import com.gutotech.narutogame.data.model.PersonagemOn;
 import com.gutotech.narutogame.data.model.Ramen;
 

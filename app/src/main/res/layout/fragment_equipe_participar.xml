@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/layout_pagina_repeat"
-    tools:context=".ui.onlinecharacter.equipe.EquipeParticiparFragment">
+    tools:context=".ui.onlinecharacter.team.EquipeParticiparFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/msgConstraint2"
@@ -99,7 +99,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center|start"
                 android:paddingRight="3dp"
-                android:text="Escolha a Equipe de seu amigo e clique no botão participar para enviar um pedido para entrar na equipe."
+                android:text="Escolha a Equipe de seu amigo e clique no botão participar para enviar um pedido para entrar na team."
                 android:textColor="#D1D8F1"
                 android:textSize="10sp" />
 
@@ -130,7 +130,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:text="Nome da equipe"
+        android:text="Nome da team"
         android:textColor="@android:color/white"
         android:textSize="12sp"
         android:textStyle="bold"

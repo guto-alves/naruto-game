@@ -1,70 +1,132 @@
 package com.gutotech.narutogame.ui.loggedin.newcharacteer;
 
+import android.text.TextUtils;
+import android.widget.RadioGroup;
+
+import androidx.databinding.ObservableField;
+import androidx.databinding.ObservableInt;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.Character;
+import com.gutotech.narutogame.data.model.Classe;
+import com.gutotech.narutogame.data.model.Ninja;
+import com.gutotech.narutogame.data.model.Village;
+import com.gutotech.narutogame.data.repository.AuthRepository;
 import com.gutotech.narutogame.data.repository.CharacterRepository;
+import com.gutotech.narutogame.ui.ResultListener;
+import com.gutotech.narutogame.ui.adapter.ChooseNinjaRecyclerViewAdapter;
 
-public class CharacterCreateViewModel extends ViewModel {
-    private MutableLiveData<Character> character;
+import java.util.Arrays;
+import java.util.List;
 
-    private CharacterRepository mRepository;
+public class CharacterCreateViewModel extends ViewModel implements ChooseNinjaRecyclerViewAdapter.NinjaListener {
+    public ObservableField<Village> village = new ObservableField<>(Village.FOLHA);
+    public ObservableField<Classe> classe = new ObservableField<>(Classe.NIN);
+    public ObservableField<Ninja> ninja = new ObservableField<>(Ninja.NARUTO);
+    public ObservableInt currentGroupIndex = new ObservableInt(0);
+
+    public Character mCharacter;
+
+    private List<Ninja> mAllNinjasList;
+    private MutableLiveData<List<Ninja>> mCurrentNinjasGroupList = new MutableLiveData<>();
+
+    private CharacterRepository mCharacterRepository;
+
+    private ResultListener mListener;
 
     public CharacterCreateViewModel() {
-        mRepository = CharacterRepository.getInstance();
+        mCharacter = new Character(AuthRepository.getInstance().getUid());
+
+        mAllNinjasList = Arrays.asList(Ninja.values());
+        loadCurrentGroup();
+
+        mCharacterRepository = CharacterRepository.getInstance();
     }
 
-    public LiveData<Character> getCharacter() {
-        return character;
+    public void setListener(ResultListener listener) {
+        mListener = listener;
     }
 
-    public void createCharacter() {
-//        if (isValidNick(nick))
-//            verificarNickRepetido(nick);
+    public LiveData<List<Ninja>> getCurrentNinjasGroupList() {
+        return mCurrentNinjasGroupList;
     }
 
-    private boolean isValidNick(String nick) {
-//        if (nick.isEmpty()) {
-//            nickEditText.setError("Campo obrigatório");
-//            return false;
-//        }
-//
-//        String message = "";
-//
-//        if (nick.length() > 18)
-//            message = "O nome do seu character não pode ter mais de 18 caractéres\n";
-//
-//        String nickSemPontuacao = nick.replaceAll("(?!_)\\p{P}", "");
-//
-//        if (!nickSemPontuacao.equals(nick))
-//            message += "O nome do seu character só pode conter letras, números e underlines";
-//
-//        if (message.isEmpty())
-//            return true;
-//        else {
-//            exibirAlerta("Aviso!", "Os seguintes problemas evitaram que a operação fosse completada:\n\n" + message);
-//            return false;
-//        }
-        return false;
+    public void onVillageSelected(Village vila) {
+        village.set(vila);
+        mCharacter.setVillage(vila);
     }
 
-//    private void salvarPersonagem(String nick) {
-//        character.setIdPlayer(FirebaseConfig.getAuth().getCurrentUser().getUid());
-//        character.setNick(nick);
-//        character.setLevel(1);
+    public void onClassSelected(Classe classe) {
+        this.classe.set(classe);
+        mCharacter.setClasse(classe);
+    }
+
+    private void loadCurrentGroup() {
+        int from = currentGroupIndex.get() * 6;
+        int to = from + 6;
+
+        mCurrentNinjasGroupList.setValue(mAllNinjasList.subList(from, to));
+    }
+
+    public void go() {
+        currentGroupIndex.set((currentGroupIndex.get() + 1) % 20);
+
+        loadCurrentGroup();
+    }
+
+    public void back() {
+        if (currentGroupIndex.get() - 1 >= 0)
+            currentGroupIndex.set(currentGroupIndex.get() - 1);
+        else
+            currentGroupIndex.set(19);
+
+        loadCurrentGroup();
+    }
+
+    @Override
+    public void onNinjaClick(Ninja ninja) {
+        this.ninja.set(ninja);
+        mCharacter.setNinja(ninja);
+    }
+
+    public void onCreateButtonPressed() {
+        if (isValidNick()) {
+            if (mCharacterRepository.checkByRepeatedNick(mCharacter.getNick())) {
+                mCharacterRepository.saveCharacter(mCharacter);
+                mListener.onSuccess();
+            }else{
+                mListener.onFailure(R.string.name_already_taken);
+            }
+        }
+    }
+
+    private boolean isValidNick() {
+        boolean valid = true;
+
+        if (TextUtils.isEmpty(mCharacter.getNick())) {
+            mListener.onFailure(R.string.name_field_requered);
+            valid = false;
+        } else if (mCharacter.getNick().length() > 18) {
+            mListener.onFailure(R.string.error_nick_length);
+            valid = false;
+        } else {
+            String nickSemPontuacao = mCharacter.getNick().replaceAll("(?!_)\\p{P}", "");
+
+            if (!nickSemPontuacao.equals(mCharacter.getNick()))
+                mListener.onFailure(R.string.error_invalid_nick);
+        }
+
+        return valid;
+    }
+
+//    private void salvarPersonagem(String nick)
 //        character.setGraducao("Estudante");
-//        character.setRyous(500);
-//        character.setVila(vilaSelecionada);
-//        character.setNumVila(numVila);
-//        character.setClasse(classeSelecionada);
 //        character.setAtributos(atributos);
-//        character.setFotoAtual(1);
 //        character.setExpUpar(1200);
 //        character.setPontos(1000);
-//        character.setResumoCombates(new ResumoCombates());
-//        character.setResumoMissoes(new ResumoMissoes());
 //        character.setMapa_posicao(-1);
 //        character.setDiasLogadosFidelidade(1);
 //        character.setTemRecompensaFidelidade(true);
@@ -78,9 +140,9 @@ public class CharacterCreateViewModel extends ViewModel {
 //        atributosDistribuidos.add(new Atributo(Atributo.AGI, R.drawable.layout_icones_agi, 0));
 //        atributosDistribuidos.add(new Atributo(Atributo.FOR, R.drawable.layout_icones_forc, 0));
 //        atributosDistribuidos.add(new Atributo(Atributo.INTE, R.drawable.layout_icones_inte, 0));
-//        atributosDistribuidos.add(new Atributo(Atributo.ENER, R.drawable.layout_icones_ene, 0));
-//        atributosDistribuidos.add(new Atributo(Atributo.RES, R.drawable.layout_icones_defense, 0));
-//        character.setAtributosDistribuitos(atributosDistribuidos);
+//        atributosDistribuidos.add(new Atributo(Atributo.ENER, R.drawable.layout_icones_ene, 0, 0));
+//        character.setAtributosDistribuitos(atributosDistribuidos);));
+////        atributosDistribuidos.add(new Atributo(Atributo.RES, R.drawable.layout_icones_defense
 //
 //        PersonagemOn.character = character;
 //        character.atualizarAtributos();
@@ -110,10 +172,7 @@ public class CharacterCreateViewModel extends ViewModel {
 //        bolsa.setRamensList(ramens);
 //        character.setBolsa(bolsa);
 //
-//        character.setOn(false);
+//        character.setOnline(false);
 //        character.salvar();
-//
-//        exibirAlerta("NINJA CRIADO COM SUCESSO", "Parabéns você acaba de criar seu character no Naruto Game.\n" +
-//                "Selecione seu character e comece agora mesmo seu treinamento");
 //    }
 }

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/layout_pagina_repeat"
     android:orientation="vertical"
-    tools:context=".ui.onlinecharacter.combates.BatalhasDojoPVPFragment">
+    tools:context=".ui.onlinecharacter.battles.BatalhasDojoPVPFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/msgConstraint"

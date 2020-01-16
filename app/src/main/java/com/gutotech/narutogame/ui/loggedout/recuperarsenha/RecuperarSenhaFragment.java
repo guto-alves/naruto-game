@@ -14,12 +14,12 @@ import android.view.ViewGroup;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.databinding.FragmentRecuperarSenhaBinding;
 import com.gutotech.narutogame.ui.SectionFragment;
-import com.gutotech.narutogame.ui.loggedout.AuthListener;
-import com.gutotech.narutogame.util.FragmentUtil;
+import com.gutotech.narutogame.ui.ResultListener;
+import com.gutotech.narutogame.utils.FragmentUtil;
 
 import es.dmoral.toasty.Toasty;
 
-public class RecuperarSenhaFragment extends Fragment implements AuthListener, SectionFragment {
+public class RecuperarSenhaFragment extends Fragment implements ResultListener, SectionFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

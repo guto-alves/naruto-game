@@ -4,7 +4,6 @@ import android.util.Log;
 
 import androidx.annotation.StringRes;
 
-import com.google.firebase.auth.ActionCodeSettings;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthInvalidUserException;
@@ -13,7 +12,7 @@ import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.gutotech.narutogame.R;
-import com.gutotech.narutogame.ui.loggedout.AuthListener;
+import com.gutotech.narutogame.ui.ResultListener;
 
 public class AuthRepository {
     private static AuthRepository sInstance;
@@ -48,6 +47,7 @@ public class AuthRepository {
                     resId = R.string.email_already_exists;
                 } catch (Exception e) {
                     resId = R.string.error_to_the_signup;
+                    e.printStackTrace();
                 }
 
                 emitter.onError(resId);
@@ -57,19 +57,24 @@ public class AuthRepository {
 
     public void loginPlayer(String email, String password, final Completable emitter) {
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                emitter.onComplete();
-            } else {
-                int resId;
+            int resId;
 
+            if (task.isSuccessful()) {
+                if (getCurrentUser().isEmailVerified()) {
+                    emitter.onComplete();
+                } else {
+                    emitter.onError(R.string.email_isnt_verified);
+                    signOut();
+                }
+            } else {
                 try {
                     throw task.getException();
                 } catch (FirebaseAuthInvalidUserException e) {
                     resId = R.string.account_is_not_registered;
                 } catch (FirebaseAuthInvalidCredentialsException e) {
-                    resId = "Email e senha não correspendem";
+                    resId = R.string.email_and_password_not_found;
                 } catch (Exception e) {
-                    resId = "Erro ao entrar: " + e.getMessage();
+                    resId = R.string.error_to_the_sign_in;
                     e.printStackTrace();
                 }
 
@@ -78,7 +83,7 @@ public class AuthRepository {
         });
     }
 
-    public void sendPasswordResetEmail(String emailAddress, AuthListener listener) {
+    public void sendPasswordResetEmail(String emailAddress, ResultListener listener) {
         mAuth.useAppLanguage();
         mAuth.sendPasswordResetEmail(emailAddress).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
@@ -92,7 +97,6 @@ public class AuthRepository {
         getCurrentUser().updatePassword(newPassword).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 emitter.onComplete();
-//                Log.d(TAG, "User password updated.");
             } else {
                 emitter.onError(R.string.invalid_password);
             }
@@ -120,15 +124,7 @@ public class AuthRepository {
     private void sendEmailVerification() {
         mAuth.useAppLanguage();
 
-        String url = "https://gutotech.page.link/Fc4u/verify?uid=" + getUid();
-        ActionCodeSettings actionCodeSettings = ActionCodeSettings.newBuilder()
-                .setUrl(url)
-                .setAndroidPackageName("com.gutotech.narutogame", false, null)
-                .setDynamicLinkDomain("gutotech.page.link")
-                .setHandleCodeInApp(true)
-                .build();
-
-        getCurrentUser().sendEmailVerification(actionCodeSettings)
+        getCurrentUser().sendEmailVerification()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         Log.d("AuthRepository", "Email sent.");

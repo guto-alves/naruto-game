@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.gutotech.narutogame.R;
-import com.gutotech.narutogame.util.StorageUtil;
+import com.gutotech.narutogame.utils.StorageUtil;
 import com.gutotech.narutogame.data.model.RecompensaFidelidade;
 import com.gutotech.narutogame.data.model.PersonagemOn;
 
@@ -64,27 +64,27 @@ public class RecompensasFidelidadeAdapter extends BaseAdapter {
 
         Button receberButton = convertView.findViewById(R.id.receberButton);
 
-        final int diasLogadosFidelidade = PersonagemOn.character.getDiasLogadosFidelidade();
+//        final int diasLogadosFidelidade = PersonagemOn.character.getDiasLogadosFidelidade();
 
-        if (dia == diasLogadosFidelidade && PersonagemOn.character.isTemRecompensaFidelidade()) {
-            receberButton.setOnClickListener(new View.OnClickListener() {
-
-                @Override
-                public void onClick(View v) {
-                    recompensa.receberRecompensa(dia);
-                }
-            });
-        } else {
-            receberButton.setEnabled(false);
-
-            if (dia >= diasLogadosFidelidade) {
-                receberButton.setText(R.string.button_nao_recebido);
-                receberButton.setBackgroundColor(Color.RED);
-            } else {
-                receberButton.setText(R.string.received);
-                receberButton.setBackgroundColor(Color.GREEN);
-            }
-        }
+//        if (dia == diasLogadosFidelidade && PersonagemOn.character.isTemRecompensaFidelidade()) {
+//            receberButton.setOnClickListener(new View.OnClickListener() {
+//
+//                @Override
+//                public void onClick(View v) {
+//                    recompensa.receberRecompensa(dia);
+//                }
+//            });
+//        } else {
+//            receberButton.setEnabled(false);
+//
+//            if (dia >= diasLogadosFidelidade) {
+//                receberButton.setText(R.string.button_nao_recebido);
+//                receberButton.setBackgroundColor(Color.RED);
+//            } else {
+//                receberButton.setText(R.string.received);
+//                receberButton.setBackgroundColor(Color.GREEN);
+//            }
+//        }
 
         return convertView;
     }

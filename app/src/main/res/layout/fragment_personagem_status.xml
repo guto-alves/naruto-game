@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".ui.onlinecharacter.character.PersonagemStatusFragment">
+        tools:context=".ui.onlinecharacter.character.CharacterStatusFragment">
 
         <!-- Resumo de combates -->
         <androidx.constraintlayout.widget.ConstraintLayout

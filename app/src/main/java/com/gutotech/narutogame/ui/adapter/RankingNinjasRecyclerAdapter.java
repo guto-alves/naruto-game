@@ -17,7 +17,7 @@ import com.google.firebase.storage.StorageReference;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.firebase.FirebaseConfig;
 import com.gutotech.narutogame.data.model.Character;
-import com.gutotech.narutogame.util.StorageUtil;
+import com.gutotech.narutogame.utils.StorageUtil;
 
 import java.util.List;
 
@@ -42,7 +42,7 @@ public class RankingNinjasRecyclerAdapter extends RecyclerView.Adapter<RankingNi
         final Character character = ninjas.get(i);
 
         StorageReference imageReference = FirebaseConfig.getStorage()
-                .child("images").child("dojo").child(character.getIdProfile() + ".png");
+                .child("images").child("dojo").child(character.getNinja().getId() + ".png");
 
         StorageUtil.downloadImage(context, imageReference, myViewHolder.personagemImageView);
 
@@ -54,16 +54,16 @@ public class RankingNinjasRecyclerAdapter extends RecyclerView.Adapter<RankingNi
                 exibirProfile(character);
             }
         });
-        myViewHolder.tituloTextView.setText(character.getTitulo());
+//        myViewHolder.tituloTextView.setText(character.getTitle());
         myViewHolder.pontosTextView.setText(String.valueOf(character.getPontos()));
         myViewHolder.levelTextView.setText(String.valueOf(character.getLevel()));
 
-        if (character.isOn())
+        if (character.isOnline())
             myViewHolder.onlineImageView.setImageResource(R.drawable.layout_on);
         else
             myViewHolder.onlineImageView.setImageResource(R.drawable.layout_off);
 
-        switch (character.getVila()) {
+        switch (character.getVillage()) {
 //            case Vilas.FOLHA.name:
 //                myViewHolder.vilaImageView.setImageResource(R.drawable.layout_bandanas_1);
 //                break;
@@ -101,7 +101,7 @@ public class RankingNinjasRecyclerAdapter extends RecyclerView.Adapter<RankingNi
         profileDialog.setContentView(R.layout.dialog_acao_profile);
 
         ImageView profileLogadoimageView = profileDialog.findViewById(R.id.profilePersonagemOnImageView);
-        StorageUtil.downloadProfile(context, profileLogadoimageView, character.getIdProfile(), character.getFotoAtual());
+        StorageUtil.downloadProfile(context, profileLogadoimageView, character.getNinja().getId(), character.getProfile());
 
         TextView nickPersonagemOnTextView = profileDialog.findViewById(R.id.nickPersonagemOnTextView);
         nickPersonagemOnTextView.setText(character.getNick());
@@ -110,7 +110,7 @@ public class RankingNinjasRecyclerAdapter extends RecyclerView.Adapter<RankingNi
         classe.setText(String.valueOf(character.getClasse()));
 
         TextView vila = profileDialog.findViewById(R.id.vilaTextView);
-        vila.setText(String.valueOf(character.getVila()));
+        vila.setText(String.valueOf(character.getVillage()));
 
         TextView level = profileDialog.findViewById(R.id.levelTextView);
         level.setText(String.valueOf(character.getLevel()));

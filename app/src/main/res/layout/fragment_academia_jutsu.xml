@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".ui.onlinecharacter.academia.AcademiaJustuFragment">
+        tools:context=".ui.onlinecharacter.academy.AcademiaJustuFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/msgConstraint"

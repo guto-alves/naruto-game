@@ -11,9 +11,7 @@ import com.gutotech.narutogame.data.model.News;
 import com.gutotech.narutogame.data.repository.AuthRepository;
 import com.gutotech.narutogame.data.repository.NewsRepository;
 import com.gutotech.narutogame.data.repository.NinjaStatisticsRepository;
-import com.gutotech.narutogame.ui.loggedout.AuthListener;
-
-import org.w3c.dom.Text;
+import com.gutotech.narutogame.ui.ResultListener;
 
 import java.util.List;
 
@@ -22,7 +20,7 @@ public class HomeViewModel extends ViewModel {
     public String password;
 
     private AuthRepository mAuthRepository;
-    private AuthListener mAuthListener;
+    private ResultListener mAuthListener;
 
     private NewsRepository mNewsRepository;
     private NinjaStatisticsRepository mNinjaStatisticsRepository;
@@ -43,7 +41,7 @@ public class HomeViewModel extends ViewModel {
         return news;
     }
 
-    public void setAuthListener(AuthListener authListener) {
+    public void setAuthListener(ResultListener authListener) {
         mAuthListener = authListener;
     }
 
@@ -51,7 +49,18 @@ public class HomeViewModel extends ViewModel {
         mAuthListener.onStarted();
 
         if (validateFields()) {
-            mAuthRepository.loginPlayer(email, password);
+            mAuthRepository.loginPlayer(email, password,
+                    new AuthRepository.Completable() {
+                        @Override
+                        public void onComplete() {
+                            mAuthListener.onSuccess();
+                        }
+
+                        @Override
+                        public void onError(int resId) {
+                            mAuthListener.onFailure(resId);
+                        }
+                    });
         }
     }
 

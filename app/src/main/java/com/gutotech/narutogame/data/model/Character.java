@@ -4,72 +4,82 @@ import com.google.firebase.database.DatabaseReference;
 import com.gutotech.narutogame.data.firebase.FirebaseConfig;
 
 import java.io.Serializable;
-import java.util.List;
 
 public class Character implements Serializable {
-    // info gerais
-    private String idPlayer;
+    private String playerId;
+
     private String nick;
-    private String titulo;
+    private Ninja ninja;
+    private int profile;
+    private Village village;
+    private Classe classe;
     private int level;
-    private String graducao;
-    private int idGraducao;
-    private String classe;
-    private String vila;
-    private int numVila;
     private long ryous;
-    private int idProfile;
-    private int fotoAtual;
-    private List<String> titulos;
 
-    private int diasLogadosFidelidade;
-    private boolean temRecompensaFidelidade;
+    private boolean online;
+    private String lastLogin;
 
-    private Atributos atributos;
-    private List<Atributo> atributosDistribuitos;
+    private CombatOverview combatOverview;
+
+    private ResumeOfMissions resumeOfMissions;
+
+    private ExtrasInformation extrasInformation;
+
+    private Bag bolsa;
+
+    private String team;
+
+    /// -------------------- OK ------------------------
+
+    // info gerais
+//    private String title;
+//    private List<String> titles;
+//
+//    private String graducao;
+//    private int idGraducao;
+//
+//    private int diasLogadosFidelidade;
+//    private boolean temRecompensaFidelidade;
+//
+//    private Atributos atributos;
+//    private List<Atributo> atributosDistribuitos;
 
     private int expAtual;
     private int expUpar;
 
     // info combates
     private int combatesNPCDiarios;
-    private ResumoCombates resumoCombates;
-
-    private boolean fuiPego;
-    private String nickOponente;
-    private int mapa_posicao;
-    private String idBatalhaAtual;
-
-    // missões
-    private ResumoMissoes resumoMissoes;
-    private boolean emMissao;
-    private MissaoDeTempo missaoDeTempo;
-    private MissaoEspecial missaoEspecial;
-    private List<Integer> tarefasConcluidasIDs;
-
-    private List<Jutsu> jutsus;
-    private Jutsu jutsuSelecionado;
-
-    // informações extras
-    private int totalTreino;
-    private int totalPontosDistribuitos;
-    private int totalPontosLivres;
-    private long totalHorasJogadas;
-
-    private Bolsa bolsa;
-
-    private String equipe;
-    private String org;
+//
+//
+//    private boolean fuiPego;
+//    private String nickOponente;
+//    private int mapa_posicao;
+//    private String idBatalhaAtual;
+//
+//    // missões
+//    private boolean emMissao;
+//    private MissaoDeTempo missaoDeTempo;
+//    private MissaoEspecial missaoEspecial;
+//    private List<Integer> tarefasConcluidasIDs;
+//
+//    private List<Jutsu> jutsus;
+//    private Jutsu jutsuSelecionado;
 
     private int rankVila;
     private int rankGeral;
     private int pontos;
     private int posicao;
-    private boolean on;
-
-    private String ultimoLogin;
 
     public Character() {
+    }
+
+    public Character(String playerId) {
+        this.playerId = playerId;
+        ninja = Ninja.NARUTO;
+        profile = 1;
+        village = Village.FOLHA;
+        classe = Classe.NIN;
+        ryous = 500;
     }
 
     public void salvar() {
@@ -79,24 +89,48 @@ public class Character implements Serializable {
         personagemReference.setValue(this);
     }
 
-    public List<String> getTitulos() {
-        return titulos;
+    public ExtrasInformation getExtrasInformation() {
+        return extrasInformation;
     }
 
-    public void setTitulos(List<String> titulos) {
-        this.titulos = titulos;
+    public void setExtrasInformation(ExtrasInformation extrasInformation) {
+        this.extrasInformation = extrasInformation;
     }
 
-    public void atualizarAtributos() {
-        atributos.atualizarFormula();
+    public Ninja getNinja() {
+        return ninja;
     }
 
-    public String getIdPlayer() {
-        return idPlayer;
+    public void setNinja(Ninja ninja) {
+        this.ninja = ninja;
     }
 
-    public void setIdPlayer(String idPlayer) {
-        this.idPlayer = idPlayer;
+    public Village getVillage() {
+        return village;
+    }
+
+    public void setVillage(Village village) {
+        this.village = village;
+    }
+
+//    public List<String> getTitles() {
+//        return titles;
+//    }
+//
+//    public void setTitles(List<String> titles) {
+//        this.titles = titles;
+//    }
+//
+//    public void atualizarAtributos() {
+//        atributos.atualizarFormula();
+//    }
+
+    public String getPlayerId() {
+        return playerId;
+    }
+
+    public void setPlayerId(String playerId) {
+        this.playerId = playerId;
     }
 
     public String getNick() {
@@ -107,13 +141,13 @@ public class Character implements Serializable {
         this.nick = nick;
     }
 
-    public String getGraducao() {
-        return graducao;
-    }
-
-    public void setGraducao(String graducao) {
-        this.graducao = graducao;
-    }
+//    public String getGraducao() {
+//        return graducao;
+//    }
+//
+//    public void setGraducao(String graducao) {
+//        this.graducao = graducao;
+//    }
 
     public long getRyous() {
         return ryous;
@@ -123,27 +157,11 @@ public class Character implements Serializable {
         this.ryous = ryous;
     }
 
-    public String getVila() {
-        return vila;
-    }
-
-    public void setVila(String vila) {
-        this.vila = vila;
-    }
-
-    public int getNumVila() {
-        return numVila;
-    }
-
-    public void setNumVila(int numVila) {
-        this.numVila = numVila;
-    }
-
-    public String getClasse() {
+    public Classe getClasse() {
         return classe;
     }
 
-    public void setClasse(String classe) {
+    public void setClasse(Classe classe) {
         this.classe = classe;
     }
 
@@ -155,28 +173,20 @@ public class Character implements Serializable {
         this.level = level;
     }
 
-    public void setAtributos(Atributos atributos) {
-        this.atributos = atributos;
+//    public void setAtributos(Atributos atributos) {
+//        this.atributos = atributos;
+//    }
+//
+//    public Atributos getAtributos() {
+//        return atributos;
+//    }
+
+    public int getProfile() {
+        return profile;
     }
 
-    public Atributos getAtributos() {
-        return atributos;
-    }
-
-    public int getIdProfile() {
-        return idProfile;
-    }
-
-    public void setIdProfile(int idProfile) {
-        this.idProfile = idProfile;
-    }
-
-    public int getFotoAtual() {
-        return fotoAtual;
-    }
-
-    public void setFotoAtual(int fotoAtual) {
-        this.fotoAtual = fotoAtual;
+    public void setProfile(int profile) {
+        this.profile = profile;
     }
 
     public int getPontos() {
@@ -195,28 +205,20 @@ public class Character implements Serializable {
         this.posicao = posicao;
     }
 
-    public int getMapa_posicao() {
-        return mapa_posicao;
+    public CombatOverview getCombatOverview() {
+        return combatOverview;
     }
 
-    public void setMapa_posicao(int mapa_posicao) {
-        this.mapa_posicao = mapa_posicao;
+    public void setCombatOverview(CombatOverview combatOverview) {
+        this.combatOverview = combatOverview;
     }
 
-    public ResumoCombates getResumoCombates() {
-        return resumoCombates;
+    public ResumeOfMissions getResumeOfMissions() {
+        return resumeOfMissions;
     }
 
-    public void setResumoCombates(ResumoCombates resumoCombates) {
-        this.resumoCombates = resumoCombates;
-    }
-
-    public ResumoMissoes getResumoMissoes() {
-        return resumoMissoes;
-    }
-
-    public void setResumoMissoes(ResumoMissoes resumoMissoes) {
-        this.resumoMissoes = resumoMissoes;
+    public void setResumeOfMissions(ResumeOfMissions resumeOfMissions) {
+        this.resumeOfMissions = resumeOfMissions;
     }
 
     public int getExpAtual() {
@@ -228,10 +230,10 @@ public class Character implements Serializable {
             expAtual = expAtual - getExpUpar();
             setExpUpar(getExpUpar() + 1200);
             setLevel(getLevel() + 1);
-            atualizarAtributos();
-            atributos.getFormulas().setVidaAtual(atributos.getFormulas().getVida());
-            atributos.getFormulas().setChakraAtual(atributos.getFormulas().getChakra());
-            atributos.getFormulas().setStaminaAtual(atributos.getFormulas().getStamina());
+//            atualizarAtributos();
+//            atributos.getFormulas().setVidaAtual(atributos.getFormulas().getVida());
+//            atributos.getFormulas().setChakraAtual(atributos.getFormulas().getChakra());
+//            atributos.getFormulas().setStaminaAtual(atributos.getFormulas().getStamina());
         }
 
         this.expAtual = expAtual;
@@ -245,13 +247,13 @@ public class Character implements Serializable {
         this.expUpar = expUpar;
     }
 
-    public List<Jutsu> getJutsus() {
-        return jutsus;
-    }
-
-    public void setJutsus(List<Jutsu> jutsus) {
-        this.jutsus = jutsus;
-    }
+//    public List<Jutsu> getJutsus() {
+//        return jutsus;
+//    }
+//
+//    public void setJutsus(List<Jutsu> jutsus) {
+//        this.jutsus = jutsus;
+//    }
 
     public int getCombatesNPCDiarios() {
         return combatesNPCDiarios;
@@ -260,173 +262,133 @@ public class Character implements Serializable {
     public void setCombatesNPCDiarios(int combatesNPCDiarios) {
         this.combatesNPCDiarios = combatesNPCDiarios;
     }
+//
+//    public boolean getFuiPego() {
+//        return fuiPego;
+//    }
+//
+//    public void setFuiPego(boolean fuiPego) {
+//        this.fuiPego = fuiPego;
+//    }
+//
+//    public String getNickOponente() {
+//        return nickOponente;
+//    }
+//
+//    public void setNickOponente(String nickOponente) {
+//        this.nickOponente = nickOponente;
+//    }
+//
+//    public Jutsu getJutsuSelecionado() {
+//        return jutsuSelecionado;
+//    }
+//
+//    public void setJutsuSelecionado(Jutsu jutsuSelecionado) {
+//        this.jutsuSelecionado = jutsuSelecionado;
+//    }
 
-    public boolean getFuiPego() {
-        return fuiPego;
-    }
-
-    public void setFuiPego(boolean fuiPego) {
-        this.fuiPego = fuiPego;
-    }
-
-    public String getNickOponente() {
-        return nickOponente;
-    }
-
-    public void setNickOponente(String nickOponente) {
-        this.nickOponente = nickOponente;
-    }
-
-    public Jutsu getJutsuSelecionado() {
-        return jutsuSelecionado;
-    }
-
-    public void setJutsuSelecionado(Jutsu jutsuSelecionado) {
-        this.jutsuSelecionado = jutsuSelecionado;
-    }
-
-    public Bolsa getBolsa() {
+    public Bag getBolsa() {
         return bolsa;
     }
 
-    public void setBolsa(Bolsa bolsa) {
+    public void setBolsa(Bag bolsa) {
         this.bolsa = bolsa;
     }
 
-    public String getIdBatalhaAtual() {
-        return idBatalhaAtual;
+//    public String getIdBatalhaAtual() {
+//        return idBatalhaAtual;
+//    }
+//
+//    public void setIdBatalhaAtual(String idBatalhaAtual) {
+//        this.idBatalhaAtual = idBatalhaAtual;
+//    }
+
+    public boolean isOnline() {
+        return online;
     }
 
-    public void setIdBatalhaAtual(String idBatalhaAtual) {
-        this.idBatalhaAtual = idBatalhaAtual;
+    public void setOnline(boolean online) {
+        this.online = online;
     }
 
-    public boolean isOn() {
-        return on;
+//    public List<Integer> getTarefasConcluidas() {
+//        return tarefasConcluidasIDs;
+//    }
+//
+//    public void setTarefasConcluidas(List<Integer> tarefasConcluidas) {
+//        this.tarefasConcluidasIDs = tarefasConcluidas;
+//    }
+
+//    public boolean isEmMissao() {
+//        return emMissao;
+//    }
+//
+//    public void setEmMissao(boolean emMissao) {
+//        this.emMissao = emMissao;
+//    }
+//
+//    public MissaoDeTempo getMissaoDeTempo() {
+//        return missaoDeTempo;
+//    }
+//
+//    public void setMissaoDeTempo(MissaoDeTempo missaoDeTempo) {
+//        this.missaoDeTempo = missaoDeTempo;
+//    }
+//
+//    public MissaoEspecial getMissaoEspecial() {
+//        return missaoEspecial;
+//    }
+//
+//    public void setMissaoEspecial(MissaoEspecial missaoEspecial) {
+//        this.missaoEspecial = missaoEspecial;
+//    }
+
+    public String getTeam() {
+        return team;
     }
 
-    public void setOn(boolean on) {
-        this.on = on;
+    public void setTeam(String team) {
+        this.team = team;
+    }
+//
+//    public int getDiasLogadosFidelidade() {
+//        return diasLogadosFidelidade;
+//    }
+//
+//    public void setDiasLogadosFidelidade(int diasLogadosFidelidade) {
+//        this.diasLogadosFidelidade = diasLogadosFidelidade;
+//    }
+//
+//    public boolean isTemRecompensaFidelidade() {
+//        return temRecompensaFidelidade;
+//    }
+//
+//    public void setTemRecompensaFidelidade(boolean temRecompensaFidelidade) {
+//        this.temRecompensaFidelidade = temRecompensaFidelidade;
+//    }
+//
+//    public List<Atributo> getAtributosDistribuitos() {
+//        return atributosDistribuitos;
+//    }
+//
+//    public void setAtributosDistribuitos(List<Atributo> atributosDistribuitos) {
+//        this.atributosDistribuitos = atributosDistribuitos;
+//    }
+//
+//    public int getIdGraducao() {
+//        return idGraducao;
+//    }
+//
+//    public void setIdGraducao(int idGraducao) {
+//        this.idGraducao = idGraducao;
+//    }
+
+    public String getLastLogin() {
+        return lastLogin;
     }
 
-    public List<Integer> getTarefasConcluidas() {
-        return tarefasConcluidasIDs;
-    }
-
-    public void setTarefasConcluidas(List<Integer> tarefasConcluidas) {
-        this.tarefasConcluidasIDs = tarefasConcluidas;
-    }
-
-    public boolean isEmMissao() {
-        return emMissao;
-    }
-
-    public void setEmMissao(boolean emMissao) {
-        this.emMissao = emMissao;
-    }
-
-    public MissaoDeTempo getMissaoDeTempo() {
-        return missaoDeTempo;
-    }
-
-    public void setMissaoDeTempo(MissaoDeTempo missaoDeTempo) {
-        this.missaoDeTempo = missaoDeTempo;
-    }
-
-    public MissaoEspecial getMissaoEspecial() {
-        return missaoEspecial;
-    }
-
-    public void setMissaoEspecial(MissaoEspecial missaoEspecial) {
-        this.missaoEspecial = missaoEspecial;
-    }
-
-    public String getEquipe() {
-        return equipe;
-    }
-
-    public void setEquipe(String equipe) {
-        this.equipe = equipe;
-    }
-
-    public String getOrg() {
-        return org;
-    }
-
-    public void setOrg(String org) {
-        this.org = org;
-    }
-
-    public int getDiasLogadosFidelidade() {
-        return diasLogadosFidelidade;
-    }
-
-    public void setDiasLogadosFidelidade(int diasLogadosFidelidade) {
-        this.diasLogadosFidelidade = diasLogadosFidelidade;
-    }
-
-    public boolean isTemRecompensaFidelidade() {
-        return temRecompensaFidelidade;
-    }
-
-    public void setTemRecompensaFidelidade(boolean temRecompensaFidelidade) {
-        this.temRecompensaFidelidade = temRecompensaFidelidade;
-    }
-
-    public List<Atributo> getAtributosDistribuitos() {
-        return atributosDistribuitos;
-    }
-
-    public void setAtributosDistribuitos(List<Atributo> atributosDistribuitos) {
-        this.atributosDistribuitos = atributosDistribuitos;
-    }
-
-    public int getTotalTreino() {
-        return totalTreino;
-    }
-
-    public void setTotalTreino(int totalTreino) {
-        this.totalTreino = totalTreino;
-    }
-
-    public int getTotalPontosDistribuitos() {
-        return totalPontosDistribuitos;
-    }
-
-    public void setTotalPontosDistribuitos(int totalPontosDistribuitos) {
-        this.totalPontosDistribuitos = totalPontosDistribuitos;
-    }
-
-    public int getTotalPontosLivres() {
-        return totalPontosLivres;
-    }
-
-    public void setTotalPontosLivres(int totalPontosLivres) {
-        this.totalPontosLivres = totalPontosLivres;
-    }
-
-    public long getTotalHorasJogadas() {
-        return totalHorasJogadas;
-    }
-
-    public void setTotalHorasJogadas(long totalHorasJogadas) {
-        this.totalHorasJogadas = totalHorasJogadas;
-    }
-
-    public int getIdGraducao() {
-        return idGraducao;
-    }
-
-    public void setIdGraducao(int idGraducao) {
-        this.idGraducao = idGraducao;
-    }
-
-    public String getUltimoLogin() {
-        return ultimoLogin;
-    }
-
-    public void setUltimoLogin(String ultimoLogin) {
-        this.ultimoLogin = ultimoLogin;
+    public void setLastLogin(String lastLogin) {
+        this.lastLogin = lastLogin;
     }
 
     public int getRankVila() {
@@ -445,11 +407,11 @@ public class Character implements Serializable {
         this.rankGeral = rankGeral;
     }
 
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
+//    public String getTitle() {
+//        return title;
+//    }
+//
+//    public void setTitle(String title) {
+//        this.title = title;
+//    }
 }

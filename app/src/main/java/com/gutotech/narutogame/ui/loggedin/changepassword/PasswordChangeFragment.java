@@ -1,79 +1,78 @@
 package com.gutotech.narutogame.ui.loggedin.changepassword;
 
-
 import android.app.AlertDialog;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.StringRes;
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
 
-import com.google.firebase.auth.FirebaseAuth;
 import com.gutotech.narutogame.R;
-import com.gutotech.narutogame.data.firebase.FirebaseConfig;
-import com.gutotech.narutogame.util.StorageUtil;
+import com.gutotech.narutogame.databinding.FragmentPasswordChangeBinding;
+import com.gutotech.narutogame.ui.SectionFragment;
+import com.gutotech.narutogame.ui.ResultListener;
+import com.gutotech.narutogame.utils.FragmentUtil;
+import com.gutotech.narutogame.utils.StorageUtil;
 
-public class PasswordChangeFragment extends Fragment {
-    private EditText senhaAtualEditText;
-    private EditText novaSenhaEditText;
-    private EditText confirmarNovaSenhaEditText;
-
-    private FirebaseAuth auth;
-
-    public PasswordChangeFragment() {
-    }
+public class PasswordChangeFragment extends Fragment implements SectionFragment, ResultListener {
+    private FragmentPasswordChangeBinding binding;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_senha_trocar, container, false);
+        PasswordChangeViewModel viewModel = ViewModelProviders.of(this)
+                .get(PasswordChangeViewModel.class);
 
-        ImageView personagemMsg = view.findViewById(R.id.personagemMsg);
-        StorageUtil.downloadProfileForMsg(getActivity(), personagemMsg);
+        binding = DataBindingUtil.inflate(inflater,
+                R.layout.fragment_password_change, container, false);
+        binding.setViewModel(viewModel);
 
-//        auth = FirebaseConfig.getAuth();
+        viewModel.setListener(this);
 
-        senhaAtualEditText = view.findViewById(R.id.senhaAtualEditText);
-        novaSenhaEditText = view.findViewById(R.id.novaSenhaEditText);
-        confirmarNovaSenhaEditText = view.findViewById(R.id.confirNovaSenhaEditText);
+        binding.msgLayout.msgTitleTextView.setText(R.string.be_advised);
+        binding.msgLayout.msgTextView.setText(R.string.be_advised_description);
+        StorageUtil.downloadProfileForMsg(getActivity(), binding.msgLayout.msgProfileImageView);
 
-        Button alterarSenhaButton = view.findViewById(R.id.alterarSenhaButton);
-        alterarSenhaButton.setOnClickListener(v -> {
-            String senhaAtual = senhaAtualEditText.getText().toString();
-            String novaSenha1 = novaSenhaEditText.getText().toString();
-            String novaSenha2 = confirmarNovaSenhaEditText.getText().toString();
+        FragmentUtil.setSectionTitle(getActivity(), R.string.section_change_password);
 
-            if (validarNovaSenha(senhaAtual, novaSenha1, novaSenha2)) {
-                // Atualizar a senha
-            }
-        });
-
-
-        return view;
+        return binding.getRoot();
     }
 
-    private boolean validarNovaSenha(String senhaAtual, String novaSenha1, String novaSenha2) {
-        if (senhaAtual.isEmpty() || novaSenha1.isEmpty() || novaSenha2.isEmpty()) {
-            exibirAlerta("Favor preencher todos o campos de senha");
-            return false;
-        } else {
-            if (novaSenha1.equals(novaSenha2))
-                return true;
-
-            exibirAlerta("As novas senhas não coincidem, por favor verifique os dados");
-            return false;
-        }
-    }
-
-    private void exibirAlerta(String message) {
+    private void showAlert(@StringRes int resId) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle("Naruto game diz:");
-        builder.setMessage(message);
+        builder.setTitle("Naruto Game says:");
+        builder.setMessage(resId);
         builder.setPositiveButton("OK", null);
         builder.setCancelable(false);
         builder.create().show();
+    }
+
+    @Override
+    public void onStarted() {
+
+    }
+
+    @Override
+    public void onSuccess() {
+        binding.passwordChangedMsgLayout.msgTitleTextView.setText(R.string.congratulations);
+        binding.passwordChangedMsgLayout.msgTextView.setText(R.string.password_changed);
+        StorageUtil.downloadProfileForMsg(getActivity(), binding.passwordChangedMsgLayout.msgProfileImageView);
+        binding.passwordChangedMsgLayout.msgConstraintLayout.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void onFailure(int resId) {
+        showAlert(resId);
+    }
+
+    @Override
+    public int getDescription() {
+        return R.string.change_password;
     }
 }

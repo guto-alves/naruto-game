@@ -1,7 +1,7 @@
 package com.gutotech.narutogame.data.model;
 
 import com.google.firebase.database.Exclude;
-import com.gutotech.narutogame.myinterface.MyListener;
+import com.gutotech.narutogame.ui.MyListener;
 
 import java.io.Serializable;
 

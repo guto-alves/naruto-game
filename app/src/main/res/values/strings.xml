@@ -26,131 +26,103 @@
     <string name="create">Create</string>
     <string name="Play">Play</string>
     <string name="remove">Remove</string>
-    <string name="button_trocar_imagem">Trocar Imagem</string>
+    <string name="button_change_image">Change Image</string>
     <string name="train">Train</string>
     <string name="enter_the_clan">Enter the Clan</string>
     <string name="button_abandonar_cla">Abandonar Clã</string>
     <string name="button_aceitar_pacto">Aceitar Pacto</string>
     <string name="button_quebrar_pacto">Quebrar Pacto</string>
     <string name="button_duelar">Duelar</string>
-    <string name="button_jogar_sorte">Jogar!</string>
+    <string name="button_play_lucky">Play!</string>
     <string name="receive">Receive</string>
     <string name="button_nao_recebido">Não Recebido</string>
     <string name="button_graduar">Graduar</string>
     <string name="button_virar_aluno">Virar Aluno</string>
-    <string name="button_aceitar">Aceitar</string>
+    <string name="button_accept">Accept</string>
     <string name="button_cancelar_missao">Cancelar Missão</string>
-    <string name="finish">Finalizar</string>
+    <string name="finish">Finish</string>
     <string name="button_ir_para_a_fila">Ir para a fila</string>
     <string name="button_filtrar">Filtrar</string>
 
-    <string-array name="sexos_array1">
-        <item>Male</item>
-        <item>Female</item>
-    </string-array>
-
-    <string-array name="sexos_array2">
-        <item>Female</item>
-        <item>Male</item>
-    </string-array>
-
-    <string-array name="chat_channel_array">
-        <item>Vila</item>
-        <item>Mundo</item>
-    </string-array>
-
-    <string-array name="ticket_categorias_array">
-        <item>Bug</item>
-        <item>VIP</item>
-        <item>Dúvidas</item>
-        <item>Sugestões</item>
-        <item>Outros</item>
-    </string-array>
-
     <string name="title_activity_logado_selecionar">LogadoSelecionarActivity</string>
     <string name="title_activity_personagem_logado">PersonagemLogadoActivity</string>
-    <string name="redigite_a_nova_senha" translatable="false">Redigite a Nova Senha</string>
-    <string name="new_password">New Password</string>
-    <string name="current_password">Current password</string>
-    <string name="escolha_seu_personagem">ESCOLHA SEU PERSONAGEM</string>
+    <string name="select_your_character">SELECT YOUR CHARACTER</string>
     <string name="taijutsu" translatable="false">Taijutsu</string>
     <string name="ninjustu" translatable="false">Ninjustu</string>
 
-    <!-- Títulos das seções -->
-
     <!-- PERSONAGEM LOGADO -->
     <!-- Grupo Usuário -->
-    <string name="section_account_info">ACCOUNT INFO</string>
-    <string name="secao_mensageiro">MENSAGEIRO</string>
-    <string name="secao_formulas">FÓRMULAS</string>
-    <string name="section_change_password">CHANGE YOUR PASSWORD</string>
-    <string name="section_create_character">CREATE NEW CHARACTER</string>
-    <string name="secao_selecione_seu_personagem">SELECIONE SEU PERSONAGEM</string>
-    <string name="section_support">SUPPORT</string>
+    <string name="section_messenger">MESSENGER</string>
+    <string name="section_formulas">FORMULAS</string>
 
     <!-- Grupo Character -->
     <string name="section_character_status">CHARACTER STATUS</string>
-    <string name="secao_clas">CLÃS</string>
-    <string name="secao_invocacoes">INVOCAÇÕES</string>
-    <string name="secao_modo_historia">MODO HISTÓRIA</string>
-    <string name="secao_sorte_ninja">SORTE NINJA</string>
-    <string name="secao_fidelidade_ninja">FIDELIDADE NINJA</string>
+    <string name="section_clans">CLANS</string>
+    <string name="section_summons">SUMMONS</string>
+    <string name="section_story_mode">STORY MODE</string>
+    <string name="section_ninja_lucky">NINJA LUCKY</string>
+    <string name="section_ninja_fidelity">NINJA FIDELITY</string>
 
     <!-- Grupo Academia -->
-    <string name="secao_graduacoes">GRADUAÇÕES</string>
+    <string name="section_graduations">GRADUATIONS</string>
     <string name="section_attribute_training">ATTRIBUTE TRAINING</string>
     <string name="secao_treinamento_de_jutsus">TREINAMENTO DE JUTSUS</string>
-    <string name="secao_jutsus_ninjas">JUTSUS NINJAS</string>
+    <string name="section_learned_jutsus">LEARNED JUTSUS</string>
 
     <!-- Grupo Sensei -->
-    <string name="secao_sensei">SENSEI</string>
-    <string name="secao_desafios">DESAFIOS</string>
+    <string name="section_sensei" translatable="false">SENSEI</string>
 
     <!-- Grupo Vila atual -->
-    <string name="secao_tarefas_iniciais">TAREFAS INICIAIS</string>
+    <string name="section_initial_tasks">"INITIAL TASKS "</string>
     <string name="section_ramen_shop" translatable="false">RAMEM SHOP</string>
     <string name="section_ninja_shop" translatable="false">NINJA SHOP</string>
-    <string name="secao_mapa_da_vila">MAPA DA VILA</string>
-    <string name="secao_missoes">MISSÕES</string>
-    <string name="secao_status_da_missao">STATUS DA MISSÃO</string>
+    <string name="section_village_map">VILLAGE MAP</string>
+    <string name="section_missions">MISSIONS</string>
 
     <!-- Grupo Combates -->
-    <string name="secao_dojo">DOJO</string>
-    <string name="secao_dojo_4x4">DOJO 4X4</string>
+    <string name="section_dojo" translatable="false">DOJO</string>
+    <string name="section_dojo_4x4" translatable="false">DOJO 4X4</string>
     <string name="section_arena" translatable="false">ARENA</string>
     <string name="secao_historico_de_batalha">HISTÓRICO DE BATALHA</string>
 
     <!-- Grupo Equipe e Organização -->
-    <string name="secao_participar">PARTICIPAR</string>
-    <string name="secao_ser_lider">SER LIDER</string>
-    <string name="secao_equipe_detalhe">EQUIPE</string>
-    <string name="secao_org_detalhe">ORGANIZAÇÃO</string>
+    <string name="section_create_a_team">CREATE A TEAM</string>
+    <string name="section_equipe_detalhe">TEAM</string>
 
     <!-- Grupo Ranking -->
-    <string name="secao_ranking_de_ninjas">RANKING DE NINJAS</string>
-    <string name="secao_ranking_de_4x4">RANKING DE 4x4</string>
-    <string name="secao_ranking_de_equipes">RANKING DE EQUIPES</string>
+    <string name="section_ninjas_ranking">NINJAS RANKING</string>
+    <string name="section_teams_ranking">TEAMS RANKING</string>
 
 
     <!-- Atributos -->
     <string name="bukijutsu" translatable="false">Bukijutsu</string>
     <string name="genjutsu" translatable="false">Genjutsu</string>
-    <string name="agilidade">Agilidade</string>
-    <string name="forca">Força</string>
+    <string name="agility">Agility</string>
+    <string name="strength">Strength</string>
     <string name="resistencia" translatable="false">Resistência</string>
-    <string name="energia">Energia</string>
-    <string name="vida">Vida</string>
+    <string name="energy">Energy</string>
+    <string name="life">Life</string>
     <string name="determinacao">Determinação</string>
     <string name="esquiva">Esquiva</string>
 
     <string name="chat_naruto_game" translatable="false">CHAT NARUTO GAME</string>
-    <string name="arquivo">Arquivo</string>
+    <string name="file">File</string>
     <string name="treinamento_manual">Treinamento Manual</string>
     <string name="quantidade">Quantidade</string>
     <string name="batalhas_do_dojo_npc">Batalhas do Dojo NPC</string>
     <string name="batalhas_do_dojo_pvp">Batalhas do Dojo PVP</string>
 
-    <!-- Section sign up -->
+    <!-- Section HOME -->
+    <string name="section_home" translatable="false">HOME</string>
+    <string name="home" translatable="false">Home</string>
+    <string name="account_is_not_registered">Account is not registered</string>
+    <string name="forgot_password">Forget Password?</string>
+    <string name="button_play">Play</string>
+    <string name="ninjas_statistics">Ninja Statistics</string>
+    <string name="email_not_found">Email not found</string>
+    <string name="kages_amp_vilas" translatable="false"><![CDATA[Kages & Vilas]]></string>
+
+    <!-- Section SIGN UP -->
     <string name="section_create_account">CREATE YOUR ACCOUNT</string>
     <string name="create_an_account">Create an Account</string>
     <string name="just_a_bit_now">JUST A BIT NOW!</string>
@@ -174,45 +146,31 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="email_already_exists">Email already exists</string>
     <string name="different_passwords">The \'Password\' and \'Confirm Password\' fields are different</string>
 
-    <!-- Section home -->
-    <string name="section_home" translatable="false">HOME</string>
-    <string name="home" translatable="false">Home</string>
-    <string name="forgot_password">Forget Password?</string>
-    <string name="button_play">Play</string>
-    <string name="ninjas_statistics">Ninja Statistics</string>
-    <string name="email_not_found">Email not found</string>
-    <string name="kages_amp_vilas" translatable="false"><![CDATA[Kages & Vilas]]></string>
-
-    <!-- Section read news-->
+    <!-- Section READ NEWS-->
     <string name="section_read_news">READ NEWS</string>
     <string name="leave_your_comment">Leave your comment</string>
     <string name="by">- by</string>
     <string name="comment">Comment</string>
 
+    <!-- Section RECOVER PASSWORD-->
     <string name="if_you_do_not_remember_your_password">If you do not remember your password, type your email account below and click \"send\". In a few minutes you will receive your new password</string>
-
-    <!-- Section recover password-->
     <string name="section_i_forgot_my_password">"I FORGOT MY PASSWORD "</string>
     <string name="password_was_sent">THE PASSWORD WAS SENT SUCCESSFULLY</string>
 
     <!-- Section Hall of Fame-->
     <string name="section_hall_of_fame">HALL OF FAME</string>
     <string name="password_sent_description">In few minutes you will receive an email to change your password. Only the link sent to you can change the password. Remember: copy and keep safe your password.</string>
-    <string name="create_character">Create Character</string>
+    <string name="create_character">Create</string>
     <string name="received">Received</string>
     <string name="birthday">Birthday</string>
 
-    <!-- Select character -->
-    <string name="label_grade">Grade:</string>
-    <string name="label_level" translatable="false">Level:</string>
-    <string name="label_village">Village:</string>
-    <string name="label_ryous" translatable="false">Ryous:</string>
-    <string name="dados_cadastrais_atualizados">DADOS CADASTRAIS ATUALIZADOS</string>
-    <string name="seus_dados_cadastrais_foram_editados_com_sucesso">Seus dados cadastrais foram editados com sucesso.</string>
-    <string name="mantenha_seu_cadastro_atualizado">MANTENHA SEU CADASTRO ATUALIZADO</string>
-    <string name="mantenha_seus_dados_cadastrais_atualizados">Mantenha seus dados cadastrais atualizados e corretos para que possamos enviar prêmios caso você ganhe algo no jogo.</string>
-
     <!-- Account info -->
+    <string name="section_account_info">ACCOUNT INFO</string>
+    <string name="my_Info">My Info</string>
+    <string name="user_info_updated">USER INFO UPDATED</string>
+    <string name="user_info_updated_description">Your info was changed with success.</string>
+    <string name="keep_your_info_updated">KEEP YOUR INFO UPDATED</string>
+    <string name="keep_your_account_updated_description">Keep your account info updated and correct, so we can send prizes if you win something in the game.</string>
     <string name="name">Name</string>
     <string name="full_address">Full Address</string>
     <string name="zip_code">Zip Code</string>
@@ -220,13 +178,117 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="hint_neighborhood">Neighborhood</string>
     <string name="hint_state">State</string>
     <string name="label_name">Name:</string>
+    <string name="mask_data" translatable="false">NN/NN/NNNN</string>
+
+    <!-- Change password -->
+    <string name="section_change_password">CHANGE YOUR PASSWORD</string>
+    <string name="be_advised">BE ADVISED</string>
+    <string name="be_advised_description">When you share your account info with others, you are in risk of they change your password, and you will lose your account.</string>
+    <string name="retype_the_new_password">Retype the new Password</string>
+    <string name="new_password">New Password</string>
+    <string name="current_password">Current password</string>
+    <string name="please_fill_all_the_fields">Please fill all the fields.</string>
+    <string name="the_passwords_do_not_match">The passwords do not match</string>
+    <string name="password_isnt_valid">The current password isn\'t valid.</string>
+    <string name="congratulations">PARABÉNS</string>
+    <string name="password_changed">Your password was changed successfully.</string>
 
     <!-- Suppport -->
+    <string name="section_support">SUPPORT</string>
     <string name="section_support_new_ticket">SUPPORT - NEW SUPPORT TICKET</string>
+    <string name="support">Support</string>
+
+    <!-- Select character -->
+    <string name="section_select_your_character">SELECT YOUR CHARACTER</string>
+    <string name="select_character">Select Character</string>
+    <string name="label_grade">Grade:</string>
+    <string name="label_level" translatable="false">Level:</string>
+    <string name="label_village">Hidden Village:</string>
+    <string name="label_ryous" translatable="false">Ryous:</string>
+
+    <!-- CREATE NEW CHARACTER -->
+    <string name="section_create_character">CREATE NEW CHARACTER</string>
+    <string name="leaf">Leaf</string>
+    <string name="label_character">Character:</string>
 
     <string name="section_dojo_challenge">DOJO CHALLENGE</string>
 
     <string name="forgot_my_password">I forgot my password</string>
-    <string name="account_is_not_registered">Account is not registered</string>
+    <string name="email_and_password_not_found">Email and password not found</string>
+    <string name="error_to_the_sign_in">Error to the sign in</string>
+    <string name="email_isnt_verified">Email has not been verified yet</string>
+    <string name="information">INFORMATION</string>
+    <string name="user">User</string>
+    <string name="character">Character</string>
+    <string name="academy">Academy</string>
+    <string name="sensei" translatable="false">Sensei</string>
+    <string name="current_village">Current Village</string>
+    <string name="battles">Battles</string>
+    <string name="team">Team</string>
+    <string name="organization">Organization</string>
+    <string name="ranking">Ranking</string>
+    <string name="participate">Participate</string>
+    <string name="being_a_leader">Being a Leader</string>
+    <string name="teams">Teams</string>
+    <string name="_4x4" translatable="false">4x4</string>
+    <string name="ninjas" translatable="false">Ninjas</string>
+    <string name="tasks">Tasks</string>
+    <string name="section_mission_status">MISSION STATUS</string>
+    <string name="ramen_shop" translatable="false">Ramen Shop</string>
+    <string name="ninja_shop" translatable="false">Ninja Shop</string>
+    <string name="village_map">Village Map</string>
+    <string name="dojo" translatable="false">Dojo</string>
+    <string name="dojo_4x4" translatable="false">Dojo 4x4</string>
+    <string name="arena">Arena</string>
+    <string name="messenger">Messenger</string>
+    <string name="game_formulas">Game Formulas</string>
+    <string name="logout">Logout</string>
+    <string name="clans">Clans</string>
+    <string name="story_mode">Story Mode</string>
+    <string name="ninja_lucky">Ninja Lucky</string>
+    <string name="summons">Summons</string>
+    <string name="status" translatable="false">Status</string>
+    <string name="ninja_fidelity">Ninja Fidelity</string>
+    <string name="attribute_training">Attribute Training</string>
+    <string name="jutsu_training">Jutsu Training</string>
+    <string name="leaned_jutsus">Leaned Jutsus</string>
+    <string name="clan_jutsus">Clan Jutsus</string>
+    <string name="grades">Grades</string>
+    <string name="choose_your_character">CHOOSE YOUR CHARACTER</string>
+    <string name="error_nick_length">O nome do seu character não pode ter mais de 18 caractéres</string>
+    <string name="error_invalid_nick">O nome do seu character só pode conter letras, números e underlines</string>
+    <string name="warning">Warning!</string>
+    <string name="name_already_taken">That name was already taken</string>
+    <string name="no_characters_selected">No characters selected</string>
+    <string name="section_rank_4X4">RANK 4X4</string>
+
+    <string-array name="sexos_array1">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+
+    <string-array name="sexos_array2">
+        <item>Female</item>
+        <item>Male</item>
+    </string-array>
+
+    <string-array name="chat_channel_array">
+        <item>Vila</item>
+        <item>Mundo</item>
+    </string-array>
+
+    <string-array name="ticket_categorias_array">
+        <item>Bug</item>
+        <item>VIP</item>
+        <item>Dúvidas</item>
+        <item>Sugestões</item>
+        <item>Outros</item>
+    </string-array>
+    <string name="mission_status">Mission Status</string>
+    <string name="section_join_a_team">JOIN A TEAM</string>
+    <string name="section_jutsu_training">JUTSUS TRAINING</string>
+    <string name="section_vip_player">VIP PLAYER</string>
+    <string name="vip_player">VIP Player</string>
+    <string name="missions">Missions</string>
 
 </resources>

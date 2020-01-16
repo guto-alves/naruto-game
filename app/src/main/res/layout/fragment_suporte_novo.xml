@@ -163,7 +163,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="65dp"
-                    android:text="@string/arquivo"
+                    android:text="@string/file"
                     android:textColor="@color/colorText"
                     android:textStyle="bold" />
 

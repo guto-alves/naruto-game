@@ -6,12 +6,12 @@
     android:layout_height="match_parent"
     android:background="@drawable/layout_pagina_repeat"
     android:fillViewport="true"
-    tools:context=".ui.onlinecharacter.combates.DojoBatalhaPVPFragment">
+    tools:context=".ui.onlinecharacter.battles.DojoBatalhaPVPFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".ui.onlinecharacter.combates.DojoBatalhaLutadorFragment">
+        tools:context=".ui.onlinecharacter.battles.DojoBatalhaLutadorFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/msgConstraint2"

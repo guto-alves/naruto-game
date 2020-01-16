@@ -20,223 +20,137 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/layout_pagina_repeat"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingBottom="16dp">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/msgConstraint2"
+            <include
+                android:id="@+id/updatedAccountMsgLayout"
+                layout="@layout/section_msg"
+                android:visibility="gone" />
+
+            <include
+                android:id="@+id/msgLayout"
+                layout="@layout/section_msg" />
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="160dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginLeft="32dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
-                android:background="#1D140F"
-                android:visibility="gone"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                android:layout_marginEnd="32dp"
+                android:layout_marginRight="32dp"
+                android:textColorHint="@color/colorYellow">
 
-                <ImageView
-                    android:id="@+id/imageView242"
-                    android:layout_width="wrap_content"
-                    android:layout_height="39dp"
-                    android:scaleType="center"
-                    android:src="@drawable/layout_pagina_repeat"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageView
-                    android:id="@+id/imageView212"
-                    android:layout_width="wrap_content"
+                <com.google.android.material.textfield.TextInputEditText
+                    style="@style/EditTextCustomTheme"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/layout_msg_topo"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/imageView242" />
+                    android:hint="@string/name"
+                    android:inputType="textCapWords|textCapSentences"
+                    android:text="@={viewModel.player.name}" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-                <ImageView
-                    android:id="@+id/imagemMsg2"
-                    android:layout_width="120dp"
-                    android:layout_height="160dp"
-                    android:src="@drawable/layout_msg_1_1"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginRight="32dp"
+                android:textColorHint="@color/colorYellow">
 
-                <ImageView
-                    android:id="@+id/imageView232"
-                    android:layout_width="0dp"
+                <com.google.android.material.textfield.TextInputEditText
+                    style="@style/EditTextCustomTheme"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/layout_msg_rodape2"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    android:enabled="false"
+                    android:hint="@string/email"
+                    android:inputType="textEmailAddress"
+                    android:text="@{viewModel.player.email}" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-                <ImageView
-                    android:id="@+id/imageView222"
-                    android:layout_width="wrap_content"
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginRight="32dp"
+                android:textColorHint="@color/colorYellow">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/dateOfBirthEditText"
+                    style="@style/EditTextCustomTheme"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/layout_msg_rodape1"
-                    app:layout_constraintBottom_toBottomOf="@+id/imageView232"
-                    app:layout_constraintEnd_toEndOf="@+id/imageView232"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="@+id/imageView232" />
+                    android:hint="@string/birthday"
+                    android:inputType="date"
+                    android:text="@={viewModel.player.dateOfBirth}"
+                    app:mask="@{@string/mask_data}" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:gravity="center_vertical"
-                    android:orientation="vertical"
-                    app:layout_constraintBottom_toTopOf="@+id/imageView222"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/imagemMsg2"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView212">
-
-                    <TextView
-                        android:id="@+id/msgTitleTextView2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
-                        android:text="@string/dados_cadastrais_atualizados"
-                        android:textColor="#FFD274"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/msgMensagem2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center|start"
-                        android:paddingRight="3dp"
-                        android:text="@string/seus_dados_cadastrais_foram_editados_com_sucesso"
-                        android:textColor="#D1D8F1"
-                        android:textSize="10sp" />
-                </LinearLayout>
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/msgConstraint"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="180dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginLeft="32dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
-                android:background="#1D140F"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/msgConstraint2">
+                android:layout_marginEnd="32dp"
+                android:layout_marginRight="32dp"
+                android:textColorHint="@color/colorYellow">
 
-                <ImageView
-                    android:id="@+id/imageView24"
-                    android:layout_width="wrap_content"
-                    android:layout_height="39dp"
-                    android:scaleType="center"
-                    android:src="@drawable/layout_pagina_repeat"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageView
-                    android:id="@+id/imageView21"
-                    android:layout_width="wrap_content"
+                <com.google.android.material.textfield.TextInputEditText
+                    style="@style/EditTextCustomTheme"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/layout_msg_topo"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/imageView24" />
+                    android:hint="@string/full_address"
+                    android:inputType="textCapWords|textCapSentences"
+                    android:text="@={viewModel.player.address}" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-                <ImageView
-                    android:id="@+id/personagemMsg"
-                    android:layout_width="120dp"
-                    android:layout_height="180dp"
-                    android:src="@drawable/layout_msg_1_1"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginRight="32dp"
+                android:textColorHint="@color/colorYellow">
 
-                <ImageView
-                    android:id="@+id/imageView23"
-                    android:layout_width="0dp"
+                <com.google.android.material.textfield.TextInputEditText
+                    style="@style/EditTextCustomTheme"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/layout_msg_rodape2"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    android:hint="@string/zip_code"
+                    android:inputType="numberSigned"
+                    android:text="@={viewModel.player.zipCode}" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-                <ImageView
-                    android:id="@+id/imageView22"
-                    android:layout_width="wrap_content"
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginRight="32dp"
+                android:textColorHint="@color/colorYellow">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    style="@style/EditTextCustomTheme"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/layout_msg_rodape1"
-                    app:layout_constraintBottom_toBottomOf="@+id/imageView23"
-                    app:layout_constraintEnd_toEndOf="@+id/imageView23"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="@+id/imageView23" />
+                    android:hint="@string/hint_neighborhood"
+                    android:inputType="textCapWords|textCapSentences"
+                    android:text="@={viewModel.player.neighborhood}" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:gravity="center_vertical"
-                    android:orientation="vertical"
-                    app:layout_constraintBottom_toTopOf="@+id/imageView22"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/personagemMsg"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView21">
 
-                    <TextView
-                        android:id="@+id/msgTitleTextView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
-                        android:text="@string/mantenha_seu_cadastro_atualizado"
-                        android:textColor="#FFD274"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/msgMensagem"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center|start"
-                        android:paddingEnd="3dp"
-                        android:paddingRight="3dp"
-                        android:text="@string/mantenha_seus_dados_cadastrais_atualizados"
-                        android:textColor="#D1D8F1"
-                        android:textSize="12sp" />
-
-                </LinearLayout>
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <EditText
-                style="@style/EditTextTheme"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginLeft="32dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="32dp"
-                android:layout_marginRight="32dp"
-                android:ems="10"
-                android:hint="@string/name"
-                android:inputType="textCapWords|textCapSentences"
-                android:text="@{viewModel.player.name}" />
-
-            <EditText
-                style="@style/EditTextTheme"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
@@ -244,14 +158,19 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="32dp"
                 android:layout_marginRight="32dp"
-                android:ems="10"
-                android:enabled="false"
-                android:hint="@string/email"
-                android:inputType="textEmailAddress"
-                android:text="@={viewModel.player.email}" />
+                android:textColorHint="@color/colorYellow">
 
-            <Spinner
-                android:id="@+id/sexoSpinner"
+                <com.google.android.material.textfield.TextInputEditText
+                    style="@style/EditTextCustomTheme"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/hint_city"
+                    android:inputType="textCapWords|textCapSentences"
+                    android:text="@={viewModel.player.city}" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
@@ -259,98 +178,16 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="32dp"
                 android:layout_marginRight="32dp"
-                android:layout_marginBottom="8dp"
-                android:background="@android:color/white"
-                android:padding="5dp" />
+                android:textColorHint="@color/colorYellow">
 
-            <EditText
-                android:id="@+id/dateOfBirthEditText"
-                style="@style/EditTextTheme"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginLeft="32dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="32dp"
-                android:layout_marginRight="32dp"
-                android:ems="10"
-                android:hint="@string/birthday"
-                android:inputType="date"
-                android:text="@={viewModel.player.dateOfBirth}"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/sexoSpinner" />
-
-            <EditText
-                style="@style/EditTextTheme"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginLeft="32dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="32dp"
-                android:layout_marginRight="32dp"
-                android:ems="10"
-                android:hint="@string/full_address"
-                android:inputType="textCapWords|textCapSentences"
-                android:text="@={viewModel.player.address}" />
-
-            <EditText
-                style="@style/EditTextTheme"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginLeft="32dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="32dp"
-                android:layout_marginRight="32dp"
-                android:ems="10"
-                android:hint="@string/zip_code"
-                android:inputType="numberSigned"
-                android:text="@={viewModel.player.zipCode}" />
-
-            <EditText
-                style="@style/EditTextTheme"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginLeft="32dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="32dp"
-                android:layout_marginRight="32dp"
-                android:ems="10"
-                android:hint="@string/hint_city"
-                android:inputType="textCapWords|textCapSentences"
-                android:text="@={viewModel.player.city}" />
-
-            <EditText
-                android:id="@+id/editTextBairro"
-                style="@style/EditTextTheme"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginLeft="32dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="32dp"
-                android:layout_marginRight="32dp"
-                android:ems="10"
-                android:hint="@string/hint_neighborhood"
-                android:inputType="textCapWords|textCapSentences"
-                android:text="@={viewModel.player.neighborhood}" />
-
-            <EditText
-                style="@style/EditTextTheme"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginLeft="32dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="32dp"
-                android:layout_marginRight="32dp"
-                android:ems="10"
-                android:hint="@string/hint_state"
-                android:inputType="textPersonName"
-                android:text="@={viewModel.player.state}" />
+                <com.google.android.material.textfield.TextInputEditText
+                    style="@style/EditTextCustomTheme"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/hint_state"
+                    android:inputType="textCapWords|textCapSentences"
+                    android:text="@={viewModel.player.state}" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <Button
                 style="@style/ButtonTheme"
@@ -362,7 +199,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
-                android:onClick="@{()-> viewModel.submitChanges()}"
+                android:onClick="@{()-> viewModel.onSubmitChangesButtonPressed()}"
                 android:text="@string/button_submit_changes" />
         </LinearLayout>
     </ScrollView>

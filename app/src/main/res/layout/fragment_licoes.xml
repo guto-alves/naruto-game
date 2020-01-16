@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/layout_pagina_repeat"
-        tools:context=".ui.onlinecharacter.vilaatual.LicoesFragment">
+        tools:context=".ui.onlinecharacter.currentvillage.LicoesFragment">
 
         <ImageView
             android:id="@+id/imageView36"

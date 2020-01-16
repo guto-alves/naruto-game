@@ -55,27 +55,27 @@ public class MapaGridAdapter extends BaseAdapter {
         for (int i = 0; i < personagensNoMapa.size(); i++) {
             Character character = personagensNoMapa.get(i);
 
-            if (character.getMapa_posicao() == position) {
-                if (character.getVila().equals(PersonagemOn.character.getVila())) {
-                    if (character.getNick().equals(PersonagemOn.character.getNick()))
-                        fundoImageView.setImageResource(R.drawable.layout_map_me2);
-                    else
-                        fundoImageView.setImageResource(R.drawable.layout_map_green2);
-                } else
-                    fundoImageView.setImageResource(R.drawable.layout_map_red2);
-
-                StorageReference imagemRef = FirebaseConfig.getStorage()
-                        .child("images")
-                        .child("sprites")
-                        .child(character.getIdProfile() + ".png");
-
-                Glide.with(context)
-                        .load(imagemRef)
-                        .into(spriteImageView);
-
-                spriteImageView.setVisibility(View.VISIBLE);
-                break;
-            }
+//            if (character.getMapa_posicao() == position) {
+//                if (character.getVillage().equals(PersonagemOn.character.getVillage())) {
+//                    if (character.getNick().equals(PersonagemOn.character.getNick()))
+//                        fundoImageView.setImageResource(R.drawable.layout_map_me2);
+//                    else
+//                        fundoImageView.setImageResource(R.drawable.layout_map_green2);
+//                } else
+//                    fundoImageView.setImageResource(R.drawable.layout_map_red2);
+//
+//                StorageReference imagemRef = FirebaseConfig.getStorage()
+//                        .child("images")
+//                        .child("sprites")
+//                        .child(character.getNinja().getId() + ".png");
+//
+//                Glide.with(context)
+//                        .load(imagemRef)
+//                        .into(spriteImageView);
+//
+//                spriteImageView.setVisibility(View.VISIBLE);
+//                break;
+//            }
         }
 
         return convertView;

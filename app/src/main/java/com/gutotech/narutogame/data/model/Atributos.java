@@ -1,5 +1,9 @@
 package com.gutotech.narutogame.data.model;
 
+import com.google.firebase.database.Exclude;
+
+import java.io.Serializable;
+
 /*
     Vida	                Fórmula da Vida	                (ENERGIA * 6)
 	Chakra	                Fórmula do Chakra               (ENERGIA * 6) + (NIN * 14) + (GEN * 7)
@@ -13,11 +17,6 @@ package com.gutotech.narutogame.data.model;
 	Incremento de Absorção	1% de Incremento de Absorção	(Level / 4)
 	Incremento de Crítico	1% de Incremento de Crítico	    (Level / 4)
  */
-
-import com.google.firebase.database.Exclude;
-
-import java.io.Serializable;
-
 public class Atributos implements Serializable {
     private int taijutsu;
     private int bukijutsu;

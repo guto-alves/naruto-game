@@ -7,8 +7,6 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.fragment.app.Fragment;
-
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.ui.SectionFragment;
 
@@ -17,11 +15,11 @@ import java.util.Map;
 
 public class ExpandableAdapter extends BaseExpandableListAdapter {
     private List<Integer> groups; // each element store a @DrawableRes
-    private Map<Integer, List<SectionFragment>> items;
+    private Map<Integer, List<SectionFragment>> sections;
 
-    public ExpandableAdapter(List<Integer> groups, Map<Integer, List<SectionFragment>> items) {
+    public ExpandableAdapter(List<Integer> groups, Map<Integer, List<SectionFragment>> sections) {
         this.groups = groups;
-        this.items = items;
+        this.sections = sections;
     }
 
     @Override
@@ -31,7 +29,7 @@ public class ExpandableAdapter extends BaseExpandableListAdapter {
 
     @Override
     public int getChildrenCount(int groupPosition) {
-        return items.get(groupPosition).size();
+        return sections.get(groupPosition).size();
     }
 
     @Override
@@ -41,7 +39,7 @@ public class ExpandableAdapter extends BaseExpandableListAdapter {
 
     @Override
     public Object getChild(int groupPosition, int childPosition) {
-        return items.get(groupPosition).get(childPosition);
+        return sections.get(groupPosition).get(childPosition);
     }
 
     @Override

@@ -16,7 +16,7 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        AuthRepository.getInstance().signOut(); // for tests
+//        AuthRepository.getInstance().signOut(); // for tests
 
         if (AuthRepository.getInstance().isSignedin() &&
                 AuthRepository.getInstance().getCurrentUser().isEmailVerified())

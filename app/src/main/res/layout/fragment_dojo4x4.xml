@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/layout_pagina_repeat"
-    tools:context=".ui.onlinecharacter.combates.Dojo4x4Fragment">
+    android:background="@drawable/layout_pagina_repeat">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/msgConstraint2"

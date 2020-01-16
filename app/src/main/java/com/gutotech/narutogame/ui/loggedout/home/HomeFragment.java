@@ -20,25 +20,25 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.gutotech.narutogame.R;
+import com.gutotech.narutogame.data.repository.AuthRepository;
 import com.gutotech.narutogame.databinding.FragmentHomeBinding;
 import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.adapter.KagesAndVilasViewPagerAdapter;
 import com.gutotech.narutogame.ui.adapter.NinjaStatisticsRecyclerViewAdapter;
 import com.gutotech.narutogame.ui.adapter.NewsAdapter;
-import com.gutotech.narutogame.ui.loggedout.AuthListener;
+import com.gutotech.narutogame.ui.ResultListener;
 import com.gutotech.narutogame.ui.loggedin.LogadoSelecionarActivity;
-import com.gutotech.narutogame.util.FragmentUtil;
-import com.gutotech.narutogame.util.RecyclerItemClickListener;
+import com.gutotech.narutogame.utils.FragmentUtil;
+import com.gutotech.narutogame.utils.RecyclerItemClickListener;
 import com.gutotech.narutogame.ui.loggedout.recuperarsenha.RecuperarSenhaFragment;
 
 import es.dmoral.toasty.Toasty;
 
-public class HomeFragment extends Fragment implements AuthListener, SectionFragment {
+public class HomeFragment extends Fragment implements ResultListener, SectionFragment {
     private RecyclerView newsRecyclerView;
     private NewsAdapter newsAdapter;
 
     private RecyclerView ninjaStatisticsRecyclerView;
-    private NinjaStatisticsRecyclerViewAdapter ninjaStatisticsAdapter;
 
     private Dialog waitDialog;
 
@@ -48,6 +48,7 @@ public class HomeFragment extends Fragment implements AuthListener, SectionFragm
         HomeViewModel mHomeViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
 
         FragmentHomeBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false);
+
         binding.setViewmodel(mHomeViewModel);
         View root = binding.getRoot();
 
@@ -59,15 +60,9 @@ public class HomeFragment extends Fragment implements AuthListener, SectionFragm
             FragmentUtil.goTo(getActivity(), new RecuperarSenhaFragment());
         });
 
-//        Bundle bundle = getArguments();
-//        if (bundle == null)
-//            configurarLogin();
-//        else {
-//            emailEditText.setVisibility(View.GONE);
-//            senhaEditText.setVisibility(View.GONE);
-//            esqueceuSenhaTextView.setVisibility(View.GONE);
-//            jogarButton.setVisibility(View.GONE);
-//        }
+        if (AuthRepository.getInstance().isSignedin()) {
+            binding.loginLinearLayout.setVisibility(View.GONE);
+        }
 
         newsRecyclerView = root.findViewById(R.id.newsRecyclerView);
         setUpNewsRecyclerView();
@@ -124,7 +119,7 @@ public class HomeFragment extends Fragment implements AuthListener, SectionFragm
     public void setUpNinjaStatistics() {
         ninjaStatisticsRecyclerView.setHasFixedSize(true);
 
-        ninjaStatisticsAdapter = new NinjaStatisticsRecyclerViewAdapter(getActivity());
+        NinjaStatisticsRecyclerViewAdapter ninjaStatisticsAdapter = new NinjaStatisticsRecyclerViewAdapter(getActivity());
         ninjaStatisticsRecyclerView.setAdapter(ninjaStatisticsAdapter);
     }
 

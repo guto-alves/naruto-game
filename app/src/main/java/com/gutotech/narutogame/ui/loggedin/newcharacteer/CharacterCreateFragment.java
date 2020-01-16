@@ -3,259 +3,73 @@ package com.gutotech.narutogame.ui.loggedin.newcharacteer;
 import android.app.AlertDialog;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.lifecycle.ViewModelProviders;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.RadioGroup;
-import android.widget.TextView;
 
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 import com.gutotech.narutogame.R;
-import com.gutotech.narutogame.data.model.Character;
-import com.gutotech.narutogame.ui.adapter.CharactersRecyclerViewAdapter;
-import com.gutotech.narutogame.data.model.Atributos;
-import com.gutotech.narutogame.data.model.Classe;
-import com.gutotech.narutogame.data.model.Vilas;
+import com.gutotech.narutogame.databinding.FragmentPersonagemCriarBinding;
+import com.gutotech.narutogame.ui.ResultListener;
+import com.gutotech.narutogame.ui.SectionFragment;
+import com.gutotech.narutogame.ui.adapter.ChooseNinjaRecyclerViewAdapter;
+import com.gutotech.narutogame.ui.loggedin.selectcharacter.CharacterSelectFragment;
+import com.gutotech.narutogame.utils.FragmentUtil;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class CharacterCreateFragment extends Fragment {
-    private Character character;
-    private Atributos atributos;
-
-    private TextView vilaSelecionadaTextView;
-    private String vilaSelecionada;
-    private int numVila;
-
-    private String classeSelecionada;
-
-    private ImageView profileImageView;
-    private TextView nomePersonagemSelecionadoTextView;
-
-    private RecyclerView profilesRecyclerView;
-    private CharactersRecyclerViewAdapter adapter;
-    private List<Integer> pequenasLista = new ArrayList<>();
-    private List<Integer> profilesGrupoAtual = new ArrayList<>();
-
-    private TextView grupoAtualTextView;
-    private int grupoAtual = 0;
-
-    private ValueEventListener valueEventListenerNickRepetido;
-    private Query nickRepetidoQuery;
-
-    public CharacterCreateFragment() {
-    }
+public class CharacterCreateFragment extends Fragment implements SectionFragment, ResultListener {
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_personagem_criar, container, false);
+        CharacterCreateViewModel viewModel = ViewModelProviders.of(getActivity())
+                .get(CharacterCreateViewModel.class);
+        viewModel.setListener(this);
 
-        character = new Character();
-        atributos = new Atributos();
-        atributos.setTaijutsu(10);
-        atributos.setBukijutsu(1);
-        atributos.setNinjutsu(1);
-        atributos.setGenjutsu(1);
-        atributos.setForca(5);
-        atributos.setAgilidade(3);
-        atributos.setInteligencia(1);
-        atributos.setSelo(3);
-        atributos.setResistencia(1);
-        atributos.setEnergia(10);
-        vilaSelecionada = Vilas.FOLHA.name;
-        numVila = 1;
-        classeSelecionada = Classe.TAI;
-        character.setIdProfile(1);
+        FragmentPersonagemCriarBinding binding = DataBindingUtil.inflate(inflater,
+                R.layout.fragment_personagem_criar, container, false);
 
-        vilaSelecionadaTextView = view.findViewById(R.id.vilaSelecionadaTextView);
-        RadioGroup vilasRadioGroup = view.findViewById(R.id.vilasRadioGroup);
-        vilasRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-//                switch (checkedId) {
-//                    case R.id.folhaRadioButton:
-//                        vilaSelecionada = Vilas.FOLHA;
-//                        numVila = 1;
-//                        vilaSelecionadaTextView.setText(vilaSelecionada);
-//                        break;
-//                    case R.id.areiaRadioButton:
-//                        vilaSelecionada = Vilas.AREIA;
-//                        numVila = 2;
-//                        vilaSelecionadaTextView.setText(vilaSelecionada);
-//                        break;
-//                    case R.id.nevoaRadioButton:
-//                        vilaSelecionada = Vilas.NEVOA;
-//                        numVila = 3;
-//                        vilaSelecionadaTextView.setText(vilaSelecionada);
-//                        break;
-//                    case R.id.pedraRadioButton:
-//                        vilaSelecionada = Vilas.PEDRA;
-//                        numVila = 4;
-//                        vilaSelecionadaTextView.setText(vilaSelecionada);
-//                        break;
-//                    case R.id.nuvemRadioButton:
-//                        vilaSelecionada = Vilas.NUVEM;
-//                        numVila = 5;
-//                        vilaSelecionadaTextView.setText(vilaSelecionada);
-//                        break;
-//                    case R.id.akatsukiRadioButton:
-//                        vilaSelecionada = Vilas.AKATSUKI;
-//                        numVila = 6;
-//                        vilaSelecionadaTextView.setText(vilaSelecionada);
-//                        break;
-//                    case R.id.somRadioButton:
-//                        vilaSelecionada = Vilas.SOM;
-//                        numVila = 7;
-//                        vilaSelecionadaTextView.setText(vilaSelecionada);
-//                        break;
-//                    case R.id.chuvaRadioButton:
-//                        vilaSelecionada = Vilas.CHUVA;
-//                        numVila = 8;
-//                        vilaSelecionadaTextView.setText(vilaSelecionada);
-//                        break;
-//                }
-            }
-        });
+        binding.setViewModel(viewModel);
 
-        RadioGroup classesRadioGroup = view.findViewById(R.id.classesRadioGroup);
-        classesRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                switch (checkedId) {
-                    case R.id.taiRadioButton:
-                        classeSelecionada = Classe.TAI;
-                        atributos.setTaijutsu(10);
-                        atributos.setBukijutsu(1);
-                        atributos.setNinjutsu(1);
-                        atributos.setGenjutsu(1);
-                        atributos.setForca(5);
-                        atributos.setAgilidade(3);
-                        atributos.setInteligencia(1);
-                        atributos.setSelo(3);
-                        break;
-                    case R.id.ninRadioButton:
-                        classeSelecionada = Classe.NIN;
-                        atributos.setTaijutsu(1);
-                        atributos.setBukijutsu(1);
-                        atributos.setNinjutsu(10);
-                        atributos.setGenjutsu(1);
-                        atributos.setForca(1);
-                        atributos.setAgilidade(3);
-                        atributos.setInteligencia(5);
-                        atributos.setSelo(3);
-                        break;
-                    case R.id.genRadioButton:
-                        classeSelecionada = Classe.GEN;
-                        atributos.setTaijutsu(1);
-                        atributos.setBukijutsu(1);
-                        atributos.setNinjutsu(1);
-                        atributos.setGenjutsu(10);
-                        atributos.setForca(1);
-                        atributos.setAgilidade(3);
-                        atributos.setInteligencia(5);
-                        atributos.setSelo(3);
-                        break;
-                    case R.id.bukRadioButton:
-                        classeSelecionada = Classe.BUK;
-                        atributos.setTaijutsu(1);
-                        atributos.setBukijutsu(10);
-                        atributos.setNinjutsu(1);
-                        atributos.setGenjutsu(1);
-                        atributos.setForca(5);
-                        atributos.setAgilidade(3);
-                        atributos.setInteligencia(1);
-                        atributos.setSelo(3);
-                        break;
-                }
-                atributos.setResistencia(1);
-                atributos.setEnergia(10);
-            }
-        });
+        ChooseNinjaRecyclerViewAdapter ninjasAdapter = new ChooseNinjaRecyclerViewAdapter(viewModel);
+        binding.ninjasRecyclerView.setAdapter(ninjasAdapter);
 
-        nomePersonagemSelecionadoTextView = view.findViewById(R.id.nomePersonagemSelecionadoTextView);
-        profileImageView = view.findViewById(R.id.profileCriarImageView);
+        viewModel.getCurrentNinjasGroupList().observe(this, ninjasAdapter::setNinjasId);
 
-        profilesRecyclerView = view.findViewById(R.id.profilesRecyclerView);
-        grupoAtualTextView = view.findViewById(R.id.grupoAtualTextView);
-        configurarGriView();
+        FragmentUtil.setSectionTitle(getActivity(), R.string.section_create_character);
 
-        ImageButton voltarButton = view.findViewById(R.id.voltarImageButton);
-        voltarButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (grupoAtual - 1 >= 0)
-                    grupoAtual--;
-                else
-                    grupoAtual = 19;
-
-                carregarGrupoAtual();
-            }
-        });
-
-        ImageButton avancarButton = view.findViewById(R.id.avancarImageButton);
-        avancarButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (grupoAtual + 1 < 20)
-                    grupoAtual++;
-                else
-                    grupoAtual = 0;
-
-                carregarGrupoAtual();
-            }
-        });
-
-        return view;
+        return binding.getRoot();
     }
 
-    private void carregarGrupoAtual() {
-        int from = grupoAtual * 6;
-        int to = from + 6;
-
-        profilesGrupoAtual.clear();
-
-        profilesGrupoAtual.addAll(pequenasLista.subList(from, to));
-
-        adapter.notifyDataSetChanged();
-
-        grupoAtualTextView.setText(String.valueOf(grupoAtual + 1));
-    }
-
-    private void configurarGriView() {
-//        adapter = new CharactersRecyclerViewAdapter(getActivity(), );
-        carregarGrupoAtual();
-        profilesRecyclerView.setAdapter(adapter);
-//        profilesRecyclerView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                StorageUtil.downloadProfile(getActivity(), profileImageView, profilesGrupoAtual.get(position));
-//
-//                character.setIdProfile(profilesGrupoAtual.get(position));
-//                nomePersonagemSelecionadoTextView.setText(Helper.nomeDoPersonagem(character.getIdProfile()));
-//            }
-//        });
-    }
-
-    private void exibirAlerta(String titulo, String mensagem) {
+    private void showAlert(String title, String message) {
         AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
-        alert.setTitle(titulo);
-        alert.setMessage(mensagem);
+        alert.setTitle(title);
+        alert.setMessage(message);
         alert.create();
         alert.show();
     }
 
-    private void changeToFragment(Fragment fragment) {
-        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.container, fragment);
-        transaction.commit();
+    @Override
+    public int getDescription() {
+        return R.string.create_character;
+    }
+
+    @Override
+    public void onStarted() {
+    }
+
+    @Override
+    public void onSuccess() {
+        showAlert("NINJA CRIADO COM SUCESSO", "Parabéns você acaba de criar seu character no Naruto Game.\n" +
+                "Selecione seu character e comece agora mesmo seu treinamento");
+        FragmentUtil.goTo(getActivity(), new CharacterSelectFragment());
+    }
+
+    @Override
+    public void onFailure(int resId) {
+        showAlert(getString(R.string.warning), getString(resId));
     }
 }

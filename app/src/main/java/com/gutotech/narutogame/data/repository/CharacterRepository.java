@@ -16,7 +16,6 @@ import java.util.List;
 public class CharacterRepository {
     private static CharacterRepository instance;
 
-    private Query personagensQuery;
     private ValueEventListener valueEventListenerPersonagens;
 
     private CharacterRepository() {
@@ -28,8 +27,34 @@ public class CharacterRepository {
         return instance;
     }
 
-    public void getAllMyCharacters() {
+    public void saveCharacter(Character character) {
+        DatabaseReference characterRef = FirebaseConfig.getDatabase()
+                .child("characters")
+                .child(character.getNick());
+
+        characterRef.setValue(character);
+    }
+
+    public void deleteCharacter(String nick) {
+        DatabaseReference characterRef = FirebaseConfig.getDatabase()
+                .child("characters")
+                .child(nick);
+
+        characterRef.removeValue();
+    }
+
+    public boolean checkByRepeatedNick(String nick) {
+        DatabaseReference characterRef = FirebaseConfig.getDatabase()
+                .child("characters")
+                .child(nick);
+
+        return true;
+    }
+
+    public void getAllMyCharacters(AllMyCharactersListener listener) {
         List<Character> characterList = new ArrayList<>();
+        Query personagensQuery = FirebaseConfig.getDatabase()
+                .child("characters");
 
         valueEventListenerPersonagens = personagensQuery.addValueEventListener(new ValueEventListener() {
             @Override
@@ -41,21 +66,9 @@ public class CharacterRepository {
                     characterList.add(character);
                 }
 
-                personagensQuery.removeEventListener(valueEventListenerPersonagens);
+//                personagensQuery.removeEventListener(valueEventListenerPersonagens);
 
-                if (characterList.size() == 0) {
-//                    mudarTituloSecao("CRIAR PERSONAGEM");
-//                    changeTo(new CharacterCreateFragment());
-                } else {
-//                    classificarPersonagensPorLvl();
-//
-//                    for (int i = 0; i < personagensList.size(); i++)
-//                        profilesPequenaList.add(personagensList.get(i).getIdProfile());
-//
-//                    adapter.notifyDataSetChanged();
-//
-//                    characterSelecionado = personagensList.get(0);
-                }
+                listener.onResult(characterList);
             }
 
             @Override
@@ -78,11 +91,7 @@ public class CharacterRepository {
         }
     }
 
-    public void deleteCharacter(String nick) {
-        DatabaseReference characterRef = FirebaseConfig.getDatabase()
-                .child("characters")
-                .child(nick);
-
-        characterRef.removeValue();
+    public interface AllMyCharactersListener {
+        void onResult(List<Character> characterList);
     }
 }

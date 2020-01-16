@@ -6,22 +6,22 @@
     android:background="@android:color/transparent"
     android:gravity="center_vertical"
     android:orientation="horizontal"
+    android:paddingStart="32dp"
     android:paddingLeft="32dp"
     android:paddingTop="10dp">
 
     <ImageView
-        android:id="@+id/menuTitleImageView"
+        android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
         app:srcCompat="@drawable/layout_categorias_topo_3" />
 
     <TextView
-        android:id="@+id/categoriaTextView"
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
-        android:text="TextView"
         android:textColor="#431317"
         android:textSize="18sp" />
 

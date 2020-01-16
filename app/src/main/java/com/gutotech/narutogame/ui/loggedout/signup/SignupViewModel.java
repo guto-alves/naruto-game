@@ -10,14 +10,14 @@ import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.Player;
 import com.gutotech.narutogame.data.repository.AuthRepository;
 import com.gutotech.narutogame.data.repository.PlayerRepository;
-import com.gutotech.narutogame.ui.loggedout.AuthListener;
+import com.gutotech.narutogame.ui.ResultListener;
 
 public class SignupViewModel extends ViewModel {
     private MutableLiveData<Player> player;
     public String confirmPassword;
 
     private AuthRepository mAuthRepository;
-    private AuthListener mAuthListener;
+    private ResultListener mAuthListener;
 
     public SignupViewModel() {
         player = new MutableLiveData<>(new Player());
@@ -29,7 +29,7 @@ public class SignupViewModel extends ViewModel {
         return player;
     }
 
-    public void setAuthListener(AuthListener authListener) {
+    public void setAuthListener(ResultListener authListener) {
         mAuthListener = authListener;
     }
 
@@ -45,10 +45,12 @@ public class SignupViewModel extends ViewModel {
                         @Override
                         public void onComplete() {
                             player.getValue().setId(mAuthRepository.getUid());
+                            player.getValue().setVipCredits(20);
 
-                            PlayerRepository.getInstance().insertPlayer(player.getValue());
+                            PlayerRepository.getInstance().savePlayer(player.getValue());
 
                             player.setValue(new Player());
+                            confirmPassword = "";
 
                             mAuthListener.onSuccess();
                         }

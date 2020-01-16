@@ -20,6 +20,9 @@ public class Formulas implements Serializable {
     private double esquiva;
     private int determinacao;
 
+    public Formulas() {
+    }
+
     public int getVida() {
         return vida;
     }

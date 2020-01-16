@@ -47,7 +47,7 @@
             android:id="@+id/descriTextView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Super macarrão reforçado para uso nos intervalos das tarefas ninjas"
+            android:text="Super macarrão reforçado para uso nos intervalos das tasks ninjas"
             android:textColor="#BFD4DC"
             android:textSize="10sp" />
     </LinearLayout>

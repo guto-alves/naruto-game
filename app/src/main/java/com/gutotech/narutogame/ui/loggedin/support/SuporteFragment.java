@@ -23,15 +23,17 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.repository.AuthRepository;
+import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.adapter.TicketsAdapter;
 import com.gutotech.narutogame.data.firebase.FirebaseConfig;
-import com.gutotech.narutogame.util.StorageUtil;
+import com.gutotech.narutogame.utils.FragmentUtil;
+import com.gutotech.narutogame.utils.StorageUtil;
 import com.gutotech.narutogame.data.model.Ticket;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SuporteFragment extends Fragment {
+public class SuporteFragment extends Fragment implements SectionFragment {
 
     private TicketsAdapter adapter;
     private List<Ticket> ticketsList = new ArrayList<>();
@@ -73,6 +75,8 @@ public class SuporteFragment extends Fragment {
         adapter = new TicketsAdapter(getActivity(), ticketsList);
         ticketsRecyclerView.setAdapter(adapter);
 
+        FragmentUtil.setSectionTitle(getActivity(), R.string.section_support);
+
         return view;
     }
 
@@ -98,5 +102,10 @@ public class SuporteFragment extends Fragment {
     private void changeToFragment(Fragment fragment) {
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.container, fragment).commit();
+    }
+
+    @Override
+    public int getDescription() {
+        return R.string.support;
     }
 }

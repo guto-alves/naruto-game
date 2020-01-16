@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
+        <import type="com.gutotech.narutogame.data.model.Village" />
+
+        <import type="com.gutotech.narutogame.data.model.Classe" />
 
         <variable
             name="viewModel"
@@ -15,168 +18,164 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/layout_pagina_repeat"
-        android:fillViewport="true">
+        android:fillViewport="true"
+        tools:context=".ui.loggedin.newcharacteer.CharacterCreateFragment">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:context=".ui.loggedin.newcharacteer.CharacterCreateFragment">
+            android:orientation="vertical"
+            android:padding="16dp">
 
-            <LinearLayout
-                android:id="@+id/linearLayout4"
-                android:layout_width="0dp"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
-                android:background="#271C15"
-                android:orientation="vertical"
-                android:paddingLeft="5dp"
-                android:paddingTop="20dp"
-                android:paddingRight="5dp"
-                android:paddingBottom="10dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <LinearLayout
-                    android:id="@+id/LinearNome"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/textView5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/label_name"
-                        android:textColor="@android:color/white"
-                        android:textStyle="bold" />
-
-                    <EditText
-                        style="@style/EditTextTheme"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:ems="10"
-                        android:inputType="textPersonName"
-                        android:text="@={viewModel.character.nick}" />
-                </LinearLayout>
+                app:cardBackgroundColor="#271C15"
+                app:cardCornerRadius="8dp"
+                app:cardUseCompatPadding="true">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:gravity="center"
-                    android:orientation="horizontal">
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:orientation="vertical"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:paddingBottom="10dp">
 
-                    <RadioGroup
-                        android:id="@+id/vilasRadioGroup"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <RadioButton
-                            android:id="@+id/folhaRadioButton"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="8dp"
-                            android:background="@drawable/layout_vilas2_1"
-                            android:button="@null" />
-
-                        <RadioButton
-                            android:id="@+id/areiaRadioButton"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="8dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/layout_vilas2_2"
-                            android:button="@null" />
-
-                        <RadioButton
-                            android:id="@+id/nevoaRadioButton"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="8dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/layout_vilas2_3"
-                            android:button="@null" />
-
-                        <RadioButton
-                            android:id="@+id/pedraRadioButton"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="10dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/layout_vilas2_4"
-                            android:button="@null" />
-
-                        <RadioButton
-                            android:id="@+id/nuvemRadioButton"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="8dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/layout_vilas2_5"
-                            android:button="@null" />
-
-                        <RadioButton
-                            android:id="@+id/akatsukiRadioButton"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="8dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/layout_vilas2_6"
-                            android:button="@null" />
-
-                        <RadioButton
-                            android:id="@+id/somRadioButton"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="8dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/layout_vilas2_7"
-                            android:button="@null" />
-
-                        <RadioButton
-                            android:id="@+id/chuvaRadioButton"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:background="@drawable/layout_vilas2_8"
-                            android:button="@null" />
-                    </RadioGroup>
-
-                    <TextView
-                        android:id="@+id/textView12"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="5dp"
-                        android:layout_marginLeft="5dp"
-                        android:text="@string/label_village"
-                        android:textColor="@android:color/white"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/vilaSelecionadaTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Folha"
-                        android:textColor="@android:color/white" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <RadioGroup
-                        android:id="@+id/classesRadioGroup"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="5dp"
+                            android:layout_marginRight="5dp"
+                            android:text="@string/label_name"
+                            android:textColor="@android:color/white"
+                            android:textStyle="bold" />
+
+                        <EditText
+                            style="@style/EditTextTheme"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:inputType="textPersonName"
+                            android:text="@={viewModel.mCharacter.nick}" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="5dp"
+                                android:layout_marginRight="5dp"
+                                android:text="@string/label_village"
+                                android:textColor="@android:color/white"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@android:color/white"
+                                app:text="@{viewModel.village.name}" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <ImageButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@{viewModel.village == Village.FOLHA ? @color/colorGreen : @android:color/transparent}"
+                                android:onClick="@{() -> viewModel.onVillageSelected(Village.FOLHA)}"
+                                android:padding="5dp"
+                                android:src="@drawable/layout_vilas2_1" />
+
+                            <ImageButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@{viewModel.village == Village.AREIA ? @color/colorGreen : @android:color/transparent}"
+                                android:onClick="@{() -> viewModel.onVillageSelected(Village.AREIA)}"
+                                android:padding="5dp"
+                                android:src="@drawable/layout_vilas2_2" />
+
+                            <ImageButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@{viewModel.village == Village.NEVOA ? @color/colorGreen : @android:color/transparent}"
+                                android:onClick="@{() -> viewModel.onVillageSelected(Village.NEVOA)}"
+                                android:padding="5dp"
+                                android:src="@drawable/layout_vilas2_3" />
+
+                            <ImageButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@{viewModel.village == Village.PEDRA ? @color/colorGreen : @android:color/transparent}"
+                                android:onClick="@{() -> viewModel.onVillageSelected(Village.PEDRA)}"
+                                android:padding="5dp"
+                                android:src="@drawable/layout_vilas2_4" />
+
+                            <ImageButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@{viewModel.village == Village.NUVEM ? @color/colorGreen : @android:color/transparent}"
+                                android:onClick="@{() -> viewModel.onVillageSelected(Village.NUVEM)}"
+                                android:padding="5dp"
+                                android:src="@drawable/layout_vilas2_5" />
+
+                            <ImageButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@{viewModel.village == Village.AKATSUKI ? @color/colorGreen : @android:color/transparent}"
+                                android:onClick="@{() -> viewModel.onVillageSelected(Village.AKATSUKI)}"
+                                android:padding="5dp"
+                                android:src="@drawable/layout_vilas2_6" />
+
+                            <ImageButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@{viewModel.village == Village.SOM ? @color/colorGreen : @android:color/transparent}"
+                                android:onClick="@{() -> viewModel.onVillageSelected(Village.SOM)}"
+                                android:padding="5dp"
+                                android:src="@drawable/layout_vilas2_7" />
+
+                            <ImageButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@{viewModel.village == Village.CHUVA ? @color/colorGreen : @android:color/transparent}"
+                                android:onClick="@{() -> viewModel.onVillageSelected(Village.CHUVA)}"
+                                android:padding="5dp"
+                                android:src="@drawable/layout_vilas2_8" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <RadioGroup
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:gravity="center"
                         android:orientation="horizontal">
 
@@ -185,6 +184,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:checked="true"
+                            android:onClick="@{() -> viewModel.onClassSelected(Classe.TAI)}"
                             android:text="@string/taijutsu"
                             android:textColor="@android:color/white" />
 
@@ -192,6 +192,7 @@
                             android:id="@+id/ninRadioButton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:onClick="@{() -> viewModel.onClassSelected(Classe.NIN)}"
                             android:text="@string/ninjustu"
                             android:textColor="@android:color/white" />
 
@@ -199,6 +200,7 @@
                             android:id="@+id/genRadioButton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:onClick="@{() -> viewModel.onClassSelected(Classe.GEN)}"
                             android:text="@string/genjutsu"
                             android:textColor="@android:color/white" />
 
@@ -206,160 +208,133 @@
                             android:id="@+id/bukRadioButton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Bukijutsu"
+                            android:onClick="@{() -> viewModel.onClassSelected(Classe.BUK)}"
+                            android:text="@string/bukijutsu"
                             android:textColor="@android:color/white" />
                     </RadioGroup>
                 </LinearLayout>
-            </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
-            <LinearLayout
-                android:id="@+id/linearLayout5"
-                android:layout_width="0dp"
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
-                android:background="#271C15"
-                android:orientation="horizontal"
-                android:padding="5dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
+                app:cardBackgroundColor="#271C15"
+                app:cardCornerRadius="8dp"
+                app:cardUseCompatPadding="true">
 
-                <TextView
-                    android:id="@+id/textView8"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Personagem: "
-                    android:textColor="@android:color/white"
-                    android:textStyle="bold" />
+                    android:orientation="horizontal"
+                    android:padding="8dp">
 
-                <TextView
-                    android:id="@+id/nomePersonagemSelecionadoTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Naruto Uzumaki"
-                    android:textColor="@android:color/white" />
-            </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginRight="5dp"
+                        android:text="@string/label_character"
+                        android:textColor="@android:color/white"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{viewModel.ninja.name}"
+                        android:textColor="@android:color/white" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
 
             <ImageView
-                android:id="@+id/imageView9"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/layout_barras_secoes_1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/profileCriarImageView" />
-
-            <TextView
-                android:id="@+id/textView19"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginLeft="32dp"
-                android:text="@string/escolha_seu_personagem"
-                android:textColor="@android:color/white"
-                android:typeface="serif"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView9"
-                app:layout_constraintStart_toStartOf="@+id/imageView9"
-                app:layout_constraintTop_toTopOf="@+id/imageView9" />
-
-            <ImageView
-                android:id="@+id/profileCriarImageView"
+                loadProfile="@{viewModel.ninja.id}"
                 android:layout_width="226dp"
                 android:layout_height="241dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
+                android:layout_gravity="center"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
-                android:src="@drawable/layout_profile_1_1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout5" />
+                android:layout_marginBottom="8dp" />
 
-            <Button
-                style="@style/ButtonTheme"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginBottom="16dp"
-                android:text="@string/create_character"
-                android:onClick="@{() -> viewModel.createCharacter()}"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout3" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/imageView9"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/layout_barras_secoes_1"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginLeft="24dp"
+                    android:text="@string/choose_your_character"
+                    android:textColor="@android:color/white"
+                    android:typeface="serif"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/imageView9"
+                    app:layout_constraintTop_toTopOf="@+id/imageView9" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/profilesRecyclerView"
-                android:layout_width="match_parent"
+                android:id="@+id/ninjasRecyclerView"
+                android:layout_width="387dp"
                 android:layout_height="253dp"
-                android:layout_marginStart="8dp"
+                android:layout_gravity="center"
                 android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
-                android:gravity="center"
                 android:scrollbars="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView9" />
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="3" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout3"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
                 android:layout_marginLeft="32dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="32dp"
-                android:layout_marginRight="32dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/profilesRecyclerView">
+                android:layout_marginRight="32dp">
 
                 <ImageButton
-                    android:id="@+id/voltarImageButton"
+                    android:id="@+id/backImageButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
+                    android:onClick="@{() -> viewModel.back()}"
+                    android:padding="16dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/layout_home_left" />
 
                 <ImageButton
-                    android:id="@+id/avancarImageButton"
+                    android:id="@+id/goImageButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginRight="8dp"
                     android:layout_marginBottom="8dp"
+                    android:onClick="@{() -> viewModel.go()}"
+                    android:padding="16dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/layout_home_right" />
 
                 <TextView
-                    android:id="@+id/grupoAtualTextView"
+                    android:id="@+id/currentGroupTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
@@ -368,15 +343,24 @@
                     android:layout_marginEnd="8dp"
                     android:layout_marginRight="8dp"
                     android:layout_marginBottom="8dp"
-                    android:text="1"
+                    android:text="@{String.valueOf(viewModel.currentGroupIndex + 1)}"
                     android:textColor="@android:color/white"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/avancarImageButton"
-                    app:layout_constraintStart_toEndOf="@+id/voltarImageButton"
+                    app:layout_constraintEnd_toStartOf="@+id/goImageButton"
+                    app:layout_constraintStart_toEndOf="@+id/backImageButton"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            <Button
+                style="@style/ButtonTheme"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="16dp"
+                android:onClick="@{() -> viewModel.onCreateButtonPressed()}"
+                android:text="@string/create_character" />
+        </LinearLayout>
     </ScrollView>
 </layout>

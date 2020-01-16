@@ -1,7 +1,5 @@
 package com.gutotech.narutogame.data.model;
 
-import com.gutotech.narutogame.util.Helper;
-
 import java.security.SecureRandom;
 
 public class NPC {
@@ -9,22 +7,18 @@ public class NPC {
     public static Character npc;
 
     public static Jutsu atacar() {
-        return npc.getJutsus().get(random.nextInt(npc.getJutsus().size()));
+//        return npc.getJutsus().get(random.nextInt(npc.getJutsus().size()));
+        return new Jutsu();
     }
 
     public static void configurarNPC() {
-        int idProfile;
+        Ninja[] ninjas = Ninja.values();
 
-        while (true) {
-            idProfile = random.nextInt(266) + 1;
+        Ninja ninja = ninjas[random.nextInt(ninjas.length)];
 
-            if (Helper.nomeDoPersonagem(idProfile) != null)
-                break;
-        }
-
-        npc.setIdProfile(idProfile);
-        npc.setNick(Helper.nomeDoPersonagem(idProfile));
-        npc.setFotoAtual(random.nextInt(2) + 1);
-        npc.setGraducao("--");
+        npc.setNinja(ninja);
+        npc.setNick(ninja.getName());
+        npc.setProfile(random.nextInt(2) + 1);
+//        npc.setGraducao("--");
     }
 }

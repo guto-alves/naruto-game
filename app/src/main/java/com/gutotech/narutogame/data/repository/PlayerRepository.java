@@ -1,5 +1,7 @@
 package com.gutotech.narutogame.data.repository;
 
+import android.text.TextUtils;
+
 import androidx.annotation.NonNull;
 
 import com.google.firebase.database.DataSnapshot;
@@ -21,7 +23,7 @@ public class PlayerRepository {
         return sInstance;
     }
 
-    public void insertPlayer(Player player) {
+    public void savePlayer(Player player) {
         DatabaseReference playerRef = FirebaseConfig.getDatabase()
                 .child("players")
                 .child(player.getId());
@@ -48,15 +50,11 @@ public class PlayerRepository {
     public void getCurrentPlayer(CallBack callBack) {
         DatabaseReference playerReference = FirebaseConfig.getDatabase()
                 .child("players")
-                .child(AuthRepository.getInstance().getCurrentUser().getUid());
+                .child(AuthRepository.getInstance().getUid());
 
         playerReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                if (dataSnapshot.exists()) {
-//
-//                }
-
                 Player player = dataSnapshot.getValue(Player.class);
                 callBack.onPlayerReceived(player);
             }
@@ -65,6 +63,42 @@ public class PlayerRepository {
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
+    }
+
+    public void updatePassword(String newPassword) {
+        DatabaseReference playerReference = FirebaseConfig.getDatabase()
+                .child("players")
+                .child(AuthRepository.getInstance().getUid())
+                .child("password");
+
+        playerReference.setValue(newPassword);
+    }
+
+    public void isValidCurrentPassword(String currentPassword, ResultListener emitter) {
+        DatabaseReference playerRef = FirebaseConfig.getDatabase()
+                .child("players")
+                .child(AuthRepository.getInstance().getUid())
+                .child("password");
+
+        playerRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String password = dataSnapshot.getValue(String.class);
+
+                if (TextUtils.equals(password, currentPassword)) {
+                    emitter.onResult(true);
+                } else
+                    emitter.onResult(false);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
+    }
+
+    public interface ResultListener {
+        void onResult(boolean b);
     }
 
     public interface CallBack {

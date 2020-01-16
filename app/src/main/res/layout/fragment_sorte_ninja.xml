@@ -33,7 +33,7 @@
             android:layout_height="45dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/layout_luck_play"
-            android:text="@string/button_jogar_sorte"
+            android:text="@string/button_play_lucky"
             android:textSize="10sp"
             app:layout_constraintBottom_toBottomOf="@+id/baseImageView"
             app:layout_constraintEnd_toEndOf="@+id/baseImageView"

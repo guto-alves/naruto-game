@@ -96,7 +96,7 @@
                     android:id="@+id/trocarImagemButton"
                     style="@style/ButtonTheme"
                     android:layout_width="140dp"
-                    android:text="@string/button_trocar_imagem" />
+                    android:text="@string/button_change_image" />
 
                 <!-- INFORMAÇÕES SOBRE O PERSONAGEM-->
                 <LinearLayout
@@ -299,32 +299,13 @@
                             android:text="Nenhum(a)"
                             android:textColor="@color/colorPrimaryDark" />
                     </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Organização: "
-                            android:textColor="@color/colorPrimaryDark"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Nenhum(a)"
-                            android:textColor="@color/colorPrimaryDark" />
-                    </LinearLayout>
                 </LinearLayout>
 
                 <!-- MENU -->
                 <ExpandableListView
                     android:id="@+id/expanded_menu_main"
                     android:layout_width="match_parent"
-                    android:layout_height="350dp"
+                    android:layout_height="0dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginBottom="16dp" />
 
@@ -427,9 +408,9 @@
                                     android:layout_weight="1"
                                     android:background="@android:color/white"
                                     android:ems="10"
+                                    android:imeOptions="actionSend"
                                     android:inputType="textPersonName"
-                                    android:maxLength="25"
-                                    android:imeOptions="actionSend"/>
+                                    android:maxLength="25" />
 
                             </LinearLayout>
 

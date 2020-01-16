@@ -12,7 +12,7 @@
         android:background="@drawable/layout_pagina_repeat"
         android:gravity="center|top"
         android:orientation="vertical"
-        tools:context=".ui.onlinecharacter.combates.BatalhasDojoNPCFragment">
+        tools:context=".ui.onlinecharacter.battles.BatalhasDojoNPCFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/msgConstraint"
@@ -271,7 +271,7 @@
                 style="@style/ButtonTheme"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/button_aceitar" />
+                android:text="@string/button_accept" />
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

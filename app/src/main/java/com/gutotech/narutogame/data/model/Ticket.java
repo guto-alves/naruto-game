@@ -10,7 +10,6 @@ public class Ticket {
     private String descricao;
     private String imagem;
 
-
     private String status;
     private String dataCriacao;
     private String horaCriacao;

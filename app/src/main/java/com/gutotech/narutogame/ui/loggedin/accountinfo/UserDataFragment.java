@@ -2,6 +2,7 @@ package com.gutotech.narutogame.ui.loggedin.accountinfo;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
@@ -9,43 +10,58 @@ import androidx.lifecycle.ViewModelProviders;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 
-import com.github.rtoshiro.util.format.SimpleMaskFormatter;
-import com.github.rtoshiro.util.format.text.MaskTextWatcher;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.databinding.FragmentUsuarioDadosBinding;
-import com.gutotech.narutogame.util.StorageUtil;
+import com.gutotech.narutogame.ui.ResultListener;
+import com.gutotech.narutogame.ui.SectionFragment;
+import com.gutotech.narutogame.utils.FragmentUtil;
+import com.gutotech.narutogame.utils.StorageUtil;
 
-public class UserDataFragment extends Fragment {
+import es.dmoral.toasty.Toasty;
+
+public class UserDataFragment extends Fragment implements SectionFragment, ResultListener {
+    private FragmentUsuarioDadosBinding mBinding;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        FragmentUsuarioDadosBinding binding = DataBindingUtil.inflate(inflater,
-                R.layout.fragment_usuario_dados, container, false);
-        View root = binding.getRoot();
-
         UserDataViewModel mViewModel = ViewModelProviders.of(this).get(UserDataViewModel.class);
-        binding.setViewModel(mViewModel);
 
-        SimpleMaskFormatter maskFormatter = new SimpleMaskFormatter("NN/NN/NNNN");
-        MaskTextWatcher textWatcher = new MaskTextWatcher(binding.dateOfBirthEditText, maskFormatter);
-        binding.dateOfBirthEditText.addTextChangedListener(textWatcher);
+        mViewModel.setResultListener(this);
 
-        StorageUtil.downloadProfileForMsg(getActivity(), binding.personagemMsg);
+        mBinding = DataBindingUtil.inflate(inflater,
+                R.layout.fragment_usuario_dados, container, false);
+        mBinding.setViewModel(mViewModel);
 
-        binding.sexoSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                sexo = (String) sexoSpinner.getSelectedItem();
-            }
+        mBinding.msgLayout.msgTitleTextView.setText(R.string.keep_your_info_updated);
+        mBinding.msgLayout.msgTextView.setText(R.string.keep_your_account_updated_description);
+        StorageUtil.downloadProfileForMsg(getActivity(), mBinding.msgLayout.msgProfileImageView);
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
+        FragmentUtil.setSectionTitle(getActivity(), R.string.section_account_info);
 
-        return root;
+        return mBinding.getRoot();
+    }
+
+    @Override
+    public int getDescription() {
+        return R.string.my_Info;
+    }
+
+    @Override
+    public void onStarted() {
+    }
+
+    @Override
+    public void onSuccess() {
+        mBinding.updatedAccountMsgLayout.msgTitleTextView.setText(R.string.user_info_updated);
+        mBinding.updatedAccountMsgLayout.msgTextView.setText(R.string.user_info_updated_description);
+        StorageUtil.downloadProfileForMsg(getActivity(), mBinding.updatedAccountMsgLayout.msgProfileImageView);
+        mBinding.updatedAccountMsgLayout.msgConstraintLayout.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void onFailure(int resId) {
+        Toasty.warning(getContext(), resId, Toasty.LENGTH_SHORT).show();
     }
 }

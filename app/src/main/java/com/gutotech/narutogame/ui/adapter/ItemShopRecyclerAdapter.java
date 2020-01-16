@@ -18,7 +18,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.gutotech.narutogame.R;
-import com.gutotech.narutogame.util.StorageUtil;
+import com.gutotech.narutogame.utils.StorageUtil;
 import com.gutotech.narutogame.data.model.Arma;
 import com.gutotech.narutogame.data.model.Graduacao;
 import com.gutotech.narutogame.data.model.ItemShop;
@@ -171,7 +171,8 @@ public class ItemShopRecyclerAdapter extends RecyclerView.Adapter<ItemShopRecycl
     }
 
     private boolean validarRequerimentos(int graduacao, int level) {
-        return PersonagemOn.character.getIdGraducao() >= graduacao && PersonagemOn.character.getLevel() >= level;
+//        return PersonagemOn.character.getIdGraducao() >= graduacao && PersonagemOn.character.getLevel() >= level;
+        return false;
     }
 
     private void exibirRequerimentos(int numGraduacao, String graduacao, int level) {

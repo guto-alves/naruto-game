@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/layout_pagina_repeat"
-        tools:context=".ui.onlinecharacter.equipe.EquipeDetalheFragment">
+        tools:context=".ui.onlinecharacter.team.EquipeDetalheFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/msgConstraint1"
@@ -108,8 +108,8 @@
                     android:gravity="center|start"
                     android:paddingRight="3dp"
                     android:text="A Equipe só poderá ser excluida quando apenas o Líder estiver nela, sem nenhuma missão ativa.
-Caso um ninja mude de equipe, não ganhará a mesma recompensa em outra equipe, só ganhará recompensas em niveis ainda não atingidos
-Sair de sua Equipe e ajudar outra em Eventos não te dá Experiência caso já tenha concluído o mesmo em outra equipe."
+Caso um ninja mude de team, não ganhará a mesma recompensa em outra team, só ganhará recompensas em niveis ainda não atingidos
+Sair de sua Equipe e ajudar outra em Eventos não te dá Experiência caso já tenha concluído o mesmo em outra team."
                     android:textColor="#D1D8F1"
                     android:textSize="10sp" />
             </LinearLayout>
@@ -247,7 +247,7 @@ Sair de sua Equipe e ajudar outra em Eventos não te dá Experiência caso já t
                             style="@style/ButtonTheme"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Excluir equipe" />
+                            android:text="Excluir team" />
                     </LinearLayout>
 
                 </LinearLayout>

@@ -1,45 +1,54 @@
 package com.gutotech.narutogame.ui.loggedin.accountinfo;
 
+import android.text.TextUtils;
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.Player;
 import com.gutotech.narutogame.data.repository.PlayerRepository;
+import com.gutotech.narutogame.ui.ResultListener;
 
 public class UserDataViewModel extends ViewModel {
     private MutableLiveData<Player> player;
 
-    private PlayerRepository mRepository;
+    private PlayerRepository mPlayerRepository;
+
+    private ResultListener mResultListener;
 
     public UserDataViewModel() {
-        player = new MutableLiveData<>();
+        mPlayerRepository = PlayerRepository.getInstance();
 
-        mRepository = PlayerRepository.getInstance();
-        mRepository.getCurrentPlayer(player -> {
-            this.player.setValue(player);
-        });
+        mPlayerRepository.getCurrentPlayer(player -> {
+                    this.player = new MutableLiveData<>(player);
+                    Log.i("userdataviewmodel", player.getName());
+                }
+        );
     }
 
     public LiveData<Player> getPlayer() {
         return player;
     }
 
-    public void submitChanges() {
-        if (validatePlayer()) {
-            mRepository.insertPlayer(player.getValue());
+    public void setResultListener(ResultListener mResultListener) {
+        this.mResultListener = mResultListener;
+    }
 
-//            StorageUtil.downloadProfileForMsg(getActivity(), personagemMsg2);
-//            mgsSucessoConstraintLayout.setVisibility(View.VISIBLE);
+    public void onSubmitChangesButtonPressed() {
+        if (validatePlayer()) {
+            mPlayerRepository.savePlayer(player.getValue());
+            mResultListener.onSuccess();
         }
     }
 
     private boolean validatePlayer() {
-        if (player.getValue().getName().isEmpty())
+        if (TextUtils.isEmpty(player.getValue().getName())) {
+            mResultListener.onFailure(R.string.name_field_requered);
             return false;
-
-        if (player.getValue().getDateOfBirth().isEmpty())
-            return false;
+        }
 
         return true;
     }

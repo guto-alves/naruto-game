@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.ui.SectionFragment;
-import com.gutotech.narutogame.util.FragmentUtil;
+import com.gutotech.narutogame.utils.FragmentUtil;
 
 public class HallOfFameFragment extends Fragment implements SectionFragment {
 

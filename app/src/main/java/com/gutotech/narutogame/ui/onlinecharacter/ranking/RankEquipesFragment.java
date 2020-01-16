@@ -8,9 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.gutotech.narutogame.R;
+import com.gutotech.narutogame.ui.SectionFragment;
 
 
-public class RankEquipesFragment extends Fragment {
+public class RankEquipesFragment extends Fragment implements SectionFragment {
 
 
     public RankEquipesFragment() {
@@ -27,4 +28,8 @@ public class RankEquipesFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_rank_equipes, container, false);
     }
 
+    @Override
+    public int getDescription() {
+        return 0;
+    }
 }

@@ -13,8 +13,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gutotech.narutogame.R;
-import com.gutotech.narutogame.util.StorageUtil;
-import com.gutotech.narutogame.ui.onlinecharacter.academia.AcademiaJustuFragment;
+import com.gutotech.narutogame.utils.StorageUtil;
+import com.gutotech.narutogame.ui.onlinecharacter.academy.AcademiaJustuFragment;
 import com.gutotech.narutogame.data.model.Jutsu;
 
 import java.util.List;

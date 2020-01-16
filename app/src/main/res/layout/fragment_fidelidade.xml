@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".ui.onlinecharacter.character.FidelidadeFragment">
+        tools:context=".ui.onlinecharacter.character.FidelityFragment">
 
         <!-- Mensagem sobre a seção -->
         <androidx.constraintlayout.widget.ConstraintLayout

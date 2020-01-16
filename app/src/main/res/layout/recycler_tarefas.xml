@@ -126,7 +126,7 @@
         android:id="@+id/aceitarTarefaButton"
         style="@style/ButtonTheme"
         android:layout_width="60dp"
-        android:text="@string/button_aceitar"
+        android:text="@string/button_accept"
         android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -20,7 +20,6 @@ public class Equipe {
     private int quantidadeMembros;
 
     public Equipe() {
-
     }
 
     public void salvar() {

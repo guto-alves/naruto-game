@@ -37,9 +37,9 @@ import com.google.firebase.storage.UploadTask;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.firebase.FirebaseConfig;
 import com.gutotech.narutogame.data.repository.AuthRepository;
-import com.gutotech.narutogame.util.DateCustom;
+import com.gutotech.narutogame.utils.DateCustom;
 import com.gutotech.narutogame.data.model.Ticket;
-import com.gutotech.narutogame.util.FragmentUtil;
+import com.gutotech.narutogame.utils.FragmentUtil;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;

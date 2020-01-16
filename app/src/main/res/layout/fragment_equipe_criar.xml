@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/layout_pagina_repeat"
-    tools:context=".ui.onlinecharacter.equipe.EquipeCriarFragment">
+    tools:context=".ui.onlinecharacter.team.EquipeCriarFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/msgConstraint"
@@ -96,7 +96,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center|start"
                 android:paddingRight="3dp"
-                android:text="É muito importante liderar uma equipe, ensine seus alunos como evoluir no jogo e serem ótimos ninjas para sua vila. Como bonificação você ganhará 5% em experiência by ninja derrotado no mapa."
+                android:text="É muito importante liderar uma team, ensine seus alunos como evoluir no jogo e serem ótimos ninjas para sua village. Como bonificação você ganhará 5% em experiência by ninja derrotado no mapa."
                 android:textColor="#D1D8F1"
                 android:textSize="10sp" />
 

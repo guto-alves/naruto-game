@@ -1,10 +1,12 @@
 package com.gutotech.narutogame.ui.onlinecharacter.ranking;
 
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,15 +19,17 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 import com.gutotech.narutogame.R;
+import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.adapter.RankingNinjasRecyclerAdapter;
 import com.gutotech.narutogame.data.firebase.FirebaseConfig;
 import com.gutotech.narutogame.data.model.Graduacao;
 import com.gutotech.narutogame.data.model.Character;
+import com.gutotech.narutogame.utils.FragmentUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class RankNinjasFragment extends Fragment {
+public class RankNinjasFragment extends Fragment implements SectionFragment {
     private List<Character> ninjasResult = new ArrayList<>();
     private RankingNinjasRecyclerAdapter adapter;
 
@@ -80,6 +84,8 @@ public class RankNinjasFragment extends Fragment {
         adapter = new RankingNinjasRecyclerAdapter(getActivity(), ninjasResult);
         rankingNinjasRecyclerView.setAdapter(adapter);
 
+        FragmentUtil.setSectionTitle(getActivity(), R.string.section_ninjas_ranking);
+
         return view;
     }
 
@@ -114,5 +120,10 @@ public class RankNinjasFragment extends Fragment {
     public void onStop() {
         super.onStop();
         ninjasReference.removeEventListener(valueEventListenerNinjas);
+    }
+
+    @Override
+    public int getDescription() {
+        return R.string.ninjas;
     }
 }

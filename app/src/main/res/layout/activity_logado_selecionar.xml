@@ -24,19 +24,21 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginTop="@dimen/nav_header_height"
             android:background="@drawable/layout_menu_repete">
 
             <ExpandableListView
                 android:id="@+id/expanded_menu_main"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:layout_marginTop="8dp"
                 app:layout_constraintBottom_toTopOf="@+id/imageView13"
                 app:layout_constraintEnd_toEndOf="@id/imageView13"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:listfooter="@layout/expandable_list_group"
+                tools:listitem="@layout/expandable_list_child" />
 
             <ImageView
                 android:id="@+id/imageView13"

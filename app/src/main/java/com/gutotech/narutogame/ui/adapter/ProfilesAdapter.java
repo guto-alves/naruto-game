@@ -49,7 +49,7 @@ public class ProfilesAdapter extends BaseAdapter {
         StorageReference imagemRef = FirebaseConfig.getStorage()
                 .child("images")
                 .child("profile")
-                .child(String.valueOf(PersonagemOn.character.getIdProfile()))
+                .child(String.valueOf(PersonagemOn.character.getNinja().getId()))
                 .child((position + 1) + ".png");
 
         Glide.with(context)
