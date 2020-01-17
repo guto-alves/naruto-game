@@ -149,7 +149,6 @@
                     android:text="@={viewModel.player.neighborhood}" />
             </com.google.android.material.textfield.TextInputLayout>
 
-
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -168,7 +167,6 @@
                     android:inputType="textCapWords|textCapSentences"
                     android:text="@={viewModel.player.city}" />
             </com.google.android.material.textfield.TextInputLayout>
-
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"

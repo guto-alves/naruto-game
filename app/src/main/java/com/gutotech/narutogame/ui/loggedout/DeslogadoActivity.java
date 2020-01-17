@@ -59,12 +59,10 @@ public class DeslogadoActivity extends AppCompatActivity {
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        buildMenu();
         ExpandableListView expandableListView = findViewById(R.id.expanded_menu_main);
-
+        buildMenu();
         ExpandableAdapter adapter = new ExpandableAdapter(groupList, sectionsHashMap);
         expandableListView.setAdapter(adapter);
-
         expandableListView.setOnChildClickListener((parent, v, groupPosition, childPosition, id) -> {
             FragmentUtil.goTo(DeslogadoActivity.this,
                     (Fragment) sectionsHashMap.get(groupPosition).get(childPosition));

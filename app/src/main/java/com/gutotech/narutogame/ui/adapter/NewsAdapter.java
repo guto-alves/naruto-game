@@ -79,7 +79,6 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
                 myViewHolder.bg_linear.setBackgroundColor(context.getResources().getColor(R.color.colorItem2));
             }
         }
-
     }
 
     @Override

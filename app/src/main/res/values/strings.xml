@@ -73,7 +73,7 @@
     <string name="section_sensei" translatable="false">SENSEI</string>
 
     <!-- Grupo Vila atual -->
-    <string name="section_initial_tasks">"INITIAL TASKS "</string>
+    <string name="section_initial_tasks">INITIAL TASKS</string>
     <string name="section_ramen_shop" translatable="false">RAMEM SHOP</string>
     <string name="section_ninja_shop" translatable="false">NINJA SHOP</string>
     <string name="section_village_map">VILLAGE MAP</string>
@@ -99,7 +99,7 @@
     <string name="genjutsu" translatable="false">Genjutsu</string>
     <string name="agility">Agility</string>
     <string name="strength">Strength</string>
-    <string name="resistencia" translatable="false">Resistência</string>
+    <string name="resistance" translatable="false">Resistência</string>
     <string name="energy">Energy</string>
     <string name="life">Life</string>
     <string name="determinacao">Determinação</string>
@@ -107,8 +107,8 @@
 
     <string name="chat_naruto_game" translatable="false">CHAT NARUTO GAME</string>
     <string name="file">File</string>
-    <string name="treinamento_manual">Treinamento Manual</string>
-    <string name="quantidade">Quantidade</string>
+    <string name="manual_training">Manual Training</string>
+    <string name="quantity">Quantity</string>
     <string name="batalhas_do_dojo_npc">Batalhas do Dojo NPC</string>
     <string name="batalhas_do_dojo_pvp">Batalhas do Dojo PVP</string>
 
@@ -128,7 +128,7 @@
     <string name="just_a_bit_now">JUST A BIT NOW!</string>
     <string name="fullfill_the_form_below"> Fulfill the form below to create your account and starts your adventure.
 You will receive an email to confirm your account, then you NEED TO USE AN VALID EMAIL to play Naruto Game!</string>
-    <string name="full_name">Full name</string>
+    <string name="full_name">Full description</string>
     <string name="email" translatable="false">Email</string>
     <string name="password">Password</string>
     <string name="confirm_password">Confirm Password</string>
@@ -139,7 +139,7 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="invalid_email">Invalid email</string>
     <string name="weak_password">Weak Password</string>
     <string name="error_to_the_signup">Error to the signup</string>
-    <string name="name_field_requered">The name field is requered</string>
+    <string name="name_field_requered">The description field is requered</string>
     <string name="email_field_requered">The email field is requered</string>
     <string name="password_field_requered">The password field is requered</string>
     <string name="confirm_password_field_requered">The confirm password field is requered</string>
@@ -232,7 +232,7 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="teams">Teams</string>
     <string name="_4x4" translatable="false">4x4</string>
     <string name="ninjas" translatable="false">Ninjas</string>
-    <string name="tasks">Tasks</string>
+    <string name="tasks">Initial Tasks</string>
     <string name="section_mission_status">MISSION STATUS</string>
     <string name="ramen_shop" translatable="false">Ramen Shop</string>
     <string name="ninja_shop" translatable="false">Ninja Shop</string>
@@ -255,8 +255,8 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="clan_jutsus">Clan Jutsus</string>
     <string name="grades">Grades</string>
     <string name="choose_your_character">CHOOSE YOUR CHARACTER</string>
-    <string name="error_nick_length">O nome do seu character não pode ter mais de 18 caractéres</string>
-    <string name="error_invalid_nick">O nome do seu character só pode conter letras, números e underlines</string>
+    <string name="error_nick_length">O description do seu character não pode ter mais de 18 caractéres</string>
+    <string name="error_invalid_nick">O name do seu character só pode conter letras, números e underlines</string>
     <string name="warning">Warning!</string>
     <string name="name_already_taken">That name was already taken</string>
     <string name="no_characters_selected">No characters selected</string>
@@ -284,11 +284,51 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
         <item>Sugestões</item>
         <item>Outros</item>
     </string-array>
+
     <string name="mission_status">Mission Status</string>
     <string name="section_join_a_team">JOIN A TEAM</string>
     <string name="section_jutsu_training">JUTSUS TRAINING</string>
     <string name="section_vip_player">VIP PLAYER</string>
     <string name="vip_player">VIP Player</string>
     <string name="missions">Missions</string>
+    <string name="combat_overview">Combat Overview</string>
+    <string name="resume_of_missions">Resume of Missions</string>
+    <string name="extras_information">Extras Information</string>
+    <string name="label_total_de_horas_jogadas">Total de Horas Jogadas:</string>
+    <string name="label_total_de_treino">Total de Treino:</string>
+    <string name="label_pontos_distribu_dos">Pontos Distribuídos:</string>
+    <string name="label_wins_npc">Vitórias NPC:</string>
+    <string name="label_wins_dojo_pvp">Dojo PVP Wins:</string>
+    <string name="label_derrotas_npc">Derrotas NPC:</string>
+    <string name="label_rank_s">Rank S:</string>
+    <string name="label_rank_a">Rank A:</string>
+    <string name="label_rank_b">Rank B:</string>
+    <string name="label_rank_c">Rank C:</string>
+    <string name="label_rank_d">Rank D:</string>
+    <string name="label_tasks">Tasks:</string>
+    <string name="label_draws_pvp">Empates PVP:</string>
+    <string name="label_draws_npc">Empates NPC:</string>
+    <string name="attributes">Attributes</string>
+    <string name="formulas">Formulas</string>
+    <string name="label_wins_map_pvp">Vitórias Mapa PVP:</string>
+    <string name="label_derrotas_dojo_pvp">Derrotas Dojo PVP:</string>
+    <string name="attribute_training_description">Your character is capable of attribute training since Level 1, but this training has a daily limit. The more you train, better will be your results in battles, in dojo NPC even with your enemies. The days NOT trained, will be cumulated: For example, if you can\'t train tuesday and wednesday, at thursday you can train the sum of tuesday, wednesday and thursday. At Tuesdays, the week limit is renewed, even you do not have trained, then, ever try train your week limit until mondays.  The Attribute Training is key to have a good character, so, never forget to training it</string>
+    <string name="attribute_training_title">LEARN ABOUT THE TRAINING ATTRIBUTES</string>
+    <string name="training_complete">TRAIINNG COMPLETE</string>
+    <string name="distributed_points">DISTRIBUTED POINTS</string>
+    <string name="voc_pode_fazer_o_treino_manual_v_rias_vezes_by_dia">You can do the Manual Training many times a day.</string>
+    <string name="you_will_spent">You will spent %d</string>
+    <string name="chakra_icon">Chakra icon</string>
+    <string name="battle_log">Battle Log</string>
+
+    <string-array name="attribute_percent">
+        <item>1</item>
+        <item>5</item>
+        <item>10</item>
+        <item>15</item>
+        <item>20</item>
+        <item>50</item>
+        <item>100</item>
+    </string-array>
 
 </resources>

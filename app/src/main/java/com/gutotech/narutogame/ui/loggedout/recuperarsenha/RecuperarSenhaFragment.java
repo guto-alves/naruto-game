@@ -27,10 +27,10 @@ public class RecuperarSenhaFragment extends Fragment implements ResultListener, 
         FragmentRecuperarSenhaBinding binding = DataBindingUtil.inflate(inflater,
                 R.layout.fragment_recuperar_senha, container, false);
 
-        RecuperarSenhaViewModel mViewModel = ViewModelProviders.of(this).get(RecuperarSenhaViewModel.class);
-        mViewModel.setAuthListener(this);
+        RecuperarSenhaViewModel viewModel = ViewModelProviders.of(this).get(RecuperarSenhaViewModel.class);
+        viewModel.setAuthListener(this);
 
-        binding.setViewModel(mViewModel);
+        binding.setViewModel(viewModel);
 
         FragmentUtil.setSectionTitle(getActivity(), R.string.section_i_forgot_my_password);
 

@@ -28,14 +28,14 @@ public class SignupFragment extends Fragment implements ResultListener, SectionF
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        SignupViewModel mViewModel = ViewModelProviders.of(getActivity()).get(SignupViewModel.class);
+        SignupViewModel viewModel = ViewModelProviders.of(getActivity()).get(SignupViewModel.class);
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_signup,
                 container, false);
 
-        binding.setViewModel(mViewModel);
+        binding.setViewModel(viewModel);
 
-        mViewModel.setAuthListener(this);
+        viewModel.setAuthListener(this);
 
         binding.msgLayout.msgTitleTextView.setText(R.string.just_a_bit_now);
         binding.msgLayout.msgTextView.setText(R.string.fullfill_the_form_below);

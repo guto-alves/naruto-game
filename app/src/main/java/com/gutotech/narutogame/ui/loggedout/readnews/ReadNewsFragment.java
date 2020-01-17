@@ -27,17 +27,17 @@ public class ReadNewsFragment extends Fragment {
                 R.layout.fragment_read_news, container, false);
         View root = binding.getRoot();
 
-        ReadNewsViewModel mReadNewsViewModel = ViewModelProviders.of(this).get(ReadNewsViewModel.class);
-        binding.setViewmodel(mReadNewsViewModel);
+        ReadNewsViewModel viewModel = ViewModelProviders.of(this).get(ReadNewsViewModel.class);
+        binding.setViewModel(viewModel);
 
         Bundle bundle = getArguments();
 
         if (bundle != null) {
             News news = (News) bundle.getSerializable("news");
-            mReadNewsViewModel.setNews(news);
+            viewModel.setNews(news);
         }
 
-        mReadNewsViewModel.getComments().observe(this, comments -> {
+        viewModel.getComments().observe(this, comments -> {
 
         });
 

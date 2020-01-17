@@ -1,6 +1,8 @@
 package com.gutotech.narutogame.data.repository;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -51,10 +53,14 @@ public class CharacterRepository {
         return true;
     }
 
-    public void getAllMyCharacters(AllMyCharactersListener listener) {
+    public LiveData<List<Character>> getAllMyCharacters() {
+        MutableLiveData<List<Character>> data = new MutableLiveData<>();
+
         List<Character> characterList = new ArrayList<>();
+
         Query personagensQuery = FirebaseConfig.getDatabase()
-                .child("characters");
+                .child("characters").orderByChild("playerId")
+                .equalTo(AuthRepository.getInstance().getUid());
 
         valueEventListenerPersonagens = personagensQuery.addValueEventListener(new ValueEventListener() {
             @Override
@@ -66,15 +72,21 @@ public class CharacterRepository {
                     characterList.add(character);
                 }
 
-//                personagensQuery.removeEventListener(valueEventListenerPersonagens);
+                data.postValue(characterList);
 
-                listener.onResult(characterList);
+//                personagensQuery.removeEventListener(valueEventListenerPersonagens);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
+
+        return data;
+    }
+
+    public void singOut(Character character) {
+
     }
 
     private void classificarPersonagensPorLvl(List<Character> personagensList) {

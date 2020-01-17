@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.News;
+import com.gutotech.narutogame.data.model.NinjaStatistics;
 import com.gutotech.narutogame.data.repository.AuthRepository;
 import com.gutotech.narutogame.data.repository.NewsRepository;
 import com.gutotech.narutogame.data.repository.NinjaStatisticsRepository;
@@ -20,25 +21,25 @@ public class HomeViewModel extends ViewModel {
     public String password;
 
     private AuthRepository mAuthRepository;
-    private ResultListener mAuthListener;
-
     private NewsRepository mNewsRepository;
-    private NinjaStatisticsRepository mNinjaStatisticsRepository;
 
-    private MutableLiveData<List<News>> news = new MutableLiveData<>();
+    private MutableLiveData<List<News>> news;
 
-    private MutableLiveData<List<NinjaStatisticsRepository>> ninjaStatistics;
+    private ResultListener mAuthListener;
 
     public int kageEVilaAtual = 1;
 
     public HomeViewModel() {
         mAuthRepository = AuthRepository.getInstance();
-        mNewsRepository = new NewsRepository();
-        mNinjaStatisticsRepository = new NinjaStatisticsRepository();
+        mNewsRepository = NewsRepository.getInstance();
     }
 
     public LiveData<List<News>> getNews() {
-        return news;
+        return mNewsRepository.getAllNews();
+    }
+
+    public LiveData<List<NinjaStatistics>> getNinjaStatistics() {
+        return NinjaStatisticsRepository.getInstance().getAllNinjaStatistics();
     }
 
     public void setAuthListener(ResultListener authListener) {

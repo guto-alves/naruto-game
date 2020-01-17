@@ -1,10 +1,12 @@
 package com.gutotech.narutogame.data.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Formulas implements Serializable {
-    private int vida;
-    private int vidaAtual;
+    private int health;
+    private int currentHealth;
     private int chakra;
     private int chakraAtual;
     private int stamina;
@@ -13,7 +15,7 @@ public class Formulas implements Serializable {
     private int atkNinGen;
     private int defTaiBuki;
     private int defNinGen;
-    private int precisao;
+    private int accuracy;
     private int concentracao;
     private int percepcao;
     private int conviccao;
@@ -23,12 +25,18 @@ public class Formulas implements Serializable {
     public Formulas() {
     }
 
-    public int getVida() {
-        return vida;
+    public void full() {
+        setCurrentHealth(getHealth());
+        setChakraAtual(getChakra());
+        setStaminaAtual(getStamina());
     }
 
-    public void setVida(int vida) {
-        this.vida = vida;
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
     }
 
     public int getChakra() {
@@ -79,12 +87,12 @@ public class Formulas implements Serializable {
         this.defNinGen = defNinGen;
     }
 
-    public int getPrecisao() {
-        return precisao;
+    public int getAccuracy() {
+        return accuracy;
     }
 
-    public void setPrecisao(int precisao) {
-        this.precisao = precisao;
+    public void setAccuracy(int accuracy) {
+        this.accuracy = accuracy;
     }
 
     public int getConcentracao() {
@@ -127,12 +135,12 @@ public class Formulas implements Serializable {
         this.determinacao = determinacao;
     }
 
-    public int getVidaAtual() {
-        return vidaAtual;
+    public int getCurrentHealth() {
+        return currentHealth;
     }
 
-    public void setVidaAtual(int vidaAtual) {
-        this.vidaAtual = vidaAtual;
+    public void setCurrentHealth(int currentHealth) {
+        this.currentHealth = currentHealth;
     }
 
     public int getChakraAtual() {
@@ -150,4 +158,21 @@ public class Formulas implements Serializable {
     public void setStaminaAtual(int staminaAtual) {
         this.staminaAtual = staminaAtual;
     }
+
+    public List<AttributeItem> asList() {
+        List<AttributeItem> attributeItems = new ArrayList<>();
+
+        attributeItems.add(new AttributeItem(Attribute.HEALTH, currentHealth));
+        attributeItems.add(new AttributeItem(Attribute.CHAKRA, chakraAtual));
+        attributeItems.add(new AttributeItem(Attribute.STAMINA, staminaAtual));
+        attributeItems.add(new AttributeItem(Attribute.ATK_TAI, atkTaiBuki));
+        attributeItems.add(new AttributeItem(Attribute.ATK_NIN, atkNinGen));
+        attributeItems.add(new AttributeItem(Attribute.DEF_TAI, defTaiBuki));
+        attributeItems.add(new AttributeItem(Attribute.DEF_NIN, defNinGen));
+        attributeItems.add(new AttributeItem(Attribute.ACC, accuracy));
+
+        return attributeItems;
+    }
+
+
 }

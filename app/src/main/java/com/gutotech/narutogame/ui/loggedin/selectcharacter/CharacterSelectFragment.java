@@ -15,26 +15,30 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.gutotech.narutogame.R;
+import com.gutotech.narutogame.data.model.Character;
 import com.gutotech.narutogame.data.model.PersonagemOn;
 import com.gutotech.narutogame.databinding.FragmentPersonagemSelecionarBinding;
 import com.gutotech.narutogame.ui.ResultListener;
 import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.adapter.CharacterSelectRecyclerViewAdapter;
 import com.gutotech.narutogame.ui.loggedin.newcharacteer.CharacterCreateFragment;
-import com.gutotech.narutogame.ui.onlinecharacter.PersonagemLogadoActivity;
+import com.gutotech.narutogame.ui.playing.PersonagemLogadoActivity;
 import com.gutotech.narutogame.utils.FragmentUtil;
 
-public class CharacterSelectFragment extends Fragment implements SectionFragment, ResultListener {
+public class CharacterSelectFragment extends Fragment implements SectionFragment, ResultListener, CharacterSelectRecyclerViewAdapter.CharacterSelecetedListener {
+    private CharacterSelectViewModel viewModel;
+
+    private FragmentPersonagemSelecionarBinding binding;
+
     private CharacterSelectRecyclerViewAdapter charactersAdapter;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        CharacterSelectViewModel viewModel = ViewModelProviders.of(getActivity())
-                .get(CharacterSelectViewModel.class);
+        viewModel = ViewModelProviders.of(getActivity()).get(CharacterSelectViewModel.class);
         viewModel.setListener(this);
 
-        FragmentPersonagemSelecionarBinding binding = DataBindingUtil.inflate(
+        binding = DataBindingUtil.inflate(
                 inflater, R.layout.fragment_personagem_selecionar, container, false);
 
         binding.setViewModel(viewModel);
@@ -42,11 +46,13 @@ public class CharacterSelectFragment extends Fragment implements SectionFragment
         viewModel.getCharactersList().observe(this, characters -> {
             if (characters.size() == 0) {
                 FragmentUtil.goTo(getActivity(), new CharacterCreateFragment());
+            } else {
+                charactersAdapter.setCharactersList(characters);
+                onCharacterSelected(characters.get(0));
             }
-            charactersAdapter.setCharactersList(characters);
         });
 
-        charactersAdapter = new CharacterSelectRecyclerViewAdapter(viewModel);
+        charactersAdapter = new CharacterSelectRecyclerViewAdapter(this);
         binding.charactersRecyclerView.setAdapter(charactersAdapter);
 
         viewModel.getEvent().observe(this, s -> {
@@ -96,5 +102,11 @@ public class CharacterSelectFragment extends Fragment implements SectionFragment
     @Override
     public void onFailure(int resId) {
         Toast.makeText(getContext(), resId, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onCharacterSelected(Character character) {
+        viewModel.setCharacterSelected(character);
+        binding.setCharacterSelected(character);
     }
 }

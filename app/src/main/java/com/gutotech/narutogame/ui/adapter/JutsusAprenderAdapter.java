@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.utils.StorageUtil;
-import com.gutotech.narutogame.ui.onlinecharacter.academy.AcademiaJustuFragment;
+import com.gutotech.narutogame.ui.playing.academy.AcademiaJustuFragment;
 import com.gutotech.narutogame.data.model.Jutsu;
 
 import java.util.List;
@@ -39,7 +39,7 @@ public class JutsusAprenderAdapter extends RecyclerView.Adapter<JutsusAprenderAd
     public void onBindViewHolder(@NonNull final MyViewHolder myViewHolder, int i) {
         final Jutsu jutsu = jutsusList.get(i);
 
-        StorageUtil.baixarJutsu(context, myViewHolder.jutsuImageView, jutsu.getClasse(), jutsu.getNomeImagem());
+        StorageUtil.downloadJutsu(context, myViewHolder.jutsuImageView, jutsu.getClasse(), jutsu.getNomeImagem());
 
         myViewHolder.jutsuImageView.setOnClickListener(new View.OnClickListener() {
             @Override

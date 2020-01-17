@@ -1,33 +1,40 @@
 package com.gutotech.narutogame.data.model;
 
+import androidx.databinding.BaseObservable;
+import androidx.databinding.Bindable;
+import androidx.databinding.library.baseAdapters.BR;
+
 import com.google.firebase.database.DatabaseReference;
 import com.gutotech.narutogame.data.firebase.FirebaseConfig;
 
 import java.io.Serializable;
 
-public class Character implements Serializable {
+public class Character extends BaseObservable implements Serializable {
     private String playerId;
-
-    private String nick;
+    public String nick;
     private Ninja ninja;
     private int profile;
     private Village village;
     private Classe classe;
     private int level;
+    private int exp;
+    private int expUpar;
     private long ryous;
 
-    private boolean online;
-    private String lastLogin;
-
-    private CombatOverview combatOverview;
-
-    private ResumeOfMissions resumeOfMissions;
-
-    private ExtrasInformation extrasInformation;
+    private Attributes attributes;
 
     private Bag bolsa;
 
+    private CombatOverview combatOverview;
+    private ResumeOfMissions resumeOfMissions;
+    private ExtrasInformation extrasInformation;
+
     private String team;
+
+    private int score;
+
+    private boolean online;
+    private String lastLogin;
 
     /// -------------------- OK ------------------------
 
@@ -41,16 +48,9 @@ public class Character implements Serializable {
 //    private int diasLogadosFidelidade;
 //    private boolean temRecompensaFidelidade;
 //
-//    private Atributos atributos;
-//    private List<Atributo> atributosDistribuitos;
-
-    private int expAtual;
-    private int expUpar;
-
     // info combates
     private int combatesNPCDiarios;
-//
-//
+
 //    private boolean fuiPego;
 //    private String nickOponente;
 //    private int mapa_posicao;
@@ -67,7 +67,7 @@ public class Character implements Serializable {
 
     private int rankVila;
     private int rankGeral;
-    private int pontos;
+
     private int posicao;
 
     public Character() {
@@ -75,18 +75,25 @@ public class Character implements Serializable {
 
     public Character(String playerId) {
         this.playerId = playerId;
+        level = 1;
         ninja = Ninja.NARUTO;
         profile = 1;
         village = Village.FOLHA;
-        classe = Classe.NIN;
+        setClasse(Classe.TAI);
+        getAttributes().updateFormulas(Classe.TAI, level);
         ryous = 500;
+        score = 1000;
+        combatOverview = new CombatOverview();
+        resumeOfMissions = new ResumeOfMissions();
+        extrasInformation = new ExtrasInformation();
     }
 
     public void salvar() {
-        DatabaseReference personagemReference = FirebaseConfig.getDatabase()
-                .child("character")
+        DatabaseReference characterRef = FirebaseConfig.getDatabase()
+                .child("characters")
                 .child(nick);
-        personagemReference.setValue(this);
+
+        characterRef.setValue(this);
     }
 
     public ExtrasInformation getExtrasInformation() {
@@ -105,12 +112,14 @@ public class Character implements Serializable {
         this.ninja = ninja;
     }
 
+    @Bindable
     public Village getVillage() {
         return village;
     }
 
     public void setVillage(Village village) {
         this.village = village;
+        notifyPropertyChanged(BR.village);
     }
 
 //    public List<String> getTitles() {
@@ -133,12 +142,14 @@ public class Character implements Serializable {
         this.playerId = playerId;
     }
 
+    @Bindable
     public String getNick() {
         return nick;
     }
 
     public void setNick(String nick) {
         this.nick = nick;
+        notifyPropertyChanged(BR.nick);
     }
 
 //    public String getGraducao() {
@@ -149,12 +160,18 @@ public class Character implements Serializable {
 //        this.graducao = graducao;
 //    }
 
+    @Bindable
     public long getRyous() {
         return ryous;
     }
 
     public void setRyous(long ryous) {
         this.ryous = ryous;
+        notifyPropertyChanged(BR.ryous);
+    }
+
+    public void addRyous(long ryous) {
+        setRyous(getRyous() + ryous);
     }
 
     public Classe getClasse() {
@@ -163,23 +180,26 @@ public class Character implements Serializable {
 
     public void setClasse(Classe classe) {
         this.classe = classe;
+        setAttributes(new Attributes(classe));
     }
 
+    public Attributes getAttributes() {
+        return attributes;
+    }
+
+    public void setAttributes(Attributes attributes) {
+        this.attributes = attributes;
+    }
+
+    @Bindable
     public int getLevel() {
         return level;
     }
 
     public void setLevel(int level) {
         this.level = level;
+        notifyPropertyChanged(BR.level);
     }
-
-//    public void setAtributos(Atributos atributos) {
-//        this.atributos = atributos;
-//    }
-//
-//    public Atributos getAtributos() {
-//        return atributos;
-//    }
 
     public int getProfile() {
         return profile;
@@ -189,12 +209,12 @@ public class Character implements Serializable {
         this.profile = profile;
     }
 
-    public int getPontos() {
-        return pontos;
+    public int getScore() {
+        return score;
     }
 
-    public void setPontos(int pontos) {
-        this.pontos = pontos;
+    public void setScore(int score) {
+        this.score = score;
     }
 
     public int getPosicao() {
@@ -221,22 +241,28 @@ public class Character implements Serializable {
         this.resumeOfMissions = resumeOfMissions;
     }
 
-    public int getExpAtual() {
-        return expAtual;
+    public int getExp() {
+        return exp;
     }
 
-    public void setExpAtual(int expAtual) {
-        if (expAtual >= getExpUpar()) {
-            expAtual = expAtual - getExpUpar();
+    public void setExp(int exp) {
+        if (exp >= getExpUpar()) {
+            exp = exp - getExpUpar();
             setExpUpar(getExpUpar() + 1200);
             setLevel(getLevel() + 1);
+            getAttributes().updateFormulas(classe, level);
+            getAttributes().getFormulas().full();
 //            atualizarAtributos();
-//            atributos.getFormulas().setVidaAtual(atributos.getFormulas().getVida());
+//            atributos.getFormulas().setCurrentHealth(atributos.getFormulas().getHealth());
 //            atributos.getFormulas().setChakraAtual(atributos.getFormulas().getChakra());
 //            atributos.getFormulas().setStaminaAtual(atributos.getFormulas().getStamina());
         }
 
-        this.expAtual = expAtual;
+        this.exp = exp;
+    }
+
+    public void addExp(int exp) {
+        setExp(getExp() + exp);
     }
 
     public int getExpUpar() {
@@ -262,30 +288,6 @@ public class Character implements Serializable {
     public void setCombatesNPCDiarios(int combatesNPCDiarios) {
         this.combatesNPCDiarios = combatesNPCDiarios;
     }
-//
-//    public boolean getFuiPego() {
-//        return fuiPego;
-//    }
-//
-//    public void setFuiPego(boolean fuiPego) {
-//        this.fuiPego = fuiPego;
-//    }
-//
-//    public String getNickOponente() {
-//        return nickOponente;
-//    }
-//
-//    public void setNickOponente(String nickOponente) {
-//        this.nickOponente = nickOponente;
-//    }
-//
-//    public Jutsu getJutsuSelecionado() {
-//        return jutsuSelecionado;
-//    }
-//
-//    public void setJutsuSelecionado(Jutsu jutsuSelecionado) {
-//        this.jutsuSelecionado = jutsuSelecionado;
-//    }
 
     public Bag getBolsa() {
         return bolsa;
@@ -295,14 +297,6 @@ public class Character implements Serializable {
         this.bolsa = bolsa;
     }
 
-//    public String getIdBatalhaAtual() {
-//        return idBatalhaAtual;
-//    }
-//
-//    public void setIdBatalhaAtual(String idBatalhaAtual) {
-//        this.idBatalhaAtual = idBatalhaAtual;
-//    }
-
     public boolean isOnline() {
         return online;
     }
@@ -311,38 +305,6 @@ public class Character implements Serializable {
         this.online = online;
     }
 
-//    public List<Integer> getTarefasConcluidas() {
-//        return tarefasConcluidasIDs;
-//    }
-//
-//    public void setTarefasConcluidas(List<Integer> tarefasConcluidas) {
-//        this.tarefasConcluidasIDs = tarefasConcluidas;
-//    }
-
-//    public boolean isEmMissao() {
-//        return emMissao;
-//    }
-//
-//    public void setEmMissao(boolean emMissao) {
-//        this.emMissao = emMissao;
-//    }
-//
-//    public MissaoDeTempo getMissaoDeTempo() {
-//        return missaoDeTempo;
-//    }
-//
-//    public void setMissaoDeTempo(MissaoDeTempo missaoDeTempo) {
-//        this.missaoDeTempo = missaoDeTempo;
-//    }
-//
-//    public MissaoEspecial getMissaoEspecial() {
-//        return missaoEspecial;
-//    }
-//
-//    public void setMissaoEspecial(MissaoEspecial missaoEspecial) {
-//        this.missaoEspecial = missaoEspecial;
-//    }
-
     public String getTeam() {
         return team;
     }
@@ -350,38 +312,6 @@ public class Character implements Serializable {
     public void setTeam(String team) {
         this.team = team;
     }
-//
-//    public int getDiasLogadosFidelidade() {
-//        return diasLogadosFidelidade;
-//    }
-//
-//    public void setDiasLogadosFidelidade(int diasLogadosFidelidade) {
-//        this.diasLogadosFidelidade = diasLogadosFidelidade;
-//    }
-//
-//    public boolean isTemRecompensaFidelidade() {
-//        return temRecompensaFidelidade;
-//    }
-//
-//    public void setTemRecompensaFidelidade(boolean temRecompensaFidelidade) {
-//        this.temRecompensaFidelidade = temRecompensaFidelidade;
-//    }
-//
-//    public List<Atributo> getAtributosDistribuitos() {
-//        return atributosDistribuitos;
-//    }
-//
-//    public void setAtributosDistribuitos(List<Atributo> atributosDistribuitos) {
-//        this.atributosDistribuitos = atributosDistribuitos;
-//    }
-//
-//    public int getIdGraducao() {
-//        return idGraducao;
-//    }
-//
-//    public void setIdGraducao(int idGraducao) {
-//        this.idGraducao = idGraducao;
-//    }
 
     public String getLastLogin() {
         return lastLogin;
@@ -406,12 +336,4 @@ public class Character implements Serializable {
     public void setRankGeral(int rankGeral) {
         this.rankGeral = rankGeral;
     }
-
-//    public String getTitle() {
-//        return title;
-//    }
-//
-//    public void setTitle(String title) {
-//        this.title = title;
-//    }
 }

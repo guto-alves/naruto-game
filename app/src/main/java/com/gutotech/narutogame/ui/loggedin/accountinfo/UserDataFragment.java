@@ -35,7 +35,7 @@ public class UserDataFragment extends Fragment implements SectionFragment, Resul
         mBinding.setViewModel(mViewModel);
 
         mBinding.msgLayout.msgTitleTextView.setText(R.string.keep_your_info_updated);
-        mBinding.msgLayout.msgTextView.setText(R.string.keep_your_account_updated_description);
+        mBinding.msgLayout.msgTextView.setText(R.string.user_info_updated_description);
         StorageUtil.downloadProfileForMsg(getActivity(), mBinding.msgLayout.msgProfileImageView);
 
         FragmentUtil.setSectionTitle(getActivity(), R.string.section_account_info);

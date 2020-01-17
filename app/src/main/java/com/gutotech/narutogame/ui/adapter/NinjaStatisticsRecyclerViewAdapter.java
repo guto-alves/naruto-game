@@ -50,7 +50,8 @@ public class NinjaStatisticsRecyclerViewAdapter extends RecyclerView.Adapter<Nin
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recycler_ninja_statistics_item, viewGroup, false);
+        View itemView = LayoutInflater.from(viewGroup.getContext())
+                .inflate(R.layout.recycler_ninja_statistics_item, viewGroup, false);
         return new MyViewHolder(itemView);
     }
 
@@ -66,9 +67,9 @@ public class NinjaStatisticsRecyclerViewAdapter extends RecyclerView.Adapter<Nin
             myViewHolder.nameTextView.setText(Helper.nomeDoPersonagem(ninjaStatistics.getNinjaId()));
             myViewHolder.totalPlayersTextView.setText(ninjaStatistics.getTotalPlayers() + " Jogadores");
 
-
-            if (i / 2 % 2 == 1)
+            if (i / 2 % 2 == 1) {
                 myViewHolder.bgLinear.setBackgroundColor(context.getResources().getColor(R.color.colorItem2));
+            }
         }
     }
 
@@ -79,5 +80,6 @@ public class NinjaStatisticsRecyclerViewAdapter extends RecyclerView.Adapter<Nin
 
     public void setNinjaStatisticsList(List<NinjaStatistics> ninjaStatisticsList) {
         this.ninjaStatisticsList = ninjaStatisticsList;
+        notifyDataSetChanged();
     }
 }

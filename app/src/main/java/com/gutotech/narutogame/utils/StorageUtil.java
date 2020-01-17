@@ -73,7 +73,7 @@ public class StorageUtil {
         downloadImage(context, imageReference, imageView);
     }
 
-    public static void baixarJutsu(Context context, ImageView imageView, String classe, String nomeImage) {
+    public static void downloadJutsu(Context context, ImageView imageView, String classe, String nomeImage) {
         StorageReference imageReference = FirebaseConfig.getStorage()
                 .child("images")
                 .child("jutsu")

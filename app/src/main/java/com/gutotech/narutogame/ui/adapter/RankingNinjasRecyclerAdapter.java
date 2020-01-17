@@ -55,7 +55,7 @@ public class RankingNinjasRecyclerAdapter extends RecyclerView.Adapter<RankingNi
             }
         });
 //        myViewHolder.tituloTextView.setText(character.getTitle());
-        myViewHolder.pontosTextView.setText(String.valueOf(character.getPontos()));
+        myViewHolder.pontosTextView.setText(String.valueOf(character.getScore()));
         myViewHolder.levelTextView.setText(String.valueOf(character.getLevel()));
 
         if (character.isOnline())

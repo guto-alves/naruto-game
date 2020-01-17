@@ -18,7 +18,6 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="@drawable/layout_pagina_repeat"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_personagem_logado">
 
@@ -81,7 +80,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="right"
+                        android:gravity="end"
                         android:orientation="horizontal">
 
                         <ImageView
@@ -194,26 +193,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Profissão: "
-                            android:textColor="@color/colorPrimaryDark"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="-"
-                            android:textColor="@color/colorPrimaryDark" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Qtd. dias no round: "
+                            android:text="Qtd. dias: "
                             android:textColor="@color/colorPrimaryDark"
                             android:textStyle="bold" />
 
@@ -305,7 +285,7 @@
                 <ExpandableListView
                     android:id="@+id/expanded_menu_main"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
+                    android:layout_height="500dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginBottom="16dp" />
 

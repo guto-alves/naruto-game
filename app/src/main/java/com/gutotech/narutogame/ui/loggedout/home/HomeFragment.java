@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
@@ -39,35 +40,44 @@ public class HomeFragment extends Fragment implements ResultListener, SectionFra
     private NewsAdapter newsAdapter;
 
     private RecyclerView ninjaStatisticsRecyclerView;
+    private NinjaStatisticsRecyclerViewAdapter ninjaStatisticsAdapter;
 
     private Dialog waitDialog;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        HomeViewModel mHomeViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
+        HomeViewModel viewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
 
-        FragmentHomeBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false);
+        FragmentHomeBinding binding = DataBindingUtil.inflate(inflater,
+                R.layout.fragment_home, container, false);
 
-        binding.setViewmodel(mHomeViewModel);
+        binding.setViewmodel(viewModel);
         View root = binding.getRoot();
 
-        mHomeViewModel.setAuthListener(this);
+        viewModel.setAuthListener(this);
 
-        mHomeViewModel.getNews().observe(this, news -> newsAdapter.setNewsList(news));
+        viewModel.getNews().observe(this, news -> newsAdapter.setNewsList(news));
 
-        binding.forgotPasswordTextView.setOnClickListener(v -> {
-            FragmentUtil.goTo(getActivity(), new RecuperarSenhaFragment());
-        });
+        binding.forgotPasswordTextView.setOnClickListener(v ->
+                FragmentUtil.goTo(getActivity(), new RecuperarSenhaFragment()));
 
         if (AuthRepository.getInstance().isSignedin()) {
             binding.loginLinearLayout.setVisibility(View.GONE);
         }
 
+        binding.passwordEditText.setOnEditorActionListener((v, actionId, event) -> {
+            viewModel.onPlayButtonPressed();
+            return true;
+        });
+
         newsRecyclerView = root.findViewById(R.id.newsRecyclerView);
+        viewModel.getNews().observe(this, newsList -> newsAdapter.setNewsList(newsList));
         setUpNewsRecyclerView();
 
         ninjaStatisticsRecyclerView = root.findViewById(R.id.ninjaStatisticsRecyclerView);
+        viewModel.getNinjaStatistics().observe(this, ninjaStatisticsList ->
+                ninjaStatisticsAdapter.setNinjaStatisticsList(ninjaStatisticsList));
         setUpNinjaStatistics();
 
         ViewPager viewPager = root.findViewById(R.id.kagesAndVilaViewPager);
@@ -83,7 +93,7 @@ public class HomeFragment extends Fragment implements ResultListener, SectionFra
         return root;
     }
 
-    public void setUpNewsRecyclerView() {
+    private void setUpNewsRecyclerView() {
         newsRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         newsRecyclerView.setHasFixedSize(true);
         newsRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), LinearLayout.HORIZONTAL));
@@ -94,10 +104,6 @@ public class HomeFragment extends Fragment implements ResultListener, SectionFra
         newsRecyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getActivity(), newsRecyclerView, new RecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-//                CurrentFragment.LER_NOTICIA = 1;
-//                TextView textView = getActivity().findViewById(R.id.tituloSecaoTextView);
-//                textView.setText("LER NOTÍCIA");
-//
 //                Bundle bundle = new Bundle();
 //                bundle.putSerializable("noticia", noticiaList.get(position));
 //
@@ -116,10 +122,10 @@ public class HomeFragment extends Fragment implements ResultListener, SectionFra
         }));
     }
 
-    public void setUpNinjaStatistics() {
+    private void setUpNinjaStatistics() {
         ninjaStatisticsRecyclerView.setHasFixedSize(true);
 
-        NinjaStatisticsRecyclerViewAdapter ninjaStatisticsAdapter = new NinjaStatisticsRecyclerViewAdapter(getActivity());
+        ninjaStatisticsAdapter = new NinjaStatisticsRecyclerViewAdapter(getActivity());
         ninjaStatisticsRecyclerView.setAdapter(ninjaStatisticsAdapter);
     }
 

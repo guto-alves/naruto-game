@@ -6,12 +6,10 @@ public class CombatOverview implements Serializable {
     private int winsNpc;
     private int winsDojoPvp;
     private int winsMapPvp;
-    private int wins4x4;
 
     private int lossesNpc;
     private int lossesDojoPvp;
     private int lossesMapPvp;
-    private int losses4x4;
 
     private int drawsNpc;
     private int drawsPvp;
@@ -43,14 +41,6 @@ public class CombatOverview implements Serializable {
         this.winsMapPvp = winsMapPvp;
     }
 
-    public int getWins4x4() {
-        return wins4x4;
-    }
-
-    public void setWins4x4(int wins4x4) {
-        this.wins4x4 = wins4x4;
-    }
-
     public int getLossesNpc() {
         return lossesNpc;
     }
@@ -73,14 +63,6 @@ public class CombatOverview implements Serializable {
 
     public void setLossesMapPvp(int lossesMapPvp) {
         this.lossesMapPvp = lossesMapPvp;
-    }
-
-    public int getLosses4x4() {
-        return losses4x4;
-    }
-
-    public void setLosses4x4(int losses4x4) {
-        this.losses4x4 = losses4x4;
     }
 
     public int getDrawsNpc() {

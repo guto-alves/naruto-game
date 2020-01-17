@@ -1,7 +1,6 @@
 package com.gutotech.narutogame.ui.loggedin.newcharacteer;
 
 import android.text.TextUtils;
-import android.widget.RadioGroup;
 
 import androidx.databinding.ObservableField;
 import androidx.databinding.ObservableInt;
@@ -62,6 +61,8 @@ public class CharacterCreateViewModel extends ViewModel implements ChooseNinjaRe
     public void onClassSelected(Classe classe) {
         this.classe.set(classe);
         mCharacter.setClasse(classe);
+        mCharacter.getAttributes().updateFormulas(classe, 1);
+        mCharacter.getAttributes().getFormulas().full();
     }
 
     private void loadCurrentGroup() {
@@ -73,7 +74,6 @@ public class CharacterCreateViewModel extends ViewModel implements ChooseNinjaRe
 
     public void go() {
         currentGroupIndex.set((currentGroupIndex.get() + 1) % 20);
-
         loadCurrentGroup();
     }
 
@@ -97,7 +97,7 @@ public class CharacterCreateViewModel extends ViewModel implements ChooseNinjaRe
             if (mCharacterRepository.checkByRepeatedNick(mCharacter.getNick())) {
                 mCharacterRepository.saveCharacter(mCharacter);
                 mListener.onSuccess();
-            }else{
+            } else {
                 mListener.onFailure(R.string.name_already_taken);
             }
         }
@@ -126,14 +126,14 @@ public class CharacterCreateViewModel extends ViewModel implements ChooseNinjaRe
 //        character.setGraducao("Estudante");
 //        character.setAtributos(atributos);
 //        character.setExpUpar(1200);
-//        character.setPontos(1000);
+//        character.setScore(1000)
 //        character.setMapa_posicao(-1);
 //        character.setDiasLogadosFidelidade(1);
 //        character.setTemRecompensaFidelidade(true);
 //
 //        List<Atributo> atributosDistribuidos = new ArrayList<>();
 //        atributosDistribuidos.add(new Atributo(Atributo.TAI, R.drawable.layout_icones_ene, 0));
-//        atributosDistribuidos.add(new Atributo(Atributo.BUK, R.drawable.layout_icones_ken, 0));
+//        atributosDistribuidos.add(new Atributo(t_Atributo.BUK, R.drawable.layouicones_ken, 0));
 //        atributosDistribuidos.add(new Atributo(Atributo.NIN, R.drawable.layout_icones_nin, 0));
 //        atributosDistribuidos.add(new Atributo(Atributo.GEN, R.drawable.layout_icones_gen, 0));
 //        atributosDistribuidos.add(new Atributo(Atributo.SELO, R.drawable.layout_icones_conhe, 0));
@@ -146,7 +146,7 @@ public class CharacterCreateViewModel extends ViewModel implements ChooseNinjaRe
 //
 //        PersonagemOn.character = character;
 //        character.atualizarAtributos();
-//        character.getAtributos().getFormulas().setVidaAtual(character.getAtributos().getFormulas().getVida());
+//        character.getAtributos().getFormulas().setCurrentHealth(character.getAtributos().getFormulas().getHealth());
 //        character.getAtributos().getFormulas().setChakraAtual(character.getAtributos().getFormulas().getChakra());
 //        character.getAtributos().getFormulas().setStaminaAtual(character.getAtributos().getFormulas().getStamina());
 //

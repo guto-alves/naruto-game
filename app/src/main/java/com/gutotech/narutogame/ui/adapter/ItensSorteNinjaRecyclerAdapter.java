@@ -14,15 +14,15 @@ import com.google.firebase.storage.StorageReference;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.firebase.FirebaseConfig;
 import com.gutotech.narutogame.utils.StorageUtil;
-import com.gutotech.narutogame.data.model.ItemLoteria;
+import com.gutotech.narutogame.data.model.LotteryItem;
 
 import java.util.List;
 
 public class ItensSorteNinjaRecyclerAdapter extends RecyclerView.Adapter<ItensSorteNinjaRecyclerAdapter.MyViewHolder> {
     private Context context;
-    private List<ItemLoteria> itensLoteria;
+    private List<LotteryItem> itensLoteria;
 
-    public ItensSorteNinjaRecyclerAdapter(Context context, List<ItemLoteria> itensLoteria) {
+    public ItensSorteNinjaRecyclerAdapter(Context context, List<LotteryItem> itensLoteria) {
         this.context = context;
         this.itensLoteria = itensLoteria;
     }
@@ -36,10 +36,10 @@ public class ItensSorteNinjaRecyclerAdapter extends RecyclerView.Adapter<ItensSo
 
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder myViewHolder, int i) {
-        ItemLoteria item = itensLoteria.get(i);
+        LotteryItem item = itensLoteria.get(i);
 
-        myViewHolder.nomeTextView.setText(item.getNome());
-        myViewHolder.chanceTextView.setText(String.valueOf(item.getChanceDeGanhar()));
+        myViewHolder.nomeTextView.setText(item.getDescription());
+        myViewHolder.chanceTextView.setText(String.valueOf(item.getChancesOfWin()));
 
         StorageReference imageRef = FirebaseConfig.getStorage()
                 .child("images")

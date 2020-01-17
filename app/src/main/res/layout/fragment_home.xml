@@ -19,7 +19,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="16dp">
 
             <LinearLayout
                 android:id="@+id/loginLinearLayout"
@@ -66,6 +67,7 @@
                         android:layout_height="40dp"
                         android:fontFamily="sans-serif"
                         android:hint="@string/password"
+                        android:imeOptions="actionDone"
                         android:inputType="textPassword"
                         android:text="@={viewmodel.password}" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -89,7 +91,6 @@
                     android:layout_marginTop="8dp"
                     android:text="@string/forgot_password"
                     android:textColor="@android:color/holo_blue_light" />
-
             </LinearLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -102,7 +103,7 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:scaleType="centerCrop"
+                    android:scaleType="fitXY"
                     android:src="@drawable/layout_home_madeira_360e1"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -114,7 +115,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    app:layout_constraintGuide_percent="0.10" />
+                    app:layout_constraintGuide_percent="0.9" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -125,7 +126,7 @@
                     android:textStyle="italic"
                     android:typeface="serif"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="@id/guideline64"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline64"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -152,7 +153,7 @@
                     android:id="@+id/imageView21"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:scaleType="centerCrop"
+                    android:scaleType="fitXY"
                     android:src="@drawable/layout_home_madeira_360d1"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -164,7 +165,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    app:layout_constraintGuide_percent="0.10" />
+                    app:layout_constraintGuide_percent="0.90" />
 
                 <TextView
                     android:id="@+id/textView31"
@@ -176,10 +177,9 @@
                     android:textStyle="italic"
                     android:typeface="serif"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="@id/guideline65"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline65"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
-
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/ninjaStatisticsRecyclerView"

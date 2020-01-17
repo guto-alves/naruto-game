@@ -1,64 +1,43 @@
 package com.gutotech.narutogame.ui.loggedin.selectcharacter;
 
-import android.app.Application;
-
-import androidx.annotation.NonNull;
-import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
 
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.Character;
 import com.gutotech.narutogame.data.model.PersonagemOn;
+import com.gutotech.narutogame.data.repository.AuthRepository;
 import com.gutotech.narutogame.data.repository.CharacterRepository;
 import com.gutotech.narutogame.ui.ResultListener;
-import com.gutotech.narutogame.ui.adapter.CharacterSelectRecyclerViewAdapter;
 import com.gutotech.narutogame.utils.SingleLiveEvent;
 
 import java.util.List;
 
-public class CharacterSelectViewModel extends AndroidViewModel implements CharacterSelectRecyclerViewAdapter.CharacterSelecetedListener {
-    private MutableLiveData<List<Character>> mCharactersList;
-    private MutableLiveData<Character> mCharacterSelected;
+public class CharacterSelectViewModel extends ViewModel {
+    private Character mCharacterSelected;
 
     private CharacterRepository mRepository;
 
     private ResultListener mListener;
-
     private SingleLiveEvent<String> event = new SingleLiveEvent<>();
 
-    public MutableLiveData<String> nick = new MutableLiveData<>();
-    public MutableLiveData<String> level = new MutableLiveData<>();
-    public MutableLiveData<String> grade = new MutableLiveData<>();
-    public MutableLiveData<String> ryous = new MutableLiveData<>();
-    public MutableLiveData<String> village = new MutableLiveData<>();
-
-
-    public CharacterSelectViewModel(@NonNull Application application) {
-        super(application);
-
-        mCharactersList = new MutableLiveData<>();
-
-        mCharacterSelected = new MutableLiveData<>();
+    public CharacterSelectViewModel() {
+        mCharacterSelected = new Character(AuthRepository.getInstance().getUid());
 
         mRepository = CharacterRepository.getInstance();
-        mRepository.getAllMyCharacters(characterList -> {
-            mCharactersList.setValue(characterList);
-
-            if (characterList.size() != 0) {
-                mCharacterSelected.setValue(characterList.get(0));
-            }
-        });
     }
 
     public LiveData<List<Character>> getCharactersList() {
-        return mCharactersList;
+        return mRepository.getAllMyCharacters();
     }
 
-    public LiveData<Character> getCharacterSelected() {
+    public Character getCharacterSelected() {
         return mCharacterSelected;
     }
 
+    public void setCharacterSelected(Character characterSelected) {
+        this.mCharacterSelected = characterSelected;
+    }
 
     public LiveData<String> getEvent() {
         return event;
@@ -70,7 +49,7 @@ public class CharacterSelectViewModel extends AndroidViewModel implements Charac
 
     public void onPlayButtonPressed() {
         if (mCharacterSelected != null) {
-            PersonagemOn.character = mCharacterSelected.getValue();
+            PersonagemOn.character = mCharacterSelected;
             mListener.onSuccess();
         } else {
             mListener.onFailure(R.string.no_characters_selected);
@@ -80,12 +59,7 @@ public class CharacterSelectViewModel extends AndroidViewModel implements Charac
     public void onRemoveButtonPressed() {
         if (mCharacterSelected != null) {
             event.call();
-            mRepository.deleteCharacter(mCharacterSelected.getValue().getNick());
+            mRepository.deleteCharacter(mCharacterSelected.getNick());
         }
-    }
-
-    @Override
-    public void onCharacterSelected(Character character) {
-        mCharacterSelected.setValue(character);
     }
 }

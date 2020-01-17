@@ -19,33 +19,33 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
+    <style  name="AppTheme.NoActionBar">
+        <item  name="windowActionBar">false</item>
+        <item  name="windowNoTitle">true</item>
     </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style  name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style  name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <!-- Theme for Buttons. -->
-    <style name="ButtonTheme" parent="Widget.AppCompat.Button.Colored">
-        <item name="android:background">@drawable/selector_button</item>
-        <item name="android:textColor">@android:color/white</item>
-        <item name="android:layout_height">40dp</item>
-        <item name="android:textStyle">bold</item>
+    <style  name="ButtonTheme" parent="Widget.AppCompat.Button.Colored">
+        <item  name="android:background">@drawable/selector_button</item>
+        <item  name="android:textColor">@android:color/white</item>
+        <item  name="android:layout_height">40dp</item>
+        <item  name="android:textStyle">bold</item>
     </style>
 
     <!-- Theme for EditTexts. -->
-    <style name="EditTextTheme">
-        <item name="android:background">@android:color/white</item>
-        <item name="android:textColor">@android:color/black</item>
+    <style  name="EditTextTheme">
+        <item  name="android:background">@android:color/white</item>
+        <item  name="android:textColor">@android:color/black</item>
     </style>
 
-    <style name="EditTextCustomTheme">
-        <item name="android:background">@drawable/layout_cadastro_rapido_input</item>
-        <item name="android:textColor">@android:color/white</item>
-        <item name="android:padding">8dp</item>
+    <style  name="EditTextCustomTheme">
+        <item  name="android:background">@drawable/layout_cadastro_rapido_input</item>
+        <item  name="android:textColor">@android:color/white</item>
+        <item  name="android:padding">8dp</item>
     </style>
 
 </resources>
