@@ -20,16 +20,16 @@ import com.gutotech.narutogame.utils.FragmentUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LicoesFragment extends Fragment implements MyListener, SectionFragment {
+public class TasksFragment extends Fragment implements MyListener, SectionFragment {
     private List<MissaoDeTempo> tarefas = new ArrayList<>();
 
-    public LicoesFragment() {
+    public TasksFragment() {
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_licoes, container, false);
+        View view = inflater.inflate(R.layout.fragment_tasks, container, false);
 
         RecyclerView tarefasRecyclerView = view.findViewById(R.id.tarefasRecyclerView);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());

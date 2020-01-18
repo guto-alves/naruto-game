@@ -11,7 +11,7 @@ import java.io.Serializable;
 
 public class Character extends BaseObservable implements Serializable {
     private String playerId;
-    public String nick;
+    private String nick;
     private Ninja ninja;
     private int profile;
     private Village village;
@@ -51,9 +51,11 @@ public class Character extends BaseObservable implements Serializable {
     // info combates
     private int combatesNPCDiarios;
 
+    private int mapPosition;
+
 //    private boolean fuiPego;
 //    private String nickOponente;
-//    private int mapa_posicao;
+
 //    private String idBatalhaAtual;
 //
 //    // missões
@@ -67,7 +69,6 @@ public class Character extends BaseObservable implements Serializable {
 
     private int rankVila;
     private int rankGeral;
-
     private int posicao;
 
     public Character() {
@@ -86,6 +87,7 @@ public class Character extends BaseObservable implements Serializable {
         combatOverview = new CombatOverview();
         resumeOfMissions = new ResumeOfMissions();
         extrasInformation = new ExtrasInformation();
+        mapPosition = -1;
     }
 
     public void salvar() {
@@ -172,6 +174,10 @@ public class Character extends BaseObservable implements Serializable {
 
     public void addRyous(long ryous) {
         setRyous(getRyous() + ryous);
+    }
+
+    public void subRyous(long ryous) {
+        setRyous(getRyous() - ryous);
     }
 
     public Classe getClasse() {
@@ -335,5 +341,14 @@ public class Character extends BaseObservable implements Serializable {
 
     public void setRankGeral(int rankGeral) {
         this.rankGeral = rankGeral;
+    }
+
+
+    public int getMapPosition() {
+        return mapPosition;
+    }
+
+    public void setMapPosition(int mapPosition) {
+        this.mapPosition = mapPosition;
     }
 }

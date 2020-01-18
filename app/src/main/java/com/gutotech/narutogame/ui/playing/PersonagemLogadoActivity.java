@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.TextUtils;
 import android.view.View;
 
 import androidx.core.view.GravityCompat;
@@ -42,7 +43,7 @@ import com.gutotech.narutogame.ui.adapter.ExpandableLoggedinAdapter;
 import com.gutotech.narutogame.ui.adapter.BolsaRamensAdapter;
 import com.gutotech.narutogame.ui.loggedout.DeslogadoActivity;
 import com.gutotech.narutogame.ui.loggedin.newcharacteer.CharacterCreateFragment;
-import com.gutotech.narutogame.ui.playing.team.EquipeDetalheFragment;
+import com.gutotech.narutogame.ui.playing.team.TeamDetailsFragment;
 import com.gutotech.narutogame.ui.playing.user.VipPlayerFragment;
 import com.gutotech.narutogame.utils.FragmentUtil;
 import com.gutotech.narutogame.utils.StorageUtil;
@@ -57,8 +58,8 @@ import com.gutotech.narutogame.ui.playing.academy.PersonagemJutsuFragment;
 import com.gutotech.narutogame.ui.playing.battles.ArenaFragment;
 import com.gutotech.narutogame.ui.playing.battles.DojoFragment;
 import com.gutotech.narutogame.ui.playing.battles.LogBatalhaFragment;
-import com.gutotech.narutogame.ui.playing.team.EquipeCriarFragment;
-import com.gutotech.narutogame.ui.playing.team.EquipeParticiparFragment;
+import com.gutotech.narutogame.ui.playing.team.TeamCreateFragment;
+import com.gutotech.narutogame.ui.playing.team.TeamParticipateFragment;
 import com.gutotech.narutogame.ui.playing.character.ClansFragment;
 import com.gutotech.narutogame.ui.playing.character.FidelityFragment;
 import com.gutotech.narutogame.ui.playing.character.CharacterStatusFragment;
@@ -67,10 +68,10 @@ import com.gutotech.narutogame.ui.playing.ranking.RankEquipesFragment;
 import com.gutotech.narutogame.ui.playing.ranking.RankNinjasFragment;
 import com.gutotech.narutogame.ui.playing.user.FormulasFragment;
 import com.gutotech.narutogame.ui.playing.user.MensagensFragment;
-import com.gutotech.narutogame.ui.playing.currentvillage.LicoesFragment;
-import com.gutotech.narutogame.ui.playing.currentvillage.MapaVilaFragment;
+import com.gutotech.narutogame.ui.playing.currentvillage.TasksFragment;
+import com.gutotech.narutogame.ui.playing.currentvillage.VillageMapFragment;
 import com.gutotech.narutogame.ui.playing.currentvillage.MissoesEsperaFragment;
-import com.gutotech.narutogame.ui.playing.currentvillage.MissoesFragment;
+import com.gutotech.narutogame.ui.playing.currentvillage.MissionsFragment;
 import com.gutotech.narutogame.ui.playing.currentvillage.NinjaShopFragment;
 import com.gutotech.narutogame.ui.playing.currentvillage.RamenShopFragment;
 import com.gutotech.narutogame.utils.DateCustom;
@@ -506,10 +507,10 @@ public class PersonagemLogadoActivity extends AppCompatActivity {
         fragments3.add(new AcademiaJustuFragment());
 
         List<SectionFragment> fragments5 = new ArrayList<>();
-        fragments5.add(new LicoesFragment());
+        fragments5.add(new TasksFragment());
         fragments5.add(new MissoesEsperaFragment());
-        fragments5.add(new MapaVilaFragment());
-        fragments5.add(new MissoesFragment());
+        fragments5.add(new VillageMapFragment());
+        fragments5.add(new MissionsFragment());
         fragments5.add(new RamenShopFragment());
         fragments5.add(new NinjaShopFragment());
 
@@ -519,11 +520,11 @@ public class PersonagemLogadoActivity extends AppCompatActivity {
         fragments6.add(new LogBatalhaFragment());
 
         List<SectionFragment> fragments7 = new ArrayList<>();
-        if (PersonagemOn.character.getTeam().equals("")) {
-            fragments7.add(new EquipeParticiparFragment());
-            fragments7.add(new EquipeCriarFragment());
+        if (TextUtils.isEmpty(PersonagemOn.character.getTeam())) {
+            fragments7.add(new TeamParticipateFragment());
+            fragments7.add(new TeamCreateFragment());
         } else {
-            fragments7.add(new EquipeDetalheFragment());
+            fragments7.add(new TeamDetailsFragment());
         }
 
         List<SectionFragment> fragments8 = new ArrayList<>();

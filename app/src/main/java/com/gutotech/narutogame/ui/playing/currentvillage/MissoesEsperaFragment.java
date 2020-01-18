@@ -59,7 +59,7 @@ public class MissoesEsperaFragment extends Fragment implements SectionFragment {
         ryRecompensaTextView = view.findViewById(R.id.ryRecompensaTextView);
         finalizarMissaoButton = view.findViewById(R.id.finalizarMissaoButton);
 
-        FragmentUtil.setSectionTitle(getActivity(), R.string.mission_status);
+        FragmentUtil.setSectionTitle(getActivity(), R.string.section_mission_status);
 
         return view;
     }
@@ -202,6 +202,6 @@ public class MissoesEsperaFragment extends Fragment implements SectionFragment {
 
     @Override
     public int getDescription() {
-        return R.string.section_mission_status;
+        return R.string.mission_status;
     }
 }

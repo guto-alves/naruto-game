@@ -188,15 +188,44 @@
     <string name="formulas">Fórmulas</string>
     <string name="label_wins_map_pvp">Vitórias Mapa PVP:</string>
     <string name="label_derrotas_dojo_pvp">Derrotas Dojo PVP:</string>
-    <string name="attribute_training_description">Seu character é capaz de treinar seus atributos desde o level 1 e esse treinamento possui um limite diário. Quanto mais você treinar, melhor serão seus resultados em luta no dojo e contra seus inimigos. Os dias NÃO treinados vão se acumulando: Por exemplo, se você não pode treinar na terça e na quarta, na quinta-feira você poderá treinar o equivalente de terça, quarta e quinta. Terça-Feira, é o dia que é renovado o limite semanal, mesmo que você não tenha treinado, portanto tente sempre treinar seu limite semanal até segunda feira.  O treinamento de atributos é a chave de ter um bom character, portanto, jamais deixe de treina-lo!</string>
+    <string name="attribute_training_description">Seu character é capaz de treinar seus atributos
+        desde o level 1 e esse treinamento possui um limite diário. Quanto mais você treinar, melhor
+        serão seus resultados em luta no dojo e contra seus inimigos. Os dias NÃO treinados vão se acumulando:
+        Por exemplo, se você não pode treinar na terça e na quarta, na quinta-feira você poderá treinar o
+        equivalente de terça, quarta e quinta. Terça-Feira, é o dia que é renovado o limite semanal,
+        mesmo que você não tenha treinado, portanto tente sempre treinar seu limite semanal até
+        segunda feira.  O treinamento de atributos é a chave de ter um bom character, portanto,
+        jamais deixe de treina-lo!</string>
     <string name="attribute_training_title">ENTENDA O TREINAMENTO DE ATRIBUTOS</string>
     <string name="training_complete">TREINAMENTO CONCLUÍDO</string>
     <string name="distributed_points">PONTOS DISTRIBUIDOS</string>
     <string name="manual_training">Treinamento Manual</string>
     <string name="quantity">Quantidade</string>
-    <string name="voc_pode_fazer_o_treino_manual_v_rias_vezes_by_dia">Você pode fazer o treino manual várias vezes by dia.</string>
+    <string name="voc_pode_fazer_o_treino_manual_v_rias_vezes_by_dia">Você pode fazer o treino manual
+        várias vezes por dia.</string>
     <string name="you_will_spent">Você gastará %d</string>
     <string name="chakra_icon">Icone chakra</string>
     <string name="battle_log">Histórico de Batalhas</string>
+    <string name="be_a_team_leader_title">QUERO LIDERAR UMA EQUIPE</string>
+    <string name="be_a_team_leader_description">É muito importante liderar uma equipe, ensine seus
+        alunos como evoluir no jogo e serem ótimos ninjas para sua vila. Como bonificação você
+        ganhará 5% em experiência por ninja derrotado no mapa.</string>
+    <string name="create_team">Criar Equipe</string>
+    <string name="requirements">Requerimentos</string>
+    <string name="_2000_ryous_e_ser_chunnin">2000 Ryous e ser Chunnin</string>
+    <string name="_3_credits">3 Créditos</string>
+    <string name="error_select_an_method_to_create_team">Selecione uma forma de criar a equipe!</string>
+    <string name="naruto_game_says">Naruto Game diz:</string>
+    <string name="error_the_name_of_team_cant_be_empty">Nome da equipe não pode ficar em branco!></string>
+    <string name="filter">Filtrar</string>
+    <string name="leader_name">Nome do Líder</string>
+    <string name="team_name">Nome da equipe</string>
+    <string name="members_quantity">Qtd de Integrantes</string>
+    <string name="quero_ser_membro_de_equipe">QUERO SER MEMBRO DE EQUIPE</string>
+    <string name="quero_ser_membro_de_equipe_description">Escolha a Equipe de seu amigo e clique no botão participar para enviar um pedido para entrar na team.</string>
+    <string name="details">Detalhes</string>
+    <string name="section_team">EQUIPE</string>
+    <string name="items_available">Itens Disponíveis</string>
+    <string name="chances_of_win">Chances de Ganhar</string>
 
 </resources>

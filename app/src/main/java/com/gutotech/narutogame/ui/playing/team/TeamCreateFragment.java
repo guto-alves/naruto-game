@@ -1,12 +1,12 @@
 package com.gutotech.narutogame.ui.playing.team;
 
-
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 
 import com.google.android.material.textfield.TextInputEditText;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.StringRes;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -24,20 +24,17 @@ import com.gutotech.narutogame.utils.StorageUtil;
 import com.gutotech.narutogame.data.model.Equipe;
 import com.gutotech.narutogame.data.model.PersonagemOn;
 
-public class EquipeCriarFragment extends Fragment implements SectionFragment {
+public class TeamCreateFragment extends Fragment implements SectionFragment {
     private TextInputEditText nomeEquipeTextInput;
     private RadioGroup requerimentoEquipeRadioGroup;
 
     private RadioButton creditosRadioButton;
     private RadioButton ryousEChunninRadioButton;
 
-    public EquipeCriarFragment() {
-    }
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_equipe_criar, container, false);
+        View view = inflater.inflate(R.layout.fragment_team_create, container, false);
 
         ImageView imagemMsg = view.findViewById(R.id.personagemMsg);
         StorageUtil.downloadProfileForMsg(getActivity(), imagemMsg, PersonagemOn.character.getVillage().id);
@@ -48,15 +45,12 @@ public class EquipeCriarFragment extends Fragment implements SectionFragment {
         ryousEChunninRadioButton = view.findViewById(R.id.ryousEChunninRadioButton);
 
         Button criarEquipeButton = view.findViewById(R.id.criarEquipeButton);
-        criarEquipeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String nomeDaEquipe = nomeEquipeTextInput.getText().toString();
+        criarEquipeButton.setOnClickListener(v -> {
+            String nomeDaEquipe = nomeEquipeTextInput.getText().toString();
 
-                if (validarNomeDaEquipe(nomeDaEquipe)) {
-                    if (validarFormaDeCriarEquipe())
-                        salvarEquipe(nomeDaEquipe);
-                }
+            if (validarNomeDaEquipe(nomeDaEquipe)) {
+                if (validarFormaDeCriarEquipe())
+                    salvarEquipe(nomeDaEquipe);
             }
         });
 
@@ -66,7 +60,7 @@ public class EquipeCriarFragment extends Fragment implements SectionFragment {
 
     private boolean validarNomeDaEquipe(String nomeDaEquipe) {
         if (nomeDaEquipe.isEmpty()) {
-            nomeEquipeTextInput.setError("Nome da equipe não pode ficar em branco!");
+            nomeEquipeTextInput.setError(getString(R.string.error_the_name_of_team_cant_be_empty));
             return false;
         }
 
@@ -75,19 +69,18 @@ public class EquipeCriarFragment extends Fragment implements SectionFragment {
 
     private boolean validarFormaDeCriarEquipe() {
         if (!ryousEChunninRadioButton.isSelected() || !creditosRadioButton.isSelected()) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-            builder.setTitle("Naruto Game diz:");
-            builder.setMessage("Selecione uma forma de criar a equipe!");
-            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-
-                }
-            });
-            builder.create().show();
+            showDialog(R.string.error_select_an_method_to_create_team);
         }
 
         return true;
+    }
+
+    private void showDialog(@StringRes int resId) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle(R.string.naruto_game_says);
+        builder.setMessage(resId);
+        builder.setPositiveButton("OK", null);
+        builder.create().show();
     }
 
     private void salvarEquipe(String nomeDaEquipe) {

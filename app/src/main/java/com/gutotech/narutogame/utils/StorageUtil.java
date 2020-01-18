@@ -65,6 +65,20 @@ public class StorageUtil {
         downloadImage(context, imageRef, imageView);
     }
 
+    public static void downloadLotteryItem(ImageView imageView, String image) {
+        StorageReference imageRef = FirebaseConfig.getStorage()
+                .child("images/loteria/")
+                .child(image + ".png");
+        downloadImage(imageView.getContext(), imageRef, imageView);
+    }
+
+    public static void downloadSprite(ImageView imageView, int ninjaId) {
+        StorageReference imageReference = FirebaseConfig.getStorage()
+                .child("images/sprites")
+                .child(ninjaId + ".png");
+        downloadImage(imageView.getContext(), imageReference, imageView);
+    }
+
     public static void baixarTopoLogado(Context context, ImageView imageView, int ninjaId) {
         StorageReference imageReference = FirebaseConfig.getStorage()
                 .child("images")

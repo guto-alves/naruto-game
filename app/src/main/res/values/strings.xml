@@ -225,7 +225,6 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="current_village">Current Village</string>
     <string name="battles">Battles</string>
     <string name="team">Team</string>
-    <string name="organization">Organization</string>
     <string name="ranking">Ranking</string>
     <string name="participate">Participate</string>
     <string name="being_a_leader">Being a Leader</string>
@@ -320,6 +319,21 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="you_will_spent">You will spent %d</string>
     <string name="chakra_icon">Chakra icon</string>
     <string name="battle_log">Battle Log</string>
+    <string name="be_a_team_leader_title">I WANT TO BE A TEAM LEADER</string>
+    <string name="be_a_team_leader_description">Be a Leader is a important thing, help your team mates to grow and evolve in the game to be a helpful ninja to our village. The reward is 5% more experience per ninja defeated in World Map.</string>
+    <string name="create_team">Create Team</string>
+    <string name="requirements">Requirements</string>
+    <string name="_2000_ryous_e_ser_chunnin">2000 Ryous and be Chuunin</string>
+    <string name="_3_credits">3 Credits</string>
+    <string name="error_select_an_method_to_create_team">Select an method to create an Team</string>
+    <string name="naruto_game_says">Naruto Game says:</string>
+    <string name="error_the_name_of_team_cant_be_empty">The name of Team can\'t be empty</string>
+    <string name="filter">Filter</string>
+    <string name="leader_name">Leader Name</string>
+    <string name="team_name">Team Name</string>
+    <string name="members_quantity">Members quantity</string>
+    <string name="quero_ser_membro_de_equipe">I WANT TO BE A MEMBER</string>
+    <string name="quero_ser_membro_de_equipe_description">Choose the Team and click Participate to send a request to join this Team</string>
 
     <string-array name="attribute_percent">
         <item>1</item>
@@ -330,5 +344,9 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
         <item>50</item>
         <item>100</item>
     </string-array>
+    <string name="details">Details</string>
+    <string name="section_team">TEAM</string>
+    <string name="items_available">Items Available</string>
+    <string name="chances_of_win">Chances of Win</string>
 
 </resources>

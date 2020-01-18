@@ -4,7 +4,9 @@ import androidx.annotation.NonNull;
 
 import com.gutotech.narutogame.R;
 
-public enum Village {
+import java.io.Serializable;
+
+public enum Village implements Serializable {
     FOLHA(1, "Folha", R.drawable.layout_home_kages_1, R.drawable.layout_bandanas_1, R.drawable.layout_mapa_1),
     AREIA(2, "Areia", R.drawable.layout_home_kages_2, R.drawable.layout_bandanas_1, R.drawable.layout_mapa_2),
     NEVOA(3, "Névoa", R.drawable.layout_home_kages_3, R.drawable.layout_bandanas_1, R.drawable.layout_mapa_3),

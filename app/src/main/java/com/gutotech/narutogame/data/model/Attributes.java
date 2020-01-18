@@ -18,7 +18,7 @@ import java.util.List;
 	Incremento de Crítico	1% de Incremento de Crítico	    (Level / 4)
  */
 public class Attributes implements Serializable {
-    private int taijutsu;
+    public  int taijutsu;
     private int bukijutsu;
     private int ninjutsu;
     private int genjutsu;
