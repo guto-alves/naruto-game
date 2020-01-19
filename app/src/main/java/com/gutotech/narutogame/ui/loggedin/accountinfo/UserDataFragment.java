@@ -34,9 +34,9 @@ public class UserDataFragment extends Fragment implements SectionFragment, Resul
                 R.layout.fragment_usuario_dados, container, false);
         mBinding.setViewModel(mViewModel);
 
-        mBinding.msgLayout.msgTitleTextView.setText(R.string.keep_your_info_updated);
-        mBinding.msgLayout.msgTextView.setText(R.string.user_info_updated_description);
-        StorageUtil.downloadProfileForMsg(getActivity(), mBinding.msgLayout.msgProfileImageView);
+        mBinding.msgLayout.titleTextView.setText(R.string.keep_your_info_updated);
+        mBinding.msgLayout.descriptionTextView.setText(R.string.user_info_updated_description);
+        StorageUtil.downloadProfileForMsg(getActivity(), mBinding.msgLayout.profileImageView);
 
         FragmentUtil.setSectionTitle(getActivity(), R.string.section_account_info);
 
@@ -54,9 +54,9 @@ public class UserDataFragment extends Fragment implements SectionFragment, Resul
 
     @Override
     public void onSuccess() {
-        mBinding.updatedAccountMsgLayout.msgTitleTextView.setText(R.string.user_info_updated);
-        mBinding.updatedAccountMsgLayout.msgTextView.setText(R.string.user_info_updated_description);
-        StorageUtil.downloadProfileForMsg(getActivity(), mBinding.updatedAccountMsgLayout.msgProfileImageView);
+        mBinding.updatedAccountMsgLayout.titleTextView.setText(R.string.user_info_updated);
+        mBinding.updatedAccountMsgLayout.descriptionTextView.setText(R.string.user_info_updated_description);
+        StorageUtil.downloadProfileForMsg(getActivity(), mBinding.updatedAccountMsgLayout.profileImageView);
         mBinding.updatedAccountMsgLayout.msgConstraintLayout.setVisibility(View.VISIBLE);
     }
 

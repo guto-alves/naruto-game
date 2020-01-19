@@ -1,6 +1,5 @@
 package com.gutotech.narutogame.data.model;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,8 +16,15 @@ import java.util.List;
 	Incremento de Absorção	1% de Incremento de Absorção	(Level / 4)
 	Incremento de Crítico	1% de Incremento de Crítico	    (Level / 4)
  */
-public class Attributes implements Serializable {
-    public  int taijutsu;
+public class Attributes {
+    private int traningPoints;
+
+    private int nextAbilityPoint;
+    private int currentAbiliity;
+
+    private int totalFreePoints;
+
+    public int taijutsu;
     private int bukijutsu;
     private int ninjutsu;
     private int genjutsu;
@@ -77,19 +83,25 @@ public class Attributes implements Serializable {
     }
 
     public void updateFormulas(Classe classe, int level) {
-        int adicionalByLevel8 = level * 18;
-        int adicionalByLevel9 = level * 9;
+        final int adicionalByLevel1 = level * 18;
+        final int adicionalByLevel2 = level * 9;
 
         formulas = new Formulas();
 
-        formulas.setHealth(getEnergy() * 6 + adicionalByLevel8);
+        formulas.setHealth(getEnergy() * 6 + adicionalByLevel1);
 
-        if (classe == Classe.NIN || classe == Classe.GEN) {
-            formulas.setChakra(getEnergy() * 6 + getNinjutsu() * 14 + getGenjutsu() * 7 + adicionalByLevel8);
-            formulas.setStamina(getEnergy() * 6 + getTaijutsu() * 7 + getBukijutsu() * 7 + adicionalByLevel9);
+        if (classe == Classe.NIN) {
+            formulas.setChakra(getEnergy() * 6 + getNinjutsu() * 14 + getGenjutsu() * 7 + adicionalByLevel1);
+            formulas.setStamina(getEnergy() * 6 + getTaijutsu() * 7 + getBukijutsu() * 7 + adicionalByLevel2);
+        } else if (classe == Classe.GEN) {
+            formulas.setChakra(getEnergy() * 6 + getNinjutsu() * 7 + getGenjutsu() * 14 + adicionalByLevel1);
+            formulas.setStamina(getEnergy() * 6 + getTaijutsu() * 7 + getBukijutsu() * 7 + adicionalByLevel2);
+        } else if (classe == Classe.TAI) {
+            formulas.setChakra(getEnergy() * 6 + getNinjutsu() * 7 + getGenjutsu() * 7 + adicionalByLevel2);
+            formulas.setStamina(getEnergy() * 6 + getTaijutsu() * 14 + getBukijutsu() * 7 + adicionalByLevel1);
         } else {
-            formulas.setChakra(getEnergy() * 6 + getNinjutsu() * 14 + getGenjutsu() * 7 + adicionalByLevel9);
-            formulas.setStamina(getEnergy() * 6 + getTaijutsu() * 7 + getBukijutsu() * 7 + adicionalByLevel8);
+            formulas.setChakra(getEnergy() * 6 + getNinjutsu() * 7 + getGenjutsu() * 7 + adicionalByLevel2);
+            formulas.setStamina(getEnergy() * 6 + getTaijutsu() * 7 + getBukijutsu() * 14 + adicionalByLevel1);
         }
 
         formulas.setAtkTaiBuki((int) Math.ceil((double) getStrength() / 2));
@@ -99,7 +111,13 @@ public class Attributes implements Serializable {
         formulas.setDefTaiBuki(getResistance() / 2);
 
         formulas.setAccuracy(getSeal());
+
         formulas.setEsquiva((double) getAgility() / 6);
+
+        formulas.setNinjaPower(getEnergy() * 200 +
+                (getStrength() + getIntelligence() + getResistance()) * 150 +
+                (getNinjutsu() + getGenjutsu() + getTaijutsu() + getBukijutsu()) * 200 +
+                (getAgility() + getSeal()) * 100);
     }
 
     public int getTaijutsu() {
@@ -188,6 +206,42 @@ public class Attributes implements Serializable {
 
     public void setFormulas(Formulas formulas) {
         this.formulas = formulas;
+    }
+
+    public int getTraningPoints() {
+        return traningPoints;
+    }
+
+    public void setTraningPoints(int traningPoints) {
+        this.traningPoints = traningPoints;
+    }
+
+    public void addTraningPoints(int traningPoints) {
+        setTraningPoints(getTraningPoints() + traningPoints);
+    }
+
+    public int getNextAbilityPoint() {
+        return nextAbilityPoint;
+    }
+
+    public void setNextAbilityPoint(int nextAbilityPoint) {
+        this.nextAbilityPoint = nextAbilityPoint;
+    }
+
+    public int getCurrentAbiliity() {
+        return currentAbiliity;
+    }
+
+    public void setCurrentAbiliity(int currentAbiliity) {
+        this.currentAbiliity = currentAbiliity;
+    }
+
+    public int getTotalFreePoints() {
+        return totalFreePoints;
+    }
+
+    public void setTotalFreePoints(int totalFreePoints) {
+        this.totalFreePoints = totalFreePoints;
     }
 
     public List<AttributeItem> asList() {

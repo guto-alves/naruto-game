@@ -3,8 +3,8 @@
 
     <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
     <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
-    <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
+    <string name="nav_header_desc" translatable="false">Navigation header</string>
+    <string name="action_settings" translatable="false">Settings</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="action_error">Error</string>
@@ -36,13 +36,12 @@
     <string name="button_play_lucky">Play!</string>
     <string name="receive">Receive</string>
     <string name="button_nao_recebido">Não Recebido</string>
-    <string name="button_graduar">Graduar</string>
-    <string name="button_virar_aluno">Virar Aluno</string>
+    <string name="button_graduate">Graduate</string>
     <string name="button_accept">Accept</string>
     <string name="button_cancelar_missao">Cancelar Missão</string>
     <string name="finish">Finish</string>
     <string name="button_ir_para_a_fila">Ir para a fila</string>
-    <string name="button_filtrar">Filtrar</string>
+    <string name="button_filter">Filter</string>
 
     <string name="title_activity_logado_selecionar">LogadoSelecionarActivity</string>
     <string name="title_activity_personagem_logado">PersonagemLogadoActivity</string>
@@ -83,7 +82,7 @@
     <string name="section_dojo" translatable="false">DOJO</string>
     <string name="section_dojo_4x4" translatable="false">DOJO 4X4</string>
     <string name="section_arena" translatable="false">ARENA</string>
-    <string name="secao_historico_de_batalha">HISTÓRICO DE BATALHA</string>
+    <string name="section_battle_log">BATTLE LOG</string>
 
     <!-- Grupo Equipe e Organização -->
     <string name="section_create_a_team">CREATE A TEAM</string>
@@ -128,7 +127,7 @@
     <string name="just_a_bit_now">JUST A BIT NOW!</string>
     <string name="fullfill_the_form_below"> Fulfill the form below to create your account and starts your adventure.
 You will receive an email to confirm your account, then you NEED TO USE AN VALID EMAIL to play Naruto Game!</string>
-    <string name="full_name">Full description</string>
+    <string name="full_name">Full Name</string>
     <string name="email" translatable="false">Email</string>
     <string name="password">Password</string>
     <string name="confirm_password">Confirm Password</string>
@@ -313,7 +312,7 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="label_derrotas_dojo_pvp">Derrotas Dojo PVP:</string>
     <string name="attribute_training_description">Your character is capable of attribute training since Level 1, but this training has a daily limit. The more you train, better will be your results in battles, in dojo NPC even with your enemies. The days NOT trained, will be cumulated: For example, if you can\'t train tuesday and wednesday, at thursday you can train the sum of tuesday, wednesday and thursday. At Tuesdays, the week limit is renewed, even you do not have trained, then, ever try train your week limit until mondays.  The Attribute Training is key to have a good character, so, never forget to training it</string>
     <string name="attribute_training_title">LEARN ABOUT THE TRAINING ATTRIBUTES</string>
-    <string name="training_complete">TRAIINNG COMPLETE</string>
+    <string name="training_completed">TRAINING COMPLETED</string>
     <string name="distributed_points">DISTRIBUTED POINTS</string>
     <string name="voc_pode_fazer_o_treino_manual_v_rias_vezes_by_dia">You can do the Manual Training many times a day.</string>
     <string name="you_will_spent">You will spent %d</string>
@@ -344,9 +343,18 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
         <item>50</item>
         <item>100</item>
     </string-array>
+
     <string name="details">Details</string>
     <string name="section_team">TEAM</string>
     <string name="items_available">Items Available</string>
     <string name="chances_of_win">Chances of Win</string>
+    <string name="limit_of_attributes_training">WEEKLY LIMIT OF TRAINING</string>
+    <string name="next_ability_point">NEXT ABILITY POINT</string>
+    <string name="icon_bar">//</string>
+    <string name="ability_point_bar_description">When the Training Bar be filled, you will receive one point to distribute in your Attributes! But this will become a challenge for you!</string>
+    <string name="limit_of_traning_bar_description">All Ninjas can train your daily limit of training normally, for those who can\'t train the limit on the same day, can train on the next day and consecutively.</string>
+    <string name="you_earned_ability_points">You earned %d ability points</string>
+    <string name="problem">WARNING!</string>
+    <string name="you_do_not_have_chakra_for_this_training">You don\'t have enough Chakra and Stamina for this training.</string>
 
 </resources>

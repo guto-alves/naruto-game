@@ -35,9 +35,9 @@ public class PasswordChangeFragment extends Fragment implements SectionFragment,
 
         viewModel.setListener(this);
 
-        binding.msgLayout.msgTitleTextView.setText(R.string.be_advised);
-        binding.msgLayout.msgTextView.setText(R.string.be_advised_description);
-        StorageUtil.downloadProfileForMsg(getActivity(), binding.msgLayout.msgProfileImageView);
+        binding.msgLayout.titleTextView.setText(R.string.be_advised);
+        binding.msgLayout.descriptionTextView.setText(R.string.be_advised_description);
+        StorageUtil.downloadProfileForMsg(getActivity(), binding.msgLayout.profileImageView);
 
         FragmentUtil.setSectionTitle(getActivity(), R.string.section_change_password);
 
@@ -60,9 +60,9 @@ public class PasswordChangeFragment extends Fragment implements SectionFragment,
 
     @Override
     public void onSuccess() {
-        binding.passwordChangedMsgLayout.msgTitleTextView.setText(R.string.congratulations);
-        binding.passwordChangedMsgLayout.msgTextView.setText(R.string.password_changed);
-        StorageUtil.downloadProfileForMsg(getActivity(), binding.passwordChangedMsgLayout.msgProfileImageView);
+        binding.passwordChangedMsgLayout.titleTextView.setText(R.string.congratulations);
+        binding.passwordChangedMsgLayout.descriptionTextView.setText(R.string.password_changed);
+        StorageUtil.downloadProfileForMsg(getActivity(), binding.passwordChangedMsgLayout.profileImageView);
         binding.passwordChangedMsgLayout.msgConstraintLayout.setVisibility(View.VISIBLE);
     }
 

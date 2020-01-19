@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.AttributeItem;
+import com.gutotech.narutogame.data.model.PersonagemOn;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,26 +70,32 @@ public class DistributedPointsRecyclerAdapter extends RecyclerView.Adapter<Distr
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder viewHolder, final int i) {
+    public void onBindViewHolder(@NonNull MyViewHolder holder, final int i) {
         if (distributedAttributes != null) {
             final AttributeItem attribute = distributedAttributes.get(i);
 
-            viewHolder.nameTextView.setText(attribute.getAttribute().name);
-            viewHolder.iconImageView.setImageResource(attribute.getAttribute().icon);
-            viewHolder.totalTextView.setText(String.valueOf(attribute.getTotal()));
-            viewHolder.totalProgressBar.setMax(max);
-            viewHolder.totalProgressBar.setProgress(attribute.getTotal());
-            viewHolder.quantitySpinner.getSelectedItem();
+            holder.nameTextView.setText(attribute.getAttribute().name);
+            holder.iconImageView.setImageResource(attribute.getAttribute().icon);
+            holder.totalTextView.setText(String.valueOf(attribute.getTotal()));
+            holder.totalProgressBar.setMax(max);
+            holder.totalProgressBar.setProgress(attribute.getTotal());
+            holder.quantitySpinner.getSelectedItem();
 
-            viewHolder.trainButton.setOnClickListener(v -> {
+            holder.trainButton.setOnClickListener(v -> {
                 mListener.onTrainButtonClick(attribute);
             });
 
+//            if (PersonagemOn.character.getAttributes().get > 0) {
+//                holder.trainButton.setVisibility(View.VISIBLE);
+//            } else {
+//                holder.trainButton.setVisibility(View.GONE);
+//            }
+
             if (i % 2 == 0) {
-                viewHolder.bgConstraint.setBackgroundColor(mContext.getResources()
+                holder.bgConstraint.setBackgroundColor(mContext.getResources()
                         .getColor(R.color.colorItem1));
             } else {
-                viewHolder.bgConstraint.setBackgroundColor(mContext.getResources()
+                holder.bgConstraint.setBackgroundColor(mContext.getResources()
                         .getColor(R.color.colorItem2));
             }
         }

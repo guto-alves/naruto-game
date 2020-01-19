@@ -101,7 +101,8 @@ public class HomeFragment extends Fragment implements ResultListener, SectionFra
         newsAdapter = new NewsAdapter(getActivity());
         newsRecyclerView.setAdapter(newsAdapter);
 
-        newsRecyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getActivity(), newsRecyclerView, new RecyclerItemClickListener.OnItemClickListener() {
+        newsRecyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getActivity(),
+                newsRecyclerView, new RecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
 //                Bundle bundle = new Bundle();

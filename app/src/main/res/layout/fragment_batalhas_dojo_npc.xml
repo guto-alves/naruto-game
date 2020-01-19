@@ -114,7 +114,7 @@
                         android:layout_height="24dp"
                         android:layout_marginStart="8dp"
                         android:layout_marginLeft="8dp"
-                        android:background="@drawable/progressbar_atributo"
+                        android:background="@drawable/progressbar_exp_340"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />

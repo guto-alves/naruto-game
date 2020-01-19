@@ -1,8 +1,6 @@
 package com.gutotech.narutogame.data.model;
 
-import java.io.Serializable;
-
-public class CombatOverview implements Serializable {
+public class CombatOverview {
     private int winsNpc;
     private int winsDojoPvp;
     private int winsMapPvp;

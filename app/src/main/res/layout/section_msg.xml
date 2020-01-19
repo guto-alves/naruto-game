@@ -29,9 +29,9 @@
             app:layout_constraintTop_toTopOf="@+id/imageView242" />
 
         <ImageView
-            android:id="@+id/msgProfileImageView"
+            android:id="@+id/profileImageView"
             android:layout_width="120dp"
-            android:layout_height="210dp"
+            android:layout_height="0dp"
             android:scaleType="fitXY"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -67,19 +67,20 @@
             android:orientation="vertical"
             app:layout_constraintBottom_toTopOf="@+id/imageView222"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/msgProfileImageView"
+            app:layout_constraintStart_toEndOf="@+id/profileImageView"
             app:layout_constraintTop_toBottomOf="@+id/imageView212">
 
             <TextView
-                android:id="@+id/msgTitleTextView"
+                android:id="@+id/titleTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:layout_marginBottom="5dp"
                 android:textColor="#FFD274"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/msgTextView"
+                android:id="@+id/descriptionTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center|start"
@@ -87,7 +88,8 @@
                 android:paddingRight="3dp"
                 android:textColor="#D1D8F1"
                 android:textSize="12sp" />
-
         </LinearLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>

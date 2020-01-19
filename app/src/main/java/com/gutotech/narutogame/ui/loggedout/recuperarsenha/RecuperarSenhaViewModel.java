@@ -19,7 +19,7 @@ public class RecuperarSenhaViewModel extends ViewModel {
         this.mAuthListener = mAuthListener;
     }
 
-    public void recoverPassword() {
+    public void onRecoverPasswordButtonPressed() {
         mAuthRepository.sendPasswordResetEmail(emailAddress, mAuthListener);
     }
 }

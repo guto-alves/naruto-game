@@ -25,7 +25,7 @@
     <string name="Play">Jogar</string>
     <string name="forgot_password">Esqueceu a Senha?</string>
     <string name="ninjas_statistics">Estatísticas Ninjas</string>
-    <string name="if_you_do_not_remember_your_password">Se você não lembra mais a sua password, digite seu e-mail na qual fez o cadastro abaixo e clique em \"enviar\". Dentro de alguns instantes você receberá sua nova password em seu email</string>
+    <string name="if_you_do_not_remember_your_password">Se você não lembra mais a sua senha, digite seu email na qual fez o cadastro abaixo e clique em \"enviar\". Dentro de alguns instantes você receberá sua nova senha em seu email</string>
     <string name="type_your_account_email">Digite o email da sua conta</string>
     <string name="section_change_password">TROQUE SUA SENHA</string>
     <string name="secao_treinamento_de_jutsus">TREINAMENTO DE JUTSUS</string>
@@ -134,7 +134,6 @@
     <string name="messenger">Mensageiro</string>
     <string name="ninja_fidelity">Fidelidade Ninja</string>
     <string name="ninja_lucky">Sorte Ninja</string>
-    <string name="organization">Organização</string>
     <string name="team">Equipe</string>
     <string name="tasks">Taferas</string>
     <string name="summons">Invocações</string>
@@ -197,7 +196,7 @@
         segunda feira.  O treinamento de atributos é a chave de ter um bom character, portanto,
         jamais deixe de treina-lo!</string>
     <string name="attribute_training_title">ENTENDA O TREINAMENTO DE ATRIBUTOS</string>
-    <string name="training_complete">TREINAMENTO CONCLUÍDO</string>
+    <string name="training_completed">TREINAMENTO CONCLUÍDO</string>
     <string name="distributed_points">PONTOS DISTRIBUIDOS</string>
     <string name="manual_training">Treinamento Manual</string>
     <string name="quantity">Quantidade</string>
@@ -227,5 +226,16 @@
     <string name="section_team">EQUIPE</string>
     <string name="items_available">Itens Disponíveis</string>
     <string name="chances_of_win">Chances de Ganhar</string>
+    <string name="limit_of_attributes_training">LIMITE DE TREINAMENTO SEMANAL</string>
+    <string name="next_ability_point">PRÓXIMO PONTO DE HABILIDADE</string>
+    <string name="icon_bar">//</string>
+    <string name="ability_point_bar_description">Quando a barra de treinamento se completar, você receberá um ponto para treinar seus atributos! Porém seu desafio será cada vez mais dificil!</string>
+    <string name="limit_of_traning_bar_description">Todos os ninjas podem treinar o seu limite diário normalmente, para aqueles que não conseguirem treinar o limite no mesmo dia, podem treinar no dia seguinte e assim consecutivamente. O limite de treino diário, aumenta conforme sua graduação, um Jounin tem mais limite by dia que um Genin, por exemplo.</string>
+    <string name="button_graduate">Graduar</string>
+    <string name="button_filter">Filtrar</string>
+    <string name="section_battle_log">HISTÓRICO DE BATALHA</string>
+    <string name="you_earned_ability_points">Você ganhou %d em pontos de habilidade.</string>
+    <string name="you_do_not_have_chakra_for_this_training">Você não possui Chakra suficiente para esse treinamento.</string>
+    <string name="problem">PROBLEMA!</string>
 
 </resources>

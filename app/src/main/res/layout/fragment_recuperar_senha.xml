@@ -10,118 +10,120 @@
             type="com.gutotech.narutogame.ui.loggedout.recuperarsenha.RecuperarSenhaViewModel" />
     </data>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/layout_pagina_repeat"
+        android:fillViewport="true"
         tools:context=".ui.loggedout.recuperarsenha.RecuperarSenhaFragment">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/msgConstraint"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:layout_margin="8dp"
-            android:background="#1D140F"
-            tools:layout_editor_absoluteX="8dp">
+            android:layout_height="wrap_content"
+            android:background="@drawable/layout_pagina_repeat"
+            android:padding="16dp">
 
-            <ImageView
-                android:id="@+id/imageView24"
-                android:layout_width="wrap_content"
-                android:layout_height="39dp"
-                android:scaleType="center"
-                android:src="@drawable/layout_pagina_repeat"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/msgConstraint"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:background="#1D140F"
+                tools:layout_editor_absoluteX="8dp">
 
-            <ImageView
-                android:id="@+id/imageView21"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:scaleType="fitXY"
-                android:src="@drawable/layout_msg_topo"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/imageView24" />
+                <ImageView
+                    android:id="@+id/imageView24"
+                    android:layout_width="wrap_content"
+                    android:layout_height="39dp"
+                    android:scaleType="center"
+                    android:src="@drawable/layout_pagina_repeat"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/personagemMsg"
-                android:layout_width="120dp"
-                android:layout_height="260dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/layout_msg_1_1"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageView
-                android:id="@+id/imageView23"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:scaleType="fitXY"
-                android:src="@drawable/layout_msg_rodape2"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <ImageView
-                android:id="@+id/imageView22"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:scaleType="fitXY"
-                android:src="@drawable/layout_msg_rodape1"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView23"
-                app:layout_constraintEnd_toEndOf="@+id/imageView23"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/imageView23" />
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:gravity="center_vertical"
-                android:orientation="vertical"
-                app:layout_constraintBottom_toTopOf="@+id/imageView22"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/personagemMsg"
-                app:layout_constraintTop_toBottomOf="@+id/imageView21">
-
-                <TextView
-                    android:id="@+id/msgMensagem"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:gravity="center|start"
-                    android:paddingEnd="3dp"
-                    android:paddingRight="3dp"
-                    android:text="@string/if_you_do_not_remember_your_password"
-                    android:textColor="#D1D8F1"
-                    android:textSize="12sp" />
-
-                <EditText
-                    android:id="@+id/recuperarSenhaEmailEditText"
-                    style="@style/EditTextTheme"
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:hint="@string/type_your_account_email"
-                    android:inputType="textEmailAddress"
-                    android:text="@={viewModel.emailAddress}"
-                    android:textColorHint="@android:color/holo_orange_dark"
-                    android:textSize="14sp" />
-
-                <Button
-                    android:id="@+id/recuperarSenhaButton"
-                    style="@style/ButtonTheme"
+                <ImageView
+                    android:id="@+id/imageView21"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:onClick="@{() -> viewModel.recoverPassword()}"
-                    android:text="@string/recover_password"
-                    android:textColor="@android:color/white" />
+                    android:scaleType="fitXY"
+                    android:src="@drawable/layout_msg_topo"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/imageView24" />
 
-            </LinearLayout>
+                <ImageView
+                    android:id="@+id/personagemMsg"
+                    android:layout_width="120dp"
+                    android:layout_height="260dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/layout_msg_1_1"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <ImageView
+                    android:id="@+id/imageView23"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/layout_msg_rodape2"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent" />
 
-    </LinearLayout>
+                <ImageView
+                    android:id="@+id/imageView22"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/layout_msg_rodape1"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageView23"
+                    app:layout_constraintEnd_toEndOf="@+id/imageView23"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/imageView23" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toTopOf="@+id/imageView22"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/personagemMsg"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView21">
+
+                    <TextView
+                        android:id="@+id/msgMensagem"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:gravity="center|start"
+                        android:paddingEnd="3dp"
+                        android:paddingRight="3dp"
+                        android:text="@string/if_you_do_not_remember_your_password"
+                        android:textColor="#D1D8F1"
+                        android:textSize="12sp" />
+
+                    <EditText
+                        style="@style/EditTextTheme"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:hint="@string/type_your_account_email"
+                        android:inputType="textEmailAddress"
+                        android:text="@={viewModel.emailAddress}"
+                        android:textColorHint="@android:color/holo_orange_dark"
+                        android:textSize="14sp" />
+
+                    <Button
+                        style="@style/ButtonTheme"
+                        android:layout_width="wrap_content"
+                        android:onClick="@{() -> viewModel.onRecoverPasswordButtonPressed()}"
+                        android:text="@string/recover_password" />
+
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+    </ScrollView>
 </layout>

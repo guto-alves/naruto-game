@@ -21,6 +21,7 @@ public class Formulas implements Serializable {
     private int conviccao;
     private double esquiva;
     private int determinacao;
+    private int ninjaPower;
 
     public Formulas() {
     }
@@ -157,6 +158,14 @@ public class Formulas implements Serializable {
 
     public void setStaminaAtual(int staminaAtual) {
         this.staminaAtual = staminaAtual;
+    }
+
+    public int getNinjaPower() {
+        return ninjaPower;
+    }
+
+    public void setNinjaPower(int ninjaPower) {
+        this.ninjaPower = ninjaPower;
     }
 
     public List<AttributeItem> asList() {

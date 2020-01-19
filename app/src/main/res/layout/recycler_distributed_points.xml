@@ -22,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/nomeAtributoTextView"
+            android:id="@+id/nameTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/colorText"
@@ -58,7 +58,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:progressDrawable="@drawable/progressbar_atributo"
+        android:progressDrawable="@drawable/progressbar_exp_340"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline43"
         app:layout_constraintStart_toEndOf="@+id/iconImageView"
@@ -79,8 +79,6 @@
     <Button
         android:id="@+id/trainButton"
         style="@style/ButtonTheme"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="@string/train"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"

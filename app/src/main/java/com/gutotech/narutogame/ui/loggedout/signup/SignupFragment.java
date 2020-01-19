@@ -37,9 +37,9 @@ public class SignupFragment extends Fragment implements ResultListener, SectionF
 
         viewModel.setAuthListener(this);
 
-        binding.msgLayout.msgTitleTextView.setText(R.string.just_a_bit_now);
-        binding.msgLayout.msgTextView.setText(R.string.fullfill_the_form_below);
-        StorageUtil.downloadProfileForMsg(getActivity(), binding.msgLayout.msgProfileImageView);
+        binding.msgLayout.titleTextView.setText(R.string.just_a_bit_now);
+        binding.msgLayout.descriptionTextView.setText(R.string.fullfill_the_form_below);
+        StorageUtil.downloadProfileForMsg(getActivity(), binding.msgLayout.profileImageView);
 
         FragmentUtil.setSectionTitle(getActivity(), R.string.section_create_account);
 
@@ -57,9 +57,9 @@ public class SignupFragment extends Fragment implements ResultListener, SectionF
     public void onSuccess() {
         binding.formToSignupLinearLayout.setVisibility(View.GONE);
 
-        StorageUtil.downloadProfileForMsg(getActivity(), binding.accountCreatedMsgLayout.msgProfileImageView);
-        binding.accountCreatedMsgLayout.msgTitleTextView.setText(R.string.accont_created_successfuly);
-        binding.accountCreatedMsgLayout.msgTextView.setText(R.string.email_verification_sent);
+        StorageUtil.downloadProfileForMsg(getActivity(), binding.accountCreatedMsgLayout.profileImageView);
+        binding.accountCreatedMsgLayout.titleTextView.setText(R.string.accont_created_successfuly);
+        binding.accountCreatedMsgLayout.descriptionTextView.setText(R.string.email_verification_sent);
         binding.accountCreatedMsgLayout.msgConstraintLayout.setVisibility(View.VISIBLE);
 
         waitDialog.dismiss();
@@ -68,7 +68,7 @@ public class SignupFragment extends Fragment implements ResultListener, SectionF
     @Override
     public void onFailure(int resId) {
         waitDialog.dismiss();
-        Toasty.error(getActivity(), resId, Toasty.LENGTH_LONG).show();
+        Toasty.error(getContext(), resId, Toasty.LENGTH_LONG).show();
     }
 
     @Override

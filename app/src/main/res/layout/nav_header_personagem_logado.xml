@@ -153,7 +153,7 @@
                 android:layout_height="wrap_content"
                 android:text="LVL"
                 android:textColor="@color/colorText"
-                android:textSize="12dp" />
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/lvlAtualTextView"
@@ -174,7 +174,7 @@
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:progressDrawable="@drawable/progressbar_exp"
+                android:progressDrawable="@drawable/progressbar_topo_exp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.6"
@@ -205,7 +205,7 @@
                 android:layout_height="wrap_content"
                 android:text="LVL"
                 android:textColor="@color/colorText"
-                android:textSize="12dp" />
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/lvlProxTextView"
@@ -246,6 +246,7 @@
                 android:id="@+id/imageView37"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="3dp"
                 android:layout_marginRight="3dp"
                 app:srcCompat="@drawable/layout_icones_p_hp" />
 
@@ -268,7 +269,7 @@
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="match_parent"
                     android:layout_height="8dp"
-                    android:progressDrawable="@drawable/progressbar_vida" />
+                    android:progressDrawable="@drawable/progressbar_topo_health" />
             </LinearLayout>
 
         </LinearLayout>
@@ -304,7 +305,7 @@
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="match_parent"
                     android:layout_height="8dp"
-                    android:progressDrawable="@drawable/progressbar_chakra" />
+                    android:progressDrawable="@drawable/progressbar_topo_chakra" />
             </LinearLayout>
         </LinearLayout>
 
@@ -317,6 +318,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="3dp"
                 android:layout_marginRight="3dp"
                 app:srcCompat="@drawable/layout_icones_p_stamina" />
 
@@ -339,7 +341,7 @@
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="match_parent"
                     android:layout_height="8dp"
-                    android:progressDrawable="@drawable/progressbar_stamina" />
+                    android:progressDrawable="@drawable/progressbar_topo_stamina" />
             </LinearLayout>
 
         </LinearLayout>

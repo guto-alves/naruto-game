@@ -1,5 +1,6 @@
 package com.gutotech.narutogame.ui.playing.currentvillage;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -46,12 +47,15 @@ public class VillageMapFragment extends Fragment implements SectionFragment {
                 .get(VillageMapViewModel.class);
         binding.setViewModel(mViewModel);
 
-        VillageMapRecyclerViewAdapter adapter =
-                new VillageMapRecyclerViewAdapter(VillageMapViewModel.MAP_LENGTH);
+        VillageMapRecyclerViewAdapter adapter = new VillageMapRecyclerViewAdapter(getActivity(),
+                VillageMapViewModel.MAP_LENGTH, mViewModel);
 
         binding.villageMapRecyclerView.setAdapter(adapter);
 
         mViewModel.getCharactersOnTheMap().observe(this, adapter::setCharactersOnTheMapList);
+
+
+        mViewModel.getShowDialogEvent().observe(this, this::showDialog);
 
 //
 //        mapa.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -134,6 +138,13 @@ public class VillageMapFragment extends Fragment implements SectionFragment {
         return binding.getRoot();
     }
 
+    private void showDialog(String message) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setMessage(message);
+        builder.setPositiveButton("OK", null);
+        builder.create().show();
+    }
+
     private void singleClick(final View view, final int position) {
         boolean vazio = true;
 
@@ -141,7 +152,7 @@ public class VillageMapFragment extends Fragment implements SectionFragment {
 //            if (personagensNoMapa.get(i).getMapa_posicao() == position) {
 //                Character character = personagensNoMapa.get(i);
 //
-//                if (character.getNick().equals(PersonagemOn.character.getNick())) {
+//                if (character.getNick().equals(PersonagemOn.cha.getracterNick())) {
 //                    PopupMenu menu = new PopupMenu(getActivity(), view);
 //                    menu.getMenu().add("Você está aqui").setCheckable(false);
 //                    menu.show();
@@ -184,22 +195,6 @@ public class VillageMapFragment extends Fragment implements SectionFragment {
             menu.getMenu().add("Este local está vazio");
             menu.show();
         }
-    }
-
-    private void doubleClick(final int position) {
-//        characterOn.setMapa_posicao(position);
-//        DatabaseReference referenceEntrarNoMapa = FirebaseConfig.getDatabase().child("mapas")
-//                .child(characterOn.getVillage().name).child(characterOn.getNick());
-//        referenceEntrarNoMapa.setValue(characterOn);
-
-        /*for (int i = 0; i < personagensNoMapa.size(); i++) {
-            if (characterOn.getNick().equals(personagensNoMapa.get(i).getNick())) {
-                personagensNoMapa.remove(i);
-                mapaAdapter.notifyDataSetChanged();
-                Toast.makeText(getActivity(), "teste", Toast.LENGTH_SHORT).show();
-                break;
-            }
-        }*/
     }
 
     @Override

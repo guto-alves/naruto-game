@@ -21,6 +21,8 @@ public class Character extends BaseObservable implements Serializable {
     private int expUpar;
     private long ryous;
 
+    private Graduation graduation;
+
     private Attributes attributes;
 
     private Bag bolsa;
@@ -41,9 +43,6 @@ public class Character extends BaseObservable implements Serializable {
     // info gerais
 //    private String title;
 //    private List<String> titles;
-//
-//    private String graducao;
-//    private int idGraducao;
 //
 //    private int diasLogadosFidelidade;
 //    private boolean temRecompensaFidelidade;
@@ -66,10 +65,6 @@ public class Character extends BaseObservable implements Serializable {
 //
 //    private List<Jutsu> jutsus;
 //    private Jutsu jutsuSelecionado;
-
-    private int rankVila;
-    private int rankGeral;
-    private int posicao;
 
     public Character() {
     }
@@ -124,7 +119,7 @@ public class Character extends BaseObservable implements Serializable {
         notifyPropertyChanged(BR.village);
     }
 
-//    public List<String> getTitles() {
+    //    public List<String> getTitles() {
 //        return titles;
 //    }
 //
@@ -132,9 +127,13 @@ public class Character extends BaseObservable implements Serializable {
 //        this.titles = titles;
 //    }
 //
-//    public void atualizarAtributos() {
-//        atributos.atualizarFormula();
-//    }
+    public void updateFormulas() {
+        getAttributes().updateFormulas(getClasse(), getLevel());
+    }
+
+    public void full() {
+        getAttributes().getFormulas().full();
+    }
 
     public String getPlayerId() {
         return playerId;
@@ -153,14 +152,6 @@ public class Character extends BaseObservable implements Serializable {
         this.nick = nick;
         notifyPropertyChanged(BR.nick);
     }
-
-//    public String getGraducao() {
-//        return graducao;
-//    }
-//
-//    public void setGraducao(String graducao) {
-//        this.graducao = graducao;
-//    }
 
     @Bindable
     public long getRyous() {
@@ -221,14 +212,6 @@ public class Character extends BaseObservable implements Serializable {
 
     public void setScore(int score) {
         this.score = score;
-    }
-
-    public int getPosicao() {
-        return posicao;
-    }
-
-    public void setPosicao(int posicao) {
-        this.posicao = posicao;
     }
 
     public CombatOverview getCombatOverview() {
@@ -327,28 +310,19 @@ public class Character extends BaseObservable implements Serializable {
         this.lastLogin = lastLogin;
     }
 
-    public int getRankVila() {
-        return rankVila;
-    }
-
-    public void setRankVila(int rankVila) {
-        this.rankVila = rankVila;
-    }
-
-    public int getRankGeral() {
-        return rankGeral;
-    }
-
-    public void setRankGeral(int rankGeral) {
-        this.rankGeral = rankGeral;
-    }
-
-
     public int getMapPosition() {
         return mapPosition;
     }
 
     public void setMapPosition(int mapPosition) {
         this.mapPosition = mapPosition;
+    }
+
+    public Graduation getGraduation() {
+        return graduation;
+    }
+
+    public void setGraduation(Graduation graduation) {
+        this.graduation = graduation;
     }
 }

@@ -3,7 +3,6 @@ package com.gutotech.narutogame.data.model;
 public class ExtrasInformation {
     private int totalTraining;
     private int distributedPoints;
-    private int totalFreePoints;
     private int totalHoursPlayed;
 
     public ExtrasInformation() {
@@ -23,14 +22,6 @@ public class ExtrasInformation {
 
     public void setDistributedPoints(int distributedPoints) {
         this.distributedPoints = distributedPoints;
-    }
-
-    public int getTotalFreePoints() {
-        return totalFreePoints;
-    }
-
-    public void setTotalFreePoints(int totalFreePoints) {
-        this.totalFreePoints = totalFreePoints;
     }
 
     public int getTotalHoursPlayed() {

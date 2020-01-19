@@ -2,6 +2,7 @@ package com.gutotech.narutogame.ui.loggedout.recuperarsenha;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
@@ -22,15 +23,17 @@ import es.dmoral.toasty.Toasty;
 public class RecuperarSenhaFragment extends Fragment implements ResultListener, SectionFragment {
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        RecuperarSenhaViewModel viewModel = ViewModelProviders.of(this)
+                .get(RecuperarSenhaViewModel.class);
+
         FragmentRecuperarSenhaBinding binding = DataBindingUtil.inflate(inflater,
                 R.layout.fragment_recuperar_senha, container, false);
 
-        RecuperarSenhaViewModel viewModel = ViewModelProviders.of(this).get(RecuperarSenhaViewModel.class);
-        viewModel.setAuthListener(this);
-
         binding.setViewModel(viewModel);
+
+        viewModel.setAuthListener(this);
 
         FragmentUtil.setSectionTitle(getActivity(), R.string.section_i_forgot_my_password);
 

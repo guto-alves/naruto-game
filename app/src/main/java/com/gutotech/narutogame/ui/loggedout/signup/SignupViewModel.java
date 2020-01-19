@@ -52,6 +52,7 @@ public class SignupViewModel extends ViewModel {
                             player.setValue(new Player());
                             confirmPassword = "";
 
+                            mAuthRepository.signOut();
                             mAuthListener.onSuccess();
                         }
 
@@ -77,7 +78,7 @@ public class SignupViewModel extends ViewModel {
             mAuthListener.onFailure(R.string.password_field_requered);
             valid = false;
         } else if (TextUtils.isEmpty(confirmPassword)) {
-            mAuthListener.onFailure(R.string.invalid_email);
+            mAuthListener.onFailure(R.string.the_passwords_do_not_match);
             valid = false;
         } else if (!player.getValue().getPassword().equals(confirmPassword)) {
             mAuthListener.onFailure(R.string.different_passwords);
