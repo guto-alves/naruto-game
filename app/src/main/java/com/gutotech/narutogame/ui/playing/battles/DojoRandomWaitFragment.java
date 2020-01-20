@@ -18,7 +18,7 @@ import com.gutotech.narutogame.data.firebase.FirebaseConfig;
 import com.gutotech.narutogame.data.model.Character;
 import com.gutotech.narutogame.ui.playing.character.CharacterStatusFragment;
 import com.gutotech.narutogame.data.model.Oponente;
-import com.gutotech.narutogame.data.model.PersonagemOn;
+import com.gutotech.narutogame.data.model.CharOn;
 
 public class DojoRandomWaitFragment extends Fragment {
     private DatabaseReference procurarOponentesReference;
@@ -40,8 +40,8 @@ public class DojoRandomWaitFragment extends Fragment {
         // ENTRA NA FILA
         euNaFilaReference = FirebaseConfig.getDatabase()
                 .child("dojo_random_wait")
-                .child(PersonagemOn.character.getNick());
-        euNaFilaReference.setValue(PersonagemOn.character);
+                .child(CharOn.character.getNick());
+        euNaFilaReference.setValue(CharOn.character);
 
         verificarSeFuiPego();
 
@@ -130,7 +130,7 @@ public class DojoRandomWaitFragment extends Fragment {
         valueEventListenerFuiPego = euNaFilaReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                PersonagemOn.character = dataSnapshot.getValue(Character.class);
+                CharOn.character = dataSnapshot.getValue(Character.class);
 
 //                if (!PersonagemOn.character.getIdBatalhaAtual().equals("")) {
 //                    euNaFilaReference.removeEventListener(valueEventListenerFuiPego);

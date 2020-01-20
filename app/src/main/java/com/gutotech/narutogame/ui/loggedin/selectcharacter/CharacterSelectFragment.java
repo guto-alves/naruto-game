@@ -16,16 +16,16 @@ import android.widget.Toast;
 
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.Character;
-import com.gutotech.narutogame.data.model.PersonagemOn;
 import com.gutotech.narutogame.databinding.FragmentPersonagemSelecionarBinding;
 import com.gutotech.narutogame.ui.ResultListener;
 import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.adapter.CharacterSelectRecyclerViewAdapter;
 import com.gutotech.narutogame.ui.loggedin.newcharacteer.CharacterCreateFragment;
-import com.gutotech.narutogame.ui.playing.PersonagemLogadoActivity;
+import com.gutotech.narutogame.ui.playing.PlayingActivity;
 import com.gutotech.narutogame.utils.FragmentUtil;
 
-public class CharacterSelectFragment extends Fragment implements SectionFragment, ResultListener, CharacterSelectRecyclerViewAdapter.CharacterSelecetedListener {
+public class CharacterSelectFragment extends Fragment implements SectionFragment, ResultListener,
+        CharacterSelectRecyclerViewAdapter.CharacterSelecetedListener {
     private CharacterSelectViewModel viewModel;
 
     private FragmentPersonagemSelecionarBinding binding;
@@ -35,11 +35,11 @@ public class CharacterSelectFragment extends Fragment implements SectionFragment
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        viewModel = ViewModelProviders.of(getActivity()).get(CharacterSelectViewModel.class);
+        viewModel = ViewModelProviders.of(this).get(CharacterSelectViewModel.class);
         viewModel.setListener(this);
 
-        binding = DataBindingUtil.inflate(
-                inflater, R.layout.fragment_personagem_selecionar, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_personagem_selecionar,
+                container, false);
 
         binding.setViewModel(viewModel);
 
@@ -55,28 +55,22 @@ public class CharacterSelectFragment extends Fragment implements SectionFragment
         charactersAdapter = new CharacterSelectRecyclerViewAdapter(this);
         binding.charactersRecyclerView.setAdapter(charactersAdapter);
 
-        viewModel.getEvent().observe(this, s -> {
+        viewModel.getRemoveCharacterEvent().observe(this, onClickListener -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-            builder.setTitle("Naruto Game diz:");
-            builder.setMessage("Você quer realmente deletar esse ninja?");
-            builder.setNegativeButton("Cancelar", null);
-            builder.setPositiveButton("OK", (dialog, which) -> {
-                if (PersonagemOn.character == null) {
-//                    mRepository.deleteCharacter(mCharacterSelected.getValue().getNick());
-                } else {
-//                    if (mCharacterSelected.getValue().getNick().equals(PersonagemOn.character.getNick())) {
-//                        AlertDialog.Builder builder1 = new AlertDialog.Builder(getApplication());
-//                        builder1.setTitle("Aviso!");
-//                        builder1.setMessage("Você não pode remover esse character estando logado nele!");
-//                        builder1.setPositiveButton("Fechar", null);
-//                        builder1.create().show();
-//                    } else {
-//                        mRepository.deleteCharacter(mCharacterSelected.getValue().getNick());
-//                    }
-                }
-            });
+            builder.setTitle(R.string.naruto_game_says);
+            builder.setMessage(R.string.want_to_delete_this_ninja);
+            builder.setNegativeButton(R.string.button_cancel, null);
+            builder.setPositiveButton("OK", onClickListener);
             builder.create();
             builder.show();
+        });
+
+        viewModel.getShowRemovingErrorDialog().observe(this, aVoid -> {
+            AlertDialog.Builder builder1 = new AlertDialog.Builder(getContext());
+            builder1.setTitle(R.string.warning);
+            builder1.setMessage(R.string.remove_character_while_logged_in);
+            builder1.setPositiveButton(R.string.close, null);
+            builder1.create().show();
         });
 
         FragmentUtil.setSectionTitle(getActivity(), R.string.section_select_your_character);
@@ -95,7 +89,7 @@ public class CharacterSelectFragment extends Fragment implements SectionFragment
 
     @Override
     public void onSuccess() {
-        getActivity().startActivity(new Intent(getActivity(), PersonagemLogadoActivity.class));
+        startActivity(new Intent(getActivity(), PlayingActivity.class));
         getActivity().finish();
     }
 

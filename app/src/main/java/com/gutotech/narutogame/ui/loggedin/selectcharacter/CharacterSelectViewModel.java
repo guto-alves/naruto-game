@@ -1,12 +1,13 @@
 package com.gutotech.narutogame.ui.loggedin.selectcharacter;
 
+import android.content.DialogInterface;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.Character;
-import com.gutotech.narutogame.data.model.PersonagemOn;
-import com.gutotech.narutogame.data.repository.AuthRepository;
+import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.repository.CharacterRepository;
 import com.gutotech.narutogame.ui.ResultListener;
 import com.gutotech.narutogame.utils.SingleLiveEvent;
@@ -19,16 +20,18 @@ public class CharacterSelectViewModel extends ViewModel {
     private CharacterRepository mRepository;
 
     private ResultListener mListener;
-    private SingleLiveEvent<String> event = new SingleLiveEvent<>();
+
+    private SingleLiveEvent<DialogInterface.OnClickListener> showQuestionDialog =
+            new SingleLiveEvent<>();
+
+    private SingleLiveEvent<Void> showErrorDialog = new SingleLiveEvent<>();
 
     public CharacterSelectViewModel() {
-        mCharacterSelected = new Character(AuthRepository.getInstance().getUid());
-
         mRepository = CharacterRepository.getInstance();
     }
 
     public LiveData<List<Character>> getCharactersList() {
-        return mRepository.getAllMyCharacters();
+        return mRepository.getMyCharacters();
     }
 
     public Character getCharacterSelected() {
@@ -39,8 +42,12 @@ public class CharacterSelectViewModel extends ViewModel {
         this.mCharacterSelected = characterSelected;
     }
 
-    public LiveData<String> getEvent() {
-        return event;
+    public SingleLiveEvent<DialogInterface.OnClickListener> getRemoveCharacterEvent() {
+        return showQuestionDialog;
+    }
+
+    public SingleLiveEvent<Void> getShowRemovingErrorDialog() {
+        return showErrorDialog;
     }
 
     public void setListener(ResultListener listener) {
@@ -49,17 +56,30 @@ public class CharacterSelectViewModel extends ViewModel {
 
     public void onPlayButtonPressed() {
         if (mCharacterSelected != null) {
-            PersonagemOn.character = mCharacterSelected;
+            CharOn.character = mCharacterSelected;
             mListener.onSuccess();
         } else {
             mListener.onFailure(R.string.no_characters_selected);
         }
     }
 
-    public void onRemoveButtonPressed() {
+    public void onRemoveCharacterButtonPressed() {
         if (mCharacterSelected != null) {
-            event.call();
-            mRepository.deleteCharacter(mCharacterSelected.getNick());
+            showQuestionDialog.setValue((dialog, which) -> {
+                if (CharOn.character == null) {
+                    deleteCharacterSelected();
+                } else {
+                    if (getCharacterSelected().getNick().equals(CharOn.character.getNick())) {
+                        showErrorDialog.call();
+                    } else {
+                        deleteCharacterSelected();
+                    }
+                }
+            });
         }
+    }
+
+    private void deleteCharacterSelected() {
+        mRepository.deleteCharacter(mCharacterSelected.getNick());
     }
 }

@@ -8,6 +8,14 @@ public class ExtrasInformation {
     public ExtrasInformation() {
     }
 
+    public void incrementTotalTraining(int training) {
+        setTotalTraining(getTotalTraining() + training);
+    }
+
+    public void incrementDistributedPoints() {
+        setDistributedPoints(getDistributedPoints() + 1);
+    }
+
     public int getTotalTraining() {
         return totalTraining;
     }

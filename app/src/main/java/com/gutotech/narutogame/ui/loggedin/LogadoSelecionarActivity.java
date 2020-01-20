@@ -42,7 +42,7 @@ public class LogadoSelecionarActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_logado_selecionar);
+        setContentView(R.layout.activity_logged_in);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("");

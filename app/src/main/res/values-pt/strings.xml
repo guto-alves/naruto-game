@@ -235,7 +235,32 @@
     <string name="button_filter">Filtrar</string>
     <string name="section_battle_log">HISTÓRICO DE BATALHA</string>
     <string name="you_earned_ability_points">Você ganhou %d em pontos de habilidade.</string>
-    <string name="you_do_not_have_chakra_for_this_training">Você não possui Chakra suficiente para esse treinamento.</string>
+    <string name="you_dont_have_chakra_for_this_training">Você não possui Chakra suficiente para esse treinamento.</string>
     <string name="problem">PROBLEMA!</string>
+    <string name="label_title">Title:</string>
+    <string name="label_class">Classe:</string>
+    <string name="label_number_of_days_played">Qtd. dias jogados:</string>
+    <string name="label_ranking_vila">Ranking (Vila):</string>
+    <string name="label_ranking_general">Ranking (Geral):</string>
+    <string name="label_score">Score:</string>
+    <string name="label_team">Equipe:</string>
+    <string name="none">Nenhum(a)</string>
+    <string name="ramen">Ramen</string>
+    <string name="scroll">Pergaminho</string>
+    <string name="ranged_weapons">Armas de longo alcance</string>
+    <string name="bag_item_quantity">x %d</string>
+    <string name="item">Item</string>
+    <string name="section_change_image">TROCAR IMAGEM</string>
+    <string name="monday">Segunda</string>
+    <string name="want_to_delete_this_ninja">Você quer realmente deletar esse ninja?</string>
+    <string name="button_cancel">Cancelar</string>
+    <string name="remove_character_while_logged_in">Você não pode remover esse character estando logado nele!</string>
+    <string name="close">Fechar</string>
+    <string name="sender">%s:</string>
+
+    <string-array name="chat_channel_array">
+        <item>Vila</item>
+        <item>Mundo</item>
+    </string-array>
 
 </resources>

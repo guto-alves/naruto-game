@@ -17,10 +17,10 @@ import java.util.List;
 	Incremento de Crítico	1% de Incremento de Crítico	    (Level / 4)
  */
 public class Attributes {
-    private int traningPoints;
+    private int dailyTrainingPoints;
 
-    private int nextAbilityPoint;
-    private int currentAbiliity;
+    private int totalTrainingPointsForNextAbilityPoint;
+    private int trainingPoints;
 
     private int totalFreePoints;
 
@@ -120,6 +120,29 @@ public class Attributes {
                 (getAgility() + getSeal()) * 100);
     }
 
+    public void incrementDailyTraningPoints(int trainingPointsEarned) {
+        int newTotalDailyTrainingPoints = trainingPointsEarned + getDailyTrainingPoints();
+
+        if (newTotalDailyTrainingPoints > CharOn.character.getGraduation().dailyTrainingLimit) {
+            newTotalDailyTrainingPoints = CharOn.character.getGraduation().dailyTrainingLimit;
+        }
+
+        setDailyTrainingPoints(newTotalDailyTrainingPoints);
+    }
+
+    public void incrementTraningPoints(int trainingPointsEarned) {
+        int newTotalTrainingPoints = getTrainingPoints() + trainingPointsEarned;
+
+        if (newTotalTrainingPoints >= totalTrainingPointsForNextAbilityPoint) {
+            newTotalTrainingPoints = totalTrainingPointsForNextAbilityPoint - newTotalTrainingPoints;
+
+            totalTrainingPointsForNextAbilityPoint += 150;
+            totalFreePoints++;
+        }
+
+        setTrainingPoints(newTotalTrainingPoints);
+    }
+
     public int getTaijutsu() {
         return taijutsu;
     }
@@ -208,32 +231,28 @@ public class Attributes {
         this.formulas = formulas;
     }
 
-    public int getTraningPoints() {
-        return traningPoints;
+    public int getDailyTrainingPoints() {
+        return dailyTrainingPoints;
     }
 
-    public void setTraningPoints(int traningPoints) {
-        this.traningPoints = traningPoints;
+    public void setDailyTrainingPoints(int dailyTrainingPoints) {
+        this.dailyTrainingPoints = dailyTrainingPoints;
     }
 
-    public void addTraningPoints(int traningPoints) {
-        setTraningPoints(getTraningPoints() + traningPoints);
+    public int getTotalTrainingPointsForNextAbilityPoint() {
+        return totalTrainingPointsForNextAbilityPoint;
     }
 
-    public int getNextAbilityPoint() {
-        return nextAbilityPoint;
+    public void setTotalTrainingPointsForNextAbilityPoint(int totalTrainingPointsForNextAbilityPoint) {
+        this.totalTrainingPointsForNextAbilityPoint = totalTrainingPointsForNextAbilityPoint;
     }
 
-    public void setNextAbilityPoint(int nextAbilityPoint) {
-        this.nextAbilityPoint = nextAbilityPoint;
+    public int getTrainingPoints() {
+        return trainingPoints;
     }
 
-    public int getCurrentAbiliity() {
-        return currentAbiliity;
-    }
-
-    public void setCurrentAbiliity(int currentAbiliity) {
-        this.currentAbiliity = currentAbiliity;
+    public void setTrainingPoints(int trainingPoints) {
+        this.trainingPoints = trainingPoints;
     }
 
     public int getTotalFreePoints() {

@@ -1,5 +1,6 @@
 package com.gutotech.narutogame.ui.playing.character;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -7,10 +8,11 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.databinding.FragmentNinjaLuckyBinding;
@@ -18,6 +20,9 @@ import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.adapter.LotteryItemsRecyclerAdapter;
 import com.gutotech.narutogame.utils.FragmentUtil;
 
+import java.security.SecureRandom;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -42,58 +47,80 @@ public class NinjaLuckyFragment extends Fragment implements SectionFragment {
 
         mViewModel.getLotteryItems().observe(this, adapter::setLotteryItems);
 
-        mViewModel.getStartAnimationEvent().observe(this, i -> startAnimation());
-
-        mViewModel.getShowPremiumEvent().observe(this, premiun -> {
-            mBinding.premiumTextView.setText(premiun);
+        mViewModel.getStartAnimationEvent().observe(this, i -> {
+            startAnimation();
         });
 
+        mViewModel.getShowPremiumEvent().observe(this, premiun ->
+                mBinding.premiumTextView.setText(premiun));
+
         FragmentUtil.setSectionTitle(getActivity(), R.string.section_ninja_lucky);
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date());
+
+        Toast.makeText(getActivity(), "" + calendar.get(Calendar.DAY_OF_WEEK), Toast.LENGTH_LONG).show();
 
         return mBinding.getRoot();
     }
 
-    private int i;
-
     public void startAnimation() {
-        // A cada 112 começa a mostrar outro personagem
-        final int initialScroll = -1345;
-        final int finalScroll = 1330;
-
-        mBinding.slot1ImageView.setScrollY(initialScroll);
-        mBinding.slot2ImageView.setScrollY(initialScroll);
-        mBinding.slot3ImageView.setScrollY(initialScroll);
-        mBinding.slot4ImageView.setScrollY(initialScroll);
-
         ExecutorService executorService = Executors.newCachedThreadPool();
-        executorService.execute(() -> {
-            for (i = initialScroll; i < finalScroll; i++) {
+        new AnimationTask(mBinding.slot1ImageView).executeOnExecutor(executorService);
+        new AnimationTask(mBinding.slot2ImageView).executeOnExecutor(executorService);
+        new AnimationTask(mBinding.slot3ImageView).executeOnExecutor(executorService);
+        new AnimationTask(mBinding.slot4ImageView).executeOnExecutor(executorService);
+    }
+
+    private int animationEndCount;
+
+    private class AnimationTask extends AsyncTask<Void, Integer, Void> {
+        private final SecureRandom random = new SecureRandom();
+        final int INITIAL_SCROLL = -1333;
+        final int FINAL_SCROLL = 1333;
+
+        private ImageView slotImageView;
+
+        public AnimationTask(ImageView slotImageView) {
+            this.slotImageView = slotImageView;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            animationEndCount = 0;
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            int n = random.nextInt(22) + 1;
+
+            int totalScroll = INITIAL_SCROLL + 115 * n;
+
+            for (int i = INITIAL_SCROLL + 1; i < totalScroll; i++) {
+                publishProgress(i);
+
                 try {
                     Thread.sleep(3);
-
-                    mBinding.slot1ImageView.post(() -> {
-                        mBinding.slot1ImageView.setScrollY(i);
-                        Log.i("NinjaLucky", "scrollY = " + i);
-                    });
-
-                    mBinding.slot2ImageView.post(() -> {
-                        mBinding.slot2ImageView.setScrollY(i);
-                    });
-
-                    mBinding.slot3ImageView.post(() -> {
-                        mBinding.slot3ImageView.setScrollY(i);
-                    });
-
-                    mBinding.slot4ImageView.post(() -> {
-                        mBinding.slot4ImageView.setScrollY(i);
-                        if (i == finalScroll - 1)
-                            mViewModel.onAnimationEnd();
-                    });
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                    Thread.currentThread().interrupt();
                 }
             }
-        });
+
+            return null;
+        }
+
+        @Override
+        protected void onProgressUpdate(Integer... values) {
+            slotImageView.setScrollY(values[0]);
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            if (++animationEndCount == 4) {
+                mViewModel.onAnimationEnd();
+            }
+        }
     }
 
     @Override

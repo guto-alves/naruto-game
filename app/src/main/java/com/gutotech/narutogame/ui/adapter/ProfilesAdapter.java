@@ -11,7 +11,7 @@ import com.bumptech.glide.Glide;
 import com.google.firebase.storage.StorageReference;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.firebase.FirebaseConfig;
-import com.gutotech.narutogame.data.model.PersonagemOn;
+import com.gutotech.narutogame.data.model.CharOn;
 
 public class ProfilesAdapter extends BaseAdapter {
     private int tamanho;
@@ -49,7 +49,7 @@ public class ProfilesAdapter extends BaseAdapter {
         StorageReference imagemRef = FirebaseConfig.getStorage()
                 .child("images")
                 .child("profile")
-                .child(String.valueOf(PersonagemOn.character.getNinja().getId()))
+                .child(String.valueOf(CharOn.character.getNinja().getId()))
                 .child((position + 1) + ".png");
 
         Glide.with(context)

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
@@ -21,16 +20,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/layout_comidas_nissin" />
+        app:srcCompat="@drawable/layout_comidas_nissin"
+        android:contentDescription="@string/item" />
 
     <TextView
-        android:id="@+id/quantidadeTextView"
+        android:id="@+id/quantityTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="#413F3F"
-        android:text="x5"
+        android:padding="1dp"
+        android:text="@string/bag_item_quantity"
         android:textColor="@android:color/white"
         android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView44"
-        app:layout_constraintEnd_toEndOf="@+id/imageView44" />
+        app:layout_constraintBottom_toBottomOf="@+id/itemImageView"
+        app:layout_constraintEnd_toEndOf="@+id/itemImageView" />
 </androidx.constraintlayout.widget.ConstraintLayout>

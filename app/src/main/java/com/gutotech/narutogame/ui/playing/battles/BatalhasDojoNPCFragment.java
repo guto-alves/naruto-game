@@ -23,7 +23,7 @@ import com.gutotech.narutogame.data.firebase.FirebaseConfig;
 import com.gutotech.narutogame.data.model.Character;
 import com.gutotech.narutogame.utils.StorageUtil;
 import com.gutotech.narutogame.data.model.NPC;
-import com.gutotech.narutogame.data.model.PersonagemOn;
+import com.gutotech.narutogame.data.model.CharOn;
 
 public class BatalhasDojoNPCFragment extends Fragment {
     private final int MAX_NPC_DIARIO = 5;
@@ -46,15 +46,15 @@ public class BatalhasDojoNPCFragment extends Fragment {
 
         // Confjgura msg
         ImageView imagemMsg = view.findViewById(R.id.personagemMsg);
-        StorageUtil.downloadProfileForMsg(getActivity(), imagemMsg, PersonagemOn.character.getVillage().id);
+        StorageUtil.downloadProfileForMsg(getActivity(), imagemMsg, CharOn.character.getVillage().id);
 
         ProgressBar combatesNPCDiarioProgressBar = view.findViewById(R.id.combatesNPCDiarioProgressBar);
         combatesNPCDiarioProgressBar.setMax(MAX_NPC_DIARIO);
-        combatesNPCDiarioProgressBar.setProgress(PersonagemOn.character.getCombatesNPCDiarios());
+        combatesNPCDiarioProgressBar.setProgress(CharOn.character.getCombatesNPCDiarios());
         TextView combatesNPCDiarioTextView = view.findViewById(R.id.combatesNPCDiarioTextView);
-        combatesNPCDiarioTextView.setText(String.format("%d de %d Combates NPC Diários", PersonagemOn.character.getCombatesNPCDiarios(), MAX_NPC_DIARIO));
+        combatesNPCDiarioTextView.setText(String.format("%d de %d Combates NPC Diários", CharOn.character.getCombatesNPCDiarios(), MAX_NPC_DIARIO));
 
-        if (PersonagemOn.character.getCombatesNPCDiarios() < MAX_NPC_DIARIO) {
+        if (CharOn.character.getCombatesNPCDiarios() < MAX_NPC_DIARIO) {
 //            Formulas formulas = PersonagemOn.character.getAtributos().getFormulas();
 //
 //            statusDojoNPC = view.findViewById(R.id.statusDojoNPCTextView);
@@ -99,7 +99,7 @@ public class BatalhasDojoNPCFragment extends Fragment {
     private void recuperarPersonagem() {
         final DatabaseReference reference = FirebaseConfig.getDatabase()
                 .child("character")
-                .child(PersonagemOn.character.getNick());
+                .child(CharOn.character.getNick());
 
         valueEventListener = reference.addValueEventListener(new ValueEventListener() {
             @Override

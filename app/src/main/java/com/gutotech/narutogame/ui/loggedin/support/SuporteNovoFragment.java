@@ -180,10 +180,10 @@ public class SuporteNovoFragment extends Fragment {
                 if (validarCampos(titulo, data, descricao)) {
                     ticket.setTitulo(titulo);
                     ticket.setDataOcorrido(data);
-                    ticket.setDataCriacao(DateCustom.getData());
-                    ticket.setDataAtualizacao(DateCustom.getData());
+                    ticket.setDataCriacao(DateCustom.getDate());
+                    ticket.setDataAtualizacao(DateCustom.getDate());
 
-                    String horario = DateCustom.getHorario();
+                    String horario = DateCustom.getTime();
                     ticket.setHoraCriacao(horario);
                     ticket.setHoraAtualizacao(horario);
 

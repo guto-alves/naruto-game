@@ -123,32 +123,8 @@ public class CharacterCreateViewModel extends ViewModel implements ChooseNinjaRe
     }
 
 //    private void salvarPersonagem(String nick)
-//        character.setGraducao("Estudante");
-//        character.setAtributos(atributos);
-//        character.setExpUpar(1200);
-//        character.setScore(1000)
-//        character.setMapa_posicao(-1);
 //        character.setDiasLogadosFidelidade(1);
 //        character.setTemRecompensaFidelidade(true);
-//
-//        List<Atributo> atributosDistribuidos = new ArrayList<>();
-//        atributosDistribuidos.add(new Atributo(Atributo.TAI, R.drawable.layout_icones_ene, 0));
-//        atributosDistribuidos.add(new Atributo(t_Atributo.BUK, R.drawable.layouicones_ken, 0));
-//        atributosDistribuidos.add(new Atributo(Atributo.NIN, R.drawable.layout_icones_nin, 0));
-//        atributosDistribuidos.add(new Atributo(Atributo.GEN, R.drawable.layout_icones_gen, 0));
-//        atributosDistribuidos.add(new Atributo(Atributo.SELO, R.drawable.layout_icones_conhe, 0));
-//        atributosDistribuidos.add(new Atributo(Atributo.AGI, R.drawable.layout_icones_agi, 0));
-//        atributosDistribuidos.add(new Atributo(Atributo.FOR, R.drawable.layout_icones_forc, 0));
-//        atributosDistribuidos.add(new Atributo(Atributo.INTE, R.drawable.layout_icones_inte, 0));
-//        atributosDistribuidos.add(new Atributo(Atributo.ENER, R.drawable.layout_icones_ene, 0, 0));
-//        character.setAtributosDistribuitos(atributosDistribuidos);));
-////        atributosDistribuidos.add(new Atributo(Atributo.RES, R.drawable.layout_icones_defense
-//
-//        PersonagemOn.character = character;
-//        character.atualizarAtributos();
-//        character.getAtributos().getFormulas().setCurrentHealth(character.getAtributos().getFormulas().getHealth());
-//        character.getAtributos().getFormulas().setChakraAtual(character.getAtributos().getFormulas().getChakra());
-//        character.getAtributos().getFormulas().setStaminaAtual(character.getAtributos().getFormulas().getStamina());
 //
 //        List<Jutsu> jutsus = new ArrayList<>();
 //        if (character.getClasse().equals(Classe.NIN) || character.getClasse().equals(Classe.GEN)) {
@@ -170,9 +146,6 @@ public class CharacterCreateViewModel extends ViewModel implements ChooseNinjaRe
 //                "Super macarrão reforçado para uso nos intervalos das tarefas ninjas",
 //                25, ItemShop.TipoPgto.RYOUS, 5, 0, 1, 100));
 //        bolsa.setRamensList(ramens);
-//        character.setBolsa(bolsa);
-//
-//        character.setOnline(false);
-//        character.salvar();
+//        character.setBag(bolsa);
 //    }
 }

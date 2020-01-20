@@ -1,6 +1,8 @@
 package com.gutotech.narutogame.data.repository;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -12,15 +14,16 @@ import com.gutotech.narutogame.data.model.Message;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MessageRepository {
-    private static MessageRepository sInstance;
+public class ChatRepository {
+    private static ChatRepository sInstance;
 
-    private MessageRepository() {
+    private ChatRepository() {
     }
 
-    public static MessageRepository getsInstance() {
-        if (sInstance == null)
-            sInstance = new MessageRepository();
+    public static ChatRepository getInstance() {
+        if (sInstance == null) {
+            sInstance = new ChatRepository();
+        }
         return sInstance;
     }
 
@@ -34,32 +37,42 @@ public class MessageRepository {
     }
 
     private DatabaseReference messageRef;
-    private ValueEventListener valueEventListenerMensagens;
+    private ValueEventListener valueEventListener;
 
-    private void getAllMessagens(String channel) {
+    public MutableLiveData<List<Message>> getMessages(String channel) {
+        MutableLiveData<List<Message>> data = new MutableLiveData<>();
+
         List<Message> messageList = new ArrayList<>();
+
+        removeEventListener();
 
         messageRef = FirebaseConfig.getDatabase()
                 .child("chats")
                 .child(channel);
 
-        valueEventListenerMensagens = messageRef.addValueEventListener(new ValueEventListener() {
+        valueEventListener = messageRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 messageList.clear();
 
-                for (DataSnapshot data : dataSnapshot.getChildren())
+                for (DataSnapshot data : dataSnapshot.getChildren()) {
                     messageList.add(data.getValue(Message.class));
+                }
 
+                data.postValue(messageList);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
+
+        return data;
     }
 
-    public void close() {
-        messageRef.removeEventListener(valueEventListenerMensagens);
+    public void removeEventListener() {
+        if (valueEventListener != null) {
+            messageRef.removeEventListener(valueEventListener);
+        }
     }
 }

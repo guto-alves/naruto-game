@@ -14,7 +14,7 @@ import com.gutotech.narutogame.data.model.MissaoDeTempo;
 import com.gutotech.narutogame.ui.MyListener;
 import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.adapter.MissaoTempoAdapter;
-import com.gutotech.narutogame.data.model.PersonagemOn;
+import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.utils.FragmentUtil;
 
 import java.util.ArrayList;
@@ -100,7 +100,7 @@ public class TasksFragment extends Fragment implements MyListener, SectionFragme
     public void callback(int idMissao) {
 //        PersonagemOn.character.setEmMissao(true);
 //        PersonagemOn.character.setMissaoDeTempo(tarefas.get(idMissao));
-        PersonagemOn.character.salvar();
+        CharOn.character.salvar();
         changeFragment(new MissoesEsperaFragment());
     }
 

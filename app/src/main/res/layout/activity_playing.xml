@@ -1,129 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/drawer_layout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    tools:openDrawer="start">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <include
-        layout="@layout/app_bar"
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.gutotech.narutogame.ui.playing.PlayingViewModel" />
+    </data>
+
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/drawerLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-    <com.google.android.material.navigation.NavigationView
-        android:id="@+id/nav_view"
-        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_gravity="start"
         android:fitsSystemWindows="true"
-        app:headerLayout="@layout/nav_header_personagem_logado">
+        tools:openDrawer="start">
 
-        <ScrollView
+        <include
+            layout="@layout/app_bar"
             android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/navView"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/nav_header_height"
-            android:background="@drawable/layout_menu_repete"
-            android:fillViewport="true">
+            android:layout_gravity="start"
+            android:fitsSystemWindows="true"
+            app:headerLayout="@layout/nav_header_personagem_logado">
 
-            <LinearLayout
+            <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="vertical">
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/nav_header_height"
+                android:background="@drawable/layout_menu_repete"
+                android:fillViewport="true">
 
-                <!-- PROFILE -->
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
                     android:gravity="center"
                     android:orientation="vertical">
 
-                    <ImageView
-                        android:id="@+id/profilePersonagemOnImageView"
-                        android:layout_width="226dp"
-                        android:layout_height="241dp" />
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
+                    <!-- Character info -->
+                    <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-
-                        <ImageView
-                            android:id="@+id/imageView8"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="8dp"
-                            android:layout_marginRight="8dp"
-                            android:src="@drawable/layout_bg_profile"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <TextView
-                            android:id="@+id/nickPersonagemOnTextView"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="8dp"
-                            android:text="......"
-                            android:textColor="#C6DDE6"
-                            android:textStyle="bold"
-                            app:layout_constraintBottom_toBottomOf="@+id/imageView8"
-                            app:layout_constraintEnd_toEndOf="@+id/imageView8"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="@+id/imageView8" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="end"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:id="@+id/bolsaImageView"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/layout_topo_logado_icones_bag2" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <Button
-                    android:id="@+id/trocarImagemButton"
-                    style="@style/ButtonTheme"
-                    android:layout_width="140dp"
-                    android:text="@string/button_change_image" />
-
-                <!-- INFORMAÇÕES SOBRE O PERSONAGEM-->
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
+                        android:layout_marginTop="5dp"
                         android:orientation="vertical">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Título:"
-                            android:textColor="@color/colorPrimaryDark"
-                            android:textStyle="bold" />
+                        <ImageView
+                            android:id="@+id/profileImageView"
+                            android:layout_width="226dp"
+                            android:layout_height="241dp"
+                            android:src="@drawable/layout_profile_7" />
 
-                        <Spinner
-                            android:id="@+id/titulosSpinner"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@android:color/white" />
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:id="@+id/bagImageView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="35dp"
+                                android:src="@drawable/layout_topo_logado_icones_bag2"
+                                app:layout_constraintEnd_toEndOf="@+id/imageView8"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <ImageView
+                                android:id="@+id/imageView8"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="8dp"
+                                android:layout_marginRight="8dp"
+                                android:src="@drawable/layout_bg_profile"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/nickTextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="8dp"
+                                android:text="......"
+                                android:textColor="#C6DDE6"
+                                android:textStyle="bold"
+                                app:layout_constraintBottom_toBottomOf="@+id/imageView8"
+                                app:layout_constraintEnd_toEndOf="@+id/imageView8"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="@+id/imageView8" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
                     </LinearLayout>
+
+                    <Button
+                        style="@style/ButtonTheme"
+                        android:layout_width="140dp"
+                        android:layout_marginTop="8dp"
+                        android:onClick="@{() -> viewModel.onChangeImageButtonPressed()}"
+                        android:text="@string/button_change_image" />
+
+                    <!-- INFORMAÇÕES SOBRE O PERSONAGEM-->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="3dp"
+                        android:layout_marginRight="3dp"
+                        android:text="@string/label_title"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textStyle="bold" />
+
+                    <Spinner
+                        android:id="@+id/titlesSpinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/white" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -133,15 +127,17 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Classe: "
+                            android:layout_marginEnd="3dp"
+                            android:layout_marginRight="3dp"
+                            android:text="@string/label_class"
                             android:textColor="@color/colorPrimaryDark"
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/classeTextView"
+                            android:id="@+id/classTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Genjutsu"
+                            android:text="--"
                             android:textColor="@color/colorPrimaryDark" />
                     </LinearLayout>
 
@@ -153,15 +149,17 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Vila Oculta: "
+                            android:layout_marginEnd="3dp"
+                            android:layout_marginRight="3dp"
+                            android:text="@string/label_village"
                             android:textColor="@color/colorPrimaryDark"
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/vilaTextView"
+                            android:id="@+id/villageTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Chuva"
+                            android:text="--"
                             android:textColor="@color/colorPrimaryDark" />
                     </LinearLayout>
 
@@ -173,7 +171,9 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Level: "
+                            android:layout_marginEnd="3dp"
+                            android:layout_marginRight="3dp"
+                            android:text="@string/label_level"
                             android:textColor="@color/colorPrimaryDark"
                             android:textStyle="bold" />
 
@@ -181,7 +181,7 @@
                             android:id="@+id/levelTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="1"
+                            android:text="--"
                             android:textColor="@color/colorPrimaryDark" />
                     </LinearLayout>
 
@@ -193,64 +193,9 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Qtd. dias: "
-                            android:textColor="@color/colorPrimaryDark"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="1"
-                            android:textColor="@color/colorPrimaryDark" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Ranking (Vila): "
-                            android:textColor="@color/colorPrimaryDark"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="-"
-                            android:textColor="@color/colorPrimaryDark" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Ranking (Geral): "
-                            android:textColor="@color/colorPrimaryDark"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="-"
-                            android:textColor="@color/colorPrimaryDark" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Score: "
+                            android:layout_marginEnd="3dp"
+                            android:layout_marginRight="3dp"
+                            android:text="@string/label_number_of_days_played"
                             android:textColor="@color/colorPrimaryDark"
                             android:textStyle="bold" />
 
@@ -269,47 +214,107 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Equipe: "
+                            android:layout_marginEnd="3dp"
+                            android:layout_marginRight="3dp"
+                            android:text="@string/label_ranking_vila"
                             android:textColor="@color/colorPrimaryDark"
                             android:textStyle="bold" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Nenhum(a)"
+                            android:text="-"
                             android:textColor="@color/colorPrimaryDark" />
                     </LinearLayout>
-                </LinearLayout>
 
-                <!-- MENU -->
-                <ExpandableListView
-                    android:id="@+id/expanded_menu_main"
-                    android:layout_width="match_parent"
-                    android:layout_height="500dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginBottom="16dp" />
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
 
-                <!-- CHAT -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="3dp"
-                    android:layout_marginRight="3dp"
-                    android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="3dp"
+                            android:layout_marginRight="3dp"
+                            android:text="@string/label_ranking_general"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textStyle="bold" />
 
-                    <!-- TOPO -->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="-"
+                            android:textColor="@color/colorPrimaryDark" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="3dp"
+                            android:layout_marginRight="3dp"
+                            android:text="@string/label_score"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="--"
+                            android:textColor="@color/colorPrimaryDark" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="3dp"
+                            android:layout_marginRight="3dp"
+                            android:text="@string/label_team"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/none"
+                            android:textColor="@color/colorPrimaryDark" />
+                    </LinearLayout>
+
+                    <!-- Menu -->
+                    <ExpandableListView
+                        android:id="@+id/expandableListView"
+                        android:layout_width="match_parent"
+                        android:layout_height="500dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="16dp" />
+
+                    <!-- Chat -->
+                    <!-- Top -->
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="3dp"
+                        android:layout_marginRight="3dp">
 
                         <ImageView
-                            android:id="@+id/topoChatImageView"
+                            android:id="@+id/chatTopImageView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
                             android:layout_marginLeft="8dp"
                             android:layout_marginEnd="8dp"
                             android:layout_marginRight="8dp"
+                            android:onClick="@{() -> viewModel.onChatClick()}"
                             android:scaleType="fitXY"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -328,26 +333,28 @@
                             android:textStyle="bold"
                             android:typeface="serif"
                             app:fontFamily="cursive"
-                            app:layout_constraintBottom_toBottomOf="@+id/topoChatImageView"
-                            app:layout_constraintEnd_toEndOf="@+id/topoChatImageView"
-                            app:layout_constraintStart_toStartOf="@+id/topoChatImageView" />
+                            app:layout_constraintBottom_toBottomOf="@+id/chatTopImageView"
+                            app:layout_constraintEnd_toEndOf="@+id/chatTopImageView"
+                            app:layout_constraintStart_toStartOf="@+id/chatTopImageView" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    <!-- CONTEÚDO -->
+                    <!-- Chat content  -->
                     <LinearLayout
-                        android:id="@+id/chatMensagens"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/chatLinearLayout"
+                        android:layout_width="match_parent"
                         android:layout_height="350dp"
                         android:background="#19100A"
                         android:orientation="vertical"
                         android:visibility="gone">
 
                         <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/mensagensRecycler"
+                            android:id="@+id/messagesRecyclerView"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_weight="1"
-                            android:padding="5dp" />
+                            android:padding="5dp"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            tools:listitem="@layout/recycler_chat_message" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -365,7 +372,6 @@
                                 android:layout_marginBottom="3dp"
                                 android:layout_weight="1"
                                 android:background="@drawable/layout_bg_mensagem_chat"
-                                android:elevation="2dp"
                                 android:gravity="center_vertical"
                                 android:orientation="horizontal"
                                 android:paddingLeft="16dp"
@@ -377,43 +383,38 @@
                                     app:srcCompat="@drawable/layout_chat_chat_channel" />
 
                                 <Spinner
-                                    android:id="@+id/chatChannerSpinner"
+                                    android:id="@+id/channelSpinner"
                                     android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content" />
+                                    android:layout_height="wrap_content"
+                                    android:entries="@array/chat_channel_array"
+                                    android:onItemSelected="@{(parent, v, position, id) -> viewModel.onChannelChanged(position)}" />
 
                                 <EditText
-                                    android:id="@+id/mensagemEditText"
-                                    android:layout_width="0dp"
+                                    android:id="@+id/messageEditText"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_weight="1"
                                     android:background="@android:color/white"
                                     android:ems="10"
                                     android:imeOptions="actionSend"
                                     android:inputType="textPersonName"
-                                    android:maxLength="25" />
-
+                                    android:maxLength="25"
+                                    android:text="@={viewModel.message}" />
                             </LinearLayout>
 
                             <com.google.android.material.floatingactionbutton.FloatingActionButton
-                                android:id="@+id/fabEnviarMensagem"
+                                android:id="@+id/sendMessageFab"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:clickable="true"
                                 android:focusable="true"
+                                android:onClick="@{() -> viewModel.onSendMessageButtonPressed()}"
                                 app:backgroundTint="@color/colorPrimary"
                                 app:fabSize="mini"
                                 app:srcCompat="@drawable/ic_send_white_24dp" />
-
                         </LinearLayout>
-
                     </LinearLayout>
-
                 </LinearLayout>
-
-            </LinearLayout>
-
-        </ScrollView>
-
-    </com.google.android.material.navigation.NavigationView>
-
-</androidx.drawerlayout.widget.DrawerLayout>
+            </ScrollView>
+        </com.google.android.material.navigation.NavigationView>
+    </androidx.drawerlayout.widget.DrawerLayout>
+</layout>

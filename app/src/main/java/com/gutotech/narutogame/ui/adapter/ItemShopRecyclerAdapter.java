@@ -23,7 +23,7 @@ import com.gutotech.narutogame.data.model.Arma;
 import com.gutotech.narutogame.data.model.Graduacao;
 import com.gutotech.narutogame.data.model.ItemShop;
 import com.gutotech.narutogame.data.model.Ramen;
-import com.gutotech.narutogame.data.model.PersonagemOn;
+import com.gutotech.narutogame.data.model.CharOn;
 
 import java.util.List;
 import java.util.Locale;
@@ -50,7 +50,7 @@ public class ItemShopRecyclerAdapter extends RecyclerView.Adapter<ItemShopRecycl
 
         switch (itemShop.getTipoItem()) {
             case RAMEN:
-                StorageUtil.baixarRamenImage(context, myViewHolder.itemImageView, itemShop.getImage());
+                StorageUtil.downloadRamen(context, myViewHolder.itemImageView, itemShop.getImage());
                 myViewHolder.itemImageView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -106,10 +106,10 @@ public class ItemShopRecyclerAdapter extends RecyclerView.Adapter<ItemShopRecycl
                         int quantidade = Integer.parseInt(myViewHolder.qtdeEditText.getText().toString());
                         int total_a_pagar = itemShop.getValor() * quantidade;
 
-                        if (PersonagemOn.character.getRyous() >= total_a_pagar) {
-                            PersonagemOn.character.setRyous(PersonagemOn.character.getRyous() - total_a_pagar);
-                            PersonagemOn.character.getBolsa().getRamensList().add((Ramen) itemShop);
-                            PersonagemOn.character.salvar();
+                        if (CharOn.character.getRyous() >= total_a_pagar) {
+                            CharOn.character.setRyous(CharOn.character.getRyous() - total_a_pagar);
+                            CharOn.character.getBag().getRamensList().add((Ramen) itemShop);
+                            CharOn.character.salvar();
                             exibirAlerta("Item(s) comprado(s) com sucesso");
                         } else
                             exibirAlerta("Você não tem ryous suficientes para comprar essa quantidade");

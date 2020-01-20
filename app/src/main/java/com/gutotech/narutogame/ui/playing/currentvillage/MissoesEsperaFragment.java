@@ -19,7 +19,7 @@ import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.playing.character.CharacterStatusFragment;
 import com.gutotech.narutogame.data.model.MissaoDeTempo;
-import com.gutotech.narutogame.data.model.PersonagemOn;
+import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.utils.FragmentUtil;
 
 import java.util.Locale;
@@ -98,7 +98,7 @@ public class MissoesEsperaFragment extends Fragment implements SectionFragment {
                     public void onClick(DialogInterface dialog, int which) {
 //                        PersonagemOn.character.setEmMissao(false);
 //                        PersonagemOn.character.setMissaoDeTempo(null);
-                        PersonagemOn.character.salvar();
+                        CharOn.character.salvar();
                         mudarTituloSecao("STATUS DO PERSONAGEM");
                         changeToFragment(new CharacterStatusFragment());
                     }
@@ -122,8 +122,8 @@ public class MissoesEsperaFragment extends Fragment implements SectionFragment {
             @Override
             public void onClick(View v) {
 //                PersonagemOn.character.setEmMissao(false);
-                PersonagemOn.character.setExp(PersonagemOn.character.getExp() + missao.getExpRecompensa());
-                PersonagemOn.character.setRyous(PersonagemOn.character.getRyous() + (long) missao.getRyousRecompensa());
+                CharOn.character.setExp(CharOn.character.getExp() + missao.getExpRecompensa());
+                CharOn.character.setRyous(CharOn.character.getRyous() + (long) missao.getRyousRecompensa());
 
                 if (missao.getRank().equals("tarefa")) {
 //                    List<Integer> tarefasConcluidas = PersonagemOn.character.getTarefasConcluidas();
@@ -137,23 +137,23 @@ public class MissoesEsperaFragment extends Fragment implements SectionFragment {
 //                    PersonagemOn.character.getResumeOfMissions().setTasks(PersonagemOn.character.getResumeOfMissions().getTasks() + 1);
 
                 } else if (missao.getRank().equals("D")) {
-                    PersonagemOn.character.getResumeOfMissions().setRankD(PersonagemOn.character.getResumeOfMissions().getRankD() + 1);
+                    CharOn.character.getResumeOfMissions().setRankD(CharOn.character.getResumeOfMissions().getRankD() + 1);
 
                 } else if (missao.getRank().equals("C")) {
-                    PersonagemOn.character.getResumeOfMissions().setRankC(PersonagemOn.character.getResumeOfMissions().getRankC() + 1);
+                    CharOn.character.getResumeOfMissions().setRankC(CharOn.character.getResumeOfMissions().getRankC() + 1);
 
                 } else if (missao.getRank().equals("B")) {
-                    PersonagemOn.character.getResumeOfMissions().setRankB(PersonagemOn.character.getResumeOfMissions().getRankB() + 1);
+                    CharOn.character.getResumeOfMissions().setRankB(CharOn.character.getResumeOfMissions().getRankB() + 1);
 
                 } else if (missao.getRank().equals("A")) {
-                    PersonagemOn.character.getResumeOfMissions().setRankA(PersonagemOn.character.getResumeOfMissions().getRankA() + 1);
+                    CharOn.character.getResumeOfMissions().setRankA(CharOn.character.getResumeOfMissions().getRankA() + 1);
 
                 } else if (missao.getRank().equals("S")) {
-                    PersonagemOn.character.getResumeOfMissions().setRankS(PersonagemOn.character.getResumeOfMissions().getRankS() + 1);
+                    CharOn.character.getResumeOfMissions().setRankS(CharOn.character.getResumeOfMissions().getRankS() + 1);
                 }
 
 //                PersonagemOn.character.setMissaoDeTempo(null);
-                PersonagemOn.character.salvar();
+                CharOn.character.salvar();
                 changeToFragment(new CharacterStatusFragment());
             }
         });
@@ -196,7 +196,7 @@ public class MissoesEsperaFragment extends Fragment implements SectionFragment {
         if (!esperandoFinalizar) {
             timer.cancel();
             missao.setMillisStopped(System.currentTimeMillis());
-            PersonagemOn.character.salvar();
+            CharOn.character.salvar();
         }
     }
 

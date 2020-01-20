@@ -10,13 +10,16 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.gutotech.narutogame.data.firebase.FirebaseConfig;
+import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.model.Character;
+import com.gutotech.narutogame.utils.DateCustom;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class CharacterRepository {
-    private static CharacterRepository instance;
+    private static CharacterRepository sInstance;
 
     private ValueEventListener valueEventListenerPersonagens;
 
@@ -24,9 +27,9 @@ public class CharacterRepository {
     }
 
     public static CharacterRepository getInstance() {
-        if (instance == null)
-            instance = new CharacterRepository();
-        return instance;
+        if (sInstance == null)
+            sInstance = new CharacterRepository();
+        return sInstance;
     }
 
     public void saveCharacter(Character character) {
@@ -53,7 +56,24 @@ public class CharacterRepository {
         return true;
     }
 
-    public LiveData<List<Character>> getAllMyCharacters() {
+    public void observeCharOn() {
+        DatabaseReference characterRef = FirebaseConfig.getDatabase()
+                .child("characters")
+                .child(CharOn.character.getNick());
+
+        characterRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
+    }
+
+    public LiveData<List<Character>> getMyCharacters() {
         MutableLiveData<List<Character>> data = new MutableLiveData<>();
 
         List<Character> characterList = new ArrayList<>();
@@ -73,8 +93,6 @@ public class CharacterRepository {
                 }
 
                 data.postValue(characterList);
-
-//                personagensQuery.removeEventListener(valueEventListenerPersonagens);
             }
 
             @Override
@@ -85,8 +103,11 @@ public class CharacterRepository {
         return data;
     }
 
-    public void singOut(Character character) {
-
+    public void singOut() {
+        CharOn.character.setOnline(false);
+        CharOn.character.setLastLogin(String.format(Locale.getDefault(),
+                "%s às %s", DateCustom.getDate(), DateCustom.getTime()));
+        CharacterRepository.getInstance().saveCharacter(CharOn.character);
     }
 
     private void classificarPersonagensPorLvl(List<Character> personagensList) {
@@ -101,9 +122,5 @@ public class CharacterRepository {
                 }
             }
         }
-    }
-
-    public interface AllMyCharactersListener {
-        void onResult(List<Character> characterList);
     }
 }

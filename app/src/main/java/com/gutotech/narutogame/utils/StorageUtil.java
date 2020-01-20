@@ -104,11 +104,11 @@ public class StorageUtil {
         downloadImage(context, imageReference, imageView);
     }
 
-    public static void baixarRamenImage(Context context, ImageView imageView, String nomeImage) {
+    public static void downloadRamen(Context context, ImageView imageView, String image) {
         StorageReference imageReference = FirebaseConfig.getStorage()
                 .child("images")
                 .child("comidas")
-                .child(nomeImage + ".jpg");
+                .child(image + ".jpg");
         downloadImage(context, imageReference, imageView);
     }
 

@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.MissaoDeTempo;
-import com.gutotech.narutogame.data.model.PersonagemOn;
+import com.gutotech.narutogame.data.model.CharOn;
 
 import java.util.List;
 
@@ -41,7 +41,7 @@ public class MissaoTempoAdapter extends RecyclerView.Adapter<MissaoTempoAdapter.
         myViewHolder.graduacao.setText(missao.getGraduacao());
         myViewHolder.level.setText("Lvl. " + missao.getLevel());
 
-        if (missao.getLevel() > PersonagemOn.character.getLevel()) {
+        if (missao.getLevel() > CharOn.character.getLevel()) {
             myViewHolder.aceitar.setEnabled(false);
             myViewHolder.aceitar.setOnClickListener(null);
         } else {

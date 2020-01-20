@@ -12,7 +12,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 import com.gutotech.narutogame.data.firebase.FirebaseConfig;
 import com.gutotech.narutogame.data.model.Character;
-import com.gutotech.narutogame.data.model.PersonagemOn;
+import com.gutotech.narutogame.data.model.CharOn;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,16 +36,16 @@ public class MapRepository {
         DatabaseReference mapReference = FirebaseConfig.getDatabase()
                 .child("village-map")
                 .child(villageName)
-                .child(PersonagemOn.character.getNick());
+                .child(CharOn.character.getNick());
 
-        mapReference.setValue(PersonagemOn.character);
+        mapReference.setValue(CharOn.character);
     }
 
     public void exitVillageMap(String villageName) {
         DatabaseReference mapReference = FirebaseConfig.getDatabase()
                 .child("village-map")
                 .child(villageName)
-                .child(PersonagemOn.character.getNick());
+                .child(CharOn.character.getNick());
 
         mapReference.removeValue();
     }
