@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.Character;
-import com.gutotech.narutogame.data.model.PersonagemOn;
+import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.ui.playing.currentvillage.VillageMapViewModel;
 import com.gutotech.narutogame.utils.StorageUtil;
 
@@ -78,9 +78,9 @@ public class VillageMapRecyclerViewAdapter extends RecyclerView.Adapter<VillageM
 
                 if (character.getMapPosition() == position) {
 
-                    if (character.getNick().equals(PersonagemOn.character.getNick())) {
+                    if (character.getNick().equals(CharOn.character.getNick())) {
                         holder.backgroundImageView.setImageResource(R.drawable.layout_map_me2);
-                    } else if (character.getVillage() == PersonagemOn.character.getVillage()) {
+                    } else if (character.getVillage() == CharOn.character.getVillage()) {
                         holder.backgroundImageView.setImageResource(R.drawable.layout_map_green2);
                     } else {
                         holder.backgroundImageView.setImageResource(R.drawable.layout_map_red2);

@@ -38,7 +38,7 @@ import com.gutotech.narutogame.data.model.Formulas;
 import com.gutotech.narutogame.data.model.Jutsu;
 import com.gutotech.narutogame.data.model.Character;
 import com.gutotech.narutogame.data.model.Oponente;
-import com.gutotech.narutogame.data.model.PersonagemOn;
+import com.gutotech.narutogame.data.model.CharOn;
 
 import java.util.Locale;
 
@@ -122,7 +122,7 @@ public class DojoBatalhaPVPFragment extends Fragment {
         staminaOpoTextView = view.findViewById(R.id.staminaOpoTextView);
 
         // CONFIGURA PLAYER
-        player = PersonagemOn.character;
+        player = CharOn.character;
 //        playerFormulas = PersonagemOn.character.getAtributos().getFormulas();
         ImageView statusPlayerImageView = view.findViewById(R.id.statusMeImageView);
         statusPlayerImageView.setOnClickListener(new View.OnClickListener() {
@@ -160,7 +160,7 @@ public class DojoBatalhaPVPFragment extends Fragment {
             @Override
             public void onItemClick(View view, int position) {
 
-                if (quemAtaca.equals(PersonagemOn.character.getNick())) {
+                if (quemAtaca.equals(CharOn.character.getNick())) {
                     countDownTimer.cancel();
 //                    PersonagemOn.character.setJutsuSelecionado(PersonagemOn.character.getJutsus().get(position));
                     configurarPlayersNaBatalha();
@@ -210,11 +210,11 @@ public class DojoBatalhaPVPFragment extends Fragment {
 
                 quemAtaca = batalhaPVP.getQuemAtaca();
 
-                if (batalhaPVP.getPlayer1().getNick().equals(PersonagemOn.character.getNick())) {
-                    PersonagemOn.character = batalhaPVP.getPlayer1();
+                if (batalhaPVP.getPlayer1().getNick().equals(CharOn.character.getNick())) {
+                    CharOn.character = batalhaPVP.getPlayer1();
                     Oponente.oponente = batalhaPVP.getPlayer2();
                 } else {
-                    PersonagemOn.character = batalhaPVP.getPlayer2();
+                    CharOn.character = batalhaPVP.getPlayer2();
                     Oponente.oponente = batalhaPVP.getPlayer1();
                 }
 
@@ -309,11 +309,11 @@ public class DojoBatalhaPVPFragment extends Fragment {
 
     private void configurarPlayersNaBatalha() {
         if (souPlayer1) {
-            batalhaPVP.setPlayer1(PersonagemOn.character);
+            batalhaPVP.setPlayer1(CharOn.character);
             batalhaPVP.setPlayer2(Oponente.oponente);
         } else {
             batalhaPVP.setPlayer1(Oponente.oponente);
-            batalhaPVP.setPlayer2(PersonagemOn.character);
+            batalhaPVP.setPlayer2(CharOn.character);
         }
     }
 
@@ -384,7 +384,7 @@ public class DojoBatalhaPVPFragment extends Fragment {
                 int minutos = (int) millisUntilFinished / 1000 / 60;
                 int segundos = (int) millisUntilFinished / 1000 % 60;
 
-                if (quemAtaca.equals(PersonagemOn.character.getNick())) {
+                if (quemAtaca.equals(CharOn.character.getNick())) {
                     countDownTimerTextView.setTextColor(Color.RED);
                     vezDeQuemTextView.setText("Aguardando a sua ação");
                 } else {
@@ -428,12 +428,12 @@ public class DojoBatalhaPVPFragment extends Fragment {
         msgLinear2.setVisibility(View.VISIBLE);
 
         if (LUTA_STATUS == Status.GANHOU) {
-            PersonagemOn.character.getCombatOverview().setWinsDojoPvp(PersonagemOn.character.getCombatOverview().getWinsDojoPvp() + 1);
-            PersonagemOn.character.setExp(PersonagemOn.character.getExp() + 315);
+            CharOn.character.getCombatOverview().setWinsDojoPvp(CharOn.character.getCombatOverview().getWinsDojoPvp() + 1);
+            CharOn.character.setExp(CharOn.character.getExp() + 315);
         } else if (LUTA_STATUS == Status.PERDEU)
-            PersonagemOn.character.getCombatOverview().setLossesDojoPvp(PersonagemOn.character.getCombatOverview().getLossesDojoPvp() + 1);
+            CharOn.character.getCombatOverview().setLossesDojoPvp(CharOn.character.getCombatOverview().getLossesDojoPvp() + 1);
 
-        PersonagemOn.character.salvar();
+        CharOn.character.salvar();
     }
 
     private void exibirStatus(View view, Formulas formulas) {

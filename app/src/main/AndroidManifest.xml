@@ -24,7 +24,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.playing.PersonagemLogadoActivity"
+            android:name=".ui.playing.PlayingActivity"
             android:label="@string/title_activity_personagem_logado"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity

@@ -1,7 +1,6 @@
 package com.gutotech.narutogame.ui.adapter;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +12,6 @@ import android.widget.TextView;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.utils.StorageUtil;
 import com.gutotech.narutogame.data.model.RecompensaFidelidade;
-import com.gutotech.narutogame.data.model.PersonagemOn;
 
 import java.util.List;
 import java.util.Locale;

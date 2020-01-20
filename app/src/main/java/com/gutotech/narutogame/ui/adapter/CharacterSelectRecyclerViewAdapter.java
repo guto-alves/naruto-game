@@ -52,9 +52,8 @@ public class CharacterSelectRecyclerViewAdapter extends RecyclerView.Adapter<Cha
             StorageUtil.downloadSmallProfile(holder.profileImageView.getContext(),
                     holder.profileImageView, character.getNinja().getId());
 
-            holder.profileImageView.setOnClickListener(v -> {
-                mListener.onCharacterSelected(character);
-            });
+            holder.profileImageView.setOnClickListener(v ->
+                    mListener.onCharacterSelected(character));
         }
     }
 

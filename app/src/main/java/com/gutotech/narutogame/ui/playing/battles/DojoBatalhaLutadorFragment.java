@@ -33,7 +33,7 @@ import com.gutotech.narutogame.utils.RecyclerItemClickListener;
 import com.gutotech.narutogame.data.model.Formulas;
 import com.gutotech.narutogame.data.model.Jutsu;
 import com.gutotech.narutogame.data.model.NPC;
-import com.gutotech.narutogame.data.model.PersonagemOn;
+import com.gutotech.narutogame.data.model.CharOn;
 
 import java.util.Locale;
 
@@ -116,7 +116,7 @@ public class DojoBatalhaLutadorFragment extends Fragment {
         staminaOpoTextView = view.findViewById(R.id.staminaOpoTextView);
 
         // CONFIGURA PLAYER
-        player = PersonagemOn.character;
+        player = CharOn.character;
 //        playerFormulas = PersonagemOn.character.getAtributos().getFormulas();
         statusPlayerImageView = view.findViewById(R.id.statusMeImageView);
         statusPlayerImageView.setOnClickListener(new View.OnClickListener() {
@@ -343,17 +343,17 @@ public class DojoBatalhaLutadorFragment extends Fragment {
         msgLinear2.setVisibility(View.VISIBLE);
 
         if (LUTA_STATUS == Status.GANHOU) {
-            PersonagemOn.character.getCombatOverview().setWinsNpc(PersonagemOn.character.getCombatOverview().getWinsNpc() + 1);
-            PersonagemOn.character.setExp(PersonagemOn.character.getExp() + 315);
+            CharOn.character.getCombatOverview().setWinsNpc(CharOn.character.getCombatOverview().getWinsNpc() + 1);
+            CharOn.character.setExp(CharOn.character.getExp() + 315);
 
         } else if (LUTA_STATUS == Status.PERDEU) {
-            PersonagemOn.character.getCombatOverview().setLossesNpc(PersonagemOn.character.getCombatOverview().getLossesNpc() + 1);
+            CharOn.character.getCombatOverview().setLossesNpc(CharOn.character.getCombatOverview().getLossesNpc() + 1);
         } else
-            PersonagemOn.character.getCombatOverview().setDrawsNpc(PersonagemOn.character.getCombatOverview().getDrawsNpc() + 1);
+            CharOn.character.getCombatOverview().setDrawsNpc(CharOn.character.getCombatOverview().getDrawsNpc() + 1);
 
-        PersonagemOn.character.setCombatesNPCDiarios(PersonagemOn.character.getCombatesNPCDiarios() + 1);
+        CharOn.character.setCombatesNPCDiarios(CharOn.character.getCombatesNPCDiarios() + 1);
 
-        PersonagemOn.character.salvar();
+        CharOn.character.salvar();
     }
 
     private void exibirStatus(View view, Formulas formulas) {

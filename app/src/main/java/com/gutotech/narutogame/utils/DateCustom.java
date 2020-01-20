@@ -5,17 +5,17 @@ import java.util.Locale;
 
 public class DateCustom {
 
-    public static String getData() {
+    public static String getDate() {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
         return simpleDateFormat.format(System.currentTimeMillis());
     }
 
-    public static String getHorario() {
+    public static String getTime() {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
         return simpleDateFormat.format(System.currentTimeMillis());
     }
 
-    public static String getHorario(long currentTimeMillis) {
+    public static String getTime(long currentTimeMillis) {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
         return simpleDateFormat.format(currentTimeMillis);
     }
@@ -45,6 +45,6 @@ public class DateCustom {
     }
 
     public static String dia() {
-        return getData().split("/")[0];
+        return getDate().split("/")[0];
     }
 }

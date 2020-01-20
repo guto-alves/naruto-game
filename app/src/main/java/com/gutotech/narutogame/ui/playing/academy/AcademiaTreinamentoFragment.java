@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.gutotech.narutogame.R;
-import com.gutotech.narutogame.data.model.PersonagemOn;
+import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.databinding.FragmentAcademyTrainningBinding;
 import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.adapter.DistributedPointsRecyclerAdapter;
@@ -35,20 +35,33 @@ public class AcademiaTreinamentoFragment extends Fragment implements SectionFrag
         binding.msgLayout.titleTextView.setText(R.string.attribute_training_title);
         binding.msgLayout.descriptionTextView.setText(R.string.attribute_training_description);
         StorageUtil.downloadProfileForMsg(getContext(), binding.msgLayout.profileImageView,
-                PersonagemOn.character.getVillage().id);
+                CharOn.character.getVillage().id);
+
+        if (CharOn.character.getAttributes().getDailyTrainingPoints() ==
+                CharOn.character.getGraduation().dailyTrainingLimit) {
+            binding.trainButton.setEnabled(false);
+        }
 
         binding.trainingResult.msgConstraintLayout.setVisibility(View.GONE);
-        viewModel.titleMsg.observe(this, binding.trainingResult.titleTextView::setText);
-        viewModel.descriptionMsg.observe(this, binding.trainingResult.descriptionTextView::setText);
+        viewModel.trainingCompletedEvent.observe(this, trainingPointsEarned -> {
+            binding.trainingResult.titleTextView.setText(R.string.training_completed);
+            binding.trainingResult.descriptionTextView.setText(
+                    getString(R.string.you_earned_ability_points, trainingPointsEarned));
+        });
+        viewModel.trainingErrorEvent.observe(this, v -> {
+            binding.trainingResult.titleTextView.setText(R.string.problem);
+            binding.trainingResult.descriptionTextView.setText(
+                    R.string.you_dont_have_chakra_for_this_training);
+        });
 
 //        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, treinos);
 //        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        binding.limitOfTrainingProgressBar.setMax(PersonagemOn.character.getGraduation().dailyTrainingLimit);
+        binding.limitOfTrainingProgressBar.setMax(CharOn.character.getGraduation().dailyTrainingLimit);
 
         binding.distributedPointsRecyclerView.setHasFixedSize(true);
         DistributedPointsRecyclerAdapter adapter = new DistributedPointsRecyclerAdapter(getContext());
-        adapter.setDistributedAttributes(PersonagemOn.character.getAttributes().asList());
+        adapter.setDistributedAttributes(CharOn.character.getAttributes().asList());
         binding.distributedPointsRecyclerView.setAdapter(adapter);
 
         FragmentUtil.setSectionTitle(getActivity(), R.string.section_attribute_training);

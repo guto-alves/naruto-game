@@ -7,7 +7,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.gutotech.narutogame.data.model.Character;
-import com.gutotech.narutogame.data.model.PersonagemOn;
+import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.repository.MapRepository;
 import com.gutotech.narutogame.ui.adapter.VillageMapRecyclerViewAdapter;
 import com.gutotech.narutogame.utils.SingleLiveEvent;
@@ -29,8 +29,8 @@ public class VillageMapViewModel extends ViewModel implements VillageMapRecycler
 
         mMapRepository = MapRepository.getInstance();
 
-        if (PersonagemOn.character.getMapPosition() == -1) {
-            PersonagemOn.character.setMapPosition(new SecureRandom().nextInt(MAP_LENGTH));
+        if (CharOn.character.getMapPosition() == -1) {
+            CharOn.character.setMapPosition(new SecureRandom().nextInt(MAP_LENGTH));
             mMapRepository.enterTheMap(villageName);
         }
     }
@@ -55,7 +55,7 @@ public class VillageMapViewModel extends ViewModel implements VillageMapRecycler
     @Override
     public void onDoubleClick(int newPosition) {
         if (isMovementValid(newPosition)) {
-            PersonagemOn.character.setMapPosition(newPosition);
+            CharOn.character.setMapPosition(newPosition);
             mMapRepository.enterTheMap(villageName);
         } else {
             showDialogEvent.setValue("O ponto onde você quer ir é muito longe!");
@@ -63,7 +63,7 @@ public class VillageMapViewModel extends ViewModel implements VillageMapRecycler
     }
 
     private boolean isMovementValid(int newPosition) {
-        int currentPosition = PersonagemOn.character.getMapPosition();
+        int currentPosition = CharOn.character.getMapPosition();
 
         Point currentPoint = indexToPoint(currentPosition);
         Point newPoint = indexToPoint(newPosition);

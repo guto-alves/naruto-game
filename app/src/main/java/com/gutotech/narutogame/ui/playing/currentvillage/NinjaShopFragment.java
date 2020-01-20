@@ -20,7 +20,7 @@ import com.gutotech.narutogame.ui.adapter.ItemShopRecyclerAdapter;
 import com.gutotech.narutogame.utils.FragmentUtil;
 import com.gutotech.narutogame.utils.StorageUtil;
 import com.gutotech.narutogame.data.model.ItemShop;
-import com.gutotech.narutogame.data.model.PersonagemOn;
+import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.model.Shop;
 
 import java.util.ArrayList;
@@ -40,7 +40,7 @@ public class NinjaShopFragment extends Fragment implements SectionFragment {
         View view = inflater.inflate(R.layout.fragment_ninja_shop, container, false);
 
         ImageView imagemMsg2 = view.findViewById(R.id.imagemMsg2);
-        StorageUtil.downloadProfileForMsg(getActivity(), imagemMsg2, PersonagemOn.character.getVillage().id);
+        StorageUtil.downloadProfileForMsg(getActivity(), imagemMsg2, CharOn.character.getVillage().id);
 
         ProgressBar armasQuinzenalProgressBar = view.findViewById(R.id.armasQuinzenalProgressBar);
         TextView armasQuinzenalTextView = view.findViewById(R.id.armasQuinzenalTextView);

@@ -1,23 +1,23 @@
 package com.gutotech.narutogame.data.model;
 
 public class Message {
-    private String who;
+    private String sender;
     private String message;
 
     public Message() {
     }
 
-    public Message(String who, String message) {
-        this.who = who;
+    public Message(String sender, String message) {
+        this.sender = sender;
         this.message = message;
     }
 
-    public String getWho() {
-        return who;
+    public String getSender() {
+        return sender;
     }
 
-    public void setWho(String who) {
-        this.who = who;
+    public void setSender(String sender) {
+        this.sender = sender;
     }
 
     public String getMessage() {

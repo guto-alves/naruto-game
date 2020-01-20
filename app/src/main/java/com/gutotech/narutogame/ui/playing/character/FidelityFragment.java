@@ -26,7 +26,7 @@ import com.gutotech.narutogame.utils.StorageUtil;
 import com.gutotech.narutogame.data.model.Player;
 import com.gutotech.narutogame.data.model.RecompensaFidelidade;
 import com.gutotech.narutogame.ui.MyListener;
-import com.gutotech.narutogame.data.model.PersonagemOn;
+import com.gutotech.narutogame.data.model.CharOn;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +43,7 @@ public class FidelityFragment extends Fragment implements SectionFragment, MyLis
         View view = inflater.inflate(R.layout.fragment_fidelity, container, false);
 
         ImageView personagemMsgImageView = view.findViewById(R.id.personagemMsg);
-        StorageUtil.downloadProfileForMsg(getActivity(), personagemMsgImageView, PersonagemOn.character.getVillage().id);
+        StorageUtil.downloadProfileForMsg(getActivity(), personagemMsgImageView, CharOn.character.getVillage().id);
 
         GridView recompensasReceberGridView = view.findViewById(R.id.recompensasReceberGridView);
 
@@ -68,10 +68,10 @@ public class FidelityFragment extends Fragment implements SectionFragment, MyLis
 
         switch (recompensa.getTipo()) {
             case RY:
-                PersonagemOn.character.setRyous(PersonagemOn.character.getRyous() + recompensa.getQuantidade());
+                CharOn.character.setRyous(CharOn.character.getRyous() + recompensa.getQuantidade());
                 break;
             case EXP:
-                PersonagemOn.character.setExp(PersonagemOn.character.getExp() + recompensa.getQuantidade());
+                CharOn.character.setExp(CharOn.character.getExp() + recompensa.getQuantidade());
                 break;
             case RAMEM:
                 break;
@@ -100,7 +100,7 @@ public class FidelityFragment extends Fragment implements SectionFragment, MyLis
 //        PersonagemOn.character.setDiasLogadosFidelidade(diasLogadosFidelidade + 1 > 8 ? 1 : diasLogadosFidelidade + 1);
 //        PersonagemOn.character.setTemRecompensaFidelidade(false);
 
-        PersonagemOn.character.salvar();
+        CharOn.character.salvar();
 
         FragmentUtil.setSectionTitle(getActivity(), R.string.section_ninja_fidelity);
 

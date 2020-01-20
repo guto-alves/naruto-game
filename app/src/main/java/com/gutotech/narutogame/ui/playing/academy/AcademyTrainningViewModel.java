@@ -9,15 +9,17 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.Formulas;
-import com.gutotech.narutogame.data.model.PersonagemOn;
+import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.repository.CharacterRepository;
+import com.gutotech.narutogame.utils.SingleLiveEvent;
 
 public class AcademyTrainningViewModel extends AndroidViewModel {
     private MutableLiveData<Integer> chakra = new MutableLiveData<>();
     private MutableLiveData<Integer> stamina = new MutableLiveData<>();
 
-    public MutableLiveData<Integer> titleMsg = new MutableLiveData<>();
-    public MutableLiveData<Integer> descriptionMsg = new MutableLiveData<>();
+    private MutableLiveData<Boolean> showMsg = new MutableLiveData<>(false);
+    public SingleLiveEvent<Void> trainingErrorEvent = new SingleLiveEvent<>();
+    public SingleLiveEvent<Integer> trainingCompletedEvent = new SingleLiveEvent<>();
 
     private String[] percents;
     private double percent = 0.01;
@@ -27,7 +29,7 @@ public class AcademyTrainningViewModel extends AndroidViewModel {
     public AcademyTrainningViewModel(@NonNull Application application) {
         super(application);
 
-        formulas = PersonagemOn.character.getAttributes().getFormulas();
+        formulas = CharOn.character.getAttributes().getFormulas();
 
         percents = application.getResources().getStringArray(R.array.attribute_percent);
 
@@ -40,6 +42,10 @@ public class AcademyTrainningViewModel extends AndroidViewModel {
 
     public LiveData<Integer> getStamina() {
         return stamina;
+    }
+
+    public LiveData<Boolean> getShowMsg() {
+        return showMsg;
     }
 
     public void onItemSelected(int position) {
@@ -59,15 +65,19 @@ public class AcademyTrainningViewModel extends AndroidViewModel {
             formulas.setChakraAtual(formulas.getChakraAtual() - chakra.getValue());
             formulas.setStaminaAtual(formulas.getStaminaAtual() - stamina.getValue());
 
-            PersonagemOn.character.getAttributes().addTraningPoints((int) percent * 12);
+            int trainingPointsEarned = (int) percent * 12;
 
-            CharacterRepository.getInstance().saveCharacter(PersonagemOn.character);
+            CharOn.character.getAttributes().incrementDailyTraningPoints(trainingPointsEarned);
+            CharOn.character.getAttributes().incrementTraningPoints(trainingPointsEarned);
+            CharOn.character.getExtrasInformation().incrementTotalTraining(trainingPointsEarned);
 
-            titleMsg.setValue(R.string.training_completed);
-            descriptionMsg.setValue(R.string.you_earned_ability_points);
+            CharacterRepository.getInstance().saveCharacter(CharOn.character);
+
+            trainingCompletedEvent.setValue(trainingPointsEarned);
         } else {
-            titleMsg.setValue(R.string.problem);
-            descriptionMsg.setValue(R.string.you_do_not_have_chakra_for_this_training);
+            trainingErrorEvent.call();
         }
+
+        showMsg.setValue(true);
     }
 }

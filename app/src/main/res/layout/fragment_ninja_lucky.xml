@@ -32,6 +32,77 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <ImageView
+                android:id="@+id/imageView40"
+                android:layout_width="23dp"
+                android:layout_height="23dp"
+                android:layout_marginStart="28dp"
+                android:layout_marginLeft="28dp"
+                android:layout_marginTop="31dp"
+                app:layout_constraintStart_toStartOf="@+id/baseImageView"
+                app:layout_constraintTop_toTopOf="@+id/baseImageView"
+                app:srcCompat="@drawable/layout_luck_light_red" />
+
+            <ImageView
+                android:id="@+id/imageView11"
+                android:layout_width="23dp"
+                android:layout_height="23dp"
+                android:layout_marginStart="14dp"
+                android:layout_marginLeft="14dp"
+                app:layout_constraintStart_toEndOf="@+id/imageView40"
+                app:layout_constraintTop_toTopOf="@+id/imageView40"
+                app:srcCompat="@drawable/layout_luck_light_red" />
+
+            <ImageView
+                android:id="@+id/imageView28"
+                android:layout_width="23dp"
+                android:layout_height="23dp"
+                android:layout_marginStart="14dp"
+                android:layout_marginLeft="14dp"
+                app:layout_constraintStart_toEndOf="@+id/imageView11"
+                app:layout_constraintTop_toTopOf="@+id/imageView11"
+                app:srcCompat="@drawable/layout_luck_light_red" />
+
+            <ImageView
+                android:id="@+id/imageView29"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="13dp"
+                android:layout_marginLeft="13dp"
+                app:layout_constraintStart_toEndOf="@+id/imageView28"
+                app:layout_constraintTop_toTopOf="@+id/imageView28"
+                app:srcCompat="@drawable/layout_luck_light_red" />
+
+            <ImageView
+                android:id="@+id/imageView30"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="14dp"
+                android:layout_marginLeft="14dp"
+                app:layout_constraintStart_toEndOf="@+id/imageView29"
+                app:layout_constraintTop_toTopOf="@+id/imageView29"
+                app:srcCompat="@drawable/layout_luck_light_red" />
+
+            <ImageView
+                android:id="@+id/imageView50"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="13dp"
+                android:layout_marginLeft="13dp"
+                app:layout_constraintStart_toEndOf="@+id/imageView30"
+                app:layout_constraintTop_toTopOf="@+id/imageView30"
+                app:srcCompat="@drawable/layout_luck_light_red" />
+
+            <ImageView
+                android:id="@+id/imageView51"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="13dp"
+                android:layout_marginLeft="13dp"
+                app:layout_constraintStart_toEndOf="@+id/imageView50"
+                app:layout_constraintTop_toTopOf="@+id/imageView50"
+                app:srcCompat="@drawable/layout_luck_light_red" />
+
             <Button
                 android:id="@+id/jogarSorteButton"
                 android:layout_width="40dp"
@@ -122,8 +193,7 @@
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView41"
-                tools:listitem="@layout/recycler_lottery_item" />
+                app:layout_constraintTop_toBottomOf="@+id/imageView41" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline40"
@@ -180,16 +250,6 @@
                 android:textSize="8sp"
                 app:layout_constraintBottom_toBottomOf="@+id/baseImageView"
                 app:layout_constraintEnd_toEndOf="@+id/baseImageView" />
-
-            <ImageView
-                android:id="@+id/imageView40"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginLeft="25dp"
-                android:layout_marginTop="28dp"
-                app:layout_constraintStart_toStartOf="@+id/baseImageView"
-                app:layout_constraintTop_toTopOf="@+id/baseImageView"
-                app:srcCompat="@drawable/layout_luck_light_red" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline54"
@@ -270,6 +330,16 @@
                 app:layout_constraintTop_toTopOf="@+id/slot2ImageView"
                 app:srcCompat="@drawable/layout_luck_shadow" />
 
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/monday"
+                android:textColor="@android:color/white"
+                android:textSize="8sp"
+                app:layout_constraintBottom_toTopOf="@+id/imageView40"
+                app:layout_constraintEnd_toEndOf="@+id/imageView40"
+                app:layout_constraintStart_toStartOf="@+id/imageView40" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </layout>

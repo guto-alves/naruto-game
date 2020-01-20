@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.gutotech.narutogame.data.model.LotteryItem;
-import com.gutotech.narutogame.data.model.PersonagemOn;
+import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.repository.CharacterRepository;
 import com.gutotech.narutogame.utils.SingleLiveEvent;
 
@@ -30,15 +30,15 @@ public class NinjaLuckyViewModel extends ViewModel {
     }
 
     public void onPlayButtonPressed() {
-        if (PersonagemOn.character.getRyous() >= 50) {
-            PersonagemOn.character.subRyous(50);
+        if (CharOn.character.getRyous() >= 50) {
+            CharOn.character.subRyous(50);
 
             startAnimationEvent.call();
 
             lotteryItemReceived = generatePremium();
 
             lotteryItemReceived.getPremium().receive();
-            CharacterRepository.getInstance().saveCharacter(PersonagemOn.character);
+            CharacterRepository.getInstance().saveCharacter(CharOn.character);
         }
     }
 
@@ -87,33 +87,33 @@ public class NinjaLuckyViewModel extends ViewModel {
         List<LotteryItem> lotteryItems = new ArrayList<>();
 
         lotteryItems.add(new LotteryItem("1", "1 Ryou", 1,
-                () -> PersonagemOn.character.addRyous(1)));
+                () -> CharOn.character.addRyous(1)));
         lotteryItems.add(new LotteryItem("3", "2000 Ryous", 50,
-                () -> PersonagemOn.character.addRyous(2000)));
+                () -> CharOn.character.addRyous(2000)));
         lotteryItems.add(new LotteryItem("4", "5000 Ryous", 20,
-                () -> PersonagemOn.character.addRyous(5000)));
+                () -> CharOn.character.addRyous(5000)));
         lotteryItems.add(new LotteryItem("5", "10000 Ryous", 10,
-                () -> PersonagemOn.character.addRyous(10000)));
+                () -> CharOn.character.addRyous(10000)));
         lotteryItems.add(new LotteryItem("6", "25000 Ryous", 5,
-                () -> PersonagemOn.character.addRyous(25000)));
+                () -> CharOn.character.addRyous(25000)));
         lotteryItems.add(new LotteryItem("7", "50000 Ryous", 1,
-                () -> PersonagemOn.character.addRyous(50000)));
+                () -> CharOn.character.addRyous(50000)));
 
         lotteryItems.add(new LotteryItem("9", "1 Experience Points", 1,
-                () -> PersonagemOn.character.addExp(1)));
+                () -> CharOn.character.incrementExp(1)));
         lotteryItems.add(new LotteryItem("11", "1500 Experience Points", 50,
-                () -> PersonagemOn.character.addExp(1500)));
+                () -> CharOn.character.incrementExp(1500)));
         lotteryItems.add(new LotteryItem("12", "2000 Experience Points", 40,
-                () -> PersonagemOn.character.addExp(2000)));
+                () -> CharOn.character.incrementExp(2000)));
         lotteryItems.add(new LotteryItem("13", "2500 Experience Points", 30,
-                () -> PersonagemOn.character.addExp(2500)));
+                () -> CharOn.character.incrementExp(2500)));
         lotteryItems.add(new LotteryItem("14", "3000 Experience Points", 20,
-                () -> PersonagemOn.character.addExp(3000)));
+                () -> CharOn.character.incrementExp(3000)));
         lotteryItems.add(new LotteryItem("15", "15000 Experience Points", 1,
-                () -> PersonagemOn.character.addExp(15000)));
+                () -> CharOn.character.incrementExp(15000)));
 
         lotteryItems.add(new LotteryItem("29", "1 Taijutsu Point", 30,
-                () -> PersonagemOn.character.getAttributes().taijutsu++));
+                () -> CharOn.character.getAttributes().taijutsu++));
 
         return lotteryItems;
     }

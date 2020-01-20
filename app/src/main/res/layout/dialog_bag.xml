@@ -1,39 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="300dp"
+    android:layout_width="250dp"
     android:layout_height="wrap_content"
     android:background="@color/colorBgDialog"
     android:orientation="vertical"
     android:padding="8dp">
 
-    <!-- Ramens -->
     <LinearLayout
-        android:id="@+id/linearLayoutRamens"
+        android:id="@+id/ramensLinearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textView90"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:text="Ramen"
+            android:text="@string/ramen"
             android:textColor="@android:color/white" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/ramensRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="51dp"
-            android:scrollbars="horizontal" />
-
+            android:scrollbars="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
     </LinearLayout>
 
-    <!-- Pergaminhos -->
     <LinearLayout
-        android:id="@+id/linearLayoutPergaminho"
+        android:id="@+id/pergaminhosLinearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -42,25 +38,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:text="Pergaminho"
+            android:text="@string/scroll"
             android:textColor="@android:color/white" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/pergaminhosRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="51dp"
+            android:scrollbars="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
-                app:srcCompat="@drawable/layout_pergaminhos_1" />
-        </LinearLayout>
     </LinearLayout>
 
-    <!-- Armas -->
     <LinearLayout
-        android:id="@+id/linearLayoutArmas"
+        android:id="@+id/armasLinearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -69,20 +60,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:text="Armas de longo alcance"
+            android:text="@string/ranged_weapons"
             android:textColor="@android:color/white" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
-                app:srcCompat="@drawable/layout_armas_comum_kunai" />
-        </LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rangedWaponsRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="51dp"
+            android:scrollbars="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
     </LinearLayout>
 
 </LinearLayout>

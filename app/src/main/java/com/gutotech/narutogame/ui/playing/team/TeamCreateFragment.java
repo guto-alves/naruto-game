@@ -22,7 +22,7 @@ import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.utils.FragmentUtil;
 import com.gutotech.narutogame.utils.StorageUtil;
 import com.gutotech.narutogame.data.model.Equipe;
-import com.gutotech.narutogame.data.model.PersonagemOn;
+import com.gutotech.narutogame.data.model.CharOn;
 
 public class TeamCreateFragment extends Fragment implements SectionFragment {
     private TextInputEditText nomeEquipeTextInput;
@@ -37,7 +37,7 @@ public class TeamCreateFragment extends Fragment implements SectionFragment {
         View view = inflater.inflate(R.layout.fragment_team_create, container, false);
 
         ImageView imagemMsg = view.findViewById(R.id.personagemMsg);
-        StorageUtil.downloadProfileForMsg(getActivity(), imagemMsg, PersonagemOn.character.getVillage().id);
+        StorageUtil.downloadProfileForMsg(getActivity(), imagemMsg, CharOn.character.getVillage().id);
 
         nomeEquipeTextInput = view.findViewById(R.id.nomeEqpTextInput);
 
@@ -87,7 +87,7 @@ public class TeamCreateFragment extends Fragment implements SectionFragment {
         Equipe equipe = new Equipe();
         equipe.setNome(nomeDaEquipe);
         equipe.setLevel(1);
-        equipe.setLider(PersonagemOn.character);
+        equipe.setLider(CharOn.character);
         equipe.salvar();
     }
 

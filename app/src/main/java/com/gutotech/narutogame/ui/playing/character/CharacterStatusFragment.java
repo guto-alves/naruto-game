@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.gutotech.narutogame.R;
-import com.gutotech.narutogame.data.model.PersonagemOn;
+import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.databinding.FragmentCharacterStatusBinding;
 import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.adapter.AttributesRecyclerViewAdapter;
@@ -27,15 +27,15 @@ public class CharacterStatusFragment extends Fragment implements SectionFragment
 
         View view = binding.getRoot();
 
-        binding.setCharacter(PersonagemOn.character);
+        binding.setCharacter(CharOn.character);
 
         binding.attributesRecyclerView.setHasFixedSize(true);
         binding.attributesRecyclerView.setAdapter(new AttributesRecyclerViewAdapter(
-                PersonagemOn.character.getAttributes().asList()));
+                CharOn.character.getAttributes().asList()));
 
         binding.formulasRecyclerView.setHasFixedSize(true);
         binding.formulasRecyclerView.setAdapter(new AttributesRecyclerViewAdapter(
-                PersonagemOn.character.getAttributes().getFormulas().asList()));
+                CharOn.character.getAttributes().getFormulas().asList()));
 
         FragmentUtil.setSectionTitle(getActivity(), R.string.section_character_status);
 

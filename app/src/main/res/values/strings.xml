@@ -43,8 +43,8 @@
     <string name="button_ir_para_a_fila">Ir para a fila</string>
     <string name="button_filter">Filter</string>
 
-    <string name="title_activity_logado_selecionar">LogadoSelecionarActivity</string>
-    <string name="title_activity_personagem_logado">PersonagemLogadoActivity</string>
+    <string name="title_activity_logado_selecionar" translatable="false">LogadoSelecionarActivity</string>
+    <string name="title_activity_personagem_logado" translatable="false">PersonagemLogadoActivity</string>
     <string name="select_your_character">SELECT YOUR CHARACTER</string>
     <string name="taijutsu" translatable="false">Taijutsu</string>
     <string name="ninjustu" translatable="false">Ninjustu</string>
@@ -220,7 +220,6 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="user">User</string>
     <string name="character">Character</string>
     <string name="academy">Academy</string>
-    <string name="sensei" translatable="false">Sensei</string>
     <string name="current_village">Current Village</string>
     <string name="battles">Battles</string>
     <string name="team">Team</string>
@@ -271,8 +270,8 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     </string-array>
 
     <string-array name="chat_channel_array">
-        <item>Vila</item>
-        <item>Mundo</item>
+        <item>Village</item>
+        <item>World</item>
     </string-array>
 
     <string-array name="ticket_categorias_array">
@@ -355,6 +354,26 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="limit_of_traning_bar_description">All Ninjas can train your daily limit of training normally, for those who can\'t train the limit on the same day, can train on the next day and consecutively.</string>
     <string name="you_earned_ability_points">You earned %d ability points</string>
     <string name="problem">WARNING!</string>
-    <string name="you_do_not_have_chakra_for_this_training">You don\'t have enough Chakra and Stamina for this training.</string>
+    <string name="you_dont_have_chakra_for_this_training">You don\'t have enough Chakra and Stamina for this training.</string>
+    <string name="label_title">Title:</string>
+    <string name="label_class">Class:</string>
+    <string name="label_number_of_days_played">Number of days played:</string>
+    <string name="label_ranking_vila">Ranking (Village):</string>
+    <string name="label_ranking_general">Ranking (General):</string>
+    <string name="label_score">Score:</string>
+    <string name="label_team">Team:</string>
+    <string name="none">None</string>
+    <string name="ramen">Ramen</string>
+    <string name="scroll">Scroll</string>
+    <string name="ranged_weapons">Ranged Weapons</string>
+    <string name="bag_item_quantity">x %d</string>
+    <string name="item">Item</string>
+    <string name="section_change_image">CHANGE IMAGE</string>
+    <string name="monday">Monday</string>
+    <string name="want_to_delete_this_ninja">Do you really want to delete this ninja?</string>
+    <string name="button_cancel">Cancel</string>
+    <string name="remove_character_while_logged_in">You cannot remove this character while logged in!</string>
+    <string name="close">Close</string>
+    <string name="sender">%s:</string>
 
 </resources>

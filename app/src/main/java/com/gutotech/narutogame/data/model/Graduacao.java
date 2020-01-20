@@ -19,7 +19,7 @@ public class Graduacao {
     }
 
     public static String getGraducao(int idGraducao) {
-        String vila = PersonagemOn.character.getVillage().name;
+        String vila = CharOn.character.getVillage().name;
 
 //        if (vila.equals(Vila.FOLHA)) {
 //            switch (idGraducao) {

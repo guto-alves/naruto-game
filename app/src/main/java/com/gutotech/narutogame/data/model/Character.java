@@ -8,6 +8,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.gutotech.narutogame.data.firebase.FirebaseConfig;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Character extends BaseObservable implements Serializable {
     private String playerId;
@@ -25,7 +26,7 @@ public class Character extends BaseObservable implements Serializable {
 
     private Attributes attributes;
 
-    private Bag bolsa;
+    private Bag bag;
 
     private CombatOverview combatOverview;
     private ResumeOfMissions resumeOfMissions;
@@ -38,13 +39,15 @@ public class Character extends BaseObservable implements Serializable {
     private boolean online;
     private String lastLogin;
 
+    private String title;
+    private List<String> titles;
+
+    private NinjaLucky ninjaLucky;
+
+
     /// -------------------- OK ------------------------
 
-    // info gerais
-//    private String title;
-//    private List<String> titles;
-//
-//    private int diasLogadosFidelidade;
+    //    private int diasLogadosFidelidade;
 //    private boolean temRecompensaFidelidade;
 //
     // info combates
@@ -75,13 +78,18 @@ public class Character extends BaseObservable implements Serializable {
         ninja = Ninja.NARUTO;
         profile = 1;
         village = Village.FOLHA;
+        graduation = Graduation.ESTUDANTE;
         setClasse(Classe.TAI);
         getAttributes().updateFormulas(Classe.TAI, level);
         ryous = 500;
         score = 1000;
+        expUpar = 1200;
+        bag = new Bag();
         combatOverview = new CombatOverview();
         resumeOfMissions = new ResumeOfMissions();
         extrasInformation = new ExtrasInformation();
+        ninjaLucky = new NinjaLucky();
+        ninjaLucky.deselectAllDaysPlayed();
         mapPosition = -1;
     }
 
@@ -92,6 +100,45 @@ public class Character extends BaseObservable implements Serializable {
 
         characterRef.setValue(this);
     }
+
+    public void updateFormulas() {
+        getAttributes().updateFormulas(getClasse(), getLevel());
+    }
+
+    public void full() {
+        getAttributes().getFormulas().full();
+    }
+
+    public void incrementExp(int expEarned) {
+        int newTotalExp = getExp() + expEarned;
+
+        if (newTotalExp >= getExpUpar()) {
+            newTotalExp = newTotalExp - getExpUpar();
+
+            setExpUpar(getExpUpar() + 1200);
+
+            setLevel(getLevel() + 1);
+
+            updateFormulas();
+            full();
+        }
+
+        setExp(newTotalExp);
+    }
+
+    public void setExp(int exp) {
+        this.exp = exp;
+    }
+
+    public void addRyous(long ryous) {
+        setRyous(getRyous() + ryous);
+    }
+
+    public void subRyous(long ryous) {
+        setRyous(getRyous() - ryous);
+    }
+
+    // Getters and setters
 
     public ExtrasInformation getExtrasInformation() {
         return extrasInformation;
@@ -117,22 +164,6 @@ public class Character extends BaseObservable implements Serializable {
     public void setVillage(Village village) {
         this.village = village;
         notifyPropertyChanged(BR.village);
-    }
-
-    //    public List<String> getTitles() {
-//        return titles;
-//    }
-//
-//    public void setTitles(List<String> titles) {
-//        this.titles = titles;
-//    }
-//
-    public void updateFormulas() {
-        getAttributes().updateFormulas(getClasse(), getLevel());
-    }
-
-    public void full() {
-        getAttributes().getFormulas().full();
     }
 
     public String getPlayerId() {
@@ -161,14 +192,6 @@ public class Character extends BaseObservable implements Serializable {
     public void setRyous(long ryous) {
         this.ryous = ryous;
         notifyPropertyChanged(BR.ryous);
-    }
-
-    public void addRyous(long ryous) {
-        setRyous(getRyous() + ryous);
-    }
-
-    public void subRyous(long ryous) {
-        setRyous(getRyous() - ryous);
     }
 
     public Classe getClasse() {
@@ -234,26 +257,6 @@ public class Character extends BaseObservable implements Serializable {
         return exp;
     }
 
-    public void setExp(int exp) {
-        if (exp >= getExpUpar()) {
-            exp = exp - getExpUpar();
-            setExpUpar(getExpUpar() + 1200);
-            setLevel(getLevel() + 1);
-            getAttributes().updateFormulas(classe, level);
-            getAttributes().getFormulas().full();
-//            atualizarAtributos();
-//            atributos.getFormulas().setCurrentHealth(atributos.getFormulas().getHealth());
-//            atributos.getFormulas().setChakraAtual(atributos.getFormulas().getChakra());
-//            atributos.getFormulas().setStaminaAtual(atributos.getFormulas().getStamina());
-        }
-
-        this.exp = exp;
-    }
-
-    public void addExp(int exp) {
-        setExp(getExp() + exp);
-    }
-
     public int getExpUpar() {
         return expUpar;
     }
@@ -278,12 +281,12 @@ public class Character extends BaseObservable implements Serializable {
         this.combatesNPCDiarios = combatesNPCDiarios;
     }
 
-    public Bag getBolsa() {
-        return bolsa;
+    public Bag getBag() {
+        return bag;
     }
 
-    public void setBolsa(Bag bolsa) {
-        this.bolsa = bolsa;
+    public void setBag(Bag bag) {
+        this.bag = bag;
     }
 
     public boolean isOnline() {
@@ -324,5 +327,29 @@ public class Character extends BaseObservable implements Serializable {
 
     public void setGraduation(Graduation graduation) {
         this.graduation = graduation;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public List<String> getTitles() {
+        return titles;
+    }
+
+    public void setTitles(List<String> titles) {
+        this.titles = titles;
+    }
+
+    public NinjaLucky getNinjaLucky() {
+        return ninjaLucky;
+    }
+
+    public void setNinjaLucky(NinjaLucky ninjaLucky) {
+        this.ninjaLucky = ninjaLucky;
     }
 }

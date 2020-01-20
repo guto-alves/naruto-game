@@ -1,9 +1,11 @@
 package com.gutotech.narutogame.utils;
 
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.databinding.BindingAdapter;
+import androidx.lifecycle.LiveData;
 
 import com.github.rtoshiro.util.format.SimpleMaskFormatter;
 import com.github.rtoshiro.util.format.text.MaskTextWatcher;
@@ -36,4 +38,8 @@ public class BindingUtil {
         textView.setText(text);
     }
 
+    @BindingAdapter("show")
+    public static void setShow(View view, Boolean visible) {
+        view.setVisibility(visible ? View.VISIBLE : View.GONE);
+    }
 }

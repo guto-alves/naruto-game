@@ -12,7 +12,7 @@ import android.widget.Button;
 
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.ui.playing.character.CharacterStatusFragment;
-import com.gutotech.narutogame.data.model.PersonagemOn;
+import com.gutotech.narutogame.data.model.CharOn;
 
 public class HospitalQuartoFragment extends Fragment {
 
@@ -28,13 +28,13 @@ public class HospitalQuartoFragment extends Fragment {
         pagarMedicoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (PersonagemOn.character.getRyous() >= 25) {
-                    PersonagemOn.character.setRyous(PersonagemOn.character.getRyous() - 25);
+                if (CharOn.character.getRyous() >= 25) {
+                    CharOn.character.setRyous(CharOn.character.getRyous() - 25);
 //                    Formulas formulas = PersonagemOn.character.getAtributos().getFormulas();
 //                    formulas.setCurrentHealth(formulas.getHealth());
 //                    formulas.setChakraAtual(formulas.getChakra());
 //                    formulas.setStaminaAtual(formulas.getStamina());
-                    PersonagemOn.character.salvar();
+                    CharOn.character.salvar();
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                     builder.setTitle("Aviso!");

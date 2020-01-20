@@ -18,7 +18,7 @@ import com.gutotech.narutogame.data.model.Village;
 import com.gutotech.narutogame.databinding.FragmentVillageMapBinding;
 import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.adapter.VillageMapRecyclerViewAdapter;
-import com.gutotech.narutogame.data.model.PersonagemOn;
+import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.utils.FragmentUtil;
 
 public class VillageMapFragment extends Fragment implements SectionFragment {
@@ -38,9 +38,9 @@ public class VillageMapFragment extends Fragment implements SectionFragment {
             villageName = village.name;
             binding.villageMapRecyclerView.setBackgroundResource(village.mapResId);
         } else {
-            villageName = PersonagemOn.character.getVillage().name;
+            villageName = CharOn.character.getVillage().name;
             binding.villageMapRecyclerView.setBackgroundResource(
-                    PersonagemOn.character.getVillage().mapResId);
+                    CharOn.character.getVillage().mapResId);
         }
 
         mViewModel = ViewModelProviders.of(this, new VillageMapViewModelFactory(villageName))
