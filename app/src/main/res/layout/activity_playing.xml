@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="viewModel"
             type="com.gutotech.narutogame.ui.playing.PlayingViewModel" />
@@ -31,6 +33,7 @@
             app:headerLayout="@layout/nav_header_personagem_logado">
 
             <ScrollView
+                android:id="@+id/scrollView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="@dimen/nav_header_height"
@@ -294,9 +297,10 @@
                     <ExpandableListView
                         android:id="@+id/expandableListView"
                         android:layout_width="match_parent"
-                        android:layout_height="500dp"
+                        android:layout_height="300dp"
                         android:layout_marginTop="16dp"
-                        android:layout_marginBottom="16dp" />
+                        android:layout_marginBottom="16dp"
+                        android:nestedScrollingEnabled="true" />
 
                     <!-- Chat -->
                     <!-- Top -->
@@ -343,16 +347,19 @@
                         android:id="@+id/chatLinearLayout"
                         android:layout_width="match_parent"
                         android:layout_height="350dp"
+                        android:layout_marginLeft="3dp"
+                        android:layout_marginRight="3dp"
                         android:background="#19100A"
                         android:orientation="vertical"
-                        android:visibility="gone">
+                        android:visibility="@{viewModel.chatOpened ? View.VISIBLE : View.GONE}">
 
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/messagesRecyclerView"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_weight="1"
-                            android:padding="5dp"
+                            android:paddingLeft="8dp"
+                            android:paddingRight="8dp"
                             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                             tools:listitem="@layout/recycler_chat_message" />
 
@@ -369,6 +376,8 @@
                                 android:layout_width="0dp"
                                 android:layout_height="45dp"
                                 android:layout_marginTop="3dp"
+                                android:layout_marginEnd="3dp"
+                                android:layout_marginRight="3dp"
                                 android:layout_marginBottom="3dp"
                                 android:layout_weight="1"
                                 android:background="@drawable/layout_bg_mensagem_chat"
@@ -380,12 +389,15 @@
                                 <ImageView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:contentDescription="@string/top_of_chat_content_description"
                                     app:srcCompat="@drawable/layout_chat_chat_channel" />
 
                                 <Spinner
                                     android:id="@+id/channelSpinner"
+                                    style="@android:style/Widget.DeviceDefault.Light.Spinner"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:background="@drawable/layout_bg_mensagem_chat"
                                     android:entries="@array/chat_channel_array"
                                     android:onItemSelected="@{(parent, v, position, id) -> viewModel.onChannelChanged(position)}" />
 

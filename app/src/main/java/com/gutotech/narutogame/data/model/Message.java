@@ -1,6 +1,7 @@
 package com.gutotech.narutogame.data.model;
 
 public class Message {
+    private String id;
     private String sender;
     private String message;
 
@@ -10,6 +11,14 @@ public class Message {
     public Message(String sender, String message) {
         this.sender = sender;
         this.message = message;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getSender() {

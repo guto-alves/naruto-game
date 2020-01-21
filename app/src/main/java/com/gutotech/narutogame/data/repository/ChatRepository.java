@@ -1,13 +1,12 @@
 package com.gutotech.narutogame.data.repository;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
+import androidx.annotation.Nullable;
 
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.ValueEventListener;
 import com.gutotech.narutogame.data.firebase.FirebaseConfig;
 import com.gutotech.narutogame.data.model.Message;
 
@@ -27,52 +26,72 @@ public class ChatRepository {
         return sInstance;
     }
 
-    public void send(Message mensagem, String channel) {
-        DatabaseReference messageRef = FirebaseConfig.getDatabase()
-                .child("chats")
-                .child(channel)
-                .push();
+    public void sendMessage(Message message, String channel) {
+        DatabaseReference messageRef = FirebaseConfig.getDatabase();
 
-        messageRef.setValue(mensagem);
+        String key = messageRef.child("chats").child(channel).push().getKey();
+        message.setId(key);
+
+        messageRef.child("chats").child(channel).child(key).setValue(message);
     }
 
-    private DatabaseReference messageRef;
-    private ValueEventListener valueEventListener;
+    private DatabaseReference messagesRef;
+    private ChildEventListener messagesListener;
 
-    public MutableLiveData<List<Message>> getMessages(String channel) {
-        MutableLiveData<List<Message>> data = new MutableLiveData<>();
-
+    public void getMessages(String channel, MessagesListener listener) {
         List<Message> messageList = new ArrayList<>();
 
         removeEventListener();
 
-        messageRef = FirebaseConfig.getDatabase()
-                .child("chats")
-                .child(channel);
+        messagesRef = FirebaseConfig.getDatabase().child("chats").child(channel);
 
-        valueEventListener = messageRef.addValueEventListener(new ValueEventListener() {
+        messagesListener = new ChildEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                messageList.clear();
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                Message newMessage = dataSnapshot.getValue(Message.class);
+                messageList.add(newMessage);
 
-                for (DataSnapshot data : dataSnapshot.getChildren()) {
-                    messageList.add(data.getValue(Message.class));
+                listener.onMessagesChanged(messageList);
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+                Message messageRemoved = dataSnapshot.getValue(Message.class);
+
+                int size = messageList.size();
+
+                for (int i = 0; i < size; i++) {
+                    if (messageList.get(i).getId().equals(messageRemoved.getId())) {
+                        messageList.remove(i);
+                        break;
+                    }
                 }
 
-                data.postValue(messageList);
+                listener.onMessagesChanged(messageList);
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
-        });
-
-        return data;
+        };
+        messagesRef.addChildEventListener(messagesListener);
     }
 
     public void removeEventListener() {
-        if (valueEventListener != null) {
-            messageRef.removeEventListener(valueEventListener);
+        if (messagesListener != null) {
+            messagesRef.removeEventListener(messagesListener);
         }
+    }
+
+    public interface MessagesListener {
+        void onMessagesChanged(List<Message> messages);
     }
 }

@@ -375,5 +375,6 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="remove_character_while_logged_in">You cannot remove this character while logged in!</string>
     <string name="close">Close</string>
     <string name="sender">%s:</string>
+    <string name="top_of_chat_content_description">Top of chat</string>
 
 </resources>

@@ -257,6 +257,7 @@
     <string name="remove_character_while_logged_in">Você não pode remover esse character estando logado nele!</string>
     <string name="close">Fechar</string>
     <string name="sender">%s:</string>
+    <string name="top_of_chat_content_description">Topo do chat</string>
 
     <string-array name="chat_channel_array">
         <item>Vila</item>

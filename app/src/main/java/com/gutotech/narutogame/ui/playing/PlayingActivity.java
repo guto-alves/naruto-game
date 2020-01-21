@@ -11,6 +11,7 @@ import android.os.Handler;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.View;
@@ -75,8 +76,7 @@ public class PlayingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(PlayingViewModel.class);
 
-        binding = DataBindingUtil.setContentView(
-                this, R.layout.activity_playing);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_playing);
 
         binding.setLifecycleOwner(this);
         binding.setViewModel(mViewModel);
@@ -136,10 +136,12 @@ public class PlayingActivity extends AppCompatActivity {
 
             if (openChat) {
                 animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_in);
-                binding.chatLinearLayout.setVisibility(View.VISIBLE);
+                binding.scrollView.post(() -> binding.scrollView.fullScroll(View.FOCUS_DOWN));
+                binding.scrollView.fullScroll(View.FOCUS_DOWN);
+                binding.scrollView.post(() ->
+                        binding.scrollView.smoothScrollTo(0, binding.scrollView.getBottom()));
             } else {
                 animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_out);
-                binding.chatLinearLayout.setVisibility(View.GONE);
             }
 
             binding.chatTopImageView.startAnimation(animation);
@@ -148,11 +150,14 @@ public class PlayingActivity extends AppCompatActivity {
         binding.messagesRecyclerView.setHasFixedSize(true);
         ChatMessageAdapter adapter = new ChatMessageAdapter(this);
         binding.messagesRecyclerView.setAdapter(adapter);
-        mViewModel.getChatMessages().observe(this, adapter::setMessageList);
+        mViewModel.getChatMessages().observe(this, messages -> {
+            adapter.setMessageList(messages);
+            binding.messagesRecyclerView.smoothScrollToPosition(adapter.getItemCount());
+        });
 
         binding.messageEditText.setOnEditorActionListener((v, actionId, event) -> {
             mViewModel.onSendMessageButtonPressed();
-            return false;
+            return true;
         });
     }
 
@@ -238,6 +243,12 @@ public class PlayingActivity extends AppCompatActivity {
 
     public void logout(View view) {
         logout();
+        startActivity(new Intent(PlayingActivity.this, DeslogadoActivity.class));
+        finish();
+    }
+
+    private void logout() {
+        mViewModel.logout();
     }
 
     public void goFidelidade(View view) {
@@ -245,11 +256,6 @@ public class PlayingActivity extends AppCompatActivity {
         closeDrawer();
     }
 
-    private void logout() {
-        mViewModel.logout();
-        startActivity(new Intent(PlayingActivity.this, DeslogadoActivity.class));
-        finish();
-    }
 
     public void closeDrawer() {
         drawer.closeDrawer(GravityCompat.START);
@@ -287,6 +293,7 @@ public class PlayingActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        logout();
     }
 
     private void inicializarCounterHorasJogadas() {

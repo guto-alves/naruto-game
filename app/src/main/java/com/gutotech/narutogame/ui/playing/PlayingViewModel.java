@@ -6,6 +6,8 @@ import android.util.Log;
 import android.widget.ExpandableListView;
 
 import androidx.annotation.NonNull;
+import androidx.databinding.ObservableBoolean;
+import androidx.databinding.ObservableField;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -90,10 +92,6 @@ public class PlayingViewModel extends AndroidViewModel {
         return onChildClickListener;
     }
 
-    public void logout() {
-        AuthRepository.getInstance().signOut();
-    }
-
     public void onChangeImageButtonPressed() {
         currentSection.setValue(new ChangeImageFragment());
     }
@@ -171,15 +169,15 @@ public class PlayingViewModel extends AndroidViewModel {
         menuGroups.setValue(groups);
     }
 
-
     // Chat
     private ChatRepository mChatRepository;
-    public String message;
-    public String channel;
+    public ObservableField<String> message = new ObservableField<>("");
+    private String channel;
 
     private MutableLiveData<List<Message>> mMessages = new MutableLiveData<>();
 
-    private boolean chatOpened;
+    public ObservableBoolean chatOpened = new ObservableBoolean(false);
+
     private SingleLiveEvent<Boolean> startChatAnimationEvent = new SingleLiveEvent<>();
 
     public LiveData<List<Message>> getChatMessages() {
@@ -187,7 +185,7 @@ public class PlayingViewModel extends AndroidViewModel {
     }
 
     private void getMessages() {
-        mMessages = mChatRepository.getMessages(channel);
+        mChatRepository.getMessages(channel, messages -> mMessages.setValue(messages));
     }
 
     public LiveData<Boolean> getStartChatAnimationEvent() {
@@ -195,9 +193,9 @@ public class PlayingViewModel extends AndroidViewModel {
     }
 
     public void onChatClick() {
-        chatOpened = !chatOpened;
+        chatOpened.set(!chatOpened.get());
 
-        if (chatOpened) {
+        if (chatOpened.get()) {
             getMessages();
             startChatAnimationEvent.setValue(true);
         } else {
@@ -208,10 +206,9 @@ public class PlayingViewModel extends AndroidViewModel {
     }
 
     public void onChannelChanged(int position) {
-        Log.i("ChatTest", "channel position:" + position);
-        if (position == 0) { // world
+        if (position == 0) {
             channel = CharOn.character.getVillage().name;
-        } else { // current village
+        } else {
             channel = "World";
         }
 
@@ -219,18 +216,21 @@ public class PlayingViewModel extends AndroidViewModel {
     }
 
     public void onSendMessageButtonPressed() {
-        if (!TextUtils.isEmpty(message)) {
-            ChatRepository.getInstance().send(
-                    new Message(CharOn.character.getNick(), message), channel);
-            Log.i("ChatTest", "message sent:" + message);
-            message = "";
+        if (!TextUtils.isEmpty(message.get())) {
+            ChatRepository.getInstance().sendMessage(
+                    new Message(CharOn.character.getNick(), message.get()), channel);
+            message.set("");
         }
     }
 
-    public void close() {
+    public void logout() {
+        mChatRepository.removeEventListener();
+
         CharOn.character.setOnline(false);
         CharOn.character.setLastLogin(String.format(Locale.getDefault(), "%s às %s",
                 DateCustom.getDate(), DateCustom.getTime()));
         CharacterRepository.getInstance().saveCharacter(CharOn.character);
+
+        AuthRepository.getInstance().signOut();
     }
 }
