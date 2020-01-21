@@ -31,23 +31,7 @@ public class PlayerRepository {
         playerRef.setValue(player);
     }
 
-    /*
-    private void writeNewPost(String userId, String username, String title, String body) {
-        // Create new post at /user-posts/$userid/$postid and at
-        // /posts/$postid simultaneously
-        String key = mDatabase.child("posts").push().getKey();
-        Post post = new Post(userId, username, title, body);
-        Map<String, Object> postValues = post.toMap();
-
-        Map<String, Object> childUpdates = new HashMap<>();
-        childUpdates.put("/posts/" + key, postValues);
-        childUpdates.put("/user-posts/" + userId + "/" + key, postValues);
-
-        mDatabase.updateChildren(childUpdates);
-    }
-    */
-
-    public void getCurrentPlayer(CallBack callBack) {
+    public void getCurrentPlayer(Callback<Player> callBack) {
         DatabaseReference playerReference = FirebaseConfig.getDatabase()
                 .child("players")
                 .child(AuthRepository.getInstance().getUid());
@@ -56,7 +40,7 @@ public class PlayerRepository {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Player player = dataSnapshot.getValue(Player.class);
-                callBack.onPlayerReceived(player);
+                callBack.call(player);
             }
 
             @Override
@@ -74,7 +58,7 @@ public class PlayerRepository {
         playerReference.setValue(newPassword);
     }
 
-    public void isValidCurrentPassword(String currentPassword, ResultListener emitter) {
+    public void isValidCurrentPassword(String currentPassword, Callback<Boolean> callback) {
         DatabaseReference playerRef = FirebaseConfig.getDatabase()
                 .child("players")
                 .child(AuthRepository.getInstance().getUid())
@@ -86,22 +70,15 @@ public class PlayerRepository {
                 String password = dataSnapshot.getValue(String.class);
 
                 if (TextUtils.equals(password, currentPassword)) {
-                    emitter.onResult(true);
-                } else
-                    emitter.onResult(false);
+                    callback.call(true);
+                } else {
+                    callback.call(false);
+                }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
-    }
-
-    public interface ResultListener {
-        void onResult(boolean b);
-    }
-
-    public interface CallBack {
-        void onPlayerReceived(Player player);
     }
 }

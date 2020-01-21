@@ -5,7 +5,6 @@ import java.util.List;
 
 public class NinjaLucky {
     private int lastDayPlayed;
-
     private List<Boolean> daysOfWeek;
 
     public NinjaLucky() {
@@ -14,6 +13,7 @@ public class NinjaLucky {
     public void deselectAllDaysPlayed() {
         lastDayPlayed = 0;
         daysOfWeek = new ArrayList<>();
+
         for (int day = 0; day < 8; day++) {
             daysOfWeek.add(day, false);
         }
@@ -23,8 +23,26 @@ public class NinjaLucky {
         daysOfWeek.set(day, true);
     }
 
+    public boolean playedAllDays() {
+        for (Boolean dayPlayed : daysOfWeek) {
+            if (!dayPlayed) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public boolean played(int day) {
+        return getLastDayPlayed() == day;
+    }
+
     public int getLastDayPlayed() {
         return lastDayPlayed;
+    }
+
+    public void setLastDayPlayed(int lastDayPlayed) {
+        this.lastDayPlayed = lastDayPlayed;
     }
 
     public List<Boolean> getDaysOfWeek() {

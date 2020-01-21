@@ -32,8 +32,8 @@ public class AuthRepository {
     public void registerPlayer(String name, String email, String password, Completable emitter) {
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
+                updateProfile(getCurrentUser(), name, null);
                 emitter.onComplete();
-                updateProfile(name, null);
             } else {
                 int resId;
 
@@ -104,11 +104,11 @@ public class AuthRepository {
     }
 
 
-    public void updateProfile(String newName, final Completable emitter) {
+    public void updateProfile(FirebaseUser user, String newName, final Completable emitter) {
         UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                 .setDisplayName(newName).build();
 
-        getCurrentUser().updateProfile(profileUpdates).addOnCompleteListener(task -> {
+        user.updateProfile(profileUpdates).addOnCompleteListener(task -> {
             if (emitter != null) {
                 if (task.isSuccessful()) {
                     emitter.onComplete();
@@ -116,15 +116,15 @@ public class AuthRepository {
                     emitter.onError(R.string.action_error);
                 }
             } else {
-                sendEmailVerification();
+                sendEmailVerification(user);
             }
         });
     }
 
-    private void sendEmailVerification() {
+    private void sendEmailVerification(FirebaseUser user) {
         mAuth.useAppLanguage();
 
-        getCurrentUser().sendEmailVerification()
+        user.sendEmailVerification()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         Log.d("AuthRepository", "Email sent.");

@@ -236,7 +236,7 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="village_map">Village Map</string>
     <string name="dojo" translatable="false">Dojo</string>
     <string name="dojo_4x4" translatable="false">Dojo 4x4</string>
-    <string name="arena">Arena</string>
+    <string name="arena" translatable="false">Arena</string>
     <string name="messenger">Messenger</string>
     <string name="game_formulas">Game Formulas</string>
     <string name="logout">Logout</string>
@@ -376,5 +376,19 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="close">Close</string>
     <string name="sender">%s:</string>
     <string name="top_of_chat_content_description">Top of chat</string>
+    <string name="warning_already_played_today">• You\'ve played in lucky ninja today!</string>
+    <string name="credits_daily">1\nCredit</string>
+    <string name="ryous_daily">2000 Ryous</string>
+    <string name="ryous_weekly">6000 Ryous</string>
+    <string name="credits_weekly">3 Credits</string>
+    <string name="warning_dont_have_enough_ryous">• You don\'t have enough ryous</string>
+    <string name="warning_dont_have_enough_credits">• You don\'t have enough credits</string>
+    <string name="warning_havent_played_the_entire_week_yet">• You haven\'t played the entire week yet.</string>
+    <string name="sunday">Sunday</string>
+    <string name="tuesday">Tuesday</string>
+    <string name="wednesday">Wednesday</string>
+    <string name="thursday">Thursday</string>
+    <string name="friday">Friday</string>
+    <string name="saturday">Saturday</string>
 
 </resources>

@@ -32,6 +32,7 @@
     <style name="ButtonTheme" parent="Widget.AppCompat.Button.Colored">
         <item name="android:background">@drawable/selector_button</item>
         <item name="android:textColor">@android:color/white</item>
+        <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">35dp</item>
         <item name="android:textStyle">bold</item>
     </style>

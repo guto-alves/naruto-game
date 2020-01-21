@@ -12,9 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.firebase.storage.StorageReference;
 import com.gutotech.narutogame.R;
-import com.gutotech.narutogame.data.firebase.FirebaseConfig;
 import com.gutotech.narutogame.utils.StorageUtil;
 import com.gutotech.narutogame.data.model.LotteryItem;
 

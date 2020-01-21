@@ -80,7 +80,7 @@ public class Character extends BaseObservable implements Serializable {
         village = Village.FOLHA;
         graduation = Graduation.ESTUDANTE;
         setClasse(Classe.TAI);
-        getAttributes().updateFormulas(Classe.TAI, level);
+        updateFormulas();
         ryous = 500;
         score = 1000;
         expUpar = 1200;
@@ -88,8 +88,6 @@ public class Character extends BaseObservable implements Serializable {
         combatOverview = new CombatOverview();
         resumeOfMissions = new ResumeOfMissions();
         extrasInformation = new ExtrasInformation();
-        ninjaLucky = new NinjaLucky();
-        ninjaLucky.deselectAllDaysPlayed();
         mapPosition = -1;
     }
 

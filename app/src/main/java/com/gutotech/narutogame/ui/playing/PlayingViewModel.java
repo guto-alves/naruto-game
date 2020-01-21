@@ -230,7 +230,5 @@ public class PlayingViewModel extends AndroidViewModel {
         CharOn.character.setLastLogin(String.format(Locale.getDefault(), "%s às %s",
                 DateCustom.getDate(), DateCustom.getTime()));
         CharacterRepository.getInstance().saveCharacter(CharOn.character);
-
-        AuthRepository.getInstance().signOut();
     }
 }

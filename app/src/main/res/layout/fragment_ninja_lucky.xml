@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="com.gutotech.narutogame.ui.playing.character.NinjaLuckyViewModel" />
+
         <variable
             name="viewModel"
             type="com.gutotech.narutogame.ui.playing.character.NinjaLuckyViewModel" />
@@ -32,79 +34,207 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sunday"
+                android:textColor="@android:color/white"
+                android:textSize="8sp"
+                app:layout_constraintBottom_toTopOf="@+id/imageView40"
+                app:layout_constraintEnd_toEndOf="@+id/imageView40"
+                app:layout_constraintStart_toStartOf="@+id/imageView40" />
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/monday"
+                android:textColor="@android:color/white"
+                android:textSize="8sp"
+                app:layout_constraintBottom_toTopOf="@+id/imageView11"
+                app:layout_constraintEnd_toEndOf="@+id/imageView11"
+                app:layout_constraintStart_toStartOf="@+id/imageView11" />
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tuesday"
+                android:textColor="@android:color/white"
+                android:textSize="8sp"
+                app:layout_constraintBottom_toTopOf="@+id/imageView28"
+                app:layout_constraintEnd_toEndOf="@+id/imageView28"
+                app:layout_constraintStart_toStartOf="@+id/imageView28" />
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/wednesday"
+                android:textColor="@android:color/white"
+                android:textSize="8sp"
+                app:layout_constraintBottom_toTopOf="@+id/imageView29"
+                app:layout_constraintEnd_toEndOf="@+id/imageView29"
+                app:layout_constraintStart_toStartOf="@+id/imageView29" />
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/thursday"
+                android:textColor="@android:color/white"
+                android:textSize="8sp"
+                app:layout_constraintBottom_toTopOf="@+id/imageView30"
+                app:layout_constraintEnd_toEndOf="@+id/imageView30"
+                app:layout_constraintStart_toStartOf="@+id/imageView30" />
+
+            <TextView
+                android:id="@+id/textView18"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/friday"
+                android:textColor="@android:color/white"
+                android:textSize="8sp"
+                app:layout_constraintBottom_toTopOf="@+id/imageView50"
+                app:layout_constraintEnd_toEndOf="@+id/imageView50"
+                app:layout_constraintStart_toStartOf="@+id/imageView50" />
+
+            <TextView
+                android:id="@+id/textView19"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/saturday"
+                android:textColor="@android:color/white"
+                android:textSize="8sp"
+                app:layout_constraintBottom_toTopOf="@+id/imageView51"
+                app:layout_constraintEnd_toEndOf="@+id/imageView51"
+                app:layout_constraintStart_toStartOf="@+id/imageView51" />
+
             <ImageView
                 android:id="@+id/imageView40"
                 android:layout_width="23dp"
                 android:layout_height="23dp"
-                android:layout_marginStart="28dp"
-                android:layout_marginLeft="28dp"
+                android:layout_marginStart="29dp"
+                android:layout_marginLeft="29dp"
                 android:layout_marginTop="31dp"
+                android:src="@{viewModel.daysOfWeek[1] ? @drawable/layout_luck_light_green: @drawable/layout_luck_light_red}"
                 app:layout_constraintStart_toStartOf="@+id/baseImageView"
-                app:layout_constraintTop_toTopOf="@+id/baseImageView"
-                app:srcCompat="@drawable/layout_luck_light_red" />
+                app:layout_constraintTop_toTopOf="@+id/baseImageView" />
 
             <ImageView
                 android:id="@+id/imageView11"
                 android:layout_width="23dp"
                 android:layout_height="23dp"
-                android:layout_marginStart="14dp"
-                android:layout_marginLeft="14dp"
+                android:layout_marginStart="21dp"
+                android:layout_marginLeft="21dp"
+                android:src="@{viewModel.daysOfWeek[2] ? @drawable/layout_luck_light_green: @drawable/layout_luck_light_red}"
                 app:layout_constraintStart_toEndOf="@+id/imageView40"
-                app:layout_constraintTop_toTopOf="@+id/imageView40"
-                app:srcCompat="@drawable/layout_luck_light_red" />
+                app:layout_constraintTop_toTopOf="@+id/imageView40" />
 
             <ImageView
                 android:id="@+id/imageView28"
                 android:layout_width="23dp"
                 android:layout_height="23dp"
-                android:layout_marginStart="14dp"
-                android:layout_marginLeft="14dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
+                android:src="@{viewModel.daysOfWeek[3] ? @drawable/layout_luck_light_green: @drawable/layout_luck_light_red}"
                 app:layout_constraintStart_toEndOf="@+id/imageView11"
-                app:layout_constraintTop_toTopOf="@+id/imageView11"
-                app:srcCompat="@drawable/layout_luck_light_red" />
+                app:layout_constraintTop_toTopOf="@+id/imageView11" />
 
             <ImageView
                 android:id="@+id/imageView29"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="13dp"
-                android:layout_marginLeft="13dp"
+                android:layout_width="23dp"
+                android:layout_height="23dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
+                android:src="@{viewModel.daysOfWeek[4] ? @drawable/layout_luck_light_green: @drawable/layout_luck_light_red}"
                 app:layout_constraintStart_toEndOf="@+id/imageView28"
-                app:layout_constraintTop_toTopOf="@+id/imageView28"
-                app:srcCompat="@drawable/layout_luck_light_red" />
+                app:layout_constraintTop_toTopOf="@+id/imageView28" />
 
             <ImageView
                 android:id="@+id/imageView30"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="14dp"
-                android:layout_marginLeft="14dp"
+                android:layout_width="23dp"
+                android:layout_height="23dp"
+                android:layout_marginStart="21dp"
+                android:layout_marginLeft="21dp"
+                android:src="@{viewModel.daysOfWeek[5] ? @drawable/layout_luck_light_green: @drawable/layout_luck_light_red}"
                 app:layout_constraintStart_toEndOf="@+id/imageView29"
-                app:layout_constraintTop_toTopOf="@+id/imageView29"
-                app:srcCompat="@drawable/layout_luck_light_red" />
+                app:layout_constraintTop_toTopOf="@+id/imageView29" />
 
             <ImageView
                 android:id="@+id/imageView50"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="13dp"
-                android:layout_marginLeft="13dp"
+                android:layout_width="23dp"
+                android:layout_height="23dp"
+                android:layout_marginStart="21dp"
+                android:layout_marginLeft="21dp"
+                android:src="@{viewModel.daysOfWeek[6] ? @drawable/layout_luck_light_green: @drawable/layout_luck_light_red}"
                 app:layout_constraintStart_toEndOf="@+id/imageView30"
-                app:layout_constraintTop_toTopOf="@+id/imageView30"
-                app:srcCompat="@drawable/layout_luck_light_red" />
+                app:layout_constraintTop_toTopOf="@+id/imageView30" />
 
             <ImageView
                 android:id="@+id/imageView51"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="23dp"
+                android:layout_height="23dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
+                android:src="@{viewModel.daysOfWeek[7] ? @drawable/layout_luck_light_green: @drawable/layout_luck_light_red}"
+                app:layout_constraintStart_toEndOf="@+id/imageView50"
+                app:layout_constraintTop_toTopOf="@+id/imageView50" />
+
+            <ImageView
+                android:id="@+id/slot1ImageView"
+                android:layout_width="66dp"
+                android:layout_height="67dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="44dp"
+                android:scaleType="centerCrop"
+                android:scrollY="-762dp"
+                app:layout_constraintStart_toStartOf="@+id/baseImageView"
+                app:layout_constraintTop_toBottomOf="@+id/imageView40"
+                app:srcCompat="@drawable/layout_luck_slot" />
+
+            <ImageView
+                android:id="@+id/slot2ImageView"
+                android:layout_width="66dp"
+                android:layout_height="67dp"
+                android:layout_marginStart="14dp"
+                android:layout_marginLeft="14dp"
+                android:adjustViewBounds="true"
+                android:cropToPadding="true"
+                android:scaleType="centerCrop"
+                android:scrollY="-762dp"
+                app:layout_constraintStart_toEndOf="@+id/slot1ImageView"
+                app:layout_constraintTop_toTopOf="@+id/slot1ImageView"
+                app:srcCompat="@drawable/layout_luck_slot" />
+
+            <ImageView
+                android:id="@+id/slot3ImageView"
+                android:layout_width="66dp"
+                android:layout_height="67dp"
                 android:layout_marginStart="13dp"
                 android:layout_marginLeft="13dp"
-                app:layout_constraintStart_toEndOf="@+id/imageView50"
-                app:layout_constraintTop_toTopOf="@+id/imageView50"
-                app:srcCompat="@drawable/layout_luck_light_red" />
+                android:scaleType="centerCrop"
+                android:scrollY="-762dp"
+                app:layout_constraintStart_toEndOf="@+id/slot2ImageView"
+                app:layout_constraintTop_toTopOf="@+id/slot2ImageView"
+                app:srcCompat="@drawable/layout_luck_slot" />
+
+            <ImageView
+                android:id="@+id/slot4ImageView"
+                android:layout_width="66dp"
+                android:layout_height="67dp"
+                android:layout_marginStart="14dp"
+                android:layout_marginLeft="14dp"
+                android:scaleType="centerCrop"
+                android:scrollY="-762dp"
+                app:layout_constraintStart_toEndOf="@+id/slot3ImageView"
+                app:layout_constraintTop_toTopOf="@+id/slot3ImageView"
+                app:srcCompat="@drawable/layout_luck_slot" />
 
             <Button
-                android:id="@+id/jogarSorteButton"
+                android:id="@+id/playButton"
                 android:layout_width="40dp"
                 android:layout_height="45dp"
                 android:layout_marginBottom="10dp"
@@ -118,32 +248,64 @@
                 app:layout_constraintStart_toStartOf="@+id/baseImageView" />
 
             <Button
-                android:id="@+id/pgtoDiarioRyousButton"
+                android:id="@+id/modeButton1"
+                background_play_mode="@{viewModel.playModeSelected == NinjaLuckyViewModel.RYOUS_DAILY}"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginStart="40dp"
                 android:layout_marginLeft="40dp"
                 android:layout_marginBottom="5dp"
-                android:background="@drawable/layout_luck_button_normal"
-                android:text="2000\nRyous"
+                android:onClick="@{() -> viewModel.onPlayModeSeleted(NinjaLuckyViewModel.RYOUS_DAILY)}"
+                android:text="@string/ryous_daily"
                 android:textColor="@android:color/white"
-                android:textSize="10sp"
+                android:textSize="8sp"
                 app:layout_constraintBottom_toBottomOf="@+id/baseImageView"
                 app:layout_constraintStart_toStartOf="@+id/baseImageView" />
 
             <Button
-                android:id="@+id/pgtoDiarioCreditoButton"
+                android:id="@+id/modeButton2"
+                background_play_mode="@{viewModel.playModeSelected == NinjaLuckyViewModel.CREDITS_DAILY}"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginBottom="5dp"
-                android:background="@drawable/layout_luck_button_normal"
-                android:text="1\nCrédito"
+                android:onClick="@{() -> viewModel.onPlayModeSeleted(NinjaLuckyViewModel.CREDITS_DAILY)}"
+                android:text="@string/credits_daily"
                 android:textColor="@android:color/white"
                 android:textSize="8sp"
                 app:layout_constraintBottom_toBottomOf="@+id/baseImageView"
-                app:layout_constraintStart_toEndOf="@+id/pgtoDiarioRyousButton" />
+                app:layout_constraintStart_toEndOf="@+id/modeButton1" />
+
+            <Button
+                android:id="@+id/modeButton3"
+                background_play_mode="@{viewModel.playModeSelected == NinjaLuckyViewModel.RYOUS_WEEKLY}"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="5dp"
+                android:onClick="@{() -> viewModel.onPlayModeSeleted(NinjaLuckyViewModel.RYOUS_WEEKLY)}"
+                android:text="@string/ryous_weekly"
+                android:textColor="@android:color/white"
+                android:textSize="8sp"
+                app:layout_constraintBottom_toBottomOf="@+id/baseImageView"
+                app:layout_constraintEnd_toStartOf="@+id/modeButton4" />
+
+            <Button
+                android:id="@+id/modeButton4"
+                background_play_mode="@{viewModel.playModeSelected == NinjaLuckyViewModel.CREDITS_WEEKLY}"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_marginBottom="5dp"
+                android:onClick="@{() -> viewModel.onPlayModeSeleted(NinjaLuckyViewModel.CREDITS_WEEKLY)}"
+                android:text="@string/credits_weekly"
+                android:textColor="@android:color/white"
+                android:textSize="8sp"
+                app:layout_constraintBottom_toBottomOf="@+id/baseImageView"
+                app:layout_constraintEnd_toEndOf="@+id/baseImageView" />
 
             <ImageView
                 android:id="@+id/imageView41"
@@ -200,7 +362,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.63" />
+                app:layout_constraintGuide_percent="0.70" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline41"
@@ -223,91 +385,12 @@
                 app:layout_constraintTop_toBottomOf="@+id/baseImageView"
                 app:srcCompat="@drawable/layout_luck_won" />
 
-            <Button
-                android:id="@+id/button"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginBottom="5dp"
-                android:background="@drawable/layout_luck_button_selected"
-                android:text="6000\nRyous"
-                android:textColor="@android:color/white"
-                android:textSize="10sp"
-                app:layout_constraintBottom_toBottomOf="@+id/baseImageView"
-                app:layout_constraintEnd_toStartOf="@+id/button3" />
-
-            <Button
-                android:id="@+id/button3"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginEnd="40dp"
-                android:layout_marginRight="40dp"
-                android:layout_marginBottom="5dp"
-                android:background="@drawable/layout_luck_button_selected"
-                android:text="3\nCréditos"
-                android:textColor="@android:color/white"
-                android:textSize="8sp"
-                app:layout_constraintBottom_toBottomOf="@+id/baseImageView"
-                app:layout_constraintEnd_toEndOf="@+id/baseImageView" />
-
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline54"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 app:layout_constraintGuide_percent="0.16" />
-
-            <ImageView
-                android:id="@+id/slot1ImageView"
-                android:layout_width="66dp"
-                android:layout_height="67dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="40dp"
-                android:scaleType="centerCrop"
-                android:scrollY="-762dp"
-                app:layout_constraintStart_toStartOf="@+id/baseImageView"
-                app:layout_constraintTop_toBottomOf="@+id/imageView40"
-                app:srcCompat="@drawable/layout_luck_slot" />
-
-            <ImageView
-                android:id="@+id/slot2ImageView"
-                android:layout_width="66dp"
-                android:layout_height="67dp"
-                android:layout_marginStart="14dp"
-                android:layout_marginLeft="14dp"
-                android:adjustViewBounds="true"
-                android:cropToPadding="true"
-                android:scaleType="centerCrop"
-                android:scrollY="-762dp"
-                app:layout_constraintStart_toEndOf="@+id/slot1ImageView"
-                app:layout_constraintTop_toTopOf="@+id/slot1ImageView"
-                app:srcCompat="@drawable/layout_luck_slot" />
-
-            <ImageView
-                android:id="@+id/slot3ImageView"
-                android:layout_width="66dp"
-                android:layout_height="67dp"
-                android:layout_marginStart="14dp"
-                android:layout_marginLeft="14dp"
-                android:scaleType="centerCrop"
-                android:scrollY="-762dp"
-                app:layout_constraintStart_toEndOf="@+id/slot2ImageView"
-                app:layout_constraintTop_toTopOf="@+id/slot2ImageView"
-                app:srcCompat="@drawable/layout_luck_slot" />
-
-            <ImageView
-                android:id="@+id/slot4ImageView"
-                android:layout_width="66dp"
-                android:layout_height="67dp"
-                android:layout_marginStart="13dp"
-                android:layout_marginLeft="13dp"
-                android:scaleType="centerCrop"
-                android:scrollY="-762dp"
-                app:layout_constraintStart_toEndOf="@+id/slot3ImageView"
-                app:layout_constraintTop_toTopOf="@+id/slot3ImageView"
-                app:srcCompat="@drawable/layout_luck_slot" />
 
             <TextView
                 android:id="@+id/premiumTextView"
@@ -329,17 +412,6 @@
                 app:layout_constraintStart_toStartOf="@+id/slot1ImageView"
                 app:layout_constraintTop_toTopOf="@+id/slot2ImageView"
                 app:srcCompat="@drawable/layout_luck_shadow" />
-
-            <TextView
-                android:id="@+id/textView9"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/monday"
-                android:textColor="@android:color/white"
-                android:textSize="8sp"
-                app:layout_constraintBottom_toTopOf="@+id/imageView40"
-                app:layout_constraintEnd_toEndOf="@+id/imageView40"
-                app:layout_constraintStart_toStartOf="@+id/imageView40" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </layout>

@@ -87,5 +87,4 @@ public class SignupViewModel extends ViewModel {
 
         return valid;
     }
-
 }

@@ -32,6 +32,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.gutotech.narutogame.R;
+import com.gutotech.narutogame.data.repository.AuthRepository;
 import com.gutotech.narutogame.data.repository.CharacterRepository;
 import com.gutotech.narutogame.databinding.ActivityPlayingBinding;
 import com.gutotech.narutogame.ui.adapter.ChatMessageAdapter;
@@ -243,6 +244,7 @@ public class PlayingActivity extends AppCompatActivity {
 
     public void logout(View view) {
         logout();
+        AuthRepository.getInstance().signOut();
         startActivity(new Intent(PlayingActivity.this, DeslogadoActivity.class));
         finish();
     }

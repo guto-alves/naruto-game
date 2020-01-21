@@ -12,9 +12,11 @@ import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.Character;
 import com.gutotech.narutogame.data.model.Classe;
 import com.gutotech.narutogame.data.model.Ninja;
+import com.gutotech.narutogame.data.model.NinjaLucky;
 import com.gutotech.narutogame.data.model.Village;
 import com.gutotech.narutogame.data.repository.AuthRepository;
 import com.gutotech.narutogame.data.repository.CharacterRepository;
+import com.gutotech.narutogame.data.repository.NinjaLuckyRepository;
 import com.gutotech.narutogame.ui.ResultListener;
 import com.gutotech.narutogame.ui.adapter.ChooseNinjaRecyclerViewAdapter;
 
@@ -78,10 +80,11 @@ public class CharacterCreateViewModel extends ViewModel implements ChooseNinjaRe
     }
 
     public void back() {
-        if (currentGroupIndex.get() - 1 >= 0)
+        if (currentGroupIndex.get() - 1 >= 0) {
             currentGroupIndex.set(currentGroupIndex.get() - 1);
-        else
+        } else {
             currentGroupIndex.set(19);
+        }
 
         loadCurrentGroup();
     }
@@ -96,6 +99,10 @@ public class CharacterCreateViewModel extends ViewModel implements ChooseNinjaRe
         if (isValidNick()) {
             if (mCharacterRepository.checkByRepeatedNick(mCharacter.getNick())) {
                 mCharacterRepository.saveCharacter(mCharacter);
+
+                NinjaLucky ninjaLucky = new NinjaLucky();
+                ninjaLucky.deselectAllDaysPlayed();
+                NinjaLuckyRepository.getInstance().save(ninjaLucky, mCharacter.getNick());
                 mListener.onSuccess();
             } else {
                 mListener.onFailure(R.string.name_already_taken);

@@ -251,13 +251,28 @@
     <string name="bag_item_quantity">x %d</string>
     <string name="item">Item</string>
     <string name="section_change_image">TROCAR IMAGEM</string>
-    <string name="monday">Segunda</string>
+
     <string name="want_to_delete_this_ninja">Você quer realmente deletar esse ninja?</string>
     <string name="button_cancel">Cancelar</string>
     <string name="remove_character_while_logged_in">Você não pode remover esse character estando logado nele!</string>
     <string name="close">Fechar</string>
     <string name="sender">%s:</string>
     <string name="top_of_chat_content_description">Topo do chat</string>
+    <string name="warning_already_played_today">• Você já jogou no sorte ninja hoje!</string>
+    <string name="credits_daily">1\nCrédito</string>
+    <string name="ryous_daily">2000 Ryous</string>
+    <string name="ryous_weekly">6000 Ryous</string>
+    <string name="credits_weekly">3 Créditos</string>
+    <string name="warning_dont_have_enough_ryous">• Você não tem ryous suficientes</string>
+    <string name="warning_dont_have_enough_credits">• Você não tem créditos suficientes</string>
+    <string name="warning_havent_played_the_entire_week_yet">• Você não jogou todos os dias da semana ainda!</string>
+    <string name="sunday">Domindo</string>
+    <string name="monday">Segunda</string>
+    <string name="tuesday">Terça</string>
+    <string name="wednesday">Quarta</string>
+    <string name="thursday">Quinta</string>
+    <string name="friday">Sexta</string>
+    <string name="saturday">Sábado</string>
 
     <string-array name="chat_channel_array">
         <item>Vila</item>

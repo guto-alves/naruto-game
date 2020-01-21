@@ -1,21 +1,18 @@
 package com.gutotech.narutogame.utils;
 
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.databinding.BindingAdapter;
-import androidx.lifecycle.LiveData;
 
 import com.github.rtoshiro.util.format.SimpleMaskFormatter;
 import com.github.rtoshiro.util.format.text.MaskTextWatcher;
 import com.google.android.material.textfield.TextInputEditText;
+import com.gutotech.narutogame.R;
 
 public class BindingUtil {
-
-//    public static String convertToRyous(long ryous) {
-//        return String.format("%s %d", "RY$", ryous);
-//    }
 
     @BindingAdapter(value = "loadProfile")
     public static void loadImage(ImageView imageView, int ninjaId) {
@@ -41,5 +38,14 @@ public class BindingUtil {
     @BindingAdapter("show")
     public static void setShow(View view, Boolean visible) {
         view.setVisibility(visible ? View.VISIBLE : View.GONE);
+    }
+
+    @BindingAdapter("background_play_mode")
+    public static void setBackgroundPlayMode(Button button, Boolean selected) {
+        if (selected) {
+            button.setBackgroundResource(R.drawable.layout_luck_button_normal);
+        } else {
+            button.setBackgroundResource(R.drawable.layout_luck_button_selected);
+        }
     }
 }
