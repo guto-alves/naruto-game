@@ -18,6 +18,8 @@ import java.util.List;
 	Incremento de Crítico	1% de Incremento de Crítico	    (Level / 4)
  */
 public class Attributes {
+    public static final int TOTAL_ATTRIBUTES = 10;
+
     private int traningProgress;
 
     // Total training points for next ability point
@@ -37,64 +39,63 @@ public class Attributes {
     }
 
     public Attributes(Classe classe) {
+        formulas = new Formulas();
+
         totalTrainingPoints = 150;
 
         basePoints = new ArrayList<>();
         distributedPoints = new ArrayList<>();
         pointsEarned = new ArrayList<>();
 
-        switch (classe) {
-            case TAI:
-                basePoints.add(Attribute.TAI.id, 10);
-                basePoints.add(Attribute.BUK.id, 1);
-                basePoints.add(Attribute.NIN.id, 1);
-                basePoints.add(Attribute.GEN.id, 1);
-                basePoints.add(Attribute.INTE.id, 1);
-                basePoints.add(Attribute.FOR.id, 5);
-                break;
-            case BUK:
-                basePoints.add(Attribute.TAI.id, 1);
-                basePoints.add(Attribute.BUK.id, 10);
-                basePoints.add(Attribute.NIN.id, 1);
-                basePoints.add(Attribute.GEN.id, 1);
-                basePoints.add(Attribute.INTE.id, 1);
-                basePoints.add(Attribute.FOR.id, 5);
-                break;
-            case NIN:
-                basePoints.add(Attribute.TAI.id, 1);
-                basePoints.add(Attribute.BUK.id, 1);
-                basePoints.add(Attribute.NIN.id, 10);
-                basePoints.add(Attribute.GEN.id, 1);
-                basePoints.add(Attribute.INTE.id, 5);
-                basePoints.add(Attribute.FOR.id, 1);
-                break;
-            case GEN:
-                basePoints.add(Attribute.TAI.id, 1);
-                basePoints.add(Attribute.BUK.id, 1);
-                basePoints.add(Attribute.NIN.id, 1);
-                basePoints.add(Attribute.GEN.id, 10);
-                basePoints.add(Attribute.INTE.id, 5);
-                basePoints.add(Attribute.FOR.id, 5);
-                break;
-        }
-        basePoints.add(Attribute.SEAL.id, 3);
-        basePoints.add(Attribute.AGI.id, 3);
-        basePoints.add(Attribute.RES.id, 1);
-        basePoints.add(Attribute.ENER.id, 10);
-
-        final int TOTAL_ATTRIBUTES = 9;
-
         for (int i = 0; i < TOTAL_ATTRIBUTES; i++) {
+            basePoints.add(i, 0);
             distributedPoints.add(i, 0);
             pointsEarned.add(i, 0);
         }
+
+        switch (classe) {
+            case TAI:
+                basePoints.set(Attribute.TAI.id, 10);
+                basePoints.set(Attribute.BUK.id, 1);
+                basePoints.set(Attribute.NIN.id, 1);
+                basePoints.set(Attribute.GEN.id, 1);
+                basePoints.set(Attribute.INTE.id, 1);
+                basePoints.set(Attribute.FOR.id, 5);
+                break;
+            case BUK:
+                basePoints.set(Attribute.TAI.id, 1);
+                basePoints.set(Attribute.BUK.id, 10);
+                basePoints.set(Attribute.NIN.id, 1);
+                basePoints.set(Attribute.GEN.id, 1);
+                basePoints.set(Attribute.INTE.id, 1);
+                basePoints.set(Attribute.FOR.id, 5);
+                break;
+            case NIN:
+                basePoints.set(Attribute.TAI.id, 1);
+                basePoints.set(Attribute.BUK.id, 1);
+                basePoints.set(Attribute.NIN.id, 10);
+                basePoints.set(Attribute.GEN.id, 1);
+                basePoints.set(Attribute.INTE.id, 5);
+                basePoints.set(Attribute.FOR.id, 1);
+                break;
+            case GEN:
+                basePoints.set(Attribute.TAI.id, 1);
+                basePoints.set(Attribute.BUK.id, 1);
+                basePoints.set(Attribute.NIN.id, 1);
+                basePoints.set(Attribute.GEN.id, 10);
+                basePoints.set(Attribute.INTE.id, 5);
+                basePoints.set(Attribute.FOR.id, 5);
+                break;
+        }
+        basePoints.set(Attribute.SEAL.id, 3);
+        basePoints.set(Attribute.AGI.id, 3);
+        basePoints.set(Attribute.RES.id, 1);
+        basePoints.set(Attribute.ENER.id, 10);
     }
 
     public void updateFormulas(Classe classe, int level) {
         final int additionalPerLevel1 = level * 18;
         final int additionalPerLevel2 = level * 9;
-
-        formulas = new Formulas();
 
         formulas.setHealth(getEnergy() * 6 + additionalPerLevel1);
 
@@ -163,6 +164,7 @@ public class Attributes {
     public void train(int attributeId, int quantity) {
         int current = getDistributedPoints().get(attributeId);
         getDistributedPoints().set(attributeId, current + quantity);
+        totalFreePoints--;
     }
 
     public int getTaijutsu() {
@@ -186,10 +188,9 @@ public class Attributes {
                 + pointsEarned.get(Attribute.GEN.id);
     }
 
-
-    public int getStrength() {
-        return basePoints.get(Attribute.FOR.id) + distributedPoints.get(Attribute.FOR.id)
-                + pointsEarned.get(Attribute.FOR.id);
+    public int getSeal() {
+        return basePoints.get(Attribute.SEAL.id) + distributedPoints.get(Attribute.SEAL.id)
+                + pointsEarned.get(Attribute.SEAL.id);
     }
 
     public int getAgility() {
@@ -197,14 +198,14 @@ public class Attributes {
                 + pointsEarned.get(Attribute.AGI.id);
     }
 
+    public int getStrength() {
+        return basePoints.get(Attribute.FOR.id) + distributedPoints.get(Attribute.FOR.id)
+                + pointsEarned.get(Attribute.FOR.id);
+    }
+
     public int getIntelligence() {
         return basePoints.get(Attribute.INTE.id) + distributedPoints.get(Attribute.INTE.id)
                 + pointsEarned.get(Attribute.INTE.id);
-    }
-
-    public int getSeal() {
-        return basePoints.get(Attribute.SEAL.id) + distributedPoints.get(Attribute.SEAL.id)
-                + pointsEarned.get(Attribute.SEAL.id);
     }
 
     public int getResistance() {
@@ -288,10 +289,10 @@ public class Attributes {
         attributes.add(getBukijutsu());
         attributes.add(getNinjutsu());
         attributes.add(getGenjutsu());
-        attributes.add(getStrength());
-        attributes.add(getAgility());
-        attributes.add(getIntelligence());
         attributes.add(getSeal());
+        attributes.add(getAgility());
+        attributes.add(getStrength());
+        attributes.add(getIntelligence());
         attributes.add(getResistance());
         attributes.add(getEnergy());
 

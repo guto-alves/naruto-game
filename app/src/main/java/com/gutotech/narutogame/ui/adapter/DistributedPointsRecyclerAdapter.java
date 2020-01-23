@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -17,7 +18,10 @@ import android.widget.TextView;
 
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.Attribute;
+import com.gutotech.narutogame.data.model.Attributes;
+import com.gutotech.narutogame.data.model.CharOn;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DistributedPointsRecyclerAdapter extends RecyclerView.Adapter<DistributedPointsRecyclerAdapter.MyViewHolder> {
@@ -53,7 +57,9 @@ public class DistributedPointsRecyclerAdapter extends RecyclerView.Adapter<Distr
     private OnTrainButtonListener mListener;
 
     private Attribute[] attributes;
-    private int max = 0;
+    private int max;
+    private int freePoints;
+    private ArrayAdapter<Integer> adapterSpinner;
 
     public DistributedPointsRecyclerAdapter(Context context, OnTrainButtonListener listener) {
         mContext = context;
@@ -72,27 +78,31 @@ public class DistributedPointsRecyclerAdapter extends RecyclerView.Adapter<Distr
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
         if (mDistributedPoints != null) {
-            final int total = mDistributedPoints.get(position);
-
             Attribute attribute = attributes[position];
+            final int total = mDistributedPoints.get(position);
 
             holder.nameTextView.setText(attribute.name);
             holder.iconImageView.setImageResource(attribute.icon);
             holder.totalTextView.setText(String.valueOf(total));
             holder.totalProgressBar.setMax(max);
             holder.totalProgressBar.setProgress(total);
-            holder.quantitySpinner.getSelectedItem();
+            holder.quantitySpinner.setAdapter(adapterSpinner);
+
+            if (freePoints > 0) {
+                holder.trainButton.setEnabled(true);
+                holder.quantitySpinner.setVisibility(View.VISIBLE);
+            } else {
+                holder.trainButton.setEnabled(false);
+                holder.quantitySpinner.setVisibility(View.GONE);
+            }
 
             holder.trainButton.setOnClickListener(v -> {
-                mListener.onTrainButtonClick(position, (Integer) holder.quantitySpinner.getSelectedItem());
-                notifyDataSetChanged();
+                if (freePoints > 0) {
+                    mListener.onTrainButtonClick(position, (Integer) holder.quantitySpinner.getSelectedItem());
+                } else {
+                    mListener.onTrainButtonClick(position, 1);
+                }
             });
-
-//            if (PersonagemOn.character.getAttributes().get > 0) {
-//                holder.trainButton.setVisibility(View.VISIBLE);
-//            } else {
-//                holder.trainButton.setVisibility(View.GONE);
-//            }
 
             if (position % 2 == 0) {
                 holder.bgConstraint.setBackgroundColor(mContext.getResources()
@@ -111,6 +121,16 @@ public class DistributedPointsRecyclerAdapter extends RecyclerView.Adapter<Distr
 
     public void setDistributedPoints(List<Integer> distributedPoints) {
         mDistributedPoints = distributedPoints;
+        freePoints = CharOn.character.getAttributes().getTotalFreePoints();
+
+        List<Integer> spinnerItems = new ArrayList<>();
+
+        for (int i = 0; i < freePoints; i++) {
+            spinnerItems.add(i + 1);
+        }
+
+        adapterSpinner = new ArrayAdapter<>(mContext, android.R.layout.simple_spinner_item, spinnerItems);
+
         calculteMax();
         notifyDataSetChanged();
     }
@@ -118,7 +138,7 @@ public class DistributedPointsRecyclerAdapter extends RecyclerView.Adapter<Distr
     private void calculteMax() {
         max = mDistributedPoints.get(0);
 
-        for (int i = 1; i < 10; i++) {
+        for (int i = 1; i < Attributes.TOTAL_ATTRIBUTES; i++) {
             int total = mDistributedPoints.get(i);
             if (total > max) {
                 max = total;

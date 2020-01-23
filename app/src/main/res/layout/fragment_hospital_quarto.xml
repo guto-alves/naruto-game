@@ -111,7 +111,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="35dp"
                 android:layout_marginBottom="3dp"
-                android:background="@drawable/layout_bg_button"
+                android:background="@drawable/bg_button"
                 android:text="Pagar RY$ 25"
                 android:textColor="@android:color/white"
                 android:textSize="10sp"

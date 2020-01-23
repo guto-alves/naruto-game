@@ -158,6 +158,7 @@
                     android:layout_width="wrap_content"
                     android:layout_marginEnd="24dp"
                     android:layout_marginRight="24dp"
+                    android:enabled="@{viewModel.trainingButtonEnable ? true : false}"
                     android:onClick="@{() -> viewModel.onTrainButtonPressed()}"
                     android:text="@string/train"
                     app:layout_constraintBottom_toBottomOf="parent"

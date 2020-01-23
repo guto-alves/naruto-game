@@ -19,6 +19,8 @@ public class AcademyTrainingViewModel extends AndroidViewModel
     private MutableLiveData<Integer> chakra = new MutableLiveData<>();
     private MutableLiveData<Integer> stamina = new MutableLiveData<>();
 
+    private MutableLiveData<Boolean> trainingButtonEnable = new MutableLiveData<>(true);
+
     public SingleLiveEvent<Void> trainingErrorEvent = new SingleLiveEvent<>();
     public SingleLiveEvent<Integer> trainingCompletedEvent = new SingleLiveEvent<>();
 
@@ -33,11 +35,14 @@ public class AcademyTrainingViewModel extends AndroidViewModel
 
     private Formulas formulas;
 
+    private SingleLiveEvent<Void> updateDistributedPointsEvent = new SingleLiveEvent<>();
+
     public AcademyTrainingViewModel(@NonNull Application application) {
         super(application);
 
-        if (false) {
-            CharOn.character.getAttributes().setTraningProgress(0);
+        if (CharOn.character.getAttributes().getTraningProgress() ==
+                CharOn.character.getGraduation().dailyTrainingLimit) {
+            trainingButtonEnable.setValue(false);
         }
 
         maxTraining = new MutableLiveData<>(CharOn.character.getGraduation().dailyTrainingLimit);
@@ -61,6 +66,10 @@ public class AcademyTrainingViewModel extends AndroidViewModel
         return stamina;
     }
 
+    public LiveData<Boolean> getTrainingButtonEnable() {
+        return trainingButtonEnable;
+    }
+
     public LiveData<Integer> getMaxTraining() {
         return maxTraining;
     }
@@ -75,6 +84,10 @@ public class AcademyTrainingViewModel extends AndroidViewModel
 
     public MutableLiveData<Integer> getProgressNextAbilityPoint() {
         return progressNextAbilityPoint;
+    }
+
+    public SingleLiveEvent<Void> getUpdateDistributedPointsEvent() {
+        return updateDistributedPointsEvent;
     }
 
     public void onItemSelected(int position) {
@@ -103,14 +116,22 @@ public class AcademyTrainingViewModel extends AndroidViewModel
 
                 progressTraining.setValue(CharOn.character.getAttributes().getTraningProgress());
                 progressNextAbilityPoint.setValue(CharOn.character.getAttributes().getTrainingPoints());
+                maxNextAbilityPoint.setValue(CharOn.character.getAttributes().getTotalTrainingPoints());
 
                 CharOn.character.full();
                 CharacterRepository.getInstance().saveCharacter(CharOn.character);
+
+                updateDistributedPointsEvent.call();
 
                 trainingCompletedEvent.setValue(trainingPointsEarned);
             } else {
                 trainingErrorEvent.call();
             }
+        }
+
+        if (CharOn.character.getAttributes().getTraningProgress() ==
+                CharOn.character.getGraduation().dailyTrainingLimit) {
+            trainingButtonEnable.setValue(false);
         }
     }
 
@@ -121,5 +142,7 @@ public class AcademyTrainingViewModel extends AndroidViewModel
         CharOn.character.updateFormulas();
 
         CharacterRepository.getInstance().saveCharacter(CharOn.character);
+
+        updateDistributedPointsEvent.call();
     }
 }

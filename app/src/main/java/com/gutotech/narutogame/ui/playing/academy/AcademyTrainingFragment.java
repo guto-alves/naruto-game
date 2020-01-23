@@ -37,11 +37,6 @@ public class AcademyTrainingFragment extends Fragment implements SectionFragment
         StorageUtil.downloadProfileForMsg(getContext(), binding.msgLayout.profileImageView,
                 CharOn.character.getVillage().id);
 
-        if (CharOn.character.getAttributes().getTraningProgress() ==
-                CharOn.character.getGraduation().dailyTrainingLimit) {
-            binding.trainButton.setEnabled(false);
-        }
-
         binding.trainingResult.msgConstraintLayout.setVisibility(View.GONE);
 
         viewModel.trainingCompletedEvent.observe(this, trainingPointsEarned -> {
@@ -61,9 +56,6 @@ public class AcademyTrainingFragment extends Fragment implements SectionFragment
             binding.trainingResult.msgConstraintLayout.setVisibility(View.VISIBLE);
         });
 
-//        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, treinos);
-//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
         binding.limitOfTrainingProgressBar.setMax(CharOn.character.getGraduation().dailyTrainingLimit);
 
         binding.distributedPointsRecyclerView.setHasFixedSize(true);
@@ -71,6 +63,10 @@ public class AcademyTrainingFragment extends Fragment implements SectionFragment
                 getContext(), viewModel);
         adapter.setDistributedPoints(CharOn.character.getAttributes().getDistributedPoints());
         binding.distributedPointsRecyclerView.setAdapter(adapter);
+
+        viewModel.getUpdateDistributedPointsEvent().observe(this, aVoid ->
+                adapter.setDistributedPoints(CharOn.character.getAttributes().getDistributedPoints())
+        );
 
         FragmentUtil.setSectionTitle(getActivity(), R.string.section_attribute_training);
 
