@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.gutotech.narutogame.R;
+import com.gutotech.narutogame.data.model.Attribute;
 import com.gutotech.narutogame.data.model.LotteryItem;
 import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.model.NinjaLucky;
@@ -230,25 +231,25 @@ public class NinjaLuckyViewModel extends ViewModel {
                 () -> CharOn.character.incrementExp(15000)));
 
         lotteryItems.add(new LotteryItem("29", "1 Taijutsu Point", 30,
-                () -> CharOn.character.getAttributes().taijutsu++));
+                () -> CharOn.character.getAttributes().earn(Attribute.TAI.id)));
         lotteryItems.add(new LotteryItem("30", "1 Ninjustu Point", 30,
-                () -> CharOn.character.getAttributes().taijutsu++));
+                () -> CharOn.character.getAttributes().earn(Attribute.NIN.id)));
         lotteryItems.add(new LotteryItem("31", "1 Genjutsu Point", 30,
-                () -> CharOn.character.getAttributes().taijutsu++));
+                () -> CharOn.character.getAttributes().earn(Attribute.GEN.id)));
         lotteryItems.add(new LotteryItem("20388", "1 Bukijutsu Point", 30,
-                () -> CharOn.character.getAttributes().taijutsu++));
+                () -> CharOn.character.getAttributes().earn(Attribute.BUK.id)));
         lotteryItems.add(new LotteryItem("32", "1 Agility Point", 30,
-                () -> CharOn.character.getAttributes().taijutsu++));
+                () -> CharOn.character.getAttributes().earn(Attribute.AGI.id)));
         lotteryItems.add(new LotteryItem("33", "1 Seal Point", 30,
-                () -> CharOn.character.getAttributes().taijutsu++));
+                () -> CharOn.character.getAttributes().earn(Attribute.SEAL.id)));
         lotteryItems.add(new LotteryItem("34", "1 Strenght Point", 30,
-                () -> CharOn.character.getAttributes().taijutsu++));
+                () -> CharOn.character.getAttributes().earn(Attribute.FOR.id)));
         lotteryItems.add(new LotteryItem("35", "1 Intelligence Point", 30,
-                () -> CharOn.character.getAttributes().taijutsu++));
+                () -> CharOn.character.getAttributes().earn(Attribute.INTE.id)));
         lotteryItems.add(new LotteryItem("36", "1 Resistance Point", 30,
-                () -> CharOn.character.getAttributes().taijutsu++));
+                () -> CharOn.character.getAttributes().earn(Attribute.RES.id)));
         lotteryItems.add(new LotteryItem("20392", "1 Energy Point", 30,
-                () -> CharOn.character.getAttributes().taijutsu++));
+                () -> CharOn.character.getAttributes().earn(Attribute.ENER.id)));
 
         return lotteryItems;
     }

@@ -16,15 +16,14 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.gutotech.narutogame.R;
-import com.gutotech.narutogame.data.model.AttributeItem;
+import com.gutotech.narutogame.data.model.Attribute;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class DistributedPointsRecyclerAdapter extends RecyclerView.Adapter<DistributedPointsRecyclerAdapter.MyViewHolder> {
 
     public interface OnTrainButtonListener {
-        void onTrainButtonClick(AttributeItem attribute);
+        void onTrainButtonClick(int attributePosition, int quantitySelectec);
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -50,14 +49,16 @@ public class DistributedPointsRecyclerAdapter extends RecyclerView.Adapter<Distr
     }
 
     private Context mContext;
-    private List<AttributeItem> distributedAttributes;
-    private int max = 0;
-
+    private List<Integer> mDistributedPoints;
     private OnTrainButtonListener mListener;
 
-    public DistributedPointsRecyclerAdapter(Context context) {
+    private Attribute[] attributes;
+    private int max = 0;
+
+    public DistributedPointsRecyclerAdapter(Context context, OnTrainButtonListener listener) {
         mContext = context;
-        distributedAttributes = new ArrayList<>();
+        mListener = listener;
+        attributes = Attribute.values();
     }
 
     @NonNull
@@ -69,19 +70,22 @@ public class DistributedPointsRecyclerAdapter extends RecyclerView.Adapter<Distr
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, final int i) {
-        if (distributedAttributes != null) {
-            final AttributeItem attribute = distributedAttributes.get(i);
+    public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
+        if (mDistributedPoints != null) {
+            final int total = mDistributedPoints.get(position);
 
-            holder.nameTextView.setText(attribute.getAttribute().name);
-            holder.iconImageView.setImageResource(attribute.getAttribute().icon);
-            holder.totalTextView.setText(String.valueOf(attribute.getTotal()));
+            Attribute attribute = attributes[position];
+
+            holder.nameTextView.setText(attribute.name);
+            holder.iconImageView.setImageResource(attribute.icon);
+            holder.totalTextView.setText(String.valueOf(total));
             holder.totalProgressBar.setMax(max);
-            holder.totalProgressBar.setProgress(attribute.getTotal());
+            holder.totalProgressBar.setProgress(total);
             holder.quantitySpinner.getSelectedItem();
 
             holder.trainButton.setOnClickListener(v -> {
-                mListener.onTrainButtonClick(attribute);
+                mListener.onTrainButtonClick(position, (Integer) holder.quantitySpinner.getSelectedItem());
+                notifyDataSetChanged();
             });
 
 //            if (PersonagemOn.character.getAttributes().get > 0) {
@@ -90,7 +94,7 @@ public class DistributedPointsRecyclerAdapter extends RecyclerView.Adapter<Distr
 //                holder.trainButton.setVisibility(View.GONE);
 //            }
 
-            if (i % 2 == 0) {
+            if (position % 2 == 0) {
                 holder.bgConstraint.setBackgroundColor(mContext.getResources()
                         .getColor(R.color.colorItem1));
             } else {
@@ -102,21 +106,23 @@ public class DistributedPointsRecyclerAdapter extends RecyclerView.Adapter<Distr
 
     @Override
     public int getItemCount() {
-        return distributedAttributes != null ? distributedAttributes.size() : 0;
+        return mDistributedPoints != null ? mDistributedPoints.size() : 0;
     }
 
-    public void setDistributedAttributes(List<AttributeItem> distributedAttributes) {
-        this.distributedAttributes = distributedAttributes;
+    public void setDistributedPoints(List<Integer> distributedPoints) {
+        mDistributedPoints = distributedPoints;
+        calculteMax();
+        notifyDataSetChanged();
+    }
 
-        max = distributedAttributes.get(0).getTotal();
+    private void calculteMax() {
+        max = mDistributedPoints.get(0);
 
         for (int i = 1; i < 10; i++) {
-            int total = distributedAttributes.get(i).getTotal();
+            int total = mDistributedPoints.get(i);
             if (total > max) {
                 max = total;
             }
         }
-
-        notifyDataSetChanged();
     }
 }

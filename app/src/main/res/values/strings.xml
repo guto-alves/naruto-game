@@ -46,8 +46,6 @@
     <string name="title_activity_logado_selecionar" translatable="false">LogadoSelecionarActivity</string>
     <string name="title_activity_personagem_logado" translatable="false">PersonagemLogadoActivity</string>
     <string name="select_your_character">SELECT YOUR CHARACTER</string>
-    <string name="taijutsu" translatable="false">Taijutsu</string>
-    <string name="ninjustu" translatable="false">Ninjustu</string>
 
     <!-- PERSONAGEM LOGADO -->
     <!-- Grupo Usuário -->
@@ -94,11 +92,15 @@
 
 
     <!-- Atributos -->
+    <string name="taijutsu" translatable="false">Taijutsu</string>
     <string name="bukijutsu" translatable="false">Bukijutsu</string>
+    <string name="ninjustu" translatable="false">Ninjustu</string>
     <string name="genjutsu" translatable="false">Genjutsu</string>
     <string name="agility">Agility</string>
+    <string name="seal">Seal</string>
     <string name="strength">Strength</string>
-    <string name="resistance" translatable="false">Resistência</string>
+    <string name="intelligence">Intelligence</string>
+    <string name="resistance">Resistance</string>
     <string name="energy">Energy</string>
     <string name="life">Life</string>
     <string name="determinacao">Determinação</string>
@@ -390,5 +392,15 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="thursday">Thursday</string>
     <string name="friday">Friday</string>
     <string name="saturday">Saturday</string>
+    <string name="progress_description_bar">%d/%d</string>
+    <string name="health">Health</string>
+    <string name="chakra" translatable="false">Chakra</string>
+    <string name="stamina" translatable="false">Stamina</string>
+    <string name="defense_tai_buk">Defense ( Tai / Buk )</string>
+    <string name="defense_nin_gen">Defense ( Nin / Gen )</string>
+    <string name="accuracy">Accuracy</string>
+    <string name="atk_tai_buk">Atk. ( Tai / Buk )</string>
+    <string name="atk_nin_gen">Atk. ( Nin / Gen )</string>
+
 
 </resources>

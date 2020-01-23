@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /*
+            Formulas
     Vida	                Fórmula da Vida	                (ENERGIA * 6)
 	Chakra	                Fórmula do Chakra               (ENERGIA * 6) + (NIN * 14) + (GEN * 7)
 	Stamina             	Fórmula da Stamina              (ENERGIA * 6) + (TAI * 7) + (BIK * 7)
@@ -17,91 +18,98 @@ import java.util.List;
 	Incremento de Crítico	1% de Incremento de Crítico	    (Level / 4)
  */
 public class Attributes {
-    private int dailyTrainingPoints;
+    private int traningProgress;
 
-    private int totalTrainingPointsForNextAbilityPoint;
+    // Total training points for next ability point
+    private int totalTrainingPoints;
+
     private int trainingPoints;
 
     private int totalFreePoints;
 
-    public int taijutsu;
-    private int bukijutsu;
-    private int ninjutsu;
-    private int genjutsu;
-    private int strength;
-    private int agility;
-    private int intelligence;
-    private int seal;
-    private int resistance;
-    private int energy;
+    private List<Integer> basePoints;
+    private List<Integer> distributedPoints;
+    private List<Integer> pointsEarned;
 
     private Formulas formulas;
 
     public Attributes() {
     }
 
-    // Inicializa o atributos com base na classe
     public Attributes(Classe classe) {
+        totalTrainingPoints = 150;
+
+        basePoints = new ArrayList<>();
+        distributedPoints = new ArrayList<>();
+        pointsEarned = new ArrayList<>();
+
         switch (classe) {
             case TAI:
-                taijutsu = 10;
-                bukijutsu = 1;
-                ninjutsu = 1;
-                genjutsu = 1;
-                intelligence = 1;
-                strength = 5;
+                basePoints.add(Attribute.TAI.id, 10);
+                basePoints.add(Attribute.BUK.id, 1);
+                basePoints.add(Attribute.NIN.id, 1);
+                basePoints.add(Attribute.GEN.id, 1);
+                basePoints.add(Attribute.INTE.id, 1);
+                basePoints.add(Attribute.FOR.id, 5);
                 break;
             case BUK:
-                taijutsu = 1;
-                bukijutsu = 10;
-                ninjutsu = 1;
-                genjutsu = 1;
-                intelligence = 1;
-                strength = 5;
+                basePoints.add(Attribute.TAI.id, 1);
+                basePoints.add(Attribute.BUK.id, 10);
+                basePoints.add(Attribute.NIN.id, 1);
+                basePoints.add(Attribute.GEN.id, 1);
+                basePoints.add(Attribute.INTE.id, 1);
+                basePoints.add(Attribute.FOR.id, 5);
                 break;
             case NIN:
-                taijutsu = 1;
-                bukijutsu = 1;
-                ninjutsu = 10;
-                genjutsu = 1;
-                intelligence = 5;
-                strength = 0;
+                basePoints.add(Attribute.TAI.id, 1);
+                basePoints.add(Attribute.BUK.id, 1);
+                basePoints.add(Attribute.NIN.id, 10);
+                basePoints.add(Attribute.GEN.id, 1);
+                basePoints.add(Attribute.INTE.id, 5);
+                basePoints.add(Attribute.FOR.id, 1);
                 break;
             case GEN:
-                taijutsu = 1;
-                bukijutsu = 1;
-                ninjutsu = 1;
-                genjutsu = 10;
-                intelligence = 5;
-                strength = 1;
+                basePoints.add(Attribute.TAI.id, 1);
+                basePoints.add(Attribute.BUK.id, 1);
+                basePoints.add(Attribute.NIN.id, 1);
+                basePoints.add(Attribute.GEN.id, 10);
+                basePoints.add(Attribute.INTE.id, 5);
+                basePoints.add(Attribute.FOR.id, 5);
                 break;
         }
-        seal = 3;
-        agility = 3;
-        resistance = 1;
-        energy = 10;
+        basePoints.add(Attribute.SEAL.id, 3);
+        basePoints.add(Attribute.AGI.id, 3);
+        basePoints.add(Attribute.RES.id, 1);
+        basePoints.add(Attribute.ENER.id, 10);
+
+        final int TOTAL_ATTRIBUTES = 9;
+
+        for (int i = 0; i < TOTAL_ATTRIBUTES; i++) {
+            distributedPoints.add(i, 0);
+            pointsEarned.add(i, 0);
+        }
     }
 
     public void updateFormulas(Classe classe, int level) {
-        final int adicionalByLevel1 = level * 18;
-        final int adicionalByLevel2 = level * 9;
+        final int additionalPerLevel1 = level * 18;
+        final int additionalPerLevel2 = level * 9;
 
         formulas = new Formulas();
 
-        formulas.setHealth(getEnergy() * 6 + adicionalByLevel1);
+        formulas.setHealth(getEnergy() * 6 + additionalPerLevel1);
 
         if (classe == Classe.NIN) {
-            formulas.setChakra(getEnergy() * 6 + getNinjutsu() * 14 + getGenjutsu() * 7 + adicionalByLevel1);
-            formulas.setStamina(getEnergy() * 6 + getTaijutsu() * 7 + getBukijutsu() * 7 + adicionalByLevel2);
+            formulas.setChakra(getEnergy() * 6 + getNinjutsu() * 14 + getGenjutsu() * 7 + additionalPerLevel1);
+            formulas.setStamina(getEnergy() * 6 + getTaijutsu() * 7 + getBukijutsu() * 7 + additionalPerLevel2);
         } else if (classe == Classe.GEN) {
-            formulas.setChakra(getEnergy() * 6 + getNinjutsu() * 7 + getGenjutsu() * 14 + adicionalByLevel1);
-            formulas.setStamina(getEnergy() * 6 + getTaijutsu() * 7 + getBukijutsu() * 7 + adicionalByLevel2);
+            formulas.setChakra(getEnergy() * 6 + getNinjutsu() * 7 + getGenjutsu() * 14 + additionalPerLevel1);
+            formulas.setStamina(getEnergy() * 6 + getTaijutsu() * 7 + getBukijutsu() * 7 + additionalPerLevel2);
         } else if (classe == Classe.TAI) {
-            formulas.setChakra(getEnergy() * 6 + getNinjutsu() * 7 + getGenjutsu() * 7 + adicionalByLevel2);
-            formulas.setStamina(getEnergy() * 6 + getTaijutsu() * 14 + getBukijutsu() * 7 + adicionalByLevel1);
+            formulas.setChakra(getEnergy() * 6 + getNinjutsu() * 7 + getGenjutsu() * 7 + additionalPerLevel2);
+            formulas.setStamina(getEnergy() * 6 + getTaijutsu() * 14 + getBukijutsu() * 7 + additionalPerLevel1);
         } else {
-            formulas.setChakra(getEnergy() * 6 + getNinjutsu() * 7 + getGenjutsu() * 7 + adicionalByLevel2);
-            formulas.setStamina(getEnergy() * 6 + getTaijutsu() * 7 + getBukijutsu() * 14 + adicionalByLevel1);
+            formulas.setChakra(getEnergy() * 6 + getNinjutsu() * 7 + getGenjutsu() * 7 + additionalPerLevel2);
+            formulas.setStamina(getEnergy() * 6 + getTaijutsu() * 7 + getBukijutsu() * 14 + additionalPerLevel1);
         }
 
         formulas.setAtkTaiBuki((int) Math.ceil((double) getStrength() / 2));
@@ -120,107 +128,93 @@ public class Attributes {
                 (getAgility() + getSeal()) * 100);
     }
 
-    public void incrementDailyTraningPoints(int trainingPointsEarned) {
-        int newTotalDailyTrainingPoints = trainingPointsEarned + getDailyTrainingPoints();
+    public void incrementTraningProgress(int trainingPointsEarned) {
+        int newTotalTrainingProgress = trainingPointsEarned + getTraningProgress();
 
-        if (newTotalDailyTrainingPoints > CharOn.character.getGraduation().dailyTrainingLimit) {
-            newTotalDailyTrainingPoints = CharOn.character.getGraduation().dailyTrainingLimit;
+        if (newTotalTrainingProgress > CharOn.character.getGraduation().dailyTrainingLimit) {
+            newTotalTrainingProgress = CharOn.character.getGraduation().dailyTrainingLimit;
         }
 
-        setDailyTrainingPoints(newTotalDailyTrainingPoints);
+        setTraningProgress(newTotalTrainingProgress);
     }
 
     public void incrementTraningPoints(int trainingPointsEarned) {
         int newTotalTrainingPoints = getTrainingPoints() + trainingPointsEarned;
 
-        if (newTotalTrainingPoints >= totalTrainingPointsForNextAbilityPoint) {
-            newTotalTrainingPoints = totalTrainingPointsForNextAbilityPoint - newTotalTrainingPoints;
+        while (newTotalTrainingPoints >= totalTrainingPoints) {
+            newTotalTrainingPoints = newTotalTrainingPoints - totalTrainingPoints;
 
-            totalTrainingPointsForNextAbilityPoint += 150;
+            totalTrainingPoints += 150;
             totalFreePoints++;
         }
 
         setTrainingPoints(newTotalTrainingPoints);
     }
 
-    public int getTaijutsu() {
-        return taijutsu;
+    public void earn(int attributeId) {
+        earn(attributeId, 1);
     }
 
-    public void setTaijutsu(int taijutsu) {
-        this.taijutsu = taijutsu;
+    public void earn(int attributeId, int quantity) {
+        int current = getPointsEarned().get(attributeId);
+        getPointsEarned().set(attributeId, current + quantity);
     }
+
+    public void train(int attributeId, int quantity) {
+        int current = getDistributedPoints().get(attributeId);
+        getDistributedPoints().set(attributeId, current + quantity);
+    }
+
+    public int getTaijutsu() {
+        return basePoints.get(Attribute.TAI.id) + distributedPoints.get(Attribute.TAI.id)
+                + pointsEarned.get(Attribute.TAI.id);
+    }
+
 
     public int getBukijutsu() {
-        return bukijutsu;
-    }
-
-    public void setBukijutsu(int bukijutsu) {
-        this.bukijutsu = bukijutsu;
+        return basePoints.get(Attribute.BUK.id) + distributedPoints.get(Attribute.BUK.id)
+                + pointsEarned.get(Attribute.BUK.id);
     }
 
     public int getNinjutsu() {
-        return ninjutsu;
-    }
-
-    public void setNinjutsu(int ninjutsu) {
-        this.ninjutsu = ninjutsu;
+        return basePoints.get(Attribute.NIN.id) + distributedPoints.get(Attribute.NIN.id)
+                + pointsEarned.get(Attribute.NIN.id);
     }
 
     public int getGenjutsu() {
-        return genjutsu;
+        return basePoints.get(Attribute.GEN.id) + distributedPoints.get(Attribute.GEN.id)
+                + pointsEarned.get(Attribute.GEN.id);
     }
 
-    public void setGenjutsu(int genjutsu) {
-        this.genjutsu = genjutsu;
-    }
 
     public int getStrength() {
-        return strength;
-    }
-
-    public void setStrength(int strength) {
-        this.strength = strength;
+        return basePoints.get(Attribute.FOR.id) + distributedPoints.get(Attribute.FOR.id)
+                + pointsEarned.get(Attribute.FOR.id);
     }
 
     public int getAgility() {
-        return agility;
-    }
-
-    public void setAgility(int agility) {
-        this.agility = agility;
+        return basePoints.get(Attribute.AGI.id) + distributedPoints.get(Attribute.AGI.id)
+                + pointsEarned.get(Attribute.AGI.id);
     }
 
     public int getIntelligence() {
-        return intelligence;
-    }
-
-    public void setIntelligence(int intelligence) {
-        this.intelligence = intelligence;
+        return basePoints.get(Attribute.INTE.id) + distributedPoints.get(Attribute.INTE.id)
+                + pointsEarned.get(Attribute.INTE.id);
     }
 
     public int getSeal() {
-        return seal;
-    }
-
-    public void setSeal(int seal) {
-        this.seal = seal;
+        return basePoints.get(Attribute.SEAL.id) + distributedPoints.get(Attribute.SEAL.id)
+                + pointsEarned.get(Attribute.SEAL.id);
     }
 
     public int getResistance() {
-        return resistance;
-    }
-
-    public void setResistance(int resistance) {
-        this.resistance = resistance;
+        return basePoints.get(Attribute.RES.id) + distributedPoints.get(Attribute.RES.id)
+                + pointsEarned.get(Attribute.RES.id);
     }
 
     public int getEnergy() {
-        return energy;
-    }
-
-    public void setEnergy(int energy) {
-        this.energy = energy;
+        return basePoints.get(Attribute.ENER.id) + distributedPoints.get(Attribute.ENER.id)
+                + pointsEarned.get(Attribute.ENER.id);
     }
 
     public Formulas getFormulas() {
@@ -231,20 +225,20 @@ public class Attributes {
         this.formulas = formulas;
     }
 
-    public int getDailyTrainingPoints() {
-        return dailyTrainingPoints;
+    public int getTraningProgress() {
+        return traningProgress;
     }
 
-    public void setDailyTrainingPoints(int dailyTrainingPoints) {
-        this.dailyTrainingPoints = dailyTrainingPoints;
+    public void setTraningProgress(int traningProgress) {
+        this.traningProgress = traningProgress;
     }
 
-    public int getTotalTrainingPointsForNextAbilityPoint() {
-        return totalTrainingPointsForNextAbilityPoint;
+    public int getTotalTrainingPoints() {
+        return totalTrainingPoints;
     }
 
-    public void setTotalTrainingPointsForNextAbilityPoint(int totalTrainingPointsForNextAbilityPoint) {
-        this.totalTrainingPointsForNextAbilityPoint = totalTrainingPointsForNextAbilityPoint;
+    public void setTotalTrainingPoints(int totalTrainingPoints) {
+        this.totalTrainingPoints = totalTrainingPoints;
     }
 
     public int getTrainingPoints() {
@@ -263,20 +257,44 @@ public class Attributes {
         this.totalFreePoints = totalFreePoints;
     }
 
-    public List<AttributeItem> asList() {
-        List<AttributeItem> attributeItems = new ArrayList<>();
+    public List<Integer> getBasePoints() {
+        return basePoints;
+    }
 
-        attributeItems.add(new AttributeItem(Attribute.TAI, taijutsu));
-        attributeItems.add(new AttributeItem(Attribute.BUK, bukijutsu));
-        attributeItems.add(new AttributeItem(Attribute.NIN, ninjutsu));
-        attributeItems.add(new AttributeItem(Attribute.GEN, genjutsu));
-        attributeItems.add(new AttributeItem(Attribute.FOR, strength));
-        attributeItems.add(new AttributeItem(Attribute.AGI, agility));
-        attributeItems.add(new AttributeItem(Attribute.INTE, intelligence));
-        attributeItems.add(new AttributeItem(Attribute.SELO, seal));
-        attributeItems.add(new AttributeItem(Attribute.RES, resistance));
-        attributeItems.add(new AttributeItem(Attribute.ENER, energy));
+    public void setBasePoints(List<Integer> basePoints) {
+        this.basePoints = basePoints;
+    }
 
-        return attributeItems;
+    public List<Integer> getDistributedPoints() {
+        return distributedPoints;
+    }
+
+    public void setDistributedPoints(List<Integer> distributedPoints) {
+        this.distributedPoints = distributedPoints;
+    }
+
+    public List<Integer> getPointsEarned() {
+        return pointsEarned;
+    }
+
+    public void setPointsEarned(List<Integer> pointsEarned) {
+        this.pointsEarned = pointsEarned;
+    }
+
+    public List<Integer> asList() {
+        List<Integer> attributes = new ArrayList<>();
+
+        attributes.add(getTaijutsu());
+        attributes.add(getBukijutsu());
+        attributes.add(getNinjutsu());
+        attributes.add(getGenjutsu());
+        attributes.add(getStrength());
+        attributes.add(getAgility());
+        attributes.add(getIntelligence());
+        attributes.add(getSeal());
+        attributes.add(getResistance());
+        attributes.add(getEnergy());
+
+        return attributes;
     }
 }

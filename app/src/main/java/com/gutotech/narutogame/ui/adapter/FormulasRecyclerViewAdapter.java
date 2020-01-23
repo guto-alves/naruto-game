@@ -1,8 +1,5 @@
 package com.gutotech.narutogame.ui.adapter;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,13 +7,15 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.gutotech.narutogame.R;
-import com.gutotech.narutogame.data.model.Attribute;
-import com.gutotech.narutogame.data.model.AttributeItem;
+import com.gutotech.narutogame.data.model.Formula;
 
 import java.util.List;
 
-public class AttributesRecyclerViewAdapter extends RecyclerView.Adapter<AttributesRecyclerViewAdapter.MyViewHolder> {
+public class FormulasRecyclerViewAdapter extends RecyclerView.Adapter<FormulasRecyclerViewAdapter.MyViewHolder> {
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         private TextView nameTextView;
@@ -34,12 +33,12 @@ public class AttributesRecyclerViewAdapter extends RecyclerView.Adapter<Attribut
         }
     }
 
-    private Attribute[] mAttributes;
+    private Formula[] mFormulas;
     private List<Integer> mTotalPointsForEachAttribute;
 
-    public AttributesRecyclerViewAdapter(List<Integer> attributes) {
-        mTotalPointsForEachAttribute = attributes;
-        mAttributes = Attribute.values();
+    public FormulasRecyclerViewAdapter(List<Integer> formulas) {
+        mTotalPointsForEachAttribute = formulas;
+        mFormulas = Formula.values();
     }
 
     @NonNull
@@ -52,17 +51,17 @@ public class AttributesRecyclerViewAdapter extends RecyclerView.Adapter<Attribut
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
-        Attribute attribute = mAttributes[i];
+        Formula formula = mFormulas[i];
         Integer total = mTotalPointsForEachAttribute.get(i);
 
-        myViewHolder.nameTextView.setText(attribute.name);
-        myViewHolder.iconImageView.setImageResource(attribute.icon);
+        myViewHolder.nameTextView.setText(formula.name);
+        myViewHolder.iconImageView.setImageResource(formula.icon);
         myViewHolder.totalTextView.setText(String.valueOf(total));
         myViewHolder.totalProgressBar.setProgress(total);
     }
 
     @Override
     public int getItemCount() {
-        return mAttributes.length;
+        return mFormulas.length;
     }
 }

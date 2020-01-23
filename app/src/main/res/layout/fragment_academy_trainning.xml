@@ -9,14 +9,14 @@
 
         <variable
             name="viewModel"
-            type="com.gutotech.narutogame.ui.playing.academy.AcademyTrainningViewModel" />
+            type="com.gutotech.narutogame.ui.playing.academy.AcademyTrainingViewModel" />
     </data>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
-        tools:context=".ui.playing.academy.AcademiaTreinamentoFragment">
+        tools:context=".ui.playing.academy.AcademyTrainingFragment">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -34,7 +34,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:visibility="@{viewModel.showMsg ? View.VISIBLE : View.GONE}" />
+                android:visibility="gone" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -231,8 +231,8 @@
                         android:layout_marginRight="8dp"
                         android:layout_marginBottom="8dp"
                         android:background="@drawable/layout_barra_exp_barra_vazia_765"
-                        android:max="4000"
-                        android:progress="2000"
+                        android:max="@{viewModel.maxTraining}"
+                        android:progress="@{viewModel.progressTraining}"
                         android:progressDrawable="@drawable/progressbar_exp_765"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -245,7 +245,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:layout_marginLeft="8dp"
-                        android:text="2000/4000"
+                        android:text="@{@string/progress_description_bar(viewModel.progressTraining, viewModel.maxTraining)}"
                         android:textColor="@android:color/white"
                         app:layout_constraintBottom_toBottomOf="@+id/limitOfTrainingProgressBar"
                         app:layout_constraintStart_toStartOf="@+id/limitOfTrainingProgressBar"
@@ -285,6 +285,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginEnd="5dp"
                         android:layout_marginRight="5dp"
                         android:text="@string/icon_bar"
                         android:textColor="@android:color/holo_blue_light"
@@ -317,6 +318,8 @@
                         android:layout_marginRight="8dp"
                         android:layout_marginBottom="8dp"
                         android:background="@drawable/layout_barra_exp_barra_vazia_765"
+                        android:max="@{viewModel.maxNextAbilityPoint}"
+                        android:progress="@{viewModel.progressNextAbilityPoint}"
                         android:progressDrawable="@drawable/progressbar_exp_765"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -329,7 +332,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:layout_marginLeft="8dp"
-                        android:text="0/8000"
+                        android:text="@{@string/progress_description_bar(viewModel.progressNextAbilityPoint, viewModel.maxNextAbilityPoint)}"
                         android:textColor="@android:color/white"
                         app:layout_constraintBottom_toBottomOf="@+id/nextAbiliityPointProgressBar"
                         app:layout_constraintStart_toStartOf="@+id/nextAbiliityPointProgressBar"

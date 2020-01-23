@@ -19,13 +19,13 @@ import com.gutotech.narutogame.ui.adapter.DistributedPointsRecyclerAdapter;
 import com.gutotech.narutogame.utils.FragmentUtil;
 import com.gutotech.narutogame.utils.StorageUtil;
 
-public class AcademiaTreinamentoFragment extends Fragment implements SectionFragment {
+public class AcademyTrainingFragment extends Fragment implements SectionFragment {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        AcademyTrainningViewModel viewModel = ViewModelProviders.of(this)
-                .get(AcademyTrainningViewModel.class);
+        AcademyTrainingViewModel viewModel = ViewModelProviders.of(this)
+                .get(AcademyTrainingViewModel.class);
 
         FragmentAcademyTrainningBinding binding = DataBindingUtil.inflate(inflater,
                 R.layout.fragment_academy_trainning, container, false);
@@ -37,21 +37,28 @@ public class AcademiaTreinamentoFragment extends Fragment implements SectionFrag
         StorageUtil.downloadProfileForMsg(getContext(), binding.msgLayout.profileImageView,
                 CharOn.character.getVillage().id);
 
-        if (CharOn.character.getAttributes().getDailyTrainingPoints() ==
+        if (CharOn.character.getAttributes().getTraningProgress() ==
                 CharOn.character.getGraduation().dailyTrainingLimit) {
             binding.trainButton.setEnabled(false);
         }
 
         binding.trainingResult.msgConstraintLayout.setVisibility(View.GONE);
+
         viewModel.trainingCompletedEvent.observe(this, trainingPointsEarned -> {
+            StorageUtil.downloadProfileForMsg(getContext(), binding.trainingResult.profileImageView,
+                    CharOn.character.getVillage().id);
             binding.trainingResult.titleTextView.setText(R.string.training_completed);
             binding.trainingResult.descriptionTextView.setText(
                     getString(R.string.you_earned_ability_points, trainingPointsEarned));
+            binding.trainingResult.msgConstraintLayout.setVisibility(View.VISIBLE);
         });
         viewModel.trainingErrorEvent.observe(this, v -> {
+            StorageUtil.downloadProfileForMsg(getContext(), binding.trainingResult.profileImageView,
+                    CharOn.character.getVillage().id);
             binding.trainingResult.titleTextView.setText(R.string.problem);
             binding.trainingResult.descriptionTextView.setText(
                     R.string.you_dont_have_chakra_for_this_training);
+            binding.trainingResult.msgConstraintLayout.setVisibility(View.VISIBLE);
         });
 
 //        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, treinos);
@@ -60,8 +67,9 @@ public class AcademiaTreinamentoFragment extends Fragment implements SectionFrag
         binding.limitOfTrainingProgressBar.setMax(CharOn.character.getGraduation().dailyTrainingLimit);
 
         binding.distributedPointsRecyclerView.setHasFixedSize(true);
-        DistributedPointsRecyclerAdapter adapter = new DistributedPointsRecyclerAdapter(getContext());
-        adapter.setDistributedAttributes(CharOn.character.getAttributes().asList());
+        DistributedPointsRecyclerAdapter adapter = new DistributedPointsRecyclerAdapter(
+                getContext(), viewModel);
+        adapter.setDistributedPoints(CharOn.character.getAttributes().getDistributedPoints());
         binding.distributedPointsRecyclerView.setAdapter(adapter);
 
         FragmentUtil.setSectionTitle(getActivity(), R.string.section_attribute_training);

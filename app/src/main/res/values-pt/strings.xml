@@ -109,6 +109,9 @@
     <string name="section_graduations">GRADUAÇÕES</string>
     <string name="section_clans">CLÃS</string>
     <string name="strength">Força</string>
+    <string name="intelligence">Intelligence</string>
+    <string name="resistance">Resistência</string>
+    <string name="seal">Selo</string>
     <string name="finish">Finalizar</string>
     <string name="leaf">Folha</string>
     <string name="ranking">Ranking</string>
@@ -273,10 +276,18 @@
     <string name="thursday">Quinta</string>
     <string name="friday">Sexta</string>
     <string name="saturday">Sábado</string>
+    <string name="progress_description_bar">%d/%d</string>
 
     <string-array name="chat_channel_array">
         <item>Vila</item>
         <item>Mundo</item>
     </string-array>
+
+    <string name="health">Vida</string>
+    <string name="defense_tai_buk">Def. ( Tai / Buk )</string>
+    <string name="defense_nin_gen">Def. ( Nin / Gen )</string>
+    <string name="accuracy">Precisão</string>
+    <string name="atk_tai_buk">Atk. ( Tai / Buk )</string>
+    <string name="atk_nin_gen">Atk. ( Nin / Gen )</string>
 
 </resources>

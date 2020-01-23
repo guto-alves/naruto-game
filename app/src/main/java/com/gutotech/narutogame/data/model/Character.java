@@ -81,6 +81,7 @@ public class Character extends BaseObservable implements Serializable {
         graduation = Graduation.ESTUDANTE;
         setClasse(Classe.TAI);
         updateFormulas();
+        full();
         ryous = 500;
         score = 1000;
         expUpar = 1200;

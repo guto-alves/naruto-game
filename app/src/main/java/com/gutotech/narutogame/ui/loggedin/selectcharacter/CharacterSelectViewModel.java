@@ -9,6 +9,7 @@ import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.Character;
 import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.repository.CharacterRepository;
+import com.gutotech.narutogame.data.repository.NinjaLuckyRepository;
 import com.gutotech.narutogame.ui.ResultListener;
 import com.gutotech.narutogame.utils.SingleLiveEvent;
 
@@ -81,5 +82,6 @@ public class CharacterSelectViewModel extends ViewModel {
 
     private void deleteCharacterSelected() {
         mRepository.deleteCharacter(mCharacterSelected.getNick());
+        NinjaLuckyRepository.getInstance().delete(mCharacterSelected.getNick());
     }
 }

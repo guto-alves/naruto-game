@@ -12,8 +12,8 @@ public class ExtrasInformation {
         setTotalTraining(getTotalTraining() + training);
     }
 
-    public void incrementDistributedPoints() {
-        setDistributedPoints(getDistributedPoints() + 1);
+    public void incrementDistributedPoints(int quantity) {
+        setDistributedPoints(getDistributedPoints() + quantity);
     }
 
     public int getTotalTraining() {

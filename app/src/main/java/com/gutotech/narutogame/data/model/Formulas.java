@@ -168,19 +168,19 @@ public class Formulas implements Serializable {
         this.ninjaPower = ninjaPower;
     }
 
-    public List<AttributeItem> asList() {
-        List<AttributeItem> attributeItems = new ArrayList<>();
+    public List<Integer> asList() {
+        List<Integer> formulas = new ArrayList<>();
 
-        attributeItems.add(new AttributeItem(Attribute.HEALTH, currentHealth));
-        attributeItems.add(new AttributeItem(Attribute.CHAKRA, chakraAtual));
-        attributeItems.add(new AttributeItem(Attribute.STAMINA, staminaAtual));
-        attributeItems.add(new AttributeItem(Attribute.ATK_TAI, atkTaiBuki));
-        attributeItems.add(new AttributeItem(Attribute.ATK_NIN, atkNinGen));
-        attributeItems.add(new AttributeItem(Attribute.DEF_TAI, defTaiBuki));
-        attributeItems.add(new AttributeItem(Attribute.DEF_NIN, defNinGen));
-        attributeItems.add(new AttributeItem(Attribute.ACC, accuracy));
+        formulas.add(Formula.HEALTH.id, currentHealth);
+        formulas.add(Formula.CHAKRA.id, chakraAtual);
+        formulas.add(Formula.STAMINA.id, staminaAtual);
+        formulas.add(Formula.ATK_TAI.id, atkTaiBuki);
+        formulas.add(Formula.ATK_NIN.id, atkNinGen);
+        formulas.add(Formula.DEF_TAI.id, defTaiBuki);
+        formulas.add(Formula.DEF_NIN.id, defNinGen);
+        formulas.add(Formula.ACC.id, accuracy);
 
-        return attributeItems;
+        return formulas;
     }
 
 

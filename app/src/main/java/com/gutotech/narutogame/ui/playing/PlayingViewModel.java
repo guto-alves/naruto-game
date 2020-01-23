@@ -2,7 +2,6 @@ package com.gutotech.narutogame.ui.playing;
 
 import android.app.Application;
 import android.text.TextUtils;
-import android.util.Log;
 import android.widget.ExpandableListView;
 
 import androidx.annotation.NonNull;
@@ -17,7 +16,6 @@ import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.model.Graduation;
 import com.gutotech.narutogame.data.model.MenuGroup;
 import com.gutotech.narutogame.data.model.Message;
-import com.gutotech.narutogame.data.repository.AuthRepository;
 import com.gutotech.narutogame.data.repository.CharacterRepository;
 import com.gutotech.narutogame.data.repository.ChatRepository;
 import com.gutotech.narutogame.ui.SectionFragment;
@@ -27,10 +25,9 @@ import com.gutotech.narutogame.ui.loggedin.newcharacteer.CharacterCreateFragment
 import com.gutotech.narutogame.ui.loggedin.selectcharacter.CharacterSelectFragment;
 import com.gutotech.narutogame.ui.loggedin.support.SuporteFragment;
 import com.gutotech.narutogame.ui.playing.academy.AcademiaJustuFragment;
-import com.gutotech.narutogame.ui.playing.academy.AcademiaTreinamentoFragment;
+import com.gutotech.narutogame.ui.playing.academy.AcademyTrainingFragment;
 import com.gutotech.narutogame.ui.playing.academy.GraduacoesFragment;
 import com.gutotech.narutogame.ui.playing.academy.PersonagemJutsuFragment;
-import com.gutotech.narutogame.ui.playing.battles.ArenaFragment;
 import com.gutotech.narutogame.ui.playing.battles.DojoFragment;
 import com.gutotech.narutogame.ui.playing.battles.LogBatalhaFragment;
 import com.gutotech.narutogame.ui.playing.character.CharacterStatusFragment;
@@ -123,7 +120,7 @@ public class PlayingViewModel extends AndroidViewModel {
 
         List<SectionFragment> fragments3 = new ArrayList<>();
         fragments3.add(new GraduacoesFragment());
-        fragments3.add(new AcademiaTreinamentoFragment());
+        fragments3.add(new AcademyTrainingFragment());
         fragments3.add(new PersonagemJutsuFragment());
         fragments3.add(new AcademiaJustuFragment());
 
@@ -141,7 +138,6 @@ public class PlayingViewModel extends AndroidViewModel {
 
         List<SectionFragment> fragments5 = new ArrayList<>();
         fragments5.add(new DojoFragment());
-        fragments5.add(new ArenaFragment());
         fragments5.add(new LogBatalhaFragment());
 
         List<SectionFragment> fragments6 = new ArrayList<>();

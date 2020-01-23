@@ -25,7 +25,6 @@ import java.util.List;
 
 public class CharacterCreateViewModel extends ViewModel implements ChooseNinjaRecyclerViewAdapter.NinjaListener {
     public ObservableField<Village> village = new ObservableField<>(Village.FOLHA);
-    public ObservableField<Classe> classe = new ObservableField<>(Classe.NIN);
     public ObservableField<Ninja> ninja = new ObservableField<>(Ninja.NARUTO);
     public ObservableInt currentGroupIndex = new ObservableInt(0);
 
@@ -61,10 +60,9 @@ public class CharacterCreateViewModel extends ViewModel implements ChooseNinjaRe
     }
 
     public void onClassSelected(Classe classe) {
-        this.classe.set(classe);
         mCharacter.setClasse(classe);
-        mCharacter.getAttributes().updateFormulas(classe, 1);
-        mCharacter.getAttributes().getFormulas().full();
+        mCharacter.updateFormulas();
+        mCharacter.full();
     }
 
     private void loadCurrentGroup() {

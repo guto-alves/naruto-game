@@ -32,6 +32,14 @@ public class NinjaLuckyRepository {
         ninjaLuckyRef.setValue(ninjaLucky);
     }
 
+    public void delete(String charNick) {
+        DatabaseReference ninjaLuckyRef = FirebaseConfig.getDatabase()
+                .child("ninja-lucky")
+                .child(charNick);
+
+        ninjaLuckyRef.removeValue();
+    }
+
     private DatabaseReference ninjaLuckyRef;
     private ValueEventListener ninjaLuckyListener;
 
