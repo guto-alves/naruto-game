@@ -1,9 +1,9 @@
 package com.gutotech.narutogame.data.model;
 
-import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
-public class Bag implements Serializable {
+public class Bag {
     private List<Ramen> ramensList;
     private List<Pergaminho> pergaminhosList;
     private List<Jutsu> armasList;
@@ -11,8 +11,9 @@ public class Bag implements Serializable {
     public Bag() {
     }
 
-    public Bag(List<Ramen> ramensList) {
-        this.ramensList = ramensList;
+    public Bag(Ramen ramen) {
+        ramensList = new ArrayList<>();
+        ramensList.add(ramen);
     }
 
     public Bag(List<Ramen> ramensList, List<Pergaminho> pergaminhosList, List<Jutsu> armasList) {

@@ -1,6 +1,8 @@
 package com.gutotech.narutogame.data.model;
 
-public class Arma extends ItemShop {
+import java.util.ArrayList;
+
+public class Arma extends ShopItem {
     private int atakOuDef;
     private int consomeChakra;
     private int consomeStamina;
@@ -15,26 +17,25 @@ public class Arma extends ItemShop {
     public Arma() {
     }
 
-    // para armas de longo alcance
-    public Arma(String image, String nome, String descricao, int valor, int requerGraducao, int requerLevel, int atakOuDef, int consomeChakra, int consomeStamina, Tipo tipo) {
-        super(image, nome, descricao, TipoItem.ARMA, valor, TipoPgto.RYOUS, 0, requerGraducao, requerLevel);
-        this.atakOuDef = atakOuDef;
-        this.consomeChakra = consomeChakra;
-        this.consomeStamina = consomeStamina;
-        this.tipo = tipo;
-        this.alcance = Alcance.LONGO;
-    }
-
-    // para armas de curto alcance
-    public Arma(String image, String nome, String descricao, int valor, TipoPgto tipoPgto, int requerGraducao, int requerLevel, int atakOuDef, int consomeChakra, int consomeStamina, Tipo tipo) {
-        super(image, nome, descricao, TipoItem.ARMA, valor, tipoPgto, 0, requerGraducao, requerLevel);
-        this.atakOuDef = atakOuDef;
-        this.consomeChakra = consomeChakra;
-        this.consomeStamina = consomeStamina;
-        this.tipo = tipo;
-        this.alcance = Alcance.CURTO;
-    }
-
+//    // para armas de longo alcance
+//    public Arma(String image, String nome, String descricao, int valor, int requerGraducao, int requerLevel, int atakOuDef, int consomeChakra, int consomeStamina, Tipo tipo) {
+//        super(image, nome, descricao, new ArrayList<>(), valor, 0, requerGraducao, requerLevel);
+//        this.atakOuDef = atakOuDef;
+//        this.consomeChakra = consomeChakra;
+//        this.consomeStamina = consomeStamina;
+//        this.tipo = tipo;
+//        this.alcance = Alcance.LONGO;
+//    }
+//
+//    // para armas de curto alcance
+//    public Arma(String image, String nome, String descricao, int valor, TipoPgto tipoPgto, int requerGraducao, int requerLevel, int atakOuDef, int consomeChakra, int consomeStamina, Tipo tipo) {
+//        super(image, nome, descricao, TipoItem.ARMA, valor, tipoPgto, 0, requerGraducao, requerLevel);
+//        this.atakOuDef = atakOuDef;
+//        this.consomeChakra = consomeChakra;
+//        this.consomeStamina = consomeStamina;
+//        this.tipo = tipo;
+//        this.alcance = Alcance.CURTO;
+//    }
 
     public int getAtakOuDef() {
         return atakOuDef;

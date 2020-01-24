@@ -12,7 +12,6 @@ import android.widget.TextView;
 
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.Attribute;
-import com.gutotech.narutogame.data.model.AttributeItem;
 
 import java.util.List;
 

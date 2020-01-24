@@ -144,13 +144,4 @@ public class CharacterCreateViewModel extends ViewModel implements ChooseNinjaRe
 //            jutsus.add(new Jutsu(3, "chute", 1, 8, 0, 0, 0, 3, 2, 11, "atk", "basico"));
 //        }
 //        character.setJutsus(jutsus);
-//
-//        Bolsa bolsa = new Bolsa();
-//        List<Ramen> ramens = new ArrayList<>();
-//        ramens.add(new Ramen("nissin", "Merenda Ninja",
-//                "Super macarrão reforçado para uso nos intervalos das tarefas ninjas",
-//                25, ItemShop.TipoPgto.RYOUS, 5, 0, 1, 100));
-//        bolsa.setRamensList(ramens);
-//        character.setBag(bolsa);
-//    }
 }

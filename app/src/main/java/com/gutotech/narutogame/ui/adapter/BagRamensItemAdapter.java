@@ -5,6 +5,7 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,10 +50,11 @@ public class BagRamensItemAdapter extends RecyclerView.Adapter<BagRamensItemAdap
         if (CharOn.character.getBag().getRamensList() != null) {
             Ramen ramen = CharOn.character.getBag().getRamensList().get(i);
 
+            Log.i("BagTest", "" + ramen.getImage());
             StorageUtil.downloadRamen(context, holder.itemImageView, ramen.getImage());
 
             holder.quantityTextView.setText(context.getString(
-                    R.string.bag_item_quantity, ramen.getInventario()));
+                    R.string.bag_item_quantity, ramen.getInventory()));
 
             holder.itemView.setOnClickListener(v -> {
 

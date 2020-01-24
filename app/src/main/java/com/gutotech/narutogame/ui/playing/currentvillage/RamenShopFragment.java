@@ -2,37 +2,63 @@ package com.gutotech.narutogame.ui.playing.currentvillage;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.lifecycle.ViewModelProviders;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.gutotech.narutogame.R;
+import com.gutotech.narutogame.data.model.Requirement;
+import com.gutotech.narutogame.databinding.FragmentRamemShopBinding;
 import com.gutotech.narutogame.ui.SectionFragment;
+import com.gutotech.narutogame.ui.WarningDialog;
 import com.gutotech.narutogame.ui.adapter.ItemShopRecyclerAdapter;
-import com.gutotech.narutogame.data.model.Shop;
+import com.gutotech.narutogame.data.model.ShopUtils;
+import com.gutotech.narutogame.ui.playing.RequirementDialogFragment;
 import com.gutotech.narutogame.utils.FragmentUtil;
 
-public class RamenShopFragment extends Fragment implements SectionFragment {
+import java.util.List;
+
+public class RamenShopFragment extends Fragment implements SectionFragment,
+        ItemShopRecyclerAdapter.OnRequirementsButtonListener {
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_ramem_shop, container, false);
+        FragmentRamemShopBinding binding = DataBindingUtil.inflate(inflater,
+                R.layout.fragment_ramem_shop, container, false);
 
-        RecyclerView ramensRecyclerView = view.findViewById(R.id.ramensRecyclerView);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        ramensRecyclerView.setLayoutManager(layoutManager);
-        ramensRecyclerView.setHasFixedSize(true);
-        ItemShopRecyclerAdapter adapter = new ItemShopRecyclerAdapter(getActivity(), new Shop().getRamens());
-        ramensRecyclerView.setAdapter(adapter);
+        RamenShopViewModel viewModel = ViewModelProviders.of(this)
+                .get(RamenShopViewModel.class);
+        binding.setViewModel(viewModel);
+
+        binding.ramensRecyclerView.setHasFixedSize(true);
+        ItemShopRecyclerAdapter adapter = new ItemShopRecyclerAdapter(getActivity(),
+                ShopUtils.getRamens(), viewModel, this);
+        binding.ramensRecyclerView.setAdapter(adapter);
+
+        viewModel.getShowWarningEvent().observe(this, resId -> {
+            showWarningDialog(getString(resId));
+        });
 
         FragmentUtil.setSectionTitle(getActivity(), R.string.section_ramen_shop);
+        return binding.getRoot();
+    }
 
-        return view;
+    private void showWarningDialog(String warning) {
+        DialogFragment warningDialog = new WarningDialog(warning);
+        warningDialog.show(getFragmentManager(), "WarningDialog");
+    }
+
+    @Override
+    public void onRequirementsClick(List<Requirement> requirements) {
+        DialogFragment dialog = new RequirementDialogFragment(getContext(), requirements);
+        dialog.show(getFragmentManager(), "RequirementDialogFragment");
     }
 
     @Override

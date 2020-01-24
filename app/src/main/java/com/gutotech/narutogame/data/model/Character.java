@@ -1,16 +1,20 @@
 package com.gutotech.narutogame.data.model;
 
+import android.content.Context;
+
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 import androidx.databinding.library.baseAdapters.BR;
 
 import com.google.firebase.database.DatabaseReference;
+import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.firebase.FirebaseConfig;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.List;
 
-public class Character extends BaseObservable implements Serializable {
+public class Character extends BaseObservable {
     private String playerId;
     private String nick;
     private Ninja ninja;
@@ -85,11 +89,14 @@ public class Character extends BaseObservable implements Serializable {
         ryous = 500;
         score = 1000;
         expUpar = 1200;
-        bag = new Bag();
         combatOverview = new CombatOverview();
         resumeOfMissions = new ResumeOfMissions();
         extrasInformation = new ExtrasInformation();
         mapPosition = -1;
+
+        bag = new Bag(new Ramen("nissin", R.string.ninja_snack,
+                R.string.ninja_snack_description,
+                null, 25, 5, 100));
     }
 
     public void salvar() {

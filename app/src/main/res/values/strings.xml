@@ -71,7 +71,7 @@
 
     <!-- Grupo Vila atual -->
     <string name="section_initial_tasks">INITIAL TASKS</string>
-    <string name="section_ramen_shop" translatable="false">RAMEM SHOP</string>
+    <string name="section_ramen_shop" translatable="false">RAMEN SHOP</string>
     <string name="section_ninja_shop" translatable="false">NINJA SHOP</string>
     <string name="section_village_map">VILLAGE MAP</string>
     <string name="section_missions">MISSIONS</string>
@@ -383,8 +383,8 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="ryous_daily">2000 Ryous</string>
     <string name="ryous_weekly">6000 Ryous</string>
     <string name="credits_weekly">3 Credits</string>
-    <string name="warning_dont_have_enough_ryous">• You don\'t have enough ryous</string>
-    <string name="warning_dont_have_enough_credits">• You don\'t have enough credits</string>
+    <string name="warning_dont_have_enough_ryous">• You do not have enough ryous</string>
+    <string name="warning_dont_have_enough_credits">• You do not have enough credits</string>
     <string name="warning_havent_played_the_entire_week_yet">• You haven\'t played the entire week yet.</string>
     <string name="sunday">Sunday</string>
     <string name="tuesday">Tuesday</string>
@@ -401,6 +401,36 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="accuracy">Accuracy</string>
     <string name="atk_tai_buk">Atk. ( Tai / Buk )</string>
     <string name="atk_nin_gen">Atk. ( Nin / Gen )</string>
+    <string name="description">Description</string>
+    <string name="buy">Buy</string>
+    <string name="ninja_snack">Ninja Snack</string>
+    <string name="ninja_snack_description">Super Noodles reinforced for use in the intervals of tasks ninjas</string>
+    <string name="requires_level">Requires Level %d or higher</string>
+    <string name="misso_gyoza_ramen">Misso Gyoza-Ramen</string>
+    <string name="misso_gyoza_description">Seafood Ramen, with soybean paste</string>
+    <string name="shoyu_gyoza_ramen">Shoyu Gyoza-Ramen</string>
+    <string name="shoyu_gyoza_ramen_description">Seafood Ramen, specially spiced with soy sauce</string>
+    <string name="shio_gyoza_ramen_description">Seafood Ramen salt spiced only</string>
+    <string name="ry">RY$ %d</string>
+    <string name="misso_tyashu_ramen">Misso Tyashu-Ramen</string>
+    <string name="misso_tyashu_ramen_description">Pork ramen, with soy paste</string>
+    <string name="shoyu_ebi_ramen">Shoyu Ebi-Ramen</string>
+    <string name="shoyu_eb_ramen_description">Shrimp ramen, specially spiced with soy sauce</string>
+    <string name="shio_ebi_ramen">Shio Ebi-Ramen</string>
+    <string name="shio_ebi_ramen_description">Shrimp ramen spiced with salt</string>
+    <string name="misso_yasai_ramen_description">Ramen of vegetables, with soy paste</string>
+    <string name="misso_yasai_ramen">Misso Yasai-Ramen</string>
+    <string name="shoyu_yasai_ramen">Shoyu Yasai-Ramen</string>
+    <string name="shoyu_yasai_ramen_description">Ramen of vegetables, especially temperate with soy sauce</string>
+    <string name="shio_yasai_ramen_description">Ramen of vegetables, spiced with salt</string>
+    <string name="shio_yasai_ramen">Shio Yasai-Ramen</string>
+    <string name="shoyu_tyashu_ramen">Shoyu Tyashu-Ramen</string>
+    <string name="shoyu_tyashu_ramen_description">Pork ramen, spiced with soy sauce</string>
+    <string name="shio_tyashu_ramen_description">Seafood Ramen, specially spiced with soy sauce</string>
+    <string name="shio_tyashu_ramen">Shio Tyashu-Ramen</string>
+    <string name="shio_gyoza_ramen">Shio Gyoza-Ramen</string>
+    <string name="warning_items_purchased">Items purchased successfully</string>
+    <string name="requires_grades">Requires Grade: %s</string>
 
 
 </resources>

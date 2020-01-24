@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/bgLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -11,15 +10,14 @@
     android:padding="3dp">
 
     <ImageView
-        android:id="@+id/itemImageView"
+        android:id="@+id/imageView"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/layout_comidas_nissin" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:layout_width="0dp"
@@ -31,23 +29,21 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
-        app:layout_constraintStart_toEndOf="@+id/itemImageView"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/nomeItemTextView"
+            android:id="@+id/nameTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Misso Gyoza-Ramen Reforçado "
             android:textColor="#FFD274"
             android:textSize="12sp"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/descriTextView"
+            android:id="@+id/descriptionTextView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Super macarrão reforçado para uso nos intervalos das tasks ninjas"
             android:textColor="#BFD4DC"
             android:textSize="10sp" />
     </LinearLayout>
@@ -64,7 +60,7 @@
         app:srcCompat="@drawable/layout_requer" />
 
     <TextView
-        android:id="@+id/valorTextView"
+        android:id="@+id/valueTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -72,16 +68,15 @@
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:gravity="center"
-        android:text="RY$ 25"
         android:textColor="#BFD4DC"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/qtdEditText"
+        app:layout_constraintEnd_toStartOf="@+id/quantityEditText"
         app:layout_constraintStart_toStartOf="@+id/guideline8"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/qtdEditText"
+        android:id="@+id/quantityEditText"
         style="@style/EditTextTheme"
         android:layout_width="30dp"
         android:layout_height="wrap_content"
@@ -96,17 +91,16 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/comprarButton"
+        android:id="@+id/buyButton"
         style="@style/ButtonTheme"
         android:layout_width="wrap_content"
-        android:layout_height="35dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="3dp"
         android:layout_marginRight="3dp"
         android:layout_marginBottom="8dp"
-        android:text="Comprar"
+        android:text="@string/buy"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline7"

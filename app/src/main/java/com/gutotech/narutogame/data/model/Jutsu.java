@@ -1,8 +1,6 @@
 package com.gutotech.narutogame.data.model;
 
-import java.io.Serializable;
-
-public class Jutsu implements Serializable {
+public class Jutsu {
     private int id;
     private String nomeImagem;
     private String nome;

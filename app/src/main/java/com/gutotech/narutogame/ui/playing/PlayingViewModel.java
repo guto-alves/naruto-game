@@ -26,7 +26,7 @@ import com.gutotech.narutogame.ui.loggedin.selectcharacter.CharacterSelectFragme
 import com.gutotech.narutogame.ui.loggedin.support.SuporteFragment;
 import com.gutotech.narutogame.ui.playing.academy.AcademiaJustuFragment;
 import com.gutotech.narutogame.ui.playing.academy.AcademyTrainingFragment;
-import com.gutotech.narutogame.ui.playing.academy.GraduacoesFragment;
+import com.gutotech.narutogame.ui.playing.academy.GraduationsFragment;
 import com.gutotech.narutogame.ui.playing.academy.PersonagemJutsuFragment;
 import com.gutotech.narutogame.ui.playing.battles.DojoFragment;
 import com.gutotech.narutogame.ui.playing.battles.LogBatalhaFragment;
@@ -119,7 +119,7 @@ public class PlayingViewModel extends AndroidViewModel {
         fragments2.add(new FidelityFragment());
 
         List<SectionFragment> fragments3 = new ArrayList<>();
-        fragments3.add(new GraduacoesFragment());
+        fragments3.add(new GraduationsFragment());
         fragments3.add(new AcademyTrainingFragment());
         fragments3.add(new PersonagemJutsuFragment());
         fragments3.add(new AcademiaJustuFragment());

@@ -1,28 +1,30 @@
 package com.gutotech.narutogame.data.model;
 
-import java.io.Serializable;
+import java.util.List;
 
-public class Ramen extends ItemShop implements Serializable {
-    private int recupera;
+public class Ramen extends ShopItem {
+    private int recovers;
 
     public Ramen() {
     }
 
-    public Ramen(String image, String nome, String descricao, int valor, TipoPgto tipoPgto, int requerGraducao, int requerLevel, int recupera) {
-        super(image, nome, descricao, TipoItem.RAMEN, valor, tipoPgto, 0, requerGraducao, requerLevel);
-        this.recupera = recupera;
+    public Ramen(String image, int name, int description, List<Requirement> requirements,
+                 int value, int recovers) {
+        super(image, name, description, requirements, value, 0);
+        this.recovers = recovers;
     }
 
-    public Ramen(String image, String nome, String descricao, int valor, TipoPgto tipoPgto, int inventario, int requerGraducao, int requerLevel, int recupera) {
-        super(image, nome, descricao, TipoItem.RAMEN, valor, tipoPgto, inventario, requerGraducao, requerLevel);
-        this.recupera = recupera;
+    public Ramen(String image, int name, int description, List<Requirement> requirements,
+                 int value, int inventory, int recovers) {
+        super(image, name, description, requirements, value, inventory);
+        this.recovers = recovers;
     }
 
-    public int getRecupera() {
-        return recupera;
+    public int getRecovers() {
+        return recovers;
     }
 
-    public void setRecupera(int recupera) {
-        this.recupera = recupera;
+    public void setRecovers(int recovers) {
+        this.recovers = recovers;
     }
 }
