@@ -16,7 +16,6 @@ import com.google.firebase.storage.StorageReference;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.firebase.FirebaseConfig;
 import com.gutotech.narutogame.utils.StorageUtil;
-import com.gutotech.narutogame.utils.Helper;
 import com.gutotech.narutogame.data.model.NinjaStatistics;
 
 import java.util.List;
@@ -64,7 +63,7 @@ public class NinjaStatisticsRecyclerViewAdapter extends RecyclerView.Adapter<Nin
                     .child(ninjaStatistics.getNinjaId() + ".jpg");
             StorageUtil.downloadImage(context, imageRef, myViewHolder.imageView);
 
-            myViewHolder.nameTextView.setText(Helper.nomeDoPersonagem(ninjaStatistics.getNinjaId()));
+//            myViewHolder.nameTextView.setText(Helper.nomeDoPersonagem(ninjaStatistics.getNinjaId()));
             myViewHolder.totalPlayersTextView.setText(ninjaStatistics.getTotalPlayers() + " Jogadores");
 
             if (i / 2 % 2 == 1) {

@@ -23,7 +23,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AcademiaJustuFragment extends Fragment implements SectionFragment {
-    private RecyclerView jutsusRecyclerView;
     private JutsusAprenderAdapter adapter;
 
     private List<Jutsu> jutsusList = new ArrayList<>();
@@ -39,7 +38,7 @@ public class AcademiaJustuFragment extends Fragment implements SectionFragment {
         msgConstraintLayout = view.findViewById(R.id.msgConstraint2);
         jutsuAprendidoTextView = view.findViewById(R.id.jutsuAprendidoTextView);
 
-        jutsusRecyclerView = view.findViewById(R.id.jutsusAprenderRecyclerView);
+        RecyclerView jutsusRecyclerView = view.findViewById(R.id.jutsusAprenderRecyclerView);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         jutsusRecyclerView.setLayoutManager(layoutManager);
         jutsusRecyclerView.setHasFixedSize(true);

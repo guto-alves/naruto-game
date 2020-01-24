@@ -57,7 +57,7 @@ public class RamenShopFragment extends Fragment implements SectionFragment,
 
     @Override
     public void onRequirementsClick(List<Requirement> requirements) {
-        DialogFragment dialog = new RequirementDialogFragment(getContext(), requirements);
+        DialogFragment dialog = new RequirementDialogFragment(requirements);
         dialog.show(getFragmentManager(), "RequirementDialogFragment");
     }
 

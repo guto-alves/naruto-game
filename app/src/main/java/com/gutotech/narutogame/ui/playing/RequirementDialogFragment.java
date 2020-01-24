@@ -18,18 +18,16 @@ import com.gutotech.narutogame.ui.adapter.RequirementsAdapter;
 import java.util.List;
 
 public class RequirementDialogFragment extends DialogFragment {
-    private Context mContext;
     private List<Requirement> mRequirements;
 
-    public RequirementDialogFragment(Context context, List<Requirement> requirements) {
-        mContext = context;
+    public RequirementDialogFragment(List<Requirement> requirements) {
         mRequirements = requirements;
     }
 
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
         View root = requireActivity().getLayoutInflater().inflate(R.layout.dialog_requirements, null);
         builder.setView(root);

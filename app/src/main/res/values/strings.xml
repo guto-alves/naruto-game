@@ -431,6 +431,7 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="shio_gyoza_ramen">Shio Gyoza-Ramen</string>
     <string name="warning_items_purchased">Items purchased successfully</string>
     <string name="requires_grades">Requires Grade: %s</string>
+    <string name="warning_1">Warning</string>
 
 
 </resources>

@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:background="@drawable/layout_pagina_repeat"
+    android:orientation="vertical"
     tools:context=".ui.playing.ChangeImageFragment">
 
-    <GridView
-        android:id="@+id/profilesGridView"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/profilesRecyclerView"
         android:layout_width="435dp"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:numColumns="3" />
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:spanCount="3"
+        tools:listitem="@layout/adapter_profile" />
 </LinearLayout>
