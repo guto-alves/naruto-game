@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.gutotech.narutogame.ui.loggedout.signup.SignupViewModel" />
+            type="com.gutotech.narutogame.ui.home.signup.SignupViewModel" />
     </data>
 
     <ScrollView

@@ -8,13 +8,17 @@ import com.gutotech.narutogame.ui.SectionFragment;
 import java.util.List;
 
 public class MenuGroup {
-    @StringRes
-    public final int name;
-
     @DrawableRes
     public final int resId;
 
+    @StringRes
+    public final int name;
+
     public List<SectionFragment> sections;
+
+    public MenuGroup(@DrawableRes int resId, List<SectionFragment> sections) {
+        this(0, resId, sections);
+    }
 
     public MenuGroup(@StringRes int name, @DrawableRes int resId, List<SectionFragment> sections) {
         this.name = name;

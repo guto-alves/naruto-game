@@ -250,17 +250,17 @@ public class DojoBatalhaLutadorFragment extends Fragment {
                 ataquePlayer = (acaoPlayer.getAtkNinGen() + playerFormulas.getAtkNinGen()) - npcFormulas.getDefNinGen();
                 ataqueNpc = (acaoNpc.getAtkNinGen() + npcFormulas.getAtkNinGen()) - playerFormulas.getDefNinGen();
             } else if (acaoPlayer.getTipo().equals("atk") && acaoNpc.getTipo().equals("def"))
-                ataquePlayer = (playerFormulas.getAtkNinGen() + acaoPlayer.getAtkNinGen()) - (npcFormulas.getDefNinGen() - acaoNpc.getDefesa_base());
+                ataquePlayer = (playerFormulas.getAtkNinGen() + acaoPlayer.getAtkNinGen()) - (npcFormulas.getDefNinGen() - acaoNpc.getDefesaBase());
             else if (acaoPlayer.getTipo().equals("def") && acaoNpc.getTipo().equals("atk"))
-                ataqueNpc = (npcFormulas.getAtkNinGen() + acaoPlayer.getAtkNinGen()) - (playerFormulas.getDefNinGen() - acaoPlayer.getDefesa_base());
+                ataqueNpc = (npcFormulas.getAtkNinGen() + acaoPlayer.getAtkNinGen()) - (playerFormulas.getDefNinGen() - acaoPlayer.getDefesaBase());
         } else {
             if (acaoPlayer.getTipo().equals("atk") && acaoNpc.getTipo().equals("atk")) {
                 ataquePlayer = (acaoPlayer.getAtkTaiBuk() + playerFormulas.getAtkTaiBuki()) - npcFormulas.getDefTaiBuki();
                 ataqueNpc = (acaoNpc.getAtkTaiBuk() + npcFormulas.getAtkTaiBuki()) - playerFormulas.getDefTaiBuki();
             } else if (acaoPlayer.getTipo().equals("atk") && acaoNpc.getTipo().equals("def"))
-                ataquePlayer = (playerFormulas.getAtkTaiBuki() + acaoPlayer.getAtkTaiBuk()) - (npcFormulas.getDefTaiBuki() - acaoNpc.getDefesa_base());
+                ataquePlayer = (playerFormulas.getAtkTaiBuki() + acaoPlayer.getAtkTaiBuk()) - (npcFormulas.getDefTaiBuki() - acaoNpc.getDefesaBase());
             else if (acaoPlayer.getTipo().equals("def") && acaoNpc.getTipo().equals("atk"))
-                ataqueNpc = (npcFormulas.getAtkTaiBuki() + acaoPlayer.getAtkTaiBuk()) - (playerFormulas.getDefTaiBuki() - acaoPlayer.getDefesa_base());
+                ataqueNpc = (npcFormulas.getAtkTaiBuki() + acaoPlayer.getAtkTaiBuk()) - (playerFormulas.getDefTaiBuki() - acaoPlayer.getDefesaBase());
         }
 
         playerFormulas.setCurrentHealth(playerFormulas.getCurrentHealth() - ataqueNpc);

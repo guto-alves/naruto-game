@@ -37,7 +37,7 @@ public class JutsusAdapter extends RecyclerView.Adapter<JutsusAdapter.MyViewHold
         StorageReference imagemRef = FirebaseConfig.getStorage()
                 .child("images")
                 .child("jutsu")
-                .child(jutsuList.get(i).getNome() + ".jpg");
+                .child(jutsuList.get(i).getName() + ".jpg");
 
         Glide.with(context)
                 .load(imagemRef)

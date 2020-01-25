@@ -9,7 +9,6 @@
     <ImageView
         android:id="@+id/menuTitleImageView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/layout_principal" />
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

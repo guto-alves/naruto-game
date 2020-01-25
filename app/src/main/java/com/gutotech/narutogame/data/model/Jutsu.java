@@ -1,32 +1,37 @@
 package com.gutotech.narutogame.data.model;
 
 public class Jutsu {
+    public enum Tipo {ATK, DEF, BUFF, DEBUFF}
+
     private int id;
-    private String nomeImagem;
-    private String nome;
+    private String image;
+    private String name;
+    private String description;
+
     private int quantidade;
     private int atkTaiBuk;
     private int atkNinGen;
-    private int defesa_base;
+    private int defesaBase;
     private int precisao;
     private int intervaloDeUso;
     private int consomeChakra;
     private int consomeStamina;
     private String tipo;
     private String classe;
-    private String descricao;
+
+    public Tipo mTipo;
 
     public Jutsu() {
     }
 
-    public Jutsu(String nome, String nomeImagem, String descricao, int quantidade, int atkTaiBuk, int atkNinGen, int defesa_base, int precisao, int intervaloDeUso, int consomeChakra, int consomeStamina, String tipo, String classe) {
-        this.nomeImagem = nomeImagem;
-        this.nome = nome;
-        this.descricao = descricao;
+    public Jutsu(String name, String image, String description, int quantidade, int atkTaiBuk, int atkNinGen, int defesaBase, int precisao, int intervaloDeUso, int consomeChakra, int consomeStamina, String tipo, String classe) {
+        this.image = image;
+        this.name = name;
+        this.description = description;
         this.quantidade = quantidade;
         this.atkTaiBuk = atkTaiBuk;
         this.atkNinGen = atkNinGen;
-        this.defesa_base = defesa_base;
+        this.defesaBase = defesaBase;
         this.precisao = precisao;
         this.intervaloDeUso = intervaloDeUso;
         this.consomeChakra = consomeChakra;
@@ -35,13 +40,13 @@ public class Jutsu {
         this.classe = classe;
     }
 
-    public Jutsu(int id, String nome, int quantidade, int atkTaiBuk, int atkNinGen, int defesa_base, int precisao, int intervaloDeUso, int consomeChakra, int consomeStamina, String tipo, String classe) {
+    public Jutsu(int id, String name, int quantidade, int atkTaiBuk, int atkNinGen, int defesaBase, int precisao, int intervaloDeUso, int consomeChakra, int consomeStamina, String tipo, String classe) {
         this.id = id;
-        this.nome = nome;
+        this.name = name;
         this.quantidade = quantidade;
         this.atkTaiBuk = atkTaiBuk;
         this.atkNinGen = atkNinGen;
-        this.defesa_base = defesa_base;
+        this.defesaBase = defesaBase;
         this.precisao = precisao;
         this.intervaloDeUso = intervaloDeUso;
         this.consomeChakra = consomeChakra;
@@ -58,12 +63,12 @@ public class Jutsu {
         this.tipo = tipo;
     }
 
-    public String getNomeImagem() {
-        return nomeImagem;
+    public String getImage() {
+        return image;
     }
 
-    public void setNomeImagem(String nomeImagem) {
-        this.nomeImagem = nomeImagem;
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public int getQuantidade() {
@@ -90,12 +95,12 @@ public class Jutsu {
         this.atkNinGen = atkNinGen;
     }
 
-    public int getDefesa_base() {
-        return defesa_base;
+    public int getDefesaBase() {
+        return defesaBase;
     }
 
-    public void setDefesa_base(int defesa_base) {
-        this.defesa_base = defesa_base;
+    public void setDefesaBase(int defesaBase) {
+        this.defesaBase = defesaBase;
     }
 
     public int getIntervaloDeUso() {
@@ -114,12 +119,12 @@ public class Jutsu {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getPrecisao() {
@@ -154,11 +159,11 @@ public class Jutsu {
         this.classe = classe;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

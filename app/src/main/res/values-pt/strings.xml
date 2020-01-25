@@ -320,5 +320,7 @@
     <string name="warning_items_purchased">Item(s) comprado(s) com sucesso</string>
     <string name="requires_grades">Requer graduação: %s</string>
     <string name="warning_1">Aviso</string>
+    <string name="about_the_ninja_jutsus">SOBRE OS JUTSUS NINJAS</string>
+    <string name="jutsu">Jutsu</string>
 
 </resources>

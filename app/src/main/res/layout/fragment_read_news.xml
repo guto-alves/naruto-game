@@ -7,14 +7,14 @@
 
         <variable
             name="viewModel"
-            type="com.gutotech.narutogame.ui.loggedout.readnews.ReadNewsViewModel" />
+            type="com.gutotech.narutogame.ui.home.readnews.ReadNewsViewModel" />
     </data>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
-        tools:context=".ui.loggedout.readnews.ReadNewsFragment">
+        tools:context=".ui.home.readnews.ReadNewsFragment">
 
         <LinearLayout
             android:layout_width="match_parent"

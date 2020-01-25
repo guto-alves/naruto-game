@@ -327,17 +327,17 @@ public class DojoBatalhaPVPFragment extends Fragment {
                 ataquePlayer = (acaoPlayer.getAtkNinGen() + playerFormulas.getAtkNinGen()) - oponenteFormulas.getDefNinGen();
                 ataqueNpc = (acaoNpc.getAtkNinGen() + oponenteFormulas.getAtkNinGen()) - playerFormulas.getDefNinGen();
             } else if (acaoPlayer.getTipo().equals("atk") && acaoNpc.getTipo().equals("def"))
-                ataquePlayer = (playerFormulas.getAtkNinGen() + acaoPlayer.getAtkNinGen()) - (oponenteFormulas.getDefNinGen() - acaoNpc.getDefesa_base());
+                ataquePlayer = (playerFormulas.getAtkNinGen() + acaoPlayer.getAtkNinGen()) - (oponenteFormulas.getDefNinGen() - acaoNpc.getDefesaBase());
             else if (acaoPlayer.getTipo().equals("def") && acaoNpc.getTipo().equals("atk"))
-                ataqueNpc = (oponenteFormulas.getAtkNinGen() + acaoPlayer.getAtkNinGen()) - (playerFormulas.getDefNinGen() - acaoPlayer.getDefesa_base());
+                ataqueNpc = (oponenteFormulas.getAtkNinGen() + acaoPlayer.getAtkNinGen()) - (playerFormulas.getDefNinGen() - acaoPlayer.getDefesaBase());
         } else {
             if (acaoPlayer.getTipo().equals("atk") && acaoNpc.getTipo().equals("atk")) {
                 ataquePlayer = (acaoPlayer.getAtkTaiBuk() + playerFormulas.getAtkTaiBuki()) - oponenteFormulas.getDefTaiBuki();
                 ataqueNpc = (acaoNpc.getAtkTaiBuk() + oponenteFormulas.getAtkTaiBuki()) - playerFormulas.getDefTaiBuki();
             } else if (acaoPlayer.getTipo().equals("atk") && acaoNpc.getTipo().equals("def"))
-                ataquePlayer = (playerFormulas.getAtkTaiBuki() + acaoPlayer.getAtkTaiBuk()) - (oponenteFormulas.getDefTaiBuki() - acaoNpc.getDefesa_base());
+                ataquePlayer = (playerFormulas.getAtkTaiBuki() + acaoPlayer.getAtkTaiBuk()) - (oponenteFormulas.getDefTaiBuki() - acaoNpc.getDefesaBase());
             else if (acaoPlayer.getTipo().equals("def") && acaoNpc.getTipo().equals("atk"))
-                ataqueNpc = (oponenteFormulas.getAtkTaiBuki() + acaoPlayer.getAtkTaiBuk()) - (playerFormulas.getDefTaiBuki() - acaoPlayer.getDefesa_base());
+                ataqueNpc = (oponenteFormulas.getAtkTaiBuki() + acaoPlayer.getAtkTaiBuk()) - (playerFormulas.getDefTaiBuki() - acaoPlayer.getDefesaBase());
         }
 
         playerFormulas.setCurrentHealth(playerFormulas.getCurrentHealth() - ataqueNpc);
@@ -480,7 +480,7 @@ public class DojoBatalhaPVPFragment extends Fragment {
 //                atkOuDefJutsu = "Atk (Nin / Gen) : " + jutsu.getAtkNinGen();
 //                menuBuilder.findItem(R.id.atkOuDefJutsu).setIcon(R.drawable.layout_icones_atk_magico);
 //            } else {
-//                atkOuDefJutsu = "Def (Nin / Gen) : " + jutsu.getDefesa_base();
+//                atkOuDefJutsu = "Def (Nin / Gen) : " + jutsu.getDefesaBase();
 //                menuBuilder.findItem(R.id.atkOuDefJutsu).setIcon(R.drawable.layout_icones_defense);
 //            }
 //        } else {
@@ -488,7 +488,7 @@ public class DojoBatalhaPVPFragment extends Fragment {
 //                atkOuDefJutsu = "Atk (Tai / Buk) : " + jutsu.getAtkNinGen();
 //                menuBuilder.findItem(R.id.atkOuDefJutsu).setIcon(R.drawable.layout_icones_atk_fisico);
 //            } else {
-//                atkOuDefJutsu = "Def (Tai/ Buk) : " + jutsu.getDefesa_base();
+//                atkOuDefJutsu = "Def (Tai/ Buk) : " + jutsu.getDefesaBase();
 //                menuBuilder.findItem(R.id.atkOuDefJutsu).setIcon(R.drawable.layout_icones_defense);
 //            }
 //        }

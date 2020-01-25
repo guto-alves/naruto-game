@@ -7,14 +7,14 @@
 
         <variable
             name="viewModel"
-            type="com.gutotech.narutogame.ui.loggedout.recuperarsenha.RecuperarSenhaViewModel" />
+            type="com.gutotech.narutogame.ui.home.recuperarsenha.RecuperarSenhaViewModel" />
     </data>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
-        tools:context=".ui.loggedout.recuperarsenha.RecuperarSenhaFragment">
+        tools:context=".ui.home.recuperarsenha.RecuperarSenhaFragment">
 
         <LinearLayout
             android:layout_width="match_parent"

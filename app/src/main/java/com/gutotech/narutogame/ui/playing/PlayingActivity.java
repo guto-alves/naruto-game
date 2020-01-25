@@ -11,7 +11,6 @@ import android.os.Handler;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.View;
@@ -38,7 +37,7 @@ import com.gutotech.narutogame.databinding.ActivityPlayingBinding;
 import com.gutotech.narutogame.ui.adapter.ChatMessageAdapter;
 import com.gutotech.narutogame.ui.adapter.ExpandableLoggedinAdapter;
 import com.gutotech.narutogame.ui.adapter.BagRamensItemAdapter;
-import com.gutotech.narutogame.ui.loggedout.DeslogadoActivity;
+import com.gutotech.narutogame.ui.home.HomeActivity;
 import com.gutotech.narutogame.utils.FragmentUtil;
 import com.gutotech.narutogame.utils.StorageUtil;
 import com.gutotech.narutogame.ui.playing.character.FidelityFragment;
@@ -245,7 +244,7 @@ public class PlayingActivity extends AppCompatActivity {
     public void logout(View view) {
         logout();
         AuthRepository.getInstance().signOut();
-        startActivity(new Intent(PlayingActivity.this, DeslogadoActivity.class));
+        startActivity(new Intent(PlayingActivity.this, HomeActivity.class));
         finish();
     }
 
@@ -257,7 +256,6 @@ public class PlayingActivity extends AppCompatActivity {
         FragmentUtil.goTo(this, new FidelityFragment());
         closeDrawer();
     }
-
 
     public void closeDrawer() {
         drawer.closeDrawer(GravityCompat.START);
@@ -296,6 +294,7 @@ public class PlayingActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         logout();
+        CharOn.character = null;
     }
 
     private void inicializarCounterHorasJogadas() {

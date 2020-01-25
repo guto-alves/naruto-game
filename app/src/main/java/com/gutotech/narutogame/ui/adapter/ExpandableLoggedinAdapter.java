@@ -15,26 +15,26 @@ import java.util.HashMap;
 import java.util.List;
 
 public class ExpandableLoggedinAdapter extends BaseExpandableListAdapter {
-    private List<MenuGroup> menuGroups;
+    private List<MenuGroup> mGroups;
 
     @Override
     public int getGroupCount() {
-        return menuGroups != null ? menuGroups.size() : 0;
+        return mGroups != null ? mGroups.size() : 0;
     }
 
     @Override
     public int getChildrenCount(int groupPosition) {
-        return menuGroups.get(groupPosition).sections.size();
+        return mGroups.get(groupPosition).sections.size();
     }
 
     @Override
     public Object getGroup(int groupPosition) {
-        return menuGroups.get(groupPosition);
+        return mGroups.get(groupPosition);
     }
 
     @Override
     public Object getChild(int groupPosition, int childPosition) {
-        return menuGroups.get(groupPosition).sections.get(childPosition);
+        return mGroups.get(groupPosition).sections.get(childPosition);
     }
 
     @Override
@@ -59,14 +59,14 @@ public class ExpandableLoggedinAdapter extends BaseExpandableListAdapter {
                     R.layout.expandable_logado_list_group, null, false);
         }
 
-        if (menuGroups != null) {
+        if (mGroups != null) {
             ImageView imageView = convertView.findViewById(R.id.imageView);
             TextView textView = convertView.findViewById(R.id.textView);
 
-            MenuGroup menuGroup = (MenuGroup) getGroup(groupPosition);
+            MenuGroup group = (MenuGroup) getGroup(groupPosition);
 
-            imageView.setImageResource(menuGroup.resId);
-            textView.setText(menuGroup.name);
+            imageView.setImageResource(group.resId);
+            textView.setText(group.name);
         }
 
         return convertView;
@@ -80,9 +80,10 @@ public class ExpandableLoggedinAdapter extends BaseExpandableListAdapter {
                     R.layout.expandable_list_child, null, false);
         }
 
-        if (menuGroups != null) {
-            TextView textView = convertView.findViewById(R.id.itemTextView);
-            textView.setText(((SectionFragment) getChild(groupPosition, childPosition)).getDescription());
+        if (mGroups != null) {
+            TextView textView = convertView.findViewById(R.id.sectionTextView);
+            textView.setText(((SectionFragment) getChild(groupPosition, childPosition))
+                    .getDescription());
         }
 
         return convertView;
@@ -93,8 +94,8 @@ public class ExpandableLoggedinAdapter extends BaseExpandableListAdapter {
         return true;
     }
 
-    public void setMenuGroups(List<MenuGroup> menuGroups) {
-        this.menuGroups = menuGroups;
+    public void setMenuGroups(List<MenuGroup> groups) {
+        mGroups = groups;
         notifyDataSetChanged();
     }
 }

@@ -432,6 +432,8 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="warning_items_purchased">Items purchased successfully</string>
     <string name="requires_grades">Requires Grade: %s</string>
     <string name="warning_1">Warning</string>
+    <string name="about_the_ninja_jutsus">ABOUT THE NINJA JUTSUS</string>
+    <string name="jutsu">Jutsu</string>
 
 
 </resources>

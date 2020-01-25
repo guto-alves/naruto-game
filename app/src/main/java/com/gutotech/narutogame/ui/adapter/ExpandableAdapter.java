@@ -8,38 +8,32 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.gutotech.narutogame.R;
+import com.gutotech.narutogame.data.model.MenuGroup;
 import com.gutotech.narutogame.ui.SectionFragment;
 
 import java.util.List;
-import java.util.Map;
 
 public class ExpandableAdapter extends BaseExpandableListAdapter {
-    private List<Integer> groups; // each element store a @DrawableRes
-    private Map<Integer, List<SectionFragment>> sections;
-
-    public ExpandableAdapter(List<Integer> groups, Map<Integer, List<SectionFragment>> sections) {
-        this.groups = groups;
-        this.sections = sections;
-    }
+    private List<MenuGroup> mGroups;
 
     @Override
     public int getGroupCount() {
-        return groups.size();
+        return mGroups != null ? mGroups.size() : 0;
     }
 
     @Override
     public int getChildrenCount(int groupPosition) {
-        return sections.get(groupPosition).size();
+        return mGroups != null ? mGroups.get(groupPosition).sections.size() : 0;
     }
 
     @Override
     public Object getGroup(int groupPosition) {
-        return groups.get(groupPosition);
+        return mGroups.get(groupPosition).resId;
     }
 
     @Override
     public Object getChild(int groupPosition, int childPosition) {
-        return sections.get(groupPosition).get(childPosition);
+        return mGroups.get(groupPosition).sections.get(childPosition);
     }
 
     @Override
@@ -65,8 +59,10 @@ public class ExpandableAdapter extends BaseExpandableListAdapter {
                     .inflate(R.layout.expandable_list_group, null, false);
         }
 
-        ImageView menuTitleImageView = convertView.findViewById(R.id.menuTitleImageView);
-        menuTitleImageView.setImageResource((Integer) getGroup(groupPosition));
+        if (mGroups != null) {
+            ImageView menuTitleImageView = convertView.findViewById(R.id.menuTitleImageView);
+            menuTitleImageView.setImageResource((Integer) getGroup(groupPosition));
+        }
 
         return convertView;
     }
@@ -79,10 +75,11 @@ public class ExpandableAdapter extends BaseExpandableListAdapter {
                     .inflate(R.layout.expandable_list_child, null, false);
         }
 
-        TextView itemTextView = convertView.findViewById(R.id.itemTextView);
-
-        itemTextView.setText(((SectionFragment) getChild(groupPosition, childPosition))
-                .getDescription());
+        if (mGroups != null) {
+            TextView itemTextView = convertView.findViewById(R.id.sectionTextView);
+            itemTextView.setText(((SectionFragment) getChild(groupPosition, childPosition))
+                    .getDescription());
+        }
 
         return convertView;
     }
@@ -90,5 +87,10 @@ public class ExpandableAdapter extends BaseExpandableListAdapter {
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {
         return true;
+    }
+
+    public void setMenuGroups(List<MenuGroup> menuGroups) {
+        mGroups = menuGroups;
+        notifyDataSetChanged();
     }
 }

@@ -28,7 +28,7 @@ import com.gutotech.narutogame.ui.adapter.KagesAndVilasViewPagerAdapter;
 import com.gutotech.narutogame.ui.adapter.NinjaStatisticsRecyclerViewAdapter;
 import com.gutotech.narutogame.ui.adapter.NewsAdapter;
 import com.gutotech.narutogame.ui.ResultListener;
-import com.gutotech.narutogame.ui.loggedin.LogadoSelecionarActivity;
+import com.gutotech.narutogame.ui.loggedin.LoggedInActivity;
 import com.gutotech.narutogame.utils.FragmentUtil;
 import com.gutotech.narutogame.utils.RecyclerItemClickListener;
 import com.gutotech.narutogame.ui.home.recuperarsenha.RecuperarSenhaFragment;
@@ -138,7 +138,7 @@ public class HomeFragment extends Fragment implements ResultListener, SectionFra
     @Override
     public void onSuccess() {
         waitDialog.dismiss();
-        startActivity(new Intent(getActivity(), LogadoSelecionarActivity.class));
+        startActivity(new Intent(getActivity(), LoggedInActivity.class));
         getActivity().finish();
     }
 

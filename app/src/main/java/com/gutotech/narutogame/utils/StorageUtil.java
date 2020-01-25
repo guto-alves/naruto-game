@@ -87,12 +87,11 @@ public class StorageUtil {
         downloadImage(context, imageReference, imageView);
     }
 
-    public static void downloadJutsu(Context context, ImageView imageView, String classe, String nomeImage) {
+    public static void downloadJutsu(Context context, ImageView imageView, String name) {
         StorageReference imageReference = FirebaseConfig.getStorage()
                 .child("images")
                 .child("jutsu")
-                .child(classe)
-                .child(nomeImage + ".jpg");
+                .child(name + ".jpg");
         downloadImage(context, imageReference, imageView);
     }
 
@@ -112,20 +111,20 @@ public class StorageUtil {
         downloadImage(context, imageReference, imageView);
     }
 
-    public static void baixarArmaImage(Context context, ImageView imageView, String nomeImage, String alcance) {
+    public static void baixarArmaImage(Context context, ImageView imageView, String name, String alcance) {
         StorageReference imageReference = FirebaseConfig.getStorage()
                 .child("images")
                 .child("armas")
                 .child(alcance)
-                .child(nomeImage + ".jpg");
+                .child(name + ".jpg");
         downloadImage(context, imageReference, imageView);
     }
 
-    public static void baixarPergaminhoImage(Context context, ImageView imageView, String nomeImage) {
+    public static void baixarPergaminhoImage(Context context, ImageView imageView, String name) {
         StorageReference imageReference = FirebaseConfig.getStorage()
                 .child("images")
                 .child("pergaminhos")
-                .child(nomeImage + ".png");
+                .child(name + ".png");
         downloadImage(context, imageReference, imageView);
     }
 

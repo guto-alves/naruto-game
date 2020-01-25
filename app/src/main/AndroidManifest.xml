@@ -28,11 +28,11 @@
             android:label="@string/title_activity_personagem_logado"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ui.loggedin.LogadoSelecionarActivity"
+            android:name=".ui.loggedin.LoggedInActivity"
             android:label="@string/title_activity_logado_selecionar"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ui.loggedout.DeslogadoActivity"
+            android:name=".ui.home.HomeActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>
