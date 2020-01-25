@@ -1,4 +1,4 @@
-package com.gutotech.narutogame.ui.loggedout.home;
+package com.gutotech.narutogame.ui.home.home;
 
 import android.app.Dialog;
 import android.content.Intent;
@@ -31,7 +31,7 @@ import com.gutotech.narutogame.ui.ResultListener;
 import com.gutotech.narutogame.ui.loggedin.LogadoSelecionarActivity;
 import com.gutotech.narutogame.utils.FragmentUtil;
 import com.gutotech.narutogame.utils.RecyclerItemClickListener;
-import com.gutotech.narutogame.ui.loggedout.recuperarsenha.RecuperarSenhaFragment;
+import com.gutotech.narutogame.ui.home.recuperarsenha.RecuperarSenhaFragment;
 
 import es.dmoral.toasty.Toasty;
 

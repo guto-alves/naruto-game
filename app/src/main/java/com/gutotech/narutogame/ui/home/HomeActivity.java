@@ -1,4 +1,4 @@
-package com.gutotech.narutogame.ui.loggedout;
+package com.gutotech.narutogame.ui.home;
 
 import android.os.Bundle;
 
@@ -20,17 +20,17 @@ import android.widget.ImageView;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.adapter.ExpandableAdapter;
-import com.gutotech.narutogame.ui.loggedout.signup.SignupFragment;
-import com.gutotech.narutogame.ui.loggedout.halloffame.HallOfFameFragment;
-import com.gutotech.narutogame.ui.loggedout.home.HomeFragment;
-import com.gutotech.narutogame.ui.loggedout.recuperarsenha.RecuperarSenhaFragment;
+import com.gutotech.narutogame.ui.home.signup.SignupFragment;
+import com.gutotech.narutogame.ui.home.halloffame.HallOfFameFragment;
+import com.gutotech.narutogame.ui.home.home.HomeFragment;
+import com.gutotech.narutogame.ui.home.recuperarsenha.RecuperarSenhaFragment;
 import com.gutotech.narutogame.utils.FragmentUtil;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class DeslogadoActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity {
     private List<Integer> groupList;
     private HashMap<Integer, List<SectionFragment>> sectionsHashMap;
 
@@ -49,7 +49,7 @@ public class DeslogadoActivity extends AppCompatActivity {
 
         ImageView logoImageView = headerView.findViewById(R.id.logoImageView);
         logoImageView.setOnClickListener(v -> {
-            FragmentUtil.goTo(DeslogadoActivity.this, new HomeFragment());
+            FragmentUtil.goTo(HomeActivity.this, new HomeFragment());
             drawer.closeDrawer(GravityCompat.START);
         });
 
@@ -64,7 +64,7 @@ public class DeslogadoActivity extends AppCompatActivity {
         ExpandableAdapter adapter = new ExpandableAdapter(groupList, sectionsHashMap);
         expandableListView.setAdapter(adapter);
         expandableListView.setOnChildClickListener((parent, v, groupPosition, childPosition, id) -> {
-            FragmentUtil.goTo(DeslogadoActivity.this,
+            FragmentUtil.goTo(HomeActivity.this,
                     (Fragment) sectionsHashMap.get(groupPosition).get(childPosition));
 
             drawer.closeDrawer(GravityCompat.START);
@@ -79,7 +79,7 @@ public class DeslogadoActivity extends AppCompatActivity {
         groupList = new ArrayList<>();
         sectionsHashMap = new HashMap<>();
 
-        groupList.add(R.drawable.layout_principal);
+        groupList.add(R.drawable.menu_titles_main);
 
         List<SectionFragment> fragments = new ArrayList<>();
         fragments.add(new HomeFragment());

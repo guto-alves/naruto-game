@@ -1,4 +1,4 @@
-package com.gutotech.narutogame.ui.loggedout.recuperarsenha;
+package com.gutotech.narutogame.ui.home.recuperarsenha;
 
 import android.os.Bundle;
 

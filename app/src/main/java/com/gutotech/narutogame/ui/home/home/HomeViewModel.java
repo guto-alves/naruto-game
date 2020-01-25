@@ -1,4 +1,4 @@
-package com.gutotech.narutogame.ui.loggedout.home;
+package com.gutotech.narutogame.ui.home.home;
 
 import android.text.TextUtils;
 

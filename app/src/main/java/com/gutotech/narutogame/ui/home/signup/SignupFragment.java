@@ -1,4 +1,4 @@
-package com.gutotech.narutogame.ui.loggedout.signup;
+package com.gutotech.narutogame.ui.home.signup;
 
 import android.os.Bundle;
 

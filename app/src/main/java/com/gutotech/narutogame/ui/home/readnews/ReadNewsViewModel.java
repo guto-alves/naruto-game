@@ -1,4 +1,4 @@
-package com.gutotech.narutogame.ui.loggedout.readnews;
+package com.gutotech.narutogame.ui.home.readnews;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

@@ -1,4 +1,4 @@
-package com.gutotech.narutogame.ui.loggedout.halloffame;
+package com.gutotech.narutogame.ui.home.halloffame;
 
 import android.os.Bundle;
 
