@@ -1,122 +1,59 @@
 package com.gutotech.narutogame.data.model;
 
+import androidx.annotation.Nullable;
+
 public class Jutsu {
     public enum Tipo {ATK, DEF, BUFF, DEBUFF}
 
-    private int id;
-    private String image;
     private String name;
-    private String description;
 
-    private int quantidade;
-    private int atkTaiBuk;
-    private int atkNinGen;
-    private int defesaBase;
-    private int precisao;
-    private int intervaloDeUso;
-    private int consomeChakra;
-    private int consomeStamina;
-    private String tipo;
-    private String classe;
+    private int atk;
+    private int baseDefense;
+    private int accuracy;
 
-    public Tipo mTipo;
+    private int consumesChakra;
+    private int consumesStamina;
+
+    private int usageInterval;
+    private int inventory;
 
     public Jutsu() {
     }
 
-    public Jutsu(String name, String image, String description, int quantidade, int atkTaiBuk, int atkNinGen, int defesaBase, int precisao, int intervaloDeUso, int consomeChakra, int consomeStamina, String tipo, String classe) {
-        this.image = image;
+    public Jutsu(String name, int atk, int baseDefense, int accuracy,
+                 int consumesChakra, int consumesStamina, int usageInterval) {
         this.name = name;
-        this.description = description;
-        this.quantidade = quantidade;
-        this.atkTaiBuk = atkTaiBuk;
-        this.atkNinGen = atkNinGen;
-        this.defesaBase = defesaBase;
-        this.precisao = precisao;
-        this.intervaloDeUso = intervaloDeUso;
-        this.consomeChakra = consomeChakra;
-        this.consomeStamina = consomeStamina;
-        this.tipo = tipo;
-        this.classe = classe;
+        this.atk = atk;
+        this.baseDefense = baseDefense;
+        this.accuracy = accuracy;
+        this.consumesChakra = consumesChakra;
+        this.consumesStamina = consumesStamina;
+        this.usageInterval = usageInterval;
+        inventory = 1;
     }
 
-    public Jutsu(int id, String name, int quantidade, int atkTaiBuk, int atkNinGen, int defesaBase, int precisao, int intervaloDeUso, int consomeChakra, int consomeStamina, String tipo, String classe) {
-        this.id = id;
+    public Jutsu(String name, int atk, int baseDefense, int accuracy,
+                 int consumesChakra, int consumesStamina) {
         this.name = name;
-        this.quantidade = quantidade;
-        this.atkTaiBuk = atkTaiBuk;
-        this.atkNinGen = atkNinGen;
-        this.defesaBase = defesaBase;
-        this.precisao = precisao;
-        this.intervaloDeUso = intervaloDeUso;
-        this.consomeChakra = consomeChakra;
-        this.consomeStamina = consomeStamina;
-        this.tipo = tipo;
-        this.classe = classe;
+        this.atk = atk;
+        this.baseDefense = baseDefense;
+        this.accuracy = accuracy;
+        this.consumesChakra = consumesChakra;
+        this.consumesStamina = consumesStamina;
+        this.usageInterval = 4;
+        inventory = 1;
     }
 
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-    public int getQuantidade() {
-        return quantidade;
-    }
-
-    public void setQuantidade(int vezes) {
-        this.quantidade = vezes;
-    }
-
-    public int getAtkTaiBuk() {
-        return atkTaiBuk;
-    }
-
-    public void setAtkTaiBuk(int atkTaiBuk) {
-        this.atkTaiBuk = atkTaiBuk;
-    }
-
-    public int getAtkNinGen() {
-        return atkNinGen;
-    }
-
-    public void setAtkNinGen(int atkNinGen) {
-        this.atkNinGen = atkNinGen;
-    }
-
-    public int getDefesaBase() {
-        return defesaBase;
-    }
-
-    public void setDefesaBase(int defesaBase) {
-        this.defesaBase = defesaBase;
-    }
-
-    public int getIntervaloDeUso() {
-        return intervaloDeUso;
-    }
-
-    public void setIntervaloDeUso(int intervaloDeUso) {
-        this.intervaloDeUso = intervaloDeUso;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    public Jutsu(String name, int atk, int baseDefense, int accuracy,
+                 int consumesChakra, int consumesStamina, int usageInterval, int inventory) {
+        this.name = name;
+        this.atk = atk;
+        this.baseDefense = baseDefense;
+        this.accuracy = accuracy;
+        this.consumesChakra = consumesChakra;
+        this.consumesStamina = consumesStamina;
+        this.usageInterval = usageInterval;
+        this.inventory = inventory;
     }
 
     public String getName() {
@@ -127,43 +64,67 @@ public class Jutsu {
         this.name = name;
     }
 
-    public int getPrecisao() {
-        return precisao;
+    public int getAtk() {
+        return atk;
     }
 
-    public void setPrecisao(int precisao) {
-        this.precisao = precisao;
+    public void setAtk(int atk) {
+        this.atk = atk;
     }
 
-    public int getConsomeChakra() {
-        return consomeChakra;
+    public int getBaseDefense() {
+        return baseDefense;
     }
 
-    public void setConsomeChakra(int consomeChakra) {
-        this.consomeChakra = consomeChakra;
+    public void setBaseDefense(int baseDefense) {
+        this.baseDefense = baseDefense;
     }
 
-    public int getConsomeStamina() {
-        return consomeStamina;
+    public int getAccuracy() {
+        return accuracy;
     }
 
-    public void setConsomeStamina(int consomeStamina) {
-        this.consomeStamina = consomeStamina;
+    public void setAccuracy(int accuracy) {
+        this.accuracy = accuracy;
     }
 
-    public String getClasse() {
-        return classe;
+    public int getConsumesStamina() {
+        return consumesStamina;
     }
 
-    public void setClasse(String classe) {
-        this.classe = classe;
+    public void setConsumesStamina(int consumesStamina) {
+        this.consumesStamina = consumesStamina;
     }
 
-    public String getDescription() {
-        return description;
+    public int getConsumesChakra() {
+        return consumesChakra;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setConsumesChakra(int consumesChakra) {
+        this.consumesChakra = consumesChakra;
+    }
+
+    public int getUsageInterval() {
+        return usageInterval;
+    }
+
+    public void setUsageInterval(int usageInterval) {
+        this.usageInterval = usageInterval;
+    }
+
+    public int getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(int inventory) {
+        this.inventory = inventory;
+    }
+
+    @Override
+    public boolean equals(@Nullable Object obj) {
+        if (!(obj instanceof Jutsu)) {
+            return false;
+        }
+        return getName().equals(((Jutsu) obj).getName());
     }
 }

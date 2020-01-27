@@ -1,9 +1,11 @@
 package com.gutotech.narutogame.ui.adapter;
 
 import android.content.Context;
+
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,7 +45,6 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.MyViewHo
         });
         myViewHolder.categoriaTextView.setText(ticket.getCategoria());
         myViewHolder.statusTextView.setText(ticket.getStatus());
-        myViewHolder.criacaoTextView.setText(ticket.getDataCriacao());
         myViewHolder.atualizacaoTextView.setText(ticket.getDataAtualizacao());
 
         if (i % 2 == 0)
@@ -61,7 +62,6 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.MyViewHo
         private TextView tituloTextView;
         private TextView categoriaTextView;
         private TextView statusTextView;
-        private TextView criacaoTextView;
         private TextView atualizacaoTextView;
         private ConstraintLayout bgTickets;
 
@@ -71,7 +71,6 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.MyViewHo
             tituloTextView = itemView.findViewById(R.id.tituloTextView);
             categoriaTextView = itemView.findViewById(R.id.categoriaTextView);
             statusTextView = itemView.findViewById(R.id.statusTextView);
-            criacaoTextView = itemView.findViewById(R.id.criacaoTextView);
             atualizacaoTextView = itemView.findViewById(R.id.atualizacaoTextView);
             bgTickets = itemView.findViewById(R.id.bgTictkes);
         }

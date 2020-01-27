@@ -245,31 +245,31 @@ public class DojoBatalhaLutadorFragment extends Fragment {
         int ataquePlayer = 0;
         int ataqueNpc = 0;
 
-        if (player.getClasse().equals("Ninjutsu") || player.getClasse().equals("Genjutsu")) {
-            if (acaoPlayer.getTipo().equals("atk") && acaoNpc.getTipo().equals("atk")) {
-                ataquePlayer = (acaoPlayer.getAtkNinGen() + playerFormulas.getAtkNinGen()) - npcFormulas.getDefNinGen();
-                ataqueNpc = (acaoNpc.getAtkNinGen() + npcFormulas.getAtkNinGen()) - playerFormulas.getDefNinGen();
-            } else if (acaoPlayer.getTipo().equals("atk") && acaoNpc.getTipo().equals("def"))
-                ataquePlayer = (playerFormulas.getAtkNinGen() + acaoPlayer.getAtkNinGen()) - (npcFormulas.getDefNinGen() - acaoNpc.getDefesaBase());
-            else if (acaoPlayer.getTipo().equals("def") && acaoNpc.getTipo().equals("atk"))
-                ataqueNpc = (npcFormulas.getAtkNinGen() + acaoPlayer.getAtkNinGen()) - (playerFormulas.getDefNinGen() - acaoPlayer.getDefesaBase());
-        } else {
-            if (acaoPlayer.getTipo().equals("atk") && acaoNpc.getTipo().equals("atk")) {
-                ataquePlayer = (acaoPlayer.getAtkTaiBuk() + playerFormulas.getAtkTaiBuki()) - npcFormulas.getDefTaiBuki();
-                ataqueNpc = (acaoNpc.getAtkTaiBuk() + npcFormulas.getAtkTaiBuki()) - playerFormulas.getDefTaiBuki();
-            } else if (acaoPlayer.getTipo().equals("atk") && acaoNpc.getTipo().equals("def"))
-                ataquePlayer = (playerFormulas.getAtkTaiBuki() + acaoPlayer.getAtkTaiBuk()) - (npcFormulas.getDefTaiBuki() - acaoNpc.getDefesaBase());
-            else if (acaoPlayer.getTipo().equals("def") && acaoNpc.getTipo().equals("atk"))
-                ataqueNpc = (npcFormulas.getAtkTaiBuki() + acaoPlayer.getAtkTaiBuk()) - (playerFormulas.getDefTaiBuki() - acaoPlayer.getDefesaBase());
-        }
+//        if (player.getClasse().equals("Ninjutsu") || player.getClasse().equals("Genjutsu")) {
+//            if (acaoPlayer.getTipo().equals("atk") && acaoNpc.getTipo().equals("atk")) {
+//                ataquePlayer = (acaoPlayer.getAtkNinGen() + playerFormulas.getAtkNinGen()) - npcFormulas.getDefNinGen();
+//                ataqueNpc = (acaoNpc.getAtkNinGen() + npcFormulas.getAtkNinGen()) - playerFormulas.getDefNinGen();
+//            } else if (acaoPlayer.getTipo().equals("atk") && acaoNpc.getTipo().equals("def"))
+//                ataquePlayer = (playerFormulas.getAtkNinGen() + acaoPlayer.getAtkNinGen()) - (npcFormulas.getDefNinGen() - acaoNpc.getBaseDefense());
+//            else if (acaoPlayer.getTipo().equals("def") && acaoNpc.getTipo().equals("atk"))
+//                ataqueNpc = (npcFormulas.getAtkNinGen() + acaoPlayer.getAtkNinGen()) - (playerFormulas.getDefNinGen() - acaoPlayer.getBaseDefense());
+//        } else {
+//            if (acaoPlayer.getTipo().equals("atk") && acaoNpc.getTipo().equals("atk")) {
+//                ataquePlayer = (acaoPlayer.getAtk() + playerFormulas.getAtkTaiBuki()) - npcFormulas.getDefTaiBuki();
+//                ataqueNpc = (acaoNpc.getAtk() + npcFormulas.getAtkTaiBuki()) - playerFormulas.getDefTaiBuki();
+//            } else if (acaoPlayer.getTipo().equals("atk") && acaoNpc.getTipo().equals("def"))
+//                ataquePlayer = (playerFormulas.getAtkTaiBuki() + acaoPlayer.getAtk()) - (npcFormulas.getDefTaiBuki() - acaoNpc.getBaseDefense());
+//            else if (acaoPlayer.getTipo().equals("def") && acaoNpc.getTipo().equals("atk"))
+//                ataqueNpc = (npcFormulas.getAtkTaiBuki() + acaoPlayer.getAtk()) - (playerFormulas.getDefTaiBuki() - acaoPlayer.getBaseDefense());
+//        }
 
         playerFormulas.setCurrentHealth(playerFormulas.getCurrentHealth() - ataqueNpc);
-        playerFormulas.setChakraAtual(playerFormulas.getChakraAtual() - acaoPlayer.getConsomeChakra());
-        playerFormulas.setStaminaAtual(playerFormulas.getStaminaAtual() - acaoPlayer.getConsomeStamina());
+        playerFormulas.setChakraAtual(playerFormulas.getChakraAtual() - acaoPlayer.getConsumesChakra());
+        playerFormulas.setStaminaAtual(playerFormulas.getStaminaAtual() - acaoPlayer.getConsumesStamina());
 
         npcFormulas.setCurrentHealth(npcFormulas.getCurrentHealth() - ataquePlayer);
-        npcFormulas.setChakraAtual(npcFormulas.getChakraAtual() - acaoNpc.getConsomeChakra());
-        npcFormulas.setStaminaAtual(npcFormulas.getStaminaAtual() - acaoNpc.getConsomeStamina());
+        npcFormulas.setChakraAtual(npcFormulas.getChakraAtual() - acaoNpc.getConsumesChakra());
+        npcFormulas.setStaminaAtual(npcFormulas.getStaminaAtual() - acaoNpc.getConsumesStamina());
     }
 
     private void atualizarLuta() {
@@ -394,9 +394,9 @@ public class DojoBatalhaLutadorFragment extends Fragment {
 //        menuBuilder.findItem(R.id.nomeJutsu).setTitle(String.format("%s       x%d", jutsu.getDescription(), jutsu.getTotal()));
 //        menuBuilder.findItem(R.id.atkOuDefJutsu).setTitle(String.format("%s       x%d", jutsu.getDescription(), jutsu.getTotal()));
 //        menuBuilder.findItem(R.id.precisaoJutsu).setTitle(String.format("Precisão: %d%%", jutsu.getAccuracy()));
-//        menuBuilder.findItem(R.id.intervaloJutsu).setTitle(String.format("Intervalo de uso: %d turno(s)", jutsu.getIntervaloDeUso()));
-//        menuBuilder.findItem(R.id.consomeChakraJutsu).setTitle(String.format("Consome: %d", jutsu.getConsomeChakra()));
-//        menuBuilder.findItem(R.id.consomeStaminaJutsu).setTitle(String.format("Consome: %d", jutsu.getConsomeStamina()));
+//        menuBuilder.findItem(R.id.intervaloJutsu).setTitle(String.format("Intervalo de uso: %d turno(s)", jutsu.getUsageInterval()));
+//        menuBuilder.findItem(R.id.consomeChakraJutsu).setTitle(String.format("Consome: %d", jutsu.getConsumesChakra()));
+//        menuBuilder.findItem(R.id.consomeStaminaJutsu).setTitle(String.format("Consome: %d", jutsu.getConsumesStamina()));
         optionsMenu.show();
     }
 

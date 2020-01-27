@@ -1,13 +1,11 @@
 package com.gutotech.narutogame.ui.loggedin.support;
 
-
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -41,9 +39,6 @@ public class SuporteFragment extends Fragment implements SectionFragment {
     private Query myTickets;
     private ValueEventListener valueEventListenerTickets;
 
-    public SuporteFragment() {
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -56,9 +51,9 @@ public class SuporteFragment extends Fragment implements SectionFragment {
             ConstraintLayout msgConstraint2 = view.findViewById(R.id.msgConstraint2);
             msgConstraint2.setVisibility(View.VISIBLE);
         }
-
-        ImageView personagemMsg = view.findViewById(R.id.personagemMsg);
-        StorageUtil.downloadProfileForMsg(getActivity(), personagemMsg);
+//
+//        ImageView personagemMsg = view.findViewById(R.id.personagemMsg);
+//        StorageUtil.downloadProfileForMsg(getActivity(), personagemMsg);
 
         DatabaseReference ticketsReference = FirebaseConfig.getDatabase().child("tickets");
         myTickets = ticketsReference.orderByChild("email").equalTo(
@@ -69,8 +64,6 @@ public class SuporteFragment extends Fragment implements SectionFragment {
         abrirTicketButton.setOnClickListener(v -> changeToFragment(new SuporteNovoFragment()));
 
         RecyclerView ticketsRecyclerView = view.findViewById(R.id.ticketsRecyclerView);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        ticketsRecyclerView.setLayoutManager(layoutManager);
         ticketsRecyclerView.setHasFixedSize(true);
         adapter = new TicketsAdapter(getActivity(), ticketsList);
         ticketsRecyclerView.setAdapter(adapter);

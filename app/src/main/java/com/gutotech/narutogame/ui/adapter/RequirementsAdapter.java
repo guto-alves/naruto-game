@@ -30,10 +30,12 @@ public class RequirementsAdapter extends RecyclerView.Adapter<RequirementsAdapte
 
     private Context mContext;
     private List<Requirement> mRequirements;
+    private boolean mFolded;
 
-    public RequirementsAdapter(Context context, List<Requirement> requirements) {
+    public RequirementsAdapter(Context context, List<Requirement> requirements, boolean folded) {
         mContext = context;
         mRequirements = requirements;
+        mFolded = folded;
     }
 
     @NonNull
@@ -48,9 +50,17 @@ public class RequirementsAdapter extends RecyclerView.Adapter<RequirementsAdapte
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Requirement requirement = mRequirements.get(position);
 
-        holder.requirementTextView.setText(requirement.show(mContext));
+        boolean ok;
 
-        if (requirement.check()) {
+        if (mFolded) {
+            holder.requirementTextView.setText(requirement.toString(mContext, mFolded));
+            ok = requirement.check(mFolded);
+        } else {
+            holder.requirementTextView.setText(requirement.toString(mContext));
+            ok = requirement.check();
+        }
+
+        if (ok) {
             holder.requirementTextView.setPaintFlags(
                     holder.requirementTextView.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
             holder.requirementTextView.setTextColor(Color.WHITE);

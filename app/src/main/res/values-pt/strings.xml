@@ -12,7 +12,10 @@
     <string name="new_password">Nova Senha</string>
     <string name="section_create_account">CRIE SUA CONTA</string>
     <string name="just_a_bit_now">AGORA FALTA POUCO!</string>
-    <string name="fullfill_the_form_below">Preencha os dados abaixo para criar sua conta do Naruto Game e ter seu character nessa aventura. Após seu cadastro será enviando um email para que você confirme seu cadastro, portanto é necessário informar um EMAIL VÁLIDO, para que possa jogar Naruto Game!</string>
+    <string name="fullfill_the_form_below">Preencha os dados abaixo para criar sua conta do Naruto
+        Game e ter seu character nessa aventura. Após seu cadastro será enviando um email para que
+        você confirme seu cadastro, portanto é necessário informar um EMAIL VÁLIDO, para que possa
+        jogar Naruto Game!</string>
     <string name="full_name">Nome Completo</string>
     <string name="by">- postado por</string>
     <string name="create">Criar</string>
@@ -25,7 +28,9 @@
     <string name="Play">Jogar</string>
     <string name="forgot_password">Esqueceu a Senha?</string>
     <string name="ninjas_statistics">Estatísticas Ninjas</string>
-    <string name="if_you_do_not_remember_your_password">Se você não lembra mais a sua senha, digite seu email na qual fez o cadastro abaixo e clique em \"enviar\". Dentro de alguns instantes você receberá sua nova senha em seu email</string>
+    <string name="if_you_do_not_remember_your_password">Se você não lembra mais a sua senha, digite
+        seu email na qual fez o cadastro abaixo e clique em \"enviar\". Dentro de alguns instantes
+        você receberá sua nova senha em seu email</string>
     <string name="type_your_account_email">Digite o email da sua conta</string>
     <string name="section_change_password">TROQUE SUA SENHA</string>
     <string name="secao_treinamento_de_jutsus">TREINAMENTO DE JUTSUS</string>
@@ -48,7 +53,8 @@
     <string name="section_account_info">DADOS DA CONTA</string>
     <string name="button_submit_changes">Enviar Alterações</string>
     <string name="label_grade">Graduação:</string>
-    <string name="keep_your_account_updated_description">Mantenha seus dados cadastrais atualizados e corretos para que possamos enviar prêmios caso você ganhe algo no jogo.</string>
+    <string name="keep_your_account_updated_description">Mantenha seus dados cadastrais atualizados
+        e corretos para que possamos enviar prêmios caso você ganhe algo no jogo.</string>
     <string name="hint_neighborhood">Bairro</string>
     <string name="hint_state">Estado</string>
     <string name="hint_city">Cidade</string>
@@ -64,11 +70,14 @@
         <item>Feminino</item>
     </string-array>
     <string name="invalid_email">Campo \'Email\' com valor inválido!</string>
-    <string name="invalid_password">Campo \'Senha\' com valor inválido! No mínimo são requeridos 6 caractéres e os caractéres permitidos são: 0–9 A-Z _.</string>
+    <string name="invalid_password">Campo \'Senha\' com valor inválido! No mínimo são requeridos 6
+        caractéres e os caractéres permitidos são: 0–9 A-Z _.</string>
     <string name="signup">Cadastrar-se</string>
     <string name="name_field_requered">Campo \"Nome Completo\" é obrigatório</string>
-    <string name="email_already_exists">O endereço de email especificado ja está cadastrado, por favor use um endereço de email diferente</string>
-    <string name="different_passwords">Campo \'Senha\' e \'Confirmar Senha\' com valores diferentes! Verifique os dados e tente novamente</string>
+    <string name="email_already_exists">O endereço de email especificado ja está cadastrado, por
+        favor use um endereço de email diferente</string>
+    <string name="different_passwords">Campo \'Senha\' e \'Confirmar Senha\' com valores diferentes!
+        Verifique os dados e tente novamente</string>
     <string name="accont_created_successfuly">PARABÉNS SEU CADASTRO FOI CONCLUÍDO COM SUCESSO!</string>
     <string name="error_to_the_signup">Erro ao realizar cadastro</string>
     <string name="create_an_account">Crie sua conta</string>
@@ -87,12 +96,13 @@
     <string name="select_character">Selecionar</string>
     <string name="support">Suporte</string>
     <string name="be_advised">FIQUE ATENTO</string>
-    <string name="be_advised_description">Ao fornecer os dados de sua conta para estranhos, você corre o risco deles trocarem a password e você perder o acesso de sua conta para sempre.</string>
+    <string name="be_advised_description">Ao fornecer os dados de sua conta para estranhos, você
+        corre o risco deles trocarem a senha e você perder o acesso de sua conta para sempre.</string>
     <string name="please_fill_all_the_fields">Favor preencher todos o campos de senha.</string>
     <string name="the_passwords_do_not_match">As novas senhas não coincidem, por favor verifique os dados</string>
     <string name="password_isnt_valid">" A senha atual digitada não é válida.."</string>
     <string name="congratulations">Congratulations</string>
-    <string name="password_changed">Sua senha foi alterada com sucesso.</string>
+    <string name="password_changed">PROBLEMA!</string>
     <string name="keep_your_info_updated">MANTENHA SEU CADASTRO ATUALIZADO</string>
     <string name="user_info_updated">DADOS CADASTRAIS ATUALIZADOS</string>
     <string name="user_info_updated_description">Seus dados cadastrais foram editados com sucesso.</string>
@@ -109,7 +119,7 @@
     <string name="section_graduations">GRADUAÇÕES</string>
     <string name="section_clans">CLÃS</string>
     <string name="strength">Força</string>
-    <string name="intelligence">Intelligence</string>
+    <string name="intelligence">Inteligência</string>
     <string name="resistance">Resistência</string>
     <string name="seal">Selo</string>
     <string name="finish">Finalizar</string>
@@ -224,7 +234,8 @@
     <string name="team_name">Nome da equipe</string>
     <string name="members_quantity">Qtd de Integrantes</string>
     <string name="quero_ser_membro_de_equipe">QUERO SER MEMBRO DE EQUIPE</string>
-    <string name="quero_ser_membro_de_equipe_description">Escolha a Equipe de seu amigo e clique no botão participar para enviar um pedido para entrar na team.</string>
+    <string name="quero_ser_membro_de_equipe_description">Escolha a Equipe de seu amigo e clique no
+        botão participar para enviar um pedido para entrar na team.</string>
     <string name="details">Detalhes</string>
     <string name="section_team">EQUIPE</string>
     <string name="items_available">Itens Disponíveis</string>
@@ -232,13 +243,18 @@
     <string name="limit_of_attributes_training">LIMITE DE TREINAMENTO SEMANAL</string>
     <string name="next_ability_point">PRÓXIMO PONTO DE HABILIDADE</string>
     <string name="icon_bar">//</string>
-    <string name="ability_point_bar_description">Quando a barra de treinamento se completar, você receberá um ponto para treinar seus atributos! Porém seu desafio será cada vez mais dificil!</string>
-    <string name="limit_of_traning_bar_description">Todos os ninjas podem treinar o seu limite diário normalmente, para aqueles que não conseguirem treinar o limite no mesmo dia, podem treinar no dia seguinte e assim consecutivamente. O limite de treino diário, aumenta conforme sua graduação, um Jounin tem mais limite by dia que um Genin, por exemplo.</string>
+    <string name="ability_point_bar_description">Quando a barra de treinamento se completar, você
+        receberá um ponto para treinar seus atributos! Porém seu desafio será cada vez mais difícil!</string>
+    <string name="limit_of_traning_bar_description">Todos os ninjas podem treinar o seu limite
+        diário normalmente, para aqueles que não conseguirem treinar o limite no mesmo dia, podem
+        treinar no dia seguinte e assim consecutivamente. O limite de treino diário, aumenta conforme
+        sua graduação, um Jounin tem mais limite por dia que um Genin, por exemplo.</string>
     <string name="button_graduate">Graduar</string>
     <string name="button_filter">Filtrar</string>
     <string name="section_battle_log">HISTÓRICO DE BATALHA</string>
     <string name="you_earned_ability_points">Você ganhou %d em pontos de habilidade.</string>
-    <string name="you_dont_have_chakra_for_this_training">Você não possui Chakra suficiente para esse treinamento.</string>
+    <string name="you_dont_have_chakra_for_this_training">Você não possui Chakra suficiente para
+        esse treinamento.</string>
     <string name="problem">PROBLEMA!</string>
     <string name="label_title">Title:</string>
     <string name="label_class">Classe:</string>
@@ -257,7 +273,8 @@
 
     <string name="want_to_delete_this_ninja">Você quer realmente deletar esse ninja?</string>
     <string name="button_cancel">Cancelar</string>
-    <string name="remove_character_while_logged_in">Você não pode remover esse character estando logado nele!</string>
+    <string name="remove_character_while_logged_in">Você não pode remover esse character estando
+        logado nele!</string>
     <string name="close">Fechar</string>
     <string name="sender">%s:</string>
     <string name="top_of_chat_content_description">Topo do chat</string>
@@ -322,5 +339,125 @@
     <string name="warning_1">Aviso</string>
     <string name="about_the_ninja_jutsus">SOBRE OS JUTSUS NINJAS</string>
     <string name="jutsu">Jutsu</string>
+    <string name="label_losses_map_pvp">Derrotas Mapa PVP:</string>
+    <string name="ticket_created">Ticket de Suporte Criado com Sucesso</string>
+    <string name="welcome_to_support_system">BEM VINDO AO SISTEMA DE SUPORTE</string>
+    <string name="welcome_to_support_system_description">Bem-vindo ao Novo Sistema do Suporte, onde
+        tentaremos solucionar seu problema. Basta abrir um Ticket de Suporte informando o que houve
+        e tentaremos te ajudar.</string>
+    <string name="category">Categoria</string>
+    <string name="no_file_selected">Nenhum arquivo selecionado</string>
+    <string name="when_it_happened">Quando ocorreu</string>
+    <string name="have_an_image_of_the_problem">Possui alguma imagem do problema? Use os campos de
+        arquivo abaixo para adiciona-las</string>
+    <string name="updated_at">Data de Atualização</string>
+    <string name="button_open_support_ticket">Abrir Ticket de Suporte</string>
+    <string name="button_go_to_the_queue">Ir para a fila</string>
+    <string name="button_cancel_mission">Cancelar Missão</string>
+    <string name="button_not_received">Não Recebido</string>
+    <string name="simple_block">Defender com as mãos</string>
+    <string name="simple_block_des">Realiza um bloqueio muito efetivo com as próprias mãos</string>
+    <string name="simple_dodge">Acrobacia</string>
+    <string name="simple_dodge_des">Realiza um salto para se defender do oponente</string>
+    <string name="punch">Soco</string>
+    <string name="punch_des">Aplica um forte soco no oponente</string>
+    <string name="kick">Chute</string>
+    <string name="kick_des">Aplica um forte chute no oponente</string>
+    <string name="dynamic_kick">Dynamic Kick</string>
+    <string name="dynamic_kick_des">A kick with enough power to crush rocks</string>
+    <string name="requires_points">Requer %d ponto(s) em %s</string>
+    <string name="henge_no_jutsu">Henge no Jutsu</string>
+    <string name="henge_no_jutsu_des">Copy jutsu, the user uses this jutsu to copy anything (people, objects, etc. ..) and thus use this method to attack the opponent is distracted.</string>
+    <string name="kishibari_no_jutsu">Kishibari no Jutsu</string>
+    <string name="kishibari_no_jutsu_des">This makes genjutsu ninja disappear for a few moments, giving his victim the idea that out extremely fast, meanwhile he can hide or even attack the target.</string>
+    <string name="soufuushasan_no_tachi_des">The ninja throwing stars with lines and holding the controls to attack the enemy.</string>
+    <string name="soufuushasan_no_tachi">Soufuushasan no Tachi</string>
+    <string name="dynamic_entry_des">Powerful flying kick</string>
+    <string name="dynamic_entry">Dynamic Entry</string>
+    <string name="horengan_pill_i">Horengan Pill I</string>
+    <string name="horengan_pill_i_des">First pill, the green, which ensures extra physical powers. There are no side effects.</string>
+    <string name="horengan_pill_ii">Horengan Pill II</string>
+    <string name="horengan_pill_ii_des">First pill, the green, which ensures extra physical powers. There are no side effects.</string>
+    <string name="hariitsuba">Hariitsuba</string>
+    <string name="hariitsuba_des">Expels needles hidden in his mouth</string>
+    <string name="konoha_full_kick_soccer">Konoha Full Kick Soccer</string>
+    <string name="konoha_full_kick_soccer_des">While the enemy still in the air, the user smack him down with a kick.</string>
+    <string name="gangeki">Gangeki</string>
+    <string name="gangeki_des">Uses the shoulder as attack, throwing the opponent against a wall or making him lose his balance</string>
+    <string name="sensei_dynamic_entry">Sensei Dynamic Entry</string>
+    <string name="sensei_dynamic_entry_des">Powerful flying kick</string>
+    <string name="karengan_pill_i">Karengan Pill I</string>
+    <string name="karengan_pill_i_des">Yellow is the second pill that guarantees superior physical abilities. There are likely to cause low level side effects.</string>
+    <string name="karengan_pill_ii">Karengan Pill II</string>
+    <string name="karengan_pill_ii_des">Yellow is the second pill that guarantees superior physical abilities. There are likely to cause low level side effects.</string>
+    <string name="hijutsu_ishibari_i">Hijutsu Ishibari I</string>
+    <string name="hijutsu_ishibari_i_des">The ninja throws kunai at the enemy\'s arm, softening his arm and can control it.</string>
+    <string name="hijutsu_ishibari_ii">Hijutsu Ishibari II</string>
+    <string name="hijutsu_ishibari_ii_des">The ninja throws kunai at the enemy\'s arm, softening his arm and can control it.</string>
+    <string name="sensen_soushuriken">Sensei Soushuriken no Jutsu</string>
+    <string name="sensei_soushuriken_des">Similar to Soufuushasan no Tachi, the ninja uses several kunai and shuriken stuck in lines to trap and attack the enemy from multiple directions.</string>
+    <string name="gen_ei_tajuu_shuriken">Gen-ei Tajuu Shuriken</string>
+    <string name="gen_ei_tajuu_shuriken_des">The various ninja shoots shurikens, throwing stars and more hidden in the shadows of them, who show themselves to get close to the enemy, catching him by surprise.</string>
+    <string name="soushuriken_no_jutsu">Soushuriken no Jutsu</string>
+    <string name="soushuriken_no_jutsu_des">Similar to Soufuushasan no Tachi, the ninja uses several kunai and shuriken stuck in lines to trap and attack the enemy from multiple directions.</string>
+    <string name="rensha">Rensha</string>
+    <string name="rensha_des">The ninja throws several needles of a shield.</string>
+    <string name="soushuujin_i">Soushuujin I</string>
+    <string name="soushuujin_i_des">The ninja can control the weapons of the opponent, making it vulnerable.</string>
+    <string name="soushuujin_ii">Soushuujin II</string>
+    <string name="soushuujin_ii_des">The ninja can control the weapons of the opponent, making it vulnerable.</string>
+    <string name="jouro_senbon">Jouro Senbon</string>
+    <string name="jouro_senbon_des">The ninja throws an umbrella up and makes it rain needles.</string>
+    <string name="shikomishindan">Shikomishindan</string>
+    <string name="shikomishindan_des">Senbons using a launcher, ninja shoots poisonous needles at the enemy.</string>
+    <string name="ninpou">Ninpou • Mushou de Hitei</string>
+    <string name="ninpou_des">Creates a cloud of nails that attack the opponent with only the power of chakra.</string>
+    <string name="kage_bunshin_no_jutsu_i">Kage Bunshin no Jutsu I</string>
+    <string name="kage_bunshin_no_jutsu_i_des">Clonning Jutsu. Creates clones of the user, often used in close combat.</string>
+    <string name="kage_bunshin_no_jutsu_ii">Kage Bunshin no Jutsu II</string>
+    <string name="kage_bunshin_no_jutsu_ii_des">Clonning Jutsu. Creates clones of the user, often used in close combat.</string>
+    <string name="sensei_kage_bunshin_no_jutsu">Sensei Kage Bunshin no Jutsu</string>
+    <string name="sensei_kage_bunshin_no_jutsu_des">Powerful flying kick.</string>
+    <string name="konoha_tzu">Konoha Tzu</string>
+    <string name="konoha_tzu_des">Use the leaves as shurikens.</string>
+    <string name="bunshin_no_jutsu_i">Bunshin no Jutsu I</string>
+    <string name="bunshin_no_jutsu_i_des">Creates a clone used to distract the opponent.</string>
+    <string name="bunshin_no_jutsu_ii">Bunshin no Jutsu II</string>
+    <string name="bunshin_no_jutsu_ii_des">Creates a clone used to distract the opponent.</string>
+    <string name="kage_shuriken_no_jutsu">Kage Shuriken no Jutsu</string>
+    <string name="kage_shuriken_no_jutsu_des">When you throw a shuriken, another is thrown in the shadow of the first.</string>
+    <string name="kakuremino">Kakuremino no Jutsu</string>
+    <string name="kakuremino_des">Basic Ninjutsu where the ninja is camouflaged with a sleek, mingling with some wall.</string>
+    <string name="kawarimi">Kawarimi no Jutsu</string>
+    <string name="kawarimi_des">When in danger the ninja quickly replaces your body by inanimate objects.</string>
+    <string name="kasumi_juuha">Kasumi Juuha no Jutsu</string>
+    <string name="kasumi_juuha_des">Genjutsu technique that creates a series of false attacks in order to confuse the enemy, several copies of the user are facing the enemy surrounding him.</string>
+    <string name="nemuri_i">Nemuri I</string>
+    <string name="nemuri_i_des">A basic genjutsu where the ninja touches the hand on the shoulder or region near the head of another person and makes sleep soundly.</string>
+    <string name="nemuri_ii">Nemuri II</string>
+    <string name="nemuri_ii_des">A basic genjutsu where the ninja touches the hand on the shoulder or region near the head of another person and makes sleep soundly.</string>
+    <string name="kokoroyoru">Kokoroyoru no jutsu</string>
+    <string name="kokoroyoru_des">When the enemy touches or sees the object, he feels an irresistible atraction for the object, doing everything to get the same, including abandoning friends or fall into a trap.</string>
+    <string name="tazuneru">Tazuneru no Jutsu</string>
+    <string name="tazuneru_des">Technique that consists in making the enemy enters a trance state, and thus, the shinobi can interrogate it to find out secrets, or even kill him.</string>
+    <string name="bukuon">Bakuon no Jutsu</string>
+    <string name="bukuon_des">This ability serves to break jutsus that require a lot of concentration or calmly.</string>
+    <string name="utsusemi">Utsusemi no Jutsu</string>
+    <string name="utsusemi_des">Using sound, ninja projects his voice, mistaking its location.</string>
+    <string name="hana_kyouka_sai_i">Hana Kyouka Sai I</string>
+    <string name="hana_kyouka_sai_i_des">This makes genjutsu ninja disappear for a few moments, giving his victim the idea that out extremely fast, meanwhile he can hide or even attack the target.</string>
+    <string name="hana_kyouka_sai_ii">Hana Kyouka Sai II</string>
+    <string name="hana_kyouka_sai_ii_des">This makes genjutsu ninja disappear for a few moments, giving his victim the idea that out extremely fast, meanwhile he can hide or even attack the target.</string>
+    <string name="sensei_hana_kyouka_sai">Sensei Hana Kyouka Sai</string>
+    <string name="sensei_hana_kyouka_sai_des">This makes genjutsu ninja disappear for a few moments, giving his victim the idea that out extremely fast, meanwhile he can hide or even attack the target.</string>
+    <string name="konoha_senpuu_des">A gyratory flying kick, followed by a tripping kick.</string>
+    <string name="konoha_senpuu">Konoha Senpuu</string>
+    <string name="about_the_ninja_jutsus_des">Aprenda novos Jutsus para combater em melhor nível nos duelos e para isso alcance os requerimentos de cada jutsu.</string>
+    <string name="jutsus_that_not_are_in_the_same_class">(Jutsus que não são da mesma Classe do seu character possuem requerimentos dobrados)</string>
+    <string name="congratulations_you_made_it">PARABÉNS! VOCÊ CONSEGUIU!</string>
+    <string name="lerned_a_new_jutsu">Você se esforçou e aprendeu o jutsu</string>
+    <string name="keep_training">Treine bastante para conseguir novos jutsus e ficar mais poderoso.</string>
+    <string name="insufficient_chakra_or_stamina">Você não possui %s suficiente para treinar esse Jutsu.</string>
+
 
 </resources>

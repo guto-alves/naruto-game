@@ -9,194 +9,208 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/layout_pagina_repeat"
+        android:padding="16dp"
         tools:context=".ui.loggedin.support.SuporteNovoFragment">
 
-        <LinearLayout
-            android:id="@+id/linearLayout9"
-            android:layout_width="0dp"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:background="#271C15"
-            android:orientation="vertical"
-            android:padding="8dp"
+            app:cardBackgroundColor="#271C15"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="8dp"
+            app:cardUseCompatPadding="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <LinearLayout
+                android:id="@+id/linearLayout9"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView45"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="50dp"
+                        android:layout_marginRight="50dp"
+                        android:text="@string/category"
+                        android:textColor="@color/colorText"
+                        android:textStyle="bold" />
+
+                    <Spinner
+                        android:id="@+id/categoriesSpinner"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/white"
+                        android:entries="@array/ticket_categories_array" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView454"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="75dp"
+                        android:layout_marginRight="75dp"
+                        android:text="@string/title"
+                        android:textColor="@color/colorText"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/tituloEditText"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/white"
+                        android:inputType="textCapCharacters|textCapSentences"
+                        android:maxLength="25"
+                        android:maxLines="1" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView451"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:text="@string/when_it_happened"
+                        android:textColor="@color/colorText"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/dataQuandoOcorreuEditText"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginRight="8dp"
+                        android:background="@android:color/white" />
+
+                    <Spinner
+                        android:id="@+id/quandoHorasSpinner"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginRight="8dp"
+                        android:background="@android:color/white"
+                        android:padding="5dp"
+                        android:spinnerMode="dialog" />
+
+                    <Spinner
+                        android:id="@+id/quandoMinutosSpinner"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/white"
+                        android:padding="5dp"
+                        android:spinnerMode="dialog" />
+                </LinearLayout>
 
                 <TextView
-                    android:id="@+id/textView45"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="50dp"
-                    android:text="Categoria"
+                    android:layout_marginBottom="8dp"
+                    android:text="@string/description"
                     android:textColor="@color/colorText"
                     android:textStyle="bold" />
 
-                <Spinner
-                    android:id="@+id/categoriaSpinner"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:background="@android:color/white"
-                    android:padding="5dp" />
-            </LinearLayout>
+                    app:counterEnabled="true"
+                    app:counterMaxLength="5000">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/descricaoEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="170dp"
+                        android:gravity="start|top"
+                        android:inputType="textMultiLine"
+                        android:padding="3dp" />
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
-                    android:id="@+id/textView454"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/textView467"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="75dp"
-                    android:text="Título"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/have_an_image_of_the_problem"
                     android:textColor="@color/colorText"
                     android:textStyle="bold" />
 
-                <EditText
-                    android:id="@+id/tituloEditText"
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:background="@android:color/white"
-                    android:maxLength="25" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/textView451"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
-                    android:text="Quando ocorreu"
-                    android:textColor="@color/colorText"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/dataQuandoOcorreuEditText"
-                    android:layout_width="120dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="8dp"
+                <View
+                    android:id="@+id/divider2"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
                     android:background="@android:color/white" />
 
-                <Spinner
-                    android:id="@+id/quandoHorasSpinner"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="8dp"
-                    android:background="@android:color/white"
-                    android:padding="5dp"
-                    android:spinnerMode="dialog" />
-
-                <Spinner
-                    android:id="@+id/quandoMinutosSpinner"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@android:color/white"
-                    android:padding="5dp"
-                    android:spinnerMode="dialog" />
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:text="Descrição"
-                android:textColor="@color/colorText"
-                android:textStyle="bold" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:color/white"
-                app:counterEnabled="true"
-                app:counterMaxLength="5000">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/descricaoEditText"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="170dp"
-                    android:gravity="start|top"
-                    android:inputType="textMultiLine"
-                    android:padding="3dp" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <TextView
-                android:id="@+id/textView467"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Possui alguma imagem do problema? Use os campos de arquivo abaixo para adiciona-las"
-                android:textColor="@color/colorText"
-                android:textStyle="bold" />
-
-            <include layout="@layout/divisor" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/textView45415"
-                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="65dp"
-                    android:text="@string/file"
-                    android:textColor="@color/colorText"
-                    android:textStyle="bold" />
+                    android:layout_marginBottom="8dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
 
-                <ImageButton
-                    android:id="@+id/anexarImageButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/ic_attach_file_white_24dp" />
+                    <TextView
+                        android:id="@+id/textView45415"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="65dp"
+                        android:layout_marginRight="65dp"
+                        android:text="@string/file"
+                        android:textColor="@color/colorText"
+                        android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/nomeDoArquivoTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/colorText" />
+                    <ImageButton
+                        android:id="@+id/attachImageButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/ic_attach_file_white_24dp" />
 
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/fileNameTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/no_file_selected"
+                        android:textColor="@color/colorText" />
+                </LinearLayout>
 
                 <Button
                     android:id="@+id/criarTicketButton"
                     style="@style/ButtonTheme"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="16dp"
                     android:text="@string/create"
                     android:textSize="14sp" />
-            </LinearLayout>
 
-        </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
         <CalendarView
             android:id="@+id/calendarView"
@@ -207,7 +221,7 @@
             android:layout_marginTop="8dp"
             android:background="@android:color/white"
             android:visibility="visible"
-            app:layout_constraintStart_toStartOf="@+id/linearLayout9"
+            app:layout_constraintStart_toStartOf="@+id/cardView"
             app:layout_constraintTop_toTopOf="@+id/guideline20" />
 
         <androidx.constraintlayout.widget.Guideline
@@ -216,7 +230,6 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.17" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

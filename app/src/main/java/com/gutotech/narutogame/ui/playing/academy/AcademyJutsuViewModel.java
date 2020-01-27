@@ -4,62 +4,77 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.model.Classe;
+import com.gutotech.narutogame.data.model.Formulas;
 import com.gutotech.narutogame.data.model.Jutsu;
+import com.gutotech.narutogame.data.model.Jutsus;
+import com.gutotech.narutogame.data.repository.CharacterRepository;
+import com.gutotech.narutogame.data.repository.JutsuRepository;
+import com.gutotech.narutogame.ui.adapter.JutsusLearnAdapter;
+import com.gutotech.narutogame.utils.SingleLiveEvent;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class AcademyJutsuViewModel extends ViewModel {
-    private MutableLiveData<List<Jutsu>> mJutsus = new MutableLiveData<>();
+public class AcademyJutsuViewModel extends ViewModel
+        implements JutsusLearnAdapter.OnTrainClickListener {
+    private MutableLiveData<List<Jutsu>> mJutsus;
 
-    private Classe mClasseSelected;
+    private MutableLiveData<Classe> mClassSelected;
+
+    private SingleLiveEvent<Integer> showCongratulationsEvent = new SingleLiveEvent<>();
+    private SingleLiveEvent<Integer> showWarningEvent = new SingleLiveEvent<>();
 
     public AcademyJutsuViewModel() {
-        mClasseSelected = CharOn.character.getClasse();
+        mJutsus = new MutableLiveData<>();
+        mClassSelected = new MutableLiveData<>(CharOn.character.getClasse());
+        filterJutsus();
     }
 
     public LiveData<List<Jutsu>> getJutsus() {
         return mJutsus;
     }
 
+    public LiveData<Classe> getClassSelected() {
+        return mClassSelected;
+    }
+
+    public LiveData<Integer> getShowCongratulationsEvent() {
+        return showCongratulationsEvent;
+    }
+
+    public LiveData<Integer> getShowWarningEvent() {
+        return showWarningEvent;
+    }
+
     public void onClassButtonPressed(Classe classe) {
-        mClasseSelected = classe;
+        mClassSelected.setValue(classe);
+        filterJutsus();
     }
 
-    private List<Jutsu> jutsusList = new ArrayList<>();
-
-    private void loadJutsus() {
-
+    public void filterJutsus() {
+        JutsuRepository.getInstance().filterJutsus(mClassSelected.getValue(),
+                jutsus -> mJutsus.postValue(jutsus));
     }
 
-    private void carregarTaijutsus() {
-        jutsusList.add(new Jutsu("Dynamic Kick", "chute_dinamico", "Um chute fortíssimo, capaz de esmagar uma pedra.",
-                1, 16, 0, 0, 6, 2, 5, 32,
-                "atk", "tai"));
+    @Override
+    public void onTrainClick(Jutsu jutsu) {
+        Formulas formulas = CharOn.character.getAttributes().getFormulas();
+        if (formulas.getChakraAtual() >= jutsu.getConsumesChakra()) {
+            if (formulas.getStaminaAtual() >= jutsu.getConsumesStamina()) {
+                formulas.subChakra(jutsu.getConsumesChakra() * 2);
+                formulas.subStamina(jutsu.getConsumesStamina() * 2);
+                CharOn.character.getJutsus().add(jutsu);
+                CharacterRepository.getInstance().saveCharacter(CharOn.character);
 
-        jutsusList.add(new Jutsu("Hariitsuba ", "agulhas_sopranas", "Expele agulhas escondidas em sua boca",
-                1, 29, 0, 0, 6, 2, 11, 59,
-                "atk", "tai"));
+                showCongratulationsEvent.setValue(Jutsus.valueOf(jutsu.getName()).name);
+                filterJutsus();
+            } else {
+                showWarningEvent.setValue(R.string.stamina);
+            }
+        } else {
+            showWarningEvent.setValue(R.string.chakra);
+        }
     }
-
-    private void carregarNinjutsus() {
-        jutsusList.add(new Jutsu("Henge no Jutsu", "transformacao", "Jutsu de cópia, o usuário utiliza esse jutsu para copiar qualquer coisa (pessoas, objetos etc..) e assim utilizar desse método para atacar o oponente que fica distraído.",
-                1, 0, 16, 0, 6, 2, 32, 5,
-                "atk", "nin"));
-    }
-
-    private void carregarGenjutsus() {
-        jutsusList.add(new Jutsu("Kishibari no Jutsu ", "Kishibari_no_Jutsu", "Esse genjutsu faz ninja sumir por alguns poucos instantes, dando à  sua vítima a idéia de que fora extremamente veloz, enquanto isso ele pode se esconder ou até mesmo atacar o alvo.",
-                1, 0, 16, 0, 6, 2, 32, 5,
-                "atk", "gen"));
-    }
-
-    private void carregarBukijutsus() {
-        jutsusList.add(new Jutsu("Soufuushasan no Tachi", "soufuushasan-no-tachi", "O ninja prende shurikens com linhas e as controla para atacar o inimigo.",
-                1, 16, 0, 0, 6, 2, 5, 32,
-                "atk", "buk"));
-    }
-
 }

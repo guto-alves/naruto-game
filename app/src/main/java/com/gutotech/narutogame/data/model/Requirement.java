@@ -1,10 +1,37 @@
 package com.gutotech.narutogame.data.model;
 
+
 import android.content.Context;
 
-public interface Requirement {
+public class Requirement implements Require {
 
-    boolean check();
+    @Override
+    public int value(boolean folded) {
+        return folded ? (int) value() * 2 : (int) value();
+    }
 
-    String show(Context context);
+    @Override
+    public Object value() {
+        return null;
+    }
+
+    @Override
+    public boolean check() {
+        return check(false);
+    }
+
+    @Override
+    public boolean check(boolean folded) {
+        return false;
+    }
+
+    @Override
+    public String toString(Context context) {
+        return toString(context, false);
+    }
+
+    @Override
+    public String toString(Context context, boolean folded) {
+        return null;
+    }
 }

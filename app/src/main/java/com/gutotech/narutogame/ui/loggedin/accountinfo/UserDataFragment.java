@@ -32,6 +32,7 @@ public class UserDataFragment extends Fragment implements SectionFragment, Resul
 
         mBinding = DataBindingUtil.inflate(inflater,
                 R.layout.fragment_usuario_dados, container, false);
+        mBinding.setLifecycleOwner(this);
         mBinding.setViewModel(mViewModel);
 
         mBinding.msgLayout.titleTextView.setText(R.string.keep_your_info_updated);

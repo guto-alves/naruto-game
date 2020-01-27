@@ -26,11 +26,11 @@ import java.util.Locale;
 
 public class ItemShopRecyclerAdapter extends RecyclerView.Adapter<ItemShopRecyclerAdapter.ViewHolder> {
 
-    public interface OnBuyButtonListener {
+    public interface OnBuyClickListener {
         void onBuyButtonClick(ShopItem item, int quantity);
     }
 
-    public interface OnRequirementsButtonListener {
+    public interface OnRequirementsClickListener {
         void onRequirementsClick(List<Requirement> requirements);
     }
 
@@ -61,12 +61,12 @@ public class ItemShopRecyclerAdapter extends RecyclerView.Adapter<ItemShopRecycl
     private Context mContext;
     private List<ShopItem> mItemsList;
 
-    private OnRequirementsButtonListener mOnRequirementsButtonListener;
-    private OnBuyButtonListener mOnBuyButtonListener;
+    private OnRequirementsClickListener mOnRequirementsButtonListener;
+    private OnBuyClickListener mOnBuyButtonListener;
 
     public ItemShopRecyclerAdapter(Context context, List<ShopItem> itemsList,
-                                   OnBuyButtonListener onBuyButtonListener,
-                                   OnRequirementsButtonListener onRequirementsButtonListener) {
+                                   OnBuyClickListener onBuyButtonListener,
+                                   OnRequirementsClickListener onRequirementsButtonListener) {
         mContext = context;
         mItemsList = itemsList;
         mOnBuyButtonListener = onBuyButtonListener;

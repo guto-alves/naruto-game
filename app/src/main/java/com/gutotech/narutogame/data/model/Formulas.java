@@ -32,6 +32,18 @@ public class Formulas implements Serializable {
         setStaminaAtual(getStamina());
     }
 
+    public void subHeath(int value) {
+        setCurrentHealth(getCurrentHealth() - value);
+    }
+
+    public void subChakra(int value) {
+        setChakraAtual(getChakraAtual() - value);
+    }
+
+    public void subStamina(int value) {
+        setStaminaAtual(getStaminaAtual() - value);
+    }
+
     public int getHealth() {
         return health;
     }

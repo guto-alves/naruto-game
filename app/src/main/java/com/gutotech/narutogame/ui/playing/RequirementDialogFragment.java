@@ -2,7 +2,6 @@ package com.gutotech.narutogame.ui.playing;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 
@@ -18,10 +17,16 @@ import com.gutotech.narutogame.ui.adapter.RequirementsAdapter;
 import java.util.List;
 
 public class RequirementDialogFragment extends DialogFragment {
+    private boolean mFolded;
     private List<Requirement> mRequirements;
 
     public RequirementDialogFragment(List<Requirement> requirements) {
         mRequirements = requirements;
+    }
+
+    public RequirementDialogFragment(List<Requirement> requirements, boolean folded) {
+        mRequirements = requirements;
+        mFolded = folded;
     }
 
     @NonNull
@@ -34,7 +39,7 @@ public class RequirementDialogFragment extends DialogFragment {
 
         RecyclerView requirementsRecyclerView = root.findViewById(R.id.requirementsRecyclerView);
         requirementsRecyclerView.setHasFixedSize(true);
-        requirementsRecyclerView.setAdapter(new RequirementsAdapter(getContext(), mRequirements));
+        requirementsRecyclerView.setAdapter(new RequirementsAdapter(getContext(), mRequirements, mFolded));
 
         return builder.create();
     }

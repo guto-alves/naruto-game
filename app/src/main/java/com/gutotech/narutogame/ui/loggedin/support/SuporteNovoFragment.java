@@ -73,8 +73,9 @@ public class SuporteNovoFragment extends Fragment {
 
         ArrayAdapter<CharSequence> adapter;
 
-        final Spinner categoriaSpinner = view.findViewById(R.id.categoriaSpinner);
-        adapter = ArrayAdapter.createFromResource(getActivity(), R.array.ticket_categorias_array, android.R.layout.simple_spinner_item);
+        final Spinner categoriaSpinner = view.findViewById(R.id.categoriesSpinner);
+        adapter = ArrayAdapter.createFromResource(getActivity(), R.array.ticket_categories_array,
+                android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         categoriaSpinner.setAdapter(adapter);
         categoriaSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -154,12 +155,12 @@ public class SuporteNovoFragment extends Fragment {
 
         descricaoEditText = view.findViewById(R.id.descricaoEditText);
 
-        nomeDoArquivoTextView = view.findViewById(R.id.nomeDoArquivoTextView);
+        nomeDoArquivoTextView = view.findViewById(R.id.fileNameTextView);
 
         // pedir permisssões
         requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
 
-        anexarImageButton = view.findViewById(R.id.anexarImageButton);
+        anexarImageButton = view.findViewById(R.id.attachImageButton);
         anexarImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

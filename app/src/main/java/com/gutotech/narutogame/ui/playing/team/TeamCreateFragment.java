@@ -36,8 +36,8 @@ public class TeamCreateFragment extends Fragment implements SectionFragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_team_create, container, false);
 
-        ImageView imagemMsg = view.findViewById(R.id.personagemMsg);
-        StorageUtil.downloadProfileForMsg(getActivity(), imagemMsg, CharOn.character.getVillage().id);
+//        ImageView imagemMsg = view.findViewById(R.id.personagemMsg);
+//        StorageUtil.downloadProfileForMsg(getActivity(), imagemMsg, CharOn.character.getVillage().id);
 
         nomeEquipeTextInput = view.findViewById(R.id.nomeEqpTextInput);
 

@@ -25,7 +25,7 @@ import com.gutotech.narutogame.utils.FragmentUtil;
 import java.util.List;
 
 public class RamenShopFragment extends Fragment implements SectionFragment,
-        ItemShopRecyclerAdapter.OnRequirementsButtonListener {
+        ItemShopRecyclerAdapter.OnRequirementsClickListener {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,

@@ -27,7 +27,7 @@ public class ShopUtils {
                     }
 
                     @Override
-                    public String show(Context context) {
+                    public String toString(Context context) {
                         return context.getString(R.string.requires_level, 1);
                     }
                 }), 25, 100));
@@ -41,7 +41,7 @@ public class ShopUtils {
                     }
 
                     @Override
-                    public String show(Context context) {
+                    public String toString(Context context) {
                         return context.getString(R.string.requires_level, 5);
                     }
                 }), 35, 150));
@@ -55,7 +55,7 @@ public class ShopUtils {
                     }
 
                     @Override
-                    public String show(Context context) {
+                    public String toString(Context context) {
                         return context.getString(R.string.requires_level, 10);
                     }
                 }), 70, 300));
@@ -69,7 +69,7 @@ public class ShopUtils {
                     }
 
                     @Override
-                    public String show(Context context) {
+                    public String toString(Context context) {
                         return context.getString(R.string.requires_level, 15);
                     }
                 }), 105, 450));
@@ -83,7 +83,7 @@ public class ShopUtils {
                     }
 
                     @Override
-                    public String show(Context context) {
+                    public String toString(Context context) {
                         return context.getString(R.string.requires_level, 20);
                     }
                 }), 140, 600));
@@ -97,7 +97,7 @@ public class ShopUtils {
                     }
 
                     @Override
-                    public String show(Context context) {
+                    public String toString(Context context) {
                         return context.getString(R.string.requires_level, 25);
                     }
                 }), 175, 750));
@@ -111,7 +111,7 @@ public class ShopUtils {
                     }
 
                     @Override
-                    public String show(Context context) {
+                    public String toString(Context context) {
                         return context.getString(R.string.requires_level, 30);
                     }
                 }), 210, 900));
@@ -125,7 +125,7 @@ public class ShopUtils {
                     }
 
                     @Override
-                    public String show(Context context) {
+                    public String toString(Context context) {
                         return context.getString(R.string.requires_level, 35);
                     }
                 }), 245, 1050));
@@ -140,7 +140,7 @@ public class ShopUtils {
                     }
 
                     @Override
-                    public String show(Context context) {
+                    public String toString(Context context) {
                         return context.getString(R.string.requires_level, 40);
                     }
                 }), 280, 1200));
@@ -155,7 +155,7 @@ public class ShopUtils {
                     }
 
                     @Override
-                    public String show(Context context) {
+                    public String toString(Context context) {
                         return context.getString(R.string.requires_level, 45);
                     }
                 }), 315, 1350));
@@ -170,7 +170,7 @@ public class ShopUtils {
                     }
 
                     @Override
-                    public String show(Context context) {
+                    public String toString(Context context) {
                         return context.getString(R.string.requires_level, 50);
                     }
                 }), 350, 1500));
@@ -185,7 +185,7 @@ public class ShopUtils {
                     }
 
                     @Override
-                    public String show(Context context) {
+                    public String toString(Context context) {
                         return context.getString(R.string.requires_level, 55);
                     }
                 }), 385, 1650));
@@ -200,7 +200,7 @@ public class ShopUtils {
                     }
 
                     @Override
-                    public String show(Context context) {
+                    public String toString(Context context) {
                         return context.getString(R.string.requires_level, 60);
                     }
                 }), 420, 1800));

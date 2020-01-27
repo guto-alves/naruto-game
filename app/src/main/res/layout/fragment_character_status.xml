@@ -14,13 +14,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/layout_pagina_repeat"
-        android:fillViewport="true">
+        android:fillViewport="true"
+        tools:context=".ui.playing.character.CharacterStatusFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp"
-            tools:context=".ui.playing.character.CharacterStatusFragment">
+            android:padding="16dp">
 
             <!-- Combat Overview -->
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -125,6 +125,8 @@
                             android:id="@+id/textView32"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginEnd="3dp"
+                            android:layout_marginRight="3dp"
                             android:text="@string/label_wins_map_pvp"
                             android:textColor="@color/colorGreen" />
 
@@ -136,7 +138,6 @@
                             android:textColor="@android:color/white" />
                     </LinearLayout>
 
-
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -147,6 +148,8 @@
                             android:id="@+id/textView24"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginEnd="3dp"
+                            android:layout_marginRight="3dp"
                             android:text="@string/label_derrotas_npc"
                             android:textColor="@android:color/holo_red_dark" />
 
@@ -168,6 +171,8 @@
                             android:id="@+id/textView23"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginEnd="3dp"
+                            android:layout_marginRight="3dp"
                             android:text="@string/label_derrotas_dojo_pvp"
                             android:textColor="@android:color/holo_red_dark" />
 
@@ -189,7 +194,9 @@
                             android:id="@+id/textView21"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Derrotas Mapa PVP: "
+                            android:layout_marginEnd="3dp"
+                            android:layout_marginRight="3dp"
+                            android:text="@string/label_losses_map_pvp"
                             android:textColor="@android:color/holo_red_dark" />
 
                         <TextView
@@ -210,6 +217,8 @@
                             android:id="@+id/expRecompensaTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginEnd="3dp"
+                            android:layout_marginRight="3dp"
                             android:text="@string/label_draws_pvp"
                             android:textColor="@android:color/darker_gray" />
 
@@ -231,6 +240,8 @@
                             android:id="@+id/textView6"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginEnd="3dp"
+                            android:layout_marginRight="3dp"
                             android:text="@string/label_draws_npc"
                             android:textColor="@android:color/darker_gray" />
 
@@ -242,7 +253,6 @@
                             android:textColor="@android:color/white" />
                     </LinearLayout>
                 </LinearLayout>
-
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <!-- Resumo of Missions -->
@@ -300,6 +310,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginEnd="3dp"
+                            android:layout_marginRight="3dp"
                             android:text="@string/label_rank_s"
                             android:textColor="#0BD96C"
                             android:textSize="14sp" />
@@ -321,6 +333,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginEnd="3dp"
+                            android:layout_marginRight="3dp"
                             android:text="@string/label_rank_a"
                             android:textColor="@color/colorGreen" />
 
@@ -341,6 +355,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginEnd="3dp"
+                            android:layout_marginRight="3dp"
                             android:text="@string/label_rank_b"
                             android:textColor="@color/colorGreen" />
 
@@ -361,6 +377,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginEnd="3dp"
+                            android:layout_marginRight="3dp"
                             android:text="@string/label_rank_c"
                             android:textColor="@color/colorGreen" />
 
@@ -381,6 +399,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginEnd="3dp"
+                            android:layout_marginRight="3dp"
                             android:text="@string/label_rank_d"
                             android:textColor="@color/colorGreen" />
 
@@ -401,6 +421,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginEnd="3dp"
+                            android:layout_marginRight="3dp"
                             android:text="@string/label_tasks"
                             android:textColor="@color/colorGreen" />
 
@@ -468,6 +490,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginEnd="3dp"
                             android:layout_marginRight="3dp"
                             android:text="@string/label_total_de_treino"
                             android:textColor="#FF9800"
@@ -490,6 +513,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginEnd="3dp"
+                            android:layout_marginRight="3dp"
                             android:text="@string/label_pontos_distribu_dos"
                             android:textColor="#FF9800"
                             android:textSize="14sp" />
@@ -520,27 +545,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@{String.valueOf(character.extrasInformation.totalHoursPlayed)}"
-                            android:textColor="@android:color/white" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Arenas Vencida(s): "
-                            android:textColor="#FF9800"
-                            android:textSize="14sp" />
-
-                        <TextView
-                            android:id="@+id/arenasVencidasTextView"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@{String.valueOf(character.extrasInformation.totalTraining)}"
                             android:textColor="@android:color/white" />
                     </LinearLayout>
                 </LinearLayout>
@@ -601,20 +605,6 @@
                 app:layout_constraintStart_toStartOf="@+id/imageView5"
                 app:layout_constraintTop_toTopOf="@+id/imageView5" />
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_begin="8dp" />
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.5" />
-
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/attributesRecyclerView"
                 android:layout_width="0dp"
@@ -656,6 +646,19 @@
                 android:orientation="vertical"
                 app:layout_constraintGuide_percent="0.25" />
 
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_begin="8dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>

@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/layout_pagina_repeat"
             android:orientation="vertical"
-            android:paddingBottom="16dp">
+            android:padding="16dp">
 
             <include
                 android:id="@+id/updatedAccountMsgLayout"
@@ -189,14 +189,9 @@
 
             <Button
                 style="@style/ButtonTheme"
-                android:layout_width="170dp"
-                android:layout_height="wrap_content"
+                android:layout_width="160dp"
                 android:layout_gravity="center"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
+                android:layout_marginTop="16dp"
                 android:onClick="@{()-> viewModel.onSubmitChangesButtonPressed()}"
                 android:text="@string/button_submit_changes" />
         </LinearLayout>

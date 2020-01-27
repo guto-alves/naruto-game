@@ -11,6 +11,7 @@ import com.github.rtoshiro.util.format.SimpleMaskFormatter;
 import com.github.rtoshiro.util.format.text.MaskTextWatcher;
 import com.google.android.material.textfield.TextInputEditText;
 import com.gutotech.narutogame.R;
+import com.gutotech.narutogame.data.model.CharOn;
 
 public class BindingUtil {
 
@@ -47,5 +48,11 @@ public class BindingUtil {
         } else {
             button.setBackgroundResource(R.drawable.layout_luck_button_selected);
         }
+    }
+
+    @BindingAdapter("profileForMsg")
+    public static void setProfileForMsg(ImageView imageView, Integer i) {
+        StorageUtil.downloadProfileForMsg(imageView.getContext(), imageView,
+                CharOn.character.getVillage().id);
     }
 }

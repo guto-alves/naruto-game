@@ -1,7 +1,6 @@
 package com.gutotech.narutogame.ui.loggedin.accountinfo;
 
 import android.text.TextUtils;
-import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -22,11 +21,8 @@ public class UserDataViewModel extends ViewModel {
     public UserDataViewModel() {
         mPlayerRepository = PlayerRepository.getInstance();
 
-        mPlayerRepository.getCurrentPlayer(player -> {
-                    this.player = new MutableLiveData<>(player);
-                    Log.i("userdataviewmodel", player.getName());
-                }
-        );
+        mPlayerRepository.getCurrentPlayer(player ->
+                this.player = new MutableLiveData<>(player));
     }
 
     public LiveData<Player> getPlayer() {

@@ -79,6 +79,26 @@ public class StorageUtil {
         downloadImage(imageView.getContext(), imageReference, imageView);
     }
 
+    public static void downloadJutsu(ImageView imageView, String name) {
+        StorageReference imageReference = FirebaseConfig.getStorage()
+                .child("images")
+                .child("jutsu")
+                .child(name + (name.equals("Hana-Kyouka-Sai")
+                        || name.equals("Dynamic_Entry")
+                        || name.equals("Soushuriken_no_Jutsu")
+                        || name.equals("Kage-Bunshin-no-Jutsu") ?
+                        ".gif" : ".jpg"));
+        downloadImage(imageView.getContext(), imageReference, imageView);
+    }
+
+    public static void downloadRamen(Context context, ImageView imageView, String image) {
+        StorageReference imageReference = FirebaseConfig.getStorage()
+                .child("images")
+                .child("comidas")
+                .child(image + ".jpg");
+        downloadImage(context, imageReference, imageView);
+    }
+
     public static void baixarTopoLogado(Context context, ImageView imageView, int ninjaId) {
         StorageReference imageReference = FirebaseConfig.getStorage()
                 .child("images")
@@ -87,27 +107,11 @@ public class StorageUtil {
         downloadImage(context, imageReference, imageView);
     }
 
-    public static void downloadJutsu(Context context, ImageView imageView, String name) {
-        StorageReference imageReference = FirebaseConfig.getStorage()
-                .child("images")
-                .child("jutsu")
-                .child(name + ".jpg");
-        downloadImage(context, imageReference, imageView);
-    }
-
     public static void baixarFidelityDia(Context context, ImageView imageView, int dia) {
         StorageReference imageReference = FirebaseConfig.getStorage()
                 .child("images")
                 .child("fidelity")
                 .child(dia + ".png");
-        downloadImage(context, imageReference, imageView);
-    }
-
-    public static void downloadRamen(Context context, ImageView imageView, String image) {
-        StorageReference imageReference = FirebaseConfig.getStorage()
-                .child("images")
-                .child("comidas")
-                .child(image + ".jpg");
         downloadImage(context, imageReference, imageView);
     }
 

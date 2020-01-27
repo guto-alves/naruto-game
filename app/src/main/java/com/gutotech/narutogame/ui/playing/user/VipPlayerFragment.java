@@ -14,9 +14,6 @@ import com.gutotech.narutogame.utils.FragmentUtil;
 
 public class VipPlayerFragment extends Fragment implements SectionFragment {
 
-    public VipPlayerFragment() {
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

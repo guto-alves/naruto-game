@@ -14,7 +14,7 @@ import com.gutotech.narutogame.utils.SingleLiveEvent;
 import java.util.List;
 
 public class RamenShopViewModel extends ViewModel
-        implements ItemShopRecyclerAdapter.OnBuyButtonListener {
+        implements ItemShopRecyclerAdapter.OnBuyClickListener {
     private SingleLiveEvent<Integer> showWarningEvent = new SingleLiveEvent<>();
 
     public RamenShopViewModel() {

@@ -3,6 +3,9 @@ package com.gutotech.narutogame.ui.adapter;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -11,9 +14,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.gutotech.narutogame.R;
+import com.gutotech.narutogame.data.model.CharOn;
+import com.gutotech.narutogame.data.model.Jutsus;
+import com.gutotech.narutogame.data.model.Requirement;
+import com.gutotech.narutogame.ui.playing.RequirementDialogFragment;
 import com.gutotech.narutogame.utils.StorageUtil;
 import com.gutotech.narutogame.data.model.Jutsu;
 
@@ -21,12 +27,17 @@ import java.util.List;
 
 public class JutsusLearnAdapter extends RecyclerView.Adapter<JutsusLearnAdapter.ViewHolder> {
 
+    public interface OnTrainClickListener {
+        void onTrainClick(Jutsu jutsu);
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
         private ImageView jutsuImageView;
         private TextView nameTextView;
         private TextView descriptionTextView;
         private ImageView requerImageView;
         private Button trainButton;
+        private ConstraintLayout constraintLayout;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -36,14 +47,21 @@ public class JutsusLearnAdapter extends RecyclerView.Adapter<JutsusLearnAdapter.
             descriptionTextView = itemView.findViewById(R.id.descriptionTextView);
             requerImageView = itemView.findViewById(R.id.requerImageView);
             trainButton = itemView.findViewById(R.id.trainButton);
+            constraintLayout = itemView.findViewById(R.id.constraintLayout);
         }
     }
 
-    private Context context;
+    private Context mContext;
     private List<Jutsu> mJutsusList;
+    private FragmentManager mFragmentManager;
+    private OnTrainClickListener mOnTrainClickListener;
 
-    public JutsusLearnAdapter(Context context) {
-        this.context = context;
+    public JutsusLearnAdapter(Context context,
+                              FragmentManager fragmentManager,
+                              OnTrainClickListener trainClickListener) {
+        mContext = context;
+        mFragmentManager = fragmentManager;
+        mOnTrainClickListener = trainClickListener;
     }
 
     @NonNull
@@ -59,21 +77,35 @@ public class JutsusLearnAdapter extends RecyclerView.Adapter<JutsusLearnAdapter.
         if (mJutsusList != null) {
             final Jutsu jutsu = mJutsusList.get(i);
 
-            StorageUtil.downloadJutsu(context, holder.jutsuImageView, jutsu.getImage());
-            holder.nameTextView.setText(jutsu.getName());
-            holder.descriptionTextView.setText(jutsu.getDescription());
+            Jutsus jutsus = Jutsus.valueOf(jutsu.getName());
+            StorageUtil.downloadJutsu(holder.jutsuImageView, jutsus.image);
+            holder.nameTextView.setText(jutsus.name);
+            holder.descriptionTextView.setText(jutsus.description);
 
             holder.jutsuImageView.setOnClickListener(v -> {
 
             });
 
+            boolean folded = jutsus.classe != CharOn.character.getClasse();
+
+            if (validateRequirements(jutsus.requirements, folded)) {
+                holder.trainButton.setEnabled(true);
+            } else {
+                holder.trainButton.setEnabled(false);
+            }
+
             holder.requerImageView.setOnClickListener(v -> {
-                Toast.makeText(context, jutsu.getName(), Toast.LENGTH_SHORT).show();
+                DialogFragment dialog = new RequirementDialogFragment(jutsus.requirements, folded);
+                dialog.show(mFragmentManager, "RequirementDialogFragment");
             });
 
-            holder.trainButton.setOnClickListener(v -> {
+            holder.trainButton.setOnClickListener(v -> mOnTrainClickListener.onTrainClick(jutsu));
 
-            });
+            if (i % 2 == 0) {
+                holder.constraintLayout.setBackgroundResource(R.color.colorItem1);
+            } else {
+                holder.constraintLayout.setBackgroundResource(R.color.colorItem2);
+            }
         }
     }
 
@@ -85,5 +117,14 @@ public class JutsusLearnAdapter extends RecyclerView.Adapter<JutsusLearnAdapter.
     public void setJutsusList(List<Jutsu> jutsusList) {
         mJutsusList = jutsusList;
         notifyDataSetChanged();
+    }
+
+    private boolean validateRequirements(List<Requirement> requirements, boolean folded) {
+        for (Requirement requirement : requirements) {
+            if (!requirement.check(folded)) {
+                return false;
+            }
+        }
+        return true;
     }
 }

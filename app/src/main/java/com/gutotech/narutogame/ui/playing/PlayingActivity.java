@@ -294,7 +294,6 @@ public class PlayingActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         logout();
-        CharOn.character = null;
     }
 
     private void inicializarCounterHorasJogadas() {

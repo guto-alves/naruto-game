@@ -1,7 +1,5 @@
 package com.gutotech.narutogame.data.model;
 
-import android.content.Context;
-
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 import androidx.databinding.library.baseAdapters.BR;
@@ -10,7 +8,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.firebase.FirebaseConfig;
 
-import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -25,29 +23,23 @@ public class Character extends BaseObservable {
     private int exp;
     private int expUpar;
     private long ryous;
-
     private Graduation graduation;
-
     private Attributes attributes;
-
+    private List<Jutsu> jutsus;
     private Bag bag;
-
     private CombatOverview combatOverview;
     private ResumeOfMissions resumeOfMissions;
     private ExtrasInformation extrasInformation;
-
     private String team;
-
-    private int score;
-
     private boolean online;
     private String lastLogin;
-
     private String title;
     private List<String> titles;
-
     private NinjaLucky ninjaLucky;
 
+    private int score;
+    private int combatesNPCDiarios;
+    private int mapPosition;
 
     /// -------------------- OK ------------------------
 
@@ -55,14 +47,12 @@ public class Character extends BaseObservable {
 //    private boolean temRecompensaFidelidade;
 //
     // info combates
-    private int combatesNPCDiarios;
 
-    private int mapPosition;
 
 //    private boolean fuiPego;
 //    private String nickOponente;
 
-//    private String idBatalhaAtual;
+    //    private String idBatalhaAtual;
 //
 //    // missões
 //    private boolean emMissao;
@@ -70,7 +60,6 @@ public class Character extends BaseObservable {
 //    private MissaoEspecial missaoEspecial;
 //    private List<Integer> tarefasConcluidasIDs;
 //
-//    private List<Jutsu> jutsus;
 //    private Jutsu jutsuSelecionado;
 
     public Character() {
@@ -97,6 +86,17 @@ public class Character extends BaseObservable {
         bag = new Bag(new Ramen("nissin", R.string.ninja_snack,
                 R.string.ninja_snack_description,
                 null, 25, 5, 100));
+
+        jutsus = new ArrayList<>(Arrays.asList(
+                new Jutsu(Jutsus.DEFESA_MAO.toString(), 0, 5, 0,
+                        10, 3),
+                new Jutsu(Jutsus.DEFESA_ACROBATICA.toString(), 0, 8, 0,
+                        15, 4),
+                new Jutsu(Jutsus.SOCO.toString(), 0, 5, 1,
+                        8, 1),
+                new Jutsu(Jutsus.CHUTE.toString(), 8, 0, 0,
+                        11, 2)
+        ));
     }
 
     public void salvar() {
@@ -357,5 +357,13 @@ public class Character extends BaseObservable {
 
     public void setNinjaLucky(NinjaLucky ninjaLucky) {
         this.ninjaLucky = ninjaLucky;
+    }
+
+    public List<Jutsu> getJutsus() {
+        return jutsus;
+    }
+
+    public void setJutsus(List<Jutsu> jutsus) {
+        this.jutsus = jutsus;
     }
 }
