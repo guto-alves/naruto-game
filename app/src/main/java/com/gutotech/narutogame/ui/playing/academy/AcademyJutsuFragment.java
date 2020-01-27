@@ -58,13 +58,13 @@ public class AcademyJutsuFragment extends Fragment implements SectionFragment {
             message.append("\n");
             message.append(getString(R.string.keep_training));
 
-           showTrainingResult(R.string.congratulations_you_made_it, message);
+            showTrainingResult(R.string.congratulations_you_made_it, message);
         });
 
-        viewModel.getShowWarningEvent().observe(this, resId -> {
-            showTrainingResult(R.string.problem, getString(R.string.insufficient_chakra_or_stamina,
-                    getString(resId)));
-        });
+        viewModel.getShowWarningEvent().observe(this, resId ->
+                showTrainingResult(R.string.problem,
+                        getString(R.string.insufficient_chakra_or_stamina, getString(resId)))
+        );
 
         FragmentUtil.setSectionTitle(getActivity(), R.string.section_learned_jutsus);
         return mBinding.getRoot();

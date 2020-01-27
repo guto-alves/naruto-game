@@ -840,7 +840,7 @@ public enum Jutsus {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.INTE.name)
                             );
                         }
                     },
@@ -859,7 +859,7 @@ public enum Jutsus {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), "Bukijutsu");
+                                    value(folded), "Ninjutsu");
                         }
                     }
             )),
@@ -881,7 +881,7 @@ public enum Jutsus {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), "Bukijutsu");
+                                    value(folded), "Ninjutsu");
                         }
                     }
             )),
@@ -903,7 +903,7 @@ public enum Jutsus {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), "Bukijutsu");
+                                    value(folded), "Ninjutsu");
                         }
                     }
             )),
@@ -925,7 +925,7 @@ public enum Jutsus {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.INTE.name)
                             );
                         }
                     },
@@ -944,7 +944,7 @@ public enum Jutsus {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), "Bukijutsu");
+                                    value(folded), "Ninjutsu");
                         }
                     }
             )),
@@ -966,7 +966,7 @@ public enum Jutsus {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.INTE.name)
                             );
                         }
                     },
@@ -985,7 +985,7 @@ public enum Jutsus {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), "Bukijutsu");
+                                    value(folded), "Ninjutsu");
                         }
                     }
             )),
@@ -1007,7 +1007,7 @@ public enum Jutsus {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.INTE.name)
                             );
                         }
                     },
@@ -1048,7 +1048,7 @@ public enum Jutsus {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.INTE.name)
                             );
                         }
                     },
@@ -1089,7 +1089,7 @@ public enum Jutsus {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), "Bukijutsu");
+                                    value(folded), "Ninjutsu");
                         }
                     }
             )),
@@ -1111,7 +1111,7 @@ public enum Jutsus {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), "Bukijutsu");
+                                    value(folded), "Ninjutsu");
                         }
                     }
             )),
@@ -1133,7 +1133,7 @@ public enum Jutsus {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.INTE.name)
                             );
                         }
                     },
@@ -1218,7 +1218,7 @@ public enum Jutsus {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.INTE.name)
                             );
                         }
                     },
@@ -1237,7 +1237,7 @@ public enum Jutsus {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), "Bukijutsu");
+                                    value(folded), "Ninjutsu");
                         }
                     }
             )),
@@ -1259,7 +1259,7 @@ public enum Jutsus {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), "Bukijutsu");
+                                    value(folded), "Ninjutsu");
                         }
                     }
             )),
@@ -1281,7 +1281,7 @@ public enum Jutsus {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), "Bukijutsu");
+                                    value(folded), "Ninjutsu");
                         }
                     }
             )),
@@ -1303,7 +1303,7 @@ public enum Jutsus {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.INTE.name)
                             );
                         }
                     },
@@ -1322,7 +1322,7 @@ public enum Jutsus {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), "Bukijutsu");
+                                    value(folded), "Ninjutsu");
                         }
                     }
             )),
@@ -1344,7 +1344,7 @@ public enum Jutsus {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.INTE.name)
                             );
                         }
                     },
@@ -1363,7 +1363,7 @@ public enum Jutsus {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), "Bukijutsu");
+                                    value(folded), "Ninjutsu");
                         }
                     }
             )),
@@ -1385,7 +1385,7 @@ public enum Jutsus {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.INTE.name)
                             );
                         }
                     },
@@ -1426,7 +1426,7 @@ public enum Jutsus {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.INTE.name)
                             );
                         }
                     },
@@ -1467,7 +1467,7 @@ public enum Jutsus {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), "Bukijutsu");
+                                    value(folded), "Genjutsu");
                         }
                     }
             )),
@@ -1489,7 +1489,7 @@ public enum Jutsus {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), "Bukijutsu");
+                                    value(folded), "Genjutsu");
                         }
                     }
             )),
@@ -1511,7 +1511,7 @@ public enum Jutsus {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.INTE.name)
                             );
                         }
                     },
@@ -1530,7 +1530,7 @@ public enum Jutsus {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), "Taijutsu");
+                                    value(folded), "Genjutsu");
                         }
                     }
             ));
