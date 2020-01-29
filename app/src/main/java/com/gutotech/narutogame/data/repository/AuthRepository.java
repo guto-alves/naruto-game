@@ -7,6 +7,7 @@ import androidx.annotation.StringRes;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthInvalidUserException;
+import com.google.firebase.auth.FirebaseAuthRecentLoginRequiredException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.auth.FirebaseUser;
@@ -32,7 +33,7 @@ public class AuthRepository {
     public void registerPlayer(String name, String email, String password, Completable emitter) {
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
-                updateProfile(getCurrentUser(), name, null);
+                updateProfile(getCurrentUser(), name, null, true);
                 emitter.onComplete();
             } else {
                 int resId;
@@ -98,13 +99,25 @@ public class AuthRepository {
             if (task.isSuccessful()) {
                 emitter.onComplete();
             } else {
-                emitter.onError(R.string.invalid_password);
+                try {
+                    throw task.getException();
+                } catch (FirebaseAuthWeakPasswordException e) {
+                    emitter.onError(R.string.new_invalid_password);
+                    e.printStackTrace();
+                } catch (FirebaseAuthRecentLoginRequiredException e) {
+                    emitter.onError(R.string.error_requires_recent_athentication);
+                    e.printStackTrace();
+                } catch (Exception e) {
+                    emitter.onError(R.string.error_updating_password);
+                    Log.d("AuthRepository", task.getException().toString());
+                    e.printStackTrace();
+                }
             }
         });
     }
 
-
-    public void updateProfile(FirebaseUser user, String newName, final Completable emitter) {
+    public void updateProfile(FirebaseUser user, String newName, final Completable emitter,
+                              boolean sendEmailVerification) {
         UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                 .setDisplayName(newName).build();
 
@@ -113,9 +126,9 @@ public class AuthRepository {
                 if (task.isSuccessful()) {
                     emitter.onComplete();
                 } else {
-                    emitter.onError(R.string.action_error);
+                    emitter.onError(R.string.error_updating_name);
                 }
-            } else {
+            } else if (sendEmailVerification) {
                 sendEmailVerification(user);
             }
         });
