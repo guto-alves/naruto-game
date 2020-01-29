@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.gutotech.narutogame.R;
+import com.gutotech.narutogame.data.repository.PlayerRepository;
 import com.gutotech.narutogame.databinding.FragmentUsuarioDadosBinding;
 import com.gutotech.narutogame.ui.ResultListener;
 import com.gutotech.narutogame.ui.SectionFragment;
@@ -26,18 +27,22 @@ public class UserDataFragment extends Fragment implements SectionFragment, Resul
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        UserDataViewModel mViewModel = ViewModelProviders.of(this).get(UserDataViewModel.class);
+        PlayerRepository.getInstance().getCurrentPlayer(player -> {
+            UserDataViewModelFactory viewModelFactory = new UserDataViewModelFactory(player);
 
-        mViewModel.setResultListener(this);
+            UserDataViewModel viewModel = ViewModelProviders.of(this, viewModelFactory)
+                    .get(UserDataViewModel.class);
+            viewModel.setResultListener(this);
 
-        mBinding = DataBindingUtil.inflate(inflater,
-                R.layout.fragment_usuario_dados, container, false);
-        mBinding.setLifecycleOwner(this);
-        mBinding.setViewModel(mViewModel);
+            mBinding.setViewModel(viewModel);
+        });
 
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_usuario_dados,
+                container, false);
+
+        StorageUtil.downloadProfileForMsg(getActivity(), mBinding.msgLayout.profileImageView);
         mBinding.msgLayout.titleTextView.setText(R.string.keep_your_info_updated);
         mBinding.msgLayout.descriptionTextView.setText(R.string.user_info_updated_description);
-        StorageUtil.downloadProfileForMsg(getActivity(), mBinding.msgLayout.profileImageView);
 
         FragmentUtil.setSectionTitle(getActivity(), R.string.section_account_info);
 
@@ -55,9 +60,9 @@ public class UserDataFragment extends Fragment implements SectionFragment, Resul
 
     @Override
     public void onSuccess() {
+        StorageUtil.downloadProfileForMsg(getActivity(), mBinding.updatedAccountMsgLayout.profileImageView);
         mBinding.updatedAccountMsgLayout.titleTextView.setText(R.string.user_info_updated);
         mBinding.updatedAccountMsgLayout.descriptionTextView.setText(R.string.user_info_updated_description);
-        StorageUtil.downloadProfileForMsg(getActivity(), mBinding.updatedAccountMsgLayout.profileImageView);
         mBinding.updatedAccountMsgLayout.msgConstraintLayout.setVisibility(View.VISIBLE);
     }
 

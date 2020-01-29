@@ -2,46 +2,45 @@ package com.gutotech.narutogame.ui.loggedin.accountinfo;
 
 import android.text.TextUtils;
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.Player;
+import com.gutotech.narutogame.data.repository.AuthRepository;
 import com.gutotech.narutogame.data.repository.PlayerRepository;
 import com.gutotech.narutogame.ui.ResultListener;
 
 public class UserDataViewModel extends ViewModel {
-    private MutableLiveData<Player> player;
+    private Player mPlayer;
 
     private PlayerRepository mPlayerRepository;
 
     private ResultListener mResultListener;
 
-    public UserDataViewModel() {
+    UserDataViewModel(Player player) {
+        mPlayer = player;
         mPlayerRepository = PlayerRepository.getInstance();
-
-        mPlayerRepository.getCurrentPlayer(player ->
-                this.player = new MutableLiveData<>(player));
     }
 
-    public LiveData<Player> getPlayer() {
-        return player;
+    public Player getPlayer() {
+        return mPlayer;
     }
 
-    public void setResultListener(ResultListener mResultListener) {
-        this.mResultListener = mResultListener;
+    void setResultListener(ResultListener resultListener) {
+        mResultListener = resultListener;
     }
 
     public void onSubmitChangesButtonPressed() {
         if (validatePlayer()) {
-            mPlayerRepository.savePlayer(player.getValue());
+            AuthRepository.getInstance().updateProfile(AuthRepository.getInstance().getCurrentUser(),
+                    mPlayer.getName(), null, false);
+            mPlayerRepository.savePlayer(mPlayer);
             mResultListener.onSuccess();
         }
     }
 
     private boolean validatePlayer() {
-        if (TextUtils.isEmpty(player.getValue().getName())) {
+        if (TextUtils.isEmpty(mPlayer.getName())) {
             mResultListener.onFailure(R.string.name_field_requered);
             return false;
         }

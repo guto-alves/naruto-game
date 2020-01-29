@@ -19,7 +19,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/layout_pagina_repeat"
             android:orientation="vertical"
             android:padding="16dp">
 
@@ -189,9 +188,8 @@
 
             <Button
                 style="@style/ButtonTheme"
-                android:layout_width="160dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="32dp"
                 android:onClick="@{()-> viewModel.onSubmitChangesButtonPressed()}"
                 android:text="@string/button_submit_changes" />
         </LinearLayout>
