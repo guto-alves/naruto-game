@@ -90,7 +90,6 @@
     <string name="section_ninjas_ranking">NINJAS RANKING</string>
     <string name="section_teams_ranking">TEAMS RANKING</string>
 
-
     <!-- Atributos -->
     <string name="taijutsu" translatable="false">Taijutsu</string>
     <string name="bukijutsu" translatable="false">Bukijutsu</string>
@@ -110,8 +109,8 @@
     <string name="file">File</string>
     <string name="manual_training">Manual Training</string>
     <string name="quantity">Quantity</string>
-    <string name="batalhas_do_dojo_npc">Batalhas do Dojo NPC</string>
-    <string name="batalhas_do_dojo_pvp">Batalhas do Dojo PVP</string>
+    <string name="dojo_npc_fighters">Dojo NPC Fighters</string>
+    <string name="dojo_pvp_fighters">Dojo PVP Fighters</string>
 
     <!-- Section HOME -->
     <string name="section_home" translatable="false">HOME</string>
@@ -134,16 +133,16 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="password">Password</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="signup">Signup</string>
-    <string name="accont_created_successfuly">ACCOUNT CREATED SUCCESSFULY</string>
+    <string name="accont_created_successfuly">ACCOUNT CREATED SUCCESSFULLY</string>
     <string name="email_verification_sent" translatable="false">You will receive an email soon</string>
-    <string name="invalid_password">Invalid password</string>
+    <string name="new_invalid_password">The given password is invalid. [Password should be at least 6 characters]</string>
     <string name="invalid_email">Invalid email</string>
     <string name="weak_password">Weak Password</string>
     <string name="error_to_the_signup">Error to the signup</string>
-    <string name="name_field_requered">The description field is requered</string>
-    <string name="email_field_requered">The email field is requered</string>
-    <string name="password_field_requered">The password field is requered</string>
-    <string name="confirm_password_field_requered">The confirm password field is requered</string>
+    <string name="name_field_requered">The name field is required</string>
+    <string name="email_field_requered">The email field is required</string>
+    <string name="password_field_requered">The password field is required</string>
+    <string name="confirm_password_field_requered">The confirm password field is required</string>
     <string name="email_already_exists">Email already exists</string>
     <string name="different_passwords">The \'Password\' and \'Confirm Password\' fields are different</string>
 
@@ -195,7 +194,7 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="please_fill_all_the_fields">Please fill all the fields.</string>
     <string name="the_passwords_do_not_match">The passwords do not match</string>
     <string name="password_isnt_valid">The current password isn\'t valid.</string>
-    <string name="congratulations">PARABÉNS</string>
+    <string name="congratulations">CONGRATULATIONS</string>
     <string name="password_changed">Your password was changed successfully.</string>
 
     <!-- Suppport -->
@@ -383,10 +382,6 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="label_score">Score:</string>
     <string name="label_team">Team:</string>
     <string name="none">None</string>
-    <string name="ramen">Ramen</string>
-    <string name="scroll">Scroll</string>
-    <string name="ranged_weapons">Ranged Weapons</string>
-    <string name="bag_item_quantity">x %d</string>
     <string name="item">Item</string>
     <string name="section_change_image">CHANGE IMAGE</string>
     <string name="monday">Monday</string>
@@ -548,7 +543,7 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="nemuri_ii">Nemuri II</string>
     <string name="nemuri_ii_des">A basic genjutsu where the ninja touches the hand on the shoulder or region near the head of another person and makes sleep soundly.</string>
     <string name="kokoroyoru">Kokoroyoru no jutsu</string>
-    <string name="kokoroyoru_des">When the enemy touches or sees the object, he feels an irresistible atraction for the object, doing everything to get the same, including abandoning friends or fall into a trap.</string>
+    <string name="kokoroyoru_des">When the enemy touches or sees the object, he feels an irresistible attraction for the object, doing everything to get the same, including abandoning friends or fall into a trap.</string>
     <string name="tazuneru">Tazuneru no Jutsu</string>
     <string name="tazuneru_des">Technique that consists in making the enemy enters a trance state, and thus, the shinobi can interrogate it to find out secrets, or even kill him.</string>
     <string name="bukuon">Bakuon no Jutsu</string>
@@ -569,6 +564,165 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="lerned_a_new_jutsu">Você se esforçou e aprendeu o jutsu</string>
     <string name="keep_training">Keep it up and learn new jutsus to grow strong!</string>
     <string name="insufficient_chakra_or_stamina">You do not have enough %s to train that Jutsu</string>
+    <string name="scroll">Scroll</string>
+    <string name="scrolls">Scrolls</string>
+    <string name="ramen">Ramen</string>
+    <string name="ranged_weapons">Ranged Weapons</string>
+    <string name="item_quantity">x %d</string>
+    <string name="ranged_weapon">Ranged Weapon</string>
+    <string name="melee_weapon">Melee Weapon</string>
+    <string name="value">Value</string>
+    <string name="amount">Amount</string>
+    <string name="limit_ranged_weapons">LIMIT BIWEEKLY RANGED WEAPONS</string>
+    <string name="limit_ranged_weapons_description">All Ninjas have a Purchase Biweekly Limit 40 Ranged Weapons , it was implemented in the game so that the use of these weapons is done in a strategic manner in the fighting. The Reset always happen on the 1st and 15th of every month.</string>
+    <string name="_0_of_40_ranged_biweekly_weapons">%d of 40 Ranged Biweekly Weapons</string>
+
+    <string name="scroll_to_leaf">Teletransport Scroll to Leaf</string>
+    <string name="scroll_to_leaf_des">Using this scroll, your character will be teleported to the Leaf map.</string>
+
+    <string name="scroll_to_hot_springs">Teletransport Scroll to Hot Springs</string>
+    <string name="scroll_to_hot_springs_des">Using this scroll, your character will be teleported to the Hot Springs map.</string>
+
+    <string name="scroll_to_snow">Teletransport Scroll to Snow</string>
+    <string name="scroll_to_snow_des">Using this scroll, your character will be teleported to the Snow map.</string>
+
+    <string name="scroll_to_waterfall">Teletransport Scroll to Waterfall</string>
+    <string name="scroll_to_waterfall_des">Using this scroll, your character will be teleported to the Waterfall map.</string>
+
+    <string name="scroll_to_rain">Teletransport Scroll to Rain</string>
+    <string name="scroll_to_rain_des">Using this scroll, your character will be teleported to the Rain map.</string>
+
+    <string name="scroll_to_sound">Teletransport Scroll to Sound</string>
+    <string name="scroll_to_sound_des">Using this scroll, your character will be teleported to the Sound map.</string>
+
+    <string name="scroll_to_akatsuki">Teletransport Scroll to Akatsuki</string>
+    <string name="scroll_to_akatsuki_des">Using this scroll, your character will be teleported to the Akatsuki map.</string>
+
+    <string name="scroll_to_cloud">Teletransport Scroll to Cloud</string>
+    <string name="scroll_to_cloud_des">Using this scroll, your character will be teleported to the Cloud map.</string>
+
+    <string name="scroll_to_stone">Teletransport Scroll to Stone</string>
+    <string name="scroll_to_stone_des">Using this scroll, your character will be teleported to the Stone map.</string>
+
+    <string name="scroll_to_mist">Teletransport Scroll to Mist</string>
+    <string name="scroll_to_mist_des">Using this scroll, your character will be teleported to the Mist map.</string>
+
+    <string name="scroll_to_sand">Teletransport Scroll to Sand</string>
+    <string name="scroll_to_sand_des">Using this scroll, your character will be teleported to the Sand map.</string>
+
+    <string name="scroll_to_grass">Teletransport Scroll to Grass</string>
+    <string name="scroll_to_grass_des">Using this scroll, your character will be teleported to the Grass map.</string>
+
+    <string name="dojo_npc_daily_challenges">DOJO NPC DAILY CHALLENGES</string>
+    <string name="dojo_npc_daily_des">All Ninja have an daily limit of battles against NPC\'s in
+        game, that limit is 10 battles. This limit is renewed every day at Midnight (00:00 hour)</string>
+    <string name="npc_daily_combat">%d of 10 NPC Daily Combat</string>
+    <string name="updating_the_list_of_fighters">Updating the list of fighters…</string>
+    <string name="too_weak_to_fight">You can\'t fight on this terrible health, recover yourself an try again</string>
+    <string name="dojo_challenge">DOJO CHALLENGE</string>
+    <string name="npc_battle">NPC Battle</string>
+    <string name="my_jutsus">MY JUTSUS</string>
+    <string name="label_heath">Health: %d</string>
+    <string name="label_chakra">Chakra: %d</string>
+    <string name="label_stamina">Stamina: %d</string>
+    <string name="dojo_timer">%02d:%02d</string>
+    <string name="label_graduation_and_lvl">Genin - Lvl %d</string>
+    <string name="too_bad">TOO BAD!</string>
+    <string name="you_have_lost_the_battle">You have lost the battle.\n\nGo to</string>
+    <string name="voc_foi_muito_machucado">YOU WERE BADLY INJURED AND IS RESTING!</string>
+    <string name="pay_ry">Pay RY$ %d</string>
+    <string name="end_of_the_battle">END OF THE BATTLE!</string>
+    <string name="lost_by_inactivity">You have lost the fight by inactivity\n</string>
+    <string name="click_here">Click Here</string>
+    <string name="to_preceed"> to proceed</string>
+    <string name="waiting_your_move">Waiting your Move</string>
+    <string name="empate">DRAW!</string>
+    <string name="drawn_description">Por ambos estarem muito cansados, o combate terminou em empate!\n\nGo to</string>
+    <string name="combat_won_description">Nicely Done! You have won the battle!\nYour reward is RY$ %d and %d experience points\n\nGo to back</string>
+    <string name="error_updating_name">Error updating name</string>
+    <string name="error_requires_recent_athentication">This operation is sensitive and requires recent authentication. Log in again before retrying this request.</string>
+    <string name="error_updating_password">Error updating password</string>
+    <string name="label_exp">EXP: %d/%d</string>
+    <string name="label_lvl">LVL</string>
+    <string name="uses">uses</string>
+    <string name="receives">receives</string>
+    <string name="of_damage">%d of damage</string>
+    <string name="missed">Missed</string>
+    <string name="attributes_summary">Attributes Summary</string>
+    <string name="label_atk_tai_buk">Attack ( Tai / Buk ): %d</string>
+    <string name="label_def_tai_buk">Defense ( Tai / Buk ): %d</string>
+    <string name="label_def_nin_gen">Defense ( Nin / Gen ): %d</string>
+    <string name="label_accuracy">Accuracy: %d</string>
+    <string name="label_atk_nin_gen">Attack ( Nin / Gen ): %d</string>
+    <string name="label_usage_interval">Usage interval: %d shifts</string>
+    <string name="label_consumes">Consumes:</string>
+    <string name="attribute_icon">Attribute icon</string>
+    <string name="label_base_defense">Base Defense: %d</string>
+    <string name="combat_values">Combat values</string>
+    <string name="label_consumes_in_combat">Consumes in combat:</string>
+    <string name="label_learn_this_jutsu_with">Learn this jutsu with:</string>
+    <string name="duration">Duration</string>
+    <string name="reward">Reward</string>
+    <string name="level">Level</string>
+    <string name="label_ninja_power">Ninja Power:</string>
+    <string name="task_first_lesson_des">Welcome student. Today we are going to start your life as
+        a ninja. If you really want to become one of the best ninjas in your village, you will have
+        to study hard and practice a lot. Start studying now and follow the necessary steps to become
+        a Genin.</string>
+    <string name="task_second_lesson_des">Who said your walk to becoming a Shinobi would be easy?
+        You still have a lot to learn, go to the second lesson.</string>
+    <string name="task_third_lesson_des">You\'re doing well! Some more lessons and maybe you can
+        become a Genin. Continue your arduous journey of success.</string>
+    <string name="task_lesson_four_des">Congratulations, you are doing great, you are learning fast
+        and soon you will become a great ninja! Keep studying.</string>
+    <string name="task_fifth_lesson_des">Training is everything. A ninja who does not train has a
+        weak mind and body. You need to train your skills whenever you can. Keep learning, reading
+        is also part of your learning.</string>
+    <string name="task_sixth_lesson_des">You are close to becoming a Genin, but you still need to
+        complete some classes. Be patient as it takes many years to become a \"Kage\" to become the
+        village leader. Who knows if you study hard you will not become the \"Kage\" of your village.</string>
+    <string name="task_seventh_lesson_des">To become one of the best ninjas you must also be polite
+        to your companions, respect others and always help. These are also important steps in your
+        journey to becoming a Ninja.</string>
+    <string name="task_lesson_eight_des">Who would say! Not long ago you were just a simple student
+        and now you are close to becoming a Genin. Congratulations, you are doing very well and there
+        is little left to become a great Ninja.</string>
+    <string name="task_lesson_9_des">I can see that you have been practicing a lot and, with that,
+        you have become stronger. You are correctly following the ninja path and soon you will be
+        receiving your bandana.</string>
+    <string name="task_tenth_lesson_des">Like an old Sensei, I always get emotional when a student
+        graduates! You went through many things and overcame all obstacles. Now I have nothing more
+        to teach. Let\'s do your last lesson and with that, you will be very close to becoming a
+        ninja. Keep practicing for the Genin exam. Train your skills as much as you can and very
+        soon you will be becoming a Genin, then receiving your Bandana.</string>
+    <string name="task_first_lesson">First lesson</string>
+    <string name="task_second_lesson">Second Lesson</string>
+    <string name="task_third_lesson">Third Lesson</string>
+    <string name="task_lesson_four">Lesson Four</string>
+    <string name="task_fifth_lesson">Fifth Lesson</string>
+    <string name="task_sixth_lesson">Sixth Lesson</string>
+    <string name="task_seventh_lesson">Seventh Lesson</string>
+    <string name="task_lesson_eight">Lesson Eight</string>
+    <string name="task_lesson_9">Lesson 9</string>
+    <string name="task_tenth_lesson">Tenth Lesson</string>
+    <string name="task_msg_finished1">Your ninja walk is going well. Congratulations your first lesson is finished!</string>
+    <string name="task_msg_finished2">Your ninja walk is going well. Congratulations for another finished lesson.</string>
+    <string name="task_msg_finished3">Congratulations and keep studying!</string>
+    <string name="task_msg_finished4">Congratulations keep studying</string>
+    <string name="task_msg_finished5">Congratulations keep studying hard!</string>
+    <string name="task_msg_finished10">This was the last lesson. From now on you must follow
+    alone, to form as a Genin you must enter battles in the DOJO and train a lot in the academy,
+    once you have the minimum requirements go to GRADUATIONS at the Academy and get ready to become a Genin.</string>
+    <string name="label_mission_completion_in">Mission completion in: %s</string>
+    <string name="as_a_reward_you_will_receiver">As a reward you will receive:</string>
+    <string name="mission_completely">MISSION COMPLETELY SUCCESSFUL!</string>
+    <string name="experience_points">Experience Points</string>
+    <string name="label_experience_points">%d Experience Points</string>
+    <string name="question_cancel_mission">Do you really want to cancel this mission? All your time spent so far will be wasted.</string>
+    <string name="count_down_default">Mission completion in: —:—:—</string>
+    <string name="ninja_successfully_created">NINJA SUCCESSFULLY CREATED</string>
+    <string name="congratulations_character_created">Congratulations you just created your character
+        in Naruto Game.\nSelect your character and start your training right now</string>
 
 
 </resources>

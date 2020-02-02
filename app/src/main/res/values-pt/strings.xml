@@ -70,7 +70,7 @@
         <item>Feminino</item>
     </string-array>
     <string name="invalid_email">Campo \'Email\' com valor inválido!</string>
-    <string name="invalid_password">Campo \'Senha\' com valor inválido! No mínimo são requeridos 6
+    <string name="new_invalid_password">Campo \'Nova Senha\' com valor inválido! No mínimo são requeridos 6
         caractéres e os caractéres permitidos são: 0–9 A-Z _.</string>
     <string name="signup">Cadastrar-se</string>
     <string name="name_field_requered">Campo \"Nome Completo\" é obrigatório</string>
@@ -101,8 +101,8 @@
     <string name="please_fill_all_the_fields">Favor preencher todos o campos de senha.</string>
     <string name="the_passwords_do_not_match">As novas senhas não coincidem, por favor verifique os dados</string>
     <string name="password_isnt_valid">" A senha atual digitada não é válida.."</string>
-    <string name="congratulations">Congratulations</string>
-    <string name="password_changed">PROBLEMA!</string>
+    <string name="congratulations">PARABÉNS</string>
+    <string name="password_changed">Sua senha foi alterada com sucesso.</string>
     <string name="keep_your_info_updated">MANTENHA SEU CADASTRO ATUALIZADO</string>
     <string name="user_info_updated">DADOS CADASTRAIS ATUALIZADOS</string>
     <string name="user_info_updated_description">Seus dados cadastrais foram editados com sucesso.</string>
@@ -267,7 +267,7 @@
     <string name="ramen">Ramen</string>
     <string name="scroll">Pergaminho</string>
     <string name="ranged_weapons">Armas de longo alcance</string>
-    <string name="bag_item_quantity">x %d</string>
+    <string name="item_quantity">x %d</string>
     <string name="item">Item</string>
     <string name="section_change_image">TROCAR IMAGEM</string>
 
@@ -458,6 +458,158 @@
     <string name="lerned_a_new_jutsu">Você se esforçou e aprendeu o jutsu</string>
     <string name="keep_training">Treine bastante para conseguir novos jutsus e ficar mais poderoso.</string>
     <string name="insufficient_chakra_or_stamina">Você não possui %s suficiente para treinar esse Jutsu.</string>
+    <string name="scrolls">Pergaminhos</string>
+    <string name="ranged_weapon">Armas de longo alcance</string>
+    <string name="melee_weapon">Armas de curto alcance</string>
+    <string name="value">Valor</string>
+    <string name="amount">Quant.</string>
+    <string name="limit_ranged_weapons">LIMITE QUINZENAL DE ARMAS DE LONGO ALCANCE</string>
+    <string name="limit_ranged_weapons_description">Todos os Ninjas possuem um Limite de Compra
+        Quinzenal de 40 Armas de Longo Alcance, isso foi implementado no jogo para que o uso dessas
+        armas seja feito de uma forma estratégica nos combates. O Reset acontece sempre no dia 1 e
+        15 de todo mês.</string>
+    <string name="_0_of_40_ranged_biweekly_weapons">%d de 40 Armas de Longo Alcance Quinzenais</string>
 
+    <string name="scroll_to_leaf">Teletransport Scroll to Leaf</string>
+    <string name="scroll_to_leaf_des">Using this scroll, your character will be teleported to the Leaf map.</string>
+    <string name="scroll_to_hot_springs">Teletransport Scroll to Hot Springs</string>
+    <string name="scroll_to_hot_springs_des">Using this scroll, your character will be teleported to the Hot Springs map.</string>
+    <string name="scroll_to_snow">Teletransport Scroll to Snow</string>
+    <string name="scroll_to_snow_des">Using this scroll, your character will be teleported to the Snow map.</string>
+    <string name="scroll_to_waterfall">Teletransport Scroll to Waterfall</string>
+    <string name="scroll_to_waterfall_des">Using this scroll, your character will be teleported to the Waterfall map.</string>
+    <string name="scroll_to_rain">Teletransport Scroll to Rain</string>
+    <string name="scroll_to_rain_des">Using this scroll, your character will be teleported to the Rain map.</string>
+    <string name="scroll_to_sound">Teletransport Scroll to Sound</string>
+    <string name="scroll_to_sound_des">Using this scroll, your character will be teleported to the Sound map.</string>
+    <string name="scroll_to_akatsuki">Teletransport Scroll to Akatsuki</string>
+    <string name="scroll_to_akatsuki_des">Using this scroll, your character will be teleported to the Akatsuki map.</string>
+    <string name="scroll_to_cloud">Teletransport Scroll to Cloud</string>
+    <string name="scroll_to_cloud_des">Using this scroll, your character will be teleported to the Cloud map.</string>
+    <string name="scroll_to_stone">Teletransport Scroll to Stone</string>
+    <string name="scroll_to_stone_des">Using this scroll, your character will be teleported to the Stone map.</string>
+    <string name="scroll_to_mist">Teletransport Scroll to Mist</string>
+    <string name="scroll_to_mist_des">Using this scroll, your character will be teleported to the Mist map.</string>
+    <string name="scroll_to_sand">Teletransport Scroll to Sand</string>
+    <string name="scroll_to_sand_des">Using this scroll, your character will be teleported to the Sand map.</string>
+    <string name="scroll_to_grass">Teletransport Scroll to Grass</string>
+    <string name="scroll_to_grass_des">Using this scroll, your character will be teleported to the Grass map.</string>
+    <string name="dojo_npc_fighters">Batalhas do Dojo NPC</string>
+    <string name="dojo_pvp_fighters">Batalhas do Dojo PVP</string>
+    <string name="dojo_npc_daily_des">Todos os Ninjas possuem um limite diário de combates contra os
+        NPC do jogo, esse limite é de 10 combates. Esse limite é resetado todos os dias apartir da
+        Meia Noite ( 00:00 horas )</string>
+    <string name="dojo_npc_daily_challenges">BATALHAS DIÁRIAS DO DOJO NPC</string>
+    <string name="npc_daily_combat">%d de 10 Combates NPC Diários</string>
+    <string name="updating_the_list_of_fighters">Atualizando a lista de lutadores…</string>
+    <string name="too_weak_to_fight">Você está muito fraco para lutar, recupere seus atributos e tente novamente!</string>
+    <string name="dojo_challenge">DESAFIO DOJO</string>
+    <string name="npc_battle">Batalha NPC</string>
+    <string name="my_jutsus">MEUS JUTSUS</string>
+    <string name="label_heath">Vida: %d</string>
+    <string name="label_chakra">Chakra: %d</string>
+    <string name="label_stamina">Stamina: %d</string>
+    <string name="dojo_timer">%02d:%02d</string>
+    <string name="label_graduation_and_lvl">Genin - Lvl %d</string>
+    <string name="too_bad">QUE PENA!</string>
+    <string name="you_have_lost_the_battle">Você perdeu o combate.\n\nIr para o</string>
+    <string name="voc_foi_muito_machucado">VOCÊ FOI MUITO MACHUCADO!</string>
+    <string name="pay_ry">Pagar RY$ %d</string>
+    <string name="end_of_the_battle">COMBATE ENCERRADO!</string>
+    <string name="lost_by_inactivity">You have lost the fight by inactivity\n</string>
+    <string name="click_here">Clique aqui</string>
+    <string name="to_preceed"> para continuar</string>
+    <string name="waiting_your_move">Aguardando a sua ação</string>
+    <string name="empate">EMPATE!</string>
+    <string name="drawn_description">Por ambos estarem muito cansados, o combate terminou em empate!\n\nIr para o </string>
+    <string name="combat_won_description">Parabéns! Você venceu o combate!\nComo recompensa você
+        estará recebendo RY$ %d e %d pontos de experiência\n\nVoltar ao</string>
+    <string name="error_updating_name">Erro ao atualizar nome</string>
+    <string name="error_requires_recent_athentication">Esta operação é sensível e requer
+        autenticação recente. Efetue login novamente antes de tentar novamente esta solicitação.</string>
+    <string name="error_updating_password">Erro ao trocar de senha</string>
+    <string name="label_exp">EXP: %d/%d</string>
+    <string name="label_lvl">LVL</string>
+    <string name="uses">usa</string>
+    <string name="receives">%s recebe %d de dano</string>
+    <string name="of_damage">%d de dano</string>
+    <string name="missed">Errou o golpe</string>
+    <string name="attributes_summary">Resumo dos Atributos</string>
+    <string name="label_atk_tai_buk">Ataque ( Tai / Buk ): %d</string>
+    <string name="label_def_nin_gen">Defesa ( Nin / Gen ): %d</string>
+    <string name="label_def_tai_buk">Defesa ( Tai / Buk ): %d</string>
+    <string name="label_accuracy">Precisão: %d</string>
+    <string name="label_atk_nin_gen">Ataque ( Nin / Gen ): %d</string>
+    <string name="label_usage_interval">Intervalo de uso: %d turno(s)</string>
+    <string name="label_consumes">Consome:</string>
+    <string name="attribute_icon">Attribute icon</string>
+    <string name="label_base_defense">Defesa Base: %d</string>
+    <string name="combat_values">Valores para Combate</string>
+    <string name="label_consumes_in_combat">Consome em combate:</string>
+    <string name="label_learn_this_jutsu_with">Aprende esse jutsu com:</string>
+    <string name="duration">Duração</string>
+    <string name="reward">Recompensa</string>
+    <string name="level">Level</string>
+    <string name="label_ninja_power">Poder Ninja:</string>
+    <string name="task_tenth_lesson_des">Como um velho Sensei, me emociona sempre quando um aluno
+        se forma! Você passou por muitas coisas e superou todos os obstáculos. Agora não tenho mais
+        nada a ensinar. Vamos fazer sua última lição e, com isso, você estará bem perto de se tornar
+        um ninja. Continue praticando para o exame Genin. Treine suas habilidades o máximo que puder
+        e muito em breve estará se tornando um Genin, recebendo então sua Bandana.</string>
+    <string name="task_lesson_9_des">Posso ver que tem praticado bastante e, com isso, tem se tornado
+        mais forte. Você esta seguindo corretamente o caminho ninja e dentro de pouco tempo já estará
+        recebendo sua bandana.</string>
+    <string name="task_lesson_eight_des">Quem diria! Há pouco tempo atrás você não passava de um
+        simples estudante e agora esta perto de se tornar um Genin. Parabéns, você esta indo muito
+        bem e falta pouco para se tornar um grande Ninja.</string>
+    <string name="task_seventh_lesson_des">Para se tornar um dos melhores ninjas você deve também
+        ser educado com os seus companheiros, respeitar o próximo e ajudar sempre. Esses também são
+        passos importantes na sua caminhada para se tornar um Ninja.</string>
+    <string name="task_sixth_lesson_des">Você esta perto de se tornar um Genin, mas para isso ainda
+        falta completar algumas aulas. Seja paciente pois se tornar um \"Kage\" demora muitos anos
+        pra se tornar o líder da vila. Quem sabe estudando bastante você não se torna o \"Kage\" da sua Vila.</string>
+    <string name="task_fifth_lesson_des">Treinar é tudo. Um ninja que não treina possui a mente e o
+        corpo fracos. Você precisa treinar suas habilidades sempre que puder. Continue aprendendo,
+        ler também faz parte do seu aprendizado.</string>
+    <string name="task_lesson_four_des">Parabéns, você esta indo muito bem, esta aprendendo rápido
+        e logo se tornará um grande ninja! Continue estudando.</string>
+    <string name="task_third_lesson_des">Você esta indo bem! Mais algumas lições e quem sabe você
+        pode se tornar um Genin. Continue sua árdua jornada de sucesso.</string>
+    <string name="task_second_lesson_des">Quem disse que sua caminhada para se tornar um Shinobi
+        seria fácil? Você ainda tem muito que aprender, vá para a segunda lição.</string>
+    <string name="task_first_lesson_des">Seja bem-vindo estudante. Hoje vamos dar início a sua vida
+        como ninja. Se você realmente deseja se tornar um dos melhores ninjas do seu vilarejo terá
+        que estudar muito e praticar bastante. Comece a estudar desde já e siga os passos necessários
+        para se tornar um Genin.</string>
+    <string name="task_tenth_lesson">Décima Lição</string>
+    <string name="task_lesson_9">Nona Lição</string>
+    <string name="task_lesson_eight">Oitava Lição</string>
+    <string name="task_seventh_lesson">Sétima Lição</string>
+    <string name="task_sixth_lesson">Sexta Lição</string>
+    <string name="task_fifth_lesson">Quinta Lição</string>
+    <string name="task_lesson_four">Quarta Lição</string>
+    <string name="task_third_lesson">Terceira Lição</string>
+    <string name="task_second_lesson">Segunda Lição</string>
+    <string name="task_first_lesson">Primeira Lição</string>
+    <string name="task_msg_finished1">Sua caminhada ninja esta indo bem. Parabéns sua primeira lição
+        está finalizada!</string>
+    <string name="task_msg_finished2">Sua caminhada ninja esta indo bem. Parabéns por mais uma lição
+        finalizada.</string>
+    <string name="task_msg_finished3">Parabéns e continue estudando!</string>
+    <string name="task_msg_finished4">Parabéns continue estudando</string>
+    <string name="task_msg_finished5">Parabéns continue estudando muito!</string>
+    <string name="task_msg_finished10">Está foi a última Lição. A partir de agora você deve seguir
+    sozinho, para se formar como um Genin você deve entrar em batalhas no DOJO e treinar muito na academia,
+    assim que tiver os requisitos mínimo vá até GRADUAÇÕES na Academia e prepare-se para se tornar um Genin.</string>
+    <string name="label_mission_completion_in">Conclusão da missão em: %s</string>
+    <string name="as_a_reward_you_will_receiver">Como recompensa você receberá:</string>
+    <string name="mission_completely">MISSÃO CONCLUÍDA COM SUCESSO!</string>
+    <string name="experience_points">Pontos de Experiência</string>
+    <string name="question_cancel_mission">Você que realmente cancelar essa missão ? Todo o seu
+        tempo gasto até agora será perdido.</string>
+    <string name="label_experience_points">%d Pontos de Experiência</string>
+    <string name="count_down_default">Conclusão da missão em: —:—:—</string>
+    <string name="ninja_successfully_created">NINJA CRIADO COM SUCESSO</string>
+    <string name="congratulations_character_created">Parabéns você acaba de criar seu personagem no Naruto Game. Selecione seu personagem e comece agora mesmo seu treinamento</string>
 
 </resources>

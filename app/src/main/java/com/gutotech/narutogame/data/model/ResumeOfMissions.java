@@ -1,5 +1,7 @@
 package com.gutotech.narutogame.data.model;
 
+import java.util.List;
+
 public class ResumeOfMissions {
     private int rankS;
     private int rankA;
@@ -7,6 +9,8 @@ public class ResumeOfMissions {
     private int rankC;
     private int rankD;
     private int tasks;
+
+    private List<Integer> missionsFinishedId;
 
     public ResumeOfMissions() {
     }
@@ -57,5 +61,13 @@ public class ResumeOfMissions {
 
     public void setTasks(int tasks) {
         this.tasks = tasks;
+    }
+
+    public List<Integer> getMissionsFinishedId() {
+        return missionsFinishedId;
+    }
+
+    public void setMissionsFinishedId(List<Integer> missionsFinishedId) {
+        this.missionsFinishedId = missionsFinishedId;
     }
 }

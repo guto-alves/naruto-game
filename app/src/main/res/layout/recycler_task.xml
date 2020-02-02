@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/bgLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -20,20 +19,18 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/tituloTarefaTextView"
+            android:id="@+id/titleTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Título Missão"
             android:textColor="#FFD274"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/descricaoTarefaTextView"
+            android:id="@+id/descriptionTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Você esta indo bem! Mais algumas lições e quem sabe você pode se tornar um Genin. Continue sua árdua jornada de sucesso."
             android:textColor="@color/colorText"
             android:textSize="12sp" />
     </LinearLayout>
@@ -57,14 +54,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.68" />
+        app:layout_constraintGuide_percent="0.7" />
 
     <TextView
-        android:id="@+id/duracaoTextView"
+        android:id="@+id/durationTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
         android:text="00:01:00"
         android:textColor="@color/colorGreen"
         android:textSize="12sp"
@@ -74,11 +69,9 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/ryRecompTextView"
-        android:layout_width="55dp"
-        android:layout_height="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
+        android:id="@+id/rewardTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="RY$ 25.00"
         android:textColor="@color/colorGreen"
         android:textSize="12sp"
@@ -100,32 +93,25 @@
         android:orientation="vertical"
         android:padding="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/aceitarTarefaButton"
+        app:layout_constraintEnd_toStartOf="@+id/acceptButton"
         app:layout_constraintStart_toStartOf="@+id/guideline36"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/graduacaoTarefaTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="Genin"
-            android:textColor="#BEBF29" />
-
-        <TextView
-            android:id="@+id/lvlTarefaTextView"
+            android:id="@+id/requirementsTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Lvl. 2"
             android:textColor="#BEBF29"
             android:textSize="12sp" />
     </LinearLayout>
 
     <Button
-        android:id="@+id/aceitarTarefaButton"
+        android:id="@+id/acceptButton"
         style="@style/ButtonTheme"
         android:layout_width="60dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginRight="5dp"
         android:text="@string/button_accept"
         android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="parent"
