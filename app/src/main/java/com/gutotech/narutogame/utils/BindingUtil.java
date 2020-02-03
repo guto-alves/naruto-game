@@ -20,20 +20,20 @@ public class BindingUtil {
         StorageUtil.downloadProfile(imageView.getContext(), imageView, ninjaId);
     }
 
-    @BindingAdapter(value = {"ninjaId", "currentProfile"})
-    public static void loadImage(ImageView imageView, int ninjaId, int profile) {
-        StorageUtil.downloadProfile(imageView.getContext(), imageView, ninjaId, profile);
+    @BindingAdapter(value = "loadProfile")
+    public static void setLoadProfile(ImageView imageView, String path) {
+        StorageUtil.downloadProfile(imageView.getContext(), imageView, path);
+    }
+
+    @BindingAdapter("loadTopImage")
+    public static void setLoadTopImage(ImageView imageView, int ninjaId) {
+        StorageUtil.downloadTopImage(imageView.getContext(), imageView, ninjaId);
     }
 
     @BindingAdapter("mask")
     public static void setMask(TextInputEditText textView, String mask) {
         textView.addTextChangedListener(new MaskTextWatcher(
                 textView, new SimpleMaskFormatter(mask)));
-    }
-
-    @BindingAdapter("text")
-    public static void setText(TextView textView, String text) {
-        textView.setText(text);
     }
 
     @BindingAdapter("show")
@@ -52,7 +52,6 @@ public class BindingUtil {
 
     @BindingAdapter("profileForMsg")
     public static void setProfileForMsg(ImageView imageView, Integer i) {
-        StorageUtil.downloadProfileForMsg(imageView.getContext(), imageView,
-                CharOn.character.getVillage().id);
+        StorageUtil.downloadProfileForMsg(imageView.getContext(), imageView);
     }
 }

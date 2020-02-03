@@ -92,7 +92,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
                 android:orientation="horizontal"
-                android:visibility="visible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.494"
                 app:layout_constraintStart_toStartOf="parent"
@@ -124,7 +123,7 @@
                         android:layout_marginRight="3dp"
                         android:drawableEnd="@drawable/layout_icones_p_chakra"
                         android:drawableRight="@drawable/layout_icones_p_chakra"
-                        android:text="@{@string/you_will_spent(viewModel.chakra)}"
+                        android:text="@{@string/you_will_spent(viewModel.spentChakra)}"
                         android:textColor="@color/colorText" />
 
                     <TextView
@@ -135,7 +134,7 @@
                         android:layout_marginRight="3dp"
                         android:drawableEnd="@drawable/layout_icones_p_stamina"
                         android:drawableRight="@drawable/layout_icones_p_stamina"
-                        android:text="@{@string/you_will_spent(viewModel.stamina)}"
+                        android:text="@{@string/you_will_spent(viewModel.spentStamina)}"
                         android:textColor="@color/colorText" />
                 </LinearLayout>
 
@@ -158,7 +157,7 @@
                     android:layout_width="wrap_content"
                     android:layout_marginEnd="24dp"
                     android:layout_marginRight="24dp"
-                    android:enabled="@{viewModel.trainingButtonEnable ? true : false}"
+                    android:enabled="@{viewModel.attributes.trainingProgress != viewModel.weeklyLimitOfTraining}"
                     android:onClick="@{() -> viewModel.onTrainButtonPressed()}"
                     android:text="@string/train"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -171,7 +170,6 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     app:layout_constraintGuide_percent="0.52" />
-
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <LinearLayout
@@ -211,7 +209,7 @@
                         android:layout_weight="1"
                         android:text="@string/limit_of_attributes_training"
                         android:textColor="@android:color/white"
-                        android:textSize="18sp"
+                        android:textSize="16sp"
                         android:textStyle="bold"
                         android:typeface="serif" />
                 </LinearLayout>
@@ -232,8 +230,8 @@
                         android:layout_marginRight="8dp"
                         android:layout_marginBottom="8dp"
                         android:background="@drawable/layout_barra_exp_barra_vazia_765"
-                        android:max="@{viewModel.maxTraining}"
-                        android:progress="@{viewModel.progressTraining}"
+                        android:max="@{viewModel.weeklyLimitOfTraining}"
+                        android:progress="@{viewModel.attributes.trainingProgress}"
                         android:progressDrawable="@drawable/progressbar_exp_765"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -246,7 +244,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:layout_marginLeft="8dp"
-                        android:text="@{@string/progress_description_bar(viewModel.progressTraining, viewModel.maxTraining)}"
+                        android:text="@{@string/progress_description_bar(viewModel.attributes.trainingProgress, viewModel.weeklyLimitOfTraining)}"
                         android:textColor="@android:color/white"
                         app:layout_constraintBottom_toBottomOf="@+id/limitOfTrainingProgressBar"
                         app:layout_constraintStart_toStartOf="@+id/limitOfTrainingProgressBar"
@@ -298,7 +296,7 @@
                         android:layout_weight="1"
                         android:text="@string/next_ability_point"
                         android:textColor="@android:color/white"
-                        android:textSize="18sp"
+                        android:textSize="16sp"
                         android:textStyle="bold"
                         android:typeface="serif" />
                 </LinearLayout>
@@ -319,8 +317,8 @@
                         android:layout_marginRight="8dp"
                         android:layout_marginBottom="8dp"
                         android:background="@drawable/layout_barra_exp_barra_vazia_765"
-                        android:max="@{viewModel.maxNextAbilityPoint}"
-                        android:progress="@{viewModel.progressNextAbilityPoint}"
+                        android:max="@{viewModel.attributes.totalTrainingPoints}"
+                        android:progress="@{viewModel.attributes.trainingPoints}"
                         android:progressDrawable="@drawable/progressbar_exp_765"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -333,7 +331,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:layout_marginLeft="8dp"
-                        android:text="@{@string/progress_description_bar(viewModel.progressNextAbilityPoint, viewModel.maxNextAbilityPoint)}"
+                        android:text="@{@string/progress_description_bar(viewModel.attributes.trainingPoints, viewModel.attributes.totalTrainingPoints)}"
                         android:textColor="@android:color/white"
                         app:layout_constraintBottom_toBottomOf="@+id/nextAbiliityPointProgressBar"
                         app:layout_constraintStart_toStartOf="@+id/nextAbiliityPointProgressBar"

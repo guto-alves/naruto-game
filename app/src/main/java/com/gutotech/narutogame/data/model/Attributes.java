@@ -1,5 +1,9 @@
 package com.gutotech.narutogame.data.model;
 
+import androidx.databinding.BaseObservable;
+import androidx.databinding.Bindable;
+import androidx.databinding.library.baseAdapters.BR;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,14 +21,12 @@ import java.util.List;
 	Incremento de Absorção	1% de Incremento de Absorção	(Level / 4)
 	Incremento de Crítico	1% de Incremento de Crítico	    (Level / 4)
  */
-public class Attributes {
+public class Attributes extends BaseObservable {
     public static final int TOTAL_ATTRIBUTES = 10;
 
-    private int traningProgress;
+    private int trainingProgress;
 
-    // Total training points for next ability point
-    private int totalTrainingPoints;
-
+    private int totalTrainingPoints; // Total training points for next ability point
     private int trainingPoints;
 
     private int totalFreePoints;
@@ -129,23 +131,13 @@ public class Attributes {
                 (getAgility() + getSeal()) * 100);
     }
 
-    public void incrementTraningProgress(int trainingPointsEarned) {
-        int newTotalTrainingProgress = trainingPointsEarned + getTraningProgress();
-
-        if (newTotalTrainingProgress > CharOn.character.getGraduation().dailyTrainingLimit) {
-            newTotalTrainingProgress = CharOn.character.getGraduation().dailyTrainingLimit;
-        }
-
-        setTraningProgress(newTotalTrainingProgress);
-    }
-
     public void incrementTraningPoints(int trainingPointsEarned) {
         int newTotalTrainingPoints = getTrainingPoints() + trainingPointsEarned;
 
         while (newTotalTrainingPoints >= totalTrainingPoints) {
             newTotalTrainingPoints = newTotalTrainingPoints - totalTrainingPoints;
 
-            totalTrainingPoints += 150;
+            setTotalTrainingPoints(getTotalTrainingPoints() + 150);
             totalFreePoints++;
         }
 
@@ -171,7 +163,6 @@ public class Attributes {
         return basePoints.get(Attribute.TAI.id) + distributedPoints.get(Attribute.TAI.id)
                 + pointsEarned.get(Attribute.TAI.id);
     }
-
 
     public int getBukijutsu() {
         return basePoints.get(Attribute.BUK.id) + distributedPoints.get(Attribute.BUK.id)
@@ -226,28 +217,34 @@ public class Attributes {
         this.formulas = formulas;
     }
 
-    public int getTraningProgress() {
-        return traningProgress;
+    @Bindable
+    public int getTrainingProgress() {
+        return trainingProgress;
     }
 
-    public void setTraningProgress(int traningProgress) {
-        this.traningProgress = traningProgress;
+    public void setTrainingProgress(int trainingProgress) {
+        this.trainingProgress = trainingProgress;
+        notifyPropertyChanged(BR.trainingProgress);
     }
 
+    @Bindable
     public int getTotalTrainingPoints() {
         return totalTrainingPoints;
     }
 
     public void setTotalTrainingPoints(int totalTrainingPoints) {
         this.totalTrainingPoints = totalTrainingPoints;
+        notifyPropertyChanged(BR.totalTrainingPoints);
     }
 
+    @Bindable
     public int getTrainingPoints() {
         return trainingPoints;
     }
 
     public void setTrainingPoints(int trainingPoints) {
         this.trainingPoints = trainingPoints;
+        notifyPropertyChanged(BR.trainingPoints);
     }
 
     public int getTotalFreePoints() {

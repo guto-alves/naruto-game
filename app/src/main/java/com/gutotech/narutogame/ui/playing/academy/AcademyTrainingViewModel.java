@@ -8,118 +8,109 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.gutotech.narutogame.R;
+import com.gutotech.narutogame.data.model.Attributes;
+import com.gutotech.narutogame.data.model.Character;
 import com.gutotech.narutogame.data.model.Formulas;
 import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.repository.CharacterRepository;
 import com.gutotech.narutogame.ui.adapter.DistributedPointsRecyclerAdapter;
+import com.gutotech.narutogame.utils.DateCustom;
 import com.gutotech.narutogame.utils.SingleLiveEvent;
 
 public class AcademyTrainingViewModel extends AndroidViewModel
         implements DistributedPointsRecyclerAdapter.OnTrainButtonListener {
-    private MutableLiveData<Integer> chakra = new MutableLiveData<>();
-    private MutableLiveData<Integer> stamina = new MutableLiveData<>();
+    private MutableLiveData<Integer> mSpentChakra = new MutableLiveData<>();
+    private MutableLiveData<Integer> mSpentStamina = new MutableLiveData<>();
 
-    private MutableLiveData<Boolean> trainingButtonEnable = new MutableLiveData<>(true);
-
-    public SingleLiveEvent<Void> trainingErrorEvent = new SingleLiveEvent<>();
-    public SingleLiveEvent<Integer> trainingCompletedEvent = new SingleLiveEvent<>();
-
-    private MutableLiveData<Integer> maxTraining;
-    private MutableLiveData<Integer> progressTraining;
-
-    private MutableLiveData<Integer> maxNextAbilityPoint;
-    private MutableLiveData<Integer> progressNextAbilityPoint;
-
-    private String[] percents;
-    private double percent = 0.01;
-
-    private Formulas formulas;
-
+    SingleLiveEvent<Void> trainingErrorEvent = new SingleLiveEvent<>();
+    SingleLiveEvent<Integer> trainingCompletedEvent = new SingleLiveEvent<>();
     private SingleLiveEvent<Void> updateDistributedPointsEvent = new SingleLiveEvent<>();
+
+    private String[] mPercents;
+    private double mPercent = 0.01;
+
+    private Character mCharacter;
+    private Attributes mAttributes;
+    private Formulas mFormulas;
+
+    private int weeklyLimitOfTraining;
 
     public AcademyTrainingViewModel(@NonNull Application application) {
         super(application);
 
-        if (CharOn.character.getAttributes().getTraningProgress() ==
-                CharOn.character.getGraduation().dailyTrainingLimit) {
-            trainingButtonEnable.setValue(false);
-        }
+        mCharacter = CharOn.character;
+        mAttributes = mCharacter.getAttributes();
+        mFormulas = mAttributes.getFormulas();
 
-        maxTraining = new MutableLiveData<>(CharOn.character.getGraduation().dailyTrainingLimit);
-        progressTraining = new MutableLiveData<>(CharOn.character.getAttributes().getTraningProgress());
+        mPercents = application.getResources().getStringArray(R.array.attribute_percent);
 
-        maxNextAbilityPoint = new MutableLiveData<>(CharOn.character.getAttributes().getTotalTrainingPoints());
-        progressNextAbilityPoint = new MutableLiveData<>(CharOn.character.getAttributes().getTrainingPoints());
-
-        formulas = CharOn.character.getAttributes().getFormulas();
-
-        percents = application.getResources().getStringArray(R.array.attribute_percent);
-
-        calcuteChakraAndStamina();
+        updateLimitOfTraining();
+        calculateChakraAndStaminaSpent();
     }
 
-    public LiveData<Integer> getChakra() {
-        return chakra;
+    public LiveData<Integer> getSpentChakra() {
+        return mSpentChakra;
     }
 
-    public LiveData<Integer> getStamina() {
-        return stamina;
+    public LiveData<Integer> getSpentStamina() {
+        return mSpentStamina;
     }
 
-    public LiveData<Boolean> getTrainingButtonEnable() {
-        return trainingButtonEnable;
+    public int getWeeklyLimitOfTraining() {
+        return weeklyLimitOfTraining;
     }
 
-    public LiveData<Integer> getMaxTraining() {
-        return maxTraining;
+    public Attributes getAttributes() {
+        return mAttributes;
     }
 
-    public LiveData<Integer> getProgressTraining() {
-        return progressTraining;
+    public Formulas getFormulas() {
+        return mFormulas;
     }
 
-    public MutableLiveData<Integer> getMaxNextAbilityPoint() {
-        return maxNextAbilityPoint;
-    }
-
-    public MutableLiveData<Integer> getProgressNextAbilityPoint() {
-        return progressNextAbilityPoint;
-    }
-
-    public SingleLiveEvent<Void> getUpdateDistributedPointsEvent() {
+    SingleLiveEvent<Void> getUpdateDistributedPointsEvent() {
         return updateDistributedPointsEvent;
     }
 
     public void onItemSelected(int position) {
-        percent = Double.parseDouble(percents[position]);
-        calcuteChakraAndStamina();
+        mPercent = Double.parseDouble(mPercents[position]);
+        calculateChakraAndStaminaSpent();
     }
 
-    private void calcuteChakraAndStamina() {
-        chakra.setValue((int) (formulas.getChakra() * percent / 100));
-        stamina.setValue((int) (formulas.getStamina() * percent / 100));
+    private void calculateChakraAndStaminaSpent() {
+        mSpentChakra.setValue((int) (mFormulas.getChakra() * mPercent / 100));
+        mSpentStamina.setValue((int) (mFormulas.getStamina() * mPercent / 100));
+    }
+
+    private void updateLimitOfTraining() {
+        int dayOfWeek = DateCustom.getDayOfWeek();
+        int days = dayOfWeek >= 3 ? dayOfWeek - 2 : dayOfWeek + 5;
+
+        weeklyLimitOfTraining = mCharacter.getGraduation().dailyTrainingLimit * days;
     }
 
     public void onTrainButtonPressed() {
-        if (CharOn.character.getAttributes().getTraningProgress() <
-                CharOn.character.getGraduation().dailyTrainingLimit) {
-            if (chakra.getValue() <= formulas.getChakraAtual() &&
-                    stamina.getValue() <= formulas.getStaminaAtual()) {
-                formulas.setChakraAtual(formulas.getChakraAtual() - chakra.getValue());
-                formulas.setStaminaAtual(formulas.getStaminaAtual() - stamina.getValue());
+        updateLimitOfTraining();
+        if (mAttributes.getTrainingProgress() < weeklyLimitOfTraining) {
+            if (mSpentChakra.getValue() <= mFormulas.getChakraAtual() &&
+                    mSpentStamina.getValue() <= mFormulas.getStaminaAtual()) {
+                mFormulas.setChakraAtual(mFormulas.getChakraAtual() - mSpentChakra.getValue());
+                mFormulas.setStaminaAtual(mFormulas.getStaminaAtual() - mSpentStamina.getValue());
 
-                int trainingPointsEarned = (int) percent * 12;
+                int trainingPointsEarned = (int) mPercent * 12;
 
-                CharOn.character.getAttributes().incrementTraningProgress(trainingPointsEarned);
-                CharOn.character.getAttributes().incrementTraningPoints(trainingPointsEarned);
-                CharOn.character.getExtrasInformation().incrementTotalTraining(trainingPointsEarned);
+                int newTrainingProgress = trainingPointsEarned + mAttributes.getTrainingProgress();
 
-                progressTraining.setValue(CharOn.character.getAttributes().getTraningProgress());
-                progressNextAbilityPoint.setValue(CharOn.character.getAttributes().getTrainingPoints());
-                maxNextAbilityPoint.setValue(CharOn.character.getAttributes().getTotalTrainingPoints());
+                if (newTrainingProgress > weeklyLimitOfTraining) {
+                    trainingPointsEarned = weeklyLimitOfTraining - mAttributes.getTrainingProgress();
+                    newTrainingProgress = weeklyLimitOfTraining;
+                }
 
-                CharOn.character.full();
-                CharacterRepository.getInstance().saveCharacter(CharOn.character);
+                mAttributes.setTrainingProgress(newTrainingProgress);
+                mAttributes.incrementTraningPoints(trainingPointsEarned);
+                mCharacter.getExtrasInformation().incrementTotalTraining(trainingPointsEarned);
+
+                CharacterRepository.getInstance().save(mCharacter);
 
                 updateDistributedPointsEvent.call();
 
@@ -128,20 +119,15 @@ public class AcademyTrainingViewModel extends AndroidViewModel
                 trainingErrorEvent.call();
             }
         }
-
-        if (CharOn.character.getAttributes().getTraningProgress() ==
-                CharOn.character.getGraduation().dailyTrainingLimit) {
-            trainingButtonEnable.setValue(false);
-        }
     }
 
     @Override
     public void onTrainButtonClick(int attributePosition, int quantitySelected) {
-        CharOn.character.getAttributes().train(attributePosition, quantitySelected);
-        CharOn.character.getExtrasInformation().incrementDistributedPoints(quantitySelected);
-        CharOn.character.updateFormulas();
+        mAttributes.train(attributePosition, quantitySelected);
+        mCharacter.getExtrasInformation().incrementDistributedPoints(quantitySelected);
+        mCharacter.updateFormulas();
 
-        CharacterRepository.getInstance().saveCharacter(CharOn.character);
+        CharacterRepository.getInstance().save(mCharacter);
 
         updateDistributedPointsEvent.call();
     }

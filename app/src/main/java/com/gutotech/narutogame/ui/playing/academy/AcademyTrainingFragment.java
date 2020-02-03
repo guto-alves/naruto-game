@@ -3,6 +3,7 @@ package com.gutotech.narutogame.ui.playing.academy;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.StringRes;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
@@ -10,6 +11,8 @@ import androidx.lifecycle.ViewModelProviders;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.CharOn;
@@ -20,6 +23,7 @@ import com.gutotech.narutogame.utils.FragmentUtil;
 import com.gutotech.narutogame.utils.StorageUtil;
 
 public class AcademyTrainingFragment extends Fragment implements SectionFragment {
+    private FragmentAcademyTrainningBinding mBinding;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -27,42 +31,32 @@ public class AcademyTrainingFragment extends Fragment implements SectionFragment
         AcademyTrainingViewModel viewModel = ViewModelProviders.of(this)
                 .get(AcademyTrainingViewModel.class);
 
-        FragmentAcademyTrainningBinding binding = DataBindingUtil.inflate(inflater,
+        mBinding = DataBindingUtil.inflate(inflater,
                 R.layout.fragment_academy_trainning, container, false);
-        binding.setLifecycleOwner(this);
-        binding.setViewModel(viewModel);
+        mBinding.setLifecycleOwner(this);
+        mBinding.setViewModel(viewModel);
 
-        binding.msgLayout.titleTextView.setText(R.string.attribute_training_title);
-        binding.msgLayout.descriptionTextView.setText(R.string.attribute_training_description);
-        StorageUtil.downloadProfileForMsg(getContext(), binding.msgLayout.profileImageView,
-                CharOn.character.getVillage().id);
+        mBinding.msgLayout.titleTextView.setText(R.string.attribute_training_title);
+        mBinding.msgLayout.descriptionTextView.setText(R.string.attribute_training_description);
 
-        binding.trainingResult.msgConstraintLayout.setVisibility(View.GONE);
+        viewModel.trainingCompletedEvent.observe(this, trainingPointsEarned ->
+                showTrainingResult(R.string.training_completed,
+                        getString(R.string.you_earned_ability_points, trainingPointsEarned))
+        );
 
-        viewModel.trainingCompletedEvent.observe(this, trainingPointsEarned -> {
-            StorageUtil.downloadProfileForMsg(getContext(), binding.trainingResult.profileImageView,
-                    CharOn.character.getVillage().id);
-            binding.trainingResult.titleTextView.setText(R.string.training_completed);
-            binding.trainingResult.descriptionTextView.setText(
-                    getString(R.string.you_earned_ability_points, trainingPointsEarned));
-            binding.trainingResult.msgConstraintLayout.setVisibility(View.VISIBLE);
-        });
         viewModel.trainingErrorEvent.observe(this, v -> {
-            StorageUtil.downloadProfileForMsg(getContext(), binding.trainingResult.profileImageView,
-                    CharOn.character.getVillage().id);
-            binding.trainingResult.titleTextView.setText(R.string.problem);
-            binding.trainingResult.descriptionTextView.setText(
-                    R.string.you_dont_have_chakra_for_this_training);
-            binding.trainingResult.msgConstraintLayout.setVisibility(View.VISIBLE);
+            showTrainingResult(R.string.problem, getString(R.string.you_dont_have_chakra_for_this_training));
+
+            Animation animation = AnimationUtils.loadAnimation(getActivity(), R.anim.problem_shake);
+            animation.setRepeatCount(3);
+            mBinding.trainingResult.msgConstraintLayout.startAnimation(animation);
         });
 
-        binding.limitOfTrainingProgressBar.setMax(CharOn.character.getGraduation().dailyTrainingLimit);
-
-        binding.distributedPointsRecyclerView.setHasFixedSize(true);
+        mBinding.distributedPointsRecyclerView.setHasFixedSize(true);
         DistributedPointsRecyclerAdapter adapter = new DistributedPointsRecyclerAdapter(
                 getContext(), viewModel);
         adapter.setDistributedPoints(CharOn.character.getAttributes().getDistributedPoints());
-        binding.distributedPointsRecyclerView.setAdapter(adapter);
+        mBinding.distributedPointsRecyclerView.setAdapter(adapter);
 
         viewModel.getUpdateDistributedPointsEvent().observe(this, aVoid ->
                 adapter.setDistributedPoints(CharOn.character.getAttributes().getDistributedPoints())
@@ -70,7 +64,14 @@ public class AcademyTrainingFragment extends Fragment implements SectionFragment
 
         FragmentUtil.setSectionTitle(getActivity(), R.string.section_attribute_training);
 
-        return binding.getRoot();
+        return mBinding.getRoot();
+    }
+
+    private void showTrainingResult(@StringRes int titleId, String description) {
+        StorageUtil.downloadProfileForMsg(getContext(), mBinding.trainingResult.profileImageView);
+        mBinding.trainingResult.titleTextView.setText(titleId);
+        mBinding.trainingResult.descriptionTextView.setText(description);
+        mBinding.trainingResult.msgConstraintLayout.setVisibility(View.VISIBLE);
     }
 
     @Override
