@@ -1,25 +1,15 @@
 package com.gutotech.narutogame.data.model;
 
 public class NinjaStatistics {
-    private int ninjaId;
-    private int totalPlayers;
+    public int ninjaId;
+    public int totalPlayers;
+    public String name;
 
     public NinjaStatistics() {
     }
 
-    public int getNinjaId() {
-        return ninjaId;
-    }
-
-    public void setNinjaId(int ninjaId) {
-        this.ninjaId = ninjaId;
-    }
-
-    public int getTotalPlayers() {
-        return totalPlayers;
-    }
-
-    public void setTotalPlayers(int totalPlayers) {
-        this.totalPlayers = totalPlayers;
+    public NinjaStatistics(Ninja ninja) {
+        ninjaId = ninja.getId();
+        name = ninja.getName();
     }
 }
