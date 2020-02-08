@@ -27,7 +27,7 @@ public class AcademyTrainingViewModel extends AndroidViewModel
     private SingleLiveEvent<Void> updateDistributedPointsEvent = new SingleLiveEvent<>();
 
     private String[] mPercents;
-    private double mPercent = 0.01;
+    private double mPercent = 0.1;
 
     private Character mCharacter;
     private Attributes mAttributes;
@@ -42,7 +42,7 @@ public class AcademyTrainingViewModel extends AndroidViewModel
         mAttributes = mCharacter.getAttributes();
         mFormulas = mAttributes.getFormulas();
 
-        mPercents = application.getResources().getStringArray(R.array.attribute_percent);
+        mPercents = application.getResources().getStringArray(R.array.attribute_percent_list);
 
         updateLimitOfTraining();
         calculateChakraAndStaminaSpent();
@@ -97,7 +97,7 @@ public class AcademyTrainingViewModel extends AndroidViewModel
                 mFormulas.setChakraAtual(mFormulas.getChakraAtual() - mSpentChakra.getValue());
                 mFormulas.setStaminaAtual(mFormulas.getStaminaAtual() - mSpentStamina.getValue());
 
-                int trainingPointsEarned = (int) mPercent * 12;
+                int trainingPointsEarned = (int) mPercent * 10;
 
                 int newTrainingProgress = trainingPointsEarned + mAttributes.getTrainingProgress();
 
@@ -109,6 +109,8 @@ public class AcademyTrainingViewModel extends AndroidViewModel
                 mAttributes.setTrainingProgress(newTrainingProgress);
                 mAttributes.incrementTraningPoints(trainingPointsEarned);
                 mCharacter.getExtrasInformation().incrementTotalTraining(trainingPointsEarned);
+
+                mCharacter.incrementScore(trainingPointsEarned / 100);
 
                 CharacterRepository.getInstance().save(mCharacter);
 
