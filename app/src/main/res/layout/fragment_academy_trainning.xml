@@ -145,7 +145,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginLeft="8dp"
                     android:background="@android:color/white"
-                    android:entries="@array/attribute_percent"
+                    android:entries="@array/attribute_percent_list"
                     android:onItemSelected="@{(parent,view,position,id) -> viewModel.onItemSelected(position)}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/guideline25"

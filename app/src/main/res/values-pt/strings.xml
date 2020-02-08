@@ -64,11 +64,6 @@
     <string name="section_support_new_ticket">SUPPORT - NEW SUPPORT TICKET</string>
     <string name="section_dojo_challenge">DOJO CHALLENGE</string>
     <string name="forgot_my_password">Esqueci minha senha</string>
-
-    <string-array name="sexos_array1">
-        <item>Masculino</item>
-        <item>Feminino</item>
-    </string-array>
     <string name="invalid_email">Campo \'Email\' com valor inválido!</string>
     <string name="new_invalid_password">Campo \'Nova Senha\' com valor inválido! No mínimo são requeridos 6
         caractéres e os caractéres permitidos são: 0–9 A-Z _.</string>
@@ -155,7 +150,7 @@
     <string name="choose_your_character">ESCOLHA SEU PERSONAGEM</string>
     <string name="section_mission_status">STATUS DA MISSÃO</string>
     <string name="teams">Equipes</string>
-    <string name="error_nick_length">O  name do seu character não pode ter mais de 18 caractéres</string>
+    <string name="error_nick_length">O  name do seu character não pode ter mais de 10 caractéres</string>
     <string name="error_invalid_nick">O  name do seu character só pode conter letras, números e underlines</string>
     <string name="warning">Aviso!</string>
     <string name="name_already_taken">Já existe um personagem com o  name escolhido</string>
@@ -294,12 +289,6 @@
     <string name="friday">Sexta</string>
     <string name="saturday">Sábado</string>
     <string name="progress_description_bar">%d/%d</string>
-
-    <string-array name="chat_channel_array">
-        <item>Vila</item>
-        <item>Mundo</item>
-    </string-array>
-
     <string name="health">Vida</string>
     <string name="defense_tai_buk">Def. ( Tai / Buk )</string>
     <string name="defense_nin_gen">Def. ( Nin / Gen )</string>
@@ -611,5 +600,31 @@
     <string name="count_down_default">Conclusão da missão em: —:—:—</string>
     <string name="ninja_successfully_created">NINJA CRIADO COM SUCESSO</string>
     <string name="congratulations_character_created">Parabéns você acaba de criar seu personagem no Naruto Game. Selecione seu personagem e comece agora mesmo seu treinamento</string>
+    <string name="this_place_is_far_away">O ponto onde você quer ir é muito longe!</string>
+    <string name="this_place_is_empty">Este local está vazio</string>
+    <string name="map_char_info">%s [Lvl %d]\n%s</string>
+    <string name="battle_button">Battle button</string>
+    <string name="battle">Batalhar</string>
+    <string name="allied_ninja">Ninja Aliado\n( Cor de Fundo Verde )</string>
+    <string name="enemy_ninja">Ninja Inimigo\n( Cor de Fundo Vermelho )</string>
+    <string name="bb_target_ninja">Ninja Alvo do BB\n( Cor de Fundo Amarelo )</string>
+    <string name="place_entry">Entrada de Local</string>
+    <string name="event_ninja">Ninja de Evento\n( Cor de Fundo Roxo )</string>
+    <string name="neutral_ninja">Ninja Neutro\n( Cor de Fundo Cinza )</string>
+    <string name="send_message">Enviar Mensagem</string>
+    <string name="map_legends">Legendas</string>
+    <string name="players">%d Jogadores</string>
+    <string name="section_dojo">DOJO</string>
+    <string name="battle_pvp">Batalha PVP</string>
+    <string name="dojo">Dojo</string>
+    <string name="label_ninja_power_1">Poder Ninja: %d</string>
+    <string name="buffs_and_debuffs"><![CDATA[Buffs & Debuffs]]></string>
+    <string name="weapons">Armas</string>
+    <string name="label_accuracy2">Precisão:</string>
+    <string name="label_defense_nin_gen">Defesa ( Nin / Gen):</string>
+    <string name="label_defense_tai_buk">Defesa ( Tai / Buk):</string>
+    <string name="label_attack_nin_gen">Ataque ( Nin / Gen ):</string>
+    <string name="label_attack_tai_buk">Ataque ( Tai / Buk ):</string>
+    <string name="item_image">Imagem do item</string>
 
 </resources>

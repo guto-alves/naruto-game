@@ -29,8 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="start"
-            android:fitsSystemWindows="true"
-            app:headerLayout="@layout/nav_header_personagem_logado">
+            android:fitsSystemWindows="true">
 
             <ScrollView
                 android:id="@+id/scrollView"
@@ -55,9 +54,9 @@
 
                         <ImageView
                             android:id="@+id/profileImageView"
+                            loadProfile="@{viewModel.character.profilePath()}"
                             android:layout_width="226dp"
-                            android:layout_height="241dp"
-                            android:src="@drawable/layout_profile_7" />
+                            android:layout_height="241dp" />
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="wrap_content"
@@ -68,6 +67,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="35dp"
+                                android:onClick="showBag"
                                 android:src="@drawable/layout_topo_logado_icones_bag2"
                                 app:layout_constraintEnd_toEndOf="@+id/imageView8"
                                 app:layout_constraintTop_toTopOf="parent" />
@@ -88,7 +88,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="8dp"
-                                android:text="......"
+                                android:text="@{viewModel.character.nick}"
                                 android:textColor="#C6DDE6"
                                 android:textStyle="bold"
                                 app:layout_constraintBottom_toBottomOf="@+id/imageView8"
@@ -136,10 +136,9 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/classTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="--"
+                            android:text="@{viewModel.character.classe.toString()}"
                             android:textColor="@color/colorPrimaryDark" />
                     </LinearLayout>
 
@@ -158,10 +157,9 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/villageTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="--"
+                            android:text="@{viewModel.character.village.toString()}"
                             android:textColor="@color/colorPrimaryDark" />
                     </LinearLayout>
 
@@ -180,10 +178,30 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/levelTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="--"
+                            android:text="@{String.valueOf(viewModel.character.level)}"
+                            android:textColor="@color/colorPrimaryDark" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="3dp"
+                            android:layout_marginRight="3dp"
+                            android:text="@string/label_ninja_power"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{String.valueOf(viewModel.character.formulas.ninjaPower)}"
                             android:textColor="@color/colorPrimaryDark" />
                     </LinearLayout>
 
@@ -267,7 +285,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="--"
+                            android:text="@{String.valueOf(viewModel.character.score)}"
                             android:textColor="@color/colorPrimaryDark" />
                     </LinearLayout>
 
@@ -397,7 +415,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:background="@drawable/layout_bg_mensagem_chat"
-                                    android:entries="@array/chat_channel_array"
+                                    android:entries="@array/chat_channel_list"
                                     android:onItemSelected="@{(parent, v, position, id) -> viewModel.onChannelChanged(position)}" />
 
                                 <EditText
