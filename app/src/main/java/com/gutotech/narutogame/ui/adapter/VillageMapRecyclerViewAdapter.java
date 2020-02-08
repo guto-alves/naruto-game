@@ -7,7 +7,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.PopupWindow;
 
 import androidx.annotation.NonNull;
 import androidx.core.view.GestureDetectorCompat;
@@ -16,17 +15,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.Character;
 import com.gutotech.narutogame.data.model.CharOn;
+import com.gutotech.narutogame.ui.playing.currentvillage.VillageMapPopupWindow;
 import com.gutotech.narutogame.ui.playing.currentvillage.VillageMapViewModel;
 import com.gutotech.narutogame.utils.StorageUtil;
 
 import java.util.List;
+import java.util.Map;
 
 public class VillageMapRecyclerViewAdapter extends RecyclerView.Adapter<VillageMapRecyclerViewAdapter.ViewHolder> {
 
     public interface OnMapClickListener {
-        void onSingleClick(int position);
-
         void onDoubleClick(int newPosition);
+
+        void onBattleClick(Character opp);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -41,21 +42,19 @@ public class VillageMapRecyclerViewAdapter extends RecyclerView.Adapter<VillageM
         }
     }
 
-    private Context context;
-    private final int length;
-    private List<Character> charactersOnTheMapList;
-    private OnMapClickListener onMapClickListener;
+    private Context mContext;
+    private final int MAP_LENGTH;
+    private Map<Integer, List<Character>> mMap;
+    private OnMapClickListener mOnMapClickListener;
 
-    private PopupWindow popupWindow;
+    private VillageMapPopupWindow mPopupWindow;
 
-    public VillageMapRecyclerViewAdapter(Context context, int length, OnMapClickListener onMapClickListener) {
-        this.context = context;
-        this.length = length;
-        this.onMapClickListener = onMapClickListener;
-
-        popupWindow = new PopupWindow(context);
-        View view = LayoutInflater.from(context).inflate(R.layout.popup_village_map, null);
-        popupWindow.setContentView(view);
+    public VillageMapRecyclerViewAdapter(Context context, int length, OnMapClickListener listener) {
+        mContext = context;
+        MAP_LENGTH = length;
+        mOnMapClickListener = listener;
+        mPopupWindow = new VillageMapPopupWindow(context);
+        mPopupWindow.setBattleClickListener(opponent -> mOnMapClickListener.onBattleClick(opponent));
     }
 
     @NonNull
@@ -68,15 +67,14 @@ public class VillageMapRecyclerViewAdapter extends RecyclerView.Adapter<VillageM
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        if (charactersOnTheMapList != null) {
-            boolean emptyPosition = true;
+        if (mMap != null) {
+            List<Character> characterList = mMap.get(position);
 
-            final int SIZE = charactersOnTheMapList.size();
+            if (characterList != null) {
+                final int SIZE = characterList.size();
 
-            for (int i = 0; i < SIZE; i++) { // check for someone in that position
-                Character character = charactersOnTheMapList.get(i);
-
-                if (character.getMapPosition() == position) {
+                for (int i = 0; i < SIZE; i++) {
+                    Character character = characterList.get(i);
 
                     if (character.getNick().equals(CharOn.character.getNick())) {
                         holder.backgroundImageView.setImageResource(R.drawable.layout_map_me2);
@@ -88,21 +86,15 @@ public class VillageMapRecyclerViewAdapter extends RecyclerView.Adapter<VillageM
 
                     holder.spriteImageView.setVisibility(View.VISIBLE);
                     StorageUtil.downloadSprite(holder.spriteImageView, character.getNinja().getId());
-
-                    emptyPosition = false;
-
-                    break;
                 }
-            }
-
-            if (emptyPosition) {
-                holder.spriteImageView.setVisibility(View.GONE);
+            } else {
                 holder.backgroundImageView.setImageResource(R.drawable.layout_map_blank2);
+                holder.spriteImageView.setVisibility(View.GONE);
             }
         }
 
         holder.itemView.setOnTouchListener(new View.OnTouchListener() {
-            private GestureDetectorCompat mDetector = new GestureDetectorCompat(context,
+            private GestureDetectorCompat mDetector = new GestureDetectorCompat(mContext,
                     new GestureDetector.SimpleOnGestureListener() {
                         @Override
                         public boolean onDown(MotionEvent e) {
@@ -111,28 +103,27 @@ public class VillageMapRecyclerViewAdapter extends RecyclerView.Adapter<VillageM
 
                         @Override
                         public boolean onSingleTapUp(MotionEvent e) {
-                            onMapClickListener.onSingleClick(position);
+                            mPopupWindow.setCharactersList(mMap.get(position));
 
-                            if (popupWindow.isShowing()) {
-                                popupWindow.dismiss();
-                            }
+                            int xoff;
+                            int yoff;
 
                             if (position % VillageMapViewModel.TOTAL_COLUMNS < 5) {
-                                popupWindow.showAsDropDown(holder.itemView,
-                                        holder.itemView.getWidth(),
-                                        -holder.itemView.getHeight() + 5);
+                                xoff = holder.itemView.getWidth() + 5;
                             } else {
-                                popupWindow.showAsDropDown(holder.itemView,
-                                        -popupWindow.getContentView().getWidth() - 10,
-                                        -holder.itemView.getHeight() + 5);
+                                xoff = -(mPopupWindow.getContentView().getWidth() + 5);
                             }
+
+                            yoff = -holder.itemView.getHeight() + 5;
+
+                            mPopupWindow.showAsDropDown(holder.itemView, xoff, yoff);
 
                             return true;
                         }
 
                         @Override
                         public boolean onDoubleTap(MotionEvent e) {
-                            onMapClickListener.onDoubleClick(position);
+                            mOnMapClickListener.onDoubleClick(position);
                             return true;
                         }
                     });
@@ -146,11 +137,11 @@ public class VillageMapRecyclerViewAdapter extends RecyclerView.Adapter<VillageM
 
     @Override
     public int getItemCount() {
-        return length;
+        return MAP_LENGTH;
     }
 
-    public void setCharactersOnTheMapList(List<Character> charactersOnTheMapList) {
-        this.charactersOnTheMapList = charactersOnTheMapList;
+    public void setMap(Map<Integer, List<Character>> map) {
+        mMap = map;
         notifyDataSetChanged();
     }
 }

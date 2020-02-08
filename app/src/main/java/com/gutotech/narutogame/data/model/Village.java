@@ -16,10 +16,10 @@ public enum Village implements Serializable {
     SOM(7, "Som", R.drawable.layout_home_kages_7, R.drawable.layout_bandanas_7, R.drawable.layout_mapa_7),
     CHUVA(8, "Chuva", R.drawable.layout_home_kages_8, R.drawable.layout_bandanas_8, R.drawable.layout_mapa_8),
 
-    FONTES_TERMAIS(9, "Fontes Termais", R.drawable.layout_home_kages_1, R.drawable.layout_bandanas_1, R.drawable.layout_mapa_1),
-    NEVE(10, "Neve", R.drawable.layout_home_kages_1, R.drawable.layout_bandanas_1, R.drawable.layout_mapa_1),
-    CACHOEIRA(11, "Cachoeira", R.drawable.layout_home_kages_1, R.drawable.layout_bandanas_1, R.drawable.layout_mapa_1),
-    GRAMA(12, "Grama", R.drawable.layout_home_kages_1, R.drawable.layout_bandanas_1, R.drawable.layout_mapa_1);
+    NEVE(9, "Neve", R.drawable.layout_home_kages_1, R.drawable.layout_bandanas_1, R.drawable.layout_map_9),
+    CACHOEIRA(10, "Cachoeira", R.drawable.layout_home_kages_1, R.drawable.layout_bandanas_1, R.drawable.layout_map_10),
+    FONTES_TERMAIS(11, "Fontes Termais", R.drawable.layout_home_kages_1, R.drawable.layout_bandanas_1, R.drawable.layout_map_11),
+    GRAMA(12, "Grama", R.drawable.layout_home_kages_1, R.drawable.layout_bandanas_1, R.drawable.layout_map_12);
 
     public int id;
     public String name;

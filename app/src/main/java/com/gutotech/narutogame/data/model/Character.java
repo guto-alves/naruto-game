@@ -8,11 +8,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.firebase.FirebaseConfig;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Character extends BaseObservable {
+public class Character extends BaseObservable implements Serializable {
     private String playerId;
     private String nick;
     private Ninja ninja;
@@ -31,36 +32,22 @@ public class Character extends BaseObservable {
     private ResumeOfMissions resumeOfMissions;
     private ExtrasInformation extrasInformation;
     private String team;
+
     private boolean online;
     private String lastLogin;
+    private int numberOfDaysPlayed;
+    private int lastDayPlayed;
+
     private String title;
     private List<String> titles;
-    private NinjaLucky ninjaLucky;
 
     private int score;
-    private int combatesNPCDiarios;
+    private int npcDailyCombat;
     private int mapPosition;
 
-    /// -------------------- OK ------------------------
-
-    //    private int diasLogadosFidelidade;
-//    private boolean temRecompensaFidelidade;
-//
-    // info combates
-
-
-//    private boolean fuiPego;
-//    private String nickOponente;
-
-    //    private String idBatalhaAtual;
-//
-//    // missões
-//    private boolean emMissao;
-//    private MissaoDeTempo missaoDeTempo;
-//    private MissaoEspecial missaoEspecial;
-//    private List<Integer> tarefasConcluidasIDs;
-//
-//    private Jutsu jutsuSelecionado;
+    private boolean mission;
+    private boolean battle;
+    public String battleId;
 
     public Character() {
     }
@@ -88,13 +75,13 @@ public class Character extends BaseObservable {
                 null, 25, 5, 100));
 
         jutsus = new ArrayList<>(Arrays.asList(
-                new Jutsu(Jutsus.DEFESA_MAO.toString(), 0, 5, 0,
+                new Jutsu(JutsuInfo.DEFESA_MAO.toString(), 0, 5, 0,
                         10, 3),
-                new Jutsu(Jutsus.DEFESA_ACROBATICA.toString(), 0, 8, 0,
+                new Jutsu(JutsuInfo.DEFESA_ACROBATICA.toString(), 0, 8, 0,
                         15, 4),
-                new Jutsu(Jutsus.SOCO.toString(), 0, 5, 1,
+                new Jutsu(JutsuInfo.SOCO.toString(), 0, 5, 1,
                         8, 1),
-                new Jutsu(Jutsus.CHUTE.toString(), 8, 0, 0,
+                new Jutsu(JutsuInfo.CHUTE.toString(), 8, 0, 0,
                         11, 2)
         ));
     }
@@ -105,6 +92,14 @@ public class Character extends BaseObservable {
                 .child(nick);
 
         characterRef.setValue(this);
+    }
+
+    public String profilePath() {
+        return ninja.getId() + "/" + profile;
+    }
+
+    public Formulas getFormulas() {
+        return getAttributes().getFormulas();
     }
 
     public void updateFormulas() {
@@ -118,11 +113,10 @@ public class Character extends BaseObservable {
     public void incrementExp(int expEarned) {
         int newTotalExp = getExp() + expEarned;
 
-        if (newTotalExp >= getExpUpar()) {
+        while (newTotalExp >= getExpUpar()) {
             newTotalExp = newTotalExp - getExpUpar();
 
             setExpUpar(getExpUpar() + 1200);
-
             setLevel(getLevel() + 1);
 
             updateFormulas();
@@ -132,19 +126,21 @@ public class Character extends BaseObservable {
         setExp(newTotalExp);
     }
 
-    public void setExp(int exp) {
-        this.exp = exp;
+    public void incrementScore(int earnedScore) {
+        setScore(getScore() + earnedScore);
     }
 
-    public void addRyous(long ryous) {
-        setRyous(getRyous() + ryous);
+    public void decrementScore(int lostScore) {
+        setScore(getScore() - lostScore);
     }
 
-    public void subRyous(long ryous) {
-        setRyous(getRyous() - ryous);
+    public void addRyous(long earnedRyous) {
+        setRyous(getRyous() + earnedRyous);
     }
 
-    // Getters and setters
+    public void subRyous(long ryousSpent) {
+        setRyous(getRyous() - ryousSpent);
+    }
 
     public ExtrasInformation getExtrasInformation() {
         return extrasInformation;
@@ -235,12 +231,14 @@ public class Character extends BaseObservable {
         this.profile = profile;
     }
 
+    @Bindable
     public int getScore() {
         return score;
     }
 
     public void setScore(int score) {
         this.score = score;
+        notifyPropertyChanged(BR.score);
     }
 
     public CombatOverview getCombatOverview() {
@@ -259,32 +257,32 @@ public class Character extends BaseObservable {
         this.resumeOfMissions = resumeOfMissions;
     }
 
+    @Bindable
     public int getExp() {
         return exp;
     }
 
+    public void setExp(int exp) {
+        this.exp = exp;
+        notifyPropertyChanged(BR.exp);
+    }
+
+    @Bindable
     public int getExpUpar() {
         return expUpar;
     }
 
     public void setExpUpar(int expUpar) {
         this.expUpar = expUpar;
+        notifyPropertyChanged(BR.expUpar);
     }
 
-//    public List<Jutsu> getJutsus() {
-//        return jutsus;
-//    }
-//
-//    public void setJutsus(List<Jutsu> jutsus) {
-//        this.jutsus = jutsus;
-//    }
-
-    public int getCombatesNPCDiarios() {
-        return combatesNPCDiarios;
+    public int getNpcDailyCombat() {
+        return npcDailyCombat;
     }
 
-    public void setCombatesNPCDiarios(int combatesNPCDiarios) {
-        this.combatesNPCDiarios = combatesNPCDiarios;
+    public void setNpcDailyCombat(int npcDailyCombat) {
+        this.npcDailyCombat = npcDailyCombat;
     }
 
     public Bag getBag() {
@@ -319,12 +317,14 @@ public class Character extends BaseObservable {
         this.lastLogin = lastLogin;
     }
 
+    @Bindable
     public int getMapPosition() {
         return mapPosition;
     }
 
     public void setMapPosition(int mapPosition) {
         this.mapPosition = mapPosition;
+//        notifyPropertyChanged(BR.mapPosition);
     }
 
     public Graduation getGraduation() {
@@ -351,19 +351,48 @@ public class Character extends BaseObservable {
         this.titles = titles;
     }
 
-    public NinjaLucky getNinjaLucky() {
-        return ninjaLucky;
-    }
-
-    public void setNinjaLucky(NinjaLucky ninjaLucky) {
-        this.ninjaLucky = ninjaLucky;
-    }
-
     public List<Jutsu> getJutsus() {
         return jutsus;
     }
 
     public void setJutsus(List<Jutsu> jutsus) {
         this.jutsus = jutsus;
+    }
+
+    public int getLastDayPlayed() {
+        return lastDayPlayed;
+    }
+
+    public void setLastDayPlayed(int lastDayPlayed) {
+        this.lastDayPlayed = lastDayPlayed;
+    }
+
+    @Bindable
+    public int getNumberOfDaysPlayed() {
+        return numberOfDaysPlayed;
+    }
+
+    public void setNumberOfDaysPlayed(int numberOfDaysPlayed) {
+        this.numberOfDaysPlayed = numberOfDaysPlayed;
+    }
+
+    @Bindable
+    public boolean isMission() {
+        return mission;
+    }
+
+    public void setMission(boolean mission) {
+        this.mission = mission;
+        notifyPropertyChanged(BR.mission);
+    }
+
+    @Bindable
+    public boolean isBattle() {
+        return battle;
+    }
+
+    public void setBattle(boolean battle) {
+        this.battle = battle;
+        notifyPropertyChanged(BR.battle);
     }
 }

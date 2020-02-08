@@ -22,11 +22,11 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/villageMapRecyclerView"
-                android:layout_width="0dp"
-                android:layout_height="500dp"
+                android:layout_width="380dp"
+                android:layout_height="498dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
                 android:background="@drawable/layout_mapa_1"
@@ -40,7 +40,7 @@
 
             <LinearLayout
                 android:id="@+id/linearLayout20"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
@@ -56,6 +56,7 @@
                     android:id="@+id/textView98"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
                     android:layout_marginRight="8dp"
                     android:text="//"
                     android:textColor="@android:color/holo_orange_dark" />
@@ -64,7 +65,7 @@
                     android:id="@+id/textView91"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Legendas"
+                    android:text="@string/map_legends"
                     android:textColor="@android:color/white"
                     android:textStyle="bold"
                     app:fontFamily="casual" />
@@ -73,236 +74,151 @@
                     android:id="@+id/textView97"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=" ............................................................."
+                    android:text=" ......................................................................"
                     android:textColor="@android:color/white" />
-
             </LinearLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="395dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
-                android:orientation="vertical"
+                android:layout_margin="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout20">
 
-                <LinearLayout
-                    android:id="@+id/LinearBatalhar"
+                <TextView
+                    android:id="@+id/alliedNinjaTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/layout_legenda_1"
+                    android:drawableLeft="@drawable/layout_legenda_1"
+                    android:drawablePadding="2dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/allied_ninja"
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/enemyNinjaTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:drawableStart="@drawable/layout_legenda_2"
+                    android:drawableLeft="@drawable/layout_legenda_2"
+                    android:drawablePadding="2dp"
                     android:gravity="center_vertical"
-                    android:orientation="horizontal"
+                    android:text="@string/enemy_ninja"
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/LinearAlvoBB">
+                    app:layout_constraintTop_toBottomOf="@+id/alliedNinjaTextView" />
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="2dp"
-                        app:srcCompat="@drawable/layout_legenda_bt_mapa_batalhar" />
+                <TextView
+                    android:id="@+id/bbTargetNinjaTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:drawableStart="@drawable/layout_legenda_4"
+                    android:drawableLeft="@drawable/layout_legenda_4"
+                    android:drawablePadding="2dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/bb_target_ninja"
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/enemyNinjaTextView" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="8dp"
-                        android:text="Batalhar"
-                        android:textColor="@android:color/white"
-                        android:textSize="12sp" />
-                </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:drawableStart="@drawable/layout_legenda_bt_mapa_batalhar"
+                    android:drawableLeft="@drawable/layout_legenda_bt_mapa_batalhar"
+                    android:drawablePadding="2dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/battle"
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/bbTargetNinjaTextView" />
 
-                <LinearLayout
-                    android:id="@+id/LinearEntrada"
+                <TextView
+                    android:id="@+id/neutralNinjaTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:drawableStart="@drawable/layout_legenda_0"
+                    android:drawableLeft="@drawable/layout_legenda_0"
+                    android:drawablePadding="2dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/neutral_ninja"
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="@+id/guideline58"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/eventNinjaTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="8dp"
+                    android:drawableStart="@drawable/layout_legenda_5"
+                    android:drawableLeft="@drawable/layout_legenda_5"
+                    android:drawablePadding="2dp"
                     android:gravity="center_vertical"
-                    android:orientation="horizontal"
+                    android:text="@string/event_ninja"
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp"
                     app:layout_constraintStart_toStartOf="@+id/guideline58"
-                    app:layout_constraintTop_toBottomOf="@+id/LinearMsg">
+                    app:layout_constraintTop_toBottomOf="@+id/neutralNinjaTextView" />
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="2dp"
-                        app:srcCompat="@drawable/layout_ico_mapa_vila" />
+                <TextView
+                    android:id="@+id/placeEntryTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:drawableStart="@drawable/layout_ico_mapa_vila"
+                    android:drawableLeft="@drawable/layout_ico_mapa_vila"
+                    android:drawablePadding="2dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/place_entry"
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="@+id/guideline58"
+                    app:layout_constraintTop_toBottomOf="@+id/sendMessageTextView" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Entrada de Local"
-                        android:textColor="@android:color/white"
-                        android:textSize="12sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/LinearMsg"
+                <TextView
+                    android:id="@+id/sendMessageTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="16dp"
+                    android:drawableStart="@drawable/layout_legenda_bt_mapa_mensagem"
+                    android:drawableLeft="@drawable/layout_legenda_bt_mapa_mensagem"
+                    android:drawablePadding="2dp"
                     android:gravity="center_vertical"
-                    android:orientation="horizontal"
+                    android:text="@string/send_message"
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp"
                     app:layout_constraintStart_toStartOf="@+id/guideline58"
-                    app:layout_constraintTop_toBottomOf="@+id/LinearEvento">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="2dp"
-                        app:srcCompat="@drawable/layout_legenda_bt_mapa_mensagem" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Enviar Mensagem"
-                        android:textColor="@android:color/white"
-                        android:textSize="12sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/LinearAlvoBB"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/LinearInimigo">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="2dp"
-                        app:srcCompat="@drawable/layout_legenda_4" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="8dp"
-                        android:text="Ninja Alvo do BB \n( Cor de Fundo Amarelo )"
-                        android:textColor="@android:color/white"
-                        android:textSize="12sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/LinearInimigo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/LinearAliado">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="2dp"
-                        app:srcCompat="@drawable/layout_legenda_2" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="8dp"
-                        android:text=" Ninja Inimigo \n( Cor de Fundo Vermelho )"
-                        android:textColor="@android:color/white"
-                        android:textSize="12sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/LinearEvento"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="8dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    app:layout_constraintStart_toStartOf="@+id/guideline58"
-                    app:layout_constraintTop_toBottomOf="@+id/LinearNeutro">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="2dp"
-                        app:srcCompat="@drawable/layout_legenda_5" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Ninja de Evento \n( Cor de Fundo Roxo )"
-                        android:textColor="@android:color/white"
-                        android:textSize="12sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/LinearNeutro"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    app:layout_constraintStart_toStartOf="@+id/guideline58"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="2dp"
-                        app:srcCompat="@drawable/layout_legenda_0" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Ninja Neutro \n( Cor de Fundo Cinza )"
-                        android:textColor="@android:color/white"
-                        android:textSize="12sp" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/LinearAliado"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <ImageView
-                        android:id="@+id/imageView49"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="2dp"
-                        app:srcCompat="@drawable/layout_legenda_1" />
-
-                    <TextView
-                        android:id="@+id/textView99"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="8dp"
-                        android:text="Ninja Aliado \n( Cor de Fundo Verde )"
-                        android:textColor="@android:color/white"
-                        android:textSize="12sp" />
-                </LinearLayout>
-
+                    app:layout_constraintTop_toBottomOf="@+id/eventNinjaTextView" />
 
                 <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/guideline58"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    app:layout_constraintGuide_percent="0.5012658" />
+                    app:layout_constraintGuide_percent="0.50" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

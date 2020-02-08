@@ -1,11 +1,9 @@
 package com.gutotech.narutogame.data.repository;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -15,7 +13,9 @@ import com.gutotech.narutogame.data.model.Character;
 import com.gutotech.narutogame.data.model.CharOn;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class MapRepository {
     private static MapRepository sInstance;
@@ -30,9 +30,7 @@ public class MapRepository {
         return sInstance;
     }
 
-    private ChildEventListener childEventListenerMapa;
-
-    public void enterTheMap(String villageName) {
+    public void enter(String villageName) {
         DatabaseReference mapReference = FirebaseConfig.getDatabase()
                 .child("village-map")
                 .child(villageName)
@@ -41,7 +39,11 @@ public class MapRepository {
         mapReference.setValue(CharOn.character);
     }
 
-    public void exitVillageMap(String villageName) {
+    public void move(int currentPosition, int newPosition) {
+
+    }
+
+    public void exit(String villageName) {
         DatabaseReference mapReference = FirebaseConfig.getDatabase()
                 .child("village-map")
                 .child(villageName)
@@ -50,27 +52,35 @@ public class MapRepository {
         mapReference.removeValue();
     }
 
-    private ValueEventListener valueEventListenerMapa;
+    private ValueEventListener mapValueEventListener;
+    private DatabaseReference mapReference;
 
-    public LiveData<List<Character>> loadCharactersOnTheMap(String villageName) {
-        MutableLiveData<List<Character>> data = new MutableLiveData<>();
+    public LiveData<Map<Integer, List<Character>>> load(String villageName) {
+        MutableLiveData<Map<Integer, List<Character>>> data = new MutableLiveData<>();
 
-        List<Character> personagensNoMapa = new ArrayList<>();
+        Map<Integer, List<Character>> map = new HashMap<>();
 
-        DatabaseReference mapReference = FirebaseConfig.getDatabase()
+        mapReference = FirebaseConfig.getDatabase()
                 .child("village-map").child(villageName);
 
-        valueEventListenerMapa = mapReference.addValueEventListener(new ValueEventListener() {
+        mapReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                personagensNoMapa.clear();
+                map.clear();
 
-                for (DataSnapshot data : dataSnapshot.getChildren()) {
-                    Character character = data.getValue(Character.class);
-                    personagensNoMapa.add(character);
+                for (DataSnapshot snap : dataSnapshot.getChildren()) {
+                    Character newCharacter = snap.getValue(Character.class);
+
+                    if (map.get(newCharacter.getMapPosition()) != null) {
+                        map.get(newCharacter.getMapPosition()).add(newCharacter);
+                    } else {
+                        List<Character> characterList = new ArrayList<>();
+                        characterList.add(newCharacter);
+                        map.put(newCharacter.getMapPosition(), characterList);
+                    }
                 }
 
-                data.postValue(personagensNoMapa);
+                data.postValue(map);
             }
 
             @Override
@@ -81,48 +91,32 @@ public class MapRepository {
         return data;
     }
 
-    private void atualizar(String villageName) {
+    public void check(String nick, String villageName, Callback<Boolean> callback) {
         DatabaseReference mapReference = FirebaseConfig.getDatabase()
-                .child("village-map").child(villageName);
+                .child("village-map")
+                .child(villageName)
+                .child(nick);
 
-        childEventListenerMapa = mapReference.addChildEventListener(new ChildEventListener() {
+        mapReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-            }
-
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-//                Character character = dataSnapshot.getValue(Character.class);
-//                for (int i = 0; i < personagensNoMapa.size(); i++) {
-//                    if (character.getNick().equals(personagensNoMapa.get(i).getNick())) {
-//                        personagensNoMapa.remove(i);
-//                        personagensNoMapa.add(i, character);
-//                        mapaAdapter.notifyDataSetChanged();
-//
-//                        break;
-//                    }
-//                }
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.getValue(Character.class) != null) {
+                    callback.call(true);
+                } else {
+                    callback.call(false);
+                }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
             }
         });
     }
 
-    public void close(){
-
+    public void close() {
+        if (mapValueEventListener != null) {
+            mapReference.removeEventListener(mapValueEventListener);
+            mapValueEventListener = null;
+        }
     }
 }
