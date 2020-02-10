@@ -178,31 +178,32 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <TextView
-                        android:id="@+id/textView93"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:drawableStart="@drawable/layout_icones_ene"
                         android:drawableLeft="@drawable/layout_icones_ene"
-                        android:gravity="center_vertical"
+                        android:gravity="center"
                         android:text="* 6 + "
                         android:textColor="@color/colorText" />
 
                     <TextView
-                        android:id="@+id/textView94"
+                        android:id="@+id/ninTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:drawableStart="@drawable/layout_icones_nin"
                         android:drawableLeft="@drawable/layout_icones_nin"
+                        android:drawablePadding="3dp"
                         android:gravity="center_vertical"
                         android:text="* 7 + "
                         android:textColor="@color/colorText" />
 
                     <TextView
-                        android:id="@+id/textView99"
+                        android:id="@+id/genTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:drawableStart="@drawable/layout_icones_gen"
                         android:drawableLeft="@drawable/layout_icones_gen"
+                        android:drawablePadding="3dp"
                         android:gravity="center_vertical"
                         android:text="* 7"
                         android:textColor="@color/colorText" />
@@ -246,18 +247,47 @@
                     app:layout_constraintStart_toStartOf="@+id/guideline379"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/chanceTextView9"
+                <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:drawableStart="@drawable/layout_icones_ene"
-                    android:drawableLeft="@drawable/layout_icones_ene"
-                    android:text="* 6"
-                    android:textColor="@color/colorText"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/guideline389"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintStart_toEndOf="@id/guideline389"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/layout_icones_ene"
+                        android:drawableLeft="@drawable/layout_icones_ene"
+                        android:gravity="center"
+                        android:text="* 6 + "
+                        android:textColor="@color/colorText" />
+
+                    <TextView
+                        android:id="@+id/taiTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/layout_icones_tai"
+                        android:drawableLeft="@drawable/layout_icones_tai"
+                        android:drawablePadding="3dp"
+                        android:gravity="center_vertical"
+                        android:text="* 7 + "
+                        android:textColor="@color/colorText" />
+
+                    <TextView
+                        android:id="@+id/bukTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/layout_icones_ken"
+                        android:drawableLeft="@drawable/layout_icones_ken"
+                        android:drawablePadding="3dp"
+                        android:gravity="center_vertical"
+                        android:text="* 7"
+                        android:textColor="@color/colorText" />
+                </LinearLayout>
 
                 <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/guideline379"
@@ -295,7 +325,7 @@
                     android:drawableLeft="@drawable/layout_icones_atk_fisico"
                     android:drawablePadding="8dp"
                     android:gravity="center_vertical"
-                    android:text="@string/label_attack_tai_buk"
+                    android:text="@string/attack_tai_buk"
                     android:textColor="@color/colorText"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -361,7 +391,7 @@
                     android:drawableLeft="@drawable/layout_icones_atk_magico"
                     android:drawablePadding="8dp"
                     android:gravity="center_vertical"
-                    android:text="@string/label_attack_nin_gen"
+                    android:text="@string/attack_nin_gen"
                     android:textColor="@color/colorText"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -427,7 +457,7 @@
                     android:drawableLeft="@drawable/layout_icones_shield_magico"
                     android:drawablePadding="8dp"
                     android:gravity="center_vertical"
-                    android:text="@string/label_defense_nin_gen"
+                    android:text="@string/defense_nin_gen"
                     android:textColor="@color/colorText"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -493,7 +523,7 @@
                     android:drawableLeft="@drawable/layout_icones_shield_fisico"
                     android:drawablePadding="8dp"
                     android:gravity="center_vertical"
-                    android:text="@string/label_def_tai_buk"
+                    android:text="@string/defense_tai_buk"
                     android:textColor="@color/colorText"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -625,7 +655,7 @@
                     android:drawableLeft="@drawable/layout_icones_precisao"
                     android:drawablePadding="8dp"
                     android:gravity="center_vertical"
-                    android:text="@string/label_ninja_power"
+                    android:text="@string/ninja_power"
                     android:textColor="@color/colorText"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -642,19 +672,6 @@
                     app:layout_constraintStart_toStartOf="@+id/guideline3777"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/chanceTextView77"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:drawableStart="@drawable/layout_icones_conhe"
-                    android:drawableLeft="@drawable/layout_icones_conhe"
-                    android:text="@string/label_ninja_power_1"
-                    android:textColor="@color/colorText"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/guideline3877"
-                    app:layout_constraintTop_toTopOf="parent" />
-
                 <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/guideline3777"
                     android:layout_width="wrap_content"
@@ -668,6 +685,153 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     app:layout_constraintGuide_percent="0.63" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/guideline3877"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/layout_icones_ene"
+                            android:drawableLeft="@drawable/layout_icones_ene"
+                            android:gravity="center"
+                            android:text="* 200 + ( "
+                            android:textColor="@color/colorText" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/layout_icones_forc"
+                            android:drawableLeft="@drawable/layout_icones_forc"
+                            android:drawablePadding="3dp"
+                            android:gravity="center_vertical"
+                            android:text=" + "
+                            android:textColor="@color/colorText" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/layout_icones_inte"
+                            android:drawableLeft="@drawable/layout_icones_inte"
+                            android:drawablePadding="3dp"
+                            android:gravity="center_vertical"
+                            android:text=" + "
+                            android:textColor="@color/colorText" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/layout_icones_defense"
+                            android:drawableLeft="@drawable/layout_icones_defense"
+                            android:drawablePadding="3dp"
+                            android:gravity="center_vertical"
+                            android:text=" ) * 150 +"
+                            android:textColor="@color/colorText" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/textView51"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="( "
+                            android:textColor="@color/colorText" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/layout_icones_nin"
+                            android:drawableLeft="@drawable/layout_icones_nin"
+                            android:drawablePadding="3dp"
+                            android:gravity="center_vertical"
+                            android:text=" + "
+                            android:textColor="@color/colorText" />
+
+                        <TextView
+                            android:id="@+id/genTextView2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/layout_icones_gen"
+                            android:drawableLeft="@drawable/layout_icones_gen"
+                            android:drawablePadding="3dp"
+                            android:gravity="center_vertical"
+                            android:text="+ "
+                            android:textColor="@color/colorText" />
+
+                        <TextView
+                            android:id="@+id/textView43"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/layout_icones_tai"
+                            android:drawableLeft="@drawable/layout_icones_tai"
+                            android:gravity="center"
+                            android:text="+ "
+                            android:textColor="@color/colorText" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/layout_icones_ken"
+                            android:drawableLeft="@drawable/layout_icones_ken"
+                            android:gravity="center"
+                            android:text=" ) * 200 +"
+                            android:textColor="@color/colorText" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/textView76"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="( "
+                            android:textColor="@color/colorText" />
+
+                        <TextView
+                            android:id="@+id/ninTextView5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/layout_icones_agi"
+                            android:drawableLeft="@drawable/layout_icones_agi"
+                            android:drawablePadding="3dp"
+                            android:gravity="center_vertical"
+                            android:text=" + "
+                            android:textColor="@color/colorText" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/layout_icones_conhe"
+                            android:drawableLeft="@drawable/layout_icones_conhe"
+                            android:drawablePadding="3dp"
+                            android:gravity="center_vertical"
+                            android:text=" ) * 100"
+                            android:textColor="@color/colorText" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <ImageView
@@ -713,7 +877,7 @@
                     android:textColor="#FFD274"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/guideline37"
+                    app:layout_constraintEnd_toStartOf="@id/guideline3722"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -1189,6 +1353,7 @@
                     android:id="@+id/pointsTextView113123"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:text="+Treino/100"
                     android:textColor="#FFD274"
                     android:textStyle="bold"
