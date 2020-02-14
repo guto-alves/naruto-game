@@ -3,9 +3,11 @@ package com.gutotech.narutogame.data.model;
 import androidx.annotation.Nullable;
 
 public class Jutsu {
-    public enum Tipo {ATK, DEF, BUFF, DEBUFF}
+    public enum Type {ATK, DEF, BUFF, DEBUFF, WEAPON}
 
-    private String name;
+    private String name; // refers to enum JutsuInfo
+
+    private Classe classe;
 
     private int atk;
     private int baseDefense;
@@ -15,14 +17,17 @@ public class Jutsu {
     private int consumesStamina;
 
     private int usageInterval;
+    private int remainingIntervals;
+
     private int inventory;
 
     public Jutsu() {
     }
 
-    public Jutsu(String name, int atk, int baseDefense, int accuracy,
+    public Jutsu(String name, Classe classe, int atk, int baseDefense, int accuracy,
                  int consumesChakra, int consumesStamina, int usageInterval) {
         this.name = name;
+        this.classe = classe;
         this.atk = atk;
         this.baseDefense = baseDefense;
         this.accuracy = accuracy;
@@ -32,9 +37,10 @@ public class Jutsu {
         inventory = 1;
     }
 
-    public Jutsu(String name, int atk, int baseDefense, int accuracy,
+    public Jutsu(String name, Classe classe, int atk, int baseDefense, int accuracy,
                  int consumesChakra, int consumesStamina) {
         this.name = name;
+        this.classe = classe;
         this.atk = atk;
         this.baseDefense = baseDefense;
         this.accuracy = accuracy;
@@ -44,9 +50,10 @@ public class Jutsu {
         inventory = 1;
     }
 
-    public Jutsu(String name, int atk, int baseDefense, int accuracy,
+    public Jutsu(String name, Classe classe, int atk, int baseDefense, int accuracy,
                  int consumesChakra, int consumesStamina, int usageInterval, int inventory) {
         this.name = name;
+        this.classe = classe;
         this.atk = atk;
         this.baseDefense = baseDefense;
         this.accuracy = accuracy;
@@ -62,6 +69,14 @@ public class Jutsu {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Classe getClasse() {
+        return classe;
+    }
+
+    public void setClasse(Classe classe) {
+        this.classe = classe;
     }
 
     public int getAtk() {
@@ -112,12 +127,24 @@ public class Jutsu {
         this.usageInterval = usageInterval;
     }
 
+    public int getRemainingIntervals() {
+        return remainingIntervals;
+    }
+
+    public void setRemainingIntervals(int remainingIntervals) {
+        this.remainingIntervals = remainingIntervals;
+    }
+
     public int getInventory() {
         return inventory;
     }
 
     public void setInventory(int inventory) {
         this.inventory = inventory;
+    }
+
+    public JutsuInfo getJutsuInfo() {
+        return JutsuInfo.valueOf(getName());
     }
 
     @Override

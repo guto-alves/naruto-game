@@ -9,12 +9,15 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
 import androidx.fragment.app.DialogFragment;
 
 import com.gutotech.narutogame.R;
 
 public class WarningDialog extends DialogFragment {
     private String mWarning = "";
+
+    private View.OnClickListener mOnClickListener;
 
     public WarningDialog() {
     }
@@ -35,8 +38,20 @@ public class WarningDialog extends DialogFragment {
         textView.setText(mWarning);
 
         Button closeButton = root.findViewById(R.id.closeButton);
-        closeButton.setOnClickListener(v -> dismiss());
+        closeButton.setOnClickListener(v -> {
+            if (mOnClickListener != null) {
+                mOnClickListener.onClick(v);
+            }
+
+            dismiss();
+        });
+
+        builder.setCancelable(false);
 
         return builder.create();
+    }
+
+    public void setOnCloseListener(View.OnClickListener listener) {
+        mOnClickListener = listener;
     }
 }

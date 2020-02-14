@@ -9,15 +9,13 @@ import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.firebase.FirebaseConfig;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Character extends BaseObservable implements Serializable {
     private String playerId;
     private String nick;
     private Ninja ninja;
-    private int profile;
+    private String profilePath;
     private Village village;
     private Classe classe;
     private int level;
@@ -48,6 +46,7 @@ public class Character extends BaseObservable implements Serializable {
     private boolean mission;
     private boolean battle;
     public String battleId;
+    private boolean hospital;
 
     public Character() {
     }
@@ -55,11 +54,12 @@ public class Character extends BaseObservable implements Serializable {
     public Character(String playerId) {
         this.playerId = playerId;
         level = 1;
-        ninja = Ninja.NARUTO;
-        profile = 1;
-        village = Village.FOLHA;
+        setNinja(Ninja.NARUTO);
+        setProfilePath("1/1");
+        setVillage(Village.FOLHA);
         graduation = Graduation.ESTUDANTE;
         setClasse(Classe.TAI);
+        setAttributes(new Attributes(classe));
         updateFormulas();
         full();
         ryous = 500;
@@ -73,17 +73,6 @@ public class Character extends BaseObservable implements Serializable {
         bag = new Bag(new Ramen("nissin", R.string.ninja_snack,
                 R.string.ninja_snack_description,
                 null, 25, 5, 100));
-
-        jutsus = new ArrayList<>(Arrays.asList(
-                new Jutsu(JutsuInfo.DEFESA_MAO.toString(), 0, 5, 0,
-                        10, 3),
-                new Jutsu(JutsuInfo.DEFESA_ACROBATICA.toString(), 0, 8, 0,
-                        15, 4),
-                new Jutsu(JutsuInfo.SOCO.toString(), 0, 5, 1,
-                        8, 1),
-                new Jutsu(JutsuInfo.CHUTE.toString(), 8, 0, 0,
-                        11, 2)
-        ));
     }
 
     public void salvar() {
@@ -92,10 +81,6 @@ public class Character extends BaseObservable implements Serializable {
                 .child(nick);
 
         characterRef.setValue(this);
-    }
-
-    public String profilePath() {
-        return ninja.getId() + "/" + profile;
     }
 
     public Formulas getFormulas() {
@@ -142,20 +127,36 @@ public class Character extends BaseObservable implements Serializable {
         setRyous(getRyous() - ryousSpent);
     }
 
-    public ExtrasInformation getExtrasInformation() {
-        return extrasInformation;
+    public String getPlayerId() {
+        return playerId;
     }
 
-    public void setExtrasInformation(ExtrasInformation extrasInformation) {
-        this.extrasInformation = extrasInformation;
+    public void setPlayerId(String playerId) {
+        this.playerId = playerId;
     }
 
+    @Bindable
     public Ninja getNinja() {
         return ninja;
     }
 
     public void setNinja(Ninja ninja) {
         this.ninja = ninja;
+        notifyPropertyChanged(BR.ninja);
+    }
+
+    public void updateProfile(int profile) {
+        setProfilePath(ninja.getId() + "/" + profile);
+    }
+
+    @Bindable
+    public String getProfilePath() {
+        return profilePath;
+    }
+
+    public void setProfilePath(String profilePath) {
+        this.profilePath = profilePath;
+        notifyPropertyChanged(BR.profilePath);
     }
 
     @Bindable
@@ -166,14 +167,6 @@ public class Character extends BaseObservable implements Serializable {
     public void setVillage(Village village) {
         this.village = village;
         notifyPropertyChanged(BR.village);
-    }
-
-    public String getPlayerId() {
-        return playerId;
-    }
-
-    public void setPlayerId(String playerId) {
-        this.playerId = playerId;
     }
 
     @Bindable
@@ -202,7 +195,6 @@ public class Character extends BaseObservable implements Serializable {
 
     public void setClasse(Classe classe) {
         this.classe = classe;
-        setAttributes(new Attributes(classe));
     }
 
     public Attributes getAttributes() {
@@ -221,14 +213,6 @@ public class Character extends BaseObservable implements Serializable {
     public void setLevel(int level) {
         this.level = level;
         notifyPropertyChanged(BR.level);
-    }
-
-    public int getProfile() {
-        return profile;
-    }
-
-    public void setProfile(int profile) {
-        this.profile = profile;
     }
 
     @Bindable
@@ -255,6 +239,14 @@ public class Character extends BaseObservable implements Serializable {
 
     public void setResumeOfMissions(ResumeOfMissions resumeOfMissions) {
         this.resumeOfMissions = resumeOfMissions;
+    }
+
+    public ExtrasInformation getExtrasInformation() {
+        return extrasInformation;
+    }
+
+    public void setExtrasInformation(ExtrasInformation extrasInformation) {
+        this.extrasInformation = extrasInformation;
     }
 
     @Bindable
@@ -324,7 +316,7 @@ public class Character extends BaseObservable implements Serializable {
 
     public void setMapPosition(int mapPosition) {
         this.mapPosition = mapPosition;
-//        notifyPropertyChanged(BR.mapPosition);
+        notifyPropertyChanged(BR.mapPosition);
     }
 
     public Graduation getGraduation() {
@@ -374,6 +366,7 @@ public class Character extends BaseObservable implements Serializable {
 
     public void setNumberOfDaysPlayed(int numberOfDaysPlayed) {
         this.numberOfDaysPlayed = numberOfDaysPlayed;
+        notifyPropertyChanged(BR.numberOfDaysPlayed);
     }
 
     @Bindable
@@ -394,5 +387,15 @@ public class Character extends BaseObservable implements Serializable {
     public void setBattle(boolean battle) {
         this.battle = battle;
         notifyPropertyChanged(BR.battle);
+    }
+
+    @Bindable
+    public boolean isHospital() {
+        return hospital;
+    }
+
+    public void setHospital(boolean hospital) {
+        this.hospital = hospital;
+        notifyPropertyChanged(BR.hospital);
     }
 }

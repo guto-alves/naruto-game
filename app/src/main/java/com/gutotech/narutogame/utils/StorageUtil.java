@@ -7,6 +7,7 @@ import com.bumptech.glide.Glide;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.firebase.storage.StorageReference;
 import com.gutotech.narutogame.data.firebase.FirebaseConfig;
+import com.gutotech.narutogame.data.model.CharOn;
 
 import java.security.SecureRandom;
 
@@ -21,20 +22,20 @@ public class StorageUtil {
     }
 
     public static void downloadProfileForMsg(Context context, ImageView imageView) {
-        StorageReference imageReference = FirebaseConfig.getStorage()
-                .child("images")
-                .child("msg")
-                .child(generateVillageId())
-                .child(generateProfileId() + ".png");
-        downloadImage(context, imageReference, imageView);
-    }
+        StorageReference imageReference;
 
-    public static void downloadProfileForMsg(Context context, ImageView imageView, int villageId) {
-        StorageReference imageReference = FirebaseConfig.getStorage()
-                .child("images")
-                .child("msg")
-                .child(String.valueOf(villageId))
-                .child(generateProfileId() + ".png");
+        if (CharOn.character != null) {
+            imageReference = FirebaseConfig.getStorage().child("images")
+                    .child("msg")
+                    .child(String.valueOf(CharOn.character.getVillage().id))
+                    .child(generateProfileId() + ".png");
+        } else {
+            imageReference = FirebaseConfig.getStorage().child("images")
+                    .child("msg")
+                    .child(generateVillageId())
+                    .child(generateProfileId() + ".png");
+        }
+
         downloadImage(context, imageReference, imageView);
     }
 
@@ -47,12 +48,20 @@ public class StorageUtil {
         downloadImage(context, imageReference, imageView);
     }
 
-    public static void downloadProfile(Context context, ImageView imageView, int ninjaId, int currentProfile) {
+    public static void downloadProfile(Context context, ImageView imageView, String path) {
+        StorageReference imageReference = FirebaseConfig.getStorage()
+                .child("images")
+                .child("profile")
+                .child(path + ".png");
+        downloadImage(context, imageReference, imageView);
+    }
+
+    public static void downloadProfile(Context context, ImageView imageView, int ninjaId, int profile) {
         StorageReference imageReference = FirebaseConfig.getStorage()
                 .child("images")
                 .child("profile")
                 .child(String.valueOf(ninjaId))
-                .child(currentProfile + ".png");
+                .child(profile + ".png");
         downloadImage(context, imageReference, imageView);
     }
 
@@ -99,7 +108,15 @@ public class StorageUtil {
         downloadImage(context, imageReference, imageView);
     }
 
-    public static void baixarTopoLogado(Context context, ImageView imageView, int ninjaId) {
+    public static void downloadScroll(Context context, ImageView imageView, String id) {
+        StorageReference imageReference = FirebaseConfig.getStorage()
+                .child("images")
+                .child("pergaminhos")
+                .child(id + ".png");
+        downloadImage(context, imageReference, imageView);
+    }
+
+    public static void downloadTopImage(Context context, ImageView imageView, int ninjaId) {
         StorageReference imageReference = FirebaseConfig.getStorage()
                 .child("images")
                 .child("topo-logado")
@@ -121,14 +138,6 @@ public class StorageUtil {
                 .child("armas")
                 .child(alcance)
                 .child(name + ".jpg");
-        downloadImage(context, imageReference, imageView);
-    }
-
-    public static void baixarPergaminhoImage(Context context, ImageView imageView, String name) {
-        StorageReference imageReference = FirebaseConfig.getStorage()
-                .child("images")
-                .child("pergaminhos")
-                .child(name + ".png");
         downloadImage(context, imageReference, imageView);
     }
 

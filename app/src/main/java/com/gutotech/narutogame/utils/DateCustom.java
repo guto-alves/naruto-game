@@ -13,6 +13,10 @@ public class DateCustom {
         return calendar.get(Calendar.DAY_OF_WEEK);
     }
 
+    public static long getTimeInMillis(){
+        return Calendar.getInstance().getTimeInMillis();
+    }
+
     public static String getDate() {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
         return simpleDateFormat.format(System.currentTimeMillis());
