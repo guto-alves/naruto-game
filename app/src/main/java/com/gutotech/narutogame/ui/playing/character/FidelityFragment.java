@@ -43,9 +43,7 @@ public class FidelityFragment extends Fragment implements SectionFragment, MyLis
         View view = inflater.inflate(R.layout.fragment_fidelity, container, false);
 
         ImageView personagemMsgImageView = view.findViewById(R.id.personagemMsg);
-        StorageUtil.downloadProfileForMsg(getActivity(), personagemMsgImageView, CharOn.character.getVillage().id);
-
-        GridView recompensasReceberGridView = view.findViewById(R.id.recompensasReceberGridView);
+        StorageUtil.downloadProfileForMsg(getActivity(), personagemMsgImageView);
 
         recompensas.add(new RecompensaFidelidade(RecompensaFidelidade.Tipo.RY, 100, "de Ryous", this));
         recompensas.add(new RecompensaFidelidade(RecompensaFidelidade.Tipo.EXP, 200, "de Experiência", this));
@@ -57,7 +55,7 @@ public class FidelityFragment extends Fragment implements SectionFragment, MyLis
         recompensas.add(new RecompensaFidelidade(RecompensaFidelidade.Tipo.CREDITO, 5, "Crédito VIP ( uma vez por conta )", this));
 
         RecompensasFidelidadeAdapter adapter = new RecompensasFidelidadeAdapter(getActivity(), recompensas);
-        recompensasReceberGridView.setAdapter(adapter);
+//        recompensasReceberGridView.setAdapter(adapter);
 
         return view;
     }
@@ -84,7 +82,7 @@ public class FidelityFragment extends Fragment implements SectionFragment, MyLis
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         Player player = dataSnapshot.getValue(Player.class);
-                        player.setVipCredits(player.getVipCredits() + recompensa.getQuantidade());
+//                        player.setVipCredits(player.getVipCredits() + recompensa.getQuantidade());
 //                        player.salvar();
                     }
 

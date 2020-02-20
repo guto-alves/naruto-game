@@ -4,11 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@android:color/transparent"
-    android:gravity="center_vertical"
     android:orientation="horizontal"
     android:paddingStart="32dp"
     android:paddingLeft="32dp"
-    android:paddingTop="10dp">
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp">
 
     <ImageView
         android:id="@+id/imageView"
@@ -21,6 +21,7 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
         android:layout_marginLeft="5dp"
         android:textColor="#431317"
         android:textSize="18sp" />

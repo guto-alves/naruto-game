@@ -1,6 +1,7 @@
 package com.gutotech.narutogame.ui.playing.battles;
 
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.View;
 
 import androidx.databinding.ObservableField;
@@ -25,18 +26,16 @@ import com.gutotech.narutogame.ui.adapter.JutsusAdapter;
 import com.gutotech.narutogame.utils.DateCustom;
 import com.gutotech.narutogame.utils.SingleLiveEvent;
 
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
-public class DojoBatalhaLutadorViewModel extends ViewModel implements JutsusAdapter.OnJutsuClickListener {
+public class DojoBatalhaLutadorViewModel extends ViewModel
+        implements JutsusAdapter.OnJutsuClickListener {
     private final long TIME_TO_ATTACK = 150000;
-
-    private enum Status {WON, LOST, DRAWN, INACTIVATED, CONTINUE}
-
-    private Status status = Status.CONTINUE;
 
     private BattleRepository mBattleRepository;
 
@@ -61,6 +60,7 @@ public class DojoBatalhaLutadorViewModel extends ViewModel implements JutsusAdap
 
     public final ObservableField<String> countDown = new ObservableField<>("--:--");
 
+    SingleLiveEvent<Object[]> showJutsuInfoPopupEvent = new SingleLiveEvent<>();
     SingleLiveEvent<Integer> showWarningDialogEvent = new SingleLiveEvent<>();
     SingleLiveEvent<View> startAnimationEvent = new SingleLiveEvent<>();
     SingleLiveEvent<Integer[]> showWonEvent = new SingleLiveEvent<>();
@@ -70,8 +70,12 @@ public class DojoBatalhaLutadorViewModel extends ViewModel implements JutsusAdap
 
     private long elapsedTime;
 
+    private int myTurn;
+
     DojoBatalhaLutadorViewModel(Battle battle) {
         mBattle = battle;
+
+        myTurn = 0;
 
         player = mBattle.getPlayer1();
         npc = new Npc(mBattle.getPlayer2());
@@ -88,7 +92,11 @@ public class DojoBatalhaLutadorViewModel extends ViewModel implements JutsusAdap
 
         mBattleRepository = BattleRepository.getInstance();
 
-        init();
+        if (mBattle.getStatus() == Battle.Status.CONTINUE) {
+            init();
+        } else {
+            finishFight();
+        }
     }
 
     void init() {
@@ -132,21 +140,42 @@ public class DojoBatalhaLutadorViewModel extends ViewModel implements JutsusAdap
     }
 
     @Override
-    public boolean onJutsuClick(View view, Jutsu jutsu) {
+    public void onJutsuClick(View view, Jutsu jutsu) {
         startAnimationEvent.setValue(view);
 
-        JutsuInfo playerJutsuInfo = JutsuInfo.valueOf(jutsu.getName());
+        if (mBattle.getCurrentPlayer() != myTurn) {
+            showWarningDialogEvent.setValue(R.string.it_is_not_your_turn_to_attack);
+            return;
+        }
 
-        if (jutsu.getRemainingIntervals() == 0) {
-            if (playerJutsuInfo.type == Jutsu.Type.ATK || playerJutsuInfo.type == Jutsu.Type.DEF) {
+        if (jutsu.getRemainingIntervals() != 0) {
+            showWarningDialogEvent.setValue(R.string.jutsu_is_not_yet_available);
+            return;
+        }
 
-                mCountDownTimer.cancel();
+        if (jutsu.getConsumesChakra() > playerFormulas.getCurrentChakra() ||
+                jutsu.getConsumesStamina() > playerFormulas.getCurrentStamina()) {
+            showWarningDialogEvent.setValue(R.string.dont_have_chakra_to_use_this_jutsu);
+            return;
+        }
 
-                Jutsu jutsuNpc = npc.attack();
+        JutsuInfo playerJutsuInfo = jutsu.getJutsuInfo();
 
-                realizarAtaques(jutsu, playerJutsuInfo, jutsuNpc, JutsuInfo.valueOf(jutsuNpc.getName()));
-                updateFightStatus();
-            } else {
+        if (playerJutsuInfo.type == Jutsu.Type.ATK || playerJutsuInfo.type == Jutsu.Type.DEF) {
+            mCountDownTimer.cancel();
+
+            Jutsu jutsuNpc = npc.attack();
+
+            executeAttacks(jutsu, playerJutsuInfo, jutsuNpc, JutsuInfo.valueOf(jutsuNpc.getName()));
+
+            updateFightStatus();
+
+            mBattle.setAttackStart(DateCustom.getTimeInMillis());
+            elapsedTime = 0;
+            saveBattle();
+            startTimer();
+        } else {
+            if (!buffOrDebuffUsed(playerJutsuInfo.type)) {
                 if (playerJutsuInfo.type == Jutsu.Type.BUFF) {
                     addBuffOrDebuff(playerFormulas, jutsu);
 
@@ -164,61 +193,129 @@ public class DojoBatalhaLutadorViewModel extends ViewModel implements JutsusAdap
                 playerFormulas.subChakra(jutsu.getConsumesChakra());
                 playerFormulas.subStamina(jutsu.getConsumesStamina());
 
-                addLog(new BattleLog(BattleLog.Type.BUFF_DEBUFF_WEAPON, player.getNick(),
+                addLog(new BattleLog(player.getNick(), BattleLog.Type.BUFF_DEBUFF_WEAPON,
                         playerJutsuInfo.name, jutsu));
-            }
-
-            if (status == Status.CONTINUE) {
-                mBattle.setAttackStart(DateCustom.getTimeInMillis());
-                elapsedTime = 0;
-                saveBattle();
-
-                updateRemainingIntervals();
-                int jutsuIndex = mAllJutsus.indexOf(jutsu);
-                jutsu.setRemainingIntervals(jutsu.getUsageInterval() - 1);
-                mAllJutsus.set(jutsuIndex, jutsu);
-                filterJutsus(mJutsuTypeSelected);
-                startTimer();
             } else {
-                finishFight();
+                return;
             }
-        } else {
-            showWarningDialogEvent.setValue(R.string.jutsu_is_not_yet_available);
         }
 
-        return true;
+        if (mBattle.getStatus() == Battle.Status.CONTINUE) {
+            updateRemainingIntervals();
+            int jutsuIndex = mAllJutsus.indexOf(jutsu);
+            jutsu.setRemainingIntervals(jutsu.getUsageInterval() - 1);
+            mAllJutsus.set(jutsuIndex, jutsu);
+            filterJutsus(mJutsuTypeSelected);
+        } else {
+            finishFight();
+        }
     }
 
-    private void realizarAtaques(Jutsu playerJutsu, JutsuInfo playerJutsuInfo, Jutsu npcJutsu,
-                                 JutsuInfo npcJutsuInfo) {
-        int playerDamage = calcuteDamage(playerJutsu, playerJutsuInfo, playerFormulas, npcFormulas);
-        int npcDamage = calcuteDamage(npcJutsu, npcJutsuInfo, npcFormulas, playerFormulas);
+    @Override
+    public void onJutsuInfoClick(View anchor, Jutsu jutsu) {
+        Object[] objects = new Object[3];
+        objects[0] = calculateChanceOfSuccess(jutsu.getAccuracy(), playerFormulas.getAccuracy());
+        objects[1] = jutsu;
+        objects[2] = anchor;
 
-        if (playerDamage > 0 && npcDamage > 0) {
-            playerFormulas.subHeath(npcDamage);
-            npcFormulas.subHeath(playerDamage);
-        } else if (playerDamage > 0 && npcDamage < 0) {
-            npcDamage = Math.abs(npcDamage);
-            npcFormulas.subHeath((playerDamage - npcDamage));
-        } else if (playerDamage < 0 && npcDamage > 0) {
-            playerDamage = Math.abs(playerDamage);
-            playerFormulas.subHeath((npcDamage - playerDamage));
+        showJutsuInfoPopupEvent.setValue(objects);
+    }
+
+    private boolean buffOrDebuffUsed(Jutsu.Type type) {
+        if (type == Jutsu.Type.BUFF) {
+            for (Jutsu jutsu : myBuffsDebuffsStatus.getValue()) {
+                if (jutsu.getJutsuInfo().type == Jutsu.Type.BUFF) {
+                    return true;
+                }
+            }
+        } else {
+            for (Jutsu jutsu : oppBuffsDebuffsStatus.getValue()) {
+                if (jutsu.getJutsuInfo().type == Jutsu.Type.DEBUFF) {
+                    return true;
+                }
+            }
         }
 
-        playerFormulas.subChakra(playerJutsu.getConsumesChakra());
-        playerFormulas.subStamina(playerJutsu.getConsumesStamina());
-        npcFormulas.subChakra(npcJutsu.getConsumesChakra());
-        npcFormulas.subStamina(npcJutsu.getConsumesStamina());
+        return false;
+    }
+
+    private int calculateChanceOfSuccess(int jutsuAccuracy, int currentAccuracy) {
+        int chanceOfSuccess;
+
+        try {
+            chanceOfSuccess = (int) ((double) currentAccuracy / jutsuAccuracy * 100);
+        } catch (ArithmeticException e) {
+            chanceOfSuccess = 100;
+        }
+
+        if (chanceOfSuccess > 100) {
+            chanceOfSuccess = 100;
+        } else if (chanceOfSuccess < 0) {
+            chanceOfSuccess = 0;
+        }
+
+        return chanceOfSuccess;
+    }
+
+    private int calculateChanceOfError(int jutsuAccuracy, int currentAccuracy) {
+        return 100 - calculateChanceOfSuccess(jutsuAccuracy, currentAccuracy);
+    }
+
+    private final SecureRandom random = new SecureRandom();
+
+    private boolean missedTheJutsu(int chanceOfError) {
+        int n = random.nextInt(100);
+        return n < chanceOfError;
+    }
+
+    private void executeAttacks(Jutsu myJutsu, JutsuInfo myJutsuInfo, Jutsu oppJutsu,
+                                JutsuInfo oppJutsuInfo) {
+        int myChanceOfError = calculateChanceOfError(myJutsu.getAccuracy(), playerFormulas.getAccuracy());
+
+        boolean myMissed = missedTheJutsu(myChanceOfError);
+
+        int myDamage = 0;
+        int oppDamage = calcuteDamage(oppJutsu, oppJutsuInfo, npcFormulas, playerFormulas);
+
+        if (myMissed) {
+            if (oppDamage > 0) {
+                playerFormulas.subHeath(oppDamage);
+            }
+        } else {
+            myDamage = calcuteDamage(myJutsu, myJutsuInfo, playerFormulas, npcFormulas);
+
+            if (myDamage > 0 && oppDamage > 0) {
+                playerFormulas.subHeath(oppDamage);
+                npcFormulas.subHeath(myDamage);
+            } else if (myDamage > 0 && oppDamage < 0) {
+                myDamage = myDamage - Math.abs(oppDamage);
+                npcFormulas.subHeath(myDamage);
+            } else if (myDamage < 0 && oppDamage > 0) {
+                oppDamage = oppDamage - Math.abs(myDamage);
+                playerFormulas.subHeath(oppDamage);
+            }
+        }
+
+        playerFormulas.subChakra(myJutsu.getConsumesChakra());
+        playerFormulas.subStamina(myJutsu.getConsumesStamina());
+        npcFormulas.subChakra(oppJutsu.getConsumesChakra());
+        npcFormulas.subStamina(oppJutsu.getConsumesStamina());
 
         // Creates battle log
-        addLog(new BattleLog(BattleLog.Type.USES, player.getNick(), playerJutsuInfo.name, playerJutsu));
-        if (playerJutsuInfo.type == Jutsu.Type.ATK) {
-            addLog(new BattleLog(BattleLog.Type.RECEIVES, npc.getCharacter().getNick(), playerDamage));
+        addLog(new BattleLog(player.getNick(), BattleLog.Type.USES, myJutsuInfo.name, myJutsu,
+                calculateChanceOfSuccess(myJutsu.getAccuracy(), playerFormulas.getAccuracy())));
+        if (myMissed) {
+            addLog(new BattleLog(player.getNick(), BattleLog.Type.MISSED));
+        } else {
+            if (myJutsuInfo.type == Jutsu.Type.ATK) {
+                addLog(new BattleLog(npc.getCharacter().getNick(), BattleLog.Type.RECEIVES, myDamage));
+            }
         }
 
-        addLog(new BattleLog(BattleLog.Type.USES, npc.getCharacter().getNick(), npcJutsuInfo.name, npcJutsu));
-        if (npcJutsuInfo.type == Jutsu.Type.ATK) {
-            addLog(new BattleLog(BattleLog.Type.RECEIVES, player.getNick(), npcDamage));
+        addLog(new BattleLog(npc.getCharacter().getNick(), BattleLog.Type.USES, oppJutsuInfo.name,
+                oppJutsu, 100));
+        if (oppJutsuInfo.type == Jutsu.Type.ATK) {
+            addLog(new BattleLog(player.getNick(), BattleLog.Type.RECEIVES, oppDamage));
         }
 
         addLog(new BattleLog(BattleLog.Type.END));
@@ -240,7 +337,6 @@ public class DojoBatalhaLutadorViewModel extends ViewModel implements JutsusAdap
 
         return damage;
     }
-
 
     private void addLog(BattleLog log) {
         List<BattleLog> logs = mBattle.getBattleLogs();
@@ -312,18 +408,41 @@ public class DojoBatalhaLutadorViewModel extends ViewModel implements JutsusAdap
     private void updateFightStatus() {
         if ((npcFormulas.getCurrentHealth() < 10 || npcFormulas.getCurrentChakra() < 10 || npcFormulas.getCurrentStamina() < 10)
                 && (playerFormulas.getCurrentHealth() < 10 || playerFormulas.getCurrentChakra() < 10 || playerFormulas.getCurrentStamina() < 10)) {
-            status = Status.DRAWN;
+            mBattle.setStatus(Battle.Status.DRAWN);
         } else if (npcFormulas.getCurrentHealth() < 10 || npcFormulas.getCurrentChakra() < 10 || npcFormulas.getCurrentStamina() < 10) {
-            status = Status.WON;
+            mBattle.setStatus(Battle.Status.PLAYER1_WON);
         } else if (playerFormulas.getCurrentHealth() < 10 || playerFormulas.getCurrentChakra() < 10 || playerFormulas.getCurrentStamina() < 10) {
-            status = Status.LOST;
+            mBattle.setStatus(Battle.Status.PLAYER2_WON);
         } else {
-            status = Status.CONTINUE;
+            mBattle.setStatus(Battle.Status.CONTINUE);
         }
     }
 
     private void finishFight() {
-        if (status == Status.WON) {
+        if (mBattle.getStatus() == Battle.Status.PLAYER1_WON) {
+            int earnedRyous = 100;
+            int earnedExp = 344 - (29 * player.getLevel()) > 0 ? 344 - (29 * player.getLevel()) : 0;
+
+            showWonEvent.setValue(new Integer[]{earnedRyous, earnedExp});
+        } else if (mBattle.getStatus() == Battle.Status.PLAYER2_WON) {
+            showLostEvent.call();
+        } else if (mBattle.getStatus() == Battle.Status.DRAWN) {
+            showDrawnEvent.call();
+        } else {
+            playerFormulas.setCurrentHealth(0);
+            showInactivatedEvent.call();
+        }
+
+        saveBattle();
+    }
+
+    void exit() {
+        CharOn.character.setNpcDailyCombat(CharOn.character.getNpcDailyCombat() + 1);
+        CharOn.character.getFormulas().setCurrentHealth(playerFormulas.getCurrentHealth());
+        CharOn.character.getFormulas().setCurrentChakra(playerFormulas.getCurrentChakra());
+        CharOn.character.getFormulas().setCurrentStamina(playerFormulas.getCurrentStamina());
+
+        if (mBattle.getStatus() == Battle.Status.PLAYER1_WON) {
             CharOn.character.getCombatOverview().setWinsNpc(CharOn.character.getCombatOverview().getWinsNpc() + 1);
 
             int earnedRyous = 100;
@@ -332,29 +451,16 @@ public class DojoBatalhaLutadorViewModel extends ViewModel implements JutsusAdap
             CharOn.character.incrementExp(earnedExp);
             CharOn.character.addRyous(earnedRyous);
             CharOn.character.incrementScore(Score.VIT_DOJO_NPC);
-
-            showWonEvent.setValue(new Integer[]{earnedRyous, earnedExp});
-        } else if (status == Status.LOST) {
+        } else if (mBattle.getStatus() == Battle.Status.PLAYER2_WON) {
             CharOn.character.getCombatOverview().setLossesNpc(CharOn.character.getCombatOverview().getLossesNpc() + 1);
             CharOn.character.decrementScore(Score.DER_DOJO_NPC);
-            showLostEvent.call();
-        } else if (status == Status.DRAWN) {
+        } else if (mBattle.getStatus() == Battle.Status.DRAWN) {
             CharOn.character.getCombatOverview().setDrawsNpc(CharOn.character.getCombatOverview().getDrawsNpc() + 1);
-            showDrawnEvent.call();
         } else {
             CharOn.character.getCombatOverview().setLossesNpc(CharOn.character.getCombatOverview().getLossesNpc() + 1);
             CharOn.character.decrementScore(Score.DER_DOJO_NPC);
-            playerFormulas.setCurrentHealth(0);
-            showInactivatedEvent.call();
         }
 
-        CharOn.character.setNpcDailyCombat(CharOn.character.getNpcDailyCombat() + 1);
-        CharOn.character.getFormulas().setCurrentHealth(playerFormulas.getCurrentHealth());
-        CharOn.character.getFormulas().setCurrentChakra(playerFormulas.getCurrentChakra());
-        CharOn.character.getFormulas().setCurrentStamina(playerFormulas.getCurrentStamina());
-    }
-
-    void exit() {
         CharOn.character.setBattle(false);
         CharOn.character.battleId = "";
         CharacterRepository.getInstance().save(CharOn.character);
@@ -379,10 +485,14 @@ public class DojoBatalhaLutadorViewModel extends ViewModel implements JutsusAdap
             public void onFinish() {
                 countDown.set("--:--");
 
-                if (status == Status.CONTINUE) {
-                    status = Status.INACTIVATED;
-                    finishFight();
+                if (mBattle.getCurrentPlayer() != myTurn) {
+                    mBattle.setStatus(Battle.Status.PLAYER1_WON);
+                } else {
+                    mBattle.setStatus(Battle.Status.PLAYER2_WON);
+                    playerFormulas.setCurrentHealth(0);
                 }
+
+                finishFight();
             }
         }.start();
     }

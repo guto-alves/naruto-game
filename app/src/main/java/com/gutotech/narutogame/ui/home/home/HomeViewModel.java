@@ -3,7 +3,6 @@ package com.gutotech.narutogame.ui.home.home;
 import android.text.TextUtils;
 
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.gutotech.narutogame.R;
@@ -21,28 +20,22 @@ public class HomeViewModel extends ViewModel {
     public String password;
 
     private AuthRepository mAuthRepository;
-    private NewsRepository mNewsRepository;
-
-    private MutableLiveData<List<News>> news;
 
     private ResultListener mAuthListener;
 
-    public int kageEVilaAtual = 1;
-
     public HomeViewModel() {
         mAuthRepository = AuthRepository.getInstance();
-        mNewsRepository = NewsRepository.getInstance();
     }
 
     public LiveData<List<News>> getNews() {
-        return mNewsRepository.getAllNews();
+        return NewsRepository.getInstance().getAllNews();
     }
 
-    public LiveData<List<NinjaStatistics>> getNinjaStatistics() {
+    LiveData<List<NinjaStatistics>> getNinjaStatistics() {
         return NinjaStatisticsRepository.getInstance().getAllNinjaStatistics();
     }
 
-    public void setAuthListener(ResultListener authListener) {
+    void setAuthListener(ResultListener authListener) {
         mAuthListener = authListener;
     }
 
@@ -50,7 +43,7 @@ public class HomeViewModel extends ViewModel {
         mAuthListener.onStarted();
 
         if (validateFields()) {
-            mAuthRepository.loginPlayer(email, password,
+            mAuthRepository.signIn(email, password,
                     new AuthRepository.Completable() {
                         @Override
                         public void onComplete() {

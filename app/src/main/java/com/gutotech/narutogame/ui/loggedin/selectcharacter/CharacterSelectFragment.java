@@ -26,36 +26,35 @@ import com.gutotech.narutogame.utils.FragmentUtil;
 
 public class CharacterSelectFragment extends Fragment implements SectionFragment, ResultListener,
         CharacterSelectRecyclerViewAdapter.CharacterSelecetedListener {
-    private CharacterSelectViewModel viewModel;
+    private CharacterSelectViewModel mViewModel;
 
     private FragmentPersonagemSelecionarBinding binding;
-
-    private CharacterSelectRecyclerViewAdapter charactersAdapter;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        viewModel = ViewModelProviders.of(this).get(CharacterSelectViewModel.class);
-        viewModel.setListener(this);
+        mViewModel = ViewModelProviders.of(this).get(CharacterSelectViewModel.class);
+        mViewModel.setListener(this);
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_personagem_selecionar,
                 container, false);
 
-        binding.setViewModel(viewModel);
+        binding.setViewModel(mViewModel);
 
-        viewModel.getCharactersList().observe(this, characters -> {
+        CharacterSelectRecyclerViewAdapter charactersAdapter = new CharacterSelectRecyclerViewAdapter(this);
+        binding.charactersRecyclerView.setHasFixedSize(true);
+        binding.charactersRecyclerView.setAdapter(charactersAdapter);
+
+        mViewModel.getCharactersList().observe(this, characters -> {
             if (characters.size() == 0) {
                 FragmentUtil.goTo(getActivity(), new CharacterCreateFragment());
             } else {
-                charactersAdapter.setCharactersList(characters);
                 onCharacterSelected(characters.get(0));
+                charactersAdapter.setCharactersList(characters);
             }
         });
 
-        charactersAdapter = new CharacterSelectRecyclerViewAdapter(this);
-        binding.charactersRecyclerView.setAdapter(charactersAdapter);
-
-        viewModel.getRemoveCharacterEvent().observe(this, onClickListener -> {
+        mViewModel.getRemoveCharacterEvent().observe(this, onClickListener -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
             builder.setTitle(R.string.naruto_game_says);
             builder.setMessage(R.string.want_to_delete_this_ninja);
@@ -65,7 +64,7 @@ public class CharacterSelectFragment extends Fragment implements SectionFragment
             builder.show();
         });
 
-        viewModel.getShowRemovingErrorDialog().observe(this, aVoid -> {
+        mViewModel.getShowRemovingErrorDialog().observe(this, aVoid -> {
             AlertDialog.Builder builder1 = new AlertDialog.Builder(getContext());
             builder1.setTitle(R.string.warning);
             builder1.setMessage(R.string.remove_character_while_logged_in);
@@ -100,7 +99,7 @@ public class CharacterSelectFragment extends Fragment implements SectionFragment
 
     @Override
     public void onCharacterSelected(Character character) {
-        viewModel.setCharacterSelected(character);
+        mViewModel.setCharacterSelected(character);
         binding.setCharacterSelected(character);
     }
 }

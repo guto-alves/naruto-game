@@ -8,6 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Battle extends BaseObservable {
+    public enum Status {
+        CONTINUE, PLAYER1_WON, PLAYER2_WON, DRAWN
+    }
+
+    private Status status;
+
     private String id;
 
     private Character player1;
@@ -22,15 +28,13 @@ public class Battle extends BaseObservable {
 
     private long attackStart;
 
-
-    private boolean isOver;
-
     public Battle() {
     }
 
     public Battle(Character player1, Character player2) {
         this.player1 = player1;
         this.player2 = player2;
+        status = Status.CONTINUE;
     }
 
     public String getId() {
@@ -86,6 +90,7 @@ public class Battle extends BaseObservable {
         if (player1BuffsDebuffsStatus == null) {
             player1BuffsDebuffsStatus = new ArrayList<>();
         }
+
         return player1BuffsDebuffsStatus;
     }
 
@@ -97,19 +102,12 @@ public class Battle extends BaseObservable {
         if (player2BuffsDebuffsStatus == null) {
             player2BuffsDebuffsStatus = new ArrayList<>();
         }
+
         return player2BuffsDebuffsStatus;
     }
 
     public void setPlayer2BuffsDebuffsStatus(List<Jutsu> player2BuffsDebuffsStatus) {
         this.player2BuffsDebuffsStatus = player2BuffsDebuffsStatus;
-    }
-
-    public boolean isOver() {
-        return isOver;
-    }
-
-    public void setOver(boolean over) {
-        isOver = over;
     }
 
     public long getAttackStart() {
@@ -118,5 +116,13 @@ public class Battle extends BaseObservable {
 
     public void setAttackStart(long attackStart) {
         this.attackStart = attackStart;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 }

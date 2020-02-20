@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
 import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -17,6 +18,7 @@ import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.databinding.FragmentPasswordChangeBinding;
 import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.ResultListener;
+import com.gutotech.narutogame.ui.ProgressDialog;
 import com.gutotech.narutogame.utils.FragmentUtil;
 import com.gutotech.narutogame.utils.StorageUtil;
 
@@ -28,16 +30,15 @@ public class PasswordChangeFragment extends Fragment implements SectionFragment,
                              Bundle savedInstanceState) {
         PasswordChangeViewModel viewModel = ViewModelProviders.of(this)
                 .get(PasswordChangeViewModel.class);
-
-        binding = DataBindingUtil.inflate(inflater,
-                R.layout.fragment_password_change, container, false);
-        binding.setViewModel(viewModel);
-
         viewModel.setListener(this);
 
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_password_change,
+                container, false);
+        binding.setViewModel(viewModel);
+
+        StorageUtil.downloadProfileForMsg(getActivity(), binding.msgLayout.profileImageView);
         binding.msgLayout.titleTextView.setText(R.string.be_advised);
         binding.msgLayout.descriptionTextView.setText(R.string.be_advised_description);
-        StorageUtil.downloadProfileForMsg(getActivity(), binding.msgLayout.profileImageView);
 
         FragmentUtil.setSectionTitle(getActivity(), R.string.section_change_password);
 
@@ -46,28 +47,32 @@ public class PasswordChangeFragment extends Fragment implements SectionFragment,
 
     private void showAlert(@StringRes int resId) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle("Naruto Game says:");
+        builder.setTitle(R.string.naruto_game_says);
         builder.setMessage(resId);
         builder.setPositiveButton("OK", null);
         builder.setCancelable(false);
         builder.create().show();
     }
 
+    private ProgressDialog progressDialog = new ProgressDialog();
+
     @Override
     public void onStarted() {
-
+        progressDialog.show(getFragmentManager(), "ProgressDialog");
     }
 
     @Override
     public void onSuccess() {
+        StorageUtil.downloadProfileForMsg(getActivity(), binding.passwordChangedMsgLayout.profileImageView);
         binding.passwordChangedMsgLayout.titleTextView.setText(R.string.congratulations);
         binding.passwordChangedMsgLayout.descriptionTextView.setText(R.string.password_changed);
-        StorageUtil.downloadProfileForMsg(getActivity(), binding.passwordChangedMsgLayout.profileImageView);
         binding.passwordChangedMsgLayout.msgConstraintLayout.setVisibility(View.VISIBLE);
+        progressDialog.dismiss();
     }
 
     @Override
     public void onFailure(int resId) {
+        progressDialog.dismiss();
         showAlert(resId);
     }
 

@@ -18,15 +18,17 @@ public class FragmentUtil {
     }
 
     public static void goTo(FragmentActivity activity, Fragment fragment) {
-        FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.container, fragment);
-        transaction.commit();
+        goTo(activity, fragment, false);
     }
 
-    public static void goToAndAddBack(FragmentActivity activity, Fragment fragment, int a) {
-        activity.getSupportFragmentManager().beginTransaction()
-                .replace(R.id.container, fragment)
-                .addToBackStack(null)
-                .commit();
+    public static void goTo(FragmentActivity activity, Fragment fragment, boolean addToBackStack) {
+        FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.container, fragment);
+
+        if (addToBackStack) {
+            transaction.addToBackStack(null);
+        }
+
+        transaction.commit();
     }
 }

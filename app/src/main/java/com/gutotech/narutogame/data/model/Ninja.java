@@ -113,6 +113,7 @@ public enum Ninja {
     SARADA(236, "Sarada Uchiha", 13),
     MITSUKI(237, "Mitsuki", 7),
     KAGUYA(238, "Kaguya Ootsutsuki", 2),
+	SHIRA(240, "Shira", 6),
     INOJIN(245, "Inojin Yamanaka", 7),
     SHIKADI(246, "Shikadai Nara", 2),
     CHOUCHOU(247, "Chouchou Akimichi", 5),

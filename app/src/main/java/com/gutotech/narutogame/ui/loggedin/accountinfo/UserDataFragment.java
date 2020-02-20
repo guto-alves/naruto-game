@@ -40,7 +40,6 @@ public class UserDataFragment extends Fragment implements SectionFragment, Resul
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_usuario_dados,
                 container, false);
 
-        StorageUtil.downloadProfileForMsg(getActivity(), mBinding.msgLayout.profileImageView);
         mBinding.msgLayout.titleTextView.setText(R.string.keep_your_info_updated);
         mBinding.msgLayout.descriptionTextView.setText(R.string.user_info_updated_description);
 

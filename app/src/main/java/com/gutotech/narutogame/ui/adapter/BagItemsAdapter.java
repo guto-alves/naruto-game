@@ -5,7 +5,6 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,11 +12,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.gutotech.narutogame.R;
+import com.gutotech.narutogame.data.model.ShopItem;
 import com.gutotech.narutogame.utils.StorageUtil;
-import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.model.Ramen;
 
-public class BagRamensItemAdapter extends RecyclerView.Adapter<BagRamensItemAdapter.ViewHolder> {
+import java.util.List;
+
+public class BagItemsAdapter extends RecyclerView.Adapter<BagItemsAdapter.ViewHolder> {
+
+    public interface OnItemClickListener {
+        void onItemClick(ShopItem itemClicked, int position);
+    }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private ImageView itemImageView;
@@ -31,10 +36,14 @@ public class BagRamensItemAdapter extends RecyclerView.Adapter<BagRamensItemAdap
         }
     }
 
-    private Context context;
+    private Context mContext;
+    private OnItemClickListener mOnItemClickListener;
+    private List<ShopItem> mItems;
 
-    public BagRamensItemAdapter(Context context) {
-        this.context = context;
+    public BagItemsAdapter(Context context, List<ShopItem> items, OnItemClickListener l) {
+        mContext = context;
+        mItems = items;
+        mOnItemClickListener = l;
     }
 
     @NonNull
@@ -47,24 +56,25 @@ public class BagRamensItemAdapter extends RecyclerView.Adapter<BagRamensItemAdap
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int i) {
-        if (CharOn.character.getBag().getRamensList() != null) {
-            Ramen ramen = CharOn.character.getBag().getRamensList().get(i);
+        if (mItems != null) {
+            ShopItem item = mItems.get(i);
 
-            Log.i("BagTest", "" + ramen.getImage());
-            StorageUtil.downloadRamen(context, holder.itemImageView, ramen.getImage());
+            if (item instanceof Ramen) {
+                StorageUtil.downloadRamen(mContext, holder.itemImageView, item.getImage());
+            } else {
+                StorageUtil.downloadScroll(mContext, holder.itemImageView, item.getImage());
+            }
 
-            holder.quantityTextView.setText(context.getString(
-                    R.string.bag_item_quantity, ramen.getInventory()));
+            holder.quantityTextView.setText(mContext.getString(
+                    R.string.item_quantity, item.getInventory())
+            );
 
-            holder.itemView.setOnClickListener(v -> {
-
-            });
+            holder.itemView.setOnClickListener(v -> mOnItemClickListener.onItemClick(item, i));
         }
     }
 
     @Override
     public int getItemCount() {
-        return CharOn.character.getBag().getRamensList() != null ?
-                CharOn.character.getBag().getRamensList().size() : 0;
+        return mItems.size();
     }
 }

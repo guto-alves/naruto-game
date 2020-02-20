@@ -21,36 +21,37 @@
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_deslogado">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/nav_header_height"
-            android:background="@drawable/layout_menu_repete">
+            android:background="@drawable/layout_menu_repete"
+            android:fillViewport="true">
 
-            <ExpandableListView
-                android:id="@+id/menuExpandableListView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="8dp"
-                android:nestedScrollingEnabled="true"
-                app:layout_constraintBottom_toTopOf="@+id/imageView13"
-                app:layout_constraintEnd_toEndOf="@id/imageView13"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:listfooter="@layout/expandable_list_group"
-                tools:listitem="@layout/expandable_list_child" />
-
-            <ImageView
-                android:id="@+id/imageView13"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:scaleType="fitXY"
-                android:src="@drawable/layout_menu_fim"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                android:gravity="center"
+                android:orientation="vertical">
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <ExpandableListView
+                    android:id="@+id/menuExpandableListView"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="8dp"
+                    android:nestedScrollingEnabled="true"
+                    tools:listfooter="@layout/expandable_list_group"
+                    tools:listitem="@layout/expandable_list_child" />
+
+                <ImageView
+                    android:id="@+id/imageView13"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/layout_menu_fim" />
+
+            </LinearLayout>
+        </ScrollView>
 
     </com.google.android.material.navigation.NavigationView>
 

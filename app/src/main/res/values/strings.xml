@@ -271,24 +271,24 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="combat_overview">Combat Overview</string>
     <string name="resume_of_missions">Resume of Missions</string>
     <string name="extras_information">Extras Information</string>
-    <string name="label_total_de_horas_jogadas">Total de Horas Jogadas:</string>
-    <string name="label_total_de_treino">Total de Treino:</string>
-    <string name="label_pontos_distribu_dos">Pontos Distribuídos:</string>
-    <string name="label_wins_npc">Vitórias NPC:</string>
+    <string name="label_total_de_horas_jogadas">Total Hours Played:</string>
+    <string name="label_total_de_treino">Total Training:</string>
+    <string name="label_pontos_distribu_dos">Distributed Points:</string>
+    <string name="label_wins_npc">NPC Wins:</string>
     <string name="label_wins_dojo_pvp">Dojo PVP Wins:</string>
-    <string name="label_derrotas_npc">Derrotas NPC:</string>
+    <string name="label_derrotas_npc">NPC Losses:</string>
     <string name="label_rank_s">Rank S:</string>
     <string name="label_rank_a">Rank A:</string>
     <string name="label_rank_b">Rank B:</string>
     <string name="label_rank_c">Rank C:</string>
     <string name="label_rank_d">Rank D:</string>
     <string name="label_tasks">Tasks:</string>
-    <string name="label_draws_pvp">Empates PVP:</string>
-    <string name="label_draws_npc">Empates NPC:</string>
+    <string name="label_draws_pvp">PVP Draws:</string>
+    <string name="label_draws_npc">NPC Draws:</string>
     <string name="attributes">Attributes</string>
     <string name="formulas">Formulas</string>
-    <string name="label_wins_map_pvp">Vitórias Mapa PVP:</string>
-    <string name="label_derrotas_dojo_pvp">Derrotas Dojo PVP:</string>
+    <string name="label_wins_map_pvp">PVP Map Wins:</string>
+    <string name="label_derrotas_dojo_pvp">PVP Dojo Losses:</string>
     <string name="attribute_training_description">Your character is capable of attribute training
         since Level 1, but this training has a daily limit. The more you train, better will be your
         results in battles, in dojo NPC even with your enemies. The days NOT trained, will be
@@ -373,8 +373,8 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="health">Health</string>
     <string name="chakra" translatable="false">Chakra</string>
     <string name="stamina" translatable="false">Stamina</string>
-    <string name="defense_tai_buk">Defense (Tai/Buk)</string>
-    <string name="defense_nin_gen">Defense (Nin/Gen)</string>
+    <string name="defense_tai_buk">Defense ( Tai / Buk )</string>
+    <string name="defense_nin_gen">Defense ( Nin /Gen )</string>
     <string name="accuracy">Accuracy</string>
     <string name="atk_tai_buk">Atk. (Tai/Buk)</string>
     <string name="atk_nin_gen">Atk. (Nin/Gen)</string>
@@ -412,7 +412,7 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="warning_1">Warning</string>
     <string name="about_the_ninja_jutsus">ABOUT THE NINJA JUTSUS</string>
     <string name="jutsu">Jutsu</string>
-    <string name="label_losses_map_pvp">Derrotas Mapa PVP:</string>
+    <string name="label_losses_map_pvp">PVP Map Losses:</string>
     <string name="ticket_created">Ticket de Suporte Criado com Sucesso</string>
     <string name="welcome_to_support_system">BEM VINDO AO SISTEMA DE SUPORTE</string>
     <string name="welcome_to_support_system_description">Bem vindo ao Novo Sistema do Suporte, onde
@@ -523,7 +523,7 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="konoha_senpuu_des">A gyratory flying kick, followed by a tripping kick.</string>
     <string name="konoha_senpuu">Konoha Senpuu</string>
     <string name="about_the_ninja_jutsus_des">Learn new Jutsus to fight in duels and the best level for that scope the requirements of each jutsu.</string>
-    <string name="jutsus_that_not_are_in_the_same_class"> (jutsu that are not in the same class of your character have folded requirements.)</string>
+    <string name="jutsus_that_not_are_in_the_same_class"> (jutsu that are not in the same class of your character have folded requirements)</string>
     <string name="congratulations_you_made_it">CONGRATULATIONS! YOU MADE IT!</string>
     <string name="lerned_a_new_jutsu">Você se esforçou e aprendeu o jutsu</string>
     <string name="keep_training">Keep it up and learn new jutsus to grow strong!</string>
@@ -601,17 +601,18 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="to_preceed"> to proceed</string>
     <string name="waiting_your_move">Waiting your Move</string>
     <string name="empate">DRAW!</string>
-    <string name="drawn_description">Por ambos estarem muito cansados, o combate terminou em empate!\n\nGo to</string>
+    <string name="drawn_description">Because they were both very tired, the match ended in a draw!\n\nGo to</string>
     <string name="combat_won_description">Nicely Done! You have won the battle!\nYour reward is RY$ %d and %d experience points\n\nGo to back</string>
     <string name="error_updating_name">Error updating name</string>
-    <string name="error_requires_recent_athentication">This operation is sensitive and requires recent authentication. Log in again before retrying this request.</string>
+    <string name="error_requires_recent_athentication">This operation is sensitive and requires
+        recent authentication. Log in again before retrying this request.</string>
     <string name="error_updating_password">Error updating password</string>
     <string name="label_exp">EXP: %d/%d</string>
     <string name="label_lvl">LVL</string>
     <string name="uses">uses</string>
     <string name="receives">receives</string>
     <string name="of_damage">%d of damage</string>
-    <string name="missed">Missed</string>
+    <string name="missed">missed</string>
     <string name="attributes_summary">Attributes Summary</string>
     <string name="label_atk_tai_buk">Attack ( Tai / Buk ): %d</string>
     <string name="label_def_tai_buk">Defense ( Tai / Buk ): %d</string>
@@ -682,7 +683,8 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="mission_completely">MISSION COMPLETELY SUCCESSFUL!</string>
     <string name="experience_points">Experience Points</string>
     <string name="label_experience_points">%d Experience Points</string>
-    <string name="question_cancel_mission">Do you really want to cancel this mission? All your time spent so far will be wasted.</string>
+    <string name="question_cancel_mission">Do you really want to cancel this mission? All your time
+        spent so far will be wasted.</string>
     <string name="count_down_default">Mission completion in: —:—:—</string>
     <string name="ninja_successfully_created">NINJA SUCCESSFULLY CREATED</string>
     <string name="congratulations_character_created">Congratulations you just created your character
@@ -707,11 +709,53 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="buffs_and_debuffs"><![CDATA[Buffs & Debuffs]]></string>
     <string name="weapons">Weapons</string>
     <string name="label_accuracy2">Accuracy:</string>
-    <string name="label_defense_nin_gen">Defense ( Nin / Gen):</string>
-    <string name="label_defense_tai_buk">Defense ( Tai / Buk):</string>
+    <string name="label_defense_nin_gen">Defense ( Nin / Gen ):</string>
+    <string name="label_defense_tai_buk">Defense ( Tai / Buk ):</string>
     <string name="label_attack_nin_gen">Attack ( Nin / Gen ):</string>
     <string name="label_attack_tai_buk">Attack ( Tai / Buk ):</string>
     <string name="item_image">Item image</string>
+    <string name="about_formulas">ABOUT FORMULAS</string>
+    <string name="about_formulas_description">The formulas are displayed according to your class,
+        for example Stamina, if your class is TAI, obviously the TAI points will benefit you more
+        than the points in BUK, if you were BUK, of course the points in BUK would be worth more.</string>
+    <string name="paid_hospital">After making the payment the nurse brought in the designated
+        specialist and you were completely healed.</string>
+    <string name="pay_specialist_description">Pay for quality care, the specialist costs %d Ryous
+        and you are immediately cured.</string>
+    <string name="wait_for_a_free_medical_ninja">Or you can wait for a free medical ninja on duty
+        to save you, recovering your character completely in a maximum of 10 minutes. (20% of your
+        total attributes every 2 minutes)</string>
+    <string name="section_hospital_room">HOSPITAL ROOM</string>
+    <string name="hospital">Hospital</string>
+    <string name="game_routines">Game Routines</string>
+    <string name="atualiza_o_ranking_de_ninjas">Updates the ranking of ninjas</string>
+    <string name="atualiza_o_ranking_de_equipes_e_conquista">Updates team ranking</string>
+    <string name="various_routines_description">Releases training attributes. Clears the daily exp
+        earned on the teams. Renew daily NPC combats and duel training counters.</string>
+    <string name="recovers_description">Recovers 20% of its attributes.</string>
+    <string name="label_healing">Healing: %s</string>
+    <string name="various_routines">Various Routines: %s</string>
+    <string name="ninja_power">Ninja Power</string>
+    <string name="attack_tai_buk">Attack ( Tai / Buk )</string>
+    <string name="attack_nin_gen">Attack ( Nin / Gen )</string>
+    <string name="jutsu_is_not_yet_available">The selected jutsu is not yet available</string>
+    <string name="loyalty_rewards">LOYALTY REWARDS</string>
+    <string name="loyalty_rewards_description">By logging in daily you can collect rewards for your
+        character. You must log into the game for 8 days in a row to get all the rewards and start
+        over. If you do not log in one of the days, the counter will return to the first day.</string>
+    <string name="effects_on_your_character">Effects on your character</string>
+    <string name="effects_on_your_enemy">Effects on your enemy</string>
+    <string name="it_is_not_your_turn_to_attack">It is not your turn to attack!</string>
+    <string name="dont_have_chakra_to_use_this_jutsu">You don\'t have enough Chakra and/or Stamina to use this jutsu.</string>
+    <string name="jutsu_icon">Jutsu icon</string>
+    <string name="dojo_npc">Dojo NPC</string>
+    <string name="dojo_pvp">Dojo PVP</string>
+    <string name="dojo_pvp_fighters_description">Here you can duel against opponents from all the
+        villages in the game, automatically the game will try to form a battle against an opponent
+        of the same level as yours, if you don\'t have it at the moment, we will give you a target
+        with 1 level less or more than your.</string>
+    <string name="dojo_pvp_battles">DOJO PVP BATTLES</string>
+    <string name="chance_of_error">Chance of Error)</string>
 
 
 </resources>

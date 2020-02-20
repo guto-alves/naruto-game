@@ -17,8 +17,7 @@
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/layout_comidas_nissin" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:layout_width="0dp"
@@ -35,7 +34,6 @@
             android:id="@+id/nameTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Dynamic Kick"
             android:textColor="#FFD274"
             android:textSize="12sp"
             android:textStyle="bold" />
@@ -44,7 +42,6 @@
             android:id="@+id/descriptionTextView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Um chute fortíssimo, capaz de esmagar uma pedra."
             android:textColor="#BFD4DC"
             android:textSize="10sp" />
     </LinearLayout>

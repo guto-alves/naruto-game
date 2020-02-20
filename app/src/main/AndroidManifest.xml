@@ -12,11 +12,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ui.MaintenanceActivity"></activity>
         <activity
             android:name=".ui.SplashActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="landscape"
             android:theme="@style/Splash">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,14 +27,17 @@
         <activity
             android:name=".ui.playing.PlayingActivity"
             android:label="@string/title_activity_personagem_logado"
+            android:screenOrientation="landscape"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.loggedin.LoggedInActivity"
             android:label="@string/title_activity_logado_selecionar"
+            android:screenOrientation="landscape"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.home.HomeActivity"
             android:label="@string/app_name"
+            android:screenOrientation="landscape"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>
 

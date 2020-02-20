@@ -1,7 +1,9 @@
 package com.gutotech.narutogame.utils;
 
 import android.content.Context;
+
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -30,9 +32,9 @@ public class RecyclerItemClickListener implements RecyclerView.OnItemTouchListen
     }
 
     public interface OnItemClickListener extends AdapterView.OnItemClickListener {
-         void onItemClick(View view, int position);
+        void onItemClick(View view, int position);
 
-         void onLongItemClick(View view, int position);
+        void onLongItemClick(View view, int position);
     }
 
     public RecyclerItemClickListener(Context context, final RecyclerView recyclerView, OnItemClickListener listener) {
@@ -51,6 +53,5 @@ public class RecyclerItemClickListener implements RecyclerView.OnItemTouchListen
                 }
             }
         });
-
     }
 }

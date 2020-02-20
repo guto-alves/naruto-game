@@ -9,7 +9,7 @@ import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.model.Classe;
 import com.gutotech.narutogame.data.model.Formulas;
 import com.gutotech.narutogame.data.model.Jutsu;
-import com.gutotech.narutogame.data.model.Jutsus;
+import com.gutotech.narutogame.data.model.JutsuInfo;
 import com.gutotech.narutogame.data.repository.CharacterRepository;
 import com.gutotech.narutogame.data.repository.JutsuRepository;
 import com.gutotech.narutogame.ui.adapter.JutsusLearnAdapter;
@@ -32,7 +32,7 @@ public class AcademyJutsuViewModel extends ViewModel
         filterJutsus();
     }
 
-    public LiveData<List<Jutsu>> getJutsus() {
+    LiveData<List<Jutsu>> getJutsus() {
         return mJutsus;
     }
 
@@ -40,11 +40,11 @@ public class AcademyJutsuViewModel extends ViewModel
         return mClassSelected;
     }
 
-    public LiveData<Integer> getShowCongratulationsEvent() {
+    LiveData<Integer> getShowCongratulationsEvent() {
         return showCongratulationsEvent;
     }
 
-    public LiveData<Integer> getShowWarningEvent() {
+    LiveData<Integer> getShowWarningEvent() {
         return showWarningEvent;
     }
 
@@ -53,7 +53,7 @@ public class AcademyJutsuViewModel extends ViewModel
         filterJutsus();
     }
 
-    public void filterJutsus() {
+    private void filterJutsus() {
         JutsuRepository.getInstance().filterJutsus(mClassSelected.getValue(),
                 jutsus -> mJutsus.postValue(jutsus));
     }
@@ -61,14 +61,14 @@ public class AcademyJutsuViewModel extends ViewModel
     @Override
     public void onTrainClick(Jutsu jutsu) {
         Formulas formulas = CharOn.character.getAttributes().getFormulas();
-        if (formulas.getChakraAtual() >= jutsu.getConsumesChakra()) {
-            if (formulas.getStaminaAtual() >= jutsu.getConsumesStamina()) {
+        if (formulas.getCurrentChakra() >= jutsu.getConsumesChakra() * 2) {
+            if (formulas.getCurrentStamina() >= jutsu.getConsumesStamina() * 2) {
                 formulas.subChakra(jutsu.getConsumesChakra() * 2);
                 formulas.subStamina(jutsu.getConsumesStamina() * 2);
                 CharOn.character.getJutsus().add(jutsu);
-                CharacterRepository.getInstance().saveCharacter(CharOn.character);
+                CharacterRepository.getInstance().save(CharOn.character);
 
-                showCongratulationsEvent.setValue(Jutsus.valueOf(jutsu.getName()).name);
+                showCongratulationsEvent.setValue(JutsuInfo.valueOf(jutsu.getName()).name);
                 filterJutsus();
             } else {
                 showWarningEvent.setValue(R.string.stamina);

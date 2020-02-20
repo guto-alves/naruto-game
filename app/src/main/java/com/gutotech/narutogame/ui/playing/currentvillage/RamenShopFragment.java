@@ -13,19 +13,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.gutotech.narutogame.R;
-import com.gutotech.narutogame.data.model.Requirement;
 import com.gutotech.narutogame.databinding.FragmentRamemShopBinding;
 import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.WarningDialog;
 import com.gutotech.narutogame.ui.adapter.ItemShopRecyclerAdapter;
 import com.gutotech.narutogame.data.model.ShopUtils;
-import com.gutotech.narutogame.ui.playing.RequirementDialogFragment;
 import com.gutotech.narutogame.utils.FragmentUtil;
 
-import java.util.List;
-
-public class RamenShopFragment extends Fragment implements SectionFragment,
-        ItemShopRecyclerAdapter.OnRequirementsClickListener {
+public class RamenShopFragment extends Fragment implements SectionFragment {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -37,14 +32,14 @@ public class RamenShopFragment extends Fragment implements SectionFragment,
                 .get(RamenShopViewModel.class);
         binding.setViewModel(viewModel);
 
-        binding.ramensRecyclerView.setHasFixedSize(true);
         ItemShopRecyclerAdapter adapter = new ItemShopRecyclerAdapter(getActivity(),
-                ShopUtils.getRamens(), viewModel, this);
+                getFragmentManager(), viewModel);
+        binding.ramensRecyclerView.setHasFixedSize(true);
         binding.ramensRecyclerView.setAdapter(adapter);
+        adapter.setItemsList(ShopUtils.getRamens());
 
-        viewModel.getShowWarningEvent().observe(this, resId -> {
-            showWarningDialog(getString(resId));
-        });
+        viewModel.getShowWarningEvent().observe(this, resId ->
+                showWarningDialog(getString(resId)));
 
         FragmentUtil.setSectionTitle(getActivity(), R.string.section_ramen_shop);
         return binding.getRoot();
@@ -53,12 +48,6 @@ public class RamenShopFragment extends Fragment implements SectionFragment,
     private void showWarningDialog(String warning) {
         DialogFragment warningDialog = new WarningDialog(warning);
         warningDialog.show(getFragmentManager(), "WarningDialog");
-    }
-
-    @Override
-    public void onRequirementsClick(List<Requirement> requirements) {
-        DialogFragment dialog = new RequirementDialogFragment(requirements);
-        dialog.show(getFragmentManager(), "RequirementDialogFragment");
     }
 
     @Override

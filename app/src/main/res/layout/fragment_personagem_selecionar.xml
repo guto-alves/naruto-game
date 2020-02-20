@@ -27,8 +27,7 @@
 
             <ImageView
                 android:id="@+id/profileImageView"
-                currentProfile="@{characterSelected.profile}"
-                ninjaId="@{characterSelected.ninja.id}"
+                loadProfile="@{characterSelected.profilePath}"
                 android:layout_width="200dp"
                 android:layout_height="213dp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -234,7 +233,7 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/charactersRecyclerView"
-                android:layout_width="387dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"

@@ -24,8 +24,10 @@ import android.view.animation.AnimationUtils;
 import android.widget.PopupWindow;
 
 import com.gutotech.narutogame.R;
+import com.gutotech.narutogame.data.model.BattleLog;
 import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.model.Formulas;
+import com.gutotech.narutogame.data.model.Jutsu;
 import com.gutotech.narutogame.data.repository.BattleRepository;
 import com.gutotech.narutogame.databinding.FragmentDojoBatalhaLutadorBinding;
 import com.gutotech.narutogame.databinding.PopupAttributesStatusBinding;
@@ -66,8 +68,18 @@ public class DojoBatalhaLutadorFragment extends Fragment implements SectionFragm
             mBinding.oppStatusImageView.setOnClickListener(v ->
                     showStatus(v, mViewModel.getNpcFormulas()));
 
+            mBinding.myBuffsDebuffsStatusRecyclerView.setHasFixedSize(true);
+            BuffsDebuffStatusAdapter adapter = new BuffsDebuffStatusAdapter(getContext());
+            mBinding.myBuffsDebuffsStatusRecyclerView.setAdapter(adapter);
+            mViewModel.getMyBuffsDebuffsStatus().observe(this, adapter::setBuffsDebuffsList);
+
+            mBinding.oppBuffsDebuffsStatusRecyclerView.setHasFixedSize(true);
+            BuffsDebuffStatusAdapter adapter2 = new BuffsDebuffStatusAdapter(getContext());
+            mBinding.oppBuffsDebuffsStatusRecyclerView.setAdapter(adapter2);
+            mViewModel.getOppBuffsDebuffsStatus().observe(this, adapter2::setBuffsDebuffsList);
+
             mBinding.battleLogRecyclerView.setHasFixedSize(true);
-            BattleLogAdapter logAdapter = new BattleLogAdapter(getActivity());
+            BattleLogAdapter logAdapter = new BattleLogAdapter(getActivity(), this::showJutsuInfo);
             mBinding.battleLogRecyclerView.setAdapter(logAdapter);
             mViewModel.getBattleLogs().observe(this, battlesLogs -> {
                 logAdapter.setBattleLogs(battlesLogs);
@@ -79,15 +91,7 @@ public class DojoBatalhaLutadorFragment extends Fragment implements SectionFragm
             mBinding.myJutsusRecyclerView.setAdapter(jutsusAdapter);
             mViewModel.getJutsus().observe(this, jutsusAdapter::setJutsusList);
 
-            mBinding.myBuffsDebuffsStatusRecyclerView.setHasFixedSize(true);
-            BuffsDebuffStatusAdapter adapter = new BuffsDebuffStatusAdapter();
-            mBinding.myBuffsDebuffsStatusRecyclerView.setAdapter(adapter);
-            mViewModel.getMyBuffsDebuffsStatus().observe(this, adapter::setBuffsDebuffsList);
-
-            mBinding.oppBuffsDebuffsStatusRecyclerView.setHasFixedSize(true);
-            BuffsDebuffStatusAdapter adapter2 = new BuffsDebuffStatusAdapter();
-            mBinding.oppBuffsDebuffsStatusRecyclerView.setAdapter(adapter2);
-            mViewModel.getOppBuffsDebuffsStatus().observe(this, adapter2::setBuffsDebuffsList);
+            mViewModel.showJutsuInfoPopupEvent.observe(this, this::showJutsuInfo);
 
             mViewModel.showWarningDialogEvent.observe(this, this::showWarningDialog);
 
@@ -205,6 +209,18 @@ public class DojoBatalhaLutadorFragment extends Fragment implements SectionFragm
         popupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         popupWindow.setOutsideTouchable(true);
         popupWindow.showAsDropDown(view);
+    }
+
+    private void showJutsuInfo(Object[] objects) {
+        JutsuInfoPopupWindow jutsuInfoPopupWindow = new JutsuInfoPopupWindow(getContext());
+        jutsuInfoPopupWindow.setJutsu((Jutsu) objects[1], (Integer) objects[0]);
+        jutsuInfoPopupWindow.showAsDropDown((View) objects[2]);
+    }
+
+    private void showJutsuInfo(View anchor, BattleLog battleLog) {
+        JutsuInfoPopupWindow jutsuInfoPopupWindow = new JutsuInfoPopupWindow(getContext());
+        jutsuInfoPopupWindow.setBattleLog(battleLog);
+        jutsuInfoPopupWindow.showAsDropDown(anchor);
     }
 
     private void showWarningDialog(@StringRes int resId) {

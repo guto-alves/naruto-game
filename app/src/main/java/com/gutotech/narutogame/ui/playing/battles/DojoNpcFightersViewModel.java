@@ -71,6 +71,7 @@ public class DojoNpcFightersViewModel extends ViewModel {
     public void onAcceptBattleButtonPressed() {
         mBattle.setId(BattleRepository.getInstance().generateId("DOJO"));
         mBattle.setPlayer1(CharOn.character);
+        mBattle.setStatus(Battle.Status.CONTINUE);
         mBattle.setAttackStart(DateCustom.getTimeInMillis());
 
         BattleRepository.getInstance().save(mBattle);

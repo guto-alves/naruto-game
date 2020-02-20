@@ -520,9 +520,9 @@
     <string name="label_exp">EXP: %d/%d</string>
     <string name="label_lvl">LVL</string>
     <string name="uses">usa</string>
-    <string name="receives">%s recebe %d de dano</string>
+    <string name="receives">recebe</string>
     <string name="of_damage">%d de dano</string>
-    <string name="missed">Errou o golpe</string>
+    <string name="missed">errou o golpe</string>
     <string name="attributes_summary">Resumo dos Atributos</string>
     <string name="label_atk_tai_buk">Ataque ( Tai / Buk ): %d</string>
     <string name="label_def_nin_gen">Defesa ( Nin / Gen ): %d</string>
@@ -621,10 +621,47 @@
     <string name="buffs_and_debuffs"><![CDATA[Buffs & Debuffs]]></string>
     <string name="weapons">Armas</string>
     <string name="label_accuracy2">Precisão:</string>
-    <string name="label_defense_nin_gen">Defesa ( Nin / Gen):</string>
-    <string name="label_defense_tai_buk">Defesa ( Tai / Buk):</string>
+    <string name="label_defense_nin_gen">Defesa ( Nin / Gen ):</string>
+    <string name="label_defense_tai_buk">Defesa ( Tai / Buk ):</string>
     <string name="label_attack_nin_gen">Ataque ( Nin / Gen ):</string>
     <string name="label_attack_tai_buk">Ataque ( Tai / Buk ):</string>
     <string name="item_image">Imagem do item</string>
+    <string name="about_formulas">SOBRE AS FÓRMULAS</string>
+    <string name="about_formulas_description">As fórmulas são exibidas de acordo com a sua classe,
+        por exemplo a Stamina, se sua classe é TAI, obviamente os pontos de TAI vão beneficiar mais
+        você do que os pontos em BUK, se você fosse BUK, claro que os pontos em BUK valeriam mais.</string>
+    <string name="paid_hospital">Após ter feito o pagamento a enfermeira trouxe o especialista
+        designado e você foi curado completamente.</string>
+    <string name="pay_specialist_description">Pague para um atendimento de qualidade, o especialista
+        custa %d Ryous e você está imediatamente curado.</string>
+    <string name="wait_for_a_free_medical_ninja">Ou você pode esperar gratuitamente um ninja médico
+        de plantão te salvar, recuperando seu personagem por completo em no máximo 10 minutos. (
+        20% do total de seus atributos à cada 2 minutos )</string>
+    <string name="section_hospital_room">QUARTO DO HOSPITAL</string>
+    <string name="hospital">Hospital</string>
+    <string name="game_routines">Rotinas do Jogo</string>
+    <string name="atualiza_o_ranking_de_ninjas">Atualiza o ranking de ninjas</string>
+    <string name="atualiza_o_ranking_de_equipes_e_conquista">Atualiza o ranking de equipes</string>
+    <string name="various_routines_description">Libera o treino de atributos. Limpa o exp diário
+        ganho nas equipes. Renova os combates npcs diários e os contadores de treino dos duelos.</string>
+    <string name="recovers_description">Recupera 20% dos seus atributos.</string>
+    <string name="label_healing">Healing: %s</string>
+    <string name="various_routines">Diversas Rotinas: %s</string>
+    <string name="ninja_power">Poder Ninja</string>
+    <string name="attack_tai_buk">Ataque ( Tai / Buk )</string>
+    <string name="attack_nin_gen">Ataque ( Nin / Gen )</string>
+    <string name="jutsu_is_not_yet_available">Jutsu selecionado ainda não está diponível!</string>
+    <string name="loyalty_rewards">RECOMPENSAS DE FIDELIDADE</string>
+    <string name="loyalty_rewards_description">Ao logar diariamente você pode coletar recompensas para seu personagem. Você deve entrar no jogo durante 8 dias seguidos para conseguir todas as recompensas e começar de novo. Caso você não logue um dos dias, o contador irá retornar para o primeiro dia.</string>
+    <string name="effects_on_your_character">Efeitos no seu personagem</string>
+    <string name="effects_on_your_enemy">Efeitos no seu inimigo</string>
+    <string name="it_is_not_your_turn_to_attack">Não é sua vez de atacar!</string>
+    <string name="dont_have_chakra_to_use_this_jutsu">Você não tem Chakra e/ou Stamina suficiente para usar esse jutsu.</string>
+    <string name="jutsu_icon">Jutsu icone</string>
+    <string name="dojo_npc">Dojo NPC</string>
+    <string name="dojo_pvp">Dojo PVP</string>
+    <string name="dojo_pvp_fighters_description">Aqui você pode duelar contra os oponentes de todas as vilas do jogo, de forma automatica o jogo tentará formar uma batalha contra um adversário do mesmo level que o seu, caso não tenha no momento, daremos um alvo com 1 level a menos ou mais que o seu.</string>
+    <string name="dojo_pvp_battles">BATALHAS DO DOJO PVP</string>
+    <string name="chance_of_error">de Chance de Erro)</string>
 
 </resources>

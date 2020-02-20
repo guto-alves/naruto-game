@@ -4,21 +4,26 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.CharOn;
-import com.gutotech.narutogame.data.model.Jutsus;
+import com.gutotech.narutogame.data.model.JutsuInfo;
 import com.gutotech.narutogame.data.model.Requirement;
+import com.gutotech.narutogame.databinding.PopupLearnJutsuInfoBinding;
 import com.gutotech.narutogame.ui.playing.RequirementDialogFragment;
 import com.gutotech.narutogame.utils.StorageUtil;
 import com.gutotech.narutogame.data.model.Jutsu;
@@ -76,26 +81,24 @@ public class JutsusLearnAdapter extends RecyclerView.Adapter<JutsusLearnAdapter.
     public void onBindViewHolder(@NonNull final ViewHolder holder, int i) {
         if (mJutsusList != null) {
             final Jutsu jutsu = mJutsusList.get(i);
+            JutsuInfo jutsuInfo = jutsu.getJutsuInfo();
 
-            Jutsus jutsus = Jutsus.valueOf(jutsu.getName());
-            StorageUtil.downloadJutsu(holder.jutsuImageView, jutsus.image);
-            holder.nameTextView.setText(jutsus.name);
-            holder.descriptionTextView.setText(jutsus.description);
+            StorageUtil.downloadJutsu(holder.jutsuImageView, jutsuInfo.image);
+            holder.nameTextView.setText(jutsuInfo.name);
+            holder.descriptionTextView.setText(jutsuInfo.description);
 
-            holder.jutsuImageView.setOnClickListener(v -> {
+            holder.jutsuImageView.setOnClickListener(v -> showJutsuInfo(v, jutsu, jutsuInfo));
 
-            });
+            boolean folded = jutsu.getClasse() != CharOn.character.getClasse();
 
-            boolean folded = jutsus.classe != CharOn.character.getClasse();
-
-            if (validateRequirements(jutsus.requirements, folded)) {
+            if (validateRequirements(jutsuInfo.requirements, folded)) {
                 holder.trainButton.setEnabled(true);
             } else {
                 holder.trainButton.setEnabled(false);
             }
 
             holder.requerImageView.setOnClickListener(v -> {
-                DialogFragment dialog = new RequirementDialogFragment(jutsus.requirements, folded);
+                DialogFragment dialog = new RequirementDialogFragment(jutsuInfo.requirements, folded);
                 dialog.show(mFragmentManager, "RequirementDialogFragment");
             });
 
@@ -114,8 +117,8 @@ public class JutsusLearnAdapter extends RecyclerView.Adapter<JutsusLearnAdapter.
         return mJutsusList != null ? mJutsusList.size() : 0;
     }
 
-    public void setJutsusList(List<Jutsu> jutsusList) {
-        mJutsusList = jutsusList;
+    public void setJutsusList(List<Jutsu> jutsuInfoList) {
+        mJutsusList = jutsuInfoList;
         notifyDataSetChanged();
     }
 
@@ -126,5 +129,21 @@ public class JutsusLearnAdapter extends RecyclerView.Adapter<JutsusLearnAdapter.
             }
         }
         return true;
+    }
+
+    private void showJutsuInfo(View anchor, Jutsu jutsu, JutsuInfo jutsuInfo) {
+        PopupWindow popupWindow = new PopupWindow(mContext);
+
+        PopupLearnJutsuInfoBinding binding = DataBindingUtil.inflate(LayoutInflater.from(mContext),
+                R.layout.popup_learn_jutsu_info, null, false);
+
+        popupWindow.setContentView(binding.getRoot());
+
+        binding.setJutsu(jutsu);
+        binding.setJutsuInfo(jutsuInfo);
+
+        popupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        popupWindow.setOutsideTouchable(true);
+        popupWindow.showAsDropDown(anchor);
     }
 }

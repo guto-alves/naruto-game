@@ -43,7 +43,7 @@ public class RamenShopViewModel extends ViewModel
                 CharOn.character.getBag().getRamensList().set(itemIndex, ramen);
             }
 
-            CharacterRepository.getInstance().saveCharacter(CharOn.character);
+            CharacterRepository.getInstance().save(CharOn.character);
 
             showWarningEvent.setValue(R.string.warning_items_purchased);
         } else {

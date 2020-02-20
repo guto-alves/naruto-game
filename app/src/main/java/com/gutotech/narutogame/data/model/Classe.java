@@ -1,5 +1,7 @@
 package com.gutotech.narutogame.data.model;
 
+import androidx.annotation.NonNull;
+
 public enum Classe {
     TAI("Taijutsu"),
     BUK("Bukijutsu"),
@@ -10,5 +12,11 @@ public enum Classe {
 
     Classe(String name) {
         this.name = name;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return name;
     }
 }

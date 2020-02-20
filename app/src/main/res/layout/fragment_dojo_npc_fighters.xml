@@ -14,20 +14,22 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true">
+        android:fillViewport="true"
+        tools:context=".ui.playing.battles.DojoNPCFightersFragment">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center|top"
             android:orientation="vertical"
-            tools:context=".ui.playing.battles.DojoNPCFightersFragment">
+            android:paddingBottom="16dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/msgConstraint"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginBottom="20dp"
                 android:background="#1D140F">
@@ -205,7 +207,11 @@
                                 android:id="@+id/imageView8"
                                 android:layout_width="155dp"
                                 android:layout_height="28dp"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginLeft="8dp"
                                 android:layout_marginTop="8dp"
+                                android:layout_marginEnd="8dp"
+                                android:layout_marginRight="8dp"
                                 android:layout_marginBottom="8dp"
                                 android:src="@drawable/layout_bg_profile"
                                 app:layout_constraintBottom_toBottomOf="parent"
@@ -262,6 +268,8 @@
                                 android:id="@+id/imageView9"
                                 android:layout_width="160dp"
                                 android:layout_height="28dp"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginLeft="8dp"
                                 android:layout_marginTop="8dp"
                                 android:layout_marginEnd="8dp"
                                 android:layout_marginRight="8dp"

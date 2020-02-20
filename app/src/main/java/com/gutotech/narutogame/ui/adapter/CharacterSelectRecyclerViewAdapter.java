@@ -31,6 +31,7 @@ public class CharacterSelectRecyclerViewAdapter extends RecyclerView.Adapter<Cha
 
     private List<Character> mCharactersList;
     private CharacterSelecetedListener mListener;
+    private int mCharacterSelectedPosition;
 
     public CharacterSelectRecyclerViewAdapter(CharacterSelecetedListener listener) {
         mListener = listener;
@@ -47,13 +48,23 @@ public class CharacterSelectRecyclerViewAdapter extends RecyclerView.Adapter<Cha
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         if (mCharactersList != null) {
+
+            if (position == mCharacterSelectedPosition) {
+                holder.profileImageView.setAlpha(1.0f);
+            } else {
+                holder.profileImageView.setAlpha(0.5f);
+            }
+
             Character character = mCharactersList.get(position);
 
             StorageUtil.downloadSmallProfile(holder.profileImageView.getContext(),
                     holder.profileImageView, character.getNinja().getId());
 
-            holder.profileImageView.setOnClickListener(v ->
-                    mListener.onCharacterSelected(character));
+            holder.profileImageView.setOnClickListener(v -> {
+                mListener.onCharacterSelected(character);
+                mCharacterSelectedPosition = position;
+                notifyDataSetChanged();
+            });
         }
     }
 

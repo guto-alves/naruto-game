@@ -10,10 +10,8 @@ import com.gutotech.narutogame.data.model.Attribute;
 import com.gutotech.narutogame.data.model.LotteryItem;
 import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.model.NinjaLucky;
-import com.gutotech.narutogame.data.model.Player;
 import com.gutotech.narutogame.data.repository.CharacterRepository;
 import com.gutotech.narutogame.data.repository.NinjaLuckyRepository;
-import com.gutotech.narutogame.data.repository.PlayerRepository;
 import com.gutotech.narutogame.utils.DateCustom;
 import com.gutotech.narutogame.utils.SingleLiveEvent;
 
@@ -25,14 +23,12 @@ import java.util.List;
 
 public class NinjaLuckyViewModel extends ViewModel {
     @Retention(RetentionPolicy.SOURCE)
-    @IntDef({RYOUS_DAILY, CREDITS_DAILY, RYOUS_WEEKLY, CREDITS_WEEKLY})
+    @IntDef({RYOUS_DAILY, RYOUS_WEEKLY})
     public @interface PlayMode {
     }
 
     public static final int RYOUS_DAILY = 2000;
-    public static final int CREDITS_DAILY = 1;
     public static final int RYOUS_WEEKLY = 6000;
-    public static final int CREDITS_WEEKLY = 3;
 
     private MutableLiveData<Integer> playModeSelected;
 
@@ -51,16 +47,10 @@ public class NinjaLuckyViewModel extends ViewModel {
 
     private NinjaLucky ninjaLucky;
 
-    private Player mPlayer;
-
     public NinjaLuckyViewModel() {
         NinjaLuckyRepository.getInstance().get(CharOn.character.getNick(), data -> {
             ninjaLucky = data;
             daysOfWeek.postValue(ninjaLucky.getDaysOfWeek());
-        });
-
-        PlayerRepository.getInstance().getCurrentPlayer(player -> {
-            mPlayer = player;
         });
 
         playModeSelected = new MutableLiveData<>(RYOUS_DAILY);
@@ -82,15 +72,15 @@ public class NinjaLuckyViewModel extends ViewModel {
         return daysOfWeek;
     }
 
-    public LiveData<Integer> getStartAnimationEvent() {
+    LiveData<Integer> getStartAnimationEvent() {
         return startAnimationEvent;
     }
 
-    public LiveData<String> getShowPremiumEvent() {
+    LiveData<String> getShowPremiumEvent() {
         return showPremiumEvent;
     }
 
-    public LiveData<Integer> getShowWarningDialogEvent() {
+    LiveData<Integer> getShowWarningDialogEvent() {
         return showWarningDialogEvent;
     }
 
@@ -108,42 +98,24 @@ public class NinjaLuckyViewModel extends ViewModel {
         int currentDay = DateCustom.getDayOfWeek();
 
         if (ninjaLucky != null) {
-            if (playModeSelected.getValue() == RYOUS_DAILY || playModeSelected.getValue() == CREDITS_DAILY) {
+            if (playModeSelected.getValue() == RYOUS_DAILY) {
                 if (!ninjaLucky.played(currentDay)) {
-                    if (playModeSelected.getValue() == RYOUS_DAILY) {
-                        if (CharOn.character.getRyous() >= RYOUS_DAILY) {
-                            CharOn.character.subRyous(RYOUS_DAILY);
-                            return true;
-                        } else {
-                            showWarningDialogEvent.setValue(R.string.warning_dont_have_enough_ryous);
-                        }
+                    if (CharOn.character.getRyous() >= RYOUS_DAILY) {
+                        CharOn.character.subRyous(RYOUS_DAILY);
+                        return true;
                     } else {
-                        if (mPlayer != null && mPlayer.getVipCredits() >= CREDITS_DAILY) {
-                            mPlayer.setVipCredits(mPlayer.getVipCredits() - CREDITS_DAILY);
-                            return true;
-                        } else {
-                            showWarningDialogEvent.setValue(R.string.warning_dont_have_enough_credits);
-                        }
+                        showWarningDialogEvent.setValue(R.string.warning_dont_have_enough_ryous);
                     }
                 } else {
                     showWarningDialogEvent.setValue(R.string.warning_already_played_today);
                 }
             } else {
                 if (ninjaLucky.playedAllDays()) {
-                    if (playModeSelected.getValue() == RYOUS_WEEKLY) {
-                        if (CharOn.character.getRyous() >= RYOUS_WEEKLY) {
-                            CharOn.character.subRyous(RYOUS_WEEKLY);
-                            return true;
-                        } else {
-                            showWarningDialogEvent.setValue(R.string.warning_dont_have_enough_ryous);
-                        }
+                    if (CharOn.character.getRyous() >= RYOUS_WEEKLY) {
+                        CharOn.character.subRyous(RYOUS_WEEKLY);
+                        return true;
                     } else {
-                        if (mPlayer != null && mPlayer.getVipCredits() >= CREDITS_WEEKLY) {
-                            mPlayer.setVipCredits(mPlayer.getVipCredits() - CREDITS_WEEKLY);
-                            return true;
-                        } else {
-                            showWarningDialogEvent.setValue(R.string.warning_dont_have_enough_credits);
-                        }
+                        showWarningDialogEvent.setValue(R.string.warning_dont_have_enough_ryous);
                     }
                 } else {
                     showWarningDialogEvent.setValue(R.string.warning_havent_played_the_entire_week_yet);
@@ -160,19 +132,14 @@ public class NinjaLuckyViewModel extends ViewModel {
         lotteryItemReceived = generatePremium();
 
         lotteryItemReceived.getPremium().receive();
-        CharacterRepository.getInstance().saveCharacter(CharOn.character);
+        CharacterRepository.getInstance().save(CharOn.character);
 
         ninjaLucky.selectDayAsPlayed(DateCustom.getDayOfWeek());
         ninjaLucky.setLastDayPlayed(DateCustom.getDayOfWeek());
         NinjaLuckyRepository.getInstance().save(ninjaLucky, CharOn.character.getNick());
-
-        if (playModeSelected.getValue() == CREDITS_DAILY ||
-                playModeSelected.getValue() == CREDITS_WEEKLY) {
-            PlayerRepository.getInstance().savePlayer(mPlayer);
-        }
     }
 
-    public void onAnimationEnd() {
+    void onAnimationEnd() {
         showPremiumEvent.setValue(lotteryItemReceived.getDescription());
     }
 

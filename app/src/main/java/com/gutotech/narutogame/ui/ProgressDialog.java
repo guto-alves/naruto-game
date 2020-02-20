@@ -11,7 +11,7 @@ import androidx.fragment.app.DialogFragment;
 
 import com.gutotech.narutogame.R;
 
-public class WaitDialogFragment extends DialogFragment {
+public class ProgressDialog extends DialogFragment {
 
     @NonNull
     @Override

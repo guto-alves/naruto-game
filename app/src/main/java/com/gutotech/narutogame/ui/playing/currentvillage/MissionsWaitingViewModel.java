@@ -1,6 +1,7 @@
 package com.gutotech.narutogame.ui.playing.currentvillage;
 
 import android.os.CountDownTimer;
+import android.os.SystemClock;
 
 import androidx.databinding.ObservableField;
 import androidx.lifecycle.LiveData;
@@ -14,6 +15,7 @@ import com.gutotech.narutogame.data.model.Reward;
 import com.gutotech.narutogame.data.model.Score;
 import com.gutotech.narutogame.data.model.TimeMission;
 import com.gutotech.narutogame.data.repository.MissionRepository;
+import com.gutotech.narutogame.utils.DateCustom;
 import com.gutotech.narutogame.utils.SingleLiveEvent;
 
 import java.util.ArrayList;
@@ -44,7 +46,7 @@ public class MissionsWaitingViewModel extends ViewModel {
 
     void init() {
         if (mTimeMission.getMillisStopped() > 0) {
-            mTimeMission.setMillisStopped(System.currentTimeMillis() - mTimeMission.getMillisStopped());
+            mTimeMission.setMillisStopped(DateCustom.getTimeInMillis() - mTimeMission.getMillisStopped());
         }
 
         if (mTimeMission.getMillisStopped() >= mTimeMission.getMillisDuration()) {
@@ -138,7 +140,7 @@ public class MissionsWaitingViewModel extends ViewModel {
             mCountDownTimer.cancel();
             mCountDownTimer = null;
 
-            mTimeMission.setMillisStopped(System.currentTimeMillis());
+            mTimeMission.setMillisStopped(DateCustom.getTimeInMillis());
             mMissionRepository.acceptTimeMission(mTimeMission);
         }
     }

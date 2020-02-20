@@ -15,7 +15,7 @@ import android.view.ViewGroup;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.databinding.FragmentSignupBinding;
 import com.gutotech.narutogame.ui.SectionFragment;
-import com.gutotech.narutogame.ui.WaitDialogFragment;
+import com.gutotech.narutogame.ui.ProgressDialog;
 import com.gutotech.narutogame.ui.ResultListener;
 import com.gutotech.narutogame.utils.FragmentUtil;
 import com.gutotech.narutogame.utils.StorageUtil;
@@ -28,13 +28,11 @@ public class SignupFragment extends Fragment implements ResultListener, SectionF
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        SignupViewModel viewModel = ViewModelProviders.of(getActivity()).get(SignupViewModel.class);
+        SignupViewModel viewModel = ViewModelProviders.of(this).get(SignupViewModel.class);
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_signup,
                 container, false);
-
         binding.setViewModel(viewModel);
-
         viewModel.setAuthListener(this);
 
         binding.msgLayout.titleTextView.setText(R.string.just_a_bit_now);
@@ -46,11 +44,11 @@ public class SignupFragment extends Fragment implements ResultListener, SectionF
         return binding.getRoot();
     }
 
-    private DialogFragment waitDialog = new WaitDialogFragment();
+    private ProgressDialog progressDialog = new ProgressDialog();
 
     @Override
     public void onStarted() {
-        waitDialog.show(getFragmentManager(), "WaitDialogFragment");
+        progressDialog.show(getFragmentManager(), "ProgressDialog");
     }
 
     @Override
@@ -62,12 +60,12 @@ public class SignupFragment extends Fragment implements ResultListener, SectionF
         binding.accountCreatedMsgLayout.descriptionTextView.setText(R.string.email_verification_sent);
         binding.accountCreatedMsgLayout.msgConstraintLayout.setVisibility(View.VISIBLE);
 
-        waitDialog.dismiss();
+        progressDialog.dismiss();
     }
 
     @Override
     public void onFailure(int resId) {
-        waitDialog.dismiss();
+        progressDialog.dismiss();
         Toasty.error(getContext(), resId, Toasty.LENGTH_LONG).show();
     }
 

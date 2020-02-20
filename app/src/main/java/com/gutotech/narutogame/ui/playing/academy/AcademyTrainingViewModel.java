@@ -92,10 +92,10 @@ public class AcademyTrainingViewModel extends AndroidViewModel
     public void onTrainButtonPressed() {
         updateLimitOfTraining();
         if (mAttributes.getTrainingProgress() < weeklyLimitOfTraining) {
-            if (mSpentChakra.getValue() <= mFormulas.getChakraAtual() &&
-                    mSpentStamina.getValue() <= mFormulas.getStaminaAtual()) {
-                mFormulas.setChakraAtual(mFormulas.getChakraAtual() - mSpentChakra.getValue());
-                mFormulas.setStaminaAtual(mFormulas.getStaminaAtual() - mSpentStamina.getValue());
+            if (mSpentChakra.getValue() <= mFormulas.getCurrentChakra() &&
+                    mSpentStamina.getValue() <= mFormulas.getCurrentStamina()) {
+                mFormulas.setCurrentChakra(mFormulas.getCurrentChakra() - mSpentChakra.getValue());
+                mFormulas.setCurrentStamina(mFormulas.getCurrentStamina() - mSpentStamina.getValue());
 
                 int trainingPointsEarned = (int) mPercent * 10;
 

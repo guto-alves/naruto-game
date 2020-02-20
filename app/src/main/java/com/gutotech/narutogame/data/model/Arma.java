@@ -1,7 +1,5 @@
 package com.gutotech.narutogame.data.model;
 
-import java.util.ArrayList;
-
 public class Arma extends ShopItem {
     private int atakOuDef;
     private int consomeChakra;

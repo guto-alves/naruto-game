@@ -100,7 +100,7 @@ public class DojoRandomWaitFragment extends Fragment {
 //                                        .child(idBatalha);
 //                                BatalhaPVP batalhaPVP = new BatalhaPVP();
 //                                batalhaPVP.setQuemAtaca(PersonagemOn.character.getNick());
-//                                batalhaPVP.setNumeroDeQuemAtaca(0);
+//                                batalhaPVP.setCurrentPlayer(0);
 //                                batalhaPVP.setPlayer1(PersonagemOn.character);
 //                                batalhaPVP.setPlayer2(Oponente.oponente);
 //                                batalhaReference.setValue(batalhaPVP);

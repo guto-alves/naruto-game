@@ -4,9 +4,11 @@ import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -101,7 +103,7 @@ public class RankingNinjasRecyclerAdapter extends RecyclerView.Adapter<RankingNi
         profileDialog.setContentView(R.layout.dialog_acao_profile);
 
         ImageView profileLogadoimageView = profileDialog.findViewById(R.id.profilePersonagemOnImageView);
-        StorageUtil.downloadProfile(context, profileLogadoimageView, character.getNinja().getId(), character.getProfile());
+        StorageUtil.downloadProfile(context, profileLogadoimageView, character.getProfilePath());
 
         TextView nickPersonagemOnTextView = profileDialog.findViewById(R.id.nickPersonagemOnTextView);
         nickPersonagemOnTextView.setText(character.getNick());

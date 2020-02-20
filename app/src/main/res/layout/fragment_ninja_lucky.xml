@@ -115,8 +115,8 @@
                 android:id="@+id/imageView40"
                 android:layout_width="23dp"
                 android:layout_height="23dp"
-                android:layout_marginStart="29dp"
-                android:layout_marginLeft="29dp"
+                android:layout_marginStart="28dp"
+                android:layout_marginLeft="28dp"
                 android:layout_marginTop="31dp"
                 android:src="@{viewModel.daysOfWeek[1] ? @drawable/layout_luck_light_green: @drawable/layout_luck_light_red}"
                 app:layout_constraintStart_toStartOf="@+id/baseImageView"
@@ -252,8 +252,8 @@
                 background_play_mode="@{viewModel.playModeSelected == NinjaLuckyViewModel.RYOUS_DAILY}"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:layout_marginStart="40dp"
-                android:layout_marginLeft="40dp"
+                android:layout_marginStart="45dp"
+                android:layout_marginLeft="45dp"
                 android:layout_marginBottom="5dp"
                 android:onClick="@{() -> viewModel.onPlayModeSeleted(NinjaLuckyViewModel.RYOUS_DAILY)}"
                 android:text="@string/ryous_daily"
@@ -263,45 +263,15 @@
                 app:layout_constraintStart_toStartOf="@+id/baseImageView" />
 
             <Button
-                android:id="@+id/modeButton2"
-                background_play_mode="@{viewModel.playModeSelected == NinjaLuckyViewModel.CREDITS_DAILY}"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginBottom="5dp"
-                android:onClick="@{() -> viewModel.onPlayModeSeleted(NinjaLuckyViewModel.CREDITS_DAILY)}"
-                android:text="@string/credits_daily"
-                android:textColor="@android:color/white"
-                android:textSize="8sp"
-                app:layout_constraintBottom_toBottomOf="@+id/baseImageView"
-                app:layout_constraintStart_toEndOf="@+id/modeButton1" />
-
-            <Button
                 android:id="@+id/modeButton3"
                 background_play_mode="@{viewModel.playModeSelected == NinjaLuckyViewModel.RYOUS_WEEKLY}"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
+                android:layout_marginEnd="45dp"
+                android:layout_marginRight="50dp"
                 android:layout_marginBottom="5dp"
                 android:onClick="@{() -> viewModel.onPlayModeSeleted(NinjaLuckyViewModel.RYOUS_WEEKLY)}"
                 android:text="@string/ryous_weekly"
-                android:textColor="@android:color/white"
-                android:textSize="8sp"
-                app:layout_constraintBottom_toBottomOf="@+id/baseImageView"
-                app:layout_constraintEnd_toStartOf="@+id/modeButton4" />
-
-            <Button
-                android:id="@+id/modeButton4"
-                background_play_mode="@{viewModel.playModeSelected == NinjaLuckyViewModel.CREDITS_WEEKLY}"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginEnd="40dp"
-                android:layout_marginRight="40dp"
-                android:layout_marginBottom="5dp"
-                android:onClick="@{() -> viewModel.onPlayModeSeleted(NinjaLuckyViewModel.CREDITS_WEEKLY)}"
-                android:text="@string/credits_weekly"
                 android:textColor="@android:color/white"
                 android:textSize="8sp"
                 app:layout_constraintBottom_toBottomOf="@+id/baseImageView"
@@ -412,6 +382,32 @@
                 app:layout_constraintStart_toStartOf="@+id/slot1ImageView"
                 app:layout_constraintTop_toTopOf="@+id/slot2ImageView"
                 app:srcCompat="@drawable/layout_luck_shadow" />
+
+            <TextView
+                android:id="@+id/textView30"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="casual"
+                android:text="DAILY"
+                android:textColor="@android:color/black"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/modeButton1"
+                app:layout_constraintEnd_toEndOf="@+id/modeButton1"
+                app:layout_constraintStart_toStartOf="@+id/modeButton1" />
+
+            <TextView
+                android:id="@+id/textView33"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="casual"
+                android:text="WEEKLY"
+                android:textColor="@android:color/black"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/modeButton3"
+                app:layout_constraintEnd_toEndOf="@+id/modeButton3"
+                app:layout_constraintStart_toStartOf="@+id/modeButton3" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </layout>

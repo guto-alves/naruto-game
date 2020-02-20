@@ -10,6 +10,7 @@ import com.gutotech.narutogame.data.model.Character;
 import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.repository.CharacterRepository;
 import com.gutotech.narutogame.data.repository.NinjaLuckyRepository;
+import com.gutotech.narutogame.data.repository.NinjaStatisticsRepository;
 import com.gutotech.narutogame.ui.ResultListener;
 import com.gutotech.narutogame.utils.SingleLiveEvent;
 
@@ -31,23 +32,23 @@ public class CharacterSelectViewModel extends ViewModel {
         mRepository = CharacterRepository.getInstance();
     }
 
-    public LiveData<List<Character>> getCharactersList() {
+    LiveData<List<Character>> getCharactersList() {
         return mRepository.getMyCharacters();
     }
 
-    public Character getCharacterSelected() {
+    private Character getCharacterSelected() {
         return mCharacterSelected;
     }
 
-    public void setCharacterSelected(Character characterSelected) {
+    void setCharacterSelected(Character characterSelected) {
         this.mCharacterSelected = characterSelected;
     }
 
-    public SingleLiveEvent<DialogInterface.OnClickListener> getRemoveCharacterEvent() {
+    SingleLiveEvent<DialogInterface.OnClickListener> getRemoveCharacterEvent() {
         return showQuestionDialog;
     }
 
-    public SingleLiveEvent<Void> getShowRemovingErrorDialog() {
+    SingleLiveEvent<Void> getShowRemovingErrorDialog() {
         return showErrorDialog;
     }
 
@@ -81,7 +82,8 @@ public class CharacterSelectViewModel extends ViewModel {
     }
 
     private void deleteCharacterSelected() {
-        mRepository.deleteCharacter(mCharacterSelected.getNick());
+        mRepository.delete(mCharacterSelected.getNick());
         NinjaLuckyRepository.getInstance().delete(mCharacterSelected.getNick());
+        NinjaStatisticsRepository.getInstance().remove(mCharacterSelected.getNinja().getId());
     }
 }

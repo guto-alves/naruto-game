@@ -14,6 +14,8 @@ import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.databinding.FragmentAcademyJutsuBinding;
@@ -61,10 +63,14 @@ public class AcademyJutsuFragment extends Fragment implements SectionFragment {
             showTrainingResult(R.string.congratulations_you_made_it, message);
         });
 
-        viewModel.getShowWarningEvent().observe(this, resId ->
-                showTrainingResult(R.string.problem,
-                        getString(R.string.insufficient_chakra_or_stamina, getString(resId)))
-        );
+        viewModel.getShowWarningEvent().observe(this, resId -> {
+            showTrainingResult(R.string.problem,
+                    getString(R.string.insufficient_chakra_or_stamina, getString(resId)));
+
+            Animation animation = AnimationUtils.loadAnimation(getActivity(), R.anim.problem_shake);
+            animation.setRepeatCount(3);
+            mBinding.trainingResultLayout.startAnimation(animation);
+        });
 
         FragmentUtil.setSectionTitle(getActivity(), R.string.section_learned_jutsus);
         return mBinding.getRoot();

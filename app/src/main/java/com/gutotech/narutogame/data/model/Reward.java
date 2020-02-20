@@ -1,12 +1,12 @@
 package com.gutotech.narutogame.data.model;
 
-import com.gutotech.narutogame.R;
+import android.content.Context;
 
-public abstract class Reward {
-    public enum Tipo {
-        MISSION(R.string.missions), EQUIPE(1), BATALHAS(6);
+public interface Reward {
 
-        Tipo(int missão) {
-        }
-    }
+    int value();
+
+    void receive();
+
+    CharSequence toString(Context context);
 }

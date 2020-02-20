@@ -30,6 +30,7 @@
 
         <ImageView
             android:id="@+id/profileImageView"
+            profileForMsg="@{1}"
             android:layout_width="120dp"
             android:layout_height="0dp"
             android:scaleType="fitXY"
@@ -65,6 +66,7 @@
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:orientation="vertical"
+            android:padding="3dp"
             app:layout_constraintBottom_toTopOf="@+id/imageView222"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/profileImageView"
@@ -84,8 +86,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center|start"
-                android:paddingEnd="3dp"
-                android:paddingRight="3dp"
                 android:textColor="#D1D8F1"
                 android:textSize="12sp" />
         </LinearLayout>

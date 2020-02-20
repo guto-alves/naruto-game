@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Bag {
     private List<Ramen> ramensList;
-    private List<Pergaminho> pergaminhosList;
+    private List<Scroll> pergaminhosList;
     private List<Jutsu> armasList;
 
     public Bag() {
@@ -16,7 +16,7 @@ public class Bag {
         ramensList.add(ramen);
     }
 
-    public Bag(List<Ramen> ramensList, List<Pergaminho> pergaminhosList, List<Jutsu> armasList) {
+    public Bag(List<Ramen> ramensList, List<Scroll> pergaminhosList, List<Jutsu> armasList) {
         this.ramensList = ramensList;
         this.pergaminhosList = pergaminhosList;
         this.armasList = armasList;
@@ -30,11 +30,11 @@ public class Bag {
         this.ramensList = ramensList;
     }
 
-    public List<Pergaminho> getPergaminhosList() {
+    public List<Scroll> getPergaminhosList() {
         return pergaminhosList;
     }
 
-    public void setPergaminhosList(List<Pergaminho> pergaminhosList) {
+    public void setPergaminhosList(List<Scroll> pergaminhosList) {
         this.pergaminhosList = pergaminhosList;
     }
 

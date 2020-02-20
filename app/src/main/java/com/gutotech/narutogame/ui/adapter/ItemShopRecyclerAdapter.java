@@ -5,6 +5,8 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -18,6 +20,7 @@ import android.widget.TextView;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.Requirement;
 import com.gutotech.narutogame.data.model.ShopItem;
+import com.gutotech.narutogame.ui.playing.RequirementDialogFragment;
 import com.gutotech.narutogame.utils.StorageUtil;
 import com.gutotech.narutogame.data.model.Ramen;
 
@@ -28,10 +31,6 @@ public class ItemShopRecyclerAdapter extends RecyclerView.Adapter<ItemShopRecycl
 
     public interface OnBuyClickListener {
         void onBuyButtonClick(ShopItem item, int quantity);
-    }
-
-    public interface OnRequirementsClickListener {
-        void onRequirementsClick(List<Requirement> requirements);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -60,17 +59,13 @@ public class ItemShopRecyclerAdapter extends RecyclerView.Adapter<ItemShopRecycl
 
     private Context mContext;
     private List<ShopItem> mItemsList;
-
-    private OnRequirementsClickListener mOnRequirementsButtonListener;
+    private FragmentManager mFragmentManager;
     private OnBuyClickListener mOnBuyButtonListener;
 
-    public ItemShopRecyclerAdapter(Context context, List<ShopItem> itemsList,
-                                   OnBuyClickListener onBuyButtonListener,
-                                   OnRequirementsClickListener onRequirementsButtonListener) {
+    public ItemShopRecyclerAdapter(Context context, FragmentManager fragmentManager, OnBuyClickListener onBuyButtonListener) {
         mContext = context;
-        mItemsList = itemsList;
+        mFragmentManager = fragmentManager;
         mOnBuyButtonListener = onBuyButtonListener;
-        mOnRequirementsButtonListener = onRequirementsButtonListener;
     }
 
     @NonNull
@@ -83,60 +78,68 @@ public class ItemShopRecyclerAdapter extends RecyclerView.Adapter<ItemShopRecycl
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int i) {
-        final ShopItem itemShop = mItemsList.get(i);
+        if (mItemsList != null) {
+            final ShopItem itemShop = mItemsList.get(i);
 
-        StorageUtil.downloadRamen(mContext, holder.itemImageView, itemShop.getImage());
-        holder.nameTextView.setText(itemShop.getName());
-        holder.descriptionTextView.setText(itemShop.getDescription());
-        holder.valueTextView.setText(mContext.getString(R.string.ry, itemShop.getValue()));
+            StorageUtil.downloadRamen(mContext, holder.itemImageView, itemShop.getImage());
+            holder.nameTextView.setText(itemShop.getName());
+            holder.descriptionTextView.setText(itemShop.getDescription());
+            holder.valueTextView.setText(mContext.getString(R.string.ry, itemShop.getValue()));
 
-        if (validateRequirements(itemShop.getRequirements())) {
-            holder.buyButton.setEnabled(true);
-        } else {
-            holder.buyButton.setEnabled(false);
-        }
-
-        holder.quantityEditText.setOnKeyListener((v, keyCode, event) -> {
-            int quantity = 1;
-
-            if (!holder.quantityEditText.getText().toString().isEmpty()) {
-                quantity = Integer.parseInt(holder.quantityEditText.getText().toString());
+            if (validateRequirements(itemShop.getRequirements())) {
+                holder.buyButton.setEnabled(true);
+            } else {
+                holder.buyButton.setEnabled(false);
             }
 
-            int newValue = itemShop.getValue() * quantity;
+            holder.quantityEditText.setOnKeyListener((v, keyCode, event) -> {
+                int quantity = 1;
 
-            holder.valueTextView.setText(mContext.getString(R.string.ry, newValue));
-            return false;
-        });
+                if (!holder.quantityEditText.getText().toString().isEmpty()) {
+                    quantity = Integer.parseInt(holder.quantityEditText.getText().toString());
+                }
 
-        holder.itemImageView.setOnClickListener(v -> {
-            // show dialog with info about item
-        });
+                int newValue = itemShop.getValue() * quantity;
 
-        holder.requerImageView.setOnClickListener(v -> {
-            mOnRequirementsButtonListener.onRequirementsClick(itemShop.getRequirements());
-        });
+                holder.valueTextView.setText(mContext.getString(R.string.ry, newValue));
+                return false;
+            });
 
-        holder.buyButton.setOnClickListener(v -> {
-            int quantity = 1;
+            holder.itemImageView.setOnClickListener(v -> {
+                // show dialog with info about item
+            });
 
-            if (!holder.quantityEditText.getText().toString().isEmpty()) {
-                quantity = Integer.parseInt(holder.quantityEditText.getText().toString());
+            holder.requerImageView.setOnClickListener(v -> {
+                DialogFragment dialog = new RequirementDialogFragment(itemShop.getRequirements());
+                dialog.show(mFragmentManager, "RequirementDialogFragment");
+            });
+
+            holder.buyButton.setOnClickListener(v -> {
+                int quantity = 1;
+
+                if (!holder.quantityEditText.getText().toString().isEmpty()) {
+                    quantity = Integer.parseInt(holder.quantityEditText.getText().toString());
+                }
+
+                mOnBuyButtonListener.onBuyButtonClick(itemShop, quantity);
+            });
+
+            if (i % 2 == 0) {
+                holder.bgLayout.setBackgroundColor(mContext.getResources().getColor(R.color.colorItem1));
+            } else {
+                holder.bgLayout.setBackgroundColor(mContext.getResources().getColor(R.color.colorItem2));
             }
-
-            mOnBuyButtonListener.onBuyButtonClick(itemShop, quantity);
-        });
-
-        if (i % 2 == 0) {
-            holder.bgLayout.setBackgroundColor(mContext.getResources().getColor(R.color.colorItem1));
-        } else {
-            holder.bgLayout.setBackgroundColor(mContext.getResources().getColor(R.color.colorItem2));
         }
     }
 
     @Override
     public int getItemCount() {
-        return mItemsList.size();
+        return mItemsList != null ? mItemsList.size() : 0;
+    }
+
+    public void setItemsList(List<ShopItem> items) {
+        mItemsList = items;
+        notifyDataSetChanged();
     }
 
     private boolean validateRequirements(List<Requirement> requirements) {
@@ -145,6 +148,7 @@ public class ItemShopRecyclerAdapter extends RecyclerView.Adapter<ItemShopRecycl
                 return false;
             }
         }
+
         return true;
     }
 

@@ -8,6 +8,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.gutotech.narutogame.R;
+import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.model.MenuGroup;
 import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.home.halloffame.HallOfFameFragment;
@@ -30,6 +31,7 @@ public class LoggedInViewModel extends ViewModel implements ExpandableListView.O
     private MutableLiveData<SectionFragment> currentSection = new MutableLiveData<>();
 
     public LoggedInViewModel() {
+        CharOn.character = null;
         mGroups = new MutableLiveData<>(buildMenu());
         goToSelectCharacter();
     }

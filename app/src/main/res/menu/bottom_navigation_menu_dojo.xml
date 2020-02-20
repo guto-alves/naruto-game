@@ -5,12 +5,12 @@
     <item
         android:id="@+id/action_batalhas_dojo_npc"
         android:enabled="true"
-        android:title="@string/batalhas_do_dojo_npc"
+        android:title="@string/dojo_npc_fighters"
         app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/action_batalhas_dojo_pvp"
-        android:title="@string/batalhas_do_dojo_pvp"
+        android:title="@string/dojo_pvp_fighters"
         app:showAsAction="ifRoom" />
 
 </menu>

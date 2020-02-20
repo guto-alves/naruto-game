@@ -31,6 +31,7 @@ public class ChooseNinjaRecyclerViewAdapter extends RecyclerView.Adapter<ChooseN
 
     private List<Ninja> mNinjasList;
     private NinjaListener mListener;
+    private int positionSelected;
 
     public ChooseNinjaRecyclerViewAdapter(NinjaListener listener) {
         mListener = listener;
@@ -40,7 +41,7 @@ public class ChooseNinjaRecyclerViewAdapter extends RecyclerView.Adapter<ChooseN
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(
-                R.layout.adapter_profile_pequena, null, false);
+                R.layout.adapter_profile_pequena, parent, false);
         return new ViewHolder(itemView);
     }
 
@@ -52,7 +53,17 @@ public class ChooseNinjaRecyclerViewAdapter extends RecyclerView.Adapter<ChooseN
             StorageUtil.downloadSmallProfile(holder.ninjaImageView.getContext(),
                     holder.ninjaImageView, ninja.getId());
 
-            holder.ninjaImageView.setOnClickListener(v -> mListener.onNinjaClick(ninja));
+            if (positionSelected == position) {
+                holder.ninjaImageView.setAlpha(1f);
+            } else {
+                holder.ninjaImageView.setAlpha(0.5f);
+            }
+
+            holder.ninjaImageView.setOnClickListener(v -> {
+                mListener.onNinjaClick(ninja);
+                positionSelected = position;
+                notifyDataSetChanged();
+            });
         }
     }
 
@@ -63,6 +74,8 @@ public class ChooseNinjaRecyclerViewAdapter extends RecyclerView.Adapter<ChooseN
 
     public void setNinjasId(List<Ninja> ninjasList) {
         mNinjasList = ninjasList;
+        positionSelected = 0;
+        mListener.onNinjaClick(mNinjasList.get(0));
         notifyDataSetChanged();
     }
 }

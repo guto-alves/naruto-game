@@ -33,17 +33,10 @@ public class ChangeImageFragment extends Fragment implements SectionFragment {
         ProfilesAdapter adapter = new ProfilesAdapter(CharOn.character.getNinja(), profile -> {
             QuestionDialog dialog = new QuestionDialog("Deseja alterar a imagem do seu personagem para escolhida?");
             dialog.setOnOkButton(v -> {
-                CharOn.character.setProfile(profile);
-
-                ImageView profileImageView = getActivity().findViewById(
-                        R.id.profileImageView);
-
-                StorageUtil.downloadProfile(getActivity(), profileImageView,
-                        CharOn.character.getNinja().getId(), profile);
-
+                CharOn.character.updateProfile(profile);
                 CharOn.character.salvar();
 
-                DrawerLayout drawer = getActivity().findViewById(R.id.drawer_layout);
+                DrawerLayout drawer = getActivity().findViewById(R.id.drawerLayout);
                 drawer.openDrawer(GravityCompat.START);
             });
             dialog.show(getFragmentManager(), "QuestionDialog");

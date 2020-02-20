@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="jutsu"
+            type="com.gutotech.narutogame.data.model.Jutsu" />
+
+        <variable
+            name="jutsuInfo"
+            type="com.gutotech.narutogame.data.model.JutsuInfo" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_popup"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{jutsuInfo.name}"
+                android:textColor="@android:color/holo_blue_dark" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/combat_values"
+                android:textColor="@android:color/holo_orange_light" />
+
+            <View
+                android:id="@+id/divider3"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="3dp"
+                android:background="@android:color/darker_gray" />
+
+            <TextView
+                android:id="@+id/atkOrDefTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/layout_icones_atk_magico"
+                android:drawableLeft="@drawable/layout_icones_atk_magico"
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:id="@+id/accuracyTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/layout_icones_precisao"
+                android:drawableLeft="@drawable/layout_icones_precisao"
+                android:text="@{@string/label_accuracy(jutsu.accuracy)}"
+                android:textColor="@android:color/white" />
+
+            <View
+                android:id="@+id/divider5"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="3dp"
+                android:background="@android:color/darker_gray" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:text="@string/label_consumes_in_combat"
+                    android:textColor="@android:color/white" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginRight="16dp"
+                    android:drawableStart="@drawable/layout_icones_p_chakra"
+                    android:drawableLeft="@drawable/layout_icones_p_chakra"
+                    android:gravity="center_vertical"
+                    android:text="@{String.valueOf(jutsu.consumesChakra)}"
+                    android:textColor="@android:color/white" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/layout_icones_p_stamina"
+                    android:drawableLeft="@drawable/layout_icones_p_stamina"
+                    android:gravity="center_vertical"
+                    android:text="@{String.valueOf(jutsu.consumesStamina)}"
+                    android:textColor="@android:color/white" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/divider7"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="3dp"
+                android:background="@android:color/darker_gray" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:text="@string/label_learn_this_jutsu_with"
+                    android:textColor="@android:color/white" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginRight="16dp"
+                    android:drawableStart="@drawable/layout_icones_p_chakra"
+                    android:drawableLeft="@drawable/layout_icones_p_chakra"
+                    android:gravity="center_vertical"
+                    android:text="@{String.valueOf(jutsu.consumesChakra * 2)}"
+                    android:textColor="@android:color/white" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/layout_icones_p_stamina"
+                    android:drawableLeft="@drawable/layout_icones_p_stamina"
+                    android:gravity="center_vertical"
+                    android:text="@{String.valueOf(jutsu.consumesStamina * 2)}"
+                    android:textColor="@android:color/white" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</layout>

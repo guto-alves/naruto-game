@@ -2,101 +2,42 @@ package com.gutotech.narutogame.ui.playing.currentvillage;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import com.gutotech.narutogame.R;
+import com.gutotech.narutogame.databinding.FragmentNinjaShopBinding;
 import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.adapter.ItemShopRecyclerAdapter;
 import com.gutotech.narutogame.utils.FragmentUtil;
-import com.gutotech.narutogame.utils.StorageUtil;
-import com.gutotech.narutogame.data.model.Item;
-import com.gutotech.narutogame.data.model.CharOn;
-import com.gutotech.narutogame.data.model.ShopUtils;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class NinjaShopFragment extends Fragment implements SectionFragment {
-    private Button armasLongoAlcanceButton, armasCurtoAlcanceButton, pergaminhosButton;
-
-    private ItemShopRecyclerAdapter adapter;
-    private List<Item> itensList = new ArrayList<>();
-
-    private ShopUtils shop = new ShopUtils();
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_ninja_shop, container, false);
+        FragmentNinjaShopBinding binding = DataBindingUtil.inflate(inflater,
+                R.layout.fragment_ninja_shop, container, false);
 
-        ImageView imagemMsg2 = view.findViewById(R.id.imagemMsg2);
-        StorageUtil.downloadProfileForMsg(getActivity(), imagemMsg2, CharOn.character.getVillage().id);
+        NinjaShopViewModel viewModel = ViewModelProviders.of(this).get(NinjaShopViewModel.class);
+        binding.setViewModel(viewModel);
 
-        ProgressBar armasQuinzenalProgressBar = view.findViewById(R.id.armasQuinzenalProgressBar);
-        TextView armasQuinzenalTextView = view.findViewById(R.id.armasQuinzenalTextView);
-//
-//        armasLongoAlcanceButton = view.findViewById(R.id.armasLongoAlcanceButton);
-//        armasLongoAlcanceButton.setBackgroundColor(getActivity().getResources().getColor(android.R.color.holo_orange_dark));
-//        armasLongoAlcanceButton.setOnClickListener(
-//                new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        itensList = shop.getArmasLongoAlcance();
-//                        adapter.notifyDataSetChanged();
-//                        armasLongoAlcanceButton.setBackgroundColor(getActivity().getResources().getColor(android.R.color.holo_orange_dark));
-//                        armasCurtoAlcanceButton.setBackgroundColor(getActivity().getResources().getColor(R.color.colorBgButton));
-//                        pergaminhosButton.setBackgroundColor(getActivity().getResources().getColor(R.color.colorBgButton));
-//                    }
-//                }
-//        );
-//
-//        armasCurtoAlcanceButton = view.findViewById(R.id.armasCurtoAlcanceButton);
-//        armasCurtoAlcanceButton.setOnClickListener(
-//                new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        itensList = shop.getArmasCurtoAlcance();
-//                        adapter.notifyDataSetChanged();
-//                        armasLongoAlcanceButton.setBackgroundColor(getActivity().getResources().getColor(R.color.colorBgButton));
-//                        armasCurtoAlcanceButton.setBackgroundColor(getActivity().getResources().getColor(android.R.color.holo_orange_dark));
-//                        pergaminhosButton.setBackgroundColor(getActivity().getResources().getColor(R.color.colorBgButton));
-//                    }
-//                }
-//        );
-//
-//        pergaminhosButton = view.findViewById(R.id.pergaminhosButton);
-//        pergaminhosButton.setOnClickListener(
-//                new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        itensList = shop.getPergaminhos();
-//                        adapter.notifyDataSetChanged();
-//                        armasLongoAlcanceButton.setBackgroundColor(getActivity().getResources().getColor(R.color.colorBgButton));
-//                        armasCurtoAlcanceButton.setBackgroundColor(getActivity().getResources().getColor(R.color.colorBgButton));
-//                        pergaminhosButton.setBackgroundColor(getActivity().getResources().getColor(android.R.color.holo_orange_dark));
-//                    }
-//                }
-//        );
-//
-//        RecyclerView itensShopRecyclerView = view.findViewById(R.id.itensShopRecyclerView);
-//        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
-//        itensShopRecyclerView.setLayoutManager(layoutManager);
-//        itensShopRecyclerView.setHasFixedSize(true);
-//        itensList = shop.getArmasLongoAlcance();
-//        adapter = new ItemShopRecyclerAdapter(getActivity(), itensList);
-//        itensShopRecyclerView.setAdapter(adapter);
+        ItemShopRecyclerAdapter adapter = new ItemShopRecyclerAdapter(getActivity(),
+                getFragmentManager(), viewModel);
+
+        binding.shopItemsRecyclerView.setHasFixedSize(true);
+        binding.shopItemsRecyclerView.setAdapter(adapter);
+
+        viewModel.getShopItems().observe(this, adapter::setItemsList);
 
         FragmentUtil.setSectionTitle(getActivity(), R.string.section_ninja_shop);
-
-        return view;
+        return binding.getRoot();
     }
 
     @Override

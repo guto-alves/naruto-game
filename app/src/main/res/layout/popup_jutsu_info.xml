@@ -13,12 +13,12 @@
     </data>
 
     <ScrollView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fillViewport="true">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="265dp"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_popup"
             android:orientation="vertical"
@@ -34,13 +34,15 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@{jutsuInfo.name}"
-                    android:textColor="@android:color/holo_orange_light" />
+                    android:textColor="@android:color/holo_orange_light"
+                    android:textSize="12sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@{@string/item_quantity(jutsu.inventory)}"
-                    android:textColor="@android:color/white" />
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp" />
             </LinearLayout>
 
             <View
@@ -56,7 +58,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@{jutsuInfo.description}"
-                android:textColor="@android:color/white" />
+                android:textColor="@android:color/white"
+                android:textSize="12sp" />
 
             <View
                 android:id="@+id/divider4"
@@ -67,13 +70,23 @@
                 android:background="@android:color/darker_gray" />
 
             <TextView
+                android:id="@+id/effectsTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/effects_on_your_character"
+                android:textColor="@android:color/white"
+                android:visibility="gone" />
+
+            <TextView
                 android:id="@+id/atkOrDefTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/layout_icones_atk_magico"
-                android:drawableLeft="@drawable/layout_icones_atk_magico"
+                android:drawableStart="@drawable/layout_icones_atk_fisico"
+                android:drawableLeft="@drawable/layout_icones_atk_fisico"
                 android:drawablePadding="5dp"
-                android:textColor="@android:color/white" />
+                android:gravity="center_vertical"
+                android:textColor="@android:color/white"
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/atkOrDefTextView2"
@@ -86,13 +99,46 @@
                 android:visibility="gone" />
 
             <TextView
+                android:id="@+id/accTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/layout_icones_precisao"
                 android:drawableLeft="@drawable/layout_icones_precisao"
                 android:drawablePadding="5dp"
+                android:gravity="center_vertical"
                 android:text="@{@string/label_accuracy(jutsu.accuracy)}"
-                android:textColor="@android:color/white" />
+                android:textColor="@android:color/white"
+                android:textSize="12sp"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/accLinearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:visibility="visible">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="3dp"
+                    android:layout_marginRight="3dp"
+                    android:drawableStart="@drawable/layout_icones_precisao"
+                    android:drawableLeft="@drawable/layout_icones_precisao"
+                    android:drawablePadding="5dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/label_accuracy2"
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/accChanceTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
 
             <View
                 android:id="@+id/divider5"
@@ -107,7 +153,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@{@string/label_usage_interval(jutsu.usageInterval)}"
-                android:textColor="@android:color/white" />
+                android:textColor="@android:color/white"
+                android:textSize="12sp" />
 
             <View
                 android:id="@+id/divider6"
@@ -130,7 +177,8 @@
                     android:layout_marginEnd="8dp"
                     android:layout_marginRight="8dp"
                     android:text="@string/label_consumes"
-                    android:textColor="@android:color/white" />
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp" />
 
                 <TextView
                     android:id="@+id/textView83"
@@ -142,7 +190,8 @@
                     android:drawableLeft="@drawable/layout_icones_p_chakra"
                     android:gravity="center_vertical"
                     android:text="@{String.valueOf(jutsu.consumesChakra)}"
-                    android:textColor="@android:color/white" />
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp" />
 
                 <TextView
                     android:id="@+id/textView90"
@@ -152,7 +201,8 @@
                     android:drawableLeft="@drawable/layout_icones_p_stamina"
                     android:gravity="center_vertical"
                     android:text="@{String.valueOf(jutsu.consumesStamina)}"
-                    android:textColor="@android:color/white" />
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

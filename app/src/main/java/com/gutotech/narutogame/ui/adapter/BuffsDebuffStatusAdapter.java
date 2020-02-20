@@ -1,5 +1,6 @@
 package com.gutotech.narutogame.ui.adapter;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.Jutsu;
 import com.gutotech.narutogame.data.model.JutsuInfo;
+import com.gutotech.narutogame.ui.playing.battles.BuffDebuffInfoPopupWindow;
 import com.gutotech.narutogame.utils.StorageUtil;
 
 import java.util.List;
@@ -22,12 +24,16 @@ public class BuffsDebuffStatusAdapter extends RecyclerView.Adapter<BuffsDebuffSt
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-
             buffDebuffImageView = itemView.findViewById(R.id.buffDebuffImageView);
         }
     }
 
+    private Context mContext;
     private List<Jutsu> mBuffsDebuffsList;
+
+    public BuffsDebuffStatusAdapter(Context context) {
+        mContext = context;
+    }
 
     @NonNull
     @Override
@@ -45,9 +51,7 @@ public class BuffsDebuffStatusAdapter extends RecyclerView.Adapter<BuffsDebuffSt
 
             StorageUtil.downloadJutsu(holder.buffDebuffImageView, jutsuInfo.image);
 
-            holder.itemView.setOnClickListener(v -> {
-                //
-            });
+            holder.itemView.setOnClickListener(v -> showBuffDebuffInfo(v, jutsu));
         }
     }
 
@@ -59,5 +63,11 @@ public class BuffsDebuffStatusAdapter extends RecyclerView.Adapter<BuffsDebuffSt
     public void setBuffsDebuffsList(List<Jutsu> buffsDebuffsList) {
         mBuffsDebuffsList = buffsDebuffsList;
         notifyDataSetChanged();
+    }
+
+    private void showBuffDebuffInfo(View anchor, Jutsu jutsu) {
+        BuffDebuffInfoPopupWindow popupWindow = new BuffDebuffInfoPopupWindow(mContext);
+        popupWindow.setBuffOrDebuff(jutsu);
+        popupWindow.showAsDropDown(anchor);
     }
 }

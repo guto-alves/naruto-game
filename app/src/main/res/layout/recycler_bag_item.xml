@@ -29,7 +29,7 @@
         android:layout_height="wrap_content"
         android:background="#413F3F"
         android:padding="1dp"
-        android:text="@string/bag_item_quantity"
+        android:text="@string/item_quantity"
         android:textColor="@android:color/white"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/itemImageView"

@@ -30,7 +30,7 @@ public class AuthRepository {
         return sInstance;
     }
 
-    public void registerPlayer(String name, String email, String password, Completable emitter) {
+    public void register(String name, String email, String password, Completable emitter) {
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 updateProfile(getCurrentUser(), name, null, true);
@@ -56,7 +56,7 @@ public class AuthRepository {
         });
     }
 
-    public void loginPlayer(String email, String password, final Completable emitter) {
+    public void signIn(String email, String password, final Completable emitter) {
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
             int resId;
 
@@ -153,7 +153,7 @@ public class AuthRepository {
         return getCurrentUser().getUid();
     }
 
-    public boolean isSignedin() {
+    public boolean isSignedIn() {
         return getCurrentUser() != null;
     }
 

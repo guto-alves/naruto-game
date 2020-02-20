@@ -44,7 +44,7 @@ public class RecompensasFidelidadeAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
             LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = layoutInflater.inflate(R.layout.gridview_recompensas_fidelidade, null, false);
+            convertView = layoutInflater.inflate(R.layout.adapter_loyalty_reward_item, null, false);
         }
 
         final int dia = position + 1;

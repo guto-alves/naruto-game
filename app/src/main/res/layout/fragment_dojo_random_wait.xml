@@ -5,17 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/layout_pagina_repeat"
+    android:padding="16dp"
     tools:context=".ui.playing.battles.DojoRandomWaitFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/msgConstraint"
         android:layout_width="match_parent"
         android:layout_height="235dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:background="#1D140F"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -43,7 +39,7 @@
             app:layout_constraintTop_toTopOf="@+id/imageView24" />
 
         <ImageView
-            android:id="@+id/personagemMsg"
+            android:id="@+id/profileForMsg"
             android:layout_width="120dp"
             android:layout_height="0dp"
             android:layout_marginTop="8dp"
@@ -80,9 +76,10 @@
             android:layout_height="0dp"
             android:gravity="center_vertical"
             android:orientation="vertical"
+            android:padding="3dp"
             app:layout_constraintBottom_toTopOf="@+id/imageView22"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/personagemMsg"
+            app:layout_constraintStart_toEndOf="@+id/profileForMsg"
             app:layout_constraintTop_toBottomOf="@+id/imageView21">
 
             <TextView
@@ -100,7 +97,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center|start"
-                android:paddingRight="3dp"
                 android:text="Estamos no momento procurando um oponente do mesmo level que o seu, caso não encontremos a batalha poderá acontecer com um oponente com 1 level a mais ou 1 a menos que o seu."
                 android:textColor="#D1D8F1"
                 android:textSize="10sp" />
@@ -110,7 +106,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3pt"
                 android:gravity="center|start"
-                android:paddingRight="3dp"
                 android:text="Recomendamos que você não saia dessa página, pois se encontrarmos um oponente, não conseguiremos te mandar para batalha e você poderá perder by inatividade."
                 android:textColor="@android:color/holo_orange_dark"
                 android:textSize="10sp" />
@@ -122,14 +117,8 @@
     <Button
         android:id="@+id/sairDaFilaButton"
         style="@style/ButtonTheme"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:text="Cancelar"
+        android:layout_marginTop="16dp"
+        android:text="@string/button_cancel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/msgConstraint" />

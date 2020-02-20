@@ -9,6 +9,7 @@ public class BattleLog {
 
     private Integer action;
     private Jutsu jutsu;
+    private int chanceOfSuccess;
 
     public BattleLog() {
     }
@@ -17,22 +18,30 @@ public class BattleLog {
         this.type = type;
     }
 
-    public BattleLog(Type type, String nick) {
+    public BattleLog(String nick, Type type) {
         this.type = type;
         this.nick = nick;
     }
 
-    public BattleLog(Type type, String nick, Integer action) {
+    public BattleLog(String nick, Type type, Integer action) {
         this.type = type;
         this.nick = nick;
         this.action = action;
     }
 
-    public BattleLog(Type type, String nick, Integer action, Jutsu jutsu) {
+    public BattleLog(String nick, Type type, Integer action, Jutsu jutsu) {
         this.type = type;
         this.nick = nick;
         this.action = action;
         this.jutsu = jutsu;
+    }
+
+    public BattleLog(String nick, Type type, Integer action, Jutsu jutsu, int chanceOfSuccess) {
+        this.type = type;
+        this.nick = nick;
+        this.action = action;
+        this.jutsu = jutsu;
+        this.chanceOfSuccess = chanceOfSuccess;
     }
 
     public Type getType() {
@@ -65,5 +74,13 @@ public class BattleLog {
 
     public void setJutsu(Jutsu jutsu) {
         this.jutsu = jutsu;
+    }
+
+    public int getChanceOfSuccess() {
+        return chanceOfSuccess;
+    }
+
+    public void setChanceOfSuccess(int chanceOfSuccess) {
+        this.chanceOfSuccess = chanceOfSuccess;
     }
 }

@@ -11,18 +11,19 @@ import com.gutotech.narutogame.data.repository.PlayerRepository;
 import com.gutotech.narutogame.ui.ResultListener;
 
 public class PasswordChangeViewModel extends ViewModel {
-    public ObservableField<String> currentPassword = new ObservableField<>("");
-    public ObservableField<String> newPassword = new ObservableField<>("");
-    public ObservableField<String> newPassword2 = new ObservableField<>("");
+    public final ObservableField<String> currentPassword = new ObservableField<>("");
+    public final ObservableField<String> newPassword = new ObservableField<>("");
+    public final ObservableField<String> newPassword2 = new ObservableField<>("");
 
     private ResultListener mResultListener;
-    
+
     public void setListener(ResultListener listener) {
         mResultListener = listener;
     }
 
     public void onChangePasswordButtonPressed() {
         if (validatePassword()) {
+            mResultListener.onStarted();
             PlayerRepository.getInstance().isValidCurrentPassword(currentPassword.get(),
                     result -> {
                         if (result) {

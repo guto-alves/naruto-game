@@ -6,7 +6,7 @@
     <data>
 
         <variable
-            name="viewmodel"
+            name="viewModel"
             type="com.gutotech.narutogame.ui.home.home.HomeViewModel" />
     </data>
 
@@ -26,6 +26,7 @@
                 android:id="@+id/loginLinearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
                 android:orientation="vertical"
                 android:visibility="visible">
 
@@ -46,7 +47,7 @@
                         android:layout_height="40dp"
                         android:hint="@string/email"
                         android:inputType="textEmailAddress"
-                        android:text="@={viewmodel.email}" />
+                        android:text="@={viewModel.email}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -69,7 +70,7 @@
                         android:hint="@string/password"
                         android:imeOptions="actionDone"
                         android:inputType="textPassword"
-                        android:text="@={viewmodel.password}" />
+                        android:text="@={viewModel.password}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <ImageButton
@@ -80,7 +81,7 @@
                     android:layout_marginTop="16dp"
                     android:background="@android:color/transparent"
                     android:contentDescription="@string/button_play"
-                    android:onClick="@{() -> viewmodel.onPlayButtonPressed()}"
+                    android:onClick="@{() -> viewModel.onPlayButtonPressed()}"
                     android:src="@drawable/layout_jogar" />
 
                 <TextView
@@ -97,7 +98,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginRight="8dp">
 
                 <ImageView
@@ -134,10 +135,7 @@
                 android:id="@+id/newsRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:listitem="@layout/recycler_news_item" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -185,10 +183,6 @@
                 android:id="@+id/ninjaStatisticsRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="230dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:spanCount="2"
                 tools:listitem="@layout/recycler_ninja_statistics_item" />
@@ -230,7 +224,7 @@
             <androidx.viewpager.widget.ViewPager
                 android:id="@+id/kagesAndVilaViewPager"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
     </ScrollView>

@@ -19,7 +19,7 @@
         android:paddingBottom="5dp"
         android:text="@string/warning"
         android:textColor="@android:color/white"
-        android:textSize="18sp"
+        android:textSize="16sp"
         android:textStyle="bold" />
 
     <TextView
@@ -28,6 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
+        android:text="Você não tem chakra ou stamina"
         android:textColor="@android:color/white" />
 
     <View
@@ -36,7 +37,7 @@
         android:layout_height="1dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
-        android:background="?android:attr/listDivider" />
+        android:background="@android:color/darker_gray" />
 
     <Button
         android:id="@+id/closeButton"

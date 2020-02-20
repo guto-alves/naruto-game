@@ -156,7 +156,7 @@ public class Attributes extends BaseObservable {
     public void train(int attributeId, int quantity) {
         int current = getDistributedPoints().get(attributeId);
         getDistributedPoints().set(attributeId, current + quantity);
-        totalFreePoints--;
+        totalFreePoints -= quantity;
     }
 
     public int getTaijutsu() {

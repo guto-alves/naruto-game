@@ -9,8 +9,7 @@ public class ShopItem extends Item {
     public ShopItem() {
     }
 
-    public ShopItem(String image, int name, int description, List<Requirement> requirements,
-                    int value, int inventory) {
+    public ShopItem(String image, int name, int description, List<Requirement> requirements, int value, int inventory) {
         super(image, name, description, requirements);
         this.value = value;
         this.inventory = inventory;

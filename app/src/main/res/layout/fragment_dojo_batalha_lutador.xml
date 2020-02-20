@@ -500,6 +500,7 @@
                                 android:text="@{@string/label_stamina(viewModel.npcFormulas.currentStamina)}"
                                 android:textColor="@android:color/white"
                                 android:textSize="10sp"
+                                android:textStyle="bold"
                                 app:layout_constraintBottom_toBottomOf="@+id/staminaOpoProgressBar"
                                 app:layout_constraintStart_toStartOf="@+id/staminaOpoProgressBar"
                                 app:layout_constraintTop_toTopOf="@+id/staminaOpoProgressBar" />

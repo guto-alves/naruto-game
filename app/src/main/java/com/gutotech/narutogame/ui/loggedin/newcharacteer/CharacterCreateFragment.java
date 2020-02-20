@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.StringRes;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
@@ -25,7 +26,7 @@ public class CharacterCreateFragment extends Fragment implements SectionFragment
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        CharacterCreateViewModel viewModel = ViewModelProviders.of(getActivity())
+        CharacterCreateViewModel viewModel = ViewModelProviders.of(this)
                 .get(CharacterCreateViewModel.class);
         viewModel.setListener(this);
 
@@ -44,10 +45,10 @@ public class CharacterCreateFragment extends Fragment implements SectionFragment
         return binding.getRoot();
     }
 
-    private void showAlert(String title, String message) {
+    private void showAlert(@StringRes int titleId, @StringRes int messageId) {
         AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
-        alert.setTitle(title);
-        alert.setMessage(message);
+        alert.setTitle(titleId);
+        alert.setMessage(messageId);
         alert.create();
         alert.show();
     }
@@ -63,13 +64,12 @@ public class CharacterCreateFragment extends Fragment implements SectionFragment
 
     @Override
     public void onSuccess() {
-        showAlert("NINJA CRIADO COM SUCESSO", "Parabéns você acaba de criar seu character no Naruto Game.\n" +
-                "Selecione seu character e comece agora mesmo seu treinamento");
+        showAlert(R.string.ninja_successfully_created, R.string.congratulations_character_created);
         FragmentUtil.goTo(getActivity(), new CharacterSelectFragment());
     }
 
     @Override
     public void onFailure(int resId) {
-        showAlert(getString(R.string.warning), getString(resId));
+        showAlert(R.string.warning, resId);
     }
 }

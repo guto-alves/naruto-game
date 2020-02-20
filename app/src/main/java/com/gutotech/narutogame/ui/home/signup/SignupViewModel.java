@@ -21,7 +21,6 @@ public class SignupViewModel extends ViewModel {
 
     public SignupViewModel() {
         player = new MutableLiveData<>(new Player());
-
         mAuthRepository = AuthRepository.getInstance();
     }
 
@@ -37,7 +36,7 @@ public class SignupViewModel extends ViewModel {
         mAuthListener.onStarted();
 
         if (isValidPlayer()) {
-            mAuthRepository.registerPlayer(
+            mAuthRepository.register(
                     player.getValue().getName(),
                     player.getValue().getEmail(),
                     player.getValue().getPassword(),
@@ -45,7 +44,6 @@ public class SignupViewModel extends ViewModel {
                         @Override
                         public void onComplete() {
                             player.getValue().setId(mAuthRepository.getUid());
-                            player.getValue().setVipCredits(20);
 
                             PlayerRepository.getInstance().savePlayer(player.getValue());
 

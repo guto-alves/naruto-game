@@ -1,6 +1,10 @@
 package com.gutotech.narutogame.data.model;
 
-public class Player {
+import androidx.databinding.BaseObservable;
+import androidx.databinding.Bindable;
+import androidx.databinding.library.baseAdapters.BR;
+
+public class Player extends BaseObservable {
     private String id;
     private String name;
     private String email;
@@ -11,20 +15,8 @@ public class Player {
     private String state;
     private String neighborhood;
     private String city;
-    private int vipCredits;
 
     public Player() {
-    }
-
-    public Player(String email, String password) {
-        this.email = email;
-        this.password = password;
-    }
-
-    public Player(String name, String email, String password) {
-        this.name = name;
-        this.email = email;
-        this.password = password;
     }
 
     public String getId() {
@@ -35,14 +27,17 @@ public class Player {
         this.id = id;
     }
 
+    @Bindable
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
+        notifyPropertyChanged(BR.name);
     }
 
+    @Bindable
     public String getEmail() {
         return email;
     }
@@ -51,6 +46,7 @@ public class Player {
         this.email = email;
     }
 
+    @Bindable
     public String getPassword() {
         return password;
     }
@@ -59,30 +55,37 @@ public class Player {
         this.password = password;
     }
 
+    @Bindable
     public String getDateOfBirth() {
         return dateOfBirth;
     }
 
     public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
+        notifyPropertyChanged(BR.dateOfBirth);
     }
 
+    @Bindable
     public String getAddress() {
         return address;
     }
 
     public void setAddress(String address) {
         this.address = address;
+        notifyPropertyChanged(BR.address);
     }
 
+    @Bindable
     public String getZipCode() {
         return zipCode;
     }
 
     public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
+        notifyPropertyChanged(BR.zipCode);
     }
 
+    @Bindable
     public String getState() {
         return state;
     }
@@ -91,6 +94,7 @@ public class Player {
         this.state = state;
     }
 
+    @Bindable
     public String getNeighborhood() {
         return neighborhood;
     }
@@ -99,19 +103,12 @@ public class Player {
         this.neighborhood = neighborhood;
     }
 
+    @Bindable
     public String getCity() {
         return city;
     }
 
     public void setCity(String city) {
         this.city = city;
-    }
-
-    public int getVipCredits() {
-        return vipCredits;
-    }
-
-    public void setVipCredits(int vipCredits) {
-        this.vipCredits = vipCredits;
     }
 }

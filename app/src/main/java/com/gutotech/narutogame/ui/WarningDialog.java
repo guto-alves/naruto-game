@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.StringRes;
 import androidx.fragment.app.DialogFragment;
 
 import com.gutotech.narutogame.R;
@@ -30,6 +29,7 @@ public class WarningDialog extends DialogFragment {
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setCancelable(false);
 
         View root = requireActivity().getLayoutInflater().inflate(R.layout.dialog_warning, null);
         builder.setView(root);
@@ -45,8 +45,6 @@ public class WarningDialog extends DialogFragment {
 
             dismiss();
         });
-
-        builder.setCancelable(false);
 
         return builder.create();
     }

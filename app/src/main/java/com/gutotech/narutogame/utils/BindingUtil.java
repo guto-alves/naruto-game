@@ -3,7 +3,6 @@ package com.gutotech.narutogame.utils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.databinding.BindingAdapter;
 
@@ -11,14 +10,8 @@ import com.github.rtoshiro.util.format.SimpleMaskFormatter;
 import com.github.rtoshiro.util.format.text.MaskTextWatcher;
 import com.google.android.material.textfield.TextInputEditText;
 import com.gutotech.narutogame.R;
-import com.gutotech.narutogame.data.model.CharOn;
 
 public class BindingUtil {
-
-    @BindingAdapter(value = "loadProfile")
-    public static void loadImage(ImageView imageView, int ninjaId) {
-        StorageUtil.downloadProfile(imageView.getContext(), imageView, ninjaId);
-    }
 
     @BindingAdapter(value = "loadProfile")
     public static void setLoadProfile(ImageView imageView, String path) {

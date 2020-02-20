@@ -46,8 +46,8 @@ public class SuporteFragment extends Fragment implements SectionFragment {
 
         Bundle bundle = getArguments();
         if (bundle != null) {
-            ImageView personagemMsg2 = view.findViewById(R.id.personagemMsg2);
-            StorageUtil.downloadProfileForMsg(getActivity(), personagemMsg2);
+//            ImageView personagemMsg2 = view.findViewById(R.id.personagemMsg2);
+//            StorageUtil.downloadProfileForMsg(getActivity(), personagemMsg2);
             ConstraintLayout msgConstraint2 = view.findViewById(R.id.msgConstraint2);
             msgConstraint2.setVisibility(View.VISIBLE);
         }
