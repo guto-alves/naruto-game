@@ -22,7 +22,7 @@ public class Npc implements Serializable {
         character.setNick(ninja.getName());
 
         StorageUtil.listAll(String.format("images/profile/%d/", ninja.getId()),
-                data -> character.setProfilePath(data.get(data.size()).getPath()));
+                data -> character.setProfilePath(data.get(random.nextInt(data.size())).getPath()));
 
         character.getAttributes().updateFormulas(character.getClasse(),
                 character.getLevel() + (random.nextInt(3) - 1));
