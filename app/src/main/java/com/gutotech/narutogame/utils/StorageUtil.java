@@ -25,7 +25,7 @@ public class StorageUtil {
                 .into(imageView);
     }
 
-    // @param path Example: images/profiles/4/
+    // @param path Example: images/profile/4/
     public static void listAll(String path, Callback<List<StorageReference>> callback) {
         StorageReference listRef = FirebaseConfig.getStorage().child(path);
 
@@ -47,15 +47,6 @@ public class StorageUtil {
                     .child(generateProfileId() + ".png");
         }
 
-        downloadImage(context, imageReference, imageView);
-    }
-
-    public static void downloadProfile(Context context, ImageView imageView, int ninjaId) {
-        StorageReference imageReference = FirebaseConfig.getStorage()
-                .child("images")
-                .child("profile")
-                .child(String.valueOf(ninjaId))
-                .child("1.png");
         downloadImage(context, imageReference, imageView);
     }
 
@@ -141,6 +132,14 @@ public class StorageUtil {
                 .child("armas")
                 .child(alcance)
                 .child(name + ".jpg");
+        downloadImage(context, imageReference, imageView);
+    }
+
+    public static void downloadDojo(Context context, ImageView imageView, int ninjaId) {
+        StorageReference imageReference = FirebaseConfig.getStorage()
+                .child("images")
+                .child("dojo")
+                .child(ninjaId + ".png");
         downloadImage(context, imageReference, imageView);
     }
 

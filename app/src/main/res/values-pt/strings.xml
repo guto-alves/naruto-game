@@ -680,5 +680,7 @@
     <string name="waterfall">Cachoeira</string>
     <string name="hot_springs">Fontes Termais</string>
     <string name="grass">Grama</string>
+    <string name="all">Todos</string>
+    <string name="general">Geral</string>
 
 </resources>

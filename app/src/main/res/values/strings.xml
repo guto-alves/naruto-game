@@ -773,6 +773,8 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="waterfall">Cachoeira</string>
     <string name="hot_springs">Fontes Termais</string>
     <string name="grass">Grama</string>
+    <string name="all">All</string>
+    <string name="general">General</string>
 
 
 </resources>

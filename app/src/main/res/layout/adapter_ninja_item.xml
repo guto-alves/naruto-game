@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/bgConstraint"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -10,10 +9,9 @@
     android:padding="3dp">
 
     <TextView
-        android:id="@+id/posicaoTextView"
+        android:id="@+id/positionTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="1°"
         android:textColor="@color/colorText"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -33,41 +31,26 @@
         app:layout_constraintStart_toStartOf="@+id/guideline49"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/onlineImageView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/layout_on" />
-
-            <TextView
-                android:id="@+id/nickTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TextView"
-                android:textColor="@android:color/holo_blue_light" />
-
-        </LinearLayout>
-
         <TextView
-            android:id="@+id/tituloTextView"
+            android:id="@+id/nickTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView"
-            android:textColor="@android:color/holo_blue_light"
-            android:textSize="12sp" />
+            android:gravity="center_vertical"
+            android:textColor="@android:color/holo_blue_light" />
+
+        <TextView
+            android:id="@+id/titleTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorText"
+            android:textSize="12sp"
+            android:visibility="gone" />
     </LinearLayout>
 
     <TextView
         android:id="@+id/levelTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="45"
         android:textColor="@color/colorText"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -76,10 +59,9 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/pontosTextView"
+        android:id="@+id/scoreTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="165460"
         android:textColor="@color/colorText"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -88,18 +70,20 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/vilaImageView"
+        android:id="@+id/villageImageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:src="@drawable/layout_bandanas_1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline53"
         app:layout_constraintStart_toStartOf="@+id/guideline51"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/personagemImageView"
+        android:id="@+id/characterImageView"
         android:layout_width="100dp"
         android:layout_height="37dp"
+        android:src="@drawable/layout_dojo_1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline53"
@@ -110,14 +94,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.09" />
+        app:layout_constraintGuide_percent="0.14" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline50"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.4160584" />
+        app:layout_constraintGuide_percent="0.40" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline51"
@@ -138,5 +122,5 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.73" />
+        app:layout_constraintGuide_percent="0.75" />
 </androidx.constraintlayout.widget.ConstraintLayout>

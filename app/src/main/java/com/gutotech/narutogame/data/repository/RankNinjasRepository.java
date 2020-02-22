@@ -1,8 +1,6 @@
 package com.gutotech.narutogame.data.repository;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -14,6 +12,8 @@ import com.gutotech.narutogame.data.model.Character;
 import com.gutotech.narutogame.data.model.Village;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class RankNinjasRepository {
@@ -26,11 +26,29 @@ public class RankNinjasRepository {
     private RankNinjasRepository() {
     }
 
-    private void getAll(String nick, Callback<List<Character>> callback) {
+    public void filter(Village village, String nick, boolean online, Callback<List<Character>> callback) {
+        getByNick(nick, characters -> {
+            List<Character> characterList = new ArrayList<>(characters);
+
+            for (Character character : characters) {
+                if (village != null && character.getVillage() != village) {
+                    characterList.remove(character);
+                } else if (online && !character.isOnline()) {
+                    characterList.remove(character);
+                }
+            }
+
+            sortByLevel(characterList);
+
+            callback.call(characterList);
+        });
+    }
+
+    private void getByNick(String nick, Callback<List<Character>> callback) {
         DatabaseReference databaseReference = FirebaseConfig.getDatabase()
                 .child("characters");
 
-        Query query = databaseReference.orderByKey().startAt(nick).endAt(nick + "\uf8ff");
+        Query query = databaseReference.orderByChild("nick").startAt(nick).endAt(nick + "\uf8ff");
 
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -50,29 +68,13 @@ public class RankNinjasRepository {
         });
     }
 
-    public LiveData<List<Character>> filter(Village village, String nick, boolean online) {
-        MutableLiveData<List<Character>> data = new MutableLiveData<>();
-
-        getAll(nick, characters -> {
-            List<Character> characterList = new ArrayList<>();
-
-            characterList.addAll(characters);
-
-            for (Character character : characters) {
-                if (character.getVillage() != village) {
-                    characterList.remove(character);
-                }
-
-                if (online) {
-                    if (character.isOnline()) {
-                        characterList.remove(character);
-                    }
-                }
+    private void sortByLevel(List<Character> characterList) {
+        Collections.sort(characterList, (char1, char2) -> {
+            if (char1.getScore() == char2.getScore()) {
+                return 0;
             }
 
-            data.setValue(characterList);
+            return char1.getScore() > char2.getScore() ? -1 : 1;
         });
-
-        return data;
     }
 }

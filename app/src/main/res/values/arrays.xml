@@ -12,7 +12,7 @@
     </string-array>
 
     <string-array name="chat_channel_list">
-        <item>Village</item>
+        <item>@string/village</item>
         <item>World</item>
     </string-array>
 
@@ -34,19 +34,20 @@
         <item>100</item>
     </string-array>
 
-    <string-array name="villages">
+    <string-array name="villages_list">
+        <item>@string/general</item>
         <item>@string/leaf</item>
-        <item>Areia</item>
-        <item>Névoa</item>
-        <item>Pedra</item>
-        <item>Nuvem</item>
-        <item>Akatsuki</item>
-        <item>Som</item>
-        <item>Chuva</item>
+        <item>@string/sand</item>
+        <item>@string/mist</item>
+        <item>@string/stone</item>
+        <item>@string/cloud</item>
+        <item>@string/akatsuki</item>
+        <item>@string/sound</item>
+        <item>@string/rain</item>
     </string-array>
 
     <string-array name="on_off_list">
-        <item>All</item>
+        <item>@string/all</item>
         <item>Online</item>
     </string-array>
 
