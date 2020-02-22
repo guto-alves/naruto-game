@@ -29,24 +29,24 @@ public class JutsuRepository {
         if (classe == Classe.TAI || classe == Classe.BUK) {
             jutsusDefault = new ArrayList<>(Arrays.asList(
                     new Jutsu(JutsuInfo.DEFESA_MAO.toString(), classe, 0, 5, 0,
-                            3, 10),
+                            3, 10, 3),
                     new Jutsu(JutsuInfo.DEFESA_ACROBATICA.toString(), classe, 0, 8, 0,
-                            4, 15),
+                            4, 15, 3),
                     new Jutsu(JutsuInfo.SOCO.toString(), classe, 5, 0, 0,
-                            1, 8),
+                            1, 8, 3),
                     new Jutsu(JutsuInfo.CHUTE.toString(), classe, 8, 0, 0,
-                            2, 11)
+                            2, 11, 3)
             ));
         } else {
             jutsusDefault = new ArrayList<>(Arrays.asList(
                     new Jutsu(JutsuInfo.DEFESA_MAO.toString(), classe, 0, 5, 0,
-                            10, 3),
+                            10, 3, 3),
                     new Jutsu(JutsuInfo.DEFESA_ACROBATICA.toString(), classe, 0, 8, 0,
-                            15, 4),
+                            15, 4, 3),
                     new Jutsu(JutsuInfo.SOCO.toString(), classe, 5, 0, 0,
-                            8, 1),
+                            8, 1, 3),
                     new Jutsu(JutsuInfo.CHUTE.toString(), classe, 8, 0, 0,
-                            11, 2)
+                            11, 2, 3)
             ));
         }
 
@@ -60,16 +60,16 @@ public class JutsuRepository {
         executorService.execute(() -> {
             if (classe == Classe.TAI) {
                 jutsus.add(new Jutsu(JutsuInfo.DYNAMIC_KICK.toString(), Classe.TAI,
-                        16, 0, 10, 3, 18));
+                        16, 0, 10, 3, 18, 2));
 
                 jutsus.add(new Jutsu(JutsuInfo.DYNAMIC_ENTRY.toString(), Classe.TAI,
-                        20, 0, 14, 2, 22));
+                        20, 0, 14, 2, 22, 2));
                 jutsus.add(new Jutsu(JutsuInfo.HORENGAN_PILL_I.toString(), Classe.TAI,
                         2, 0, 1, 2, 22));
                 jutsus.add(new Jutsu(JutsuInfo.HORENGAN_PILL_II.toString(), Classe.TAI,
                         0, 2, 1, 2, 22));
                 jutsus.add(new Jutsu(JutsuInfo.HARIITSUBA.toString(), Classe.TAI,
-                        29, 0, 14, 6, 33));
+                        29, 0, 14, 6, 33, 2));
                 jutsus.add(new Jutsu(JutsuInfo.KONOHA_FULL_KICK_SOCCER.toString(), Classe.TAI,
                         38, 0, 20, 7, 44));
                 jutsus.add(new Jutsu(JutsuInfo.KONOHA_SENPUU.toString(), Classe.TAI,
@@ -85,16 +85,16 @@ public class JutsuRepository {
 
             } else if (classe == Classe.BUK) {
                 jutsus.add(new Jutsu(JutsuInfo.SOUFUUSHASAN_NO_TACHI.toString(), Classe.BUK,
-                        16, 0, 10, 6, 18));
+                        16, 0, 10, 6, 18, 2));
 
                 jutsus.add(new Jutsu(JutsuInfo.SOUSHURIKEN_NO_JUTSU.toString(), Classe.BUK,
-                        20, 0, 14, 2, 22));
+                        20, 0, 14, 2, 22, 2));
                 jutsus.add(new Jutsu(JutsuInfo.SOUSHUUJIN_I.toString(), Classe.BUK,
                         -2, 0, -1, 2, 22));
                 jutsus.add(new Jutsu(JutsuInfo.SOUSHUUJIN_II.toString(), Classe.BUK,
                         0, -2, -1, 2, 22));
                 jutsus.add(new Jutsu(JutsuInfo.RENSHA.toString(), Classe.BUK,
-                        29, 0, 14, 6, 33));
+                        29, 0, 14, 6, 33, 2));
                 jutsus.add(new Jutsu(JutsuInfo.JOURO_SENBON.toString(), Classe.BUK,
                         38, 0, 20, 7, 44));
                 jutsus.add(new Jutsu(JutsuInfo.SHIKOMISHINDAN.toString(), Classe.BUK,
@@ -110,18 +110,16 @@ public class JutsuRepository {
 
             } else if (classe == Classe.NIN) {
                 jutsus.add(new Jutsu(JutsuInfo.HENGE_NO_JUTSU.toString(), Classe.NIN,
-                        16, 0, 10,
-                        18, 6));
+                        16, 0, 10, 18, 6, 2));
 
                 jutsus.add(new Jutsu(JutsuInfo.KONOHA_TZU.toString(), Classe.NIN,
-                        20, 0, 14,
-                        22, 2));
+                        20, 0, 14, 22, 2, 2));
                 jutsus.add(new Jutsu(JutsuInfo.BUNSHIN_NO_JUTSU_I.toString(), Classe.NIN,
                         2, 0, 1, 22, 2));
                 jutsus.add(new Jutsu(JutsuInfo.BUNSHIN_NO_JUTSU_II.toString(), Classe.NIN,
                         0, 2, 1, 22, 2));
                 jutsus.add(new Jutsu(JutsuInfo.NINPOU.toString(), Classe.NIN,
-                        29, 0, 14, 33, 6));
+                        29, 0, 14, 33, 6, 2));
                 jutsus.add(new Jutsu(JutsuInfo.KAGE_SHURIKEN.toString(), Classe.NIN,
                         38, 0, 20, 44, 7));
                 jutsus.add(new Jutsu(JutsuInfo.KAKUREMINO.toString(), Classe.NIN,
@@ -137,16 +135,16 @@ public class JutsuRepository {
 
             } else { // mClasseSelected == GEN
                 jutsus.add(new Jutsu(JutsuInfo.KISHIBARI_NO_JUTSU.toString(), Classe.GEN,
-                        16, 0, 10, 18, 6));
+                        16, 0, 10, 18, 6, 2));
 
                 jutsus.add(new Jutsu(JutsuInfo.KASUMI_JUUHA.toString(), Classe.GEN,
-                        20, 0, 14, 22, 2));
+                        20, 0, 14, 22, 2, 2));
                 jutsus.add(new Jutsu(JutsuInfo.NEMURI_I.toString(), Classe.GEN,
                         -2, 0, -1, 22, 2));
                 jutsus.add(new Jutsu(JutsuInfo.NEMURI_II.toString(), Classe.GEN,
                         0, -2, -1, 22, 2));
                 jutsus.add(new Jutsu(JutsuInfo.KOKOROYOURU.toString(), Classe.GEN,
-                        29, 0, 14, 33, 6));
+                        29, 0, 14, 33, 6, 2));
                 jutsus.add(new Jutsu(JutsuInfo.TAZUNERU.toString(), Classe.GEN,
                         38, 0, 20, 44, 7));
                 jutsus.add(new Jutsu(JutsuInfo.BAKUON.toString(), Classe.GEN,

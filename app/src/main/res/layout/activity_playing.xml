@@ -157,9 +157,9 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            stringRes="@{viewModel.character.village.name}"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@{viewModel.character.village.toString()}"
                             android:textColor="@color/colorPrimaryDark" />
                     </LinearLayout>
 

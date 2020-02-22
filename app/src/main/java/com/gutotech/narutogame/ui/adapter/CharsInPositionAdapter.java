@@ -86,7 +86,7 @@ public class CharsInPositionAdapter extends RecyclerView.Adapter<CharsInPosition
             holder.battleImageButton.setVisibility(View.VISIBLE);
             ConstraintSet set = new ConstraintSet();
             set.clone(holder.constraintLayout);
-            set.constrainWidth(R.id.charInfoTextView, 180);
+            set.constrainWidth(R.id.charInfoTextView, 200);
             set.applyTo(holder.constraintLayout);
         } else {
             holder.charInfoTextView.setText(R.string.this_place_is_empty);

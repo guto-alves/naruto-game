@@ -50,11 +50,15 @@ public class SoundsUtil {
     }
 
     public void start() {
-        mMediaPlayer.start();
+        if (mMediaPlayer != null) {
+            mMediaPlayer.start();
+        }
     }
 
     public void pause() {
-        mMediaPlayer.pause();
+        if (mMediaPlayer != null) {
+            mMediaPlayer.pause();
+        }
     }
 
     public void release() {
@@ -101,8 +105,11 @@ public class SoundsUtil {
 
     public void setMusicType(MusicType musicType) {
         mMusicType = musicType;
-        release();
-        prepare();
-        start();
+
+        if (mMediaPlayer != null) {
+            release();
+            prepare();
+            start();
+        }
     }
 }

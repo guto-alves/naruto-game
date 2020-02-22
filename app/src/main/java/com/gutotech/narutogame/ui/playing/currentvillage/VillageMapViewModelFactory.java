@@ -5,17 +5,17 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 public class VillageMapViewModelFactory implements ViewModelProvider.Factory {
-    private String villageName;
+    private int villageId;
 
-    public VillageMapViewModelFactory(String villageName) {
-        this.villageName = villageName;
+    public VillageMapViewModelFactory(int villageId) {
+        this.villageId = villageId;
     }
 
     @NonNull
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
         if (modelClass.isAssignableFrom(VillageMapViewModel.class)) {
-            return (T) new VillageMapViewModel(villageName);
+            return (T) new VillageMapViewModel(villageId);
         }
 
         throw new IllegalArgumentException("Unknown ViewModel class");

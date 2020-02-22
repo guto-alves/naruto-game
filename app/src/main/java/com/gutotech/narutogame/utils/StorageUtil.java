@@ -1,24 +1,35 @@
 package com.gutotech.narutogame.utils;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.firebase.storage.StorageReference;
+import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.firebase.FirebaseConfig;
 import com.gutotech.narutogame.data.model.CharOn;
+import com.gutotech.narutogame.data.repository.Callback;
 
 import java.security.SecureRandom;
+import java.util.List;
 
 public class StorageUtil {
-    private static SecureRandom random = new SecureRandom();
+    private final static SecureRandom random = new SecureRandom();
 
     public static void downloadImage(Context context, StorageReference imageReference, ImageView imageView) {
         Glide.with(context)
                 .using(new FirebaseImageLoader())
                 .load(imageReference)
                 .into(imageView);
+    }
+
+    // @param path Example: images/profiles/4/
+    public static void listAll(String path, Callback<List<StorageReference>> callback) {
+        StorageReference listRef = FirebaseConfig.getStorage().child(path);
+
+        listRef.listAll().addOnSuccessListener(listResult -> callback.call(listResult.getItems()));
     }
 
     public static void downloadProfileForMsg(Context context, ImageView imageView) {
@@ -49,19 +60,11 @@ public class StorageUtil {
     }
 
     public static void downloadProfile(Context context, ImageView imageView, String path) {
-        StorageReference imageReference = FirebaseConfig.getStorage()
-                .child("images")
-                .child("profile")
-                .child(path + ".png");
-        downloadImage(context, imageReference, imageView);
-    }
+        if (TextUtils.isEmpty(path)) {
+            return;
+        }
 
-    public static void downloadProfile(Context context, ImageView imageView, int ninjaId, int profile) {
-        StorageReference imageReference = FirebaseConfig.getStorage()
-                .child("images")
-                .child("profile")
-                .child(String.valueOf(ninjaId))
-                .child(profile + ".png");
+        StorageReference imageReference = FirebaseConfig.getStorage().child(path);
         downloadImage(context, imageReference, imageView);
     }
 

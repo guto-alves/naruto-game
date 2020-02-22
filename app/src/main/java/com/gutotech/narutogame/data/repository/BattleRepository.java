@@ -7,10 +7,12 @@ import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.gutotech.narutogame.data.firebase.FirebaseConfig;
 import com.gutotech.narutogame.data.model.Battle;
 import com.gutotech.narutogame.data.model.CharOn;
+import com.gutotech.narutogame.utils.DateCustom;
 
 public class BattleRepository {
     private static final BattleRepository ourInstance = new BattleRepository();
@@ -26,7 +28,7 @@ public class BattleRepository {
         return label + "-" + FirebaseConfig.getDatabase().push().getKey();
     }
 
-    public String create(Battle battle) {
+    public void create(Battle battle) {
         String id = generateId("MAPA");
 
         battle.setId(id);
@@ -35,24 +37,21 @@ public class BattleRepository {
         saveId(battle.getPlayer2().getNick(), id);
 
         save(battle);
-
-        return id;
     }
 
     private void saveId(String nick, String id) {
         DatabaseReference battleReference = FirebaseConfig.getDatabase()
                 .child("battle-id")
                 .child(nick)
-                .child(id);
+                .child("id");
 
-        battleReference.setValue(true);
+        battleReference.setValue(id);
     }
 
-    private void removeId(String nick, String id) {
+    public void removeId(String nick, String id) {
         DatabaseReference battleReference = FirebaseConfig.getDatabase()
                 .child("battle-id")
-                .child(nick)
-                .child(id);
+                .child(nick);
 
         battleReference.removeValue();
     }
@@ -65,7 +64,7 @@ public class BattleRepository {
         battleReference.setValue(battle);
     }
 
-    public void remove(String battleId){
+    public void remove(String battleId) {
         DatabaseReference battleReference = FirebaseConfig.getDatabase()
                 .child("battles")
                 .child(battleId);
@@ -75,31 +74,22 @@ public class BattleRepository {
 
     public void observeIds(Callback<String> callback) {
         DatabaseReference battleReference = FirebaseConfig.getDatabase()
-                .child("battle-id");
+                .child("battle-id")
+                .child(CharOn.character.getNick())
+                .child("id");
 
-        battleReference.addChildEventListener(new ChildEventListener() {
+//        Query battleQuery = battleReference.orderByKey().equalTo(CharOn.character.getNick());
+
+        battleReference.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                String key = dataSnapshot.getKey();
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String battleId = dataSnapshot.getValue(String.class);
 
-                if (key.contains(CharOn.character.getNick())) {
-                    callback.call(key);
+                if (battleId == null) {
+                    return;
                 }
-            }
 
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
+                callback.call(battleId);
             }
 
             @Override

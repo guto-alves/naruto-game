@@ -22,28 +22,26 @@ public class VillageMapViewModel extends ViewModel implements VillageMapRecycler
     public static final int TOTAL_COLUMNS = 10;
     static final int MAP_LENGTH = 110;
 
-    private String mVillageName;
+    private int mVillageId;
 
     private MapRepository mMapRepository;
 
-    private SingleLiveEvent<List<Character>> mShowCharsInPositionEvent = new SingleLiveEvent<>();
     private SingleLiveEvent<Integer> mShowWarningDialogEvent = new SingleLiveEvent<>();
 
-    VillageMapViewModel(String villageName) {
-        mVillageName = villageName;
+    VillageMapViewModel(int villageId) {
+        mVillageId = villageId;
+
+        CharOn.character.setMap(true);
 
         mMapRepository = MapRepository.getInstance();
 
         if (CharOn.character.getMapPosition() == -1) {
             CharOn.character.setMapPosition(new SecureRandom().nextInt(MAP_LENGTH));
-            mMapRepository.enter(mVillageName);
         }
 
         observe();
-    }
 
-    public LiveData<List<Character>> getShowCharsInPositionEvent() {
-        return mShowCharsInPositionEvent;
+        mMapRepository.enter(mVillageId);
     }
 
     LiveData<Integer> getShowWarningDialogEvent() {
@@ -51,19 +49,14 @@ public class VillageMapViewModel extends ViewModel implements VillageMapRecycler
     }
 
     LiveData<Map<Integer, List<Character>>> getCharactersOnTheMap() {
-        return mMapRepository.load(mVillageName);
+        return mMapRepository.load(mVillageId);
     }
-
-//    @Override
-//    public void onSingleClick(View v, int xoff, int yoff, List<Character> characters, int position) {
-//        mShowCharsInPositionEvent.setValue(characters);
-//    }
 
     @Override
     public void onDoubleClick(int newPosition) {
         if (isMovementValid(newPosition)) {
             CharOn.character.setMapPosition(newPosition);
-            mMapRepository.enter(mVillageName);
+            mMapRepository.enter(mVillageId);
         } else {
             mShowWarningDialogEvent.setValue(R.string.this_place_is_far_away);
         }
@@ -74,7 +67,7 @@ public class VillageMapViewModel extends ViewModel implements VillageMapRecycler
         int levelDifference = Math.abs(opponent.getLevel() - CharOn.character.getLevel());
 
         if (levelDifference <= 3) {
-            mMapRepository.check(opponent.getNick(), mVillageName, result -> {
+            mMapRepository.check(opponent.getNick(), mVillageId, result -> {
                 if (result) {
                     BattleRepository.getInstance().create(new Battle(CharOn.character, opponent));
                 }
@@ -87,10 +80,15 @@ public class VillageMapViewModel extends ViewModel implements VillageMapRecycler
 
     private void observe() {
         BattleRepository.getInstance().observeIds(battleId -> {
-            mMapRepository.exit(mVillageName);
+            mMapRepository.exit(mVillageId);
+            BattleRepository.getInstance().removeId(CharOn.character.getNick(), battleId);
             CharOn.character.battleId = battleId;
             CharOn.character.setBattle(true);
         });
+    }
+
+    public void exit() {
+        mMapRepository.exit(mVillageId);
     }
 
     private boolean isMovementValid(int newPosition) {

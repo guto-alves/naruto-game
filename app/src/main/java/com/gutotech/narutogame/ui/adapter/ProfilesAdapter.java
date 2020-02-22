@@ -1,6 +1,5 @@
 package com.gutotech.narutogame.ui.adapter;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,14 +8,16 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.storage.StorageReference;
 import com.gutotech.narutogame.R;
-import com.gutotech.narutogame.data.model.Ninja;
 import com.gutotech.narutogame.utils.StorageUtil;
+
+import java.util.List;
 
 public class ProfilesAdapter extends RecyclerView.Adapter<ProfilesAdapter.ViewHolder> {
 
     public interface OnProfileClickListener {
-        void onProfileClick(int profile);
+        void onProfileClick(String profilePath);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -29,33 +30,35 @@ public class ProfilesAdapter extends RecyclerView.Adapter<ProfilesAdapter.ViewHo
         }
     }
 
-    private Ninja mNinja;
+    private List<StorageReference> mProfileList;
     private OnProfileClickListener mOnProfileClickListener;
 
-    public ProfilesAdapter(Ninja ninja, OnProfileClickListener onProfileClickListener) {
-        mNinja = ninja;
+    public ProfilesAdapter(List<StorageReference> references,
+                           OnProfileClickListener onProfileClickListener) {
+        mProfileList = references;
         mOnProfileClickListener = onProfileClickListener;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(
-                R.layout.adapter_profile, null, false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_profile,
+                null, false);
         return new ViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        StorageUtil.downloadProfile(holder.profileImageView.getContext(), holder.profileImageView,
-                mNinja.getId(), position + 1);
+        StorageReference storageReference = mProfileList.get(position);
+        StorageUtil.downloadImage(holder.profileImageView.getContext(), storageReference,
+                holder.profileImageView);
 
         holder.itemView.setOnClickListener(v ->
-                mOnProfileClickListener.onProfileClick(position + 1));
+                mOnProfileClickListener.onProfileClick(storageReference.getPath()));
     }
 
     @Override
     public int getItemCount() {
-        return mNinja.getTotalProfiles();
+        return mProfileList.size();
     }
 }

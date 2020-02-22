@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="com.gutotech.narutogame.data.model.Jutsu" />
+
         <variable
             name="viewModel"
             type="com.gutotech.narutogame.ui.playing.battles.DojoBattlePvpViewModel" />
@@ -81,13 +83,21 @@
                                 android:id="@+id/myStatusImageView"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:padding="5dp"
                                 android:src="@drawable/layout_combates_stats" />
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/myBuffsDebuffsStatusRecyclerView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                                app:spanCount="4"
+                                tools:itemCount="2"
+                                tools:listitem="@layout/recycler_buffs_and_debuffs" />
                         </LinearLayout>
 
                         <ImageView
                             android:id="@+id/profileMeImageView"
-                            loadProfile="@{viewModel.battle.player1.profilePath}"
+                            loadProfile="@{viewModel.player.profilePath}"
                             android:layout_width="145dp"
                             android:layout_height="155dp" />
 
@@ -112,7 +122,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="8dp"
-                                android:text="@{viewModel.battle.player1.nick}"
+                                android:text="@{viewModel.player.nick}"
                                 android:textColor="@android:color/white"
                                 android:textStyle="bold"
                                 app:layout_constraintBottom_toBottomOf="@+id/imageView8"
@@ -136,9 +146,16 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="0dp"
                                 android:layout_weight="1"
-                                android:text="@{@string/label_graduation_and_lvl(viewModel.battle.player1.level)}"
-                                android:textColor="@android:color/white"
-                                android:textSize="10sp" />
+                                android:text="@{@string/label_graduation_and_lvl(viewModel.player.level)}"
+                                android:textColor="#FFD274"
+                                android:textSize="8sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@{@string/label_ninja_power_1(viewModel.playerFormulas.ninjaPower)}"
+                                android:textColor="#FFD274"
+                                android:textSize="8sp" />
 
                         </LinearLayout>
 
@@ -154,7 +171,7 @@
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/layout_hp_on"
                                 android:max="@{viewModel.playerFormulas.health}"
-                                android:progress="@{viewModel.battle.player1.attributes.formulas.health - viewModel.battle.player1.attributes.formulas.currentHealth}"
+                                android:progress="@{viewModel.playerFormulas.health - viewModel.playerFormulas.currentHealth}"
                                 android:progressDrawable="@drawable/progressbar_hp_off"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -168,9 +185,10 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginEnd="8dp"
                                 android:layout_marginRight="8dp"
-                                android:text="@{@string/label_heath(viewModel.battle.player1.attributes.formulas.currentHealth)}"
+                                android:text="@{@string/label_heath(viewModel.playerFormulas.currentHealth)}"
                                 android:textColor="@android:color/white"
                                 android:textSize="10sp"
+                                android:textStyle="bold"
                                 app:layout_constraintBottom_toBottomOf="@+id/hpMeProgressBar"
                                 app:layout_constraintEnd_toEndOf="@+id/hpMeProgressBar"
                                 app:layout_constraintTop_toTopOf="@+id/hpMeProgressBar" />
@@ -188,7 +206,7 @@
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/layout_sp_on"
                                 android:max="@{viewModel.playerFormulas.chakra}"
-                                android:progress="@{viewModel.battle.player1.attributes.formulas.chakra - viewModel.battle.player1.attributes.formulas.currentChakra}"
+                                android:progress="@{viewModel.playerFormulas.chakra - viewModel.playerFormulas.currentChakra}"
                                 android:progressDrawable="@drawable/progressbar_sp_off"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -202,9 +220,10 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginEnd="8dp"
                                 android:layout_marginRight="8dp"
-                                android:text="@{@string/label_heath(viewModel.battle.player1.attributes.formulas.currentChakra)}"
+                                android:text="@{@string/label_heath(viewModel.playerFormulas.currentChakra)}"
                                 android:textColor="@android:color/white"
                                 android:textSize="10sp"
+                                android:textStyle="bold"
                                 app:layout_constraintBottom_toBottomOf="@+id/chakraMeProgressBar"
                                 app:layout_constraintEnd_toEndOf="@+id/chakraMeProgressBar"
                                 app:layout_constraintTop_toTopOf="@+id/chakraMeProgressBar" />
@@ -221,8 +240,8 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/layout_sta_on"
-                                android:max="@{viewModel.battle.player1.attributes.formulas.stamina}"
-                                android:progress="@{viewModel.battle.player1.attributes.formulas.stamina - viewModel.battle.player1.attributes.formulas.currentStamina}"
+                                android:max="@{viewModel.playerFormulas.stamina}"
+                                android:progress="@{viewModel.playerFormulas.stamina - viewModel.playerFormulas.currentStamina}"
                                 android:progressDrawable="@drawable/progressbar_sta_off"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -236,9 +255,10 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginEnd="8dp"
                                 android:layout_marginRight="8dp"
-                                android:text="@{@string/label_stamina(viewModel.battle.player1.attributes.formulas.currentStamina)}"
+                                android:text="@{@string/label_stamina(viewModel.playerFormulas.currentStamina)}"
                                 android:textColor="@android:color/white"
                                 android:textSize="10sp"
+                                android:textStyle="bold"
                                 app:layout_constraintBottom_toBottomOf="@+id/staminaMeProgressBar"
                                 app:layout_constraintEnd_toEndOf="@+id/staminaMeProgressBar"
                                 app:layout_constraintTop_toTopOf="parent" />
@@ -280,6 +300,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center"
+                            android:text="@string/waiting_your_move"
                             android:textColor="@android:color/holo_orange_dark"
                             android:textSize="8sp" />
                     </LinearLayout>
@@ -300,8 +321,16 @@
                                 android:id="@+id/oppStatusImageView"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:padding="5dp"
                                 android:src="@drawable/layout_combates_stats" />
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/oppBuffsDebuffsStatusRecyclerView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                                app:spanCount="4"
+                                tools:itemCount="2"
+                                tools:listitem="@layout/recycler_buffs_and_debuffs" />
                         </LinearLayout>
 
                         <ImageView
@@ -359,8 +388,16 @@
                                 android:layout_height="0dp"
                                 android:layout_weight="1"
                                 android:text="@{@string/label_graduation_and_lvl(viewModel.opponent.level)}"
-                                android:textColor="@android:color/white"
-                                android:textSize="10sp" />
+                                android:textColor="#FFD274"
+                                android:textSize="8sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@{@string/label_ninja_power_1(viewModel.oppFormulas.ninjaPower)}"
+                                android:textColor="#FFD274"
+                                android:textSize="8sp" />
+
                         </LinearLayout>
 
                         <androidx.constraintlayout.widget.ConstraintLayout
@@ -392,6 +429,7 @@
                                 android:text="@{@string/label_heath(viewModel.oppFormulas.currentHealth)}"
                                 android:textColor="@android:color/white"
                                 android:textSize="10sp"
+                                android:textStyle="bold"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toStartOf="@+id/hpOpoProgressBar"
                                 app:layout_constraintTop_toTopOf="@+id/hpOpoProgressBar" />
@@ -426,6 +464,7 @@
                                 android:text="@{@string/label_stamina(viewModel.oppFormulas.currentChakra)}"
                                 android:textColor="@android:color/white"
                                 android:textSize="10sp"
+                                android:textStyle="bold"
                                 app:layout_constraintBottom_toBottomOf="@+id/chakraOpoProgressBar"
                                 app:layout_constraintStart_toStartOf="@+id/chakraOpoProgressBar"
                                 app:layout_constraintTop_toTopOf="@+id/chakraOpoProgressBar" />
@@ -445,6 +484,7 @@
                                 android:max="@{viewModel.oppFormulas.stamina}"
                                 android:progress="@{viewModel.oppFormulas.currentStamina}"
                                 android:progressDrawable="@drawable/progressbar_sta_on_r"
+                                android:textStyle="bold"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintHorizontal_bias="0.6"
@@ -460,6 +500,7 @@
                                 android:text="@{@string/label_stamina(viewModel.oppFormulas.currentStamina)}"
                                 android:textColor="@android:color/white"
                                 android:textSize="10sp"
+                                android:textStyle="bold"
                                 app:layout_constraintBottom_toBottomOf="@+id/staminaOpoProgressBar"
                                 app:layout_constraintStart_toStartOf="@+id/staminaOpoProgressBar"
                                 app:layout_constraintTop_toTopOf="@+id/staminaOpoProgressBar" />
@@ -472,11 +513,11 @@
                     android:id="@+id/barraMeusJutsusImageView"
                     android:layout_width="0dp"
                     android:layout_height="40dp"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginLeft="24dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
                     android:layout_marginTop="8dp"
-                    android:layout_marginEnd="24dp"
-                    android:layout_marginRight="24dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginRight="16dp"
                     android:scaleType="fitXY"
                     android:src="@drawable/layout_titulo_secao3"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -488,15 +529,74 @@
                     android:id="@+id/textView42"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginLeft="32dp"
                     android:layout_marginTop="8dp"
+                    android:fontFamily="sans-serif-smallcaps"
                     android:text="@string/my_jutsus"
                     android:textColor="@android:color/white"
-                    android:typeface="serif"
+                    android:textStyle="italic"
                     app:layout_constraintBottom_toBottomOf="@+id/barraMeusJutsusImageView"
-                    app:layout_constraintStart_toStartOf="@+id/barraMeusJutsusImageView"
+                    app:layout_constraintStart_toStartOf="@+id/guideline55"
                     app:layout_constraintTop_toTopOf="@+id/barraMeusJutsusImageView" />
+
+                <Button
+                    android:id="@+id/classJutsusButton"
+                    style="@android:style/Widget.Button.Toggle"
+                    android:layout_width="40dp"
+                    android:layout_height="20dp"
+                    android:layout_marginEnd="2dp"
+                    android:layout_marginRight="2dp"
+                    android:background="@drawable/layout_bg_gradu_lvl"
+                    android:onClick="@{() -> viewModel.filterJutsus(Jutsu.Type.ATK)}"
+                    android:textColor="#FFD274"
+                    android:textSize="10dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/buffAndDebuffsButton"
+                    app:layout_constraintEnd_toStartOf="@+id/buffAndDebuffsButton"
+                    app:layout_constraintTop_toTopOf="@+id/buffAndDebuffsButton" />
+
+                <Button
+                    android:id="@+id/buffAndDebuffsButton"
+                    style="@android:style/Widget.Button.Toggle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_marginEnd="2dp"
+                    android:layout_marginRight="2dp"
+                    android:background="@drawable/layout_bg_gradu_lvl"
+                    android:onClick="@{() -> viewModel.filterJutsus(Jutsu.Type.BUFF)}"
+                    android:text="@string/buffs_and_debuffs"
+                    android:textColor="#FFD274"
+                    android:textSize="10dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/weaponsButton"
+                    app:layout_constraintEnd_toStartOf="@+id/weaponsButton"
+                    app:layout_constraintTop_toTopOf="@+id/weaponsButton" />
+
+                <Button
+                    android:id="@+id/weaponsButton"
+                    style="@android:style/Widget.Button.Toggle"
+                    android:layout_width="50dp"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/layout_bg_gradu_lvl"
+                    android:onClick="@{() -> viewModel.filterJutsus(Jutsu.Type.WEAPON)}"
+                    android:text="@string/weapons"
+                    android:textColor="#FFD274"
+                    android:textSize="10dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline26"
+                    app:layout_constraintTop_toTopOf="@+id/barraMeusJutsusImageView" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline26"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.89" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline55"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.12" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout

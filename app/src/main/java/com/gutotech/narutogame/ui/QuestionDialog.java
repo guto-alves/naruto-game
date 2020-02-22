@@ -56,11 +56,11 @@ public class QuestionDialog extends DialogFragment {
         return builder.create();
     }
 
-    public void setOnCancelButton(View.OnClickListener onCancelButton) {
-        mOnCancelButton = onCancelButton;
-    }
-
     public void setOnOkButton(View.OnClickListener onOkButton) {
         mOnOkButton = onOkButton;
+    }
+
+    public void setOnCancelButton(View.OnClickListener onCancelButton) {
+        mOnCancelButton = onCancelButton;
     }
 }

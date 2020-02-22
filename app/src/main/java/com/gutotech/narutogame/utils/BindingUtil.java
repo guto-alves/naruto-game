@@ -3,7 +3,9 @@ package com.gutotech.narutogame.utils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
+import androidx.annotation.StringRes;
 import androidx.databinding.BindingAdapter;
 
 import com.github.rtoshiro.util.format.SimpleMaskFormatter;
@@ -21,6 +23,13 @@ public class BindingUtil {
     @BindingAdapter("loadTopImage")
     public static void setLoadTopImage(ImageView imageView, int ninjaId) {
         StorageUtil.downloadTopImage(imageView.getContext(), imageView, ninjaId);
+    }
+
+    @BindingAdapter("stringRes")
+    public static void setStringRes(TextView textView, @StringRes int resId) {
+        if (resId != 0) {
+            textView.setText(textView.getContext().getString(resId));
+        }
     }
 
     @BindingAdapter("mask")

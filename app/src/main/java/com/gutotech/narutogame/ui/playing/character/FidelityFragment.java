@@ -9,7 +9,6 @@ import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.GridView;
 import android.widget.ImageView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -98,7 +97,6 @@ public class FidelityFragment extends Fragment implements SectionFragment, MyLis
 //        PersonagemOn.character.setDiasLogadosFidelidade(diasLogadosFidelidade + 1 > 8 ? 1 : diasLogadosFidelidade + 1);
 //        PersonagemOn.character.setTemRecompensaFidelidade(false);
 
-        CharOn.character.salvar();
 
         FragmentUtil.setSectionTitle(getActivity(), R.string.section_ninja_fidelity);
 

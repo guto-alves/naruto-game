@@ -35,7 +35,7 @@
 
             <LinearLayout
                 android:id="@+id/infoLinearLayout"
-                android:layout_width="200dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="@+id/profileImageView"
@@ -64,7 +64,6 @@
                         android:textSize="16sp" />
 
                     <TextView
-                        android:id="@+id/textView16"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/information"
@@ -173,9 +172,9 @@
                                 android:textStyle="bold" />
 
                             <TextView
+                                stringRes="@{characterSelected.village.name}"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@{characterSelected.village.toString()}"
                                 android:textColor="@android:color/white" />
                         </LinearLayout>
                     </LinearLayout>
@@ -189,6 +188,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
                 android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/infoLinearLayout"
                 app:layout_constraintTop_toTopOf="@id/infoLinearLayout">
 
@@ -231,6 +231,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
                         android:orientation="horizontal">
 
                         <TextView
@@ -248,13 +249,14 @@
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:layout_gravity="end"
                             android:layout_marginStart="8dp"
                             android:layout_marginLeft="8dp">
 
                             <ProgressBar
                                 android:id="@+id/progressBar2"
                                 style="?android:attr/progressBarStyleHorizontal"
-                                android:layout_width="0dp"
+                                android:layout_width="80dp"
                                 android:layout_height="0dp"
                                 android:background="@drawable/layout_barra_exp_barra_vazia_151"
                                 android:max="@{characterSelected.formulas.health}"
@@ -262,7 +264,6 @@
                                 android:progressDrawable="@drawable/progressbar_exp_340"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
                             <TextView
@@ -315,7 +316,7 @@
                             <ProgressBar
                                 android:id="@+id/chakraProgressBar"
                                 style="?android:attr/progressBarStyleHorizontal"
-                                android:layout_width="0dp"
+                                android:layout_width="80dp"
                                 android:layout_height="0dp"
                                 android:background="@drawable/layout_barra_exp_barra_vazia_151"
                                 android:max="@{characterSelected.formulas.chakra}"
@@ -323,7 +324,6 @@
                                 android:progressDrawable="@drawable/progressbar_exp_340"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
                             <TextView
@@ -376,7 +376,7 @@
                             <ProgressBar
                                 android:id="@+id/staminaProgressBar"
                                 style="?android:attr/progressBarStyleHorizontal"
-                                android:layout_width="0dp"
+                                android:layout_width="80dp"
                                 android:layout_height="0dp"
                                 android:background="@drawable/layout_barra_exp_barra_vazia_151"
                                 android:max="@{characterSelected.formulas.stamina}"
@@ -384,7 +384,6 @@
                                 android:progressDrawable="@drawable/progressbar_exp_340"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
                             <TextView

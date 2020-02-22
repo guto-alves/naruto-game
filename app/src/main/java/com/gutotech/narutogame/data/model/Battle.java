@@ -4,6 +4,8 @@ import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 import androidx.databinding.library.baseAdapters.BR;
 
+import com.gutotech.narutogame.utils.DateCustom;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +30,8 @@ public class Battle extends BaseObservable {
 
     private long attackStart;
 
+    private Jutsu oppJutsu;
+
     public Battle() {
     }
 
@@ -35,6 +39,8 @@ public class Battle extends BaseObservable {
         this.player1 = player1;
         this.player2 = player2;
         status = Status.CONTINUE;
+        currentPlayer = 1;
+        attackStart = DateCustom.getTimeInMillis();
     }
 
     public String getId() {
@@ -124,5 +130,13 @@ public class Battle extends BaseObservable {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    public Jutsu getOppJutsu() {
+        return oppJutsu;
+    }
+
+    public void setOppJutsu(Jutsu oppJutsu) {
+        this.oppJutsu = oppJutsu;
     }
 }

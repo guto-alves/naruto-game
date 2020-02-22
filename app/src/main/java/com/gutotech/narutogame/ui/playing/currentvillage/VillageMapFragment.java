@@ -29,22 +29,22 @@ public class VillageMapFragment extends Fragment implements SectionFragment {
         FragmentVillageMapBinding binding = DataBindingUtil.inflate(inflater,
                 R.layout.fragment_village_map, container, false);
 
-        String villageName;
+        int villageId;
 
         Bundle bundle = getArguments();
 
         if (bundle != null) {
             Village village = (Village) bundle.getSerializable("village");
-            villageName = village.name;
+            villageId = village.ordinal();
             binding.villageMapRecyclerView.setBackgroundResource(village.mapResId);
         } else {
-            villageName = CharOn.character.getVillage().name;
+            villageId = CharOn.character.getVillage().ordinal();
             binding.villageMapRecyclerView.setBackgroundResource(
                     CharOn.character.getVillage().mapResId);
         }
 
         VillageMapViewModel viewModel = ViewModelProviders.of(this,
-                new VillageMapViewModelFactory(villageName)).get(VillageMapViewModel.class);
+                new VillageMapViewModelFactory(villageId)).get(VillageMapViewModel.class);
 
         binding.setViewModel(viewModel);
 
@@ -73,5 +73,15 @@ public class VillageMapFragment extends Fragment implements SectionFragment {
     @Override
     public int getDescription() {
         return R.string.village_map;
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
     }
 }

@@ -112,6 +112,13 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
                     } else {
                         setCurrentSection(CHARACTER_GROUP, 0);
                     }
+                } else if (propertyId == BR.map) {
+                    buildMenu();
+                    if (mCharacter.isMap()) {
+                        setCurrentSection(CURRENT_VILLAGE_GROUP, 0);
+                    } else {
+                        setCurrentSection(CHARACTER_GROUP, 0);
+                    }
                 }
             }
         });
@@ -169,12 +176,14 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
 
         List<SectionFragment> sections1 = new ArrayList<>();
         sections1.add(new CharacterStatusFragment());
-        sections1.add(new ClansFragment());
-        sections1.add(new NinjaLuckyFragment());
+        if (!mCharacter.isMission() && !mCharacter.isBattle() && !mCharacter.isHospital() && !mCharacter.isMap()) {
+            sections1.add(new ClansFragment());
+            sections1.add(new NinjaLuckyFragment());
+        }
         sections1.add(new FidelityFragment());
 
         List<SectionFragment> sections2 = new ArrayList<>();
-        if (!mCharacter.isMission() && !mCharacter.isBattle() && !mCharacter.isHospital()) {
+        if (!mCharacter.isMission() && !mCharacter.isBattle() && !mCharacter.isHospital() && !mCharacter.isMap()) {
             sections2.add(new GraduationsFragment());
             sections2.add(new AcademyTrainingFragment());
             sections2.add(new PersonagemJutsuFragment());
@@ -182,7 +191,9 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
         }
 
         List<SectionFragment> sections3 = new ArrayList<>();
-        if (!mCharacter.isHospital() && !mCharacter.isBattle()) {
+        if (mCharacter.isMap()) {
+            sections3.add(new VillageMapFragment());
+        } else if (!mCharacter.isHospital() && !mCharacter.isBattle()) {
             if (!mCharacter.isMission()) {
                 if (mCharacter.getGraduation() == Graduation.ESTUDANTE) {
                     sections3.add(new TasksFragment());
@@ -213,7 +224,7 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
         }
 
         List<SectionFragment> sections5 = new ArrayList<>();
-        if (!mCharacter.isMission() && !mCharacter.isBattle() && !mCharacter.isHospital()) {
+        if (!mCharacter.isMission() && !mCharacter.isBattle() && !mCharacter.isHospital() && !mCharacter.isMap()) {
             if (TextUtils.isEmpty(mCharacter.getTeam())) {
                 sections5.add(new TeamParticipateFragment());
                 sections5.add(new TeamCreateFragment());

@@ -17,7 +17,6 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/layout_pagina_repeat"
         android:fillViewport="true"
         tools:context=".ui.loggedin.newcharacteer.CharacterCreateFragment">
 
@@ -96,10 +95,10 @@
                                 android:textStyle="bold" />
 
                             <TextView
+                                stringRes="@{viewModel.character.village.name}"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textColor="@android:color/white"
-                                app:text="@{viewModel.character.village.name}" />
+                                android:textColor="@android:color/white" />
                         </LinearLayout>
 
                         <LinearLayout

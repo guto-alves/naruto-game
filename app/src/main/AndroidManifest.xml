@@ -15,7 +15,6 @@
         <activity android:name=".ui.MaintenanceActivity"></activity>
         <activity
             android:name=".ui.SplashActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="landscape"
             android:theme="@style/Splash">
             <intent-filter>

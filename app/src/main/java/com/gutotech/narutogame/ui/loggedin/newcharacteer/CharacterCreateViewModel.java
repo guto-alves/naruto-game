@@ -75,7 +75,7 @@ public class CharacterCreateViewModel extends ViewModel
     @Override
     public void onNinjaClick(Ninja ninja) {
         mChar.setNinja(ninja);
-        mChar.updateProfile(1);
+        mChar.setProfilePath(String.format("images/profile/%d/1.png", ninja.getId()));
     }
 
     private void loadCurrentGroup() {

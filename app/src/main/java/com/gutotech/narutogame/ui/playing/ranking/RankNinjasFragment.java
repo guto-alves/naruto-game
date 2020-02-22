@@ -3,7 +3,9 @@ package com.gutotech.narutogame.ui.playing.ranking;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +16,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 import com.gutotech.narutogame.R;
+import com.gutotech.narutogame.databinding.FragmentRankNinjasBinding;
 import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.adapter.RankingNinjasRecyclerAdapter;
 import com.gutotech.narutogame.data.firebase.FirebaseConfig;
@@ -24,11 +27,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RankNinjasFragment extends Fragment implements SectionFragment {
-    private List<Character> ninjasResult = new ArrayList<>();
-    private RankingNinjasRecyclerAdapter adapter;
-
-    private DatabaseReference ninjasReference;
-    private ValueEventListener valueEventListenerNinjas;
 
     public RankNinjasFragment() {
     }
@@ -36,8 +34,13 @@ public class RankNinjasFragment extends Fragment implements SectionFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        FragmentRankNinjasBinding binding = DataBindingUtil.inflate(inflater,
+                R.layout.fragment_rank_ninjas, container, false);
 
-        View view = inflater.inflate(R.layout.fragment_rank_ninjas, container, false);
+        RankNinjasViewModel viewModel = ViewModelProviders.of(this)
+                .get(RankNinjasViewModel.class);
+
+        binding.setViewModel(viewModel);
 
 //        // Graduações Spinner
 //        Spinner graducaoSpinner = view.findViewById(R.id.graduacaoSpinner);
@@ -63,13 +66,6 @@ public class RankNinjasFragment extends Fragment implements SectionFragment {
 //        arrayAdapterOnline.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 //        onlineSpinner.setAdapter(arrayAdapterOnline);
 //
-//        Button filtrarButton = view.findViewById(R.id.filtrarButton);
-//        filtrarButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//            }
-//        });
 //
 //        RecyclerView rankingNinjasRecyclerView = view.findViewById(R.id.rankNinjasRecyclerView);
 //        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
@@ -78,42 +74,20 @@ public class RankNinjasFragment extends Fragment implements SectionFragment {
 //        adapter = new RankingNinjasRecyclerAdapter(getActivity(), ninjasResult);
 //        rankingNinjasRecyclerView.setAdapter(adapter);
 
+        binding.rankNinjasRecyclerView.setHasFixedSize(true);
+        RankingNinjasRecyclerAdapter adapter = new RankingNinjasRecyclerAdapter(getContext());
+        binding.rankNinjasRecyclerView.setAdapter(adapter);
+
+        viewModel.getCharacters().observe(this, adapter::setNinjas);
+
         FragmentUtil.setSectionTitle(getActivity(), R.string.section_ninjas_ranking);
 
-        return view;
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-
-//        recuperarNinjas();
-    }
-
-    private void recuperarNinjas() {
-        ninjasReference = FirebaseConfig.getDatabase().child("character");
-
-        valueEventListenerNinjas = ninjasReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                ninjasResult.clear();
-
-                for (DataSnapshot data : dataSnapshot.getChildren())
-                    ninjasResult.add(data.getValue(Character.class));
-
-                adapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-            }
-        });
+        return binding.getRoot();
     }
 
     @Override
     public void onStop() {
         super.onStop();
-//        ninjasReference.removeEventListener(valueEventListenerNinjas);
     }
 
     @Override

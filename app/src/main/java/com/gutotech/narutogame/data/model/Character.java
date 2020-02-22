@@ -1,12 +1,11 @@
 package com.gutotech.narutogame.data.model;
 
+import androidx.annotation.Nullable;
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 import androidx.databinding.library.baseAdapters.BR;
 
-import com.google.firebase.database.DatabaseReference;
 import com.gutotech.narutogame.R;
-import com.gutotech.narutogame.data.firebase.FirebaseConfig;
 
 import java.io.Serializable;
 import java.util.List;
@@ -47,6 +46,7 @@ public class Character extends BaseObservable implements Serializable {
     private boolean battle;
     public String battleId;
     private boolean hospital;
+    private boolean map;
 
     public Character() {
     }
@@ -73,14 +73,6 @@ public class Character extends BaseObservable implements Serializable {
         bag = new Bag(new Ramen("nissin", R.string.ninja_snack,
                 R.string.ninja_snack_description,
                 null, 25, 5, 100));
-    }
-
-    public void salvar() {
-        DatabaseReference characterRef = FirebaseConfig.getDatabase()
-                .child("characters")
-                .child(nick);
-
-        characterRef.setValue(this);
     }
 
     public Formulas getFormulas() {
@@ -143,10 +135,6 @@ public class Character extends BaseObservable implements Serializable {
     public void setNinja(Ninja ninja) {
         this.ninja = ninja;
         notifyPropertyChanged(BR.ninja);
-    }
-
-    public void updateProfile(int profile) {
-        setProfilePath(ninja.getId() + "/" + profile);
     }
 
     @Bindable
@@ -397,5 +385,32 @@ public class Character extends BaseObservable implements Serializable {
     public void setHospital(boolean hospital) {
         this.hospital = hospital;
         notifyPropertyChanged(BR.hospital);
+    }
+
+    public String getBattleId() {
+        return battleId;
+    }
+
+    public void setBattleId(String battleId) {
+        this.battleId = battleId;
+    }
+
+    @Bindable
+    public boolean isMap() {
+        return map;
+    }
+
+    public void setMap(boolean map) {
+        this.map = map;
+        notifyPropertyChanged(BR.map);
+    }
+
+    @Override
+    public boolean equals(@Nullable Object obj) {
+        if (!(obj instanceof Character)) {
+            return false;
+        }
+
+        return getNick().equals(((Character) obj).getNick());
     }
 }

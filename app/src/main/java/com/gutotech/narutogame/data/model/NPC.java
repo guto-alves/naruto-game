@@ -1,5 +1,7 @@
 package com.gutotech.narutogame.data.model;
 
+import com.gutotech.narutogame.utils.StorageUtil;
+
 import java.io.Serializable;
 import java.security.SecureRandom;
 
@@ -18,7 +20,12 @@ public class Npc implements Serializable {
 
         character.setNinja(ninja);
         character.setNick(ninja.getName());
-        character.updateProfile(random.nextInt(ninja.getTotalProfiles()) + 1);
+
+        StorageUtil.listAll(String.format("images/profile/%d/", ninja.getId()),
+                data -> character.setProfilePath(data.get(data.size()).getPath()));
+
+        character.getAttributes().updateFormulas(character.getClasse(),
+                character.getLevel() + (random.nextInt(3) - 1));
         character.full();
         character.setTitle("");
     }

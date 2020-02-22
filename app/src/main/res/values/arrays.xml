@@ -34,4 +34,20 @@
         <item>100</item>
     </string-array>
 
+    <string-array name="villages">
+        <item>@string/leaf</item>
+        <item>Areia</item>
+        <item>Névoa</item>
+        <item>Pedra</item>
+        <item>Nuvem</item>
+        <item>Akatsuki</item>
+        <item>Som</item>
+        <item>Chuva</item>
+    </string-array>
+
+    <string-array name="on_off_list">
+        <item>All</item>
+        <item>Online</item>
+    </string-array>
+
 </resources>

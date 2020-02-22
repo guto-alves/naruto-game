@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.CharOn;
@@ -30,18 +29,21 @@ public class ChangeImageFragment extends Fragment implements SectionFragment {
         RecyclerView profilesRecyclerView = view.findViewById(R.id.profilesRecyclerView);
         profilesRecyclerView.setHasFixedSize(true);
 
-        ProfilesAdapter adapter = new ProfilesAdapter(CharOn.character.getNinja(), profile -> {
-            QuestionDialog dialog = new QuestionDialog("Deseja alterar a imagem do seu personagem para escolhida?");
-            dialog.setOnOkButton(v -> {
-                CharOn.character.updateProfile(profile);
-                CharOn.character.salvar();
+        StorageUtil.listAll(
+                String.format("images/profile/%s/", CharOn.character.getNinja().getId()),
+                data -> {
+                    ProfilesAdapter adapter = new ProfilesAdapter(data, profilePath -> {
+                        QuestionDialog questionDialog = new QuestionDialog(getString(R.string.question_change_profile_image));
+                        questionDialog.setOnOkButton(v -> {
+                            CharOn.character.setProfilePath(profilePath);
 
-                DrawerLayout drawer = getActivity().findViewById(R.id.drawerLayout);
-                drawer.openDrawer(GravityCompat.START);
-            });
-            dialog.show(getFragmentManager(), "QuestionDialog");
-        });
-        profilesRecyclerView.setAdapter(adapter);
+                            DrawerLayout drawer = getActivity().findViewById(R.id.drawerLayout);
+                            drawer.openDrawer(GravityCompat.START);
+                        });
+                        questionDialog.show(getFragmentManager(), "QuestionDialog");
+                    });
+                    profilesRecyclerView.setAdapter(adapter);
+                });
 
         FragmentUtil.setSectionTitle(getActivity(), R.string.section_change_image);
 

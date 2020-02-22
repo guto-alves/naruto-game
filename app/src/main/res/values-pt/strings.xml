@@ -663,5 +663,22 @@
     <string name="dojo_pvp_fighters_description">Aqui você pode duelar contra os oponentes de todas as vilas do jogo, de forma automatica o jogo tentará formar uma batalha contra um adversário do mesmo level que o seu, caso não tenha no momento, daremos um alvo com 1 level a menos ou mais que o seu.</string>
     <string name="dojo_pvp_battles">BATALHAS DO DOJO PVP</string>
     <string name="chance_of_error">de Chance de Erro)</string>
+    <string name="wait_opponent_move">Aguardando a ação do oponente</string>
+    <string name="position">Posição</string>
+    <string name="village">Vila</string>
+    <string name="score">Pontos</string>
+    <string name="rank_filters">Filtros do Rank</string>
+    <string name="question_change_profile_image">Deseja alterar a imagem do seu personagem para escolhida?</string>
+    <string name="sand">Areia</string>
+    <string name="mist">Névoa</string>
+    <string name="stone">Pedra</string>
+    <string name="cloud">Nuvem</string>
+    <string name="akatsuki">Akatsuki</string>
+    <string name="sound">Som</string>
+    <string name="rain">Chuva</string>
+    <string name="snow">Neve</string>
+    <string name="waterfall">Cachoeira</string>
+    <string name="hot_springs">Fontes Termais</string>
+    <string name="grass">Grama</string>
 
 </resources>

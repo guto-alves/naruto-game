@@ -7,6 +7,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
 import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -23,20 +24,26 @@ import android.view.animation.AnimationUtils;
 import android.widget.PopupWindow;
 
 import com.gutotech.narutogame.R;
+import com.gutotech.narutogame.data.model.BattleLog;
 import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.model.Formulas;
+import com.gutotech.narutogame.data.model.Jutsu;
 import com.gutotech.narutogame.data.repository.BattleRepository;
 import com.gutotech.narutogame.databinding.FragmentDojoBattlePvpBinding;
 import com.gutotech.narutogame.databinding.PopupAttributesStatusBinding;
 import com.gutotech.narutogame.ui.SectionFragment;
+import com.gutotech.narutogame.ui.WarningDialog;
 import com.gutotech.narutogame.ui.adapter.BattleLogAdapter;
+import com.gutotech.narutogame.ui.adapter.BuffsDebuffStatusAdapter;
 import com.gutotech.narutogame.ui.adapter.JutsusAdapter;
-import com.gutotech.narutogame.ui.playing.character.CharacterStatusFragment;
+import com.gutotech.narutogame.ui.playing.currentvillage.VillageMapFragment;
 import com.gutotech.narutogame.utils.FragmentUtil;
 import com.gutotech.narutogame.utils.StorageUtil;
 
 public class DojoBattlePvpFragment extends Fragment implements SectionFragment {
     private FragmentDojoBattlePvpBinding mBinding;
+
+    private DojoBattlePvpViewModel mViewModel;
 
     public DojoBattlePvpFragment() {
     }
@@ -48,31 +55,48 @@ public class DojoBattlePvpFragment extends Fragment implements SectionFragment {
                 container, false);
 
         BattleRepository.getInstance().get(CharOn.character.battleId, battle -> {
-            DojoBattlePvpViewModel viewModel = ViewModelProviders.of(this,
+            mViewModel = ViewModelProviders.of(this,
                     new DojoBattlePvpViewModelFactory(battle))
                     .get(DojoBattlePvpViewModel.class);
 
-            mBinding.setViewModel(viewModel);
+            mBinding.setViewModel(mViewModel);
+
+            mBinding.classJutsusButton.setText(CharOn.character.getClasse().name.substring(0, 3));
 
             mBinding.myStatusImageView.setOnClickListener(v ->
-                    showStatus(v, viewModel.getPlayerFormulas()));
+                    showStatus(v, mViewModel.getPlayerFormulas()));
 
             mBinding.oppStatusImageView.setOnClickListener(v ->
-                    showStatus(v, viewModel.getOppFormulas()));
+                    showStatus(v, mViewModel.getOppFormulas()));
+
+            mBinding.myBuffsDebuffsStatusRecyclerView.setHasFixedSize(true);
+            BuffsDebuffStatusAdapter adapter = new BuffsDebuffStatusAdapter(getContext());
+            mBinding.myBuffsDebuffsStatusRecyclerView.setAdapter(adapter);
+            mViewModel.getMyBuffsDebuffsStatus().observe(this, adapter::setBuffsDebuffsList);
+
+            mBinding.oppBuffsDebuffsStatusRecyclerView.setHasFixedSize(true);
+            BuffsDebuffStatusAdapter adapter2 = new BuffsDebuffStatusAdapter(getContext());
+            mBinding.oppBuffsDebuffsStatusRecyclerView.setAdapter(adapter2);
+            mViewModel.getOppBuffsDebuffsStatus().observe(this, adapter2::setBuffsDebuffsList);
 
             mBinding.battleLogRecyclerView.setHasFixedSize(true);
-//            BattleLogAdapter logAdapter = new BattleLogAdapter(getActivity());
-//            mBinding.battleLogRecyclerView.setAdapter(logAdapter);
-//            viewModel.getBattleLogs().observe(this, battlesLogs -> {
-//                logAdapter.setBattleLogs(battlesLogs);
-//                mBinding.battleLogRecyclerView.smoothScrollToPosition(logAdapter.getItemCount());
-//            });
+            BattleLogAdapter logAdapter = new BattleLogAdapter(getActivity(), this::showJutsuInfo);
+            mBinding.battleLogRecyclerView.setAdapter(logAdapter);
+            mViewModel.getBattleLogs().observe(this, battlesLogs -> {
+                logAdapter.setBattleLogs(battlesLogs);
+                mBinding.battleLogRecyclerView.smoothScrollToPosition(logAdapter.getItemCount());
+            });
 
-//            mBinding.myJutsusRecyclerView.setHasFixedSize(true);
-//            mBinding.myJutsusRecyclerView.setAdapter(jutsusAdapter);
-//            jutsusAdapter.setJutsusList(CharOn.character.getJutsus());
+            mBinding.myJutsusRecyclerView.setHasFixedSize(true);
+            JutsusAdapter jutsusAdapter = new JutsusAdapter(getActivity(), mViewModel);
+            mBinding.myJutsusRecyclerView.setAdapter(jutsusAdapter);
+            mViewModel.getJutsus().observe(this, jutsusAdapter::setJutsusList);
 
-            viewModel.startAnimationEvent.observe(this, view -> {
+            mViewModel.showJutsuInfoPopupEvent.observe(this, this::showJutsuInfo);
+
+            mViewModel.showWarningDialogEvent.observe(this, this::showWarningDialog);
+
+            mViewModel.startAnimationEvent.observe(this, view -> {
                 Animation animation = AnimationUtils.loadAnimation(getActivity(), R.anim.fade_out);
                 view.startAnimation(animation);
             });
@@ -80,25 +104,26 @@ public class DojoBattlePvpFragment extends Fragment implements SectionFragment {
             mBinding.battleResultLayout.descriptionTextView.setMovementMethod(
                     LinkMovementMethod.getInstance());
 
-            viewModel.showWonEvent.observe(this, rewards -> {
+            mViewModel.showWonEvent.observe(this, rewards -> {
                 SpannableStringBuilder description = new SpannableStringBuilder();
                 description.append(getString(R.string.combat_won_description, rewards[0], rewards[1]));
                 description.append(" ");
                 int length = description.length();
-                description.append("Dojo");
+                description.append("Mapa da Vila");
                 description.setSpan(new ForegroundColorSpan(Color.BLUE), length, description.length(),
                         Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
                 description.setSpan(new ClickableSpan() {
                     @Override
                     public void onClick(@NonNull View widget) {
-                        FragmentUtil.goTo(getActivity(), new DojoNPCFightersFragment());
+                        mViewModel.exit();
+                        FragmentUtil.goTo(getActivity(), new VillageMapFragment());
                     }
                 }, length, description.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
 
                 showBattleResult(R.string.end_of_the_battle, description);
             });
 
-            viewModel.showLostEvent.observe(this, aVoid -> {
+            mViewModel.showLostEvent.observe(this, aVoid -> {
                 SpannableStringBuilder description = new SpannableStringBuilder();
                 description.append(getString(R.string.you_have_lost_the_battle));
                 description.append(" ");
@@ -110,14 +135,15 @@ public class DojoBattlePvpFragment extends Fragment implements SectionFragment {
                         new ClickableSpan() {
                             @Override
                             public void onClick(@NonNull View widget) {
-                                FragmentUtil.goTo(getActivity(), new HospitalRoomFragment());
+                                mViewModel.exit();
+                                CharOn.character.setHospital(true);
                             }
                         }, length, description.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
 
                 showBattleResult(R.string.too_bad, description);
             });
 
-            viewModel.showDrawnEvent.observe(this, aVoid -> {
+            mViewModel.showDrawnEvent.observe(this, aVoid -> {
                 SpannableStringBuilder description = new SpannableStringBuilder();
                 description.append(getString(R.string.drawn_description));
                 description.append(" ");
@@ -129,14 +155,15 @@ public class DojoBattlePvpFragment extends Fragment implements SectionFragment {
                         new ClickableSpan() {
                             @Override
                             public void onClick(@NonNull View widget) {
-                                FragmentUtil.goTo(getActivity(), new HospitalRoomFragment());
+                                mViewModel.exit();
+                                CharOn.character.setHospital(true);
                             }
                         }, length, description.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
 
                 showBattleResult(R.string.empate, description);
             });
 
-            viewModel.showInactivatedEvent.observe(this, aVoid -> {
+            mViewModel.showInactivatedEvent.observe(this, aVoid -> {
                 SpannableStringBuilder description = new SpannableStringBuilder();
                 description.append(getString(R.string.lost_by_inactivity));
                 int length = description.length();
@@ -147,7 +174,8 @@ public class DojoBattlePvpFragment extends Fragment implements SectionFragment {
                         new ClickableSpan() {
                             @Override
                             public void onClick(@NonNull View widget) {
-                                FragmentUtil.goTo(getActivity(), new CharacterStatusFragment());
+                                mViewModel.exit();
+                                CharOn.character.setHospital(true);
                             }
                         }, length, description.length(),
                         Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
@@ -158,8 +186,7 @@ public class DojoBattlePvpFragment extends Fragment implements SectionFragment {
             });
         });
 
-        FragmentUtil.setSectionTitle(getActivity(), R.string.section_dojo);
-
+        FragmentUtil.setSectionTitle(getActivity(), R.string.dojo_challenge);
         return mBinding.getRoot();
     }
 
@@ -168,7 +195,7 @@ public class DojoBattlePvpFragment extends Fragment implements SectionFragment {
         mBinding.battleResultLayout.titleTextView.setText(title);
         mBinding.battleResultLayout.descriptionTextView.setText(description);
         mBinding.battleResultLayout.msgConstraintLayout.setVisibility(View.VISIBLE);
-        mBinding.myJutsusRecyclerView.setVisibility(View.INVISIBLE);
+        mBinding.myJutsusRecyclerView.setVisibility(View.GONE);
     }
 
     private void showStatus(View view, Formulas formulas) {
@@ -182,8 +209,40 @@ public class DojoBattlePvpFragment extends Fragment implements SectionFragment {
 
         popupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         popupWindow.setOutsideTouchable(true);
-
         popupWindow.showAsDropDown(view);
+    }
+
+    private void showJutsuInfo(Object[] objects) {
+        JutsuInfoPopupWindow jutsuInfoPopupWindow = new JutsuInfoPopupWindow(getContext());
+        jutsuInfoPopupWindow.setJutsu((Jutsu) objects[1], (Integer) objects[0]);
+        jutsuInfoPopupWindow.showAsDropDown((View) objects[2]);
+    }
+
+    private void showJutsuInfo(View anchor, BattleLog battleLog) {
+        JutsuInfoPopupWindow jutsuInfoPopupWindow = new JutsuInfoPopupWindow(getContext());
+        jutsuInfoPopupWindow.setBattleLog(battleLog);
+        jutsuInfoPopupWindow.showAsDropDown(anchor);
+    }
+
+    private void showWarningDialog(@StringRes int resId) {
+        DialogFragment dialogFragment = new WarningDialog(getString(resId));
+        dialogFragment.show(getFragmentManager(), "WarningDialog");
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (mViewModel != null) {
+            mViewModel.init();
+        }
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (mViewModel != null) {
+            mViewModel.stop();
+        }
     }
 
     @Override

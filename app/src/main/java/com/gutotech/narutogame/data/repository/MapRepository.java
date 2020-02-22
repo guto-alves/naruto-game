@@ -18,22 +18,19 @@ import java.util.List;
 import java.util.Map;
 
 public class MapRepository {
-    private static MapRepository sInstance;
+    private static MapRepository sInstance = new MapRepository();
 
     private MapRepository() {
     }
 
     public static MapRepository getInstance() {
-        if (sInstance == null) {
-            sInstance = new MapRepository();
-        }
         return sInstance;
     }
 
-    public void enter(String villageName) {
+    public void enter(int villageId) {
         DatabaseReference mapReference = FirebaseConfig.getDatabase()
                 .child("village-map")
-                .child(villageName)
+                .child(String.valueOf(villageId))
                 .child(CharOn.character.getNick());
 
         mapReference.setValue(CharOn.character);
@@ -43,27 +40,27 @@ public class MapRepository {
 
     }
 
-    public void exit(String villageName) {
+    public void exit(int villageId) {
         DatabaseReference mapReference = FirebaseConfig.getDatabase()
                 .child("village-map")
-                .child(villageName)
+                .child(String.valueOf(villageId))
                 .child(CharOn.character.getNick());
 
         mapReference.removeValue();
     }
 
-    private ValueEventListener mapValueEventListener;
     private DatabaseReference mapReference;
+    private ValueEventListener mapValueEventListener;
 
-    public LiveData<Map<Integer, List<Character>>> load(String villageName) {
+    public LiveData<Map<Integer, List<Character>>> load(int villageId) {
         MutableLiveData<Map<Integer, List<Character>>> data = new MutableLiveData<>();
 
         Map<Integer, List<Character>> map = new HashMap<>();
 
         mapReference = FirebaseConfig.getDatabase()
-                .child("village-map").child(villageName);
+                .child("village-map").child(String.valueOf(villageId));
 
-        mapReference.addValueEventListener(new ValueEventListener() {
+        mapValueEventListener = mapReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 map.clear();
@@ -91,10 +88,10 @@ public class MapRepository {
         return data;
     }
 
-    public void check(String nick, String villageName, Callback<Boolean> callback) {
+    public void check(String nick, int villageId, Callback<Boolean> callback) {
         DatabaseReference mapReference = FirebaseConfig.getDatabase()
                 .child("village-map")
-                .child(villageName)
+                .child(String.valueOf(villageId))
                 .child(nick);
 
         mapReference.addListenerForSingleValueEvent(new ValueEventListener() {

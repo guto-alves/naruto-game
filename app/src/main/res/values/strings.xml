@@ -756,6 +756,23 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
         with 1 level less or more than your.</string>
     <string name="dojo_pvp_battles">DOJO PVP BATTLES</string>
     <string name="chance_of_error">Chance of Error)</string>
+    <string name="wait_opponent_move">Aguardando a ação do oponente</string>
+    <string name="position">Position</string>
+    <string name="village">Village</string>
+    <string name="score">Score</string>
+    <string name="rank_filters">Rank Filters</string>
+    <string name="question_change_profile_image">Do you want to change your character\'s image to chosen?</string>
+    <string name="sand">Sand</string>
+    <string name="mist">Mist</string>
+    <string name="stone">Stone</string>
+    <string name="cloud">Cloud</string>
+    <string name="akatsuki">Akatsuki</string>
+    <string name="sound">Sound</string>
+    <string name="rain">Rain</string>
+    <string name="snow">Snow</string>
+    <string name="waterfall">Cachoeira</string>
+    <string name="hot_springs">Fontes Termais</string>
+    <string name="grass">Grama</string>
 
 
 </resources>
