@@ -57,8 +57,9 @@ import com.gutotech.narutogame.ui.playing.user.FormulasFragment;
 import com.gutotech.narutogame.ui.playing.user.MensagensFragment;
 import com.gutotech.narutogame.ui.playing.user.VipPlayerFragment;
 import com.gutotech.narutogame.utils.DateCustom;
+import com.gutotech.narutogame.utils.MusicSettingsUtils;
 import com.gutotech.narutogame.utils.SingleLiveEvent;
-import com.gutotech.narutogame.utils.SoundsUtil;
+import com.gutotech.narutogame.utils.MusicUtils;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -101,9 +102,9 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
                     buildMenu();
                     if (mCharacter.isBattle()) {
                         setCurrentSection(BATTLES_GROUP, 0);
-                        sounds.setMusicType(SoundsUtil.MusicType.BATTLE);
+                        mMusicUtil.setMusicType(MusicUtils.MusicType.BATTLE);
                     } else {
-                        sounds.setMusicType(SoundsUtil.MusicType.NORMAL);
+                        mMusicUtil.setMusicType(MusicUtils.MusicType.NORMAL);
                     }
                 } else if (propertyId == BR.hospital) {
                     buildMenu();
@@ -388,15 +389,26 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
         mHandler.removeCallbacks(mRunnable);
     }
 
+
     // Background Music
-    private SoundsUtil sounds;
+    public final ObservableBoolean musicEnabled = new ObservableBoolean(true);
+    private MusicUtils mMusicUtil;
 
     public void onVolumeClick() {
-        if (sounds != null) {
-            sounds.release();
+        musicEnabled.set(!MusicSettingsUtils.enabled(getApplication()));
+
+        MusicSettingsUtils.set(getApplication(), musicEnabled.get());
+
+        if (musicEnabled.get()) {
+            mMusicUtil = new MusicUtils(getApplication());
+            if (mCharacter.isBattle()) {
+                mMusicUtil.setMusicType(MusicUtils.MusicType.BATTLE);
+            }
+            mMusicUtil.start();
         } else {
-            sounds = new SoundsUtil(getApplication());
-            sounds.start();
+            if (mMusicUtil != null) {
+                mMusicUtil.release();
+            }
         }
     }
 
@@ -404,19 +416,25 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
         mCharacter.setOnline(true);
         CharacterRepository.getInstance().save(mCharacter);
 
-        if (sounds == null) {
-            sounds = new SoundsUtil(getApplication());
-        }
+        musicEnabled.set(MusicSettingsUtils.enabled(getApplication()));
 
-        sounds.start();
+        if (musicEnabled.get()) {
+            if (mMusicUtil == null) {
+                mMusicUtil = new MusicUtils(getApplication());
+            }
+
+            mMusicUtil.start();
+        }
     }
 
     void stop() {
-        sounds.pause();
+        mMusicUtil.pause();
+        mCharacter.setOnline(false);
+        CharacterRepository.getInstance().save(mCharacter);
     }
 
     void destroy() {
-        sounds.release();
+        mMusicUtil.release();
     }
 
     void logout() {

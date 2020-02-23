@@ -56,7 +56,7 @@ public class DojoBattlePvpFragment extends Fragment implements SectionFragment {
 
         BattleRepository.getInstance().get(CharOn.character.battleId, battle -> {
             mViewModel = ViewModelProviders.of(this,
-                    new DojoBattlePvpViewModelFactory(battle))
+                    new DojoBattlePvpViewModelFactory(getActivity().getApplication(), battle))
                     .get(DojoBattlePvpViewModel.class);
 
             mBinding.setViewModel(mViewModel);

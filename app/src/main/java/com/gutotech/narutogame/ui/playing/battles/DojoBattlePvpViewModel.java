@@ -1,5 +1,6 @@
 package com.gutotech.narutogame.ui.playing.battles;
 
+import android.app.Application;
 import android.os.CountDownTimer;
 import android.view.View;
 
@@ -24,6 +25,7 @@ import com.gutotech.narutogame.data.repository.CharacterRepository;
 import com.gutotech.narutogame.ui.adapter.JutsusAdapter;
 import com.gutotech.narutogame.utils.DateCustom;
 import com.gutotech.narutogame.utils.SingleLiveEvent;
+import com.gutotech.narutogame.utils.SoundUtils;
 
 import java.security.SecureRandom;
 import java.util.ArrayList;
@@ -71,7 +73,10 @@ public class DojoBattlePvpViewModel extends ViewModel
 
     private long elapsedTime;
 
-    DojoBattlePvpViewModel(Battle battle) {
+    private Application mApplication;
+
+    DojoBattlePvpViewModel(Application application, Battle battle) {
+        mApplication = application;
         mBattle = battle;
 
         updateFighters();
@@ -534,6 +539,7 @@ public class DojoBattlePvpViewModel extends ViewModel
 
     private void observeBattle() {
         mBattleRepository.observeBattle(mBattle.getId(), battle -> {
+
             mBattle.setStatus(battle.getStatus());
             mBattle.setAttackStart(battle.getAttackStart());
             mBattle.setCurrentPlayer(battle.getCurrentPlayer());
@@ -550,6 +556,10 @@ public class DojoBattlePvpViewModel extends ViewModel
                 stopTimer();
                 elapsedTime = Calendar.getInstance().getTimeInMillis() - mBattle.getAttackStart();
                 startTimer();
+
+                if (battle.getCurrentPlayer() != mBattle.getCurrentPlayer()) {
+                    SoundUtils.play(mApplication, R.raw.crystal);
+                }
             } else {
                 finishFight();
             }

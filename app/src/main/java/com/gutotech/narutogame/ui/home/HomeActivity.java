@@ -21,12 +21,11 @@ import android.widget.ImageView;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.ui.adapter.ExpandableAdapter;
 import com.gutotech.narutogame.utils.FragmentUtil;
-import com.gutotech.narutogame.utils.SoundsUtil;
+import com.gutotech.narutogame.utils.MusicSettingsUtils;
+import com.gutotech.narutogame.utils.MusicUtils;
 
 public class HomeActivity extends AppCompatActivity {
     private DrawerLayout drawer;
-
-    private SoundsUtil sounds;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,8 +61,6 @@ public class HomeActivity extends AppCompatActivity {
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-
-        sounds = new SoundsUtil(this);
     }
 
     private void closeDrawer() {
@@ -79,21 +76,33 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
 
+    private MusicUtils mMusicUtils;
+
     @Override
     protected void onStart() {
         super.onStart();
-        sounds.start();
+
+        if (MusicSettingsUtils.enabled(this)) {
+            mMusicUtils = new MusicUtils(this);
+            mMusicUtils.start();
+        }
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        sounds.pause();
+
+        if (mMusicUtils != null) {
+            mMusicUtils.pause();
+        }
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        sounds.release();
+
+        if (mMusicUtils != null) {
+            mMusicUtils.release();
+        }
     }
 }

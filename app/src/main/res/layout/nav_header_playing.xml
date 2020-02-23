@@ -58,6 +58,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="3dp"
                 android:layout_marginRight="3dp"
+                android:contentDescription="@string/ryous_icon"
                 app:srcCompat="@drawable/layout_icones_gold" />
 
             <TextView
@@ -86,14 +87,13 @@
                 app:srcCompat="@drawable/layout_topo_logado_icone_smensageiro2" />
 
             <ImageButton
-                android:id="@+id/imageButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:background="@drawable/selector_buttons_topo"
                 android:onClick="@{() -> viewModel.onVolumeClick()}"
-                app:srcCompat="@drawable/ic_volume_up_24dp" />
+                android:src="@{viewModel.musicEnabled ? @drawable/ic_volume_up_24dp : @drawable/ic_volume_off_24dp}" />
 
             <ImageButton
                 android:layout_width="wrap_content"
@@ -325,6 +325,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="3dp"
                     android:layout_marginRight="3dp"
+                    android:contentDescription="@string/stamina"
                     app:srcCompat="@drawable/layout_icones_p_stamina" />
 
                 <LinearLayout

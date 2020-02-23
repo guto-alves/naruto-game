@@ -9,7 +9,9 @@ import com.gutotech.narutogame.R;
 
 import java.security.SecureRandom;
 
-public class SoundsUtil {
+public class MusicUtils {
+    public enum MusicType {NORMAL, BATTLE}
+
     private static final SecureRandom random = new SecureRandom();
 
     private static final int TOTAL_VILLAGE_MUSICS = 11;
@@ -30,11 +32,9 @@ public class SoundsUtil {
 
     private int mLastSoundIndex = -1;
 
-    public enum MusicType {NORMAL, BATTLE}
-
     private MusicType mMusicType;
 
-    public SoundsUtil(Context context) {
+    public MusicUtils(Context context) {
         mContext = context;
         mMusicType = MusicType.NORMAL;
         prepare();
@@ -42,11 +42,13 @@ public class SoundsUtil {
 
     private void prepare() {
         mMediaPlayer = MediaPlayer.create(mContext, generateMusic());
-        mMediaPlayer.setOnCompletionListener(mp -> {
-            release();
-            prepare();
-            start();
-        });
+        mMediaPlayer.setOnCompletionListener(mp -> playNext());
+    }
+
+    private void playNext() {
+        release();
+        prepare();
+        start();
     }
 
     public void start() {
@@ -107,9 +109,7 @@ public class SoundsUtil {
         mMusicType = musicType;
 
         if (mMediaPlayer != null) {
-            release();
-            prepare();
-            start();
+            playNext();
         }
     }
 }
