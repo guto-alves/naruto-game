@@ -17,7 +17,7 @@ public class MensagensFragment extends Fragment implements SectionFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_mensagens, container, false);
+        View root = inflater.inflate(R.layout.fragment_messenger, container, false);
 
         FragmentUtil.setSectionTitle(getActivity(), R.string.section_messenger);
         return root;

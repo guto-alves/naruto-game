@@ -1,5 +1,6 @@
 package com.gutotech.narutogame.utils;
 
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -17,7 +18,9 @@ public class BindingUtil {
 
     @BindingAdapter(value = "loadProfile")
     public static void setLoadProfile(ImageView imageView, String path) {
-        StorageUtil.downloadProfile(imageView.getContext(), imageView, path);
+        if (!TextUtils.isEmpty(path)) {
+            StorageUtil.downloadProfile(imageView.getContext(), imageView, path);
+        }
     }
 
     @BindingAdapter("loadTopImage")

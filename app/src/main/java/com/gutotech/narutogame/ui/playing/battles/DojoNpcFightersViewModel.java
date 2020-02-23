@@ -14,7 +14,7 @@ import com.gutotech.narutogame.utils.DateCustom;
 import com.gutotech.narutogame.utils.SingleLiveEvent;
 
 public class DojoNpcFightersViewModel extends ViewModel {
-    static final int MAX_DAILY_COMBAT = 30;
+    static final int MAX_DAILY_COMBAT = 10;
 
     private Battle mBattle;
 

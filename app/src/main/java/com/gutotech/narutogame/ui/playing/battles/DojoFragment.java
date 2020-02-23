@@ -27,8 +27,18 @@ public class DojoFragment extends Fragment implements SectionFragment {
         Button dojoNpcButton = view.findViewById(R.id.dojoNpcButton);
         Button dojoPvpButton = view.findViewById(R.id.dojoPvpButton);
 
-        dojoNpcButton.setOnClickListener(v -> goTo(new DojoNPCFightersFragment()));
-        dojoPvpButton.setOnClickListener(v -> goTo(new BatalhasDojoPVPFragment()));
+        dojoNpcButton.setBackgroundResource(R.drawable.bg_button_orange);
+        dojoNpcButton.setOnClickListener(v -> {
+            goTo(new DojoNPCFightersFragment());
+            dojoNpcButton.setBackgroundResource(R.drawable.bg_button_orange);
+            dojoPvpButton.setBackgroundResource(R.drawable.bg_button);
+        });
+
+        dojoPvpButton.setOnClickListener(v -> {
+            goTo(new BatalhasDojoPVPFragment());
+            dojoNpcButton.setBackgroundResource(R.drawable.bg_button);
+            dojoPvpButton.setBackgroundResource(R.drawable.bg_button_orange);
+        });
 
         goTo(new DojoNPCFightersFragment());
 

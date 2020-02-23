@@ -91,8 +91,7 @@
                         loadProfile="@{viewModel.player.profilePath}"
                         android:layout_width="145dp"
                         android:layout_height="155dp"
-                        android:layout_marginTop="3dp"
-                        app:srcCompat="@drawable/layout_profile_1_1" />
+                        android:layout_marginTop="3dp" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="wrap_content"
@@ -140,7 +139,6 @@
                         android:padding="3dp">
 
                         <TextView
-                            android:id="@+id/gradELvlMeTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="0dp"
                             android:layout_weight="1"
@@ -198,7 +196,7 @@
                         android:layout_marginTop="3dp">
 
                         <ProgressBar
-                            android:id="@+id/chakraMeProgressBar"
+                            android:id="@+id/myChakraProgressBar"
                             style="?android:attr/progressBarStyleHorizontal"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -222,9 +220,9 @@
                             android:textColor="@android:color/white"
                             android:textSize="10sp"
                             android:textStyle="bold"
-                            app:layout_constraintBottom_toBottomOf="@+id/chakraMeProgressBar"
-                            app:layout_constraintEnd_toEndOf="@+id/chakraMeProgressBar"
-                            app:layout_constraintTop_toTopOf="@+id/chakraMeProgressBar" />
+                            app:layout_constraintBottom_toBottomOf="@+id/myChakraProgressBar"
+                            app:layout_constraintEnd_toEndOf="@+id/myChakraProgressBar"
+                            app:layout_constraintTop_toTopOf="@+id/myChakraProgressBar" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -233,7 +231,7 @@
                         android:layout_marginTop="3dp">
 
                         <ProgressBar
-                            android:id="@+id/staminaMeProgressBar"
+                            android:id="@+id/myStaminaProgressBar"
                             style="?android:attr/progressBarStyleHorizontal"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -257,8 +255,8 @@
                             android:textColor="@android:color/white"
                             android:textSize="10sp"
                             android:textStyle="bold"
-                            app:layout_constraintBottom_toBottomOf="@+id/staminaMeProgressBar"
-                            app:layout_constraintEnd_toEndOf="@+id/staminaMeProgressBar"
+                            app:layout_constraintBottom_toBottomOf="@+id/myStaminaProgressBar"
+                            app:layout_constraintEnd_toEndOf="@+id/myStaminaProgressBar"
                             app:layout_constraintTop_toTopOf="parent" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </LinearLayout>
@@ -345,8 +343,7 @@
                         loadProfile="@{viewModel.npc.character.profilePath}"
                         android:layout_width="145dp"
                         android:layout_height="155dp"
-                        android:layout_marginTop="3dp"
-                        app:srcCompat="@drawable/layout_profile_7" />
+                        android:layout_marginTop="3dp" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="155dp"
@@ -599,14 +596,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    app:layout_constraintGuide_percent="0.85" />
+                    app:layout_constraintGuide_percent="0.88" />
 
                 <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/guideline55"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    app:layout_constraintGuide_percent="0.13" />
+                    app:layout_constraintGuide_percent="0.12" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout

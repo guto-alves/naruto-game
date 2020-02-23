@@ -11,6 +11,7 @@
     </data>
 
     <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
@@ -23,7 +24,7 @@
             android:padding="16dp">
 
             <include
-                android:id="@+id/updatedAccountMsgLayout"
+                android:id="@+id/updatedAccountLayout"
                 layout="@layout/section_msg"
                 android:visibility="gone" />
 
@@ -71,7 +72,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginLeft="32dp"
@@ -87,7 +88,6 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/birthday"
                     android:inputType="date"
-                    android:text="@={viewModel.player.dateOfBirth}"
                     app:mask="@{@string/mask_data}" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -111,7 +111,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginLeft="32dp"
@@ -125,12 +125,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/zip_code"
-                    android:inputType="numberSigned"
-                    android:text="@={viewModel.player.zipCode}" />
+                    android:inputType="numberSigned" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
+                android:layout_width="290dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginLeft="32dp"
@@ -144,12 +143,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/hint_neighborhood"
-                    android:inputType="textCapWords|textCapSentences"
-                    android:text="@={viewModel.player.neighborhood}" />
+                    android:inputType="textCapWords|textCapSentences" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginLeft="32dp"
@@ -163,12 +161,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/hint_city"
-                    android:inputType="textCapWords|textCapSentences"
-                    android:text="@={viewModel.player.city}" />
+                    android:inputType="textCapWords|textCapSentences" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginLeft="32dp"
@@ -190,6 +187,7 @@
                 style="@style/ButtonTheme"
                 android:layout_gravity="center"
                 android:layout_marginTop="32dp"
+                android:layout_marginBottom="16dp"
                 android:onClick="@{()-> viewModel.onSubmitChangesButtonPressed()}"
                 android:text="@string/button_submit_changes" />
         </LinearLayout>

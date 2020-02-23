@@ -91,8 +91,7 @@
                         loadProfile="@{viewModel.player.profilePath}"
                         android:layout_width="145dp"
                         android:layout_height="155dp"
-                        android:layout_marginTop="3dp"
-                        app:srcCompat="@drawable/layout_profile_1_1" />
+                        android:layout_marginTop="3dp" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="wrap_content"
@@ -173,7 +172,6 @@
                             android:progressDrawable="@drawable/progressbar_hp_off"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.6"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
@@ -208,7 +206,6 @@
                             android:progressDrawable="@drawable/progressbar_sp_off"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.6"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
@@ -243,7 +240,6 @@
                             android:progressDrawable="@drawable/progressbar_sta_off"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.6"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
@@ -345,8 +341,7 @@
                         loadProfile="@{viewModel.opponent.profilePath}"
                         android:layout_width="145dp"
                         android:layout_height="155dp"
-                        android:layout_marginTop="3dp"
-                        app:srcCompat="@drawable/layout_profile_7" />
+                        android:layout_marginTop="3dp" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="155dp"
@@ -356,7 +351,6 @@
                             android:id="@+id/imageView17"
                             android:layout_width="145dp"
                             android:layout_height="26dp"
-                            android:layout_marginBottom="8dp"
                             android:src="@drawable/layout_bg_profile"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -428,7 +422,6 @@
                             android:progressDrawable="@drawable/progressbar_hp_on_r"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.6"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
@@ -463,7 +456,6 @@
                             android:progressDrawable="@drawable/progressbar_sp_on_r"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.6"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
@@ -496,10 +488,8 @@
                             android:max="@{viewModel.fighters.opponent.formulas.stamina}"
                             android:progress="@{viewModel.fighters.opponent.formulas.currentStamina}"
                             android:progressDrawable="@drawable/progressbar_sta_on_r"
-                            android:textStyle="bold"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.6"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 

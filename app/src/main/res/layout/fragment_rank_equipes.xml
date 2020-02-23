@@ -5,4 +5,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.playing.ranking.RankEquipesFragment">
 
+    <include layout="@layout/layout_coming_soon" />
+
 </FrameLayout>

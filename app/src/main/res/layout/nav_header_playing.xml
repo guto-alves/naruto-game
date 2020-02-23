@@ -187,6 +187,7 @@
                     android:layout_marginLeft="8dp"
                     android:text="@{@string/label_exp(viewModel.character.exp, viewModel.character.expUpar)}"
                     android:textColor="@android:color/white"
+                    android:textSize="12sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@+id/expProgressBar"
                     app:layout_constraintStart_toStartOf="@+id/expProgressBar"
@@ -207,7 +208,6 @@
                     android:textSize="12sp" />
 
                 <TextView
-                    android:id="@+id/lvlProxTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@{String.valueOf(viewModel.character.level + 1)}"
@@ -255,7 +255,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/vidaTextView"
+                        android:id="@+id/healthTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@{@string/progress_description_bar(viewModel.character.formulas.currentHealth, viewModel.character.formulas.health)}"
@@ -264,7 +264,7 @@
                         android:textStyle="bold" />
 
                     <ProgressBar
-                        android:id="@+id/vidaProgressBar"
+                        android:id="@+id/healthProgressBar"
                         style="?android:attr/progressBarStyleHorizontal"
                         android:layout_width="match_parent"
                         android:layout_height="8dp"

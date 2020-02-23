@@ -84,11 +84,11 @@ public class CharacterRepository {
     public LiveData<List<Character>> getMyCharacters() {
         MutableLiveData<List<Character>> data = new MutableLiveData<>();
 
-        Query personagensQuery = FirebaseConfig.getDatabase()
+        Query charactersQuery = FirebaseConfig.getDatabase()
                 .child("characters").orderByChild("playerId")
                 .equalTo(AuthRepository.getInstance().getUid());
 
-        personagensQuery.addValueEventListener(new ValueEventListener() {
+        charactersQuery.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 List<Character> characterList = new ArrayList<>();
@@ -98,7 +98,7 @@ public class CharacterRepository {
                     characterList.add(character);
                 }
 
-                sortCharsByLevel(characterList);
+                sortByLevel(characterList);
 
                 data.postValue(characterList);
             }
@@ -111,7 +111,7 @@ public class CharacterRepository {
         return data;
     }
 
-    private void sortCharsByLevel(List<Character> characterList) {
+    private void sortByLevel(List<Character> characterList) {
         Collections.sort(characterList, (char1, char2) -> {
             if (char1.getLevel() == char2.getLevel()) {
                 return 0;

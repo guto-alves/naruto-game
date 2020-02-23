@@ -72,6 +72,10 @@ public class AcademyTrainingFragment extends Fragment implements SectionFragment
         mBinding.trainingResult.titleTextView.setText(titleId);
         mBinding.trainingResult.descriptionTextView.setText(description);
         mBinding.trainingResult.msgConstraintLayout.setVisibility(View.VISIBLE);
+
+        mBinding.scrollView.post(() -> {
+            mBinding.scrollView.smoothScrollTo(0, mBinding.trainingResult.getRoot().getTop());
+        });
     }
 
     @Override

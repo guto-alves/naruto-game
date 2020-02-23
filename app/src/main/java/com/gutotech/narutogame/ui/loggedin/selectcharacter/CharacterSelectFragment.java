@@ -28,29 +28,29 @@ public class CharacterSelectFragment extends Fragment implements SectionFragment
         CharacterSelectRecyclerViewAdapter.CharacterSelecetedListener {
     private CharacterSelectViewModel mViewModel;
 
-    private FragmentPersonagemSelecionarBinding binding;
+    private FragmentPersonagemSelecionarBinding mBinding;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_personagem_selecionar,
+                container, false);
+
         mViewModel = ViewModelProviders.of(this).get(CharacterSelectViewModel.class);
         mViewModel.setListener(this);
 
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_personagem_selecionar,
-                container, false);
-
-        binding.setViewModel(mViewModel);
+        mBinding.setViewModel(mViewModel);
 
         CharacterSelectRecyclerViewAdapter charactersAdapter = new CharacterSelectRecyclerViewAdapter(this);
-        binding.charactersRecyclerView.setHasFixedSize(true);
-        binding.charactersRecyclerView.setAdapter(charactersAdapter);
+        mBinding.charactersRecyclerView.setHasFixedSize(true);
+        mBinding.charactersRecyclerView.setAdapter(charactersAdapter);
 
         mViewModel.getCharactersList().observe(this, characters -> {
             if (characters.size() == 0) {
                 FragmentUtil.goTo(getActivity(), new CharacterCreateFragment());
             } else {
-                onCharacterSelected(characters.get(0));
                 charactersAdapter.setCharactersList(characters);
+                onCharacterSelected(characters.get(0));
             }
         });
 
@@ -74,7 +74,7 @@ public class CharacterSelectFragment extends Fragment implements SectionFragment
 
         FragmentUtil.setSectionTitle(getActivity(), R.string.section_select_your_character);
 
-        return binding.getRoot();
+        return mBinding.getRoot();
     }
 
     @Override
@@ -99,7 +99,7 @@ public class CharacterSelectFragment extends Fragment implements SectionFragment
 
     @Override
     public void onCharacterSelected(Character character) {
+        mBinding.setCharacterSelected(character);
         mViewModel.setCharacterSelected(character);
-        binding.setCharacterSelected(character);
     }
 }

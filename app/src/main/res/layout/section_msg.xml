@@ -20,7 +20,7 @@
 
         <ImageView
             android:id="@+id/imageView212"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:scaleType="fitXY"
             android:src="@drawable/layout_msg_topo"
@@ -52,13 +52,12 @@
 
         <ImageView
             android:id="@+id/imageView222"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:scaleType="fitXY"
             android:src="@drawable/layout_msg_rodape1"
             app:layout_constraintBottom_toBottomOf="@+id/imageView232"
             app:layout_constraintEnd_toEndOf="@+id/imageView232"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/imageView232" />
 
         <LinearLayout

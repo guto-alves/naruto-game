@@ -234,8 +234,10 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
         }
 
         List<SectionFragment> sections6 = new ArrayList<>();
-        sections6.add(new RankNinjasFragment());
-        sections6.add(new RankEquipesFragment());
+        if (!mCharacter.isBattle()) {
+            sections6.add(new RankNinjasFragment());
+            sections6.add(new RankEquipesFragment());
+        }
 
         List<MenuGroup> groups = new ArrayList<>();
 
@@ -353,6 +355,7 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
                 mCharacter.getFormulas().addHeath((int) (mCharacter.getFormulas().getHealth() * 0.2));
                 mCharacter.getFormulas().addChakra((int) (mCharacter.getFormulas().getChakra() * 0.2));
                 mCharacter.getFormulas().addStamina((int) (mCharacter.getFormulas().getStamina() * 0.2));
+                CharacterRepository.getInstance().save(mCharacter);
             }
         }
     }
@@ -375,7 +378,6 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
         seconds = 59 - seconds;
 
         variousRoutines.set(String.format("%02d:%02d:%02d", hours, minutes, seconds));
-
 
         if (hours == 0 && minutes == 0 && seconds == 0) {
             mCharacter.setNpcDailyCombat(0);

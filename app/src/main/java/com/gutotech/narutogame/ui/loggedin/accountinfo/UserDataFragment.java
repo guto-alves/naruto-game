@@ -59,10 +59,12 @@ public class UserDataFragment extends Fragment implements SectionFragment, Resul
 
     @Override
     public void onSuccess() {
-        StorageUtil.downloadProfileForMsg(getActivity(), mBinding.updatedAccountMsgLayout.profileImageView);
-        mBinding.updatedAccountMsgLayout.titleTextView.setText(R.string.user_info_updated);
-        mBinding.updatedAccountMsgLayout.descriptionTextView.setText(R.string.user_info_updated_description);
-        mBinding.updatedAccountMsgLayout.msgConstraintLayout.setVisibility(View.VISIBLE);
+        StorageUtil.downloadProfileForMsg(getActivity(), mBinding.updatedAccountLayout.profileImageView);
+        mBinding.updatedAccountLayout.titleTextView.setText(R.string.user_info_updated);
+        mBinding.updatedAccountLayout.descriptionTextView.setText(R.string.user_info_updated_description);
+        mBinding.updatedAccountLayout.msgConstraintLayout.setVisibility(View.VISIBLE);
+
+        mBinding.scrollView.smoothScrollTo(0, 0);
     }
 
     @Override
