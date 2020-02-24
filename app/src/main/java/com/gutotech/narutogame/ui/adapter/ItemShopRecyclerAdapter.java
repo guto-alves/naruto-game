@@ -62,7 +62,8 @@ public class ItemShopRecyclerAdapter extends RecyclerView.Adapter<ItemShopRecycl
     private FragmentManager mFragmentManager;
     private OnBuyClickListener mOnBuyButtonListener;
 
-    public ItemShopRecyclerAdapter(Context context, FragmentManager fragmentManager, OnBuyClickListener onBuyButtonListener) {
+    public ItemShopRecyclerAdapter(Context context, FragmentManager fragmentManager,
+                                   OnBuyClickListener onBuyButtonListener) {
         mContext = context;
         mFragmentManager = fragmentManager;
         mOnBuyButtonListener = onBuyButtonListener;
@@ -81,7 +82,12 @@ public class ItemShopRecyclerAdapter extends RecyclerView.Adapter<ItemShopRecycl
         if (mItemsList != null) {
             final ShopItem itemShop = mItemsList.get(i);
 
-            StorageUtil.downloadRamen(mContext, holder.itemImageView, itemShop.getImage());
+            if (itemShop instanceof Ramen) {
+                StorageUtil.downloadRamen(mContext, holder.itemImageView, itemShop.getImage());
+            } else {
+                StorageUtil.downloadScroll(mContext, holder.itemImageView, itemShop.getImage());
+            }
+
             holder.nameTextView.setText(itemShop.getName());
             holder.descriptionTextView.setText(itemShop.getDescription());
             holder.valueTextView.setText(mContext.getString(R.string.ry, itemShop.getValue()));

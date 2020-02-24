@@ -25,6 +25,7 @@ import com.gutotech.narutogame.data.model.JutsuInfo;
 import com.gutotech.narutogame.data.model.Requirement;
 import com.gutotech.narutogame.databinding.PopupLearnJutsuInfoBinding;
 import com.gutotech.narutogame.ui.playing.RequirementDialogFragment;
+import com.gutotech.narutogame.ui.playing.academy.LearnJutsuInfoPopupWindow;
 import com.gutotech.narutogame.utils.StorageUtil;
 import com.gutotech.narutogame.data.model.Jutsu;
 
@@ -61,8 +62,7 @@ public class JutsusLearnAdapter extends RecyclerView.Adapter<JutsusLearnAdapter.
     private FragmentManager mFragmentManager;
     private OnTrainClickListener mOnTrainClickListener;
 
-    public JutsusLearnAdapter(Context context,
-                              FragmentManager fragmentManager,
+    public JutsusLearnAdapter(Context context, FragmentManager fragmentManager,
                               OnTrainClickListener trainClickListener) {
         mContext = context;
         mFragmentManager = fragmentManager;
@@ -72,9 +72,9 @@ public class JutsusLearnAdapter extends RecyclerView.Adapter<JutsusLearnAdapter.
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View itemLista = LayoutInflater.from(viewGroup.getContext()).inflate(
+        View itemView = LayoutInflater.from(viewGroup.getContext()).inflate(
                 R.layout.recycler_jutsu_learn_item, viewGroup, false);
-        return new ViewHolder(itemLista);
+        return new ViewHolder(itemView);
     }
 
     @Override
@@ -104,7 +104,9 @@ public class JutsusLearnAdapter extends RecyclerView.Adapter<JutsusLearnAdapter.
 
             holder.trainButton.setOnClickListener(v -> mOnTrainClickListener.onTrainClick(jutsu));
 
-            if (i % 2 == 0) {
+            if (jutsuInfo.toString().contains("SENSEI")) {
+                holder.constraintLayout.setBackgroundResource(android.R.color.holo_orange_dark);
+            } else if (i % 2 == 0) {
                 holder.constraintLayout.setBackgroundResource(R.color.colorItem1);
             } else {
                 holder.constraintLayout.setBackgroundResource(R.color.colorItem2);
@@ -117,8 +119,8 @@ public class JutsusLearnAdapter extends RecyclerView.Adapter<JutsusLearnAdapter.
         return mJutsusList != null ? mJutsusList.size() : 0;
     }
 
-    public void setJutsusList(List<Jutsu> jutsuInfoList) {
-        mJutsusList = jutsuInfoList;
+    public void setJutsusList(List<Jutsu> jutsus) {
+        mJutsusList = jutsus;
         notifyDataSetChanged();
     }
 
@@ -132,18 +134,8 @@ public class JutsusLearnAdapter extends RecyclerView.Adapter<JutsusLearnAdapter.
     }
 
     private void showJutsuInfo(View anchor, Jutsu jutsu, JutsuInfo jutsuInfo) {
-        PopupWindow popupWindow = new PopupWindow(mContext);
-
-        PopupLearnJutsuInfoBinding binding = DataBindingUtil.inflate(LayoutInflater.from(mContext),
-                R.layout.popup_learn_jutsu_info, null, false);
-
-        popupWindow.setContentView(binding.getRoot());
-
-        binding.setJutsu(jutsu);
-        binding.setJutsuInfo(jutsuInfo);
-
-        popupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        popupWindow.setOutsideTouchable(true);
+        LearnJutsuInfoPopupWindow popupWindow = new LearnJutsuInfoPopupWindow(mContext);
+        popupWindow.setJutsu(jutsu, jutsuInfo);
         popupWindow.showAsDropDown(anchor);
     }
 }

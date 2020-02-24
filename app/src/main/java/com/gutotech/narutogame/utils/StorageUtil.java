@@ -82,15 +82,11 @@ public class StorageUtil {
         downloadImage(imageView.getContext(), imageReference, imageView);
     }
 
-    public static void downloadJutsu(ImageView imageView, String name) {
+    public static void downloadJutsu(ImageView imageView, String image) {
         StorageReference imageReference = FirebaseConfig.getStorage()
                 .child("images")
                 .child("jutsu")
-                .child(name + (name.equals("Hana-Kyouka-Sai")
-                        || name.equals("Dynamic_Entry")
-                        || name.equals("Soushuriken_no_Jutsu")
-                        || name.equals("Kage-Bunshin-no-Jutsu") ?
-                        ".gif" : ".jpg"));
+                .child(image);
         downloadImage(imageView.getContext(), imageReference, imageView);
     }
 

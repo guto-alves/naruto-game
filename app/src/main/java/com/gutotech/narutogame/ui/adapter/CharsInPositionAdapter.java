@@ -75,8 +75,8 @@ public class CharsInPositionAdapter extends RecyclerView.Adapter<CharsInPosition
 
             StorageUtil.downloadSprite(holder.spriteImageView, character.getNinja().getId());
 
-            holder.charInfoTextView.setText(mContext.getString(R.string.map_char_info,
-                    character.getNick(), character.getLevel(), character.getVillage().name));
+            holder.charInfoTextView.setText(mContext.getString(R.string.map_char_info, character.getNick(),
+                    character.getLevel(), mContext.getString(character.getVillage().name)));
 
             holder.battleImageButton.setOnClickListener(v ->
                     mOnBattleClickListener.onBattleClick(character));
