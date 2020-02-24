@@ -691,7 +691,7 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
         in Naruto Game.\nSelect your character and start your training right now</string>
     <string name="this_place_is_far_away">This place is far away!</string>
     <string name="this_place_is_empty">Empty</string>
-    <string name="map_char_info">%s [Lvl %d]\n%s</string>
+    <string name="map_char_info" translatable="false">%s [Lvl %d]\n%s</string>
     <string name="battle_button">Battle button</string>
     <string name="battle">Battle</string>
     <string name="allied_ninja">Allied Ninja\n( Green Background Color )</string>
@@ -747,7 +747,7 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="effects_on_your_enemy">Effects on your enemy</string>
     <string name="it_is_not_your_turn_to_attack">It is not your turn to attack!</string>
     <string name="dont_have_chakra_to_use_this_jutsu">You don\'t have enough Chakra and/or Stamina to use this jutsu.</string>
-    <string name="jutsu_icon">Jutsu icon</string>
+    <string name="jutsu_icon">Jutsu image</string>
     <string name="dojo_npc">Dojo NPC</string>
     <string name="dojo_pvp">Dojo PVP</string>
     <string name="dojo_pvp_fighters_description">Here you can duel against opponents from all the
@@ -777,6 +777,84 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="general">General</string>
     <string name="coming_soon">Coming soon</string>
     <string name="ryous_icon">Ryous icon</string>
+    <string name="is_not_at_a_level_suitable_for_you">The ninja you chose to battle is not at a level
+        suitable for you!</string>
+    <string name="player_unavailable_to_fight">Player unavailable to fight</string>
+    <string name="move_around_the_map">To move around the map, just double-click on the square where you want to go.</string>
+    <string name="training_points_for_your_participation">For your participation you received 50 training points!</string>
+    <string name="konoha_dai_senkou">Konoha Dai Senkou</string>
+    <string name="konoha_dai_senkou_des">Hit hard the face of enemy with a powerful kick</string>
+    <string name="sennen_goroshi">Sennen Goroshi</string>
+    <string name="sennen_goroshi_des">Joins hands shaped seal Tiger, and hits the back of the enemy, throwing upward with immense pain.</string>
+    <string name="aian_kurou">Aian Kurou</string>
+    <string name="aian_kurou_des">This move simply entails squeezing the target\'s face with his hand.</string>
+    <string name="konoha_reppuu">Konoha Reppuu</string>
+    <string name="konoha_reppuu_des">A tripping kick and while the enemy still in the air, kick him again.</string>
+    <string name="tongarashigan_pill_i">Tongarashigan Pill I</string>
+    <string name="tongarashigan_pill_i_des">Red Pill is the third, more powerful and more susceptible to side effects with large muscle damage, disabling the User for a long time.</string>
+    <string name="tongarashigan_pill_ii">Tongarashigan Pill II</string>
+    <string name="tongarashigan_pill_ii_des">Red Pill is the third, more powerful and more susceptible to side effects with large muscle damage, disabling the User for a long time.</string>
+    <string name="kongouriki_fudou" translatable="false">Kongouriki Fudou</string>
+    <string name="kongouriki_fudou_desc">Kicks the enemy so strong that creates an explosion between his foot and he, throwing him to the ground and breaking.</string>
+    <string name="shishi_rendan" translatable="false">Shishi Rendan</string>
+    <string name="shishi_rendan_desc">The opponent is first kicked into the air and shadowed with the Shadow of the Dancing Leaf. Upon inflicting a blow, one takes advantage of said opponent\'s counterattack to spin around and rise again for further assaults. Ending with the opponent being thrown to the ground and kicked in the stomach.</string>
+    <string name="panchi_1000m" translatable="false">1000M Panchi</string>
+    <string name="panchi_1000m_des">Hits a punch to the gut of the enemy throws at one kilometer away.</string>
+    <string name="konoha_kage_buyou" translatable="false">Konoha Kage Buyou</string>
+    <string name="konoha_kage_buyou_des">The shinobi appears below the opponent applying a quick kick.</string>
+    <string name="sensei_sennen_goroshi" translatable="false">Sensei Sennen Goroshi</string>
+    <string name="sensei_sennen_goroshi_desc">Joins hands shaped seal Tiger, and hits the back of the enemy, throwing upward with immense pain.</string>
+    <string name="shikomi" translatable="false">Shikomi Kugutsu Shinshin Happa</string>
+    <string name="shikomi_desc">The ninja uses a puppet to fire a burst of needles.</string>
+    <string name="nadeshiko" translatable="false">Nadeshiko-Ryuu Shinku Enbu</string>
+    <string name="nadeshiko_desc">The ninja throws several kunai straight at the enemy, being almost impossible to dodge.</string>
+    <string name="samedare" translatable="false">Samedare Kekka</string>
+    <string name="samedare_desc">Similar to Jouro Senbon, ninja flies with her ​​umbrella, raining needles wherever he goes.</string>
+    <string name="kawara" translatable="false">Kawara Shuriken</string>
+    <string name="kawara_desc">The ninja can \"give life\" to anything to use as shuriken, such as tiles of a roof.</string>
+    <string name="raikou_i" translatable="false">Raikou Kenka I</string>
+    <string name="raikou_desc">The ninja uses summoning seals on their wrists in order to raise and quickly attack the enemy, surprising.</string>
+    <string name="raikou_ii" translatable="false">Raikou Kenka II</string>
+    <string name="akahigi" translatable="false">Akahigi Kiki Sankaku</string>
+    <string name="kumo" translatable="false">Kumo Senkyuu Suzaku</string>
+    <string name="kumo_des">The ninja uses a bow and arrow made ​​of an extremely durable material to shoot a powerful arrow at the weak point of the target.</string>
+    <string name="soushuuga">Soushuuga</string>
+    <string name="soushuuga_des">The ninja uses one or more nunchakus to attack the enemy in an agile way.</string>
+    <string name="hadan_des">The ninja chakra loose by his sword, creating a rift in the air, hitting the enemy.</string>
+    <string name="hadan" translatable="false">Hadan</string>
+    <string name="sensei_soushuuga" translatable="false">Sensei Soushuuga</string>
+    <string name="sensei_soushuuga_desc">The ninja uses one or more nunchakus to attack the enemy in an agile way.</string>
+    <string name="akahigi_des">Using his puppet, the ninja shoots several triangular kunai with explosives arrested bags.</string>
+    <string name="ninpou_hyakka_ryoran" translatable="false">Ninpou Hyakka Ryoran</string>
+    <string name="ninpou_kyakka_ryoran_des">Create an illusion with cherry petals, and then throws a poisoned blossom in the enemy.</string>
+    <string name="kori_shinchuu" translatable="false">Kori Shinchuu no Jutsu</string>
+    <string name="kori_shinchuu_desc">Trick the enemy, making him lost his way</string>
+    <string name="magen_i" translatable="false">Magen Narakumi no Jutsu I</string>
+    <string name="magen_des">Makes your opponent has horrible visions, often related to people close to the opponent.</string>
+    <string name="magen_ii" translatable="false">Magen Narakumi no Jutsu II</string>
+    <string name="oto" translatable="false">Oto no Gen</string>
+    <string name="oto_des">The opponent starts to get confused, to the point of losing his mind.</string>
+    <string name="kokohi" translatable="false">Kokohi no Jutsu</string>
+    <string name="kokohi_des">This illusion can change the aspect of objects and even environments</string>
+    <string name="sensei_oto_des">Joins hands shaped seal Tiger, and hits the back of the enemy, throwing upward with immense pain.</string>
+    <string name="an_no_genjutsu" translatable="false">An no Genjutsu</string>
+    <string name="an_no_genjutsu_desc">The Shinobi (Ninja) brings forth a huge beanstalk, which traps the enemy in a pod.</string>
+    <string name="karasu_des">Using this genjutsu, the user creates crows to deceive the enemy.</string>
+    <string name="karasu" translatable="false">Karasu no Genjutsu</string>
+    <string name="rasengan" translatable="false">Rasengan</string>
+    <string name="rasengan_des">The first Ninja makes the chakra assume a spherical shape, then does he turn, and finally the ninja runs and hits the target goes flying (and spinning), when it is reached.</string>
+    <string name="kuro" translatable="false">Kuro Tatsumaki</string>
+    <string name="kuro_des">Creates several blacks tornados that cut and toss the enemy.</string>
+    <string name="meisai_i" translatable="false">Meisai Gakure no Jutsu I</string>
+    <string name="meisai_ii" translatable="false">Meisai Gakure no Jutsu II</string>
+    <string name="meisai_des">After the necessary seals, the ninja can ensure almost complete invisibility.</string>
+    <string name="tajuu_taki">Tajuu Taki Rasengan</string>
+    <string name="bunshin_bakuretsu" translatable="false">Bunshin Bakuretsu</string>
+    <string name="sensei_rasengan" translatable="false">Sensei Rasengan</string>
+    <string name="sensei_rasengan_des">The first Ninja makes the chakra assume a spherical shape, then does he turn, and finally the ninja runs and hits the target goes flying (and spinning), when it is reached.</string>
+    <string name="bunshin_bakuretsu_des">Creates a clone that explodes on hit.</string>
+    <string name="tajuu_taki_des">Using your Tajuu Kage Bunshin no Jutsu, the ninja creates several Kage Bunshin no Jutsu. Then each Kage Bunshin no Jutsu creates a Rasengan in his hand and run up to the enemy attacking each with his Rasengan.</string>
+    <string name="sensei_oto" translatable="false">Sensei Oto no Gen</string>
 
 
 </resources>

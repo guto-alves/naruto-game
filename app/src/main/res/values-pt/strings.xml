@@ -602,7 +602,6 @@
     <string name="congratulations_character_created">Parabéns você acaba de criar seu personagem no Naruto Game. Selecione seu personagem e comece agora mesmo seu treinamento</string>
     <string name="this_place_is_far_away">O ponto onde você quer ir é muito longe!</string>
     <string name="this_place_is_empty">Este local está vazio</string>
-    <string name="map_char_info">%s [Lvl %d]\n%s</string>
     <string name="battle_button">Battle button</string>
     <string name="battle">Batalhar</string>
     <string name="allied_ninja">Ninja Aliado\n( Cor de Fundo Verde )</string>
@@ -614,7 +613,6 @@
     <string name="send_message">Enviar Mensagem</string>
     <string name="map_legends">Legendas</string>
     <string name="players">%d Jogadores</string>
-    <string name="section_dojo">DOJO</string>
     <string name="battle_pvp">Batalha PVP</string>
     <string name="dojo">Dojo</string>
     <string name="label_ninja_power_1">Poder Ninja: %d</string>
@@ -652,15 +650,22 @@
     <string name="attack_nin_gen">Ataque ( Nin / Gen )</string>
     <string name="jutsu_is_not_yet_available">Jutsu selecionado ainda não está diponível!</string>
     <string name="loyalty_rewards">RECOMPENSAS DE FIDELIDADE</string>
-    <string name="loyalty_rewards_description">Ao logar diariamente você pode coletar recompensas para seu personagem. Você deve entrar no jogo durante 8 dias seguidos para conseguir todas as recompensas e começar de novo. Caso você não logue um dos dias, o contador irá retornar para o primeiro dia.</string>
+    <string name="loyalty_rewards_description">Ao logar diariamente você pode coletar recompensas
+        para seu personagem. Você deve entrar no jogo durante 8 dias seguidos para conseguir todas
+        as recompensas e começar de novo. Caso você não logue um dos dias, o contador irá retornar
+        para o primeiro dia.</string>
     <string name="effects_on_your_character">Efeitos no seu personagem</string>
     <string name="effects_on_your_enemy">Efeitos no seu inimigo</string>
     <string name="it_is_not_your_turn_to_attack">Não é sua vez de atacar!</string>
-    <string name="dont_have_chakra_to_use_this_jutsu">Você não tem Chakra e/ou Stamina suficiente para usar esse jutsu.</string>
-    <string name="jutsu_icon">Jutsu icone</string>
+    <string name="dont_have_chakra_to_use_this_jutsu">Você não tem Chakra e/ou Stamina suficiente
+        para usar esse jutsu.</string>
+    <string name="jutsu_icon">Jutsu imagem</string>
     <string name="dojo_npc">Dojo NPC</string>
     <string name="dojo_pvp">Dojo PVP</string>
-    <string name="dojo_pvp_fighters_description">Aqui você pode duelar contra os oponentes de todas as vilas do jogo, de forma automatica o jogo tentará formar uma batalha contra um adversário do mesmo level que o seu, caso não tenha no momento, daremos um alvo com 1 level a menos ou mais que o seu.</string>
+    <string name="dojo_pvp_fighters_description">Aqui você pode duelar contra os oponentes de todas
+        as vilas do jogo, de forma automatica o jogo tentará formar uma batalha contra um adversário
+        do mesmo level que o seu, caso não tenha no momento, daremos um alvo com 1 level a menos ou
+        mais que o seu.</string>
     <string name="dojo_pvp_battles">BATALHAS DO DOJO PVP</string>
     <string name="chance_of_error">de Chance de Erro)</string>
     <string name="wait_opponent_move">Aguardando a ação do oponente</string>
@@ -684,5 +689,50 @@
     <string name="general">Geral</string>
     <string name="coming_soon">Em breve</string>
     <string name="ryous_icon">Ryous icone</string>
+    <string name="is_not_at_a_level_suitable_for_you">O ninja que você escolheu para batalhar, não
+        esta em um nível adequado para você!</string>
+    <string name="player_unavailable_to_fight">Jogador indisponível para lutar</string>
+    <string name="move_around_the_map">Para movimentar-se pelo mapa, basta clicar duas vezes no quadrado
+        aonde deseja ir.</string>
+    <string name="training_points_for_your_participation">Pela sua participação você recebeu 50 pontos de treino!</string>
+    <string name="konoha_dai_senkou">Konoha Dai Senkou</string>
+    <string name="konoha_dai_senkou_des">Hit hard the face of enemy with a powerful kick</string>
+    <string name="sennen_goroshi">Sennen Goroshi</string>
+    <string name="sennen_goroshi_des">Joins hands shaped seal Tiger, and hits the back of the enemy, throwing upward with immense pain.</string>
+    <string name="aian_kurou">Aian Kurou</string>
+    <string name="aian_kurou_des">This move simply entails squeezing the target\'s face with his hand.</string>
+    <string name="konoha_reppuu">Konoha Reppuu</string>
+    <string name="konoha_reppuu_des">A tripping kick and while the enemy still in the air, kick him again.</string>
+    <string name="tongarashigan_pill_i">Pílula Tongarashigan I</string>
+    <string name="tongarashigan_pill_i_des">Pílula Vermelha é a terceira, mais potente e mais suscetível a grandes efeitos colaterais com danos musculares, incapacitando o usuário por um bom tempo.</string>
+    <string name="hadan_des">O ninja solta chakra por sua espada, criando uma fenda no ar, acertando o inimigo.</string>
+    <string name="akahigi_des">Usando sua marionete, o ninja dispara diversas kunais triangulares com saquinhos explosivos presos.</string>
+    <string name="kawara_desc">O ninja consegue \"dar vida\" a qualquer coisa para usar como shuriken, como por exemplo telhas de um telhado.</string>
+    <string name="konoha_kage_buyou_des">O shinobi surge abaixo do oponente aplicando um rápido chute.</string>
+    <string name="kongouriki_fudou_desc">Chuta o inimigo tão forte, que cria uma explosão entre seu pé e ele, arremessando-o e quebrando o chão.</string>
+    <string name="panchi_1000m_des">Acerta um soco no estômago do inimigo que o arremessa à um quilometro de distância.</string>
+    <string name="sensei_sennen_goroshi_desc">Junta as mãos em forma de Selo de Tigre, e acerta o traseiro do inimigo, o arremessando para o alto com uma imensa dor.</string>
+    <string name="shishi_rendan_desc">Combo do Leão, incialmente acerta um chute no queixo do oponente levando-o ao alto, em seguida o usuário sobe com maior velocidade com um salto, para atingir o oponente com um chute contra o solo.</string>
+    <string name="tongarashigan_pill_ii">Pílula Tongarashigan II</string>
+    <string name="tongarashigan_pill_ii_des">Pílula Vermelha é a terceira, mais potente e mais suscetível a grandes efeitos colaterais com danos musculares, incapacitando o usuário por um bom tempo.</string>
+    <string name="kumo_des">O ninja utiliza um arco e flecha feito de um material extremamente resistente para disparar uma poderosa flecha no ponto fraco do alvo.</string>
+    <string name="nadeshiko_desc">O ninja joga diversas kunais seguidas no inimigo, sendo quase impossível desviar.</string>
+    <string name="raikou_desc">O ninja usa selos de invocação em seus pulsos para poder invocar e atacar rapidamente o inimigo, surpreendendo.</string>
+    <string name="samedare_desc">Semelhante ao Jouro Senbon, o ninja voa com seu guarda-chuva, fazendo chover agulhas por onde passa.</string>
+    <string name="sensei_soushuuga_desc">O ninja usa um ou mais nunchakus para atacar o inimigo de forma ágil.</string>
+    <string name="shikomi_desc">O ninja usa uma marionete para disparar uma rajada de agulhas.</string>
+    <string name="sensei_oto_des">O oponente começa a ficar confuso, até o ponto de perder sua mente.</string>
+    <string name="rasengan_des">O Ninja primeiro faz com que o chakra assuma uma forma esférica, depois faz ele girar, e por último, o ninja corre e atinge o alvo que sai voando (e girando), quando é atingido.</string>
+    <string name="sensei_rasengan_des">O Ninja primeiro faz com que o chakra assuma uma forma esférica, depois faz ele girar, e por último, o ninja corre e atinge o alvo que sai voando (e girando), quando é atingido.</string>
+    <string name="oto_des">O oponente começa a ficar confuso, até o ponto de perder sua mente.</string>
+    <string name="ninpou_kyakka_ryoran_des">O usuário cria uma ilusão de uma tempestade de pétalas, logo em seguida o usuário lança uma flor envenanada no inimigo.</string>
+    <string name="magen_des">Faz com que seu oponente tenha visões horríveis, muitas vezes relacionadas à pessoas próximas do adversário.</string>
+    <string name="meisai_des">Após os selos necessários, o ninja pode garantir invisibilidade quase que completa.</string>
+    <string name="kuro_des">Cria diversos tornados negros que cortam o oponente e o arremessam.</string>
+    <string name="kori_shinchuu_desc">Faz com que o oponente perca a noção de direção e ande em círculos sem perceber.</string>
+    <string name="kokohi_des">Essa técnica muda a aparência de objetos, do usuário e muda o local de batalha.</string>
+    <string name="karasu_des">Utilizando esse genjutsu, o usuário cria corvos para enganar o inimigo.</string>
+    <string name="bunshin_bakuretsu_des">Cria um clone que ao ser acertado, explode.</string>
+    <string name="an_no_genjutsu_desc">O Shinobi (Ninja) faz brotar um enorme pé de feijão, que aprisiona o inimigo em uma vagem.</string>
 
 </resources>
