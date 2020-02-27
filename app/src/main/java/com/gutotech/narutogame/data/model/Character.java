@@ -21,6 +21,8 @@ public class Character extends BaseObservable implements Serializable {
     private int exp;
     private int expUpar;
     private long ryous;
+    private String title;
+    private List<String> titles;
     private Graduation graduation;
     private Attributes attributes;
     private List<Jutsu> jutsus;
@@ -30,13 +32,9 @@ public class Character extends BaseObservable implements Serializable {
     private ExtrasInformation extrasInformation;
     private String team;
 
+    private long lastSeenInMillis;
     private boolean online;
-    private String lastLogin;
     private int numberOfDaysPlayed;
-    private int lastDayPlayed;
-
-    private String title;
-    private List<String> titles;
 
     private int score;
     private int npcDailyCombat;
@@ -47,6 +45,10 @@ public class Character extends BaseObservable implements Serializable {
     public String battleId;
     private boolean hospital;
     private boolean map;
+    private boolean dojoWaitQueue;
+
+    private int daysOfFidelity;
+    private boolean fidelityReward;
 
     public Character() {
     }
@@ -69,10 +71,13 @@ public class Character extends BaseObservable implements Serializable {
         resumeOfMissions = new ResumeOfMissions();
         extrasInformation = new ExtrasInformation();
         mapPosition = -1;
+        daysOfFidelity = 1;
+        fidelityReward = true;
 
-        bag = new Bag(new Ramen("nissin", R.string.ninja_snack,
-                R.string.ninja_snack_description,
-                null, 25, 5, 100));
+        bag = new Bag();
+        bag.addRamen(new Ramen(
+                "nissin", R.string.ninja_snack, R.string.ninja_snack_description,
+                25, 100), 5);
     }
 
     public Formulas getFormulas() {
@@ -289,14 +294,6 @@ public class Character extends BaseObservable implements Serializable {
         this.team = team;
     }
 
-    public String getLastLogin() {
-        return lastLogin;
-    }
-
-    public void setLastLogin(String lastLogin) {
-        this.lastLogin = lastLogin;
-    }
-
     @Bindable
     public int getMapPosition() {
         return mapPosition;
@@ -337,14 +334,6 @@ public class Character extends BaseObservable implements Serializable {
 
     public void setJutsus(List<Jutsu> jutsus) {
         this.jutsus = jutsus;
-    }
-
-    public int getLastDayPlayed() {
-        return lastDayPlayed;
-    }
-
-    public void setLastDayPlayed(int lastDayPlayed) {
-        this.lastDayPlayed = lastDayPlayed;
     }
 
     @Bindable
@@ -403,6 +392,47 @@ public class Character extends BaseObservable implements Serializable {
     public void setMap(boolean map) {
         this.map = map;
         notifyPropertyChanged(BR.map);
+    }
+
+    @Bindable
+    public boolean isDojoWaitQueue() {
+        return dojoWaitQueue;
+    }
+
+    public void setDojoWaitQueue(boolean dojoWaitQueue) {
+        this.dojoWaitQueue = dojoWaitQueue;
+        notifyPropertyChanged(BR.dojoWaitQueue);
+    }
+
+    public int getDaysOfFidelity() {
+        return daysOfFidelity;
+    }
+
+    public void setDaysOfFidelity(int daysOfFidelity) {
+        this.daysOfFidelity = daysOfFidelity;
+    }
+
+    @Bindable
+    public boolean isFidelityReward() {
+        return fidelityReward;
+    }
+
+    public boolean hasFidelityReward() {
+        return fidelityReward;
+    }
+
+    public void setFidelityReward(boolean fidelityReward) {
+        this.fidelityReward = fidelityReward;
+        notifyPropertyChanged(BR.fidelityReward);
+    }
+
+
+    public long getLastSeenInMillis() {
+        return lastSeenInMillis;
+    }
+
+    public void setLastSeenInMillis(long lastSeenInMillis) {
+        this.lastSeenInMillis = lastSeenInMillis;
     }
 
     @Override

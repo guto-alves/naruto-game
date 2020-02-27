@@ -54,7 +54,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/selector_buttons_topo"
                 android:onClick="@{() -> viewModel.goToFidelity()}"
-                app:srcCompat="@drawable/layout_icones_gift2" />
+                android:src="@{viewModel.character.fidelityReward ? @drawable/layout_icones_gift : @drawable/layout_icones_gift2}" />
         </LinearLayout>
 
         <LinearLayout
@@ -88,7 +88,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/selector_buttons_topo"
-                android:onClick="logout"
+                android:onClick="onLogoutClick"
                 android:visibility="@{viewModel.character.map ? View.INVISIBLE : View.VISIBLE}"
                 app:srcCompat="@drawable/layout_logout" />
         </LinearLayout>
@@ -236,34 +236,20 @@
             </LinearLayout>
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/linearLayout12"
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            android:layout_marginBottom="8dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
+            android:drawableStart="@drawable/layout_icones_gold"
+            android:drawableLeft="@drawable/layout_icones_gold"
+            android:drawablePadding="3dp"
+            android:gravity="center"
+            android:text="@{String.valueOf(viewModel.character.ryous)}"
+            android:textColor="@color/colorText"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/topImageView"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="3dp"
-                android:layout_marginRight="3dp"
-                android:contentDescription="@string/ryous_icon"
-                app:srcCompat="@drawable/layout_icones_gold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{String.valueOf(viewModel.character.ryous)}"
-                android:textColor="@color/colorText" />
-        </LinearLayout>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
             android:layout_width="wrap_content"

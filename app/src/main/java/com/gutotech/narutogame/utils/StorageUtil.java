@@ -114,11 +114,11 @@ public class StorageUtil {
         downloadImage(context, imageReference, imageView);
     }
 
-    public static void baixarFidelityDia(Context context, ImageView imageView, int dia) {
+    public static void downloadFidelityImage(Context context, ImageView imageView, int day) {
         StorageReference imageReference = FirebaseConfig.getStorage()
                 .child("images")
                 .child("fidelity")
-                .child(dia + ".png");
+                .child(day + ".png");
         downloadImage(context, imageReference, imageView);
     }
 
