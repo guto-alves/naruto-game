@@ -42,7 +42,7 @@
             android:id="@+id/nameTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#FFD274"
+            android:textColor="@color/colorItemTitle"
             android:textSize="12sp"
             android:textStyle="bold" />
 

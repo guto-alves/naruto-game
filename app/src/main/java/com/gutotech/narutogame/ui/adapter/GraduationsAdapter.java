@@ -20,7 +20,7 @@ import com.gutotech.narutogame.data.model.GraduationUtils;
 
 public class GraduationsRecyclerAdapter extends RecyclerView.Adapter<GraduationsRecyclerAdapter.MyViewHolder> {
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
         private TextView nameTextView;
         private TextView descriptionTextView;
         private ImageView requerImageView;
@@ -86,5 +86,4 @@ public class GraduationsRecyclerAdapter extends RecyclerView.Adapter<Graduations
     public int getItemCount() {
         return 6; // total de graduações
     }
-
 }

@@ -4,6 +4,7 @@ import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.model.Classe;
 import com.gutotech.narutogame.data.model.Jutsu;
 import com.gutotech.narutogame.data.model.JutsuInfo;
+import com.gutotech.narutogame.data.model.Requirement;
 
 import java.util.ArrayList;
 import java.util.Arrays;

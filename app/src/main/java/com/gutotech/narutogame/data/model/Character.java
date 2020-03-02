@@ -1,6 +1,7 @@
 package com.gutotech.narutogame.data.model;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 import androidx.databinding.library.baseAdapters.BR;
@@ -8,9 +9,11 @@ import androidx.databinding.library.baseAdapters.BR;
 import com.gutotech.narutogame.R;
 
 import java.io.Serializable;
+import java.util.Iterator;
 import java.util.List;
 
 public class Character extends BaseObservable implements Serializable {
+    private String id;
     private String playerId;
     private String nick;
     private Ninja ninja;
@@ -21,9 +24,9 @@ public class Character extends BaseObservable implements Serializable {
     private int exp;
     private int expUpar;
     private long ryous;
-    private String title;
-    private List<String> titles;
-    private Graduation graduation;
+    private int title;
+    private List<Integer> titles;
+    private int graduationId;
     private Attributes attributes;
     private List<Jutsu> jutsus;
     private Bag bag;
@@ -59,7 +62,6 @@ public class Character extends BaseObservable implements Serializable {
         setNinja(Ninja.NARUTO);
         setProfilePath("1/1");
         setVillage(Village.FOLHA);
-        graduation = Graduation.ESTUDANTE;
         setClasse(Classe.TAI);
         setAttributes(new Attributes(classe));
         updateFormulas();
@@ -122,6 +124,53 @@ public class Character extends BaseObservable implements Serializable {
 
     public void subRyous(long ryousSpent) {
         setRyous(getRyous() - ryousSpent);
+    }
+
+    public void addTitle(@StringRes int titleId) {
+        titles.add(titleId);
+    }
+
+    public void validateJutsus() {
+        Iterator<Jutsu> iterator = jutsus.iterator();
+
+        while (iterator.hasNext()) {
+            boolean flag = false;
+
+            List<Requirement> requirements = iterator.next().getJutsuInfo().requirements;
+
+            if (requirements == null) {
+                continue;
+            }
+
+            for (Requirement requirement : requirements) {
+                if (!requirement.check()) {
+                    flag = true;
+                    break;
+                }
+            }
+
+            if (flag) {
+                iterator.remove();
+            }
+        }
+    }
+
+    @Override
+    public boolean equals(@Nullable Object obj) {
+        if (!(obj instanceof Character)) {
+            return false;
+        }
+
+        return getNick().equals(((Character) obj).getNick());
+    }
+
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getPlayerId() {
@@ -304,27 +353,30 @@ public class Character extends BaseObservable implements Serializable {
         notifyPropertyChanged(BR.mapPosition);
     }
 
-    public Graduation getGraduation() {
-        return graduation;
+    public int getGraduationId() {
+        return graduationId;
     }
 
-    public void setGraduation(Graduation graduation) {
-        this.graduation = graduation;
+    public void setGraduationId(int graduationId) {
+        this.graduationId = graduationId;
     }
 
-    public String getTitle() {
+    @Bindable
+    @StringRes
+    public int getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
+    public void setTitle(@StringRes int title) {
         this.title = title;
+        notifyPropertyChanged(BR.title);
     }
 
-    public List<String> getTitles() {
+    public List<Integer> getTitles() {
         return titles;
     }
 
-    public void setTitles(List<String> titles) {
+    public void setTitles(List<Integer> titles) {
         this.titles = titles;
     }
 
@@ -426,21 +478,11 @@ public class Character extends BaseObservable implements Serializable {
         notifyPropertyChanged(BR.fidelityReward);
     }
 
-
     public long getLastSeenInMillis() {
         return lastSeenInMillis;
     }
 
     public void setLastSeenInMillis(long lastSeenInMillis) {
         this.lastSeenInMillis = lastSeenInMillis;
-    }
-
-    @Override
-    public boolean equals(@Nullable Object obj) {
-        if (!(obj instanceof Character)) {
-            return false;
-        }
-
-        return getNick().equals(((Character) obj).getNick());
     }
 }
