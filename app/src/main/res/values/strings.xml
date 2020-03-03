@@ -357,8 +357,8 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="top_of_chat_content_description">Top of chat</string>
     <string name="warning_already_played_today">• You\'ve played in lucky ninja today!</string>
     <string name="credits_daily">1\nCredit</string>
-    <string name="ryous_daily">2000 Ryous</string>
-    <string name="ryous_weekly">6000 Ryous</string>
+    <string name="ryous_daily">500 Ryous</string>
+    <string name="ryous_weekly">1500 Ryous</string>
     <string name="credits_weekly">3 Credits</string>
     <string name="warning_dont_have_enough_ryous">• You do not have enough ryous</string>
     <string name="warning_dont_have_enough_credits">• You do not have enough credits</string>
@@ -745,7 +745,7 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
         over. If you do not log in one of the days, the counter will return to the first day.</string>
     <string name="effects_on_your_character">Effects on your character</string>
     <string name="effects_on_your_enemy">Effects on your enemy</string>
-    <string name="it_is_not_your_turn_to_attack">It is not your turn to attack!</string>
+    <string name="it_is_not_your_turn_to_attack">Isn\'t your turn!</string>
     <string name="dont_have_chakra_to_use_this_jutsu">You don\'t have enough Chakra and/or Stamina to use this jutsu.</string>
     <string name="jutsu_icon">Jutsu image</string>
     <string name="dojo_npc">Dojo NPC</string>
@@ -780,53 +780,72 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="is_not_at_a_level_suitable_for_you">The ninja you chose to battle is not at a level
         suitable for you!</string>
     <string name="player_unavailable_to_fight">Player unavailable to fight</string>
-    <string name="move_around_the_map">To move around the map, just double-click on the square where you want to go.</string>
-    <string name="training_points_for_your_participation">For your participation you received 50 training points!</string>
+    <string name="move_around_the_map">To move around the map, just double-click on the square where
+        you want to go.</string>
+    <string name="training_points_for_your_participation">\nFor your participation you received 50
+        training points!</string>
     <string name="konoha_dai_senkou">Konoha Dai Senkou</string>
     <string name="konoha_dai_senkou_des">Hit hard the face of enemy with a powerful kick</string>
     <string name="sennen_goroshi">Sennen Goroshi</string>
-    <string name="sennen_goroshi_des">Joins hands shaped seal Tiger, and hits the back of the enemy, throwing upward with immense pain.</string>
+    <string name="sennen_goroshi_des">Joins hands shaped seal Tiger, and hits the back of the enemy,
+        throwing upward with immense pain.</string>
     <string name="aian_kurou">Aian Kurou</string>
-    <string name="aian_kurou_des">This move simply entails squeezing the target\'s face with his hand.</string>
+    <string name="aian_kurou_des">This move simply entails squeezing the target\'s face with his
+        hand.</string>
     <string name="konoha_reppuu">Konoha Reppuu</string>
-    <string name="konoha_reppuu_des">A tripping kick and while the enemy still in the air, kick him again.</string>
+    <string name="konoha_reppuu_des">A tripping kick and while the enemy still in the air, kick
+        him again.</string>
     <string name="tongarashigan_pill_i">Tongarashigan Pill I</string>
-    <string name="tongarashigan_pill_i_des">Red Pill is the third, more powerful and more susceptible to side effects with large muscle damage, disabling the User for a long time.</string>
+    <string name="tongarashigan_pill_i_des">Red Pill is the third, more powerful and more
+        susceptible to side effects with large muscle damage, disabling the User for a long time.</string>
     <string name="tongarashigan_pill_ii">Tongarashigan Pill II</string>
-    <string name="tongarashigan_pill_ii_des">Red Pill is the third, more powerful and more susceptible to side effects with large muscle damage, disabling the User for a long time.</string>
+    <string name="tongarashigan_pill_ii_des">Red Pill is the third, more powerful and more susceptible
+        to side effects with large muscle damage, disabling the User for a long time.</string>
     <string name="kongouriki_fudou" translatable="false">Kongouriki Fudou</string>
-    <string name="kongouriki_fudou_desc">Kicks the enemy so strong that creates an explosion between his foot and he, throwing him to the ground and breaking.</string>
+    <string name="kongouriki_fudou_desc">Kicks the enemy so strong that creates an explosion between
+        his foot and he, throwing him to the ground and breaking.</string>
     <string name="shishi_rendan" translatable="false">Shishi Rendan</string>
-    <string name="shishi_rendan_desc">The opponent is first kicked into the air and shadowed with the Shadow of the Dancing Leaf. Upon inflicting a blow, one takes advantage of said opponent\'s counterattack to spin around and rise again for further assaults. Ending with the opponent being thrown to the ground and kicked in the stomach.</string>
+    <string name="shishi_rendan_desc">The opponent is first kicked into the air and shadowed with the
+        Shadow of the Dancing Leaf. Upon inflicting a blow, one takes advantage of said opponent\'s
+        counterattack to spin around and rise again for further assaults. Ending with the opponent being thrown to the ground and kicked in the stomach.</string>
     <string name="panchi_1000m" translatable="false">1000M Panchi</string>
     <string name="panchi_1000m_des">Hits a punch to the gut of the enemy throws at one kilometer away.</string>
     <string name="konoha_kage_buyou" translatable="false">Konoha Kage Buyou</string>
     <string name="konoha_kage_buyou_des">The shinobi appears below the opponent applying a quick kick.</string>
     <string name="sensei_sennen_goroshi" translatable="false">Sensei Sennen Goroshi</string>
-    <string name="sensei_sennen_goroshi_desc">Joins hands shaped seal Tiger, and hits the back of the enemy, throwing upward with immense pain.</string>
+    <string name="sensei_sennen_goroshi_desc">Joins hands shaped seal Tiger, and hits the back of the
+        enemy, throwing upward with immense pain.</string>
     <string name="shikomi" translatable="false">Shikomi Kugutsu Shinshin Happa</string>
     <string name="shikomi_desc">The ninja uses a puppet to fire a burst of needles.</string>
     <string name="nadeshiko" translatable="false">Nadeshiko-Ryuu Shinku Enbu</string>
-    <string name="nadeshiko_desc">The ninja throws several kunai straight at the enemy, being almost impossible to dodge.</string>
+    <string name="nadeshiko_desc">The ninja throws several kunai straight at the enemy, being almost
+        impossible to dodge.</string>
     <string name="samedare" translatable="false">Samedare Kekka</string>
-    <string name="samedare_desc">Similar to Jouro Senbon, ninja flies with her ​​umbrella, raining needles wherever he goes.</string>
+    <string name="samedare_desc">Similar to Jouro Senbon, ninja flies with her ​​umbrella, raining
+        needles wherever he goes.</string>
     <string name="kawara" translatable="false">Kawara Shuriken</string>
-    <string name="kawara_desc">The ninja can \"give life\" to anything to use as shuriken, such as tiles of a roof.</string>
+    <string name="kawara_desc">The ninja can \"give life\" to anything to use as shuriken, such as
+        tiles of a roof.</string>
     <string name="raikou_i" translatable="false">Raikou Kenka I</string>
-    <string name="raikou_desc">The ninja uses summoning seals on their wrists in order to raise and quickly attack the enemy, surprising.</string>
+    <string name="raikou_desc">The ninja uses summoning seals on their wrists in order to raise and
+        quickly attack the enemy, surprising.</string>
     <string name="raikou_ii" translatable="false">Raikou Kenka II</string>
     <string name="akahigi" translatable="false">Akahigi Kiki Sankaku</string>
     <string name="kumo" translatable="false">Kumo Senkyuu Suzaku</string>
-    <string name="kumo_des">The ninja uses a bow and arrow made ​​of an extremely durable material to shoot a powerful arrow at the weak point of the target.</string>
+    <string name="kumo_des">The ninja uses a bow and arrow made ​​of an extremely durable material to
+        shoot a powerful arrow at the weak point of the target.</string>
     <string name="soushuuga">Soushuuga</string>
     <string name="soushuuga_des">The ninja uses one or more nunchakus to attack the enemy in an agile way.</string>
     <string name="hadan_des">The ninja chakra loose by his sword, creating a rift in the air, hitting the enemy.</string>
     <string name="hadan" translatable="false">Hadan</string>
     <string name="sensei_soushuuga" translatable="false">Sensei Soushuuga</string>
-    <string name="sensei_soushuuga_desc">The ninja uses one or more nunchakus to attack the enemy in an agile way.</string>
-    <string name="akahigi_des">Using his puppet, the ninja shoots several triangular kunai with explosives arrested bags.</string>
+    <string name="sensei_soushuuga_desc">The ninja uses one or more nunchakus to attack the enemy
+        in an agile way.</string>
+    <string name="akahigi_des">Using his puppet, the ninja shoots several triangular kunai with
+        explosives arrested bags.</string>
     <string name="ninpou_hyakka_ryoran" translatable="false">Ninpou Hyakka Ryoran</string>
-    <string name="ninpou_kyakka_ryoran_des">Create an illusion with cherry petals, and then throws a poisoned blossom in the enemy.</string>
+    <string name="ninpou_kyakka_ryoran_des">Create an illusion with cherry petals, and then throws
+        a poisoned blossom in the enemy.</string>
     <string name="kori_shinchuu" translatable="false">Kori Shinchuu no Jutsu</string>
     <string name="kori_shinchuu_desc">Trick the enemy, making him lost his way</string>
     <string name="magen_i" translatable="false">Magen Narakumi no Jutsu I</string>
@@ -836,13 +855,16 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="oto_des">The opponent starts to get confused, to the point of losing his mind.</string>
     <string name="kokohi" translatable="false">Kokohi no Jutsu</string>
     <string name="kokohi_des">This illusion can change the aspect of objects and even environments</string>
-    <string name="sensei_oto_des">Joins hands shaped seal Tiger, and hits the back of the enemy, throwing upward with immense pain.</string>
+    <string name="sensei_oto_des">Joins hands shaped seal Tiger, and hits the back of the enemy,
+        throwing upward with immense pain.</string>
     <string name="an_no_genjutsu" translatable="false">An no Genjutsu</string>
-    <string name="an_no_genjutsu_desc">The Shinobi (Ninja) brings forth a huge beanstalk, which traps the enemy in a pod.</string>
+    <string name="an_no_genjutsu_desc">The Shinobi (Ninja) brings forth a huge beanstalk, which traps
+        the enemy in a pod.</string>
     <string name="karasu_des">Using this genjutsu, the user creates crows to deceive the enemy.</string>
     <string name="karasu" translatable="false">Karasu no Genjutsu</string>
     <string name="rasengan" translatable="false">Rasengan</string>
-    <string name="rasengan_des">The first Ninja makes the chakra assume a spherical shape, then does he turn, and finally the ninja runs and hits the target goes flying (and spinning), when it is reached.</string>
+    <string name="rasengan_des">The first Ninja makes the chakra assume a spherical shape, then does
+        he turn, and finally the ninja runs and hits the target goes flying (and spinning), when it is reached.</string>
     <string name="kuro" translatable="false">Kuro Tatsumaki</string>
     <string name="kuro_des">Creates several blacks tornados that cut and toss the enemy.</string>
     <string name="meisai_i" translatable="false">Meisai Gakure no Jutsu I</string>
@@ -851,10 +873,148 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="tajuu_taki">Tajuu Taki Rasengan</string>
     <string name="bunshin_bakuretsu" translatable="false">Bunshin Bakuretsu</string>
     <string name="sensei_rasengan" translatable="false">Sensei Rasengan</string>
-    <string name="sensei_rasengan_des">The first Ninja makes the chakra assume a spherical shape, then does he turn, and finally the ninja runs and hits the target goes flying (and spinning), when it is reached.</string>
+    <string name="sensei_rasengan_des">The first Ninja makes the chakra assume a spherical shape,
+        then does he turn, and finally the ninja runs and hits the target goes flying (and spinning),
+        when it is reached.</string>
     <string name="bunshin_bakuretsu_des">Creates a clone that explodes on hit.</string>
-    <string name="tajuu_taki_des">Using your Tajuu Kage Bunshin no Jutsu, the ninja creates several Kage Bunshin no Jutsu. Then each Kage Bunshin no Jutsu creates a Rasengan in his hand and run up to the enemy attacking each with his Rasengan.</string>
+    <string name="tajuu_taki_des">Using your Tajuu Kage Bunshin no Jutsu, the ninja creates several
+        Kage Bunshin no Jutsu. Then each Kage Bunshin no Jutsu creates a Rasengan in his hand and run
+        up to the enemy attacking each with his Rasengan.</string>
     <string name="sensei_oto" translatable="false">Sensei Oto no Gen</string>
+    <string name="looking_for_opponents">LOOKING FOR OPPONENTS</string>
+    <string name="looking_for_opponents_description">We are currently looking for an opponent of
+        the same level as yours, if we don\'t find the battle it could happen with an opponent with
+        1 more level or 1 less than yours.</string>
+    <string name="warning_dojo_wait">We recommend that you do not leave this page, because if we
+        find an opponent, we will not be able to send you to battle and you could lose by inactivity.</string>
+    <string name="waiting_room">Waiting room</string>
+    <string name="team_information">TEAM INFORMATION</string>
+    <string name="team_info_description">The Team can only be excluded when only the Leader is in it, with no active mission. If a ninja changes teams, he will not earn the same reward in another team, he will only earn rewards at levels not yet reached.</string>
+    <string name="button_message_to_members">Message to Members</string>
+    <string name="button_leave_the_team">Leave the Team</string>
+    <string name="team_members">Team Members: %s</string>
+    <string name="requerement">Requerement</string>
+    <string name="chakra_formula">Chakra Formula</string>
+    <string name="hp_formula">HP Formula</string>
+    <string name="stamina_formula">Stamina Formula</string>
+    <string name="_1_of_attack_tai_buk">+1 of Attack ( Tai / Buk )</string>
+    <string name="_1_of_attack_nin_gen">+1 of Attack ( Nin / Gen )</string>
+    <string name="_1_of_accuracy">+1 of Accuracy</string>
+    <string name="percent_of_ninja_power">% de Ninja Power</string>
+    <string name="ranking_ninjas_formulas">Ranking Ninjas Ranking Formula (Points / Description)</string>
+    <string name="per_level_player">Per Level Player</string>
+    <string name="per_grade_player">Per Grade Player</string>
+    <string name="logar_days_followed">Logar %d day (s) followed</string>
+    <string name="fidelity_rewards">FIDELITY REWARDS</string>
+    <string name="fidelity_rewards_description">To log every day you can collect rewards for your character. You should enter the game for 8 consecutive days to get all the rewards and start again. If you do not log one day, the counter will return to the first day.</string>
+    <string name="fidelity_reward_1_description">%d Ryous</string>
+    <string name="value_in_ryous">%d Ryous</string>
+    <string name="value_in_experience">%d Experience</string>
+    <string name="reward_in_ramen">%d Shio Tyashu-Ramen</string>
+    <string name="to_be_a_member">I WANT TO BE A MEMBER</string>
+    <string name="to_be_a_member_description">Choose the Team and click Participate to send a request to join this Team</string>
+    <string name="change_name_of_the_character">Change Name of the character</string>
+    <string name="change_name_of_the_character_des">Change the name of your Ninja. (Max of 14 characters, no spaces, only letters and numbers)</string>
+    <string name="character_change">Character Change</string>
+    <string name="change_the_character_of_your_ninja">Change the character of your Ninja</string>
+    <string name="class_change">Class Change</string>
+    <string name="class_change_des">Change the class of your character</string>
+    <string name="change_village">Change Village</string>
+    <string name="change_village_des">Change your home Village. (Not Available above Level 10).</string>
+    <string name="redistribute_5_points">Redistribute 5 points</string>
+    <string name="redistribute_5_points_des">You may redistribute up to 5 attribute points.</string>
+    <string name="redistribute_10_points">Redistribute 10 points</string>
+    <string name="redistribute_10_points_des">You may redistribute up to 10 attribute points.</string>
+    <string name="redistribute_15_points">Redistribute 15 points</string>
+    <string name="redistribute_15_points_des">You may redistribute up to 15 attribute points</string>
+    <string name="redistribute_points">Redistribute Points</string>
+    <string name="redistribute_points_des">Redistribute the attributes of your character. (Items with requirements may be lost with this action)</string>
+    <string name="successfully_done">Successfully done</string>
+    <string name="you_have_acquired">You have acquired</string>
+    <string name="name_description">Name / Description</string>
+    <string name="genin_description">Your first day after the ninja academy, today you will receive
+        your bandana and graduating with a ninja village. With this degree you can explore what\'s
+        beyond the gate of the village, fight enemies, make allies, perform different types of
+        missions, learn basic moves and help protect your village. Do not forget to continue your
+        training to just reach the next graduation.</string>
+    <string name="chuunin_description">Graduated Ninja with high level of confidence in the town,
+        has great knowledge in the art and has ninja skills to control the first element, doing
+        missions riskier Rank C, can participate in teams and organizations and participate in
+        tournaments ninjas.</string>
+    <string name="jounin_description">Ninja with a great level of knowledge about the art ninja
+        and battles, has many specialties such as controlling the second element, doing the most
+        dangerous missions of B rank level, may be responsible for an organization and can also
+        participate in various tournaments between Jounins.</string>
+    <string name="anbu_description">Hunters are known as Special ANBU, or (Squadron Special
+        Assassination and Tactical). Become an ANBU is to have the recognition of being a ninja
+        reputable within their village. You can learn many different moves, doing missions for
+        level A, can join tournaments and events, you can learn the last level of the seal or
+        sennin mode.</string>
+    <string name="sannin_description">They are extraordinary ninjas, ninjas able to use a very
+        large amount of jutsus and lead a battle there last long. They can learn the latest skills
+        and invocation clan, participate in tournaments, teams and organizations leading to invade
+        and wage war against other villages, is uniquely capable of performing missions level S and
+        the closest of becoming Kages.</string>
+    <string name="hero_description">Every ninja dreams of becoming a Hero. A person known and loved
+        by all the people of the village, and often globally known. Heroes can do all kinds of
+        missions, has the largest number of skills Ninjutsu, Taijutsu, Genjutsu trained. S or SS
+        performs missions that are riskier and defend the village with all the forces and if necessary
+        with Life itself.</string>
+    <string name="nukenin_d_desc">You begin to steal villages and farmers, and becomes a wanted rank D.</string>
+    <string name="nukenin_c_des">With some skill of the underworld, you begin to feel the power and insanity within you, being able to do some murders if necessary.</string>
+    <string name="nukenin_b_desc">Equivalent to the force of a Jounin, you become more skilled and able to control two elements perfectly, destroying entire villages.</string>
+    <string name="nukenin_a_des">Are moved through the darkness, acting surreptitiously and killing
+        all who get in his way. It is able to track targets, as well as ANBUs</string>
+    <string name="bounty_hunter_desc">As strong as a Sannin, becoming practically the renegade
+        strongest Akatsuki. Your head is one of the most wanted with a high reward on it.</string>
+    <string name="villain_description">The strongest ninja of Akatsuki, his knowledge and power can
+        not be compared to any other graduate. To become a leader, the ninja needs to go through
+        all grades and still become the best among the best. They can do all kinds of missions, has
+        the largest number of skills Ninjutsu, Taijutsu and Genjutsu trained. S or SS performs
+        missions that are riskier and Akatsuki defend with all their might and if necessary with
+        their lives.</string>
+    <string name="genin">Genin</string>
+    <string name="chuunin">Chuunin</string>
+    <string name="jounin">Jounin</string>
+    <string name="anbu">ANBU</string>
+    <string name="god">God</string>
+    <string name="rain_guardian">Rain Guardian</string>
+    <string name="fugitive">Fugitive</string>
+    <string name="nukenin_d">Nukenin D</string>
+    <string name="nukenin_c">Nukenin C</string>
+    <string name="nukenin_b">Nukenin B</string>
+    <string name="nukenin_a">Nukenin A</string>
+    <string name="villain">Villain</string>
+    <string name="bounty_hunter">Bounty Hunter</string>
+    <string name="student">Student</string>
+    <string name="leaf_sannin">Leaf Sannin</string>
+    <string name="hero">Hero</string>
+    <string name="sand_sealer">Sand Sealer</string>
+    <string name="cloud_head_ninja">Cloud Head Ninja</string>
+    <string name="stone_hunter">Stone Hunter</string>
+    <string name="swordsman_of_the_mist">Swordsman of the Mist</string>
+    <string name="orphan">Orphan</string>
+    <string name="cursed">Cursed</string>
+    <string name="sound_cientist">Sound Cientist</string>
+    <string name="survivor">Survivor</string>
+    <string name="requires_initial_tasks">You must have completed 10 Initial Tasks</string>
+    <string name="requires_lerned_jutsus">Have %d Learned Jutsus</string>
+    <string name="requires_wins_npc">Have %d Win NPC</string>
+    <string name="requires_wins_pvp">Ter %d Vitórias PVP</string>
+    <string name="requires_you_need_to_be_level">Você precisa estar no Level %d ou superior</string>
+
+    <string name="requires_missions_rank">You must have completed %d Missions Rank %s or more</string>
+    <string name="button_graduated">Graduated</string>
+    <string name="requires_grade">Requires Grade: %s</string>
+    <string name="description_duration_reward_level">Description / Duration / Reward / Level</string>
+    <string name="you_are_here">You are here</string>
+    <string name="dont_have_enough_ryous">You don\'t have enough Ryous to make that purchase!</string>
+    <string name="time">Time</string>
+    <string name="rank_s">Rank S</string>
+    <string name="rank_a">Rank A</string>
+    <string name="rank_b">Rank B</string>
+    <string name="rank_c">Rank C</string>
+    <string name="rank_d">Rank D</string>
 
 
 </resources>

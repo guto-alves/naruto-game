@@ -11,11 +11,11 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.gutotech.narutogame.R;
-import com.gutotech.narutogame.data.model.Formulas;
 import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.WarningDialog;
 import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.utils.FragmentUtil;
+import com.gutotech.narutogame.utils.StorageUtil;
 
 public class HospitalRoomFragment extends Fragment implements SectionFragment {
 
@@ -27,7 +27,9 @@ public class HospitalRoomFragment extends Fragment implements SectionFragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_hospital_room, container, false);
 
-        if (isRecovered()) {
+        StorageUtil.downloadProfileForMsg(getContext(), view.findViewById(R.id.profileImageView));
+
+        if (CharOn.character.getFormulas().isFull()) {
             CharOn.character.setHospital(false);
         } else {
             int payment = 20 * CharOn.character.getLevel();
@@ -45,7 +47,7 @@ public class HospitalRoomFragment extends Fragment implements SectionFragment {
                         CharOn.character.full();
                         CharOn.character.setHospital(false);
                     });
-                    warningDialog.show(getFragmentManager(), "WarningDialog");
+                    warningDialog.show(getParentFragmentManager(), "WarningDialog");
                 } else {
                     // you don't have ryous enough
                 }
@@ -55,14 +57,6 @@ public class HospitalRoomFragment extends Fragment implements SectionFragment {
         FragmentUtil.setSectionTitle(getActivity(), R.string.section_hospital_room);
 
         return view;
-    }
-
-    private boolean isRecovered() {
-        Formulas formulas = CharOn.character.getFormulas();
-
-        return formulas.getCurrentHealth() == formulas.getHealth() &&
-                formulas.getCurrentChakra() == formulas.getChakra() &&
-                formulas.getCurrentStamina() == formulas.getStamina();
     }
 
     @Override

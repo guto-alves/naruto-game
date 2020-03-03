@@ -7,9 +7,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
+import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -17,11 +18,13 @@ import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.Village;
 import com.gutotech.narutogame.databinding.FragmentVillageMapBinding;
 import com.gutotech.narutogame.ui.SectionFragment;
-import com.gutotech.narutogame.ui.adapter.VillageMapRecyclerViewAdapter;
+import com.gutotech.narutogame.ui.adapter.VillageMapAdapter;
 import com.gutotech.narutogame.data.model.CharOn;
+import com.gutotech.narutogame.ui.playing.PlayingActivity;
 import com.gutotech.narutogame.utils.FragmentUtil;
 
 public class VillageMapFragment extends Fragment implements SectionFragment {
+    private float mScaleFactor = 1.0f;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -29,34 +32,46 @@ public class VillageMapFragment extends Fragment implements SectionFragment {
         FragmentVillageMapBinding binding = DataBindingUtil.inflate(inflater,
                 R.layout.fragment_village_map, container, false);
 
-        int villageId;
+        Village village;
 
         Bundle bundle = getArguments();
 
         if (bundle != null) {
-            Village village = (Village) bundle.getSerializable("village");
-            villageId = village.ordinal();
-            binding.villageMapRecyclerView.setBackgroundResource(village.mapResId);
+            village = (Village) bundle.getSerializable("village");
         } else {
-            villageId = CharOn.character.getVillage().ordinal();
-            binding.villageMapRecyclerView.setBackgroundResource(
-                    CharOn.character.getVillage().mapResId);
+            village = CharOn.character.getVillage();
         }
 
-        VillageMapViewModel viewModel = ViewModelProviders.of(this,
-                new VillageMapViewModelFactory(villageId)).get(VillageMapViewModel.class);
+        binding.villageMapRecyclerView.setBackgroundResource(village.mapResId);
+
+        VillageMapViewModel viewModel = new ViewModelProvider(this,
+                new VillageMapViewModelFactory(village)).get(VillageMapViewModel.class);
 
         binding.setViewModel(viewModel);
 
-        VillageMapRecyclerViewAdapter adapter = new VillageMapRecyclerViewAdapter(getActivity(),
-                VillageMapViewModel.MAP_LENGTH, viewModel);
+        VillageMapAdapter adapter = new VillageMapAdapter(getActivity(),
+                village.placeEntries, viewModel);
 
         binding.villageMapRecyclerView.setHasFixedSize(true);
         binding.villageMapRecyclerView.setAdapter(adapter);
 
-        viewModel.getCharactersOnTheMap().observe(this, adapter::setMap);
+        viewModel.getCharactersOnTheMap().observe(getViewLifecycleOwner(), adapter::setMap);
 
-        viewModel.getShowWarningDialogEvent().observe(this, this::showDialog);
+        viewModel.getShowWarningDialogEvent().observe(getViewLifecycleOwner(), this::showDialog);
+
+        ScaleGestureDetector mScaleGestureDetector = new ScaleGestureDetector(getActivity(),
+                new ScaleGestureDetector.SimpleOnScaleGestureListener() {
+                    @Override
+                    public boolean onScale(ScaleGestureDetector detector) {
+                        mScaleFactor *= detector.getScaleFactor();
+                        mScaleFactor = Math.max(0.1f, Math.min(mScaleFactor, 5.0f));
+                        binding.villageMapRecyclerView.setScaleX(mScaleFactor);
+                        binding.villageMapRecyclerView.setScaleY(mScaleFactor);
+                        return true;
+                    }
+                });
+
+        ((PlayingActivity) getActivity()).registerScaleGestureDetector(mScaleGestureDetector);
 
         FragmentUtil.setSectionTitle(getActivity(), R.string.section_village_map);
 
@@ -73,15 +88,5 @@ public class VillageMapFragment extends Fragment implements SectionFragment {
     @Override
     public int getDescription() {
         return R.string.village_map;
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
     }
 }

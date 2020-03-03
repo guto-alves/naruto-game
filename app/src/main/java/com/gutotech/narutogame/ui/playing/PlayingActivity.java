@@ -8,9 +8,11 @@ import android.os.Bundle;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.view.MotionEvent;
+import android.view.ScaleGestureDetector;
 import android.view.View;
 
 import androidx.core.view.GravityCompat;
@@ -23,13 +25,17 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.Bag;
 import com.gutotech.narutogame.data.model.Ramen;
+import com.gutotech.narutogame.data.model.Scroll;
+import com.gutotech.narutogame.data.model.ShopItem;
 import com.gutotech.narutogame.data.repository.AuthRepository;
 import com.gutotech.narutogame.data.repository.CharacterRepository;
+import com.gutotech.narutogame.data.repository.MapRepository;
 import com.gutotech.narutogame.databinding.ActivityPlayingBinding;
 import com.gutotech.narutogame.databinding.DialogGameRoutinesBinding;
 import com.gutotech.narutogame.databinding.NavHeaderPlayingBinding;
@@ -37,27 +43,29 @@ import com.gutotech.narutogame.ui.adapter.ChatMessageAdapter;
 import com.gutotech.narutogame.ui.adapter.ExpandableLoggedinAdapter;
 import com.gutotech.narutogame.ui.adapter.BagItemsAdapter;
 import com.gutotech.narutogame.ui.home.HomeActivity;
+import com.gutotech.narutogame.ui.playing.currentvillage.VillageMapFragment;
 import com.gutotech.narutogame.utils.FragmentUtil;
 import com.gutotech.narutogame.data.model.CharOn;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class PlayingActivity extends AppCompatActivity {
     private ActivityPlayingBinding mBinding;
     private PlayingViewModel mViewModel;
 
-    private DrawerLayout drawer;
+    private DrawerLayout mDrawer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(PlayingViewModel.class);
+        mViewModel = new ViewModelProvider(this).get(PlayingViewModel.class);
 
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_playing);
         mBinding.setLifecycleOwner(this);
         mBinding.setViewModel(mViewModel);
 
-        drawer = findViewById(R.id.drawerLayout);
+        mDrawer = findViewById(R.id.drawerLayout);
 
         NavHeaderPlayingBinding navHeaderBinding = DataBindingUtil.inflate(getLayoutInflater(),
                 R.layout.nav_header_playing, mBinding.navView, false);
@@ -72,14 +80,28 @@ public class PlayingActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDrawer, toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
+        mDrawer.addDrawerListener(toggle);
         toggle.syncState();
 
         mViewModel.getCurrentSection().observe(this, sectionFragment -> {
             FragmentUtil.goTo(this, (Fragment) sectionFragment);
             closeDrawer();
+        });
+
+        mViewModel.getTitles().observe(this, titlesId -> {
+            List<String> titles = new ArrayList<>();
+
+            for (int titleId : titlesId) {
+                titles.add(getString(titleId));
+            }
+
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
+                    android.R.layout.simple_spinner_item, titles);
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+            mBinding.titlesSpinner.setAdapter(adapter);
         });
 
         setUpChat();
@@ -91,10 +113,9 @@ public class PlayingActivity extends AppCompatActivity {
 
             if (openChat) {
                 animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_in);
-                mBinding.scrollView.post(() -> mBinding.scrollView.fullScroll(View.FOCUS_DOWN));
-                mBinding.scrollView.fullScroll(View.FOCUS_DOWN);
-                mBinding.scrollView.post(() ->
-                        mBinding.scrollView.smoothScrollTo(0, mBinding.scrollView.getBottom()));
+                mBinding.scrollView.postDelayed(() ->
+                        mBinding.scrollView.smoothScrollTo(
+                                0, mBinding.scrollView.getBottom()), 800);
             } else {
                 animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_out);
             }
@@ -134,69 +155,86 @@ public class PlayingActivity extends AppCompatActivity {
         Dialog bagDialog = new Dialog(this);
         bagDialog.setContentView(R.layout.dialog_bag);
 
-        RecyclerView pergaminhosRecyclerView = bagDialog.findViewById(R.id.pergaminhosRecyclerView);
-        RecyclerView rangedWaponsRecyclerView = bagDialog.findViewById(R.id.rangedWaponsRecyclerView);
+        RecyclerView ramensRecyclerView = bagDialog.findViewById(R.id.ramensRecyclerView);
+        RecyclerView scrollsRecyclerView = bagDialog.findViewById(R.id.scrollsRecyclerView);
 
-        Bag bag = CharOn.character.getBag();
+        ramensRecyclerView.setHasFixedSize(true);
+        scrollsRecyclerView.setHasFixedSize(true);
 
-        if (bag.getRamensList() != null) {
-            RecyclerView ramensRecyclerView = bagDialog.findViewById(R.id.ramensRecyclerView);
-            ramensRecyclerView.setHasFixedSize(true);
+        mViewModel.getDismissBagDialog().observe(this, aVoid -> bagDialog.dismiss());
 
-            BagItemsAdapter bagItemsAdapter = new BagItemsAdapter(this,
-                    new ArrayList<>(bag.getRamensList()),
-                    (item, position) -> {
-                        Ramen ramen = (Ramen) item;
-                        CharOn.character.getAttributes().getFormulas().addHeath(ramen.getRecovers());
-                        CharOn.character.getAttributes().getFormulas().addChakra(ramen.getRecovers());
-                        CharOn.character.getAttributes().getFormulas().addStamina(ramen.getRecovers());
-                        int inventory = ramen.getInventory() - 1;
-                        if (inventory != 0) {
-                            bag.getRamensList().set(position, ramen);
-                        } else {
-                            bag.getRamensList().remove(position);
-                        }
+        BagItemsAdapter ramensAdapter = new BagItemsAdapter(this,
+                mViewModel.onRamenClickListener);
+        ramensRecyclerView.setAdapter(ramensAdapter);
 
-                        ramensRecyclerView.getAdapter().notifyDataSetChanged();
-                        CharOn.character.setBag(bag);
-                        CharacterRepository.getInstance().save(CharOn.character);
-                    });
-            ramensRecyclerView.setAdapter(bagItemsAdapter);
-        } else {
-            LinearLayout ramensLinearLayout = bagDialog.findViewById(R.id.ramensLinearLayout);
-            ramensLinearLayout.setVisibility(View.GONE);
-        }
+        mViewModel.getRamens().observe(this, ramens -> {
+            if (ramens != null) {
+                ramensAdapter.setItems(new ArrayList<>(ramens));
+            } else {
+                LinearLayout ramensLinearLayout = bagDialog.findViewById(R.id.ramensLinearLayout);
+                ramensLinearLayout.setVisibility(View.VISIBLE);
+            }
+        });
+
+
+        BagItemsAdapter scrollsAdapter = new BagItemsAdapter(this,
+                mViewModel.onScrollClickListener);
+        scrollsRecyclerView.setAdapter(scrollsAdapter);
+
+        mViewModel.getScrolls().observe(this, scrolls -> {
+            if (scrolls != null) {
+                scrollsAdapter.setItems(new ArrayList<>(scrolls));
+            } else {
+                LinearLayout scrollsLinearLayout = bagDialog.findViewById(R.id.scrollsLinearLayout);
+                scrollsLinearLayout.setVisibility(View.VISIBLE);
+            }
+        });
 
         bagDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         bagDialog.show();
     }
 
-    public void atualizarInformacoes() {
-//        if (PersonagemOn.character.isTemRecompensaFidelidade())
-//            fidelityImageButton.setImageResource(R.drawable.layout_icones_gift);
-//        else
-//          fidelityImageButton.setImageResource(R.drawable.layout_icones_gift2);
-    }
-
-    public void logout(View view) {
-        logout();
+    public void onLogoutClick(View view) {
+        mViewModel.logout();
         AuthRepository.getInstance().signOut();
         startActivity(new Intent(PlayingActivity.this, HomeActivity.class));
         finish();
     }
 
-    private void logout() {
-        mViewModel.logout();
+    public void closeDrawer() {
+        mDrawer.closeDrawer(GravityCompat.START);
     }
 
-    public void closeDrawer() {
-        drawer.closeDrawer(GravityCompat.START);
+
+    private ScaleGestureDetector mScaleGestureDetector;
+
+    public void registerScaleGestureDetector(ScaleGestureDetector scaleGestureDetector) {
+        mScaleGestureDetector = scaleGestureDetector;
     }
 
     @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        if (mScaleGestureDetector != null) {
+            mScaleGestureDetector.onTouchEvent(event);
+        }
+
+        return super.onTouchEvent(event);
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        if (mScaleGestureDetector != null) {
+            mScaleGestureDetector.onTouchEvent(ev);
+        }
+
+        return super.dispatchTouchEvent(ev);
+    }
+
+
+    @Override
     public void onBackPressed() {
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
+        if (mDrawer.isDrawerOpen(GravityCompat.START)) {
+            mDrawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
         }
@@ -218,6 +256,5 @@ public class PlayingActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         mViewModel.destroy();
-        logout();
     }
 }

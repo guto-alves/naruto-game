@@ -58,7 +58,7 @@ public class DojoNpcFightersViewModel extends ViewModel {
     }
 
     private void generateNpc() {
-        CharacterRepository.getInstance().getChar(CharOn.character.getNick(),
+        CharacterRepository.getInstance().getChar(CharOn.character.getId(),
                 npcCharacter -> {
                     Npc.create(npcCharacter);
                     mBattle.setPlayer2(npcCharacter);
@@ -69,9 +69,10 @@ public class DojoNpcFightersViewModel extends ViewModel {
     }
 
     public void onAcceptBattleButtonPressed() {
-        mBattle.setId(BattleRepository.getInstance().generateId("DOJO"));
+        mBattle.setId(BattleRepository.getInstance().generateId("DOJO-NPC"));
         mBattle.setPlayer1(CharOn.character);
         mBattle.setStatus(Battle.Status.CONTINUE);
+        mBattle.setPlayerCount(1);
         mBattle.setAttackStart(DateCustom.getTimeInMillis());
 
         BattleRepository.getInstance().save(mBattle);

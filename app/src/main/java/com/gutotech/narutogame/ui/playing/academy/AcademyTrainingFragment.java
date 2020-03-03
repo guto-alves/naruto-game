@@ -6,7 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,23 +28,23 @@ public class AcademyTrainingFragment extends Fragment implements SectionFragment
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        AcademyTrainingViewModel viewModel = ViewModelProviders.of(this)
+        AcademyTrainingViewModel viewModel = new ViewModelProvider(this)
                 .get(AcademyTrainingViewModel.class);
 
-        mBinding = DataBindingUtil.inflate(inflater,
-                R.layout.fragment_academy_trainning, container, false);
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_academy_trainning,
+                container, false);
         mBinding.setLifecycleOwner(this);
         mBinding.setViewModel(viewModel);
 
         mBinding.msgLayout.titleTextView.setText(R.string.attribute_training_title);
         mBinding.msgLayout.descriptionTextView.setText(R.string.attribute_training_description);
 
-        viewModel.trainingCompletedEvent.observe(this, trainingPointsEarned ->
+        viewModel.trainingCompletedEvent.observe(getViewLifecycleOwner(), trainingPointsEarned ->
                 showTrainingResult(R.string.training_completed,
                         getString(R.string.you_earned_ability_points, trainingPointsEarned))
         );
 
-        viewModel.trainingErrorEvent.observe(this, v -> {
+        viewModel.trainingErrorEvent.observe(getViewLifecycleOwner(), v -> {
             showTrainingResult(R.string.problem, getString(R.string.you_dont_have_chakra_for_this_training));
 
             Animation animation = AnimationUtils.loadAnimation(getActivity(), R.anim.problem_shake);
@@ -58,7 +58,7 @@ public class AcademyTrainingFragment extends Fragment implements SectionFragment
         adapter.setDistributedPoints(CharOn.character.getAttributes().getDistributedPoints());
         mBinding.distributedPointsRecyclerView.setAdapter(adapter);
 
-        viewModel.getUpdateDistributedPointsEvent().observe(this, aVoid ->
+        viewModel.getUpdateDistributedPointsEvent().observe(getViewLifecycleOwner(), aVoid ->
                 adapter.setDistributedPoints(CharOn.character.getAttributes().getDistributedPoints())
         );
 
@@ -73,9 +73,8 @@ public class AcademyTrainingFragment extends Fragment implements SectionFragment
         mBinding.trainingResult.descriptionTextView.setText(description);
         mBinding.trainingResult.msgConstraintLayout.setVisibility(View.VISIBLE);
 
-        mBinding.scrollView.post(() -> {
-            mBinding.scrollView.smoothScrollTo(0, mBinding.trainingResult.getRoot().getTop());
-        });
+        mBinding.scrollView.post(() ->
+                mBinding.scrollView.smoothScrollTo(0, mBinding.trainingResult.getRoot().getTop()));
     }
 
     @Override

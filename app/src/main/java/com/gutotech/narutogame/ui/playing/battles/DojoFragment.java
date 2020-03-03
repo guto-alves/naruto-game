@@ -27,7 +27,6 @@ public class DojoFragment extends Fragment implements SectionFragment {
         Button dojoNpcButton = view.findViewById(R.id.dojoNpcButton);
         Button dojoPvpButton = view.findViewById(R.id.dojoPvpButton);
 
-        dojoNpcButton.setBackgroundResource(R.drawable.bg_button_orange);
         dojoNpcButton.setOnClickListener(v -> {
             goTo(new DojoNPCFightersFragment());
             dojoNpcButton.setBackgroundResource(R.drawable.bg_button_orange);
@@ -35,12 +34,29 @@ public class DojoFragment extends Fragment implements SectionFragment {
         });
 
         dojoPvpButton.setOnClickListener(v -> {
-            goTo(new BatalhasDojoPVPFragment());
+            goTo(new DojoPvpBattlesFragment());
             dojoNpcButton.setBackgroundResource(R.drawable.bg_button);
             dojoPvpButton.setBackgroundResource(R.drawable.bg_button_orange);
         });
 
-        goTo(new DojoNPCFightersFragment());
+        Bundle bundle = getArguments();
+
+        if (bundle != null) {
+            String battleType = bundle.getString("battleType");
+
+            if (battleType.equals("PVP-DOJO")) {
+                goTo(new DojoPvpBattlesFragment());
+                dojoNpcButton.setBackgroundResource(R.drawable.bg_button);
+                dojoPvpButton.setBackgroundResource(R.drawable.bg_button_orange);
+            } else {
+                goTo(new DojoNPCFightersFragment());
+                dojoNpcButton.setBackgroundResource(R.drawable.bg_button_orange);
+                dojoPvpButton.setBackgroundResource(R.drawable.bg_button);
+            }
+        } else {
+            dojoNpcButton.setBackgroundResource(R.drawable.bg_button_orange);
+            goTo(new DojoNPCFightersFragment());
+        }
 
         FragmentUtil.setSectionTitle(getActivity(), R.string.section_dojo);
 

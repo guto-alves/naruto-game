@@ -123,8 +123,8 @@
                     android:layout_height="wrap_content"
                     android:text="@string/news"
                     android:textColor="@color/colorText"
-                    android:textSize="24sp"
-                    android:textStyle="italic"
+                    android:textSize="16sp"
+                    android:textStyle="bold|italic"
                     android:typeface="serif"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/guideline64"
@@ -171,8 +171,8 @@
                     android:layout_height="wrap_content"
                     android:text="@string/ninjas_statistics"
                     android:textColor="@color/colorText"
-                    android:textSize="24sp"
-                    android:textStyle="italic"
+                    android:textSize="16sp"
+                    android:textStyle="bold|italic"
                     android:typeface="serif"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/guideline65"
@@ -189,16 +189,13 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp">
 
                 <ImageView
                     android:id="@+id/imageView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginRight="8dp"
                     android:scaleType="fitXY"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -212,8 +209,8 @@
                     android:layout_marginRight="24dp"
                     android:text="@string/kages_amp_vilas"
                     android:textColor="@color/colorText"
-                    android:textSize="24sp"
-                    android:textStyle="italic"
+                    android:textSize="16sp"
+                    android:textStyle="bold|italic"
                     android:typeface="serif"
                     app:layout_constraintBottom_toBottomOf="@+id/imageView"
                     app:layout_constraintEnd_toEndOf="@+id/imageView"
@@ -221,11 +218,37 @@
                     app:layout_constraintVertical_bias="0.47" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <androidx.viewpager.widget.ViewPager
-                android:id="@+id/kagesAndVilaViewPager"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                app:cardCornerRadius="6dp"
+                app:cardElevation="5dp"
+                app:cardUseCompatPadding="true">
+
+                <com.smarteist.autoimageslider.SliderView
+                    android:id="@+id/kagesSliderView"
+                    android:layout_width="400dp"
+                    android:layout_height="110dp"
+                    android:background="@drawable/layout_pagina_repeat"
+                    app:sliderAnimationDuration="600"
+                    app:sliderAutoCycleDirection="right"
+                    app:sliderAutoCycleEnabled="true"
+                    app:sliderIndicatorAnimationDuration="600"
+                    app:sliderIndicatorGravity="center_horizontal|bottom"
+                    app:sliderIndicatorMargin="15dp"
+                    app:sliderIndicatorOrientation="horizontal"
+                    app:sliderIndicatorPadding="3dp"
+                    app:sliderIndicatorRadius="2dp"
+                    app:sliderIndicatorSelectedColor="#5A5A5A"
+                    app:sliderIndicatorUnselectedColor="#FFF"
+                    app:sliderScrollTimeInSec="5"
+                    app:sliderStartAutoCycle="true" />
+
+            </androidx.cardview.widget.CardView>
 
         </LinearLayout>
+
     </ScrollView>
+
 </layout>

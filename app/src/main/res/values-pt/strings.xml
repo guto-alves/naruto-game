@@ -150,11 +150,11 @@
     <string name="choose_your_character">ESCOLHA SEU PERSONAGEM</string>
     <string name="section_mission_status">STATUS DA MISSÃO</string>
     <string name="teams">Equipes</string>
-    <string name="error_nick_length">O  name do seu character não pode ter mais de 10 caractéres</string>
-    <string name="error_invalid_nick">O  name do seu character só pode conter letras, números e underlines</string>
+    <string name="error_nick_length">O  name do seu personagem não pode ter mais de 10 caractéres</string>
+    <string name="error_invalid_nick">O  name do seu personagem só pode conter letras, números e underlines</string>
     <string name="warning">Aviso!</string>
-    <string name="name_already_taken">Já existe um personagem com o  name escolhido</string>
-    <string name="no_characters_selected">Nenhum character selecionado</string>
+    <string name="name_already_taken">Já existe um personagem com o nome escolhido</string>
+    <string name="no_characters_selected">Nenhum personagem selecionado</string>
     <string name="section_messenger">MENSAGEIRO</string>
     <string name="section_formulas">FÓRMULAS</string>
     <string name="section_ninja_fidelity">FIDELIDADE NINJA</string>
@@ -195,13 +195,13 @@
     <string name="formulas">Fórmulas</string>
     <string name="label_wins_map_pvp">Vitórias Mapa PVP:</string>
     <string name="label_derrotas_dojo_pvp">Derrotas Dojo PVP:</string>
-    <string name="attribute_training_description">Seu character é capaz de treinar seus atributos
+    <string name="attribute_training_description">Seu personagem é capaz de treinar seus atributos
         desde o level 1 e esse treinamento possui um limite diário. Quanto mais você treinar, melhor
         serão seus resultados em luta no dojo e contra seus inimigos. Os dias NÃO treinados vão se acumulando:
         Por exemplo, se você não pode treinar na terça e na quarta, na quinta-feira você poderá treinar o
         equivalente de terça, quarta e quinta. Terça-Feira, é o dia que é renovado o limite semanal,
         mesmo que você não tenha treinado, portanto tente sempre treinar seu limite semanal até
-        segunda feira.  O treinamento de atributos é a chave de ter um bom character, portanto,
+        segunda feira.  O treinamento de atributos é a chave de ter um bom personagem, portanto,
         jamais deixe de treina-lo!</string>
     <string name="attribute_training_title">ENTENDA O TREINAMENTO DE ATRIBUTOS</string>
     <string name="training_completed">TREINAMENTO CONCLUÍDO</string>
@@ -268,7 +268,7 @@
 
     <string name="want_to_delete_this_ninja">Você quer realmente deletar esse ninja?</string>
     <string name="button_cancel">Cancelar</string>
-    <string name="remove_character_while_logged_in">Você não pode remover esse character estando
+    <string name="remove_character_while_logged_in">Você não pode remover esse personagem estando
         logado nele!</string>
     <string name="close">Fechar</string>
     <string name="sender">%s:</string>
@@ -309,18 +309,18 @@
     <string name="misso_tyashu_ramen">Misso Tyashu-Ramen</string>
     <string name="misso_tyashu_ramen_description">Pork ramen, with soy paste</string>
     <string name="shoyu_ebi_ramen">Shoyu Ebi-Ramen</string>
-    <string name="shoyu_eb_ramen_description">Shrimp ramen, specially spiced with soy sauce</string>
+    <string name="shoyu_eb_ramen_description">Ramen de camarão, temperado especialmente com molho de soja</string>
     <string name="shio_ebi_ramen">Shio Ebi-Ramen</string>
-    <string name="shio_ebi_ramen_description">Shrimp ramen spiced with salt</string>
-    <string name="misso_yasai_ramen_description">Ramen of vegetables, with soy paste</string>
+    <string name="shio_ebi_ramen_description">Ramen de camarão, temperado com sal </string>
+    <string name="misso_yasai_ramen_description">Ramen de verduras e legumes, com pasta de soja</string>
     <string name="misso_yasai_ramen">Misso Yasai-Ramen</string>
     <string name="shoyu_yasai_ramen">Shoyu Yasai-Ramen</string>
-    <string name="shoyu_yasai_ramen_description">Ramen of vegetables, especially temperate with soy sauce</string>
-    <string name="shio_yasai_ramen_description">Ramen of vegetables, spiced with salt</string>
+    <string name="shoyu_yasai_ramen_description">Ramen de verduras e legumes, temperado especialmente com molho de soja</string>
+    <string name="shio_yasai_ramen_description">Ramen de verduras e legumes, temperado com sal</string>
     <string name="shio_yasai_ramen">Shio Yasai-Ramen</string>
     <string name="shoyu_tyashu_ramen">Shoyu Tyashu-Ramen</string>
-    <string name="shoyu_tyashu_ramen_description">Pork ramen, spiced with soy sauce</string>
-    <string name="shio_tyashu_ramen_description">Seafood Ramen, specially spiced with soy sauce</string>
+    <string name="shoyu_tyashu_ramen_description">Ramen com carne de porco, temperado especialmente com molho de soja</string>
+    <string name="shio_tyashu_ramen_description">Ramen com carne de porco, temperado com sal </string>
     <string name="shio_tyashu_ramen">Shio Tyashu-Ramen</string>
     <string name="shio_gyoza_ramen">Shio Gyoza-Ramen</string>
     <string name="warning_items_purchased">Item(s) comprado(s) com sucesso</string>
@@ -376,35 +376,48 @@
     <string name="sensei_dynamic_entry">Sensei Dynamic Entry</string>
     <string name="sensei_dynamic_entry_des">Powerful flying kick</string>
     <string name="karengan_pill_i">Karengan Pill I</string>
-    <string name="karengan_pill_i_des">Yellow is the second pill that guarantees superior physical abilities. There are likely to cause low level side effects.</string>
+    <string name="karengan_pill_i_des">Yellow is the second pill that guarantees superior physical
+        abilities. There are likely to cause low level side effects.</string>
     <string name="karengan_pill_ii">Karengan Pill II</string>
-    <string name="karengan_pill_ii_des">Yellow is the second pill that guarantees superior physical abilities. There are likely to cause low level side effects.</string>
+    <string name="karengan_pill_ii_des">Yellow is the second pill that guarantees superior physical
+        abilities. There are likely to cause low level side effects.</string>
     <string name="hijutsu_ishibari_i">Hijutsu Ishibari I</string>
-    <string name="hijutsu_ishibari_i_des">The ninja throws kunai at the enemy\'s arm, softening his arm and can control it.</string>
+    <string name="hijutsu_ishibari_i_des">The ninja throws kunai at the enemy\'s arm, softening his
+        arm and can control it.</string>
     <string name="hijutsu_ishibari_ii">Hijutsu Ishibari II</string>
-    <string name="hijutsu_ishibari_ii_des">The ninja throws kunai at the enemy\'s arm, softening his arm and can control it.</string>
+    <string name="hijutsu_ishibari_ii_des">The ninja throws kunai at the enemy\'s arm, softening his
+        arm and can control it.</string>
     <string name="sensen_soushuriken">Sensei Soushuriken no Jutsu</string>
-    <string name="sensei_soushuriken_des">Similar to Soufuushasan no Tachi, the ninja uses several kunai and shuriken stuck in lines to trap and attack the enemy from multiple directions.</string>
+    <string name="sensei_soushuriken_des">Similar to Soufuushasan no Tachi, the ninja uses several
+        kunai and shuriken stuck in lines to trap and attack the enemy from multiple directions.</string>
     <string name="gen_ei_tajuu_shuriken">Gen-ei Tajuu Shuriken</string>
-    <string name="gen_ei_tajuu_shuriken_des">The various ninja shoots shurikens, throwing stars and more hidden in the shadows of them, who show themselves to get close to the enemy, catching him by surprise.</string>
+    <string name="gen_ei_tajuu_shuriken_des">The various ninja shoots shurikens, throwing stars and
+        more hidden in the shadows of them, who show themselves to get close to the enemy, catching him by surprise.</string>
     <string name="soushuriken_no_jutsu">Soushuriken no Jutsu</string>
-    <string name="soushuriken_no_jutsu_des">Similar to Soufuushasan no Tachi, the ninja uses several kunai and shuriken stuck in lines to trap and attack the enemy from multiple directions.</string>
+    <string name="soushuriken_no_jutsu_des">Similar to Soufuushasan no Tachi, the ninja uses several
+        kunai and shuriken stuck in lines to trap and attack the enemy from multiple directions.</string>
     <string name="rensha">Rensha</string>
     <string name="rensha_des">The ninja throws several needles of a shield.</string>
     <string name="soushuujin_i">Soushuujin I</string>
-    <string name="soushuujin_i_des">The ninja can control the weapons of the opponent, making it vulnerable.</string>
+    <string name="soushuujin_i_des">The ninja can control the weapons of the opponent, making it
+        vulnerable.</string>
     <string name="soushuujin_ii">Soushuujin II</string>
-    <string name="soushuujin_ii_des">The ninja can control the weapons of the opponent, making it vulnerable.</string>
+    <string name="soushuujin_ii_des">The ninja can control the weapons of the opponent, making it
+        vulnerable.</string>
     <string name="jouro_senbon">Jouro Senbon</string>
     <string name="jouro_senbon_des">The ninja throws an umbrella up and makes it rain needles.</string>
     <string name="shikomishindan">Shikomishindan</string>
-    <string name="shikomishindan_des">Senbons using a launcher, ninja shoots poisonous needles at the enemy.</string>
+    <string name="shikomishindan_des">Senbons using a launcher, ninja shoots poisonous needles at
+        the enemy.</string>
     <string name="ninpou">Ninpou • Mushou de Hitei</string>
-    <string name="ninpou_des">Creates a cloud of nails that attack the opponent with only the power of chakra.</string>
+    <string name="ninpou_des">Creates a cloud of nails that attack the opponent with only the power
+        of chakra.</string>
     <string name="kage_bunshin_no_jutsu_i">Kage Bunshin no Jutsu I</string>
-    <string name="kage_bunshin_no_jutsu_i_des">Clonning Jutsu. Creates clones of the user, often used in close combat.</string>
+    <string name="kage_bunshin_no_jutsu_i_des">Clonning Jutsu. Creates clones of the user, often
+        used in close combat.</string>
     <string name="kage_bunshin_no_jutsu_ii">Kage Bunshin no Jutsu II</string>
-    <string name="kage_bunshin_no_jutsu_ii_des">Clonning Jutsu. Creates clones of the user, often used in close combat.</string>
+    <string name="kage_bunshin_no_jutsu_ii_des">Clonning Jutsu. Creates clones of the user, often
+        used in close combat.</string>
     <string name="sensei_kage_bunshin_no_jutsu">Sensei Kage Bunshin no Jutsu</string>
     <string name="sensei_kage_bunshin_no_jutsu_des">Powerful flying kick.</string>
     <string name="konoha_tzu">Konoha Tzu</string>
@@ -414,35 +427,51 @@
     <string name="bunshin_no_jutsu_ii">Bunshin no Jutsu II</string>
     <string name="bunshin_no_jutsu_ii_des">Creates a clone used to distract the opponent.</string>
     <string name="kage_shuriken_no_jutsu">Kage Shuriken no Jutsu</string>
-    <string name="kage_shuriken_no_jutsu_des">When you throw a shuriken, another is thrown in the shadow of the first.</string>
+    <string name="kage_shuriken_no_jutsu_des">When you throw a shuriken, another is thrown in the
+        shadow of the first.</string>
     <string name="kakuremino">Kakuremino no Jutsu</string>
-    <string name="kakuremino_des">Basic Ninjutsu where the ninja is camouflaged with a sleek, mingling with some wall.</string>
+    <string name="kakuremino_des">Basic Ninjutsu where the ninja is camouflaged with a sleek,
+        mingling with some wall.</string>
     <string name="kawarimi">Kawarimi no Jutsu</string>
-    <string name="kawarimi_des">When in danger the ninja quickly replaces your body by inanimate objects.</string>
+    <string name="kawarimi_des">When in danger the ninja quickly replaces your body by inanimate
+        objects.</string>
     <string name="kasumi_juuha">Kasumi Juuha no Jutsu</string>
-    <string name="kasumi_juuha_des">Genjutsu technique that creates a series of false attacks in order to confuse the enemy, several copies of the user are facing the enemy surrounding him.</string>
+    <string name="kasumi_juuha_des">Genjutsu technique that creates a series of false attacks in
+        order to confuse the enemy, several copies of the user are facing the enemy surrounding him.</string>
     <string name="nemuri_i">Nemuri I</string>
-    <string name="nemuri_i_des">A basic genjutsu where the ninja touches the hand on the shoulder or region near the head of another person and makes sleep soundly.</string>
+    <string name="nemuri_i_des">A basic genjutsu where the ninja touches the hand on the shoulder
+        or region near the head of another person and makes sleep soundly.</string>
     <string name="nemuri_ii">Nemuri II</string>
-    <string name="nemuri_ii_des">A basic genjutsu where the ninja touches the hand on the shoulder or region near the head of another person and makes sleep soundly.</string>
+    <string name="nemuri_ii_des">A basic genjutsu where the ninja touches the hand on the shoulder
+        or region near the head of another person and makes sleep soundly.</string>
     <string name="kokoroyoru">Kokoroyoru no jutsu</string>
-    <string name="kokoroyoru_des">When the enemy touches or sees the object, he feels an irresistible atraction for the object, doing everything to get the same, including abandoning friends or fall into a trap.</string>
+    <string name="kokoroyoru_des">Quando o alvo toca ou vê o objeto, ele sente uma atração
+        irresistível pelo objeto, fazendo de tudo para obter o mesmo, incluindo abandonar amigos
+        ou cair em uma armadilha.</string>
     <string name="tazuneru">Tazuneru no Jutsu</string>
-    <string name="tazuneru_des">Technique that consists in making the enemy enters a trance state, and thus, the shinobi can interrogate it to find out secrets, or even kill him.</string>
+    <string name="tazuneru_des">Técnica que consiste em fazer com que o inimigo entre em um estado
+        de transe, e assim, o shinobi pode interrogar o mesmo para descobrir segredos, ou até mata-lo.</string>
     <string name="bukuon">Bakuon no Jutsu</string>
-    <string name="bukuon_des">This ability serves to break jutsus that require a lot of concentration or calmly.</string>
+    <string name="bukuon_des">Essa habilidade serve para quebrar jutsus que necessitam de muita
+        concentração ou muita calma.</string>
     <string name="utsusemi">Utsusemi no Jutsu</string>
-    <string name="utsusemi_des">Using sound, ninja projects his voice, mistaking its location.</string>
+    <string name="utsusemi_des">Usando o som, o ninja projeta sua voz, confundindo sua localização.</string>
     <string name="hana_kyouka_sai_i">Hana Kyouka Sai I</string>
-    <string name="hana_kyouka_sai_i_des">This makes genjutsu ninja disappear for a few moments, giving his victim the idea that out extremely fast, meanwhile he can hide or even attack the target.</string>
+    <string name="hana_kyouka_sai_i_des">Genjutsu que faz o oponente ver você se transformando em
+        vários corvos que invadem o campo de batalha, bloqueando sua visão.</string>
     <string name="hana_kyouka_sai_ii">Hana Kyouka Sai II</string>
-    <string name="hana_kyouka_sai_ii_des">This makes genjutsu ninja disappear for a few moments, giving his victim the idea that out extremely fast, meanwhile he can hide or even attack the target.</string>
+    <string name="hana_kyouka_sai_ii_des">Genjutsu que faz o oponente ver você se transformando em
+        vários corvos que invadem o campo de batalha, bloqueando sua visão.</string>
     <string name="sensei_hana_kyouka_sai">Sensei Hana Kyouka Sai</string>
-    <string name="sensei_hana_kyouka_sai_des">This makes genjutsu ninja disappear for a few moments, giving his victim the idea that out extremely fast, meanwhile he can hide or even attack the target.</string>
-    <string name="konoha_senpuu_des">A gyratory flying kick, followed by a tripping kick.</string>
+    <string name="sensei_hana_kyouka_sai_des">Genjutsu que faz o oponente ver você se transformando
+        em vários corvos que invadem o campo de batalha, bloqueando sua visão.</string>
+    <string name="konoha_senpuu_des">Usando sua agilidade, o ninja aplica um chute na altura da
+        cabeça, em seguida usando sua velocidade da um chute rasteiro.</string>
     <string name="konoha_senpuu">Konoha Senpuu</string>
-    <string name="about_the_ninja_jutsus_des">Aprenda novos Jutsus para combater em melhor nível nos duelos e para isso alcance os requerimentos de cada jutsu.</string>
-    <string name="jutsus_that_not_are_in_the_same_class">(Jutsus que não são da mesma Classe do seu character possuem requerimentos dobrados)</string>
+    <string name="about_the_ninja_jutsus_des">Aprenda novos Jutsus para combater em melhor nível nos
+        duelos e para isso alcance os requerimentos de cada jutsu.</string>
+    <string name="jutsus_that_not_are_in_the_same_class">(Jutsus que não são da mesma Classe do
+        seu personagem possuem requerimentos dobrados)</string>
     <string name="congratulations_you_made_it">PARABÉNS! VOCÊ CONSEGUIU!</string>
     <string name="lerned_a_new_jutsu">Você se esforçou e aprendeu o jutsu</string>
     <string name="keep_training">Treine bastante para conseguir novos jutsus e ficar mais poderoso.</string>
@@ -459,30 +488,42 @@
         15 de todo mês.</string>
     <string name="_0_of_40_ranged_biweekly_weapons">%d de 40 Armas de Longo Alcance Quinzenais</string>
 
-    <string name="scroll_to_leaf">Teletransport Scroll to Leaf</string>
-    <string name="scroll_to_leaf_des">Using this scroll, your character will be teleported to the Leaf map.</string>
-    <string name="scroll_to_hot_springs">Teletransport Scroll to Hot Springs</string>
-    <string name="scroll_to_hot_springs_des">Using this scroll, your character will be teleported to the Hot Springs map.</string>
-    <string name="scroll_to_snow">Teletransport Scroll to Snow</string>
-    <string name="scroll_to_snow_des">Using this scroll, your character will be teleported to the Snow map.</string>
-    <string name="scroll_to_waterfall">Teletransport Scroll to Waterfall</string>
-    <string name="scroll_to_waterfall_des">Using this scroll, your character will be teleported to the Waterfall map.</string>
+    <string name="scroll_to_leaf">Pergaminho de Teletransporte para Konoha</string>
+    <string name="scroll_to_leaf_des">Ao utilizar esse pergaminho seu personagem é automaticamamente
+        teletransportado para o mapa da vila de Konoha</string>
+    <string name="scroll_to_hot_springs">Pergaminho de Teletransporte para Fontes Termais</string>
+    <string name="scroll_to_hot_springs_des">Ao utilizar esse pergaminho seu personagem é
+        automaticamamente teletransportado para o mapa da vila da fontes termais </string>
+    <string name="scroll_to_snow">Pergaminho de Teletransporte para Neve</string>
+    <string name="scroll_to_snow_des">Ao utilizar esse pergaminho seu personagem é automaticamamente
+        teletransportado para o mapa da vila da Neve</string>
+    <string name="scroll_to_waterfall">Pergaminho de Teletransporte para Cachoeira</string>
+    <string name="scroll_to_waterfall_des">Ao utilizar esse pergaminho seu personagem é
+        automaticamamente teletransportado para o mapa da vila da cachoeira</string>
     <string name="scroll_to_rain">Teletransport Scroll to Rain</string>
-    <string name="scroll_to_rain_des">Using this scroll, your character will be teleported to the Rain map.</string>
-    <string name="scroll_to_sound">Teletransport Scroll to Sound</string>
-    <string name="scroll_to_sound_des">Using this scroll, your character will be teleported to the Sound map.</string>
-    <string name="scroll_to_akatsuki">Teletransport Scroll to Akatsuki</string>
-    <string name="scroll_to_akatsuki_des">Using this scroll, your character will be teleported to the Akatsuki map.</string>
-    <string name="scroll_to_cloud">Teletransport Scroll to Cloud</string>
-    <string name="scroll_to_cloud_des">Using this scroll, your character will be teleported to the Cloud map.</string>
-    <string name="scroll_to_stone">Teletransport Scroll to Stone</string>
-    <string name="scroll_to_stone_des">Using this scroll, your character will be teleported to the Stone map.</string>
-    <string name="scroll_to_mist">Teletransport Scroll to Mist</string>
-    <string name="scroll_to_mist_des">Using this scroll, your character will be teleported to the Mist map.</string>
-    <string name="scroll_to_sand">Teletransport Scroll to Sand</string>
-    <string name="scroll_to_sand_des">Using this scroll, your character will be teleported to the Sand map.</string>
-    <string name="scroll_to_grass">Teletransport Scroll to Grass</string>
-    <string name="scroll_to_grass_des">Using this scroll, your character will be teleported to the Grass map.</string>
+    <string name="scroll_to_rain_des">Ao utilizar esse pergaminho seu personagem é automaticamamente
+        teletransportado para o mapa da vila da Chuva</string>
+    <string name="scroll_to_sound">Pergaminho de Teletransporte para Som</string>
+    <string name="scroll_to_sound_des">Ao utilizar esse pergaminho seu personagem é automaticamamente
+        teletransportado para o mapa da vila de Som</string>
+    <string name="scroll_to_akatsuki">Pergaminho de Teletransporte para Akatsuki</string>
+    <string name="scroll_to_akatsuki_des">Ao utilizar esse pergaminho seu personagem é automaticamamente
+        teletransportado para o mapa da vila de Akatsuki</string>
+    <string name="scroll_to_cloud">Pergaminho de Teletransporte para Nuvem</string>
+    <string name="scroll_to_cloud_des">Ao utilizar esse pergaminho seu personagem é automaticamamente
+        teletransportado para o mapa da vila de Nuvem</string>
+    <string name="scroll_to_stone">Pergaminho de Teletransporte para Pedra</string>
+    <string name="scroll_to_stone_des">Ao utilizar esse pergaminho seu personagem é automaticamamente
+        teletransportado para o mapa da vila de Pedra</string>
+    <string name="scroll_to_mist">Pergaminho de Teletransporte para Névoa</string>
+    <string name="scroll_to_mist_des">Ao utilizar esse pergaminho seu personagem é automaticamamente
+        teletransportado para o mapa da vila de Névoa</string>
+    <string name="scroll_to_sand">Pergaminho de Teletransporte para Areia</string>
+    <string name="scroll_to_sand_des">Ao utilizar esse pergaminho seu personagem é automaticamamente
+        teletransportado para o mapa da vila de Areia</string>
+    <string name="scroll_to_grass">Pergaminho de Teletransporte para Grama</string>
+    <string name="scroll_to_grass_des">Ao utilizar esse pergaminho seu personagem é automaticamamente
+        teletransportado para o mapa da vila da Grama</string>
     <string name="dojo_npc_fighters">Batalhas do Dojo NPC</string>
     <string name="dojo_pvp_fighters">Batalhas do Dojo PVP</string>
     <string name="dojo_npc_daily_des">Todos os Ninjas possuem um limite diário de combates contra os
@@ -491,7 +532,8 @@
     <string name="dojo_npc_daily_challenges">BATALHAS DIÁRIAS DO DOJO NPC</string>
     <string name="npc_daily_combat">%d de 10 Combates NPC Diários</string>
     <string name="updating_the_list_of_fighters">Atualizando a lista de lutadores…</string>
-    <string name="too_weak_to_fight">Você está muito fraco para lutar, recupere seus atributos e tente novamente!</string>
+    <string name="too_weak_to_fight">Você está muito fraco para lutar, recupere seus atributos e
+        tente novamente!</string>
     <string name="dojo_challenge">DESAFIO DOJO</string>
     <string name="npc_battle">Batalha NPC</string>
     <string name="my_jutsus">MEUS JUTSUS</string>
@@ -694,7 +736,7 @@
     <string name="player_unavailable_to_fight">Jogador indisponível para lutar</string>
     <string name="move_around_the_map">Para movimentar-se pelo mapa, basta clicar duas vezes no quadrado
         aonde deseja ir.</string>
-    <string name="training_points_for_your_participation">Pela sua participação você recebeu 50 pontos de treino!</string>
+    <string name="training_points_for_your_participation">\nPela sua participação você recebeu 50 pontos de treino!</string>
     <string name="konoha_dai_senkou">Konoha Dai Senkou</string>
     <string name="konoha_dai_senkou_des">Hit hard the face of enemy with a powerful kick</string>
     <string name="sennen_goroshi">Sennen Goroshi</string>
@@ -733,6 +775,159 @@
     <string name="kokohi_des">Essa técnica muda a aparência de objetos, do usuário e muda o local de batalha.</string>
     <string name="karasu_des">Utilizando esse genjutsu, o usuário cria corvos para enganar o inimigo.</string>
     <string name="bunshin_bakuretsu_des">Cria um clone que ao ser acertado, explode.</string>
-    <string name="an_no_genjutsu_desc">O Shinobi (Ninja) faz brotar um enorme pé de feijão, que aprisiona o inimigo em uma vagem.</string>
+    <string name="an_no_genjutsu_desc">O Shinobi (Ninja) faz brotar um enorme pé de feijão, que
+        aprisiona o inimigo em uma vagem.</string>
+    <string name="looking_for_opponents">PROCURANDO OPONENTES</string>
+    <string name="looking_for_opponents_description">Estamos no momento procurando um oponente do
+        mesmo level que o seu, caso não encontremos a batalha poderá acontecer com um oponente com
+        1 level a mais ou 1 a menos que o seu.</string>
+    <string name="warning_dojo_wait">Recomendamos que você não sai dessa página, pois se
+        encontrarmos um oponente, não conseguiremos te mandar para batalha e você poderá perder por
+        inatividade.</string>
+    <string name="waiting_room">Sala de espera</string>
+    <string name="team_information">INFORMAÇÕES SOBRE EQUIPES</string>
+    <string name="team_info_description">The Team can only be excluded when only the Leader is in
+        it, with no active mission. If a ninja changes teams, he will not earn the same reward in
+        another team, he will only earn rewards at levels not yet reached.</string>
+    <string name="button_message_to_members">Mensagem para Membros</string>
+    <string name="button_leave_the_team">Sair da Equipe</string>
+    <string name="team_members">Integrantes da Equipe: %s</string>
+    <string name="requerement">Requerimento</string>
+    <string name="chakra_formula">Fórmula do Chakra</string>
+    <string name="hp_formula">Fórmula da Vida</string>
+    <string name="stamina_formula">Fórmula da Stamina</string>
+    <string name="_1_of_attack_tai_buk">+1 de Ataque (Tai/Buk)</string>
+    <string name="_1_of_attack_nin_gen">+1 de Ataque (Nin/Gen)</string>
+    <string name="_1_of_accuracy">+1 de Precisão</string>
+    <string name="percent_of_ninja_power">% de Poder Ninja</string>
+    <string name="ranking_ninjas_formulas">Fórmula do Ranking de Ninjas ( Pontos / Descrição )</string>
+    <string name="per_level_player">Por level do Jogador</string>
+    <string name="per_grade_player">Per Grade Player</string>
+    <string name="logar_days_followed">Logar %d day (s) followed</string>
+    <string name="fidelity_rewards">RECOMPENSAS DE FIDELIDADE</string>
+    <string name="fidelity_rewards_description">Ao logar diariamente você pode coletar recompensas
+        para seu personagem. Você deve entrar no jogo durante 8 dias seguidos para conseguir todas
+        as recompensas e começar de novo. Caso você não logue um dos dias, o contador irá retornar
+        para o primeiro dia.</string>
+    <string name="fidelity_reward_1_description">100 de Ryous</string>
+    <string name="value_in_ryous">%d Ryous</string>
+    <string name="value_in_experience">%d de Experiência</string>
+    <string name="reward_in_ramen">%d Shio Tyashu-Ramen</string>
+    <string name="to_be_a_member">QUERO SER MEMBRO DE EQUIPE</string>
+    <string name="to_be_a_member_description">Escolha a Equipe de seu amigo e clique no botão
+        participar para enviar um pedido para entrar na equipe.</string>
+    <string name="change_name_of_the_character">Mudar Nome do Personagem</string>
+    <string name="change_name_of_the_character_des">Mude o nome do Personagem (Máximo de 14
+        caracteres, sem espaços, somente letras e números)</string>
+    <string name="character_change">Trocar o Personagem</string>
+    <string name="change_the_character_of_your_ninja">Mude o personagem do seu ninja.</string>
+    <string name="class_change">Trocar classe do personagem</string>
+    <string name="class_change_des">Mude a classe original de seu Personagem. ATENÇÃO: Mudar de
+        Classe NÃO vai mudar seus atributos e muito menos vai lhe dar os jutsus da classe nova.</string>
+    <string name="change_village">Mudar Vila</string>
+    <string name="change_village_des">Mude a Vila do seu Personagem. (Disponível até o level 10).</string>
+    <string name="redistribute_5_points">Redistribuir Pontos Básico</string>
+    <string name="redistribute_5_points_des">Você pode remover até 5 pontos de atributos. Ao remover
+        um ponto, você recebe um ponto livre de atributo. </string>
+    <string name="redistribute_10_points">Redistribuir Pontos Intermediário</string>
+    <string name="redistribute_10_points_des">Você pode remover até 10 pontos de atributos. Ao
+        remover um ponto, você recebe um ponto livre de atributo.\nEsse item VAI se acumular com o
+        anterior, somando o total que você já tem, com o indicado acima. </string>
+    <string name="redistribute_15_points">Redistribuir Pontos Avançado</string>
+    <string name="redistribute_15_points_des">Você pode remover até 15 pontos de atributos. Ao
+        remover um ponto, você recebe um ponto livre de atributo.\nEsse item VAI se acumular com o
+        anterior, somando o total que você já tem, com o indicado acima. </string>
+    <string name="redistribute_points">Redistribuir Pontos Completo</string>
+    <string name="redistribute_points_des">Redistribua os Atributos do seu Personagem. ( Os itens
+        com requerimentos podem ser perdidos com essa ação )</string>
+    <string name="successfully_done">COMPRA EFETUADA COM SUCESSO!</string>
+    <string name="you_have_acquired">Você adquiriu</string>
+    <string name="name_description">Nome / Descrição</string>
+    <string name="genin_description">Seu primeiro dia depois da academia ninja, hoje você vai
+        receber sua bandana e graduar-se com um ninja da aldeia. Com esta graduação é possível
+        explorar o que esta além do portão da Vila, combater inimigos, fazer aliados, executar
+        diferentes tipos de missões, aprender golpes básicos e ajudar a proteger sua vila. Não
+        se esqueça de continuar o seu treinamento para assim alcançar a próxima graduação. </string>
+    <string name="chuunin_description">Ninja graduado e com elevado nível de confiança na vila,
+        possui grande conhecimento na arte ninja e possui habilidades como controlar o primeiro
+        elemento, fazer missões mais arriscadas Rank C, pode participar de equipes e organizações
+        e participar dos torneios ninjas.</string>
+    <string name="jounin_description">Ninja com grande nível de conhecimento sobre a arte ninja e
+        batalhas, possui diversas especialidades como controlar o segundo elemento, fazer missões
+        mais perigosas de nível Rank B, pode ser responsável por uma Organização e pode também
+        participar de diversos torneios entre jounins.</string>
+    <string name="anbu_description">São conhecidos como Caçadores Especiais ANBU, ou (Esquadrão
+        Especial de Assassinato e Tática). Tornar-se um ANBU é ter o reconhecimento de ser um ninja
+        respeitável dentro de sua vila. Pode aprender diversos golpes diferentes, fazer missões de
+        nível A, pode participar de torneios e eventos, pode aprender o último nível do selo ou mode
+        sennin.</string>
+    <string name="sannin_description">São ninjas extraordinários, ninjas capazes de usar uma quantidade
+        muito grande de jutsus e levar uma batalha há durar muito tempo. Podem aprender a última
+        habilidade de clã e invocação, participar de torneios, liderar equipes e organizações a
+        invadirem e guerrear contra outras vilas, é o único capaz de realizar missões de nível S
+        e os mais próximos de se tornarem Kages.</string>
+    <string name="hero_description">Todo ninja sonha em se tornar um Herói. Uma pessoa conhecida e
+        adorada por todas as pessoas da vila, e muitas vezes mundialmente conhecidas. Heróis podem
+        fazer todos os tipos de missões, tem o maior número de habilidades Ninjutsu, Taijutsu,
+        Genjutsu treinadas. Realiza missões S ou SS que são as mais arriscadas e defendem a vila
+        com todas as forças e caso necessário com a própria Vida.</string>
+    <string name="nukenin_d_desc">Você começa a roubar vilas e fazendeiros, e se torna um procurado
+        rank D.</string>
+    <string name="nukenin_c_des">Com suas habilidades aprimoradas, você começa a sentir
+        o poder e a insanidade dentro de você, sendo capaz de fazer alguns assassinatos se preciso.</string>
+    <string name="nukenin_b_desc">Equivalente à força de um Jounin, você se torna mais habilidoso
+        e capaz de controlar dois elementos com perfeição, destruindo villages inteiras.</string>
+    <string name="nukenin_a_des">São movidos pela escuridão, agindo sorrateiramente e matando todos
+        que entrarem em seu caminho. É capaz de rastrear alvos, assim como os ANBUs.</string>
+    <string name="bounty_hunter_desc">Tão forte quanto um Sannin, se tornando praticamente o
+        renegado mais forte da Akatsuki. Sua cabeça é procurada em todas as vilas, com uma
+        recompensa altíssima.</string>
+    <string name="villain_description">É o ninja mais forte da Akatsuki, seus conhecimentos e poder
+        não se comparam a nenhuma outra graduação. Para se tornar um Líder, o ninja precisa passar
+        por todas as graduações e ainda assim se tornar o melhor entre os melhores. Podem fazer
+        todos os tipos de missões, tem o maior número de habilidades Ninjutsu, Taijutsu e Genjutsu
+        treinadas. Realiza missões S ou SS que são as mais arriscadas e defendem a Akatsuki com
+        todas as forças e caso necessário com a própria vida.</string>
+    <string name="genin">Genin</string>
+    <string name="chuunin">Chuunin</string>
+    <string name="jounin">Jounin</string>
+    <string name="anbu">ANBU</string>
+    <string name="god">Deus</string>
+    <string name="rain_guardian">Guardião da Chuva</string>
+    <string name="nukenin_d">Nukenin D</string>
+    <string name="nukenin_c">Nukenin C</string>
+    <string name="nukenin_b">Nukenin B</string>
+    <string name="nukenin_a">Nukenin A</string>
+    <string name="fugitive">Fugitivo</string>
+    <string name="villain">Vilão</string>
+    <string name="bounty_hunter">Caçador de Recompensas</string>
+    <string name="student">Estudante</string>
+    <string name="leaf_sannin">Sannin da Folha</string>
+    <string name="hero">Herói</string>
+    <string name="sand_sealer">Selador da Areia</string>
+    <string name="cloud_head_ninja">Capitão da Nuvem</string>
+    <string name="stone_hunter">Caçador da Pedra</string>
+    <string name="swordsman_of_the_mist">Caçador da Névoa</string>
+    <string name="orphan">Órfão</string>
+    <string name="cursed">Amaldiçoado</string>
+    <string name="sound_cientist">Cientista do Som</string>
+    <string name="survivor">Cobaia</string>
+    <string name="requires_initial_tasks">Você precisa ter completado 10 tarefas ou mais</string>
+    <string name="requires_missions_rank">Você precisa ter completado %d Missões Rank %s ou mais</string>
+    <string name="requires_lerned_jutsus">Ter %d Jutsus Aprendidos</string>
+    <string name="requires_wins_npc">Ter %d Vitória NPC</string>
+    <string name="requires_wins_pvp">Ter %d Vitórias PVP</string>
+    <string name="requires_you_need_to_be_level">Você precisa estar no Level %d ou superior</string>
+    <string name="button_graduated">Graduated</string>
+    <string name="requires_grade">Requer graduação: %s</string>
+    <string name="description_duration_reward_level">Descrição / Duração / Recompensa / Level</string>
+    <string name="you_are_here">Você está aqui</string>
+    <string name="dont_have_enough_ryous">Você não tem Ryous suficientes para fazer essa compra!</string>
+    <string name="time">Por tempo</string>
+    <string name="rank_s">Rank S</string>
+    <string name="rank_a">Rank A</string>
+    <string name="rank_b">Rank B</string>
+    <string name="rank_c">Rank C</string>
+    <string name="rank_d">Rank D</string>
 
 </resources>

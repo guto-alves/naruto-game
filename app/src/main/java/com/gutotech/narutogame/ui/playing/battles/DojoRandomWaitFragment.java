@@ -1,85 +1,48 @@
 package com.gutotech.narutogame.ui.playing.battles;
 
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProviders;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.ValueEventListener;
 import com.gutotech.narutogame.R;
-import com.gutotech.narutogame.data.firebase.FirebaseConfig;
-import com.gutotech.narutogame.data.model.Character;
-import com.gutotech.narutogame.ui.playing.character.CharacterStatusFragment;
-import com.gutotech.narutogame.data.model.Oponente;
-import com.gutotech.narutogame.data.model.CharOn;
+import com.gutotech.narutogame.databinding.FragmentDojoRandomWaitBinding;
+import com.gutotech.narutogame.ui.SectionFragment;
+import com.gutotech.narutogame.utils.FragmentUtil;
 
-public class DojoRandomWaitFragment extends Fragment {
-    private DatabaseReference procurarOponentesReference;
-    private ValueEventListener valueEventListenerProcurar;
-
-    private ValueEventListener valueEventListenerFuiPego;
-    private DatabaseReference euNaFilaReference;
+public class DojoRandomWaitFragment extends Fragment implements SectionFragment {
 
     public DojoRandomWaitFragment() {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_dojo_random_wait, container, false);
+        FragmentDojoRandomWaitBinding binding = DataBindingUtil.inflate(inflater,
+                R.layout.fragment_dojo_random_wait, container, false);
 
-//        PersonagemOn.character.setIdBatalhaAtual("");
+        DojoRandomWaitViewModel viewModel = ViewModelProviders.of(getActivity())
+                .get(DojoRandomWaitViewModel.class);
 
-        // ENTRA NA FILA
-        euNaFilaReference = FirebaseConfig.getDatabase()
-                .child("dojo_random_wait")
-                .child(CharOn.character.getNick());
-        euNaFilaReference.setValue(CharOn.character);
+        binding.setViewModel(viewModel);
 
-        verificarSeFuiPego();
+        FragmentUtil.setSectionTitle(getActivity(), R.string.looking_for_opponents);
 
-        Thread thread = new Thread() {
-            @Override
-            public void run() {
-                try {
-                    sleep(4000);
-                    procurarOponentesReference = FirebaseConfig.getDatabase()
-                            .child("dojo_random_wait");
-                    procurarOponentes();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-        thread.start();
-
-        // PROCUR
-
-        Button sairDaFilaButton = view.findViewById(R.id.sairDaFilaButton);
-        sairDaFilaButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                euNaFilaReference.removeValue();
-                changeToFragment(new CharacterStatusFragment());
-            }
-        });
-
-        return view;
+        return binding.getRoot();
     }
 
-    private void procurarOponentes() {
-        valueEventListenerProcurar = procurarOponentesReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot data : dataSnapshot.getChildren()) {
-                    Oponente.oponente = data.getValue(Character.class);
+//    private void procurarOponentes() {
+//        valueEventListenerProcurar = procurarOponentesReference.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                for (DataSnapshot data : dataSnapshot.getChildren()) {
+//                    Oponente.oponente = data.getValue(Character.class);
 
 //                    if (!Oponente.oponente.getNick().equals(PersonagemOn.character.getNick())) {
 //                        if (Oponente.oponente.getIdBatalhaAtual().equals("")) {
@@ -117,42 +80,18 @@ public class DojoRandomWaitFragment extends Fragment {
 //                            }
 //                        }
 //                    }
-                }
-            }
+//    }
+//
+//}
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-            }
-        });
-    }
-
-    private void verificarSeFuiPego() {
-        valueEventListenerFuiPego = euNaFilaReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                CharOn.character = dataSnapshot.getValue(Character.class);
-
-//                if (!PersonagemOn.character.getIdBatalhaAtual().equals("")) {
-//                    euNaFilaReference.removeEventListener(valueEventListenerFuiPego);
-//                    changeToFragment(new DojoBatalhaPVPFragment());
-//                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-            }
-        });
-    }
-
-    private void changeToFragment(Fragment fragment) {
-        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.container, fragment).commit();
-    }
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//            }
+//        });
+//    }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
-        euNaFilaReference.removeEventListener(valueEventListenerFuiPego);
-        procurarOponentesReference.removeEventListener(valueEventListenerProcurar);
+    public int getDescription() {
+        return R.string.waiting_room;
     }
 }

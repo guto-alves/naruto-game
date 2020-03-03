@@ -4,18 +4,20 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
-public class VillageMapViewModelFactory implements ViewModelProvider.Factory {
-    private int villageId;
+import com.gutotech.narutogame.data.model.Village;
 
-    public VillageMapViewModelFactory(int villageId) {
-        this.villageId = villageId;
+public class VillageMapViewModelFactory implements ViewModelProvider.Factory {
+    private Village village;
+
+    VillageMapViewModelFactory(Village village) {
+        this.village = village;
     }
 
     @NonNull
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
         if (modelClass.isAssignableFrom(VillageMapViewModel.class)) {
-            return (T) new VillageMapViewModel(villageId);
+            return (T) new VillageMapViewModel(village);
         }
 
         throw new IllegalArgumentException("Unknown ViewModel class");

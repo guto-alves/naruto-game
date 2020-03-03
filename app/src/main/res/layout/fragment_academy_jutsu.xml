@@ -34,7 +34,7 @@
 
                 <ImageView
                     android:id="@+id/imageView24"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="39dp"
                     android:scaleType="center"
                     android:src="@drawable/layout_pagina_repeat"
@@ -44,7 +44,7 @@
 
                 <ImageView
                     android:id="@+id/imageView21"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:scaleType="fitXY"
                     android:src="@drawable/layout_msg_topo"
@@ -76,7 +76,7 @@
 
                 <ImageView
                     android:id="@+id/imageView22"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:scaleType="fitXY"
                     android:src="@drawable/layout_msg_rodape1"
@@ -90,6 +90,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:orientation="vertical"
+                    android:padding="3dp"
                     app:layout_constraintBottom_toTopOf="@+id/imageView22"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/profileMsgImageView1"
@@ -110,8 +111,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center|start"
-                        android:paddingEnd="3dp"
-                        android:paddingRight="3dp"
                         android:text="@string/about_the_ninja_jutsus_des"
                         android:textColor="#D1D8F1"
                         android:textSize="12sp" />
@@ -121,8 +120,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"
                         android:gravity="center|start"
-                        android:paddingEnd="3dp"
-                        android:paddingRight="3dp"
                         android:text="@string/jutsus_that_not_are_in_the_same_class"
                         android:textColor="@android:color/holo_blue_light"
                         android:textSize="12sp" />
@@ -143,7 +140,7 @@
 
                 <ImageView
                     android:id="@+id/imageView243"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="39dp"
                     android:scaleType="center"
                     android:src="@drawable/layout_pagina_repeat"
@@ -153,7 +150,7 @@
 
                 <ImageView
                     android:id="@+id/imageView213"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:scaleType="fitXY"
                     android:src="@drawable/layout_msg_topo"
@@ -184,7 +181,7 @@
 
                 <ImageView
                     android:id="@+id/imageView223"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:scaleType="fitXY"
                     android:src="@drawable/layout_msg_rodape1"
@@ -198,6 +195,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:orientation="vertical"
+                    android:padding="3dp"
                     app:layout_constraintBottom_toTopOf="@+id/imageView223"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/profileMsgImageView2"
@@ -218,8 +216,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center|start"
-                        android:paddingEnd="3dp"
-                        android:paddingRight="3dp"
                         android:textColor="#D1D8F1"
                         android:textSize="12sp" />
 
@@ -227,49 +223,60 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <LinearLayout
-                android:id="@+id/linearLayout8"
-                android:layout_width="match_parent"
+
+            <TableLayout
+                android:id="@+id/tableLayout"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:gravity="center"
-                android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/trainingResultLayout">
 
-                <Button
-                    style="@style/ButtonTheme"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginRight="8dp"
-                    android:background="@{viewModel.classSelected== Classe.TAI? @drawable/bg_button_orange: @drawable/bg_button}"
-                    android:onClick="@{() -> viewModel.onClassButtonPressed(Classe.TAI)}"
-                    android:text="@string/taijutsu" />
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
 
-                <Button
-                    style="@style/ButtonTheme"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginRight="8dp"
-                    android:background="@{viewModel.classSelected == Classe.NIN? @drawable/bg_button_orange: @drawable/bg_button}"
-                    android:onClick="@{() -> viewModel.onClassButtonPressed(Classe.NIN)}"
-                    android:text="@string/ninjustu" />
+                    <Button
+                        style="@style/ButtonTheme"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginRight="16dp"
+                        android:background="@{viewModel.classSelected == Classe.NIN? @drawable/bg_button_orange: @drawable/bg_button}"
+                        android:onClick="@{() -> viewModel.onClassButtonPressed(Classe.NIN)}"
+                        android:text="@string/ninjustu" />
 
-                <Button
-                    style="@style/ButtonTheme"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginRight="8dp"
-                    android:background="@{viewModel.classSelected == Classe.BUK? @drawable/bg_button_orange: @drawable/bg_button}"
-                    android:onClick="@{() -> viewModel.onClassButtonPressed(Classe.BUK)}"
-                    android:text="@string/bukijutsu" />
+                    <Button
+                        style="@style/ButtonTheme"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginRight="8dp"
+                        android:background="@{viewModel.classSelected== Classe.TAI? @drawable/bg_button_orange: @drawable/bg_button}"
+                        android:onClick="@{() -> viewModel.onClassButtonPressed(Classe.TAI)}"
+                        android:text="@string/taijutsu" />
+                </TableRow>
 
-                <Button
-                    style="@style/ButtonTheme"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginRight="8dp"
-                    android:background="@{viewModel.classSelected == Classe.GEN? @drawable/bg_button_orange: @drawable/bg_button}"
-                    android:onClick="@{() -> viewModel.onClassButtonPressed(Classe.GEN)}"
-                    android:text="@string/genjutsu" />
-            </LinearLayout>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="8dp">
+
+                    <Button
+                        style="@style/ButtonTheme"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginRight="16dp"
+                        android:background="@{viewModel.classSelected == Classe.BUK? @drawable/bg_button_orange: @drawable/bg_button}"
+                        android:onClick="@{() -> viewModel.onClassButtonPressed(Classe.BUK)}"
+                        android:text="@string/bukijutsu" />
+
+                    <Button
+                        style="@style/ButtonTheme"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginRight="8dp"
+                        android:background="@{viewModel.classSelected == Classe.GEN? @drawable/bg_button_orange: @drawable/bg_button}"
+                        android:onClick="@{() -> viewModel.onClassButtonPressed(Classe.GEN)}"
+                        android:text="@string/genjutsu" />
+                </TableRow>
+
+            </TableLayout>
 
             <ImageView
                 android:id="@+id/imageView19"
@@ -280,7 +287,7 @@
                 android:src="@drawable/layout_barras_secoes_1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout8" />
+                app:layout_constraintTop_toBottomOf="@id/tableLayout" />
 
             <TextView
                 android:id="@+id/textView28"
@@ -324,7 +331,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.80" />
+                app:layout_constraintGuide_percent="0.73" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/jutsusRecyclerView"
@@ -335,7 +342,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView19"
                 tools:itemCount="5"
-                tools:listitem="@layout/recycler_jutsu_learn_item" />
+                tools:listitem="@layout/adapter_jutsu_learn_item" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

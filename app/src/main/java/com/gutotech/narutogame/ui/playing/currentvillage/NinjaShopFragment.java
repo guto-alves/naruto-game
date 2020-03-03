@@ -5,7 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,16 +25,17 @@ public class NinjaShopFragment extends Fragment implements SectionFragment {
         FragmentNinjaShopBinding binding = DataBindingUtil.inflate(inflater,
                 R.layout.fragment_ninja_shop, container, false);
 
-        NinjaShopViewModel viewModel = ViewModelProviders.of(this).get(NinjaShopViewModel.class);
+        NinjaShopViewModel viewModel = new ViewModelProvider(this)
+                .get(NinjaShopViewModel.class);
         binding.setViewModel(viewModel);
 
         ItemShopRecyclerAdapter adapter = new ItemShopRecyclerAdapter(getActivity(),
-                getFragmentManager(), viewModel);
+                getParentFragmentManager(), viewModel);
 
         binding.shopItemsRecyclerView.setHasFixedSize(true);
         binding.shopItemsRecyclerView.setAdapter(adapter);
 
-        viewModel.getShopItems().observe(this, adapter::setItemsList);
+        viewModel.getShopItems().observe(getViewLifecycleOwner(), adapter::setItemsList);
 
         FragmentUtil.setSectionTitle(getActivity(), R.string.section_ninja_shop);
         return binding.getRoot();

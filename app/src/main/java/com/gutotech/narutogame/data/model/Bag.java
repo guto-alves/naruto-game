@@ -4,45 +4,58 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Bag {
-    private List<Ramen> ramensList;
-    private List<Scroll> pergaminhosList;
-    private List<Jutsu> armasList;
+    private List<Ramen> ramenList;
+    private List<Scroll> scrollList;
 
     public Bag() {
     }
 
-    public Bag(Ramen ramen) {
-        ramensList = new ArrayList<>();
-        ramensList.add(ramen);
+    public List<Ramen> getRamenList() {
+        return ramenList;
     }
 
-    public Bag(List<Ramen> ramensList, List<Scroll> pergaminhosList, List<Jutsu> armasList) {
-        this.ramensList = ramensList;
-        this.pergaminhosList = pergaminhosList;
-        this.armasList = armasList;
+    public void setRamenList(List<Ramen> ramenList) {
+        this.ramenList = ramenList;
     }
 
-    public List<Ramen> getRamensList() {
-        return ramensList;
+    public List<Scroll> getScrollList() {
+        return scrollList;
     }
 
-    public void setRamensList(List<Ramen> ramensList) {
-        this.ramensList = ramensList;
+    public void setScrollList(List<Scroll> scrollList) {
+        this.scrollList = scrollList;
     }
 
-    public List<Scroll> getPergaminhosList() {
-        return pergaminhosList;
+    public void addRamen(Ramen ramen, int quantity) {
+        if (ramenList == null) {
+            ramenList = new ArrayList<>();
+        }
+        if (ramenList.contains(ramen)) {
+            int ramenIndex = ramenList.indexOf(ramen);
+            Ramen r = ramenList.get(ramenIndex);
+            r.setInventory(r.getInventory() + quantity);
+            ramenList.set(ramenIndex, ramen);
+        } else {
+            ramen.setRequirements(null);
+            ramen.setInventory(quantity);
+            ramenList.add(ramen);
+        }
     }
 
-    public void setPergaminhosList(List<Scroll> pergaminhosList) {
-        this.pergaminhosList = pergaminhosList;
-    }
+    public void addScroll(Scroll scroll, int quantity) {
+        if (scrollList == null) {
+            scrollList = new ArrayList<>();
+        }
 
-    public List<Jutsu> getArmasList() {
-        return armasList;
-    }
-
-    public void setArmasList(List<Jutsu> armasList) {
-        this.armasList = armasList;
+        if (scrollList.contains(scroll)) {
+            int scrollIndex = scrollList.indexOf(scroll);
+            Scroll r = scrollList.get(scrollIndex);
+            r.setInventory(r.getInventory() + quantity);
+            scrollList.set(scrollIndex, scroll);
+        } else {
+            scroll.setRequirements(null);
+            scroll.setInventory(quantity);
+            scrollList.add(scroll);
+        }
     }
 }

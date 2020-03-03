@@ -24,26 +24,24 @@ public class BagItemsAdapter extends RecyclerView.Adapter<BagItemsAdapter.ViewHo
         void onItemClick(ShopItem itemClicked, int position);
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         private ImageView itemImageView;
         private TextView quantityTextView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-
             itemImageView = itemView.findViewById(R.id.itemImageView);
             quantityTextView = itemView.findViewById(R.id.quantityTextView);
         }
     }
 
     private Context mContext;
-    private OnItemClickListener mOnItemClickListener;
     private List<ShopItem> mItems;
+    private OnItemClickListener mOnItemClickListener;
 
-    public BagItemsAdapter(Context context, List<ShopItem> items, OnItemClickListener l) {
+    public BagItemsAdapter(Context context, OnItemClickListener listener) {
         mContext = context;
-        mItems = items;
-        mOnItemClickListener = l;
+        mOnItemClickListener = listener;
     }
 
     @NonNull
@@ -75,6 +73,11 @@ public class BagItemsAdapter extends RecyclerView.Adapter<BagItemsAdapter.ViewHo
 
     @Override
     public int getItemCount() {
-        return mItems.size();
+        return mItems != null ? mItems.size() : 0;
+    }
+
+    public void setItems(List<ShopItem> items) {
+        mItems = items;
+        notifyDataSetChanged();
     }
 }

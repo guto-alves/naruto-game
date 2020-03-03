@@ -30,9 +30,13 @@ public class BindingUtil {
 
     @BindingAdapter("stringRes")
     public static void setStringRes(TextView textView, @StringRes int resId) {
+        String text = "";
+
         if (resId != 0) {
-            textView.setText(textView.getContext().getString(resId));
+            text = textView.getContext().getString(resId);
         }
+
+        textView.setText(text);
     }
 
     @BindingAdapter("mask")

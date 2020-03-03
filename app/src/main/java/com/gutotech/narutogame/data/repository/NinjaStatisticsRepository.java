@@ -86,7 +86,6 @@ public class NinjaStatisticsRepository {
 
             @Override
             public void onComplete(@Nullable DatabaseError databaseError, boolean b, @Nullable DataSnapshot dataSnapshot) {
-
             }
         });
     }

@@ -155,11 +155,11 @@
 
                 <ImageView
                     android:id="@+id/profileImageView2"
+                    profileForMsg="@{1}"
                     android:layout_width="130dp"
                     android:layout_height="0dp"
                     android:layout_marginTop="8dp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/layout_msg_1_1"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />

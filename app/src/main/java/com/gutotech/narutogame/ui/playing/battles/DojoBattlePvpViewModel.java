@@ -21,7 +21,6 @@ import com.gutotech.narutogame.data.model.Jutsu;
 import com.gutotech.narutogame.data.model.JutsuInfo;
 import com.gutotech.narutogame.data.model.Score;
 import com.gutotech.narutogame.data.repository.BattleRepository;
-import com.gutotech.narutogame.data.repository.CharacterRepository;
 import com.gutotech.narutogame.ui.adapter.JutsusAdapter;
 import com.gutotech.narutogame.utils.DateCustom;
 import com.gutotech.narutogame.utils.SingleLiveEvent;
@@ -37,6 +36,8 @@ import java.util.concurrent.TimeUnit;
 public class DojoBattlePvpViewModel extends ViewModel
         implements JutsusAdapter.OnJutsuClickListener {
     private final long TIME_TO_ATTACK = 90000;
+
+    private Application mApplication;
 
     private BattleRepository mBattleRepository;
 
@@ -73,22 +74,19 @@ public class DojoBattlePvpViewModel extends ViewModel
 
     private long elapsedTime;
 
-    private Application mApplication;
-
     DojoBattlePvpViewModel(Application application, Battle battle) {
         mApplication = application;
         mBattle = battle;
 
         updateFighters();
 
-        mAllJutsus = player.getJutsus();
-        filterJutsus(Jutsu.Type.ATK);
-
         mBattleRepository = BattleRepository.getInstance();
 
         if (mBattle.getStatus() == Battle.Status.CONTINUE) {
             init();
             observeBattle();
+            mAllJutsus = player.getJutsus();
+            filterJutsus(Jutsu.Type.ATK);
         } else {
             finishFight();
         }
@@ -180,7 +178,7 @@ public class DojoBattlePvpViewModel extends ViewModel
 
             updateRemainingIntervals();
 
-            mBattle.setCurrentPlayer((mBattle.getCurrentPlayer() + 1) % 3 + 1);
+            mBattle.setCurrentPlayer(mBattle.getCurrentPlayer() % 2 + 1);
             mBattle.setAttackStart(DateCustom.getTimeInMillis());
         } else {
             if (!buffOrDebuffUsed(playerJutsuInfo.type)) {
@@ -465,6 +463,8 @@ public class DojoBattlePvpViewModel extends ViewModel
         CharOn.character.getFormulas().setCurrentHealth(playerFormulas.getCurrentHealth());
         CharOn.character.getFormulas().setCurrentChakra(playerFormulas.getCurrentChakra());
         CharOn.character.getFormulas().setCurrentStamina(playerFormulas.getCurrentStamina());
+        CharOn.character.getAttributes().incrementTraningPoints(50);
+        CharOn.character.getExtrasInformation().incrementTotalTraining(50);
 
         if ((mBattle.getStatus() == Battle.Status.PLAYER1_WON && myTurn == 1) ||
                 (mBattle.getStatus() == Battle.Status.PLAYER2_WON && myTurn == 2)) {
@@ -483,9 +483,20 @@ public class DojoBattlePvpViewModel extends ViewModel
             CharOn.character.decrementScore(Score.DER_MAPA_PVP);
         }
 
-        CharOn.character.setBattle(false);
+        int playerCount = mBattle.getPlayerCount() - 1;
+
+        mBattleRepository.removeBattleListener();
+
+        if (playerCount == 0) {
+            mBattleRepository.delete(mBattle.getId());
+        } else {
+            mBattle.setPlayerCount(playerCount);
+        }
+
+        mBattleRepository.save(mBattle);
+
         CharOn.character.battleId = "";
-        CharacterRepository.getInstance().save(CharOn.character);
+        CharOn.character.setBattle(false);
     }
 
     private void startTimer() {
@@ -539,6 +550,9 @@ public class DojoBattlePvpViewModel extends ViewModel
 
     private void observeBattle() {
         mBattleRepository.observeBattle(mBattle.getId(), battle -> {
+            if (battle.getCurrentPlayer() != mBattle.getCurrentPlayer()) {
+                SoundUtils.play(mApplication, R.raw.crystal);
+            }
 
             mBattle.setStatus(battle.getStatus());
             mBattle.setAttackStart(battle.getAttackStart());
@@ -549,6 +563,7 @@ public class DojoBattlePvpViewModel extends ViewModel
             mBattle.setPlayer2BuffsDebuffsStatus(battle.getPlayer2BuffsDebuffsStatus());
             mBattle.setBattleLogs(battle.getBattleLogs());
             mBattle.setOppJutsu(battle.getOppJutsu());
+            mBattle.setPlayerCount(battle.getPlayerCount());
 
             updateFighters();
 
@@ -556,10 +571,6 @@ public class DojoBattlePvpViewModel extends ViewModel
                 stopTimer();
                 elapsedTime = Calendar.getInstance().getTimeInMillis() - mBattle.getAttackStart();
                 startTimer();
-
-                if (battle.getCurrentPlayer() != mBattle.getCurrentPlayer()) {
-                    SoundUtils.play(mApplication, R.raw.crystal);
-                }
             } else {
                 finishFight();
             }

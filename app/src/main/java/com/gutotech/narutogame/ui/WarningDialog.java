@@ -49,6 +49,10 @@ public class WarningDialog extends DialogFragment {
         return builder.create();
     }
 
+    public void setWarning(String warning) {
+        mWarning = warning;
+    }
+
     public void setOnCloseListener(View.OnClickListener listener) {
         mOnClickListener = listener;
     }

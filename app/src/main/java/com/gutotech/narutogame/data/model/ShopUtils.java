@@ -10,18 +10,13 @@ import java.util.Collections;
 import java.util.List;
 
 public class ShopUtils {
-    private List<ShopItem> itemsList;
-
-    public ShopUtils() {
-        itemsList = new ArrayList<>();
-    }
 
     public static List<ShopItem> getRamens() {
         List<ShopItem> itemsList = new ArrayList<>();
-        
+
         itemsList.add(new Ramen("nissin", R.string.ninja_snack,
                 R.string.ninja_snack_description,
-                Arrays.asList(new Requirement() {
+                Collections.singletonList(new Requirement() {
                     @Override
                     public boolean check() {
                         return CharOn.character.getLevel() >= 1;
@@ -242,21 +237,4 @@ public class ShopUtils {
 //
 //        return itemsList;
 //    }
-
-    public static List<ShopItem> getPergaminhos() {
-//        itemsList.clear();
-//        itemsList.add(new Pergaminho("1", Vilas.FOLHA));
-//        itemsList.add(new Pergaminho("2", Vilas.FONTES_TERMAIS));
-//        itemsList.add(new Pergaminho("3", Vilas.NEVE));
-//        itemsList.add(new Pergaminho("4", Vilas.CACHOEIRA));
-//        itemsList.add(new Pergaminho("5", Vilas.CHUVA));
-//        itemsList.add(new Pergaminho("6", Vilas.SOM));
-//        itemsList.add(new Pergaminho("7", Vilas.AKATSUKI));
-//        itemsList.add(new Pergaminho("8", Vilas.NUVEM));
-//        itemsList.add(new Pergaminho("9", Vilas.PEDRA));
-//        itemsList.add(new Pergaminho("10", Vilas.NEVOA));
-//        itemsList.add(new Pergaminho("11", Vilas.AREIA));
-//        itemsList.add(new Pergaminho("12", Vilas.GRAMA));
-        return null;
-    }
 }

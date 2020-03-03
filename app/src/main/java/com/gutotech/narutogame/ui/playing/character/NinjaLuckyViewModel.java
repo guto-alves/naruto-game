@@ -24,11 +24,11 @@ import java.util.List;
 public class NinjaLuckyViewModel extends ViewModel {
     @Retention(RetentionPolicy.SOURCE)
     @IntDef({RYOUS_DAILY, RYOUS_WEEKLY})
-    public @interface PlayMode {
+    @interface PlayMode {
     }
 
-    public static final int RYOUS_DAILY = 2000;
-    public static final int RYOUS_WEEKLY = 6000;
+    public static final int RYOUS_DAILY = 500;
+    public static final int RYOUS_WEEKLY = 1500;
 
     private MutableLiveData<Integer> playModeSelected;
 
@@ -60,7 +60,7 @@ public class NinjaLuckyViewModel extends ViewModel {
         calculateIntervals();
     }
 
-    public LiveData<List<LotteryItem>> getLotteryItems() {
+    LiveData<List<LotteryItem>> getLotteryItems() {
         return lotteryItems;
     }
 

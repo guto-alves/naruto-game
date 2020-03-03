@@ -6,11 +6,13 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.gutotech.narutogame.R;
+import com.gutotech.narutogame.data.model.Character;
 import com.gutotech.narutogame.data.model.News;
 import com.gutotech.narutogame.data.model.NinjaStatistics;
 import com.gutotech.narutogame.data.repository.AuthRepository;
 import com.gutotech.narutogame.data.repository.NewsRepository;
 import com.gutotech.narutogame.data.repository.NinjaStatisticsRepository;
+import com.gutotech.narutogame.data.repository.VillageKagesRepository;
 import com.gutotech.narutogame.ui.ResultListener;
 
 import java.util.List;
@@ -33,6 +35,10 @@ public class HomeViewModel extends ViewModel {
 
     LiveData<List<NinjaStatistics>> getNinjaStatistics() {
         return NinjaStatisticsRepository.getInstance().getAllNinjaStatistics();
+    }
+
+    LiveData<List<Character>> getKages() {
+        return VillageKagesRepository.getInstance().getKages();
     }
 
     void setAuthListener(ResultListener authListener) {
@@ -68,6 +74,7 @@ public class HomeViewModel extends ViewModel {
             mAuthListener.onFailure(R.string.password_field_requered);
             valid = false;
         }
+
         return valid;
     }
 }

@@ -22,7 +22,7 @@ import java.util.List;
 
 public class NinjaStatisticsAdapter extends RecyclerView.Adapter<NinjaStatisticsAdapter.MyViewHolder> {
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
         private LinearLayout bgLinear;
         private ImageView imageView;
         private TextView nameTextView;
@@ -69,6 +69,8 @@ public class NinjaStatisticsAdapter extends RecyclerView.Adapter<NinjaStatistics
 
             if (i / 2 % 2 == 1) {
                 myViewHolder.bgLinear.setBackgroundColor(mContext.getResources().getColor(R.color.colorItem2));
+            } else {
+                myViewHolder.bgLinear.setBackgroundColor(mContext.getResources().getColor(R.color.colorItem1));
             }
         }
     }

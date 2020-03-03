@@ -41,7 +41,7 @@ public class CharacterSelectRecyclerViewAdapter extends RecyclerView.Adapter<Cha
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(
-                R.layout.adapter_profile_pequena, null, false);
+                R.layout.adapter_small_profile, null, false);
         return new ViewHolder(itemView);
     }
 
@@ -50,7 +50,7 @@ public class CharacterSelectRecyclerViewAdapter extends RecyclerView.Adapter<Cha
         if (mCharactersList != null) {
 
             if (position == mCharacterSelectedPosition) {
-                holder.profileImageView.setAlpha(1.0f);
+                holder.profileImageView.setAlpha(1f);
             } else {
                 holder.profileImageView.setAlpha(0.5f);
             }

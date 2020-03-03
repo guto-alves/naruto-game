@@ -1,6 +1,7 @@
 package com.gutotech.narutogame.ui.playing;
 
 import android.app.Application;
+import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.view.View;
@@ -20,9 +21,14 @@ import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.model.Character;
 import com.gutotech.narutogame.data.model.MenuGroup;
 import com.gutotech.narutogame.data.model.Message;
+import com.gutotech.narutogame.data.model.Ramen;
+import com.gutotech.narutogame.data.model.Scroll;
+import com.gutotech.narutogame.data.model.ShopItem;
 import com.gutotech.narutogame.data.repository.CharacterRepository;
 import com.gutotech.narutogame.data.repository.ChatRepository;
+import com.gutotech.narutogame.data.repository.MapRepository;
 import com.gutotech.narutogame.ui.SectionFragment;
+import com.gutotech.narutogame.ui.adapter.BagItemsAdapter;
 import com.gutotech.narutogame.ui.loggedin.accountinfo.UserDataFragment;
 import com.gutotech.narutogame.ui.loggedin.changepassword.PasswordChangeFragment;
 import com.gutotech.narutogame.ui.loggedin.newcharacteer.CharacterCreateFragment;
@@ -85,6 +91,9 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
 
         mCharacter = CharOn.character;
         mTitles = new MutableLiveData<>(mCharacter.getTitles());
+
+        mRamens = new MutableLiveData<>(mCharacter.getBag().getRamenList());
+        mScrolls = new MutableLiveData<>(mCharacter.getBag().getScrollList());
 
         mCharacter.addOnPropertyChangedCallback(new Observable.OnPropertyChangedCallback() {
             @Override
@@ -178,6 +187,84 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
 
     LiveData<SectionFragment> getCurrentSection() {
         return currentSection;
+    }
+
+    private MutableLiveData<List<Ramen>> mRamens = new MutableLiveData<>();
+    private MutableLiveData<List<Scroll>> mScrolls = new MutableLiveData<>();
+
+    private SingleLiveEvent<Void> dismissBagDialog = new SingleLiveEvent<>();
+
+    LiveData<Void> getDismissBagDialog() {
+        return dismissBagDialog;
+    }
+
+    BagItemsAdapter.OnItemClickListener onRamenClickListener = (itemClicked, position) -> {
+        Ramen ramen = (Ramen) itemClicked;
+
+        if (CharOn.character.getFormulas().isFull()) {
+            // You don't need to use you ramen right now because your attributes are already full
+            dismissBagDialog.call();
+            return;
+        }
+
+        CharOn.character.getFormulas().addHeath(ramen.getRecovers());
+        CharOn.character.getFormulas().addChakra(ramen.getRecovers());
+        CharOn.character.getFormulas().addStamina(ramen.getRecovers());
+
+        ramen.setInventory(ramen.getInventory() - 1);
+
+        List<Ramen> ramens = mRamens.getValue();
+
+        if (ramen.getInventory() > 0) {
+            ramens.set(position, ramen);
+        } else {
+            ramens.remove(position);
+            if (ramens.size() == 0) {
+                ramens = null;
+            }
+        }
+
+        CharacterRepository.getInstance().save(CharOn.character);
+        mRamens.setValue(ramens);
+    };
+
+    BagItemsAdapter.OnItemClickListener onScrollClickListener = (itemClicked, position) -> {
+        Scroll scroll = (Scroll) itemClicked;
+        scroll.setInventory(scroll.getInventory() - 1);
+
+        List<Scroll> scrolls = mScrolls.getValue();
+
+        if (scroll.getInventory() > 0) {
+            scrolls.set(position, scroll);
+        } else {
+            scrolls.remove(position);
+            if (scrolls.size() == 0) {
+                scrolls = null;
+            }
+        }
+
+        mScrolls.setValue(scrolls);
+
+        if (CharOn.character.isMap()) {
+            MapRepository.getInstance().exit(CharOn.character.getMapId());
+        }
+
+        CharacterRepository.getInstance().save(CharOn.character);
+        dismissBagDialog.call();
+
+        VillageMapFragment villageMapFragment = new VillageMapFragment();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("village", scroll.getVillage());
+        villageMapFragment.setArguments(bundle);
+        setCurrentSection(villageMapFragment);
+    };
+
+    LiveData<List<Ramen>> getRamens() {
+        return mRamens;
+    }
+
+    LiveData<List<Scroll>> getScrolls() {
+        return mScrolls;
     }
 
     public void onTitleSelected(int position) {

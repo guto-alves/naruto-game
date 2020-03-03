@@ -9,39 +9,44 @@ import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.Battle;
 import com.gutotech.narutogame.data.model.Character;
 import com.gutotech.narutogame.data.model.CharOn;
+import com.gutotech.narutogame.data.model.Village;
 import com.gutotech.narutogame.data.repository.BattleRepository;
 import com.gutotech.narutogame.data.repository.MapRepository;
-import com.gutotech.narutogame.ui.adapter.VillageMapRecyclerViewAdapter;
+import com.gutotech.narutogame.ui.adapter.VillageMapAdapter;
 import com.gutotech.narutogame.utils.SingleLiveEvent;
 
 import java.security.SecureRandom;
 import java.util.List;
 import java.util.Map;
 
-public class VillageMapViewModel extends ViewModel implements VillageMapRecyclerViewAdapter.OnMapClickListener {
+public class VillageMapViewModel extends ViewModel implements VillageMapAdapter.OnMapClickListener {
     public static final int TOTAL_COLUMNS = 10;
-    static final int MAP_LENGTH = 110;
+    public static final int MAP_SIZE = 110;
 
-    private int mVillageId;
+    private Village mVillage;
 
     private MapRepository mMapRepository;
 
     private SingleLiveEvent<Integer> mShowWarningDialogEvent = new SingleLiveEvent<>();
 
-    VillageMapViewModel(int villageId) {
-        mVillageId = villageId;
-
-        CharOn.character.setMap(true);
+    VillageMapViewModel(Village village) {
+        mVillage = village;
 
         mMapRepository = MapRepository.getInstance();
 
-        if (CharOn.character.getMapPosition() == -1) {
-            CharOn.character.setMapPosition(new SecureRandom().nextInt(MAP_LENGTH));
+        CharOn.character.setMapId(mVillage.id);
+
+        if (!CharOn.character.isMap()) {
+            CharOn.character.setMap(true);
         }
 
-        observe();
+        if (CharOn.character.getMapPosition() == -1) {
+            CharOn.character.setMapPosition(new SecureRandom().nextInt(MAP_SIZE));
+        }
 
-        mMapRepository.enter(mVillageId);
+        mMapRepository.enter(mVillage.id);
+
+        observe();
     }
 
     LiveData<Integer> getShowWarningDialogEvent() {
@@ -49,38 +54,51 @@ public class VillageMapViewModel extends ViewModel implements VillageMapRecycler
     }
 
     LiveData<Map<Integer, List<Character>>> getCharactersOnTheMap() {
-        return mMapRepository.load(mVillageId);
+        return mMapRepository.load(mVillage.id);
     }
 
     @Override
     public void onDoubleClick(int newPosition) {
         if (isMovementValid(newPosition)) {
+            if (isPlaceEntry(newPosition)) {
+                mMapRepository.exit(mVillage.id);
+                CharOn.character.setMap(false);
+                return;
+            }
+
             CharOn.character.setMapPosition(newPosition);
-            mMapRepository.enter(mVillageId);
+            mMapRepository.enter(mVillage.id);
         } else {
             mShowWarningDialogEvent.setValue(R.string.this_place_is_far_away);
         }
+    }
+
+    private boolean isPlaceEntry(int position) {
+        return mVillage.placeEntries.contains(position);
     }
 
     @Override
     public void onBattleClick(Character opponent) {
         int levelDifference = Math.abs(opponent.getLevel() - CharOn.character.getLevel());
 
-        if (levelDifference <= 3) {
-            mMapRepository.check(opponent.getNick(), mVillageId, result -> {
+        if (opponent.getPlayerId().equals(CharOn.character.getPlayerId())) {
+            //
+        } else if (levelDifference <= 2) {
+            mMapRepository.check(opponent.getNick(), mVillage.id, result -> {
                 if (result) {
                     BattleRepository.getInstance().create(new Battle(CharOn.character, opponent));
+                } else {
+                    mShowWarningDialogEvent.setValue(R.string.player_unavailable_to_fight);
                 }
             });
-
         } else {
-            // show error message by diff level
+            mShowWarningDialogEvent.setValue(R.string.is_not_at_a_level_suitable_for_you);
         }
     }
 
     private void observe() {
         BattleRepository.getInstance().observeIds(battleId -> {
-            mMapRepository.exit(mVillageId);
+            mMapRepository.exit(mVillage.id);
             BattleRepository.getInstance().removeId(CharOn.character.getNick(), battleId);
             CharOn.character.battleId = battleId;
             CharOn.character.setBattle(true);
@@ -88,7 +106,7 @@ public class VillageMapViewModel extends ViewModel implements VillageMapRecycler
     }
 
     public void exit() {
-        mMapRepository.exit(mVillageId);
+        mMapRepository.exit(mVillage.id);
     }
 
     private boolean isMovementValid(int newPosition) {

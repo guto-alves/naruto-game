@@ -1,5 +1,7 @@
 package com.gutotech.narutogame.data.model;
 
+import androidx.annotation.NonNull;
+
 public enum Ninja {
     NARUTO(1, "Naruto Uzumaki", 200),
     SASUKE(2, "Sasuke Uchiha", 215),
@@ -113,7 +115,7 @@ public enum Ninja {
     SARADA(236, "Sarada Uchiha", 13),
     MITSUKI(237, "Mitsuki", 7),
     KAGUYA(238, "Kaguya Ootsutsuki", 2),
-	SHIRA(240, "Shira", 6),
+    SHIRA(240, "Shira", 6),
     INOJIN(245, "Inojin Yamanaka", 7),
     SHIKADI(246, "Shikadai Nara", 2),
     CHOUCHOU(247, "Chouchou Akimichi", 5),
@@ -144,5 +146,11 @@ public enum Ninja {
 
     public int getTotalProfiles() {
         return totalProfiles;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return name;
     }
 }

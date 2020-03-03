@@ -33,7 +33,7 @@ public class ItemShopRecyclerAdapter extends RecyclerView.Adapter<ItemShopRecycl
         void onBuyButtonClick(ShopItem item, int quantity);
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         private ImageView itemImageView;
         private TextView nameTextView;
         private TextView descriptionTextView;
@@ -73,7 +73,7 @@ public class ItemShopRecyclerAdapter extends RecyclerView.Adapter<ItemShopRecycl
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View itemView = LayoutInflater.from(viewGroup.getContext()).inflate(
-                R.layout.recycler_shop_item, viewGroup, false);
+                R.layout.adapter_shop_item, viewGroup, false);
         return new ViewHolder(itemView);
     }
 

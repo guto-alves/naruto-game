@@ -26,7 +26,7 @@ public class CharsInPositionAdapter extends RecyclerView.Adapter<CharsInPosition
         void onBattleClick(Character opp);
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         private TextView charInfoTextView;
         private ImageButton battleImageButton;
         private ImageView spriteImageView;
@@ -35,7 +35,6 @@ public class CharsInPositionAdapter extends RecyclerView.Adapter<CharsInPosition
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-
             charInfoTextView = itemView.findViewById(R.id.charInfoTextView);
             battleImageButton = itemView.findViewById(R.id.battleImageButton);
             spriteImageView = itemView.findViewById(R.id.spriteImageView);
@@ -65,7 +64,7 @@ public class CharsInPositionAdapter extends RecyclerView.Adapter<CharsInPosition
         if (mCharacters != null) {
             Character character = mCharacters.get(position);
 
-            if (character.getNick().equals(CharOn.character.getNick())) {
+            if (character.equals(CharOn.character)) {
                 holder.backgroundImageView.setImageResource(R.drawable.layout_map_me2);
             } else if (character.getVillage() == CharOn.character.getVillage()) {
                 holder.backgroundImageView.setImageResource(R.drawable.layout_map_green2);
@@ -75,22 +74,26 @@ public class CharsInPositionAdapter extends RecyclerView.Adapter<CharsInPosition
 
             StorageUtil.downloadSprite(holder.spriteImageView, character.getNinja().getId());
 
-            holder.charInfoTextView.setText(mContext.getString(R.string.map_char_info, character.getNick(),
-                    character.getLevel(), mContext.getString(character.getVillage().name)));
+            if (character.equals(CharOn.character)) {
+                holder.charInfoTextView.setText(R.string.you_are_here);
+                holder.battleImageButton.setVisibility(View.GONE);
+            } else {
+                holder.charInfoTextView.setText(mContext.getString(R.string.map_char_info, character.getNick(),
+                        character.getLevel(), mContext.getString(character.getVillage().name)));
+                holder.battleImageButton.setVisibility(View.VISIBLE);
+            }
 
             holder.battleImageButton.setOnClickListener(v ->
                     mOnBattleClickListener.onBattleClick(character));
 
             holder.backgroundImageView.setVisibility(View.VISIBLE);
             holder.spriteImageView.setVisibility(View.VISIBLE);
-            holder.battleImageButton.setVisibility(View.VISIBLE);
             ConstraintSet set = new ConstraintSet();
             set.clone(holder.constraintLayout);
             set.constrainWidth(R.id.charInfoTextView, 200);
             set.applyTo(holder.constraintLayout);
         } else {
             holder.charInfoTextView.setText(R.string.this_place_is_empty);
-            holder.backgroundImageView.setImageResource(R.drawable.layout_map_blank2);
             holder.backgroundImageView.setVisibility(View.GONE);
             holder.spriteImageView.setVisibility(View.GONE);
             holder.battleImageButton.setVisibility(View.GONE);

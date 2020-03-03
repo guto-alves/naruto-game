@@ -53,6 +53,8 @@ dependencies {
 
     // MaskFormatter
     implementation 'com.github.rtoshiro.mflibrary:mflibrary:1.0.0'
+
+    implementation 'com.github.smarteist:autoimageslider:1.3.2-appcompat'
 }
 
 apply plugin: 'com.google.gms.google-services'

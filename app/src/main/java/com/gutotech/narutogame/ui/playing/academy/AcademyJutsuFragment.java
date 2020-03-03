@@ -6,7 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
@@ -29,7 +29,7 @@ public class AcademyJutsuFragment extends Fragment implements SectionFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        AcademyJutsuViewModel viewModel = ViewModelProviders.of(this)
+        AcademyJutsuViewModel viewModel = new ViewModelProvider(this)
                 .get(AcademyJutsuViewModel.class);
 
         mBinding = DataBindingUtil.inflate(inflater,
@@ -40,12 +40,13 @@ public class AcademyJutsuFragment extends Fragment implements SectionFragment {
         mBinding.trainingResultLayout.setVisibility(View.GONE);
 
         mBinding.jutsusRecyclerView.setHasFixedSize(true);
-        JutsusLearnAdapter adapter = new JutsusLearnAdapter(getActivity(), getFragmentManager(), viewModel);
+        JutsusLearnAdapter adapter = new JutsusLearnAdapter(getActivity(),
+                getParentFragmentManager(), viewModel);
         mBinding.jutsusRecyclerView.setAdapter(adapter);
 
-        viewModel.getJutsus().observe(this, adapter::setJutsusList);
+        viewModel.getJutsus().observe(getViewLifecycleOwner(), adapter::setJutsusList);
 
-        viewModel.getShowCongratulationsEvent().observe(this, resId -> {
+        viewModel.getShowCongratulationsEvent().observe(getViewLifecycleOwner(), resId -> {
             SpannableStringBuilder message = new SpannableStringBuilder();
             message.append(getText(R.string.lerned_a_new_jutsu));
             message.append(" ");
@@ -63,7 +64,7 @@ public class AcademyJutsuFragment extends Fragment implements SectionFragment {
             showTrainingResult(R.string.congratulations_you_made_it, message);
         });
 
-        viewModel.getShowWarningEvent().observe(this, resId -> {
+        viewModel.getShowWarningEvent().observe(getViewLifecycleOwner(), resId -> {
             showTrainingResult(R.string.problem,
                     getString(R.string.insufficient_chakra_or_stamina, getString(resId)));
 

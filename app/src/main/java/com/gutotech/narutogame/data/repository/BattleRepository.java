@@ -1,18 +1,15 @@
 package com.gutotech.narutogame.data.repository;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+
 import com.gutotech.narutogame.data.firebase.FirebaseConfig;
 import com.gutotech.narutogame.data.model.Battle;
 import com.gutotech.narutogame.data.model.CharOn;
-import com.gutotech.narutogame.utils.DateCustom;
 
 public class BattleRepository {
     private static final BattleRepository ourInstance = new BattleRepository();
@@ -25,11 +22,11 @@ public class BattleRepository {
     }
 
     public String generateId(String label) {
-        return label + "-" + FirebaseConfig.getDatabase().push().getKey();
+        return label + "-" + FirebaseConfig.getDatabase().child("battles").push().getKey();
     }
 
     public void create(Battle battle) {
-        String id = generateId("MAPA");
+        String id = generateId("VILLAGEMAP-PVP");
 
         battle.setId(id);
 
@@ -64,12 +61,12 @@ public class BattleRepository {
         battleReference.setValue(battle);
     }
 
-    public void remove(String battleId) {
+    public void delete(String battleId) {
         DatabaseReference battleReference = FirebaseConfig.getDatabase()
                 .child("battles")
                 .child(battleId);
 
-        battleReference.setValue(battleId);
+        battleReference.removeValue();
     }
 
     public void observeIds(Callback<String> callback) {
@@ -77,8 +74,6 @@ public class BattleRepository {
                 .child("battle-id")
                 .child(CharOn.character.getNick())
                 .child("id");
-
-//        Query battleQuery = battleReference.orderByKey().equalTo(CharOn.character.getNick());
 
         battleReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -90,23 +85,6 @@ public class BattleRepository {
                 }
 
                 callback.call(battleId);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-            }
-        });
-    }
-
-    public void observeBattle(String battleId, Callback<Battle> callback) {
-        DatabaseReference battleReference = FirebaseConfig.getDatabase()
-                .child("battles")
-                .child(battleId);
-
-        battleReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                callback.call(dataSnapshot.getValue(Battle.class));
             }
 
             @Override
@@ -132,4 +110,36 @@ public class BattleRepository {
             }
         });
     }
+
+    private DatabaseReference battleReference;
+    private ValueEventListener battleEventListener;
+
+    public void observeBattle(String battleId, Callback<Battle> callback) {
+        battleReference = FirebaseConfig.getDatabase()
+                .child("battles")
+                .child(battleId);
+
+        battleEventListener = battleReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Battle battle = dataSnapshot.getValue(Battle.class);
+
+                if (battle == null) {
+                    callback.call(battle);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
+    }
+
+    public void removeBattleListener() {
+        if (battleEventListener != null) {
+            battleReference.removeEventListener(battleEventListener);
+            battleEventListener = null;
+        }
+    }
+
 }

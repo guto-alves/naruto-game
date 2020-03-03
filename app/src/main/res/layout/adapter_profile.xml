@@ -6,6 +6,8 @@
 
     <ImageView
         android:id="@+id/profileImageView"
-        android:layout_width="145dp"
-        android:layout_height="155dp" />
+        android:layout_width="105dp"
+        android:layout_height="112dp"
+        android:src="@drawable/layout_profile_7" />
+
 </LinearLayout>

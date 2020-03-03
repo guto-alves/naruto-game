@@ -109,16 +109,22 @@ public class DojoBattlePvpFragment extends Fragment implements SectionFragment {
                 description.append(getString(R.string.combat_won_description, rewards[0], rewards[1]));
                 description.append(" ");
                 int length = description.length();
-                description.append("Mapa da Vila");
+                description.append(CharOn.character.battleId.contains("VILLAGEMAP-PVP") ?
+                        getString(R.string.village_map) : "Dojo");
                 description.setSpan(new ForegroundColorSpan(Color.BLUE), length, description.length(),
                         Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
                 description.setSpan(new ClickableSpan() {
                     @Override
                     public void onClick(@NonNull View widget) {
                         mViewModel.exit();
-                        FragmentUtil.goTo(getActivity(), new VillageMapFragment());
+                        if (CharOn.character.battleId.contains("VILLAGEMAP-PVP")) {
+                            FragmentUtil.goTo(getActivity(), new VillageMapFragment());
+                        } else {
+                            FragmentUtil.goTo(getActivity(), new DojoFragment());
+                        }
                     }
                 }, length, description.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+                description.append(getString(R.string.training_points_for_your_participation));
 
                 showBattleResult(R.string.end_of_the_battle, description);
             });
@@ -139,6 +145,7 @@ public class DojoBattlePvpFragment extends Fragment implements SectionFragment {
                                 CharOn.character.setHospital(true);
                             }
                         }, length, description.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+                description.append(getString(R.string.training_points_for_your_participation));
 
                 showBattleResult(R.string.too_bad, description);
             });

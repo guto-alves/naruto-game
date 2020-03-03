@@ -45,7 +45,7 @@ public class FormulasRecyclerViewAdapter extends RecyclerView.Adapter<FormulasRe
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View itemView = LayoutInflater.from(viewGroup.getContext()).inflate(
-                R.layout.recycler_attribute_list_item, viewGroup, false);
+                R.layout.adapter_attribute_item, viewGroup, false);
         return new MyViewHolder(itemView);
     }
 

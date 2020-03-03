@@ -20,13 +20,14 @@ import com.gutotech.narutogame.data.repository.JutsuRepository;
 import com.gutotech.narutogame.data.repository.NinjaLuckyRepository;
 import com.gutotech.narutogame.data.repository.NinjaStatisticsRepository;
 import com.gutotech.narutogame.ui.ResultListener;
-import com.gutotech.narutogame.ui.adapter.ChooseNinjaRecyclerViewAdapter;
+import com.gutotech.narutogame.ui.adapter.ChooseNinjaAdapter;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 
 public class CharacterCreateViewModel extends ViewModel
-        implements ChooseNinjaRecyclerViewAdapter.NinjaListener {
+        implements ChooseNinjaAdapter.NinjaListener {
     public final ObservableInt currentGroupIndex = new ObservableInt(0);
 
     private Character mChar;
@@ -101,9 +102,11 @@ public class CharacterCreateViewModel extends ViewModel
     }
 
     public void onCreateButtonPressed() {
+        mChar.setNick(mChar.getNick().trim());
         if (isValidNick()) {
-            mCharacterRepository.checkByRepeatedNick(mChar.getNick(), result -> {
+            mCharacterRepository.checkByRepeatedNick(mChar.getNick().trim(), result -> {
                 if (result) {
+                    mChar.setId(UUID.randomUUID().toString());
                     mCharacterRepository.save(mChar);
 
                     NinjaLucky ninjaLucky = new NinjaLucky();

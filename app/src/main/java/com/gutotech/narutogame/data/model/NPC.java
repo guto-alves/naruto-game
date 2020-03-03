@@ -30,7 +30,7 @@ public class Npc implements Serializable {
         character.getAttributes().updateFormulas(character.getClasse(),
                 character.getLevel() + (random.nextInt(3) - 1));
         character.full();
-        character.setTitle("");
+        character.setTitle(0);
     }
 
     public Jutsu attack() {

@@ -5,7 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,14 +28,14 @@ public class TasksFragment extends Fragment implements SectionFragment {
         FragmentTasksBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_tasks,
                 container, false);
 
-        TasksViewModel viewModel = ViewModelProviders.of(this).get(TasksViewModel.class);
+        TasksViewModel viewModel = new ViewModelProvider(this).get(TasksViewModel.class);
         binding.setViewModel(viewModel);
 
         binding.tasksRecyclerView.setHasFixedSize(true);
         TasksRecyclerViewAdapter adapter = new TasksRecyclerViewAdapter(getActivity(), viewModel);
         binding.tasksRecyclerView.setAdapter(adapter);
 
-        viewModel.getTasks().observe(this, adapter::setTasks);
+        viewModel.getTasks().observe(getViewLifecycleOwner(), adapter::setTasks);
 
         FragmentUtil.setSectionTitle(getActivity(), R.string.section_initial_tasks);
         return binding.getRoot();

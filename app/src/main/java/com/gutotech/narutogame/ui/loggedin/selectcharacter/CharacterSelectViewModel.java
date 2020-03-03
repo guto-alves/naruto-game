@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.Character;
 import com.gutotech.narutogame.data.model.CharOn;
+import com.gutotech.narutogame.data.repository.AuthRepository;
 import com.gutotech.narutogame.data.repository.CharacterRepository;
 import com.gutotech.narutogame.data.repository.NinjaLuckyRepository;
 import com.gutotech.narutogame.data.repository.NinjaStatisticsRepository;
@@ -33,7 +34,7 @@ public class CharacterSelectViewModel extends ViewModel {
     }
 
     LiveData<List<Character>> getCharactersList() {
-        return mRepository.getMyCharacters();
+        return mRepository.getMyCharacters(AuthRepository.getInstance().getUid());
     }
 
     private Character getCharacterSelected() {
@@ -82,7 +83,7 @@ public class CharacterSelectViewModel extends ViewModel {
     }
 
     private void deleteCharacterSelected() {
-        mRepository.delete(mCharacterSelected.getNick());
+        mRepository.delete(mCharacterSelected.getId());
         NinjaLuckyRepository.getInstance().delete(mCharacterSelected.getNick());
         NinjaStatisticsRepository.getInstance().remove(mCharacterSelected.getNinja().getId());
     }

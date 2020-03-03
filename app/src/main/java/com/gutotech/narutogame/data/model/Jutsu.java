@@ -2,10 +2,12 @@ package com.gutotech.narutogame.data.model;
 
 import androidx.annotation.Nullable;
 
+import com.google.firebase.database.Exclude;
+
 public class Jutsu {
     public enum Type {ATK, DEF, BUFF, DEBUFF, WEAPON}
 
-    private String name; // refers to enum JutsuInfo
+    private String name; // refers to JutsuInfo Enum
 
     private Classe classe;
 
@@ -143,6 +145,7 @@ public class Jutsu {
         this.inventory = inventory;
     }
 
+    @Exclude
     public JutsuInfo getJutsuInfo() {
         return JutsuInfo.valueOf(getName());
     }
@@ -152,6 +155,7 @@ public class Jutsu {
         if (!(obj instanceof Jutsu)) {
             return false;
         }
+
         return getName().equals(((Jutsu) obj).getName());
     }
 }

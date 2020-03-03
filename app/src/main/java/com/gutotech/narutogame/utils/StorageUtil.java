@@ -139,6 +139,14 @@ public class StorageUtil {
         downloadImage(context, imageReference, imageView);
     }
 
+    public static void downloadKageImage(Context context, ImageView imageView, int ninjaId) {
+        StorageReference imageReference = FirebaseConfig.getStorage()
+                .child("images")
+                .child("home")
+                .child(ninjaId + ".jpg");
+        downloadImage(context, imageReference, imageView);
+    }
+
     private static String generateVillageId() {
         return String.valueOf(new SecureRandom().nextInt(8) + 1);
     }

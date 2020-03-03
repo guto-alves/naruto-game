@@ -12,6 +12,7 @@ import com.gutotech.narutogame.data.model.Attributes;
 import com.gutotech.narutogame.data.model.Character;
 import com.gutotech.narutogame.data.model.Formulas;
 import com.gutotech.narutogame.data.model.CharOn;
+import com.gutotech.narutogame.data.model.Graduation;
 import com.gutotech.narutogame.data.repository.CharacterRepository;
 import com.gutotech.narutogame.ui.adapter.DistributedPointsRecyclerAdapter;
 import com.gutotech.narutogame.utils.DateCustom;
@@ -24,7 +25,7 @@ public class AcademyTrainingViewModel extends AndroidViewModel
 
     SingleLiveEvent<Void> trainingErrorEvent = new SingleLiveEvent<>();
     SingleLiveEvent<Integer> trainingCompletedEvent = new SingleLiveEvent<>();
-    private SingleLiveEvent<Void> updateDistributedPointsEvent = new SingleLiveEvent<>();
+    private SingleLiveEvent<Void> mUpdateDistributedPointsEvent = new SingleLiveEvent<>();
 
     private String[] mPercents;
     private double mPercent = 0.1;
@@ -69,7 +70,7 @@ public class AcademyTrainingViewModel extends AndroidViewModel
     }
 
     SingleLiveEvent<Void> getUpdateDistributedPointsEvent() {
-        return updateDistributedPointsEvent;
+        return mUpdateDistributedPointsEvent;
     }
 
     public void onItemSelected(int position) {
@@ -86,7 +87,7 @@ public class AcademyTrainingViewModel extends AndroidViewModel
         int dayOfWeek = DateCustom.getDayOfWeek();
         int days = dayOfWeek >= 3 ? dayOfWeek - 2 : dayOfWeek + 5;
 
-        weeklyLimitOfTraining = mCharacter.getGraduation().dailyTrainingLimit * days;
+        weeklyLimitOfTraining = Graduation.values()[mCharacter.getGraduationId()].dailyTrainingLimit * days;
     }
 
     public void onTrainButtonPressed() {
@@ -114,7 +115,7 @@ public class AcademyTrainingViewModel extends AndroidViewModel
 
                 CharacterRepository.getInstance().save(mCharacter);
 
-                updateDistributedPointsEvent.call();
+                mUpdateDistributedPointsEvent.call();
 
                 trainingCompletedEvent.setValue(trainingPointsEarned);
             } else {
@@ -131,6 +132,20 @@ public class AcademyTrainingViewModel extends AndroidViewModel
 
         CharacterRepository.getInstance().save(mCharacter);
 
-        updateDistributedPointsEvent.call();
+        mUpdateDistributedPointsEvent.call();
+    }
+
+    @Override
+    public void onRemoveButtonClick(int attributePosition, int quantitySelected) {
+        mAttributes.remove(attributePosition, quantitySelected);
+        mCharacter.getExtrasInformation().setDistributedPoints(
+                mCharacter.getExtrasInformation().getDistributedPoints() - quantitySelected);
+        mCharacter.updateFormulas();
+        mCharacter.getFormulas().validateCeil();
+        mCharacter.validateJutsus();
+
+        CharacterRepository.getInstance().save(mCharacter);
+
+        mUpdateDistributedPointsEvent.call();
     }
 }

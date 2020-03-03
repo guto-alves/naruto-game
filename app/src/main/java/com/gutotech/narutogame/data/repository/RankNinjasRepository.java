@@ -12,7 +12,6 @@ import com.gutotech.narutogame.data.model.Character;
 import com.gutotech.narutogame.data.model.Village;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 

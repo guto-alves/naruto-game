@@ -7,6 +7,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.view.GestureDetectorCompat;
@@ -19,18 +20,19 @@ import com.gutotech.narutogame.ui.playing.currentvillage.VillageMapPopupWindow;
 import com.gutotech.narutogame.ui.playing.currentvillage.VillageMapViewModel;
 import com.gutotech.narutogame.utils.StorageUtil;
 
+import java.security.SecureRandom;
 import java.util.List;
 import java.util.Map;
 
-public class VillageMapRecyclerViewAdapter extends RecyclerView.Adapter<VillageMapRecyclerViewAdapter.ViewHolder> {
+public class VillageMapAdapter extends RecyclerView.Adapter<VillageMapAdapter.ViewHolder> {
 
     public interface OnMapClickListener {
         void onDoubleClick(int newPosition);
 
-        void onBattleClick(Character opp);
+        void onBattleClick(Character opponent);
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         private ImageView backgroundImageView;
         private ImageView spriteImageView;
 
@@ -42,17 +44,19 @@ public class VillageMapRecyclerViewAdapter extends RecyclerView.Adapter<VillageM
         }
     }
 
+    private static final SecureRandom random = new SecureRandom();
     private Context mContext;
-    private final int MAP_LENGTH;
+    private List<Integer> mPlaceEntries;
     private Map<Integer, List<Character>> mMap;
     private OnMapClickListener mOnMapClickListener;
 
     private VillageMapPopupWindow mPopupWindow;
 
-    public VillageMapRecyclerViewAdapter(Context context, int length, OnMapClickListener listener) {
+    public VillageMapAdapter(Context context, List<Integer> placeEntries, OnMapClickListener listener) {
         mContext = context;
-        MAP_LENGTH = length;
+        mPlaceEntries = placeEntries;
         mOnMapClickListener = listener;
+
         mPopupWindow = new VillageMapPopupWindow(context);
         mPopupWindow.setBattleClickListener(opponent -> mOnMapClickListener.onBattleClick(opponent));
     }
@@ -67,26 +71,32 @@ public class VillageMapRecyclerViewAdapter extends RecyclerView.Adapter<VillageM
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        if (mMap != null) {
+        final boolean IS_PLACE_ENTRY = mPlaceEntries.contains(position);
+
+        if (IS_PLACE_ENTRY) {
+            holder.spriteImageView.setVisibility(View.VISIBLE);
+            holder.spriteImageView.setImageResource(R.drawable.layout_ico_mapa_vila);
+        }
+
+        if (mMap != null && !IS_PLACE_ENTRY) {
             List<Character> characterList = mMap.get(position);
 
             if (characterList != null) {
                 final int SIZE = characterList.size();
 
-                for (int i = 0; i < SIZE; i++) {
-                    Character character = characterList.get(i);
+                Character character = characterList.get(random.nextInt(SIZE));
 
-                    if (character.getNick().equals(CharOn.character.getNick())) {
-                        holder.backgroundImageView.setImageResource(R.drawable.layout_map_me2);
-                    } else if (character.getVillage() == CharOn.character.getVillage()) {
-                        holder.backgroundImageView.setImageResource(R.drawable.layout_map_green2);
-                    } else {
-                        holder.backgroundImageView.setImageResource(R.drawable.layout_map_red2);
-                    }
-
-                    holder.spriteImageView.setVisibility(View.VISIBLE);
-                    StorageUtil.downloadSprite(holder.spriteImageView, character.getNinja().getId());
+                if (character.getNick().equals(CharOn.character.getNick())) {
+                    holder.backgroundImageView.setImageResource(R.drawable.layout_map_me2);
+                } else if (character.getVillage() == CharOn.character.getVillage()) {
+                    holder.backgroundImageView.setImageResource(R.drawable.layout_map_green2);
+                } else {
+                    holder.backgroundImageView.setImageResource(R.drawable.layout_map_red2);
                 }
+
+                StorageUtil.downloadSprite(holder.spriteImageView, character.getNinja().getId());
+                holder.spriteImageView.setVisibility(View.VISIBLE);
+
             } else {
                 holder.backgroundImageView.setImageResource(R.drawable.layout_map_blank2);
                 holder.spriteImageView.setVisibility(View.GONE);
@@ -137,7 +147,7 @@ public class VillageMapRecyclerViewAdapter extends RecyclerView.Adapter<VillageM
 
     @Override
     public int getItemCount() {
-        return MAP_LENGTH;
+        return VillageMapViewModel.MAP_SIZE;
     }
 
     public void setMap(Map<Integer, List<Character>> map) {

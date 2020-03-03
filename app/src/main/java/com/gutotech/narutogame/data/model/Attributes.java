@@ -30,6 +30,7 @@ public class Attributes extends BaseObservable {
     private int trainingPoints;
 
     private int totalFreePoints;
+    private int totalRedistributePoints;
 
     private List<Integer> basePoints;
     private List<Integer> distributedPoints;
@@ -55,6 +56,10 @@ public class Attributes extends BaseObservable {
             pointsEarned.add(i, 0);
         }
 
+        changeBasePoints(classe);
+    }
+
+    public void changeBasePoints(Classe classe) {
         switch (classe) {
             case TAI:
                 basePoints.set(Attribute.TAI.id, 10);
@@ -159,6 +164,40 @@ public class Attributes extends BaseObservable {
         totalFreePoints -= quantity;
     }
 
+    public void remove(int attributeId, int quantity) {
+        int total = getDistributedPoints().get(attributeId);
+
+        int newTotal = Math.max(total - quantity, 0);
+
+        getDistributedPoints().set(attributeId, newTotal);
+
+        if (total - quantity >= 0) {
+            totalFreePoints += quantity;
+            totalRedistributePoints -= quantity;
+        } else {
+            quantity = quantity - (quantity - total);
+            totalFreePoints += quantity;
+            totalRedistributePoints -= quantity;
+        }
+    }
+
+    public List<Integer> asList() {
+        List<Integer> attributes = new ArrayList<>();
+
+        attributes.add(getTaijutsu());
+        attributes.add(getBukijutsu());
+        attributes.add(getNinjutsu());
+        attributes.add(getGenjutsu());
+        attributes.add(getSeal());
+        attributes.add(getAgility());
+        attributes.add(getStrength());
+        attributes.add(getIntelligence());
+        attributes.add(getResistance());
+        attributes.add(getEnergy());
+
+        return attributes;
+    }
+
     public int getTaijutsu() {
         return basePoints.get(Attribute.TAI.id) + distributedPoints.get(Attribute.TAI.id)
                 + pointsEarned.get(Attribute.TAI.id);
@@ -247,12 +286,22 @@ public class Attributes extends BaseObservable {
         notifyPropertyChanged(BR.trainingPoints);
     }
 
+    @Bindable
     public int getTotalFreePoints() {
         return totalFreePoints;
     }
 
     public void setTotalFreePoints(int totalFreePoints) {
         this.totalFreePoints = totalFreePoints;
+        notifyPropertyChanged(BR.totalFreePoints);
+    }
+
+    public int getTotalRedistributePoints() {
+        return totalRedistributePoints;
+    }
+
+    public void setTotalRedistributePoints(int totalRedistributePoints) {
+        this.totalRedistributePoints = totalRedistributePoints;
     }
 
     public List<Integer> getBasePoints() {
@@ -277,22 +326,5 @@ public class Attributes extends BaseObservable {
 
     public void setPointsEarned(List<Integer> pointsEarned) {
         this.pointsEarned = pointsEarned;
-    }
-
-    public List<Integer> asList() {
-        List<Integer> attributes = new ArrayList<>();
-
-        attributes.add(getTaijutsu());
-        attributes.add(getBukijutsu());
-        attributes.add(getNinjutsu());
-        attributes.add(getGenjutsu());
-        attributes.add(getSeal());
-        attributes.add(getAgility());
-        attributes.add(getStrength());
-        attributes.add(getIntelligence());
-        attributes.add(getResistance());
-        attributes.add(getEnergy());
-
-        return attributes;
     }
 }

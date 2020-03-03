@@ -7,7 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,7 +17,7 @@ import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.databinding.FragmentPersonagemCriarBinding;
 import com.gutotech.narutogame.ui.ResultListener;
 import com.gutotech.narutogame.ui.SectionFragment;
-import com.gutotech.narutogame.ui.adapter.ChooseNinjaRecyclerViewAdapter;
+import com.gutotech.narutogame.ui.adapter.ChooseNinjaAdapter;
 import com.gutotech.narutogame.ui.loggedin.selectcharacter.CharacterSelectFragment;
 import com.gutotech.narutogame.utils.FragmentUtil;
 
@@ -26,7 +26,7 @@ public class CharacterCreateFragment extends Fragment implements SectionFragment
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        CharacterCreateViewModel viewModel = ViewModelProviders.of(this)
+        CharacterCreateViewModel viewModel = new ViewModelProvider(this)
                 .get(CharacterCreateViewModel.class);
         viewModel.setListener(this);
 
@@ -35,10 +35,11 @@ public class CharacterCreateFragment extends Fragment implements SectionFragment
 
         binding.setViewModel(viewModel);
 
-        ChooseNinjaRecyclerViewAdapter ninjasAdapter = new ChooseNinjaRecyclerViewAdapter(viewModel);
+        ChooseNinjaAdapter ninjasAdapter = new ChooseNinjaAdapter(viewModel);
         binding.ninjasRecyclerView.setAdapter(ninjasAdapter);
 
-        viewModel.getCurrentNinjasGroupList().observe(this, ninjasAdapter::setNinjasId);
+        viewModel.getCurrentNinjasGroupList().observe(getViewLifecycleOwner(),
+                ninjasAdapter::setNinjasId);
 
         FragmentUtil.setSectionTitle(getActivity(), R.string.section_create_character);
 

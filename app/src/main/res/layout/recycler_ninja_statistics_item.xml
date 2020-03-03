@@ -26,14 +26,15 @@
             android:id="@+id/nameTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorYellow" />
+            android:textColor="@color/colorYellow"
+            android:textSize="12sp" />
 
         <TextView
             android:id="@+id/totalPlayersTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/colorText"
-            android:textSize="12sp" />
+            android:textSize="10sp" />
     </LinearLayout>
 
 </LinearLayout>

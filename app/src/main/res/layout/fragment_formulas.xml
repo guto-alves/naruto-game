@@ -72,6 +72,7 @@
                     android:drawablePadding="8dp"
                     android:text="@string/health"
                     android:textColor="@color/colorText"
+                    android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -80,8 +81,9 @@
                     android:id="@+id/descriptionTextView17"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Fórmula da Vida"
+                    android:text="@string/hp_formula"
                     android:textColor="@color/colorText"
+                    android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/guideline387"
                     app:layout_constraintStart_toStartOf="@+id/guideline567"
@@ -95,6 +97,7 @@
                     android:drawableLeft="@drawable/layout_icones_ene"
                     android:text="* 6"
                     android:textColor="@color/colorText"
+                    android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/guideline387"
@@ -138,6 +141,7 @@
                     android:gravity="center_vertical"
                     android:text="@string/chakra"
                     android:textColor="@color/colorText"
+                    android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -146,8 +150,9 @@
                     android:id="@+id/descriptionTextView18"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Fórmula do Chakra"
+                    android:text="@string/chakra_formula"
                     android:textColor="@color/colorText"
+                    android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/guideline388"
                     app:layout_constraintStart_toStartOf="@+id/guideline378"
@@ -184,7 +189,8 @@
                         android:drawableLeft="@drawable/layout_icones_ene"
                         android:gravity="center"
                         android:text="* 6 + "
-                        android:textColor="@color/colorText" />
+                        android:textColor="@color/colorText"
+                        android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/ninTextView"
@@ -195,7 +201,8 @@
                         android:drawablePadding="3dp"
                         android:gravity="center_vertical"
                         android:text="* 7 + "
-                        android:textColor="@color/colorText" />
+                        android:textColor="@color/colorText"
+                        android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/genTextView"
@@ -232,6 +239,7 @@
                     android:drawablePadding="8dp"
                     android:text="@string/stamina"
                     android:textColor="@color/colorText"
+                    android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -240,8 +248,9 @@
                     android:id="@+id/descriptionTextView19"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Fórmula da Stamina"
+                    android:text="@string/stamina_formula"
                     android:textColor="@color/colorText"
+                    android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/guideline389"
                     app:layout_constraintStart_toStartOf="@+id/guideline379"
@@ -264,7 +273,8 @@
                         android:drawableLeft="@drawable/layout_icones_ene"
                         android:gravity="center"
                         android:text="* 6 + "
-                        android:textColor="@color/colorText" />
+                        android:textColor="@color/colorText"
+                        android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/taiTextView"
@@ -275,7 +285,8 @@
                         android:drawablePadding="3dp"
                         android:gravity="center_vertical"
                         android:text="* 7 + "
-                        android:textColor="@color/colorText" />
+                        android:textColor="@color/colorText"
+                        android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/bukTextView"
@@ -327,6 +338,7 @@
                     android:gravity="center_vertical"
                     android:text="@string/attack_tai_buk"
                     android:textColor="@color/colorText"
+                    android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -335,8 +347,9 @@
                     android:id="@+id/descriptionTextView110"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="+1 de Ataque (Tai/Buk)"
+                    android:text="@string/_1_of_attack_tai_buk"
                     android:textColor="@color/colorText"
+                    android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/guideline3810"
                     app:layout_constraintStart_toStartOf="@+id/guideline3710"
@@ -350,6 +363,7 @@
                     android:drawableLeft="@drawable/layout_icones_forc"
                     android:text="/ 2"
                     android:textColor="@color/colorText"
+                    android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/guideline3810"
@@ -393,6 +407,7 @@
                     android:gravity="center_vertical"
                     android:text="@string/attack_nin_gen"
                     android:textColor="@color/colorText"
+                    android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -401,8 +416,9 @@
                     android:id="@+id/descriptionTextView111"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="+1 de Ataque (Nin/Gen)"
+                    android:text="@string/_1_of_attack_nin_gen"
                     android:textColor="@color/colorText"
+                    android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/guideline3811"
                     app:layout_constraintStart_toStartOf="@+id/guideline3711"
@@ -416,6 +432,7 @@
                     android:drawableLeft="@drawable/layout_icones_inte"
                     android:text="/ 2"
                     android:textColor="@color/colorText"
+                    android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/guideline3811"
@@ -459,6 +476,7 @@
                     android:gravity="center_vertical"
                     android:text="@string/defense_nin_gen"
                     android:textColor="@color/colorText"
+                    android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -469,6 +487,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/defense_nin_gen"
                     android:textColor="@color/colorText"
+                    android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/guideline384"
                     app:layout_constraintStart_toStartOf="@+id/guideline374"
@@ -482,6 +501,7 @@
                     android:drawableLeft="@drawable/layout_icones_defense"
                     android:text="/ 2"
                     android:textColor="@color/colorText"
+                    android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/guideline384"
@@ -525,6 +545,7 @@
                     android:gravity="center_vertical"
                     android:text="@string/defense_tai_buk"
                     android:textColor="@color/colorText"
+                    android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -535,6 +556,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/defense_tai_buk"
                     android:textColor="@color/colorText"
+                    android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/guideline385"
                     app:layout_constraintStart_toStartOf="@+id/guideline375"
@@ -548,6 +570,7 @@
                     android:drawableLeft="@drawable/layout_icones_defense"
                     android:text="/ 2"
                     android:textColor="@color/colorText"
+                    android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/guideline385"
@@ -591,6 +614,7 @@
                     android:gravity="center_vertical"
                     android:text="@string/accuracy"
                     android:textColor="@color/colorText"
+                    android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -599,8 +623,9 @@
                     android:id="@+id/descriptionTextView16"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="+1 de Precisão"
+                    android:text="@string/_1_of_accuracy"
                     android:textColor="@color/colorText"
+                    android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/guideline386"
                     app:layout_constraintStart_toStartOf="@+id/guideline376"
@@ -614,6 +639,7 @@
                     android:drawableLeft="@drawable/layout_icones_conhe"
                     android:text="* 1"
                     android:textColor="@color/colorText"
+                    android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/guideline386"
@@ -657,6 +683,7 @@
                     android:gravity="center_vertical"
                     android:text="@string/ninja_power"
                     android:textColor="@color/colorText"
+                    android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -665,8 +692,9 @@
                     android:id="@+id/descriptionTextView177"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="% de Ninja Power"
+                    android:text="@string/percent_of_ninja_power"
                     android:textColor="@color/colorText"
+                    android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/guideline3877"
                     app:layout_constraintStart_toStartOf="@+id/guideline3777"
@@ -708,7 +736,8 @@
                             android:drawableLeft="@drawable/layout_icones_ene"
                             android:gravity="center"
                             android:text="* 200 + ( "
-                            android:textColor="@color/colorText" />
+                            android:textColor="@color/colorText"
+                            android:textSize="12sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -718,7 +747,8 @@
                             android:drawablePadding="3dp"
                             android:gravity="center_vertical"
                             android:text=" + "
-                            android:textColor="@color/colorText" />
+                            android:textColor="@color/colorText"
+                            android:textSize="12sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -728,7 +758,8 @@
                             android:drawablePadding="3dp"
                             android:gravity="center_vertical"
                             android:text=" + "
-                            android:textColor="@color/colorText" />
+                            android:textColor="@color/colorText"
+                            android:textSize="12sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -738,7 +769,8 @@
                             android:drawablePadding="3dp"
                             android:gravity="center_vertical"
                             android:text=" ) * 150 +"
-                            android:textColor="@color/colorText" />
+                            android:textColor="@color/colorText"
+                            android:textSize="12sp" />
 
                     </LinearLayout>
 
@@ -762,7 +794,8 @@
                             android:drawablePadding="3dp"
                             android:gravity="center_vertical"
                             android:text=" + "
-                            android:textColor="@color/colorText" />
+                            android:textColor="@color/colorText"
+                            android:textSize="12sp" />
 
                         <TextView
                             android:id="@+id/genTextView2"
@@ -773,7 +806,8 @@
                             android:drawablePadding="3dp"
                             android:gravity="center_vertical"
                             android:text="+ "
-                            android:textColor="@color/colorText" />
+                            android:textColor="@color/colorText"
+                            android:textSize="12sp" />
 
                         <TextView
                             android:id="@+id/textView43"
@@ -783,7 +817,8 @@
                             android:drawableLeft="@drawable/layout_icones_tai"
                             android:gravity="center"
                             android:text="+ "
-                            android:textColor="@color/colorText" />
+                            android:textColor="@color/colorText"
+                            android:textSize="12sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -792,7 +827,8 @@
                             android:drawableLeft="@drawable/layout_icones_ken"
                             android:gravity="center"
                             android:text=" ) * 200 +"
-                            android:textColor="@color/colorText" />
+                            android:textColor="@color/colorText"
+                            android:textSize="12sp" />
 
                     </LinearLayout>
 
@@ -817,7 +853,8 @@
                             android:drawablePadding="3dp"
                             android:gravity="center_vertical"
                             android:text=" + "
-                            android:textColor="@color/colorText" />
+                            android:textColor="@color/colorText"
+                            android:textSize="12sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -827,7 +864,8 @@
                             android:drawablePadding="3dp"
                             android:gravity="center_vertical"
                             android:text=" ) * 100"
-                            android:textColor="@color/colorText" />
+                            android:textColor="@color/colorText"
+                            android:textSize="12sp" />
 
                     </LinearLayout>
 
@@ -851,7 +889,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginLeft="32dp"
-                android:text="Fórmula do Ranking de Ninjas ( Pontos / Descrição )"
+                android:text="@string/ranking_ninjas_formulas"
                 android:textColor="@android:color/white"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView31"
@@ -885,7 +923,7 @@
                     android:id="@+id/descriptionTextView122"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Por level do Jogador"
+                    android:text="@string/per_level_player"
                     android:textColor="@color/colorText"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/guideline3822"
@@ -935,6 +973,7 @@
                     android:layout_height="wrap_content"
                     android:text="+2000"
                     android:textColor="#FFD274"
+                    android:textSize="12sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/guideline371"
@@ -945,8 +984,9 @@
                     android:id="@+id/descriptionTextView11"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Por graduação do player"
+                    android:text="@string/per_grade_player"
                     android:textColor="@color/colorText"
+                    android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/guideline381"
                     app:layout_constraintStart_toStartOf="@+id/guideline371"
@@ -958,6 +998,7 @@
                     android:layout_height="wrap_content"
                     android:text="(A cada graduação + 2000 pontos)"
                     android:textColor="@color/colorText"
+                    android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/guideline381"

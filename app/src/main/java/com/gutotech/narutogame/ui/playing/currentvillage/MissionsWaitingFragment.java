@@ -5,7 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,8 +29,8 @@ public class MissionsWaitingFragment extends Fragment implements SectionFragment
                 R.layout.fragment_missions_waiting, container, false);
 
         MissionRepository.getInstance().getMissionTime(mission -> {
-            mViewModel = ViewModelProviders.of(this,
-                    new MissionsWaitingViewModelFactory(mission)).get(MissionsWaitingViewModel.class);
+            mViewModel = new ViewModelProvider(this, new MissionsWaitingViewModelFactory(mission))
+                    .get(MissionsWaitingViewModel.class);
             binding.setViewModel(mViewModel);
 
             MissionInfo info = mission.missionInfo();
@@ -38,7 +38,7 @@ public class MissionsWaitingFragment extends Fragment implements SectionFragment
             binding.descriptionTextView.setText(info.description);
             binding.descriptionTextView2.setText(info.msgFinished);
 
-            mViewModel.getShowMissionCompletedMsg().observe(this, rewards -> {
+            mViewModel.getShowMissionCompletedMsg().observe(getViewLifecycleOwner(), rewards -> {
                 binding.msgConstraintLayout.setVisibility(View.GONE);
                 binding.cancelButton.setVisibility(View.GONE);
                 binding.rewardExpTextView.setText(String.valueOf(rewards.get(0)));
@@ -57,7 +57,7 @@ public class MissionsWaitingFragment extends Fragment implements SectionFragment
     private void showQuestionDialog() {
         QuestionDialog dialog = new QuestionDialog(getString(R.string.question_cancel_mission));
         dialog.setOnOkButton(v -> mViewModel.onCancelButtonPressed());
-        dialog.show(getFragmentManager(), "QuestionDialog");
+        dialog.show(getParentFragmentManager(), "QuestionDialog");
     }
 
     @Override

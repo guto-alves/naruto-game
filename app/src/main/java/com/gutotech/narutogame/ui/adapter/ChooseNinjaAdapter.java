@@ -14,7 +14,7 @@ import com.gutotech.narutogame.utils.StorageUtil;
 
 import java.util.List;
 
-public class ChooseNinjaRecyclerViewAdapter extends RecyclerView.Adapter<ChooseNinjaRecyclerViewAdapter.ViewHolder> {
+public class ChooseNinjaAdapter extends RecyclerView.Adapter<ChooseNinjaAdapter.ViewHolder> {
 
     public interface NinjaListener {
         void onNinjaClick(Ninja ninja);
@@ -31,9 +31,9 @@ public class ChooseNinjaRecyclerViewAdapter extends RecyclerView.Adapter<ChooseN
 
     private List<Ninja> mNinjasList;
     private NinjaListener mListener;
-    private int positionSelected;
+    private int mPositionSelected;
 
-    public ChooseNinjaRecyclerViewAdapter(NinjaListener listener) {
+    public ChooseNinjaAdapter(NinjaListener listener) {
         mListener = listener;
     }
 
@@ -41,7 +41,7 @@ public class ChooseNinjaRecyclerViewAdapter extends RecyclerView.Adapter<ChooseN
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(
-                R.layout.adapter_profile_pequena, parent, false);
+                R.layout.adapter_small_profile, parent, false);
         return new ViewHolder(itemView);
     }
 
@@ -53,7 +53,7 @@ public class ChooseNinjaRecyclerViewAdapter extends RecyclerView.Adapter<ChooseN
             StorageUtil.downloadSmallProfile(holder.ninjaImageView.getContext(),
                     holder.ninjaImageView, ninja.getId());
 
-            if (positionSelected == position) {
+            if (mPositionSelected == position) {
                 holder.ninjaImageView.setAlpha(1f);
             } else {
                 holder.ninjaImageView.setAlpha(0.5f);
@@ -61,7 +61,7 @@ public class ChooseNinjaRecyclerViewAdapter extends RecyclerView.Adapter<ChooseN
 
             holder.ninjaImageView.setOnClickListener(v -> {
                 mListener.onNinjaClick(ninja);
-                positionSelected = position;
+                mPositionSelected = position;
                 notifyDataSetChanged();
             });
         }
@@ -74,7 +74,7 @@ public class ChooseNinjaRecyclerViewAdapter extends RecyclerView.Adapter<ChooseN
 
     public void setNinjasId(List<Ninja> ninjasList) {
         mNinjasList = ninjasList;
-        positionSelected = 0;
+        mPositionSelected = 0;
         mListener.onNinjaClick(mNinjasList.get(0));
         notifyDataSetChanged();
     }

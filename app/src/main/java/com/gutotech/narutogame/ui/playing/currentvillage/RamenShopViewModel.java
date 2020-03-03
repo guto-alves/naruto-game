@@ -11,8 +11,6 @@ import com.gutotech.narutogame.data.repository.CharacterRepository;
 import com.gutotech.narutogame.ui.adapter.ItemShopRecyclerAdapter;
 import com.gutotech.narutogame.utils.SingleLiveEvent;
 
-import java.util.List;
-
 public class RamenShopViewModel extends ViewModel
         implements ItemShopRecyclerAdapter.OnBuyClickListener {
     private SingleLiveEvent<Integer> showWarningEvent = new SingleLiveEvent<>();
@@ -20,7 +18,7 @@ public class RamenShopViewModel extends ViewModel
     public RamenShopViewModel() {
     }
 
-    public LiveData<Integer> getShowWarningEvent() {
+    LiveData<Integer> getShowWarningEvent() {
         return showWarningEvent;
     }
 
@@ -31,17 +29,7 @@ public class RamenShopViewModel extends ViewModel
         if (CharOn.character.getRyous() >= price) {
             CharOn.character.subRyous(price);
 
-            int itemIndex = contains(item, CharOn.character.getBag().getRamensList());
-
-            if (itemIndex == -1) {
-                item.setRequirements(null);
-                item.setInventory(quantity);
-                CharOn.character.getBag().getRamensList().add((Ramen) item);
-            } else {
-                Ramen ramen = CharOn.character.getBag().getRamensList().get(itemIndex);
-                ramen.setInventory(ramen.getInventory() + quantity);
-                CharOn.character.getBag().getRamensList().set(itemIndex, ramen);
-            }
+            CharOn.character.getBag().addRamen((Ramen) item, quantity);
 
             CharacterRepository.getInstance().save(CharOn.character);
 
@@ -49,17 +37,5 @@ public class RamenShopViewModel extends ViewModel
         } else {
             showWarningEvent.setValue(R.string.warning_dont_have_enough_ryous);
         }
-    }
-
-    private int contains(ShopItem newItem, List<Ramen> items) {
-        final int SIZE = items.size();
-
-        for (int i = 0; i < SIZE; i++) {
-            if (newItem.getName() == items.get(i).getName()) {
-                return i;
-            }
-        }
-
-        return -1;
     }
 }

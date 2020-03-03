@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="250dp"
+    android:layout_width="281dp"
     android:layout_height="wrap_content"
     android:background="@drawable/bg_popup"
     android:orientation="vertical"
@@ -11,7 +11,8 @@
         android:id="@+id/ramensLinearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="gone">
 
         <TextView
             android:layout_width="wrap_content"
@@ -24,15 +25,15 @@
             android:id="@+id/ramensRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:scrollbars="horizontal"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="5" />
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/pergaminhosLinearLayout"
-        android:layout_width="wrap_content"
+        android:id="@+id/scrollsLinearLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:orientation="vertical"
         android:visibility="gone">
 
@@ -44,34 +45,12 @@
             android:textColor="@android:color/white" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/pergaminhosRecyclerView"
+            android:id="@+id/scrollsRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="51dp"
-            android:scrollbars="horizontal"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/armasLinearLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:visibility="gone">
-
-        <TextView
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:text="@string/ranged_weapons"
-            android:textColor="@android:color/white" />
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="5" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rangedWaponsRecyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="51dp"
-            android:scrollbars="horizontal"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
     </LinearLayout>
 
 </LinearLayout>

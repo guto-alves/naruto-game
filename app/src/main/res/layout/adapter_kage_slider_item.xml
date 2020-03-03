@@ -3,37 +3,35 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="8dp"
-    android:layout_marginLeft="8dp"
-    android:layout_marginEnd="8dp"
-    android:layout_marginRight="8dp"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@+id/imageView">
 
     <ImageView
-        android:id="@+id/vilaImageView"
+        android:id="@+id/villageImageView"
         android:layout_width="400dp"
         android:layout_height="110dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/layout_home_kages_1" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:layout_width="150dp"
         android:layout_height="55dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="@+id/vilaImageView"
-        app:layout_constraintStart_toStartOf="@+id/vilaImageView"
-        app:layout_constraintTop_toTopOf="@+id/vilaImageView">
+        app:layout_constraintBottom_toBottomOf="@+id/villageImageView"
+        app:layout_constraintStart_toStartOf="@+id/villageImageView"
+        app:layout_constraintTop_toTopOf="@+id/villageImageView">
 
         <ImageView
-            android:id="@+id/profileKageImageView"
+            android:id="@+id/profileImageView"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="2dp"
             android:layout_marginRight="2dp"
             app:srcCompat="@drawable/layout_home_1" />
 
@@ -44,7 +42,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/nameKageTextView"
+                android:id="@+id/nameTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -53,7 +51,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/levelKageTextView"
+                android:id="@+id/descriptionTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -61,6 +59,8 @@
                 android:textColor="@color/colorText"
                 android:textSize="10sp" />
         </LinearLayout>
+
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 

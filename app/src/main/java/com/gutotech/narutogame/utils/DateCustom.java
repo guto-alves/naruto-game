@@ -13,7 +13,7 @@ public class DateCustom {
         return calendar.get(Calendar.DAY_OF_WEEK);
     }
 
-    public static long getTimeInMillis(){
+    public static long getTimeInMillis() {
         return Calendar.getInstance().getTimeInMillis();
     }
 
@@ -45,18 +45,5 @@ public class DateCustom {
     public static int getSegundo() {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("ss", Locale.getDefault());
         return Integer.parseInt(simpleDateFormat.format(System.currentTimeMillis()));
-    }
-
-    public static long getMillis() {
-        return (long) getHora() * 3600000 + getMinuto() * 60000 + getSegundo() * 1000;
-    }
-
-    public static String mesAno(String data) {
-        String[] tokens = data.split("/");
-        return tokens[1] + tokens[2];
-    }
-
-    public static String dia() {
-        return getDate().split("/")[0];
     }
 }

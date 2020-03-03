@@ -21,7 +21,7 @@ public class VillageMapPopupWindow extends PopupWindow {
     public VillageMapPopupWindow(Context context) {
         super(context);
 
-        View root = LayoutInflater.from(context).inflate(R.layout.popup_village_map, null);
+        View root = LayoutInflater.from(context).inflate(R.layout.popup_village_map, null, false);
         setContentView(root);
 
         RecyclerView recyclerView = root.findViewById(R.id.placeRecyclerView);

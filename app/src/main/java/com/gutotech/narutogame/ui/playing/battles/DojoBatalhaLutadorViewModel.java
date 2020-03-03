@@ -1,7 +1,6 @@
 package com.gutotech.narutogame.ui.playing.battles;
 
 import android.os.CountDownTimer;
-import android.util.Log;
 import android.view.View;
 
 import androidx.databinding.ObservableField;
@@ -461,10 +460,12 @@ public class DojoBatalhaLutadorViewModel extends ViewModel
             CharOn.character.decrementScore(Score.DER_DOJO_NPC);
         }
 
+        mBattleRepository.delete(mBattle.getId());
+        mBattle.setPlayerCount(0);
+
         CharOn.character.setBattle(false);
         CharOn.character.battleId = "";
         CharacterRepository.getInstance().save(CharOn.character);
-        BattleRepository.getInstance().remove(CharOn.character.battleId);
     }
 
     private void startTimer() {
@@ -501,7 +502,9 @@ public class DojoBatalhaLutadorViewModel extends ViewModel
         if (mCountDownTimer != null) {
             mCountDownTimer.cancel();
             mCountDownTimer = null;
-            saveBattle();
+            if (mBattle.getPlayerCount() != 0) {
+                saveBattle();
+            }
         }
     }
 

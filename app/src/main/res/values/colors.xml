@@ -23,4 +23,8 @@
 
     <color name="colorYellowLight">#FFD273</color>
 
+    <color name="colorTeamRatingbar">#FCE187</color>
+
+    <color name="colorItemTitle">#FFD274</color>
+
 </resources>

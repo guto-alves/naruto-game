@@ -6,7 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,17 +28,17 @@ public class RamenShopFragment extends Fragment implements SectionFragment {
         FragmentRamemShopBinding binding = DataBindingUtil.inflate(inflater,
                 R.layout.fragment_ramem_shop, container, false);
 
-        RamenShopViewModel viewModel = ViewModelProviders.of(this)
+        RamenShopViewModel viewModel = new ViewModelProvider(this)
                 .get(RamenShopViewModel.class);
         binding.setViewModel(viewModel);
 
         ItemShopRecyclerAdapter adapter = new ItemShopRecyclerAdapter(getActivity(),
-                getFragmentManager(), viewModel);
+                getParentFragmentManager(), viewModel);
         binding.ramensRecyclerView.setHasFixedSize(true);
         binding.ramensRecyclerView.setAdapter(adapter);
         adapter.setItemsList(ShopUtils.getRamens());
 
-        viewModel.getShowWarningEvent().observe(this, resId ->
+        viewModel.getShowWarningEvent().observe(getViewLifecycleOwner(), resId ->
                 showWarningDialog(getString(resId)));
 
         FragmentUtil.setSectionTitle(getActivity(), R.string.section_ramen_shop);
@@ -47,7 +47,7 @@ public class RamenShopFragment extends Fragment implements SectionFragment {
 
     private void showWarningDialog(String warning) {
         DialogFragment warningDialog = new WarningDialog(warning);
-        warningDialog.show(getFragmentManager(), "WarningDialog");
+        warningDialog.show(getParentFragmentManager(), "WarningDialog");
     }
 
     @Override

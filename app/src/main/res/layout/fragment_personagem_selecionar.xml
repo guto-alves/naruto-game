@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="com.gutotech.narutogame.data.model.GraduationUtils" />
+
         <variable
             name="viewModel"
             type="com.gutotech.narutogame.ui.loggedin.selectcharacter.CharacterSelectViewModel" />
@@ -28,8 +30,8 @@
             <ImageView
                 android:id="@+id/profileImageView"
                 loadProfile="@{characterSelected.profilePath}"
-                android:layout_width="200dp"
-                android:layout_height="213dp"
+                android:layout_width="150dp"
+                android:layout_height="160dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -69,7 +71,6 @@
                         android:layout_height="wrap_content"
                         android:text="@string/information"
                         android:textColor="@android:color/white"
-                        android:textSize="16sp"
                         android:typeface="serif" />
                 </LinearLayout>
 
@@ -107,13 +108,15 @@
                                 android:layout_marginRight="3dp"
                                 android:text="@string/label_level"
                                 android:textColor="@android:color/white"
+                                android:textSize="12sp"
                                 android:textStyle="bold" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@{String.valueOf(characterSelected.level)}"
-                                android:textColor="@android:color/white" />
+                                android:textColor="@android:color/white"
+                                android:textSize="12sp" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -128,13 +131,15 @@
                                 android:layout_marginRight="3dp"
                                 android:text="@string/label_grade"
                                 android:textColor="@android:color/white"
+                                android:textSize="12sp"
                                 android:textStyle="bold" />
 
                             <TextView
+                                stringRes="@{GraduationUtils.getName(characterSelected.graduationId, characterSelected.village)}"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Gennin"
-                                android:textColor="@android:color/white" />
+                                android:textColor="@android:color/white"
+                                android:textSize="12sp" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -149,13 +154,15 @@
                                 android:layout_marginRight="3dp"
                                 android:text="@string/label_ryous"
                                 android:textColor="@android:color/white"
+                                android:textSize="12sp"
                                 android:textStyle="bold" />
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@{String.valueOf(characterSelected.ryous)}"
-                                android:textColor="@android:color/white" />
+                                android:textColor="@android:color/white"
+                                android:textSize="12sp" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -170,13 +177,15 @@
                                 android:layout_marginRight="3dp"
                                 android:text="@string/label_village"
                                 android:textColor="@android:color/white"
+                                android:textSize="12sp"
                                 android:textStyle="bold" />
 
                             <TextView
+                                stringRes="@{characterSelected.village.name}"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@{characterSelected.village.toString()}"
-                                android:textColor="@android:color/white" />
+                                android:textColor="@android:color/white"
+                                android:textSize="12sp" />
                         </LinearLayout>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -226,6 +235,7 @@
                 android:layout_marginLeft="24dp"
                 android:text="@string/section_select_your_character"
                 android:textColor="@android:color/white"
+                android:textStyle="italic"
                 android:typeface="serif"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView6"
                 app:layout_constraintStart_toStartOf="@+id/imageView6"
@@ -233,7 +243,7 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/charactersRecyclerView"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"

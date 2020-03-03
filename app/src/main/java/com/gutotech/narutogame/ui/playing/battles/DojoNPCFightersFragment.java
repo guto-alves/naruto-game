@@ -5,7 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,7 +26,7 @@ public class DojoNPCFightersFragment extends Fragment {
         FragmentDojoNpcFightersBinding binding = DataBindingUtil.inflate(inflater,
                 R.layout.fragment_dojo_npc_fighters, container, false);
 
-        DojoNpcFightersViewModel viewModel = ViewModelProviders.of(this)
+        DojoNpcFightersViewModel viewModel = new ViewModelProvider(this)
                 .get(DojoNpcFightersViewModel.class);
 
         binding.setViewModel(viewModel);
@@ -40,16 +40,16 @@ public class DojoNPCFightersFragment extends Fragment {
 
         binding.fightersLinearLayout.setVisibility(View.GONE);
 
-        viewModel.getShowProgressBar().observe(this, aVoid ->
+        viewModel.getShowProgressBar().observe(getViewLifecycleOwner(), aVoid ->
                 binding.statusProgressBar.setVisibility(View.VISIBLE));
 
-        viewModel.getShowStatusEvent().observe(this, resId -> {
+        viewModel.getShowStatusEvent().observe(getViewLifecycleOwner(), resId -> {
             binding.statusTextView.setText(resId);
             binding.statusTextView.setVisibility(View.VISIBLE);
             binding.statusProgressBar.setVisibility(View.GONE);
         });
 
-        viewModel.getShowFightersEvent().observe(this, npc -> {
+        viewModel.getShowFightersEvent().observe(getViewLifecycleOwner(), npc -> {
             binding.fightersLinearLayout.setVisibility(View.VISIBLE);
             binding.statusTextView.setVisibility(View.GONE);
             binding.statusProgressBar.setVisibility(View.GONE);

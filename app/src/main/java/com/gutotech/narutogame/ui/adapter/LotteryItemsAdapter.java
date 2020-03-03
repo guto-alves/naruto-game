@@ -19,7 +19,7 @@ import com.gutotech.narutogame.data.model.LotteryItem;
 import java.util.List;
 import java.util.Locale;
 
-public class LotteryItemsRecyclerAdapter extends RecyclerView.Adapter<LotteryItemsRecyclerAdapter.MyViewHolder> {
+public class LotteryItemsAdapter extends RecyclerView.Adapter<LotteryItemsAdapter.MyViewHolder> {
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         private ImageView itemImageView;
@@ -40,7 +40,7 @@ public class LotteryItemsRecyclerAdapter extends RecyclerView.Adapter<LotteryIte
     private Context context;
     private List<LotteryItem> lotteryItems;
 
-    public LotteryItemsRecyclerAdapter(Context context) {
+    public LotteryItemsAdapter(Context context) {
         this.context = context;
     }
 

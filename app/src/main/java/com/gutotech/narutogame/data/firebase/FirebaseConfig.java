@@ -10,14 +10,16 @@ public class FirebaseConfig {
     private static StorageReference sStorage;
 
     public static DatabaseReference getDatabase() {
-        if (sDatabase == null)
+        if (sDatabase == null) {
             sDatabase = FirebaseDatabase.getInstance().getReference();
+        }
         return sDatabase;
     }
 
     public static StorageReference getStorage() {
-        if (sStorage == null)
+        if (sStorage == null) {
             sStorage = FirebaseStorage.getInstance().getReference();
+        }
         return sStorage;
     }
 }

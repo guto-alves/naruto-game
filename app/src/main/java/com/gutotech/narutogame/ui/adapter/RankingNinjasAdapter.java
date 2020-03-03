@@ -54,11 +54,11 @@ public class RankingNinjasAdapter extends RecyclerView.Adapter<RankingNinjasAdap
 
             holder.nickTextView.setOnClickListener(v -> showDetails(character));
 
-            if (TextUtils.isEmpty(character.getTitle())) {
-                holder.titleTextView.setVisibility(View.GONE);
-            } else {
+            if (character.getTitle() != 0) {
                 holder.titleTextView.setVisibility(View.VISIBLE);
-                holder.titleTextView.setText(character.getTitle());
+                holder.titleTextView.setText(mContext.getString(character.getTitle()));
+            } else {
+                holder.titleTextView.setVisibility(View.GONE);
             }
 
             if (character.isOnline()) {

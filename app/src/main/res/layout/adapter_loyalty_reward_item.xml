@@ -11,7 +11,6 @@
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
         android:padding="16dp">
 
         <ImageView
@@ -28,9 +27,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Logar 1 dia(s) seguidos"
             android:textColor="@color/colorText"
-            android:textSize="18sp"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView" />
@@ -41,7 +39,6 @@
             android:layout_height="35dp"
             android:layout_marginTop="8dp"
             android:gravity="center_horizontal"
-            android:text="5 Shio Tyashu-Ramen"
             android:textColor="@color/colorText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

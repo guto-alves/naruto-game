@@ -35,6 +35,20 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginLeft="32dp"
+                android:text="@string/description_duration_reward_level"
+                android:textColor="@color/colorText"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView36"
+                app:layout_constraintStart_toStartOf="@+id/imageView36"
+                app:layout_constraintTop_toTopOf="@+id/imageView36" />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/tasksRecyclerView"
                 android:layout_width="0dp"
@@ -47,79 +61,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView36"
-                tools:listitem="@layout/recycler_task" />
-
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/description"
-                android:textColor="@color/colorText"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView36"
-                app:layout_constraintEnd_toStartOf="@+id/guideline31"
-                app:layout_constraintStart_toStartOf="@+id/imageView36"
-                app:layout_constraintTop_toTopOf="@+id/imageView36" />
-
-            <TextView
-                android:id="@+id/textView70"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/duration"
-                android:textColor="@color/colorText"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView36"
-                app:layout_constraintEnd_toStartOf="@+id/guideline32"
-                app:layout_constraintStart_toStartOf="@+id/guideline31"
-                app:layout_constraintTop_toTopOf="@+id/imageView36" />
-
-            <TextView
-                android:id="@+id/textView71"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/reward"
-                android:textColor="@color/colorText"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView36"
-                app:layout_constraintEnd_toStartOf="@+id/guideline33"
-                app:layout_constraintStart_toStartOf="@+id/guideline32"
-                app:layout_constraintTop_toTopOf="@+id/imageView36" />
-
-            <TextView
-                android:id="@+id/textView73"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/level"
-                android:textColor="@color/colorText"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView36"
-                app:layout_constraintStart_toStartOf="@+id/guideline33"
-                app:layout_constraintTop_toTopOf="@+id/imageView36" />
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline31"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.38" />
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline32"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.52" />
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline33"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.71" />
+                tools:listitem="@layout/adapter_initial_task" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

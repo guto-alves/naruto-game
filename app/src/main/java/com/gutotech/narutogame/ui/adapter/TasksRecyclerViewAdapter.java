@@ -26,7 +26,7 @@ public class TasksRecyclerViewAdapter extends RecyclerView.Adapter<TasksRecycler
         void onAcceptClick(Mission task);
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
         private TextView titleTextView;
         private TextView descriptionTextView;
         private TextView requirementsTextView;
@@ -57,7 +57,7 @@ public class TasksRecyclerViewAdapter extends RecyclerView.Adapter<TasksRecycler
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View itemView = LayoutInflater.from(viewGroup.getContext()).inflate(
-                R.layout.recycler_task, viewGroup, false);
+                R.layout.adapter_initial_task, viewGroup, false);
         return new MyViewHolder(itemView);
     }
 

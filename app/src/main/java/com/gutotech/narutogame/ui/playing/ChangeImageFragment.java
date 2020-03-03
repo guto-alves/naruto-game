@@ -20,6 +20,7 @@ import com.gutotech.narutogame.utils.FragmentUtil;
 import com.gutotech.narutogame.utils.StorageUtil;
 
 public class ChangeImageFragment extends Fragment implements SectionFragment {
+    private QuestionDialog questionDialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -29,18 +30,18 @@ public class ChangeImageFragment extends Fragment implements SectionFragment {
         RecyclerView profilesRecyclerView = view.findViewById(R.id.profilesRecyclerView);
         profilesRecyclerView.setHasFixedSize(true);
 
+        questionDialog = new QuestionDialog(getString(R.string.question_change_profile_image));
         StorageUtil.listAll(
                 String.format("images/profile/%s/", CharOn.character.getNinja().getId()),
                 data -> {
                     ProfilesAdapter adapter = new ProfilesAdapter(data, profilePath -> {
-                        QuestionDialog questionDialog = new QuestionDialog(getString(R.string.question_change_profile_image));
                         questionDialog.setOnOkButton(v -> {
                             CharOn.character.setProfilePath(profilePath);
 
                             DrawerLayout drawer = getActivity().findViewById(R.id.drawerLayout);
                             drawer.openDrawer(GravityCompat.START);
                         });
-                        questionDialog.show(getFragmentManager(), "QuestionDialog");
+                        questionDialog.show(getParentFragmentManager(), "QuestionDialog");
                     });
                     profilesRecyclerView.setAdapter(adapter);
                 });

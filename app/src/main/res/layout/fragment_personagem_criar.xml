@@ -20,19 +20,21 @@
         android:fillViewport="true"
         tools:context=".ui.loggedin.newcharacteer.CharacterCreateFragment">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:padding="16dp">
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardView"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:cardBackgroundColor="#271C15"
                 app:cardCornerRadius="8dp"
-                app:cardUseCompatPadding="true">
+                app:cardUseCompatPadding="true"
+                app:layout_constraintEnd_toEndOf="@+id/cardView4"
+                app:layout_constraintStart_toStartOf="@+id/cardView4"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -45,7 +47,7 @@
                     android:orientation="vertical"
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
-                    android:paddingBottom="10dp">
+                    android:paddingBottom="5dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -76,7 +78,6 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="16dp"
                         android:orientation="vertical">
 
                         <LinearLayout
@@ -180,54 +181,77 @@
                         </LinearLayout>
                     </LinearLayout>
 
-                    <RadioGroup
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:orientation="horizontal">
-
-                        <RadioButton
-                            android:id="@+id/taiRadioButton"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:checked="true"
-                            android:onClick="@{() -> viewModel.onClassSelected(Classe.TAI)}"
-                            android:text="@string/taijutsu"
-                            android:textColor="@android:color/white" />
-
-                        <RadioButton
-                            android:id="@+id/ninRadioButton"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:onClick="@{() -> viewModel.onClassSelected(Classe.NIN)}"
-                            android:text="@string/ninjustu"
-                            android:textColor="@android:color/white" />
-
-                        <RadioButton
-                            android:id="@+id/genRadioButton"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:onClick="@{() -> viewModel.onClassSelected(Classe.GEN)}"
-                            android:text="@string/genjutsu"
-                            android:textColor="@android:color/white" />
-
-                        <RadioButton
-                            android:id="@+id/bukRadioButton"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:onClick="@{() -> viewModel.onClassSelected(Classe.BUK)}"
-                            android:text="@string/bukijutsu"
-                            android:textColor="@android:color/white" />
-                    </RadioGroup>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
+                android:id="@+id/cardView4"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:cardBackgroundColor="#271C15"
                 app:cardCornerRadius="8dp"
-                app:cardUseCompatPadding="true">
+                app:cardUseCompatPadding="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_chainStyle="spread"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardView">
+
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="5dp">
+
+                    <RadioButton
+                        android:id="@+id/taiRadioButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:onClick="@{() -> viewModel.onClassSelected(Classe.TAI)}"
+                        android:text="@string/taijutsu"
+                        android:textColor="@android:color/white"
+                        android:textSize="12sp" />
+
+                    <RadioButton
+                        android:id="@+id/ninRadioButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="@{() -> viewModel.onClassSelected(Classe.NIN)}"
+                        android:text="@string/ninjustu"
+                        android:textColor="@android:color/white"
+                        android:textSize="12sp" />
+
+                    <RadioButton
+                        android:id="@+id/genRadioButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="@{() -> viewModel.onClassSelected(Classe.GEN)}"
+                        android:text="@string/genjutsu"
+                        android:textColor="@android:color/white"
+                        android:textSize="12sp" />
+
+                    <RadioButton
+                        android:id="@+id/bukRadioButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="@{() -> viewModel.onClassSelected(Classe.BUK)}"
+                        android:text="@string/bukijutsu"
+                        android:textColor="@android:color/white"
+                        android:textSize="12sp" />
+                </RadioGroup>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="#271C15"
+                app:cardCornerRadius="8dp"
+                app:cardUseCompatPadding="true"
+                app:layout_constraintEnd_toEndOf="@+id/cardView4"
+                app:layout_constraintStart_toStartOf="@+id/cardView4"
+                app:layout_constraintTop_toBottomOf="@+id/cardView4">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -253,16 +277,23 @@
             </androidx.cardview.widget.CardView>
 
             <ImageView
+                android:id="@+id/imageView58"
                 loadProfile="@{viewModel.character.profilePath}"
                 android:layout_width="226dp"
                 android:layout_height="241dp"
-                android:layout_gravity="center"
                 android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardView3" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout6"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView58">
 
                 <ImageView
                     android:id="@+id/imageView9"
@@ -280,8 +311,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginLeft="24dp"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginLeft="32dp"
                     android:text="@string/choose_your_character"
                     android:textColor="@android:color/white"
                     android:typeface="serif"
@@ -292,34 +323,38 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/ninjasRecyclerView"
-                android:layout_width="387dp"
-                android:layout_height="253dp"
+                android:layout_width="wrap_content"
+                android:layout_height="187dp"
                 android:layout_gravity="center"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
                 android:scrollbars="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                app:spanCount="3" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout6"
+                app:spanCount="3"
+                tools:itemCount="6"
+                tools:listitem="@layout/adapter_small_profile" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout3"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="32dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="32dp">
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ninjasRecyclerView">
 
                 <ImageButton
                     android:id="@+id/backImageButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginLeft="8dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     android:onClick="@{() -> viewModel.back()}"
                     android:padding="16dp"
                     app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/currentGroupTextView"
+                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/layout_home_left" />
@@ -329,13 +364,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginRight="8dp"
                     android:layout_marginBottom="8dp"
                     android:onClick="@{() -> viewModel.go()}"
                     android:padding="16dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/currentGroupTextView"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/layout_home_right" />
 
@@ -343,28 +378,30 @@
                     android:id="@+id/currentGroupTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginLeft="8dp"
                     android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginRight="8dp"
                     android:layout_marginBottom="8dp"
                     android:text="@{String.valueOf(viewModel.currentGroupIndex + 1)}"
                     android:textColor="@android:color/white"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/goImageButton"
+                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/backImageButton"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <Button
+                android:id="@+id/button5"
                 style="@style/ButtonTheme"
-                android:layout_gravity="center"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginTop="16dp"
                 android:onClick="@{() -> viewModel.onCreateButtonPressed()}"
-                android:text="@string/create_character" />
-        </LinearLayout>
+                android:text="@string/create_character"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout3" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
     </ScrollView>
+
 </layout>

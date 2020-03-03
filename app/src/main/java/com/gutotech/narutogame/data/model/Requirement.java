@@ -15,6 +15,10 @@ public class Requirement implements Require {
         return null;
     }
 
+    public int getValue() {
+        return 0;
+    }
+
     @Override
     public boolean check() {
         return check(false);

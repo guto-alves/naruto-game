@@ -6,7 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
 
 import android.view.LayoutInflater;
@@ -20,12 +20,15 @@ import com.gutotech.narutogame.data.repository.AuthRepository;
 import com.gutotech.narutogame.databinding.FragmentHomeBinding;
 import com.gutotech.narutogame.ui.ProgressDialog;
 import com.gutotech.narutogame.ui.SectionFragment;
+import com.gutotech.narutogame.ui.adapter.KagesSliderAdapter;
 import com.gutotech.narutogame.ui.adapter.NinjaStatisticsAdapter;
 import com.gutotech.narutogame.ui.adapter.NewsAdapter;
 import com.gutotech.narutogame.ui.ResultListener;
 import com.gutotech.narutogame.ui.loggedin.LoggedInActivity;
 import com.gutotech.narutogame.utils.FragmentUtil;
 import com.gutotech.narutogame.ui.home.recuperarsenha.RecuperarSenhaFragment;
+import com.smarteist.autoimageslider.IndicatorAnimations;
+import com.smarteist.autoimageslider.SliderAnimations;
 
 import es.dmoral.toasty.Toasty;
 
@@ -34,7 +37,7 @@ public class HomeFragment extends Fragment implements ResultListener, SectionFra
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        HomeViewModel viewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
+        HomeViewModel viewModel = new ViewModelProvider(this).get(HomeViewModel.class);
 
         FragmentHomeBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home,
                 container, false);
@@ -60,43 +63,31 @@ public class HomeFragment extends Fragment implements ResultListener, SectionFra
                 LinearLayout.HORIZONTAL));
         NewsAdapter newsAdapter = new NewsAdapter(getActivity());
         binding.newsRecyclerView.setAdapter(newsAdapter);
-        viewModel.getNews().observe(this, newsAdapter::setNewsList);
+        viewModel.getNews().observe(getViewLifecycleOwner(), newsAdapter::setNewsList);
 
         binding.ninjaStatisticsRecyclerView.setHasFixedSize(true);
         NinjaStatisticsAdapter ninjaStatisticsAdapter = new NinjaStatisticsAdapter(getActivity());
         binding.ninjaStatisticsRecyclerView.setAdapter(ninjaStatisticsAdapter);
-
-        viewModel.getNinjaStatistics().observe(this,
+        viewModel.getNinjaStatistics().observe(getViewLifecycleOwner(),
                 ninjaStatisticsAdapter::setNinjaStatisticsList);
 
-//        ViewPager viewPager = root.findViewById(R.id.kagesAndVilaViewPager);
-//        KagesAndVilasViewPagerAdapter viewPagerAdapter = new KagesAndVilasViewPagerAdapter(getActivity());
-//        viewPager.setAdapter(viewPagerAdapter);
+        KagesSliderAdapter kagesSliderAdapter = new KagesSliderAdapter(getContext());
+        binding.kagesSliderView.setSliderAdapter(kagesSliderAdapter);
+        binding.kagesSliderView.startAutoCycle();
+        binding.kagesSliderView.setIndicatorAnimation(IndicatorAnimations.WORM);
+        binding.kagesSliderView.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION);
+        viewModel.getKages().observe(getViewLifecycleOwner(), kagesSliderAdapter::renewItems);
 
         FragmentUtil.setSectionTitle(getActivity(), R.string.section_home);
 
         return binding.getRoot();
     }
 
-    private void setUpNewsRecyclerView() {
-//        binding.newsRecyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getActivity(),
-//                newsRecyclerView, new RecyclerItemClickListener.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(View view, int position) {
-////                Bundle bundle = new Bundle();
-////                bundle.putSerializable("noticia", noticiaList.get(position));
-////
-////                LerNoticiaFragment lerNoticiaFragment = new LerNoticiaFragment();
-////                lerNoticiaFragment.setArguments(bundle);
-////                changeTo(lerNoticiaFragment);
-//        }));
-    }
-
     private ProgressDialog progressDialog = new ProgressDialog();
 
     @Override
     public void onStarted() {
-        progressDialog.show(getFragmentManager(), "ProgressDialog");
+        progressDialog.show(getParentFragmentManager(), "ProgressDialog");
     }
 
     @Override

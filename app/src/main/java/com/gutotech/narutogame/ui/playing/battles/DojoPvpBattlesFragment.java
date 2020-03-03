@@ -11,12 +11,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.gutotech.narutogame.R;
+import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.databinding.FragmentDojoPvpBattlesBinding;
 import com.gutotech.narutogame.utils.FragmentUtil;
 
-public class BatalhasDojoPVPFragment extends Fragment {
+public class DojoPvpBattlesFragment extends Fragment {
 
-    public BatalhasDojoPVPFragment() {
+    public DojoPvpBattlesFragment() {
     }
 
     @Override
@@ -29,7 +30,7 @@ public class BatalhasDojoPVPFragment extends Fragment {
         binding.sectionMsg.descriptionTextView.setText(R.string.dojo_pvp_fighters_description);
 
         binding.goToTheQueueButton.setOnClickListener(v ->
-                FragmentUtil.goTo(getActivity(), new DojoRandomWaitFragment()));
+                CharOn.character.setDojoWaitQueue(true));
 
         return binding.getRoot();
     }

@@ -4,26 +4,21 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.model.JutsuInfo;
 import com.gutotech.narutogame.data.model.Requirement;
-import com.gutotech.narutogame.databinding.PopupLearnJutsuInfoBinding;
 import com.gutotech.narutogame.ui.playing.RequirementDialogFragment;
 import com.gutotech.narutogame.ui.playing.academy.LearnJutsuInfoPopupWindow;
 import com.gutotech.narutogame.utils.StorageUtil;
@@ -73,7 +68,7 @@ public class JutsusLearnAdapter extends RecyclerView.Adapter<JutsusLearnAdapter.
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View itemView = LayoutInflater.from(viewGroup.getContext()).inflate(
-                R.layout.recycler_jutsu_learn_item, viewGroup, false);
+                R.layout.adapter_jutsu_learn_item, viewGroup, false);
         return new ViewHolder(itemView);
     }
 

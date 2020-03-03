@@ -7,7 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,7 +18,7 @@ import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.databinding.FragmentNinjaLuckyBinding;
 import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.WarningDialog;
-import com.gutotech.narutogame.ui.adapter.LotteryItemsRecyclerAdapter;
+import com.gutotech.narutogame.ui.adapter.LotteryItemsAdapter;
 import com.gutotech.narutogame.utils.FragmentUtil;
 
 import java.security.SecureRandom;
@@ -36,23 +36,22 @@ public class NinjaLuckyFragment extends Fragment implements SectionFragment {
                 container, false);
         mBinding.setLifecycleOwner(this);
 
-        mViewModel = ViewModelProviders.of(this).get(NinjaLuckyViewModel.class);
+        mViewModel = new ViewModelProvider(this).get(NinjaLuckyViewModel.class);
         mBinding.setViewModel(mViewModel);
 
         mBinding.lotteryItemsRecyclerView.setHasFixedSize(true);
-        LotteryItemsRecyclerAdapter adapter = new LotteryItemsRecyclerAdapter(getActivity());
+        LotteryItemsAdapter adapter = new LotteryItemsAdapter(getActivity());
         mBinding.lotteryItemsRecyclerView.setAdapter(adapter);
 
-        mViewModel.getLotteryItems().observe(this, adapter::setLotteryItems);
+        mViewModel.getLotteryItems().observe(getViewLifecycleOwner(), adapter::setLotteryItems);
 
-        mViewModel.getStartAnimationEvent().observe(this, i -> startAnimation());
+        mViewModel.getStartAnimationEvent().observe(getViewLifecycleOwner(), i -> startAnimation());
 
-        mViewModel.getShowPremiumEvent().observe(this, premiun ->
+        mViewModel.getShowPremiumEvent().observe(getViewLifecycleOwner(), premiun ->
                 mBinding.premiumTextView.setText(premiun));
 
-        mViewModel.getShowWarningDialogEvent().observe(this, resId -> {
-            showWarningDialog(getString(resId));
-        });
+        mViewModel.getShowWarningDialogEvent().observe(getViewLifecycleOwner(), resId ->
+                showWarningDialog(getString(resId)));
 
         FragmentUtil.setSectionTitle(getActivity(), R.string.section_ninja_lucky);
 
@@ -61,10 +60,10 @@ public class NinjaLuckyFragment extends Fragment implements SectionFragment {
 
     private void showWarningDialog(String warning) {
         DialogFragment warningDialog = new WarningDialog(warning);
-        warningDialog.show(getFragmentManager(), "WarningDialog");
+        warningDialog.show(getParentFragmentManager(), "WarningDialog");
     }
 
-    public void startAnimation() {
+    private void startAnimation() {
         ExecutorService executorService = Executors.newCachedThreadPool();
         new AnimationTask(mBinding.slot1ImageView).executeOnExecutor(executorService);
         new AnimationTask(mBinding.slot2ImageView).executeOnExecutor(executorService);
@@ -74,14 +73,14 @@ public class NinjaLuckyFragment extends Fragment implements SectionFragment {
 
     private int animationEndCount;
 
-    private class AnimationTask extends AsyncTask<Void, Integer, Void> {
+    public class AnimationTask extends AsyncTask<Void, Integer, Void> {
         private final SecureRandom random = new SecureRandom();
         final int INITIAL_SCROLL = -1333;
         final int FINAL_SCROLL = 1333;
 
         private ImageView slotImageView;
 
-        public AnimationTask(ImageView slotImageView) {
+        AnimationTask(ImageView slotImageView) {
             this.slotImageView = slotImageView;
         }
 

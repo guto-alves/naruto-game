@@ -30,22 +30,42 @@ public class Formulas extends BaseObservable implements Serializable {
     public Formulas() {
     }
 
+    public void validateCeil() {
+        if (getCurrentHealth() > getHealth()) {
+            setCurrentHealth(getHealth());
+        }
+
+        if (getCurrentChakra() > getChakra()) {
+            setCurrentChakra(getChakra());
+        }
+
+        if (getCurrentStamina() > getStamina()) {
+            setCurrentStamina(getStamina());
+        }
+    }
+
     public void full() {
         setCurrentHealth(getHealth());
         setCurrentChakra(getChakra());
         setCurrentStamina(getStamina());
     }
 
+    public boolean isFull() {
+        return getCurrentHealth() == getHealth() &&
+                getCurrentChakra() == getChakra() &&
+                getCurrentStamina() == getStamina();
+    }
+
     public void subHeath(int value) {
-        setCurrentHealth(getCurrentHealth() - value > 0 ? getCurrentHealth() - value : 0);
+        setCurrentHealth(Math.max(getCurrentHealth() - value, 0));
     }
 
     public void subChakra(int value) {
-        setCurrentChakra(getCurrentChakra() - value > 0 ? getCurrentChakra() - value : 0);
+        setCurrentChakra(Math.max(getCurrentChakra() - value, 0));
     }
 
     public void subStamina(int value) {
-        setCurrentStamina(getCurrentStamina() - value > 0 ? getCurrentStamina() - value : 0);
+        setCurrentStamina(Math.max(getCurrentStamina() - value, 0));
     }
 
     public void addHeath(int value) {
@@ -62,6 +82,22 @@ public class Formulas extends BaseObservable implements Serializable {
         int newStamina = getCurrentStamina() + value;
         setCurrentStamina(newStamina >= getStamina() ? getStamina() : newStamina);
     }
+
+    public List<Integer> asList() {
+        List<Integer> formulas = new ArrayList<>();
+
+        formulas.add(Formula.HEALTH.id, currentHealth);
+        formulas.add(Formula.CHAKRA.id, currentChakra);
+        formulas.add(Formula.STAMINA.id, currentStamina);
+        formulas.add(Formula.ATK_TAI.id, atkTaiBuki);
+        formulas.add(Formula.ATK_NIN.id, atkNinGen);
+        formulas.add(Formula.DEF_TAI.id, defTaiBuki);
+        formulas.add(Formula.DEF_NIN.id, defNinGen);
+        formulas.add(Formula.ACC.id, accuracy);
+
+        return formulas;
+    }
+
 
     @Bindable
     public int getHealth() {
@@ -223,21 +259,4 @@ public class Formulas extends BaseObservable implements Serializable {
         this.ninjaPower = ninjaPower;
         notifyPropertyChanged(BR.ninjaPower);
     }
-
-    public List<Integer> asList() {
-        List<Integer> formulas = new ArrayList<>();
-
-        formulas.add(Formula.HEALTH.id, currentHealth);
-        formulas.add(Formula.CHAKRA.id, currentChakra);
-        formulas.add(Formula.STAMINA.id, currentStamina);
-        formulas.add(Formula.ATK_TAI.id, atkTaiBuki);
-        formulas.add(Formula.ATK_NIN.id, atkNinGen);
-        formulas.add(Formula.DEF_TAI.id, defTaiBuki);
-        formulas.add(Formula.DEF_NIN.id, defNinGen);
-        formulas.add(Formula.ACC.id, accuracy);
-
-        return formulas;
-    }
-
-
 }

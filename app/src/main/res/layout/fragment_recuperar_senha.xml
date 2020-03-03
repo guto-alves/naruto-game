@@ -19,15 +19,13 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/layout_pagina_repeat"
             android:padding="16dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/msgConstraint"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:background="#1D140F"
-                tools:layout_editor_absoluteX="8dp">
+                android:layout_height="wrap_content"
+                android:background="#1D140F">
 
                 <ImageView
                     android:id="@+id/imageView24"
@@ -41,7 +39,7 @@
 
                 <ImageView
                     android:id="@+id/imageView21"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:scaleType="fitXY"
                     android:src="@drawable/layout_msg_topo"
@@ -50,14 +48,15 @@
                     app:layout_constraintTop_toTopOf="@+id/imageView24" />
 
                 <ImageView
-                    android:id="@+id/personagemMsg"
+                    android:id="@+id/profileImageView"
+                    profileForMsg="@{1}"
                     android:layout_width="120dp"
-                    android:layout_height="260dp"
+                    android:layout_height="0dp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/layout_msg_1_1"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.88" />
 
                 <ImageView
                     android:id="@+id/imageView23"
@@ -72,7 +71,7 @@
 
                 <ImageView
                     android:id="@+id/imageView22"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:scaleType="fitXY"
                     android:src="@drawable/layout_msg_rodape1"
@@ -83,22 +82,22 @@
 
                 <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_height="0dp"
+                    android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:orientation="vertical"
+                    android:padding="3dp"
                     app:layout_constraintBottom_toTopOf="@+id/imageView22"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/personagemMsg"
+                    app:layout_constraintStart_toEndOf="@+id/profileImageView"
                     app:layout_constraintTop_toBottomOf="@+id/imageView21">
 
                     <TextView
                         android:id="@+id/msgMensagem"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="8dp"
                         android:gravity="center|start"
-                        android:paddingEnd="3dp"
-                        android:paddingRight="3dp"
                         android:text="@string/if_you_do_not_remember_your_password"
                         android:textColor="#D1D8F1"
                         android:textSize="12sp" />
@@ -107,16 +106,16 @@
                         style="@style/EditTextTheme"
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="16dp"
+                        android:layout_marginTop="16dp"
                         android:hint="@string/type_your_account_email"
                         android:inputType="textEmailAddress"
+                        android:padding="3dp"
                         android:text="@={viewModel.emailAddress}"
-                        android:textColorHint="@android:color/holo_orange_dark"
-                        android:textSize="14sp" />
+                        android:textColorHint="@android:color/holo_orange_dark" />
 
                     <Button
                         style="@style/ButtonTheme"
-                        android:layout_width="wrap_content"
+                        android:layout_marginTop="16dp"
                         android:onClick="@{() -> viewModel.onRecoverPasswordButtonPressed()}"
                         android:text="@string/recover_password" />
 

@@ -7,7 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,7 +36,7 @@ public class CharacterSelectFragment extends Fragment implements SectionFragment
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_personagem_selecionar,
                 container, false);
 
-        mViewModel = ViewModelProviders.of(this).get(CharacterSelectViewModel.class);
+        mViewModel = new ViewModelProvider(this).get(CharacterSelectViewModel.class);
         mViewModel.setListener(this);
 
         mBinding.setViewModel(mViewModel);
@@ -45,7 +45,7 @@ public class CharacterSelectFragment extends Fragment implements SectionFragment
         mBinding.charactersRecyclerView.setHasFixedSize(true);
         mBinding.charactersRecyclerView.setAdapter(charactersAdapter);
 
-        mViewModel.getCharactersList().observe(this, characters -> {
+        mViewModel.getCharactersList().observe(getViewLifecycleOwner(), characters -> {
             if (characters.size() == 0) {
                 FragmentUtil.goTo(getActivity(), new CharacterCreateFragment());
             } else {
@@ -54,7 +54,7 @@ public class CharacterSelectFragment extends Fragment implements SectionFragment
             }
         });
 
-        mViewModel.getRemoveCharacterEvent().observe(this, onClickListener -> {
+        mViewModel.getRemoveCharacterEvent().observe(getViewLifecycleOwner(), onClickListener -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
             builder.setTitle(R.string.naruto_game_says);
             builder.setMessage(R.string.want_to_delete_this_ninja);
@@ -64,7 +64,7 @@ public class CharacterSelectFragment extends Fragment implements SectionFragment
             builder.show();
         });
 
-        mViewModel.getShowRemovingErrorDialog().observe(this, aVoid -> {
+        mViewModel.getShowRemovingErrorDialog().observe(getViewLifecycleOwner(), aVoid -> {
             AlertDialog.Builder builder1 = new AlertDialog.Builder(getContext());
             builder1.setTitle(R.string.warning);
             builder1.setMessage(R.string.remove_character_while_logged_in);

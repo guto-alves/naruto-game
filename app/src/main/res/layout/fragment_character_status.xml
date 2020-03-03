@@ -25,7 +25,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/combatOverviewConstraintLayout"
                 android:layout_width="0dp"
-                android:layout_height="300dp"
+                android:layout_height="248dp"
                 android:layout_marginEnd="4dp"
                 android:layout_marginRight="4dp"
                 android:background="@drawable/layout_bg_home"
@@ -44,7 +44,7 @@
                     android:gravity="center"
                     android:text="@string/combat_overview"
                     android:textColor="#FFD274"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:textStyle="bold|italic"
                     android:typeface="serif"
                     app:layout_constraintBottom_toTopOf="@+id/guideline61"
@@ -57,7 +57,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    app:layout_constraintGuide_begin="82dp" />
+                    app:layout_constraintGuide_begin="65dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -81,7 +81,7 @@
                             android:layout_marginRight="3dp"
                             android:text="@string/label_wins_npc"
                             android:textColor="#0BD96C"
-                            android:textSize="14sp" />
+                            android:textSize="12sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -102,7 +102,8 @@
                             android:layout_marginEnd="3dp"
                             android:layout_marginRight="3dp"
                             android:text="@string/label_wins_dojo_pvp"
-                            android:textColor="@color/colorGreen" />
+                            android:textColor="@color/colorGreen"
+                            android:textSize="12sp" />
 
                         <TextView
                             android:id="@+id/vitDojoTextView"
@@ -124,7 +125,8 @@
                             android:layout_marginEnd="3dp"
                             android:layout_marginRight="3dp"
                             android:text="@string/label_wins_map_pvp"
-                            android:textColor="@color/colorGreen" />
+                            android:textColor="@color/colorGreen"
+                            android:textSize="12sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -145,7 +147,8 @@
                             android:layout_marginEnd="3dp"
                             android:layout_marginRight="3dp"
                             android:text="@string/label_derrotas_npc"
-                            android:textColor="@android:color/holo_red_dark" />
+                            android:textColor="@android:color/holo_red_dark"
+                            android:textSize="12sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -167,7 +170,8 @@
                             android:layout_marginEnd="3dp"
                             android:layout_marginRight="3dp"
                             android:text="@string/label_derrotas_dojo_pvp"
-                            android:textColor="@android:color/holo_red_dark" />
+                            android:textColor="@android:color/holo_red_dark"
+                            android:textSize="12sp" />
 
                         <TextView
                             android:id="@+id/derDojoTextView"
@@ -190,7 +194,8 @@
                             android:layout_marginEnd="3dp"
                             android:layout_marginRight="3dp"
                             android:text="@string/label_losses_map_pvp"
-                            android:textColor="@android:color/holo_red_dark" />
+                            android:textColor="@android:color/holo_red_dark"
+                            android:textSize="12sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -212,7 +217,8 @@
                             android:layout_marginEnd="3dp"
                             android:layout_marginRight="3dp"
                             android:text="@string/label_draws_pvp"
-                            android:textColor="@android:color/darker_gray" />
+                            android:textColor="@android:color/darker_gray"
+                            android:textSize="12sp" />
 
                         <TextView
                             android:id="@+id/empPVPTextView"
@@ -235,7 +241,8 @@
                             android:layout_marginEnd="3dp"
                             android:layout_marginRight="3dp"
                             android:text="@string/label_draws_npc"
-                            android:textColor="@android:color/darker_gray" />
+                            android:textColor="@android:color/darker_gray"
+                            android:textSize="12sp" />
 
                         <TextView
                             android:id="@+id/empNPCTextView"
@@ -251,7 +258,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/resumeOfMissionsConstraintLayout"
                 android:layout_width="0dp"
-                android:layout_height="300dp"
+                android:layout_height="248dp"
                 android:layout_marginStart="4dp"
                 android:layout_marginLeft="4dp"
                 android:background="@drawable/layout_bg_home"
@@ -269,7 +276,7 @@
                     android:gravity="center"
                     android:text="@string/resume_of_missions"
                     android:textColor="#FFD274"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:textStyle="bold|italic"
                     android:typeface="serif"
                     app:layout_constraintBottom_toTopOf="@+id/guideline611"
@@ -282,7 +289,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    app:layout_constraintGuide_begin="82dp" />
+                    app:layout_constraintGuide_begin="65dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -290,8 +297,9 @@
                     android:layout_marginTop="8dp"
                     android:gravity="center"
                     android:orientation="vertical"
-                    app:layout_constraintTop_toTopOf="@+id/guideline611"
-                    tools:layout_editor_absoluteX="5dp">
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/guideline611">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -306,7 +314,7 @@
                             android:layout_marginRight="3dp"
                             android:text="@string/label_rank_s"
                             android:textColor="#0BD96C"
-                            android:textSize="14sp" />
+                            android:textSize="12sp" />
 
                         <TextView
                             android:id="@+id/rankSTextView"
@@ -328,7 +336,8 @@
                             android:layout_marginEnd="3dp"
                             android:layout_marginRight="3dp"
                             android:text="@string/label_rank_a"
-                            android:textColor="@color/colorGreen" />
+                            android:textColor="@color/colorGreen"
+                            android:textSize="12sp" />
 
                         <TextView
                             android:id="@+id/rankATextView"
@@ -350,7 +359,8 @@
                             android:layout_marginEnd="3dp"
                             android:layout_marginRight="3dp"
                             android:text="@string/label_rank_b"
-                            android:textColor="@color/colorGreen" />
+                            android:textColor="@color/colorGreen"
+                            android:textSize="12sp" />
 
                         <TextView
                             android:id="@+id/rankBTextView"
@@ -372,7 +382,8 @@
                             android:layout_marginEnd="3dp"
                             android:layout_marginRight="3dp"
                             android:text="@string/label_rank_c"
-                            android:textColor="@color/colorGreen" />
+                            android:textColor="@color/colorGreen"
+                            android:textSize="12sp" />
 
                         <TextView
                             android:id="@+id/rankCTextView"
@@ -394,7 +405,8 @@
                             android:layout_marginEnd="3dp"
                             android:layout_marginRight="3dp"
                             android:text="@string/label_rank_d"
-                            android:textColor="@color/colorGreen" />
+                            android:textColor="@color/colorGreen"
+                            android:textSize="12sp" />
 
                         <TextView
                             android:id="@+id/rankDTextView"
@@ -416,7 +428,8 @@
                             android:layout_marginEnd="3dp"
                             android:layout_marginRight="3dp"
                             android:text="@string/label_tasks"
-                            android:textColor="@color/colorGreen" />
+                            android:textColor="@color/colorGreen"
+                            android:textSize="12sp" />
 
                         <TextView
                             android:id="@+id/tarefasTextView"
@@ -431,8 +444,8 @@
             <!-- Extras Information -->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/extrasInfoConstraintLayout"
-                android:layout_width="0dp"
-                android:layout_height="300dp"
+                android:layout_width="wrap_content"
+                android:layout_height="248dp"
                 android:background="@drawable/layout_bg_home"
                 android:gravity="center|start"
                 android:orientation="vertical"
@@ -449,7 +462,7 @@
                     android:gravity="center"
                     android:text="@string/extras_information"
                     android:textColor="#FFD274"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:textStyle="bold|italic"
                     android:typeface="serif"
                     app:layout_constraintBottom_toTopOf="@+id/guideline6111"
@@ -462,7 +475,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    app:layout_constraintGuide_begin="82dp" />
+                    app:layout_constraintGuide_begin="65dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -470,8 +483,9 @@
                     android:layout_marginTop="8dp"
                     android:gravity="center"
                     android:orientation="vertical"
-                    app:layout_constraintTop_toTopOf="@+id/guideline6111"
-                    tools:layout_editor_absoluteX="5dp">
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/guideline6111">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -486,7 +500,7 @@
                             android:layout_marginRight="3dp"
                             android:text="@string/label_total_de_treino"
                             android:textColor="#FF9800"
-                            android:textSize="14sp" />
+                            android:textSize="12sp" />
 
                         <TextView
                             android:id="@+id/totalTreinoTextView"
@@ -509,7 +523,7 @@
                             android:layout_marginRight="3dp"
                             android:text="@string/label_pontos_distribu_dos"
                             android:textColor="#FF9800"
-                            android:textSize="14sp" />
+                            android:textSize="12sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -531,7 +545,7 @@
                             android:layout_marginRight="3dp"
                             android:text="@string/label_total_de_horas_jogadas"
                             android:textColor="#FF9800"
-                            android:textSize="14sp" />
+                            android:textSize="12sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -586,7 +600,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/attributesRecyclerView"
                 android:layout_width="0dp"
-                android:layout_height="400dp"
+                android:layout_height="420dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginEnd="8dp"
@@ -595,7 +609,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView1"
-                tools:listitem="@layout/recycler_attribute_list_item" />
+                tools:listitem="@layout/adapter_attribute_item" />
 
             <TextView
                 android:id="@+id/textView38"
@@ -614,9 +628,10 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/formulasRecyclerView"
                 android:layout_width="0dp"
-                android:layout_height="320dp"
+                android:layout_height="340dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -651,7 +666,9 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 app:layout_constraintGuide_percent="0.5" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
+
 </layout>

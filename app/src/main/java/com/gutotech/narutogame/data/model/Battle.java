@@ -32,6 +32,8 @@ public class Battle extends BaseObservable {
 
     private Jutsu oppJutsu;
 
+    private int playerCount;
+
     public Battle() {
     }
 
@@ -40,6 +42,7 @@ public class Battle extends BaseObservable {
         this.player2 = player2;
         status = Status.CONTINUE;
         currentPlayer = 1;
+        playerCount = 2;
         attackStart = DateCustom.getTimeInMillis();
     }
 
@@ -79,6 +82,14 @@ public class Battle extends BaseObservable {
     public void setCurrentPlayer(int currentPlayer) {
         this.currentPlayer = currentPlayer;
         notifyPropertyChanged(BR.currentPlayer);
+    }
+
+    public int getPlayerCount() {
+        return playerCount;
+    }
+
+    public void setPlayerCount(int playerCount) {
+        this.playerCount = playerCount;
     }
 
     public List<BattleLog> getBattleLogs() {

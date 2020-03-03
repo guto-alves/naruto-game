@@ -29,23 +29,23 @@ public class CharacterRepository {
     public void save(Character character) {
         DatabaseReference characterRef = FirebaseConfig.getDatabase()
                 .child("characters")
-                .child(character.getNick());
+                .child(character.getId());
 
         characterRef.setValue(character);
     }
 
-    public void delete(String nick) {
+    public void delete(String id) {
         DatabaseReference characterRef = FirebaseConfig.getDatabase()
                 .child("characters")
-                .child(nick);
+                .child(id);
 
         characterRef.removeValue();
     }
 
-    public void getChar(String nick, Callback<Character> callback) {
+    public void getChar(String id, Callback<Character> callback) {
         DatabaseReference reference = FirebaseConfig.getDatabase()
                 .child("characters")
-                .child(nick);
+                .child(id);
 
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -63,7 +63,7 @@ public class CharacterRepository {
         DatabaseReference charactersRef = FirebaseConfig.getDatabase()
                 .child("characters");
 
-        Query query = charactersRef.orderByKey().equalTo(nick);
+        Query query = charactersRef.orderByChild("nick").equalTo(nick);
 
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -81,12 +81,12 @@ public class CharacterRepository {
         });
     }
 
-    public LiveData<List<Character>> getMyCharacters() {
+    public LiveData<List<Character>> getMyCharacters(String playerId) {
         MutableLiveData<List<Character>> data = new MutableLiveData<>();
 
         Query charactersQuery = FirebaseConfig.getDatabase()
                 .child("characters").orderByChild("playerId")
-                .equalTo(AuthRepository.getInstance().getUid());
+                .equalTo(playerId);
 
         charactersQuery.addValueEventListener(new ValueEventListener() {
             @Override
@@ -117,7 +117,7 @@ public class CharacterRepository {
                 return 0;
             }
 
-            return char1.getLevel() > char2.getLevel() ? 1 : -1;
+            return char1.getLevel() > char2.getLevel() ? -1 : 1;
         });
     }
 }
