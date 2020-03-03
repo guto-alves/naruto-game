@@ -1,186 +1,201 @@
 package com.gutotech.narutogame.data.model;
 
+import androidx.annotation.StringRes;
+
+import com.gutotech.narutogame.R;
+
 public class GraduationUtils {
 
-    public static String getGraducao(int graduationId) {
-        Village vila = CharOn.character.getVillage();
-
-        if (vila == Village.FOLHA) {
+    @StringRes
+    public static int getName(int graduationId, Village village) {
+        if (village == Village.FOLHA) {
             switch (graduationId) {
                 case 0:
-                    return "Estudante";
+                    return R.string.student;
                 case 1:
-                    return "Genin";
+                    return R.string.genin;
                 case 2:
-                    return "Chuunin";
+                    return R.string.chuunin;
                 case 3:
-                    return "Jounin";
+                    return R.string.jounin;
                 case 4:
-                    return "ANBU";
+                    return R.string.anbu;
                 case 5:
-                    return "Sannin da Folha";
+                    return R.string.leaf_sannin;
                 case 6:
-                    return "Herói";
+                    return R.string.hero;
             }
-        } else if (vila == Village.AREIA) {
+        } else if (village == Village.AREIA) {
             switch (graduationId) {
                 case 0:
-                    return "Estudante";
+                    return R.string.student;
                 case 1:
-                    return "Genin";
+                    return R.string.genin;
                 case 2:
-                    return "Chuunin";
+                    return R.string.chuunin;
                 case 3:
-                    return "Jounin";
+                    return R.string.jounin;
                 case 4:
-                    return "ANBU";
+                    return R.string.anbu;
                 case 5:
-                    return "Sannin da Folha";
+                    return R.string.sand_sealer;
                 case 6:
-                    return "Herói";
+                    return R.string.hero;
             }
-        } else if (vila == Village.NEVOA) {
+        } else if (village == Village.NEVOA) {
             switch (graduationId) {
                 case 0:
-                    return "Estudante";
+                    return R.string.student;
                 case 1:
-                    return "Genin";
+                    return R.string.genin;
                 case 2:
-                    return "Chuunin";
+                    return R.string.chuunin;
                 case 3:
-                    return "Jounin";
+                    return R.string.jounin;
                 case 4:
-                    return "ANBU";
+                    return R.string.anbu;
                 case 5:
-                    return "Caçador da Névoa";
+                    return R.string.swordsman_of_the_mist;
                 case 6:
-                    return "Herói";
+                    return R.string.hero;
             }
-        } else if (vila == Village.PEDRA) {
+        } else if (village == Village.PEDRA) {
             switch (graduationId) {
                 case 0:
-                    return "Estudante";
+                    return R.string.student;
                 case 1:
-                    return "Genin";
+                    return R.string.genin;
                 case 2:
-                    return "Chuunin";
+                    return R.string.chuunin;
                 case 3:
-                    return "Jounin";
+                    return R.string.jounin;
                 case 4:
-                    return "ANBU";
+                    return R.string.anbu;
                 case 5:
-                    return "Caçador da Pedra";
+                    return R.string.stone_hunter;
                 case 6:
-                    return "Herói";
+                    return R.string.hero;
             }
-        } else if (vila == Village.NUVEM) {
+        } else if (village == Village.NUVEM) {
             switch (graduationId) {
                 case 0:
-                    return "Estudante";
+                    return R.string.student;
                 case 1:
-                    return "Genin";
+                    return R.string.genin;
                 case 2:
-                    return "Chuunin";
+                    return R.string.chuunin;
                 case 3:
-                    return "Jounin";
+                    return R.string.jounin;
                 case 4:
-                    return "ANBU";
+                    return R.string.anbu;
                 case 5:
-                    return "Capitão da Nuvem";
+                    return R.string.cloud_head_ninja;
                 case 6:
-                    return "Herói";
+                    return R.string.hero;
             }
-        } else if (vila == Village.AKATSUKI) {
+        } else if (village == Village.AKATSUKI) {
             switch (graduationId) {
                 case 0:
-                    return "Fugitivo";
+                    return R.string.fugitive;
                 case 1:
-                    return "Nukenin D";
+                    return R.string.nukenin_d;
                 case 2:
-                    return "Nukenin C";
+                    return R.string.nukenin_c;
                 case 3:
-                    return "Nukenin B";
+                    return R.string.nukenin_b;
                 case 4:
-                    return "Nukenin A";
+                    return R.string.nukenin_a;
                 case 5:
-                    return "Caçador de Recompensas";
+                    return R.string.bounty_hunter;
                 case 6:
-                    return "Vilão";
+                    return R.string.villain;
             }
-        } else if (vila == Village.SOM) {
+        } else if (village == Village.SOM) {
             switch (graduationId) {
                 case 0:
-                    return "Cobaia";
+                    return R.string.survivor;
                 case 1:
-                    return "Genin";
+                    return R.string.genin;
                 case 2:
-                    return "Chuunin";
+                    return R.string.chuunin;
                 case 3:
-                    return "Jounin";
+                    return R.string.jounin;
                 case 4:
-                    return "ANBU";
+                    return R.string.anbu;
                 case 5:
-                    return "Cientista do Som";
+                    return R.string.sound_cientist;
                 case 6:
-                    return "Amaldiçoado";
+                    return R.string.cursed;
             }
-        } else if (vila == Village.CHUVA) {
+        } else if (village == Village.CHUVA) {
             switch (graduationId) {
                 case 0:
-                    return "Órfão";
+                    return R.string.orphan;
                 case 1:
-                    return "Genin";
+                    return R.string.genin;
                 case 2:
-                    return "Chuunin";
+                    return R.string.chuunin;
                 case 3:
-                    return "Jounin";
+                    return R.string.jounin;
                 case 4:
-                    return "ANBU";
+                    return R.string.anbu;
                 case 5:
-                    return "Guardião da Chuva";
+                    return R.string.rain_guardian;
                 case 6:
-                    return "Deus";
+                    return R.string.god;
             }
         }
 
-        return null;
+        return 0;
     }
 
-    public static String getDescricao(int graduationId) {
-        Village vila = CharOn.character.getVillage();
+    @StringRes
+    public static int getName(int graduationId) {
+        if (CharOn.character == null){
+            return 0;
+        }
 
-        if (vila.equals("Folha") || vila.equals("Areia") || vila.equals("Névoa") || vila.equals("Pedra") || vila.equals("Nuvem") || vila.equals("Som") || vila.equals("Chuva")) {
+        Village village = CharOn.character.getVillage();
+
+        return getName(graduationId, village);
+    }
+
+    @StringRes
+    public static int getDescription(int graduationId) {
+        Village village = CharOn.character.getVillage();
+
+        if (village == Village.AKATSUKI) {
             switch (graduationId) {
                 case 1:
-                    return "Seu primeiro dia depois da academia ninja, hoje você vai receber sua bandana e graduar-se com um ninja da aldeia. Com esta graduação é possível explorar o que esta além do portão da Vila, combater inimigos, fazer aliados, executar diferentes tipos de missões, aprender golpes básicos e ajudar a proteger sua vila. Não se esqueça de continuar o seu treinamento para assim alcançar a próxima graduação.";
+                    return R.string.nukenin_d_desc;
                 case 2:
-                    return "Ninja graduado e com elevado nível de confiança na Vila, possui grande conhecimento na arte ninja e possui habilidades como controlar o primeiro elemento, fazer missões mais arriscadas Rank C, pode participar de equipes e organizações e participar dos torneios ninjas.";
+                    return R.string.nukenin_c_des;
                 case 3:
-                    return "Ninja com grande nível de conhecimento sobre a arte ninja e batalhas, possui diversas especialidades como controlar o segundo elemento, fazer missões mais perigosas de nível Rank B, pode ser responsável por uma Organização e pode também participar de diversos torneios entre jounins.";
+                    return R.string.nukenin_b_desc;
                 case 4:
-                    return "São conhecidos como Caçadores Especiais ANBU, ou (Esquadrão Especial de Assassinato e Tática). Tornar-se um ANBU é ter o reconhecimento de ser um ninja respeitável dentro de sua Vila. Pode aprender diversos golpes diferentes, fazer missões de nível A, pode participar de torneios e eventos, pode aprender o ultimo nível do selo ou mode sennin.";
+                    return R.string.nukenin_a_des;
                 case 5:
-                    return "São ninjas extraordinários, ninjas capazes de usar uma quantidade muito grande de jutsus e levar uma batalha há durar muito tempo. Podem aprender a última habilidade de clã e invocação, participar de torneios, liderar equipes e organizações a invadirem e guerrear contra outras Vilas, é o único capaz de realizar missões de nível S e os mais próximos de se tornarem Kages.";
+                    return R.string.bounty_hunter_desc;
                 case 6:
-                    return "Todo ninja sonha em se tornar um Herói. Uma pessoa conhecida e adorada por todas as pessoas da vila, e muitas vezes mundialmente conhecidas. Heróis podem fazer todos os tipos de missões, tem o maior número de habilidades Ninjutsu, Taijutsu, Genjutsu treinadas. Realiza missões S ou SS que são as mais arriscadas e defendem a Vila com todas as forças e caso necessário com a própria Vida.";
+                    return R.string.villain_description;
             }
-        } else if (vila.equals("Akatsuki")) {
+        } else {
             switch (graduationId) {
                 case 1:
-                    return "Você começa a roubar vilas e fazendeiros, e se torna um procurado rank D.";
+                    return R.string.genin_description;
                 case 2:
-                    return "Com suas habilidades aprimoradas, você começa a sentir o poder e a insanidade dentro de você, sendo capaz de fazer alguns assassinatos se preciso.";
+                    return R.string.chuunin_description;
                 case 3:
-                    return "Equivalente à força de um Jounin, você se torna mais habilidoso e capaz de controlar dois elementos com perfeição, destruindo vilas inteiras.";
+                    return R.string.jounin_description;
                 case 4:
-                    return "São movidos pela escuridão, agindo sorrateiramente e matando todos que entrarem em seu caminho. É capaz de rastrear alvos, assim como os ANBUs.";
+                    return R.string.anbu_description;
                 case 5:
-                    return "Tão forte quanto um Sannin, se tornando praticamente o renegado mais forte da Akatsuki. Sua cabeça é procurada em todas as vilas, com uma recompensa altíssima.";
+                    return R.string.sannin_description;
                 case 6:
-                    return "É o ninja mais forte da Akatsuki, seus conhecimentos e poder não se comparam a nenhuma outra graduação. Para se tornar um Líder, o ninja precisa passar por todas as graduações e ainda assim se tornar o melhor entre os melhores. Podem fazer todos os tipos de missões, tem o maior número de habilidades Ninjutsu, Taijutsu e Genjutsu treinadas. Realiza missões S ou SS que são as mais arriscadas e defendem a Akatsuki com todas as forças e caso necessário com a própria vida.";
+                    return R.string.hero_description;
             }
         }
 
-        return null;
+        return 0;
     }
 }

@@ -9,6 +9,7 @@ import androidx.databinding.library.baseAdapters.BR;
 import com.gutotech.narutogame.R;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -48,6 +49,7 @@ public class Character extends BaseObservable implements Serializable {
     public String battleId;
     private boolean hospital;
     private boolean map;
+    private int mapId;
     private boolean dojoWaitQueue;
 
     private int daysOfFidelity;
@@ -76,10 +78,13 @@ public class Character extends BaseObservable implements Serializable {
         daysOfFidelity = 1;
         fidelityReward = true;
 
+        titles = new ArrayList<>();
+        titles.add(R.string.none);
+
         bag = new Bag();
         bag.addRamen(new Ramen(
                 "nissin", R.string.ninja_snack, R.string.ninja_snack_description,
-                25, 100), 5);
+                25, 100), 10);
     }
 
     public Formulas getFormulas() {
@@ -105,6 +110,7 @@ public class Character extends BaseObservable implements Serializable {
 
             updateFormulas();
             full();
+            incrementScore(Score.LEVEL);
         }
 
         setExp(newTotalExp);
@@ -128,6 +134,7 @@ public class Character extends BaseObservable implements Serializable {
 
     public void addTitle(@StringRes int titleId) {
         titles.add(titleId);
+        notifyPropertyChanged(BR.titles);
     }
 
     public void validateJutsus() {
@@ -320,6 +327,9 @@ public class Character extends BaseObservable implements Serializable {
     }
 
     public Bag getBag() {
+        if (bag == null) {
+            bag = new Bag();
+        }
         return bag;
     }
 
@@ -353,12 +363,14 @@ public class Character extends BaseObservable implements Serializable {
         notifyPropertyChanged(BR.mapPosition);
     }
 
+    @Bindable
     public int getGraduationId() {
         return graduationId;
     }
 
     public void setGraduationId(int graduationId) {
         this.graduationId = graduationId;
+        notifyPropertyChanged(BR.graduationId);
     }
 
     @Bindable
@@ -372,6 +384,7 @@ public class Character extends BaseObservable implements Serializable {
         notifyPropertyChanged(BR.title);
     }
 
+    @Bindable
     public List<Integer> getTitles() {
         return titles;
     }
@@ -444,6 +457,14 @@ public class Character extends BaseObservable implements Serializable {
     public void setMap(boolean map) {
         this.map = map;
         notifyPropertyChanged(BR.map);
+    }
+
+    public int getMapId() {
+        return mapId;
+    }
+
+    public void setMapId(int mapId) {
+        this.mapId = mapId;
     }
 
     @Bindable

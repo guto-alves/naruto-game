@@ -87,14 +87,25 @@
                                 android:id="@+id/nickTextView"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginBottom="8dp"
                                 android:text="@{viewModel.character.nick}"
                                 android:textColor="#C6DDE6"
+                                android:textSize="12sp"
                                 android:textStyle="bold"
-                                app:layout_constraintBottom_toBottomOf="@+id/imageView8"
                                 app:layout_constraintEnd_toEndOf="@+id/imageView8"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="@+id/imageView8" />
+
+                            <TextView
+                                android:id="@+id/titleTextView"
+                                stringRes="@{viewModel.character.title}"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:textColor="#937b4d"
+                                android:textSize="10sp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/nickTextView" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
                     </LinearLayout>
 
@@ -117,9 +128,11 @@
 
                     <Spinner
                         android:id="@+id/titlesSpinner"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@android:color/white" />
+                        android:background="@android:color/white"
+                        android:onItemSelected="@{(parent, view, pos, id) -> viewModel.onTitleSelected(pos)}"
+                        android:spinnerMode="dialog" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -222,49 +235,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="--"
-                            android:textColor="@color/colorPrimaryDark" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="3dp"
-                            android:layout_marginRight="3dp"
-                            android:text="@string/label_ranking_vila"
-                            android:textColor="@color/colorPrimaryDark"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="-"
-                            android:textColor="@color/colorPrimaryDark" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="3dp"
-                            android:layout_marginRight="3dp"
-                            android:text="@string/label_ranking_general"
-                            android:textColor="@color/colorPrimaryDark"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="-"
+                            android:text="@{String.valueOf(viewModel.character.numberOfDaysPlayed)}"
                             android:textColor="@color/colorPrimaryDark" />
                     </LinearLayout>
 
