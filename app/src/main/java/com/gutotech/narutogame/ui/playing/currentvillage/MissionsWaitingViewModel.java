@@ -1,7 +1,6 @@
 package com.gutotech.narutogame.ui.playing.currentvillage;
 
 import android.os.CountDownTimer;
-import android.os.SystemClock;
 
 import androidx.databinding.ObservableField;
 import androidx.lifecycle.LiveData;
@@ -106,22 +105,22 @@ public class MissionsWaitingViewModel extends ViewModel {
             reward.receive();
         }
 
-        if (missionInfo.rank == Mission.MissionRank.TASK) {
+        if (missionInfo.rank == Mission.Rank.TASK) {
             mCharacter.getResumeOfMissions().setTasks(mCharacter.getResumeOfMissions().getTasks() + 1);
             mCharacter.incrementScore(Score.TASK);
-        } else if (missionInfo.rank == Mission.MissionRank.RANK_D) {
+        } else if (missionInfo.rank == Mission.Rank.RANK_D) {
             mCharacter.getResumeOfMissions().setRankD(mCharacter.getResumeOfMissions().getRankD() + 1);
             mCharacter.incrementScore(Score.RANK_D);
-        } else if (missionInfo.rank == Mission.MissionRank.RANK_C) {
+        } else if (missionInfo.rank == Mission.Rank.RANK_C) {
             mCharacter.getResumeOfMissions().setRankC(mCharacter.getResumeOfMissions().getRankC() + 1);
             mCharacter.incrementScore(Score.RANK_C);
-        } else if (missionInfo.rank == Mission.MissionRank.RANK_B) {
+        } else if (missionInfo.rank == Mission.Rank.RANK_B) {
             mCharacter.getResumeOfMissions().setRankB(mCharacter.getResumeOfMissions().getRankB() + 1);
             mCharacter.incrementScore(Score.RANK_B);
-        } else if (missionInfo.rank == Mission.MissionRank.RANK_A) {
+        } else if (missionInfo.rank == Mission.Rank.RANK_A) {
             mCharacter.getResumeOfMissions().setRankA(mCharacter.getResumeOfMissions().getRankA() + 1);
             mCharacter.incrementScore(Score.RANK_A);
-        } else if (missionInfo.rank == Mission.MissionRank.RANK_S) {
+        } else if (missionInfo.rank == Mission.Rank.RANK_S) {
             mCharacter.getResumeOfMissions().setRankS(mCharacter.getResumeOfMissions().getRankS() + 1);
             mCharacter.incrementScore(Score.RANK_S);
         }

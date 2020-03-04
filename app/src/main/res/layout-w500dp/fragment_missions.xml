@@ -26,7 +26,7 @@
 
             <TableLayout
                 android:id="@+id/tableLayout2"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -41,13 +41,15 @@
                     <Button
                         style="@style/ButtonTheme"
                         android:layout_marginEnd="16dp"
-                        android:layout_marginRight="16dp"
+                        android:layout_marginRight="8dp"
                         android:background="@{viewModel.typeSelected == Type.TIME? @drawable/bg_button_orange: @drawable/bg_button}"
                         android:onClick="@{() -> viewModel.onTypeSelected(Type.TIME)}"
                         android:text="@string/time" />
 
                     <Button
                         style="@style/ButtonTheme"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginLeft="8dp"
                         android:background="@{viewModel.typeSelected == Type.SPECIAL? @drawable/bg_button_orange: @drawable/bg_button}"
                         android:onClick="@{() -> viewModel.onTypeSelected(Type.SPECIAL)}"
                         android:text="@string/special" />
@@ -61,7 +63,6 @@
 
                     <Button
                         style="@style/ButtonTheme"
-                        android:layout_marginEnd="16dp"
                         android:layout_marginRight="16dp"
                         android:background="@{viewModel.rankSelected == Rank.RANK_D? @drawable/bg_button_orange: @drawable/bg_button}"
                         android:onClick="@{() -> viewModel.onRankSelected(Rank.RANK_D)}"
@@ -69,7 +70,6 @@
 
                     <Button
                         style="@style/ButtonTheme"
-                        android:layout_marginEnd="16dp"
                         android:layout_marginRight="16dp"
                         android:background="@{viewModel.rankSelected == Rank.RANK_C? @drawable/bg_button_orange: @drawable/bg_button}"
                         android:onClick="@{() -> viewModel.onRankSelected(Rank.RANK_C)}"
@@ -81,30 +81,21 @@
                         android:onClick="@{() -> viewModel.onRankSelected(Rank.RANK_B)}"
                         android:text="@string/rank_b" />
 
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:gravity="center">
-
-                    <Button
-                        style="@style/ButtonTheme"
-                        android:layout_marginEnd="16dp"
-                        android:layout_marginRight="16dp"
-                        android:background="@{viewModel.rankSelected == Rank.RANK_A? @drawable/bg_button_orange: @drawable/bg_button}"
-                        android:onClick="@{() -> viewModel.onRankSelected(Rank.RANK_A)}"
-                        android:text="@string/rank_a" />
-
                     <Button
                         android:id="@+id/button10"
                         style="@style/ButtonTheme"
-                        android:layout_marginStart="8dp"
+                        android:layout_marginStart="16dp"
                         android:layout_marginLeft="16dp"
                         android:background="@{viewModel.rankSelected == Rank.RANK_S? @drawable/bg_button_orange: @drawable/bg_button}"
                         android:onClick="@{() -> viewModel.onRankSelected(Rank.RANK_S)}"
                         android:text="@string/rank_s" />
+
+                    <Button
+                        style="@style/ButtonTheme"
+                        android:layout_marginLeft="16dp"
+                        android:background="@{viewModel.rankSelected == Rank.RANK_A? @drawable/bg_button_orange: @drawable/bg_button}"
+                        android:onClick="@{() -> viewModel.onRankSelected(Rank.RANK_A)}"
+                        android:text="@string/rank_a" />
 
                 </TableRow>
 
@@ -127,6 +118,19 @@
                 app:layout_constraintTop_toBottomOf="@+id/tableLayout2" />
 
             <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/description"
+                android:textColor="@color/colorText"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView36"
+                app:layout_constraintEnd_toStartOf="@+id/guideline31"
+                app:layout_constraintStart_toStartOf="@+id/imageView36"
+                app:layout_constraintTop_toTopOf="@+id/imageView36" />
+
+            <TextView
                 android:id="@+id/textView70"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -135,8 +139,8 @@
                 android:textSize="12sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView36"
-                app:layout_constraintEnd_toEndOf="@+id/imageView36"
-                app:layout_constraintStart_toStartOf="@+id/guideline33"
+                app:layout_constraintEnd_toStartOf="@+id/guideline32"
+                app:layout_constraintStart_toStartOf="@+id/guideline31"
                 app:layout_constraintTop_toTopOf="@+id/imageView36" />
 
             <TextView
@@ -148,8 +152,8 @@
                 android:textSize="12sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView36"
-                app:layout_constraintEnd_toStartOf="@+id/guideline32"
-                app:layout_constraintStart_toStartOf="@+id/guideline31"
+                app:layout_constraintEnd_toStartOf="@+id/guideline33"
+                app:layout_constraintStart_toStartOf="@+id/guideline32"
                 app:layout_constraintTop_toTopOf="@+id/imageView36" />
 
             <TextView
@@ -161,8 +165,7 @@
                 android:textSize="12sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView36"
-                app:layout_constraintEnd_toStartOf="@+id/guideline33"
-                app:layout_constraintStart_toStartOf="@+id/guideline32"
+                app:layout_constraintStart_toStartOf="@+id/guideline33"
                 app:layout_constraintTop_toTopOf="@+id/imageView36" />
 
             <androidx.constraintlayout.widget.Guideline
@@ -170,14 +173,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.35" />
+                app:layout_constraintGuide_percent="0.39" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline32"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.55" />
+                app:layout_constraintGuide_percent="0.51" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline33"

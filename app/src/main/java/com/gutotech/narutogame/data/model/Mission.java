@@ -1,7 +1,9 @@
 package com.gutotech.narutogame.data.model;
 
 public class Mission {
-    public enum MissionRank {TASK, RANK_D, RANK_C, RANK_B, RANK_A, RANK_S}
+    public enum Type {TIME, SPECIAL}
+
+    public enum Rank {TASK, RANK_D, RANK_C, RANK_B, RANK_A, RANK_S}
 
     private String missionInfo;
 
