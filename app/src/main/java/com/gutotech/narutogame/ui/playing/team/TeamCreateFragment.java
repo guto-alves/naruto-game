@@ -42,10 +42,9 @@ public class TeamCreateFragment extends Fragment implements SectionFragment {
         return binding.getRoot();
     }
 
-    private void showDialog(@StringRes int resId) {
-        WarningDialog dialogFragment = new WarningDialog();
-        dialogFragment.setWarning(getString(resId));
-        dialogFragment.show(getFragmentManager(), "WarningDialog");
+    private void showDialog(@StringRes int resid) {
+        WarningDialog dialog = WarningDialog.newInstance(resid);
+        dialog.openDialog(getParentFragmentManager());
     }
 
     @Override

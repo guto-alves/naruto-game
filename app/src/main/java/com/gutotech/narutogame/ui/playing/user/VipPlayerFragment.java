@@ -4,7 +4,6 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
-import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -66,9 +65,9 @@ public class VipPlayerFragment extends Fragment implements SectionFragment {
             binding.scrollView.post(() -> binding.scrollView.smoothScrollTo(0, 0));
         });
 
-        viewModel.getShowWarningDialogEvent().observe(getViewLifecycleOwner(), resId -> {
-            DialogFragment dialogFragment = new WarningDialog(getString(resId));
-            dialogFragment.show(getParentFragmentManager(), "WarningDialog");
+        viewModel.getShowWarningDialogEvent().observe(getViewLifecycleOwner(), resid -> {
+            WarningDialog dialog = WarningDialog.newInstance(resid);
+            dialog.openDialog(getParentFragmentManager());
         });
 
         FragmentUtil.setSectionTitle(getActivity(), R.string.section_vip_player);

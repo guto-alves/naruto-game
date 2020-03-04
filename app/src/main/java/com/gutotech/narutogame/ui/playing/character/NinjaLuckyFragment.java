@@ -4,6 +4,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.StringRes;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
@@ -51,16 +52,16 @@ public class NinjaLuckyFragment extends Fragment implements SectionFragment {
                 mBinding.premiumTextView.setText(premiun));
 
         mViewModel.getShowWarningDialogEvent().observe(getViewLifecycleOwner(), resId ->
-                showWarningDialog(getString(resId)));
+                showWarningDialog(resId));
 
         FragmentUtil.setSectionTitle(getActivity(), R.string.section_ninja_lucky);
 
         return mBinding.getRoot();
     }
 
-    private void showWarningDialog(String warning) {
-        DialogFragment warningDialog = new WarningDialog(warning);
-        warningDialog.show(getParentFragmentManager(), "WarningDialog");
+    private void showWarningDialog(@StringRes int resid) {
+        WarningDialog dialog = WarningDialog.newInstance(resid);
+        dialog.openDialog(getParentFragmentManager());
     }
 
     private void startAnimation() {

@@ -41,13 +41,13 @@ public class HospitalRoomFragment extends Fragment implements SectionFragment {
             payButton.setText(getString(R.string.pay_ry, payment));
             payButton.setOnClickListener(view1 -> {
                 if (CharOn.character.getRyous() >= payment) {
-                    WarningDialog warningDialog = new WarningDialog(getString(R.string.paid_hospital));
+                    WarningDialog warningDialog = WarningDialog.newInstance(R.string.paid_hospital);
                     warningDialog.setOnCloseListener(view2 -> {
                         CharOn.character.subRyous(payment);
                         CharOn.character.full();
                         CharOn.character.setHospital(false);
                     });
-                    warningDialog.show(getParentFragmentManager(), "WarningDialog");
+                    warningDialog.openDialog(getParentFragmentManager());
                 } else {
                     // you don't have ryous enough
                 }

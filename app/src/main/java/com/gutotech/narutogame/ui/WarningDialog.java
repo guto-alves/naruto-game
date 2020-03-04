@@ -9,25 +9,38 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
 import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.gutotech.narutogame.R;
 
 public class WarningDialog extends DialogFragment {
-    private String mWarning = "";
+    private static final String EXTRA_WARNING = "warning";
+    private static final String DIALOG_TAG = "DialogFragment";
 
     private View.OnClickListener mOnClickListener;
 
-    public WarningDialog() {
+    public static WarningDialog newInstance(@StringRes int warningId) {
+        Bundle bundle = new Bundle();
+        bundle.putInt(EXTRA_WARNING, warningId);
+
+        WarningDialog warningDialog = new WarningDialog();
+        warningDialog.setArguments(bundle);
+        return warningDialog;
     }
 
-    public WarningDialog(String warning) {
-        mWarning = warning;
+    public void openDialog(FragmentManager fragmentManager) {
+        if (fragmentManager.findFragmentByTag(DIALOG_TAG) == null) {
+            show(fragmentManager, DIALOG_TAG);
+        }
     }
 
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
+        int warningId = getArguments().getInt(EXTRA_WARNING);
+
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setCancelable(false);
 
@@ -35,7 +48,7 @@ public class WarningDialog extends DialogFragment {
         builder.setView(root);
 
         TextView textView = root.findViewById(R.id.warningTextView);
-        textView.setText(mWarning);
+        textView.setText(warningId);
 
         Button closeButton = root.findViewById(R.id.closeButton);
         closeButton.setOnClickListener(v -> {
@@ -47,10 +60,6 @@ public class WarningDialog extends DialogFragment {
         });
 
         return builder.create();
-    }
-
-    public void setWarning(String warning) {
-        mWarning = warning;
     }
 
     public void setOnCloseListener(View.OnClickListener listener) {

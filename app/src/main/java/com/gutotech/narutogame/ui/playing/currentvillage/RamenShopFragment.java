@@ -3,8 +3,8 @@ package com.gutotech.narutogame.ui.playing.currentvillage;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.StringRes;
 import androidx.databinding.DataBindingUtil;
-import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -39,15 +39,15 @@ public class RamenShopFragment extends Fragment implements SectionFragment {
         adapter.setItemsList(ShopUtils.getRamens());
 
         viewModel.getShowWarningEvent().observe(getViewLifecycleOwner(), resId ->
-                showWarningDialog(getString(resId)));
+                showWarningDialog(resId));
 
         FragmentUtil.setSectionTitle(getActivity(), R.string.section_ramen_shop);
         return binding.getRoot();
     }
 
-    private void showWarningDialog(String warning) {
-        DialogFragment warningDialog = new WarningDialog(warning);
-        warningDialog.show(getParentFragmentManager(), "WarningDialog");
+    private void showWarningDialog(@StringRes int resid) {
+        WarningDialog dialog = WarningDialog.newInstance(resid);
+        dialog.openDialog(getParentFragmentManager());
     }
 
     @Override

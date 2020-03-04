@@ -7,9 +7,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
 import androidx.databinding.DataBindingUtil;
-import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
@@ -54,7 +53,7 @@ public class DojoBatalhaLutadorFragment extends Fragment implements SectionFragm
                 container, false);
 
         BattleRepository.getInstance().get(CharOn.character.battleId, battle -> {
-            mViewModel = ViewModelProviders.of(this,
+            mViewModel = new ViewModelProvider(this,
                     new DojoBatalhaLutadorViewModelFactory(battle))
                     .get(DojoBatalhaLutadorViewModel.class);
 
@@ -71,17 +70,17 @@ public class DojoBatalhaLutadorFragment extends Fragment implements SectionFragm
             mBinding.myBuffsDebuffsStatusRecyclerView.setHasFixedSize(true);
             BuffsDebuffStatusAdapter adapter = new BuffsDebuffStatusAdapter(getContext());
             mBinding.myBuffsDebuffsStatusRecyclerView.setAdapter(adapter);
-            mViewModel.getMyBuffsDebuffsStatus().observe(this, adapter::setBuffsDebuffsList);
+            mViewModel.getMyBuffsDebuffsStatus().observe(getViewLifecycleOwner(), adapter::setBuffsDebuffsList);
 
             mBinding.oppBuffsDebuffsStatusRecyclerView.setHasFixedSize(true);
             BuffsDebuffStatusAdapter adapter2 = new BuffsDebuffStatusAdapter(getContext());
             mBinding.oppBuffsDebuffsStatusRecyclerView.setAdapter(adapter2);
-            mViewModel.getOppBuffsDebuffsStatus().observe(this, adapter2::setBuffsDebuffsList);
+            mViewModel.getOppBuffsDebuffsStatus().observe(getViewLifecycleOwner(), adapter2::setBuffsDebuffsList);
 
             mBinding.battleLogRecyclerView.setHasFixedSize(true);
             BattleLogAdapter logAdapter = new BattleLogAdapter(getActivity(), this::showJutsuInfo);
             mBinding.battleLogRecyclerView.setAdapter(logAdapter);
-            mViewModel.getBattleLogs().observe(this, battlesLogs -> {
+            mViewModel.getBattleLogs().observe(getViewLifecycleOwner(), battlesLogs -> {
                 logAdapter.setBattleLogs(battlesLogs);
                 mBinding.battleLogRecyclerView.smoothScrollToPosition(logAdapter.getItemCount());
             });
@@ -89,13 +88,13 @@ public class DojoBatalhaLutadorFragment extends Fragment implements SectionFragm
             mBinding.myJutsusRecyclerView.setHasFixedSize(true);
             JutsusAdapter jutsusAdapter = new JutsusAdapter(getActivity(), mViewModel);
             mBinding.myJutsusRecyclerView.setAdapter(jutsusAdapter);
-            mViewModel.getJutsus().observe(this, jutsusAdapter::setJutsusList);
+            mViewModel.getJutsus().observe(getViewLifecycleOwner(), jutsusAdapter::setJutsusList);
 
-            mViewModel.showJutsuInfoPopupEvent.observe(this, this::showJutsuInfo);
+            mViewModel.showJutsuInfoPopupEvent.observe(getViewLifecycleOwner(), this::showJutsuInfo);
 
-            mViewModel.showWarningDialogEvent.observe(this, this::showWarningDialog);
+            mViewModel.showWarningDialogEvent.observe(getViewLifecycleOwner(), this::showWarningDialog);
 
-            mViewModel.startAnimationEvent.observe(this, view -> {
+            mViewModel.startAnimationEvent.observe(getViewLifecycleOwner(), view -> {
                 Animation animation = AnimationUtils.loadAnimation(getActivity(), R.anim.fade_out);
                 view.startAnimation(animation);
             });
@@ -103,7 +102,7 @@ public class DojoBatalhaLutadorFragment extends Fragment implements SectionFragm
             mBinding.battleResultLayout.descriptionTextView.setMovementMethod(
                     LinkMovementMethod.getInstance());
 
-            mViewModel.showWonEvent.observe(this, rewards -> {
+            mViewModel.showWonEvent.observe(getViewLifecycleOwner(), rewards -> {
                 SpannableStringBuilder description = new SpannableStringBuilder();
                 description.append(getString(R.string.combat_won_description, rewards[0], rewards[1]));
                 description.append(" ");
@@ -122,7 +121,7 @@ public class DojoBatalhaLutadorFragment extends Fragment implements SectionFragm
                 showBattleResult(R.string.end_of_the_battle, description);
             });
 
-            mViewModel.showLostEvent.observe(this, aVoid -> {
+            mViewModel.showLostEvent.observe(getViewLifecycleOwner(), aVoid -> {
                 SpannableStringBuilder description = new SpannableStringBuilder();
                 description.append(getString(R.string.you_have_lost_the_battle));
                 description.append(" ");
@@ -142,7 +141,7 @@ public class DojoBatalhaLutadorFragment extends Fragment implements SectionFragm
                 showBattleResult(R.string.too_bad, description);
             });
 
-            mViewModel.showDrawnEvent.observe(this, aVoid -> {
+            mViewModel.showDrawnEvent.observe(getViewLifecycleOwner(), aVoid -> {
                 SpannableStringBuilder description = new SpannableStringBuilder();
                 description.append(getString(R.string.drawn_description));
                 description.append(" ");
@@ -162,7 +161,7 @@ public class DojoBatalhaLutadorFragment extends Fragment implements SectionFragm
                 showBattleResult(R.string.empate, description);
             });
 
-            mViewModel.showInactivatedEvent.observe(this, aVoid -> {
+            mViewModel.showInactivatedEvent.observe(getViewLifecycleOwner(), aVoid -> {
                 SpannableStringBuilder description = new SpannableStringBuilder();
                 description.append(getString(R.string.lost_by_inactivity));
                 int length = description.length();
@@ -223,9 +222,9 @@ public class DojoBatalhaLutadorFragment extends Fragment implements SectionFragm
         jutsuInfoPopupWindow.showAsDropDown(anchor);
     }
 
-    private void showWarningDialog(@StringRes int resId) {
-        DialogFragment dialogFragment = new WarningDialog(getString(resId));
-        dialogFragment.show(getFragmentManager(), "WarningDialog");
+    private void showWarningDialog(@StringRes int resid) {
+        WarningDialog dialog = WarningDialog.newInstance(resid);
+        dialog.openDialog(getParentFragmentManager());
     }
 
     @Override
