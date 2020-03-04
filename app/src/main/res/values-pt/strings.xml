@@ -929,5 +929,17 @@
     <string name="rank_b">Rank B</string>
     <string name="rank_c">Rank C</string>
     <string name="rank_d">Rank D</string>
+    <string name="attributes_are_already_full">Você não precisa utilizar nenhuma ramen no momento,
+        porque seus atributos estão cheios</string>
+    <string name="mission1">1ª Missão! Iniciando a vida Ninja!</string>
+    <string name="mission2">Limpar Canteiros da Vila</string>
+    <string name="mission2_des">A vila precisa sempre estar limpa e organizada, e nesta missão você ira limpar os canteiros para manter a beleza da vila.</string>
+    <string name="mission1_desc">Agora que você é um Genin, sua primeira missão é ir até a sala da Kage, não se atrase, afinal é um ninja muito ocupado com as missões e tarefas da vila.</string>
+    <string name="mission3">Limpar o Rio da Vila</string>
+    <string name="mission3_des">Ainda na manutenção da vila, nesta missão você deve auxiliar na limpeza do Rio que corta a vila.</string>
+    <string name="mission4">Monumento dos Kages</string>
+    <string name="mission4_des">Você que riu quando Naruto teve que limpar o Monumento, agora é a sua vez, os Kages foram grandes ninjas, então manter o monumento limpo, é o minimo que você um ninja novato pode fazer.</string>
+    <string name="mission5">Passear com os cães ninjas</string>
+    <string name="mission5_des">Alguns dos responsáveis pelos cães ninjas estão em diversas missões importantes, portanto, você e outros genins terão que auxiliar.</string>
 
 </resources>

@@ -23,7 +23,6 @@ import com.gutotech.narutogame.data.model.MenuGroup;
 import com.gutotech.narutogame.data.model.Message;
 import com.gutotech.narutogame.data.model.Ramen;
 import com.gutotech.narutogame.data.model.Scroll;
-import com.gutotech.narutogame.data.model.ShopItem;
 import com.gutotech.narutogame.data.repository.CharacterRepository;
 import com.gutotech.narutogame.data.repository.ChatRepository;
 import com.gutotech.narutogame.data.repository.MapRepository;
@@ -91,9 +90,6 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
 
         mCharacter = CharOn.character;
         mTitles = new MutableLiveData<>(mCharacter.getTitles());
-
-        mRamens = new MutableLiveData<>(mCharacter.getBag().getRamenList());
-        mScrolls = new MutableLiveData<>(mCharacter.getBag().getScrollList());
 
         mCharacter.addOnPropertyChangedCallback(new Observable.OnPropertyChangedCallback() {
             @Override
@@ -189,21 +185,39 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
         return currentSection;
     }
 
+    // Bag
     private MutableLiveData<List<Ramen>> mRamens = new MutableLiveData<>();
     private MutableLiveData<List<Scroll>> mScrolls = new MutableLiveData<>();
+    private SingleLiveEvent<Void> mDismissDialogEvent = new SingleLiveEvent<>();
+    private SingleLiveEvent<Integer> mShowWarningDialogEvent = new SingleLiveEvent<>();
 
-    private SingleLiveEvent<Void> dismissBagDialog = new SingleLiveEvent<>();
+    LiveData<List<Ramen>> getRamens() {
+        return mRamens;
+    }
+
+    LiveData<List<Scroll>> getScrolls() {
+        return mScrolls;
+    }
 
     LiveData<Void> getDismissBagDialog() {
-        return dismissBagDialog;
+        return mDismissDialogEvent;
+    }
+
+    public LiveData<Integer> getShowWarningDialogEvent() {
+        return mShowWarningDialogEvent;
+    }
+
+    void updateBag() {
+        mRamens.postValue(mCharacter.getBag().getRamenList());
+        mScrolls.postValue(mCharacter.getBag().getScrollList());
     }
 
     BagItemsAdapter.OnItemClickListener onRamenClickListener = (itemClicked, position) -> {
         Ramen ramen = (Ramen) itemClicked;
 
         if (CharOn.character.getFormulas().isFull()) {
-            // You don't need to use you ramen right now because your attributes are already full
-            dismissBagDialog.call();
+            mDismissDialogEvent.call();
+            mShowWarningDialogEvent.setValue(R.string.attributes_are_already_full);
             return;
         }
 
@@ -219,6 +233,7 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
             ramens.set(position, ramen);
         } else {
             ramens.remove(position);
+
             if (ramens.size() == 0) {
                 ramens = null;
             }
@@ -238,6 +253,7 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
             scrolls.set(position, scroll);
         } else {
             scrolls.remove(position);
+
             if (scrolls.size() == 0) {
                 scrolls = null;
             }
@@ -250,7 +266,7 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
         }
 
         CharacterRepository.getInstance().save(CharOn.character);
-        dismissBagDialog.call();
+        mDismissDialogEvent.call();
 
         VillageMapFragment villageMapFragment = new VillageMapFragment();
         Bundle bundle = new Bundle();
@@ -259,13 +275,6 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
         setCurrentSection(villageMapFragment);
     };
 
-    LiveData<List<Ramen>> getRamens() {
-        return mRamens;
-    }
-
-    LiveData<List<Scroll>> getScrolls() {
-        return mScrolls;
-    }
 
     public void onTitleSelected(int position) {
         if (position == 0) {
@@ -275,6 +284,8 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
         }
     }
 
+
+    // Menu
     @Override
     public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
         setCurrentSection(groupPosition, childPosition);
@@ -302,7 +313,7 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
                 .sections.get(childPosition));
     }
 
-    void setCurrentSection(SectionFragment section) {
+    private void setCurrentSection(SectionFragment section) {
         currentSection.setValue(section);
     }
 
@@ -405,6 +416,7 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
         menuGroups.setValue(groups);
     }
 
+
     // Chat
     private ChatRepository mChatRepository;
     public ObservableBoolean chatOpened = new ObservableBoolean(false);
@@ -458,15 +470,14 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
 
 
     // Game Routines
-    private Handler mHandler;
-    private Runnable mRunnable;
-
     public final ObservableField<String> healing = new ObservableField<>("--:--:--");
     public final ObservableField<String> variousRoutines = new ObservableField<>("--:--:--");
 
+    private Handler mHandler;
+
     private void startGameRoutines() {
         mHandler = new Handler();
-        mRunnable = new Runnable() {
+        Runnable mRunnable = new Runnable() {
             @Override
             public void run() {
                 Calendar calendar = Calendar.getInstance();
@@ -493,6 +504,14 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
             if (minutesRemaining == 0 && secondsRemaining == 0) {
                 execHealing(1);
             }
+        }
+    }
+
+    private void execHealing(int totalIncrements) {
+        for (int i = 0; i < totalIncrements; i++) {
+            mCharacter.getFormulas().addHeath((int) (mCharacter.getFormulas().getHealth() * 0.2));
+            mCharacter.getFormulas().addChakra((int) (mCharacter.getFormulas().getChakra() * 0.2));
+            mCharacter.getFormulas().addStamina((int) (mCharacter.getFormulas().getStamina() * 0.2));
         }
     }
 
@@ -537,14 +556,6 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
             mCharacter.setFidelityReward(true);
             mCharacter.setNpcDailyCombat(0);
             mCharacter.setNumberOfDaysPlayed(mCharacter.getNumberOfDaysPlayed() + 1);
-        }
-    }
-
-    private void execHealing(int totalIncrements) {
-        for (int i = 0; i < totalIncrements; i++) {
-            mCharacter.getFormulas().addHeath((int) (mCharacter.getFormulas().getHealth() * 0.2));
-            mCharacter.getFormulas().addChakra((int) (mCharacter.getFormulas().getChakra() * 0.2));
-            mCharacter.getFormulas().addStamina((int) (mCharacter.getFormulas().getStamina() * 0.2));
         }
     }
 
@@ -601,6 +612,7 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
             mMusicUtil.release();
         }
     }
+
 
     void logout() {
         mChatRepository.removeEventListener();

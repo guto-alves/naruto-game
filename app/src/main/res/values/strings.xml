@@ -1015,6 +1015,17 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="rank_b">Rank B</string>
     <string name="rank_c">Rank C</string>
     <string name="rank_d">Rank D</string>
+    <string name="attributes_are_already_full">You don\'t need to use you ramen right now because your attibutes are already full</string>
+    <string name="mission1">First Mission! Starting your Ninja Life</string>
+    <string name="mission1_desc">Now that you\'re a genin, his first mission is to go to the room of Kage, do not be late, after all is a ninja too busy with missions and tasks of the village.</string>
+    <string name="mission2">Clean up the flowerbeds</string>
+    <string name="mission2_des">The village must always be clean and organized, and this mission you will clean the beds to maintain the beauty of the village.</string>
+    <string name="mission3">Clean up the River</string>
+    <string name="mission3_des">Although the maintenance of the village, this mission you must help clean the river that cuts through the village.</string>
+    <string name="mission4">Kage\'s Memorial</string>
+    <string name="mission4_des">You laughed when Naruto who had to clean the monument, now it\'s your turn, the Kages were great ninjas, then keep clean the monument, is the least you can do a ninja newbie</string>
+    <string name="mission5">Walkway with the Ninja Dogs</string>
+    <string name="mission5_des">Some of the dogs responsible for the ninjas are several important missions, so you and others will have to help genins.</string>
 
 
 </resources>
