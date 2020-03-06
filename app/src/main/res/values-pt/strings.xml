@@ -486,7 +486,7 @@
         Quinzenal de 40 Armas de Longo Alcance, isso foi implementado no jogo para que o uso dessas
         armas seja feito de uma forma estratégica nos combates. O Reset acontece sempre no dia 1 e
         15 de todo mês.</string>
-    <string name="_0_of_40_ranged_biweekly_weapons">%d de 40 Armas de Longo Alcance Quinzenais</string>
+    <string name="_0_of_40_ranged_biweekly_weapons">0 de 40 Armas de Longo Alcance Quinzenais</string>
 
     <string name="scroll_to_leaf">Pergaminho de Teletransporte para Konoha</string>
     <string name="scroll_to_leaf_des">Ao utilizar esse pergaminho seu personagem é automaticamamente

@@ -64,7 +64,7 @@ public class VillageMapFragment extends Fragment implements SectionFragment {
                     @Override
                     public boolean onScale(ScaleGestureDetector detector) {
                         mScaleFactor *= detector.getScaleFactor();
-                        mScaleFactor = Math.max(0.1f, Math.min(mScaleFactor, 5.0f));
+                        mScaleFactor = Math.max(0.1f, Math.min(mScaleFactor, 2.0f));
                         binding.villageMapRecyclerView.setScaleX(mScaleFactor);
                         binding.villageMapRecyclerView.setScaleY(mScaleFactor);
                         return true;

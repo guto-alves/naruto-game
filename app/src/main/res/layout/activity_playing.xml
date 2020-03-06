@@ -115,7 +115,6 @@
                         android:onClick="@{() -> viewModel.onChangeImageButtonPressed()}"
                         android:text="@string/button_change_image" />
 
-                    <!-- INFORMAÇÕES SOBRE O PERSONAGEM-->
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -130,6 +129,8 @@
                         android:id="@+id/titlesSpinner"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
                         android:background="@android:color/white"
                         android:onItemSelected="@{(parent, view, pos, id) -> viewModel.onTitleSelected(pos)}"
                         android:spinnerMode="dialog" />
@@ -396,7 +397,7 @@
                                     android:background="@android:color/white"
                                     android:ems="10"
                                     android:imeOptions="actionSend"
-                                    android:inputType="textPersonName"
+                                    android:inputType="textCapCharacters|textCapSentences"
                                     android:maxLength="25"
                                     android:text="@={viewModel.message}" />
                             </LinearLayout>

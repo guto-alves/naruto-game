@@ -90,6 +90,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:orientation="vertical"
+                    android:padding="3dp"
                     app:layout_constraintBottom_toTopOf="@+id/imageView222"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/imagemMsg2"
@@ -111,8 +112,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
                         android:gravity="center|start"
-                        android:paddingEnd="3dp"
-                        android:paddingRight="3dp"
                         android:text="@string/limit_ranged_weapons_description"
                         android:textColor="#D1D8F1"
                         android:textSize="12sp" />
@@ -140,7 +139,7 @@
                             android:layout_marginLeft="8dp"
                             android:text="@string/_0_of_40_ranged_biweekly_weapons"
                             android:textColor="@android:color/white"
-                            android:textSize="12sp"
+                            android:textSize="10sp"
                             android:textStyle="bold"
                             app:layout_constraintBottom_toBottomOf="@+id/armasQuinzenalProgressBar"
                             app:layout_constraintStart_toStartOf="@+id/armasQuinzenalProgressBar"
@@ -163,19 +162,21 @@
                 <Button
                     style="@style/ButtonTheme"
                     android:layout_gravity="center"
-                    android:layout_marginEnd="16dp"
+                    android:background="@{viewModel.itemTypeSelected == ItemType.SCROLL ? @drawable/bg_button_orange : @drawable/bg_button}"
                     android:onClick="@{() -> viewModel.onItemTypeSelected(ItemType.SCROLL)}"
                     android:text="@string/scrolls" />
 
                 <Button
                     style="@style/ButtonTheme"
                     android:layout_marginTop="16dp"
+                    android:background="@{viewModel.itemTypeSelected == ItemType.MELEE_WEAPON ? @drawable/bg_button_orange : @drawable/bg_button}"
                     android:onClick="@{() -> viewModel.onItemTypeSelected(ItemType.MELEE_WEAPON)}"
                     android:text="@string/melee_weapon" />
 
                 <Button
                     style="@style/ButtonTheme"
                     android:layout_marginTop="16dp"
+                    android:background="@{viewModel.itemTypeSelected == ItemType.RANGED_WEAPON ? @drawable/bg_button_orange : @drawable/bg_button}"
                     android:onClick="@{() -> viewModel.onItemTypeSelected(ItemType.RANGED_WEAPON)}"
                     android:text="@string/ranged_weapon" />
             </LinearLayout>
@@ -192,23 +193,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout17" />
 
             <TextView
-                android:id="@+id/textView20"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
-                android:text="@string/item"
-                android:textColor="@android:color/white"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView45"
-                app:layout_constraintEnd_toStartOf="@+id/guideline11"
-                app:layout_constraintStart_toStartOf="@+id/imageView45"
-                app:layout_constraintTop_toTopOf="@+id/imageView45" />
-
-            <TextView
                 android:id="@+id/textView22"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -217,22 +201,22 @@
                 android:textSize="12sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView45"
-                app:layout_constraintEnd_toStartOf="@+id/guideline10"
-                app:layout_constraintStart_toStartOf="@+id/guideline11"
+                app:layout_constraintEnd_toEndOf="@+id/imageView45"
+                app:layout_constraintStart_toStartOf="@+id/guideline9"
                 app:layout_constraintTop_toTopOf="@+id/imageView45" />
 
             <TextView
                 android:id="@+id/textView25"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
                 android:text="@string/value"
                 android:textColor="@android:color/white"
                 android:textSize="12sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView45"
                 app:layout_constraintEnd_toStartOf="@+id/textView26"
-                app:layout_constraintHorizontal_bias="0.55"
-                app:layout_constraintStart_toStartOf="@+id/guideline10"
                 app:layout_constraintTop_toTopOf="@+id/imageView45"
                 app:layout_constraintVertical_bias="0.484" />
 
@@ -240,6 +224,8 @@
                 android:id="@+id/textView26"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
                 android:text="@string/amount"
                 android:textColor="@android:color/white"
                 android:textSize="12sp"
@@ -264,21 +250,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.75" />
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline10"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.5" />
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline11"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.36" />
+                app:layout_constraintGuide_percent="0.70" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

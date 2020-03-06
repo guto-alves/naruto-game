@@ -19,7 +19,8 @@ import com.gutotech.narutogame.ui.QuestionDialog;
 import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.utils.FragmentUtil;
 
-public class MissionsWaitingFragment extends Fragment implements SectionFragment {
+public class MissionsWaitingFragment extends Fragment implements SectionFragment,
+        QuestionDialog.OnButtonsClickListener {
     private MissionsWaitingViewModel mViewModel;
 
     @Override
@@ -55,9 +56,18 @@ public class MissionsWaitingFragment extends Fragment implements SectionFragment
     }
 
     private void showQuestionDialog() {
-        QuestionDialog dialog = new QuestionDialog(getString(R.string.question_cancel_mission));
-        dialog.setOnOkButton(v -> mViewModel.onCancelButtonPressed());
-        dialog.show(getParentFragmentManager(), "QuestionDialog");
+        QuestionDialog dialog = QuestionDialog.newInstance(
+                R.string.question_cancel_mission);
+        dialog.openDialog(getParentFragmentManager());
+    }
+
+    @Override
+    public void onPositiveClick() {
+        mViewModel.onCancelMissionButtonPressed();
+    }
+
+    @Override
+    public void onCancelClick() {
     }
 
     @Override

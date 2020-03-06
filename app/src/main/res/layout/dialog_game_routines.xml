@@ -42,30 +42,6 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Ranking Ninja: 00:47:05"
-                android:textColor="@android:color/holo_blue_dark" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/atualiza_o_ranking_de_ninjas"
-                android:textColor="@color/colorText" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Ranking Equipe: 00:47:05"
-                android:textColor="@android:color/holo_blue_dark" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/atualiza_o_ranking_de_equipes_e_conquista"
-                android:textColor="@color/colorText" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:text="@{@string/various_routines(viewModel.variousRoutines)}"
                 android:textColor="@android:color/holo_blue_dark" />
 

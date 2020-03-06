@@ -173,8 +173,8 @@ public class PlayingActivity extends AppCompatActivity {
             if (openChat) {
                 animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_in);
                 mBinding.scrollView.postDelayed(() ->
-                        mBinding.scrollView.smoothScrollTo(
-                                0, mBinding.scrollView.getBottom()), 800);
+                        mBinding.scrollView.smoothScrollTo(0, mBinding.scrollView.getBottom() + 500),
+                        500);
             } else {
                 animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_out);
             }

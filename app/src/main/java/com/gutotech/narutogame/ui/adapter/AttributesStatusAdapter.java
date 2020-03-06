@@ -15,9 +15,9 @@ import com.gutotech.narutogame.data.model.Attribute;
 
 import java.util.List;
 
-public class AttributesRecyclerViewAdapter extends RecyclerView.Adapter<AttributesRecyclerViewAdapter.MyViewHolder> {
+public class AttributesStatusAdapter extends RecyclerView.Adapter<AttributesStatusAdapter.MyViewHolder> {
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
         private TextView nameTextView;
         private ImageView iconImageView;
         private TextView totalTextView;
@@ -25,7 +25,6 @@ public class AttributesRecyclerViewAdapter extends RecyclerView.Adapter<Attribut
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-
             nameTextView = itemView.findViewById(R.id.nameTextView);
             iconImageView = itemView.findViewById(R.id.iconImageView);
             totalTextView = itemView.findViewById(R.id.totalTextView);
@@ -36,7 +35,7 @@ public class AttributesRecyclerViewAdapter extends RecyclerView.Adapter<Attribut
     private Attribute[] mAttributes;
     private List<Integer> mTotalPointsForEachAttribute;
 
-    public AttributesRecyclerViewAdapter(List<Integer> attributes) {
+    public AttributesStatusAdapter(List<Integer> attributes) {
         mTotalPointsForEachAttribute = attributes;
         mAttributes = Attribute.values();
     }

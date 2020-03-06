@@ -221,16 +221,17 @@
 
                             <TextView
                                 android:id="@+id/nickTextView"
-                                android:layout_width="wrap_content"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="8dp"
+                                android:gravity="center"
                                 android:text="@{viewModel.battle.player1.nick}"
                                 android:textColor="@android:color/white"
                                 android:textSize="12sp"
                                 android:textStyle="bold"
                                 app:layout_constraintBottom_toBottomOf="@+id/imageView8"
                                 app:layout_constraintEnd_toEndOf="@+id/imageView8"
-                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintStart_toStartOf="@id/imageView8"
                                 app:layout_constraintTop_toTopOf="@+id/imageView8" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
                     </LinearLayout>
@@ -284,16 +285,17 @@
 
                             <TextView
                                 android:id="@+id/nickNpcTextView"
-                                android:layout_width="wrap_content"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="8dp"
+                                android:gravity="center"
                                 android:text="@{viewModel.battle.player2.nick}"
                                 android:textColor="@android:color/white"
                                 android:textSize="12sp"
                                 android:textStyle="bold"
                                 app:layout_constraintBottom_toBottomOf="@+id/imageView9"
                                 app:layout_constraintEnd_toEndOf="@+id/imageView9"
-                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintStart_toStartOf="@id/imageView9"
                                 app:layout_constraintTop_toTopOf="@+id/imageView9" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
                     </LinearLayout>

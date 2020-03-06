@@ -1,66 +1,78 @@
 package com.gutotech.narutogame.ui;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
 import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.gutotech.narutogame.R;
 
 public class QuestionDialog extends DialogFragment {
-    private String mQuestion = "";
+    private static final String EXTRA_QUESTION = "question";
+    private static final String DIALOG_TAG = "QuestionDialog";
 
-    private View.OnClickListener mOnOkButton;
-    private View.OnClickListener mOnCancelButton;
+    public interface OnButtonsClickListener {
+        void onPositiveClick();
 
-    public QuestionDialog() {
+        void onCancelClick();
     }
 
-    public QuestionDialog(String question) {
-        mQuestion = question;
+    public static QuestionDialog newInstance(@StringRes int questionId) {
+        Bundle args = new Bundle();
+        args.putInt(EXTRA_QUESTION, questionId);
+
+        QuestionDialog questionDialog = new QuestionDialog();
+        questionDialog.setArguments(args);
+        return questionDialog;
     }
 
-    @NonNull
+    public void openDialog(FragmentManager fragmentManager) {
+        if (fragmentManager.findFragmentByTag(DIALOG_TAG) == null) {
+            show(fragmentManager, DIALOG_TAG);
+        }
+    }
+
+    @Nullable
     @Override
-    public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.dialog_question, container, false);
 
-        View root = requireActivity().getLayoutInflater().inflate(R.layout.dialog_question, null);
-        builder.setView(root);
+        int resid = getArguments().getInt(EXTRA_QUESTION);
 
-        TextView textView = root.findViewById(R.id.questionTextView);
-        textView.setText(mQuestion);
+        TextView textView = view.findViewById(R.id.questionTextView);
+        textView.setText(resid);
 
-        Button okButton = root.findViewById(R.id.okButton);
+        Button okButton = view.findViewById(R.id.okButton);
         okButton.setOnClickListener(v -> {
-            if (mOnOkButton != null) {
-                mOnOkButton.onClick(v);
+            OnButtonsClickListener clickListener = (OnButtonsClickListener) getTargetFragment();
+
+            if (clickListener != null) {
+                clickListener.onPositiveClick();
             }
+
             dismiss();
         });
 
-        Button cancelButton = root.findViewById(R.id.cancelButton);
+        Button cancelButton = view.findViewById(R.id.cancelButton);
         cancelButton.setOnClickListener(v -> {
-            if (mOnCancelButton != null) {
-                mOnCancelButton.onClick(v);
+            OnButtonsClickListener clickListener = (OnButtonsClickListener) getActivity();
+
+            if (clickListener != null) {
+                clickListener.onCancelClick();
             }
+
             dismiss();
         });
 
-        return builder.create();
-    }
-
-    public void setOnOkButton(View.OnClickListener onOkButton) {
-        mOnOkButton = onOkButton;
-    }
-
-    public void setOnCancelButton(View.OnClickListener onCancelButton) {
-        mOnCancelButton = onCancelButton;
+        return view;
     }
 }

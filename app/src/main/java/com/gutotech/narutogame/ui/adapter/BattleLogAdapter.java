@@ -25,12 +25,14 @@ public class BattleLogAdapter extends RecyclerView.Adapter<BattleLogAdapter.View
         void onJutsuClick(View anchor, BattleLog battleLog);
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         private TextView textView;
+        private View divider;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             textView = itemView.findViewById(R.id.textView);
+            divider = itemView.findViewById(R.id.divider);
         }
     }
 
@@ -47,7 +49,7 @@ public class BattleLogAdapter extends RecyclerView.Adapter<BattleLogAdapter.View
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(
-                R.layout.recycler_battle_log, parent, false);
+                R.layout.adapter_battle_log, parent, false);
         return new ViewHolder(itemView);
     }
 
@@ -57,6 +59,9 @@ public class BattleLogAdapter extends RecyclerView.Adapter<BattleLogAdapter.View
             BattleLog battleLog = mBattleLogs.get(position);
 
             SpannableStringBuilderCustom logBuilder = new SpannableStringBuilderCustom(mContext);
+
+            holder.divider.setVisibility(View.GONE);
+            holder.textView.setVisibility(View.VISIBLE);
 
             if (battleLog.getType() == BattleLog.Type.USES) {
                 logBuilder.append(battleLog.getNick());
@@ -97,7 +102,8 @@ public class BattleLogAdapter extends RecyclerView.Adapter<BattleLogAdapter.View
                 logBuilder.append(mContext.getString(R.string.missed));
                 logBuilder.setForegroundColor(android.R.color.holo_orange_dark);
             } else {
-                logBuilder.append("  -----------------------------------  ", android.R.color.darker_gray);
+                holder.divider.setVisibility(View.VISIBLE);
+                holder.textView.setVisibility(View.GONE);
             }
 
             holder.textView.setText(logBuilder.getString());

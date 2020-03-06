@@ -8,20 +8,23 @@ import android.graphics.drawable.ColorDrawable;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.model.Character;
+import com.gutotech.narutogame.databinding.DialogRankCharacterBinding;
 import com.gutotech.narutogame.utils.StorageUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RankingNinjasAdapter extends RecyclerView.Adapter<RankingNinjasAdapter.MyViewHolder> {
@@ -98,7 +101,7 @@ public class RankingNinjasAdapter extends RecyclerView.Adapter<RankingNinjasAdap
         return mNinjas != null ? mNinjas.size() : 0;
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
         private TextView positionTextView;
         private TextView nickTextView;
         private TextView titleTextView;
@@ -130,22 +133,24 @@ public class RankingNinjasAdapter extends RecyclerView.Adapter<RankingNinjasAdap
 
     private void showDetails(Character character) {
         Dialog profileDialog = new Dialog(mContext);
-        profileDialog.setContentView(R.layout.dialog_acao_profile);
 
-        ImageView profileLogadoimageView = profileDialog.findViewById(R.id.profilePersonagemOnImageView);
-        StorageUtil.downloadProfile(mContext, profileLogadoimageView, character.getProfilePath());
+        DialogRankCharacterBinding binding = DataBindingUtil.inflate(LayoutInflater.from(mContext),
+                R.layout.dialog_rank_character, null, false);
 
-        TextView nickPersonagemOnTextView = profileDialog.findViewById(R.id.nickPersonagemOnTextView);
-        nickPersonagemOnTextView.setText(character.getNick());
+        binding.setCharacter(character);
+        profileDialog.setContentView(binding.getRoot());
 
-        TextView classe = profileDialog.findViewById(R.id.classeTextView);
-        classe.setText(String.valueOf(character.getClasse()));
+        List<String> titles = new ArrayList<>();
 
-        TextView vila = profileDialog.findViewById(R.id.vilaTextView);
-        vila.setText(String.valueOf(character.getVillage()));
+        for (int titleId : character.getTitles()) {
+            titles.add(mContext.getString(titleId));
+        }
 
-        TextView level = profileDialog.findViewById(R.id.levelTextView);
-        level.setText(String.valueOf(character.getLevel()));
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(mContext,
+                android.R.layout.simple_spinner_item, titles);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        binding.titlesSpinner.setAdapter(adapter);
 
         profileDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         profileDialog.show();

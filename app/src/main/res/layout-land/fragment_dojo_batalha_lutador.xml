@@ -5,7 +5,13 @@
 
     <data>
 
+        <import type="com.gutotech.narutogame.data.model.GraduationUtils" />
+
         <import type="com.gutotech.narutogame.data.model.Jutsu" />
+
+        <variable
+            name="context"
+            type="android.content.Context" />
 
         <variable
             name="viewModel"
@@ -142,7 +148,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="0dp"
                             android:layout_weight="1"
-                            android:text="@{@string/label_graduation_and_lvl(viewModel.player.level)}"
+                            android:text="@{@string/label_graduation_and_lvl(context.getString(GraduationUtils.getName(viewModel.player.graduationId)), viewModel.player.level)}"
                             android:textColor="#FFD274"
                             android:textSize="8sp" />
 
@@ -216,7 +222,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="8dp"
                             android:layout_marginRight="8dp"
-                            android:text="@{@string/label_heath(viewModel.playerFormulas.currentChakra)}"
+                            android:text="@{@string/label_chakra(viewModel.playerFormulas.currentChakra)}"
                             android:textColor="@android:color/white"
                             android:textSize="10sp"
                             android:textStyle="bold"
@@ -396,7 +402,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="0dp"
                             android:layout_weight="1"
-                            android:text="@{@string/label_graduation_and_lvl(viewModel.npc.character.level)}"
+                            android:text="@{@string/label_graduation_and_lvl(context.getString(GraduationUtils.getName(viewModel.npc.character.graduationId)), viewModel.npc.character.level)}"
                             android:textColor="#FFD274"
                             android:textSize="8sp" />
 
@@ -470,7 +476,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
                             android:layout_marginLeft="8dp"
-                            android:text="@{@string/label_stamina(viewModel.npcFormulas.currentChakra)}"
+                            android:text="@{@string/label_chakra(viewModel.npcFormulas.currentChakra)}"
                             android:textColor="@android:color/white"
                             android:textSize="10sp"
                             android:textStyle="bold"
@@ -634,7 +640,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:spanCount="7"
-                    tools:listitem="@layout/recycler_battle_jutsu" />
+                    tools:listitem="@layout/adapter_battle_jutsu_item" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -41,13 +41,13 @@
 
             <LinearLayout
                 android:id="@+id/linearLayout20"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginLeft="24dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
                 android:layout_marginTop="24dp"
-                android:layout_marginEnd="24dp"
-                android:layout_marginRight="24dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -75,7 +75,7 @@
                     android:id="@+id/textView97"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=" .................................................."
+                    android:text=" ......................................................................"
                     android:textColor="@android:color/white" />
             </LinearLayout>
 
@@ -106,7 +106,7 @@
                         android:gravity="center_vertical"
                         android:text="@string/allied_ninja"
                         android:textColor="@android:color/white"
-                        android:textSize="10sp" />
+                        android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/enemyNinjaTextView"
@@ -119,7 +119,7 @@
                         android:gravity="center_vertical"
                         android:text="@string/enemy_ninja"
                         android:textColor="@android:color/white"
-                        android:textSize="10sp" />
+                        android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/bbTargetNinjaTextView"
@@ -134,7 +134,7 @@
                         android:gravity="center_vertical"
                         android:text="@string/bb_target_ninja"
                         android:textColor="@android:color/white"
-                        android:textSize="10sp" />
+                        android:textSize="12sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -146,7 +146,7 @@
                         android:gravity="center_vertical"
                         android:text="@string/battle"
                         android:textColor="@android:color/white"
-                        android:textSize="10sp" />
+                        android:textSize="12sp" />
 
                 </LinearLayout>
 
@@ -162,7 +162,7 @@
                     android:gravity="center_vertical"
                     android:text="@string/neutral_ninja"
                     android:textColor="@android:color/white"
-                    android:textSize="10sp"
+                    android:textSize="12sp"
                     app:layout_constraintStart_toStartOf="@+id/guideline58"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -179,7 +179,7 @@
                     android:gravity="center_vertical"
                     android:text="@string/event_ninja"
                     android:textColor="@android:color/white"
-                    android:textSize="10sp"
+                    android:textSize="12sp"
                     app:layout_constraintStart_toStartOf="@+id/guideline58"
                     app:layout_constraintTop_toBottomOf="@+id/neutralNinjaTextView" />
 
@@ -196,7 +196,7 @@
                     android:gravity="center_vertical"
                     android:text="@string/place_entry"
                     android:textColor="@android:color/white"
-                    android:textSize="10sp"
+                    android:textSize="12sp"
                     app:layout_constraintStart_toStartOf="@+id/guideline58"
                     app:layout_constraintTop_toBottomOf="@+id/sendMessageTextView" />
 
@@ -213,7 +213,7 @@
                     android:gravity="center_vertical"
                     android:text="@string/send_message"
                     android:textColor="@android:color/white"
-                    android:textSize="10sp"
+                    android:textSize="12sp"
                     app:layout_constraintStart_toStartOf="@+id/guideline58"
                     app:layout_constraintTop_toBottomOf="@+id/eventNinjaTextView" />
 

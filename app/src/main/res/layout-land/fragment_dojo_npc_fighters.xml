@@ -223,7 +223,7 @@
                                 android:textStyle="bold"
                                 app:layout_constraintBottom_toBottomOf="@+id/imageView8"
                                 app:layout_constraintEnd_toEndOf="@+id/imageView8"
-                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintStart_toStartOf="@id/imageView8"
                                 app:layout_constraintTop_toTopOf="@+id/imageView8" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
                     </LinearLayout>
@@ -280,7 +280,7 @@
                                 android:textStyle="bold"
                                 app:layout_constraintBottom_toBottomOf="@+id/imageView9"
                                 app:layout_constraintEnd_toEndOf="@+id/imageView9"
-                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintStart_toStartOf="@id/imageView9"
                                 app:layout_constraintTop_toTopOf="@+id/imageView9" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
                     </LinearLayout>

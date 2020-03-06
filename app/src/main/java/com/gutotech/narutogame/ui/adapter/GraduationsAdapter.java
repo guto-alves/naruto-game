@@ -91,7 +91,7 @@ public class GraduationsAdapter extends RecyclerView.Adapter<GraduationsAdapter.
         if (graduationId <= CharOn.character.getGraduationId()) {
             holder.graduateButton.setText(R.string.button_graduated);
             holder.graduateButton.setEnabled(false);
-            holder.graduateButton.setBackgroundColor(mContext.getResources().getColor(R.color.colorGreen));
+            holder.graduateButton.setBackgroundResource(R.drawable.bg_green_button);
         } else {
             holder.graduateButton.setText(R.string.button_graduate);
         }

@@ -91,7 +91,7 @@ public class MissionsWaitingViewModel extends ViewModel {
         return rewardValues;
     }
 
-    void onCancelButtonPressed() {
+    void onCancelMissionButtonPressed() {
         mMissionRepository.finishTimeMission();
         CharOn.character.setMission(false);
     }

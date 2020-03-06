@@ -162,6 +162,7 @@
 
                 <Button
                     style="@style/ButtonTheme"
+                    android:background="@{viewModel.itemTypeSelected == ItemType.RANGED_WEAPON ? @drawable/bg_button_orange : @drawable/bg_button}"
                     android:onClick="@{() -> viewModel.onItemTypeSelected(ItemType.RANGED_WEAPON)}"
                     android:text="@string/ranged_weapon" />
 
@@ -169,12 +170,15 @@
                     style="@style/ButtonTheme"
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
+                    android:background="@{viewModel.itemTypeSelected == ItemType.MELEE_WEAPON ? @drawable/bg_button_orange : @drawable/bg_button}"
                     android:onClick="@{() -> viewModel.onItemTypeSelected(ItemType.MELEE_WEAPON)}"
                     android:text="@string/melee_weapon" />
 
                 <Button
                     style="@style/ButtonTheme"
                     android:layout_marginEnd="16dp"
+                    android:layout_marginRight="16dp"
+                    android:background="@{viewModel.itemTypeSelected == ItemType.SCROLL ? @drawable/bg_button_orange : @drawable/bg_button}"
                     android:onClick="@{() -> viewModel.onItemTypeSelected(ItemType.SCROLL)}"
                     android:text="@string/scrolls" />
             </LinearLayout>

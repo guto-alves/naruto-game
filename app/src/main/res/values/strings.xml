@@ -29,10 +29,6 @@
     <string name="button_change_image">Change Image</string>
     <string name="train">Train</string>
     <string name="enter_the_clan">Enter the Clan</string>
-    <string name="button_abandonar_cla">Abandonar Clã</string>
-    <string name="button_aceitar_pacto">Aceitar Pacto</string>
-    <string name="button_quebrar_pacto">Quebrar Pacto</string>
-    <string name="button_duelar">Duelar</string>
     <string name="button_play_lucky">Play!</string>
     <string name="receive">Receive</string>
     <string name="button_not_received">Not received</string>
@@ -102,8 +98,6 @@
     <string name="resistance">Resistance</string>
     <string name="energy">Energy</string>
     <string name="life">Life</string>
-    <string name="determinacao">Determinação</string>
-    <string name="esquiva">Esquiva</string>
 
     <string name="chat_naruto_game" translatable="false">CHAT NARUTO GAME</string>
     <string name="file">File</string>
@@ -539,7 +533,7 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="amount">Amount</string>
     <string name="limit_ranged_weapons">LIMIT BIWEEKLY RANGED WEAPONS</string>
     <string name="limit_ranged_weapons_description">All Ninjas have a Purchase Biweekly Limit 40 Ranged Weapons , it was implemented in the game so that the use of these weapons is done in a strategic manner in the fighting. The Reset always happen on the 1st and 15th of every month.</string>
-    <string name="_0_of_40_ranged_biweekly_weapons">%d of 40 Ranged Biweekly Weapons</string>
+    <string name="_0_of_40_ranged_biweekly_weapons">0 of 40 Ranged Biweekly Weapons</string>
 
     <string name="scroll_to_leaf">Teletransport Scroll to Leaf</string>
     <string name="scroll_to_leaf_des">Using this scroll, your character will be teleported to the Leaf map.</string>
@@ -590,7 +584,7 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="label_chakra">Chakra: %d</string>
     <string name="label_stamina">Stamina: %d</string>
     <string name="dojo_timer">%02d:%02d</string>
-    <string name="label_graduation_and_lvl">Genin - Lvl %d</string>
+    <string name="label_graduation_and_lvl">%s - Lvl %d</string>
     <string name="too_bad">TOO BAD!</string>
     <string name="you_have_lost_the_battle">You have lost the battle.\n\nGo to</string>
     <string name="voc_foi_muito_machucado">YOU WERE BADLY INJURED AND IS RESTING!</string>
@@ -995,13 +989,13 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="swordsman_of_the_mist">Swordsman of the Mist</string>
     <string name="orphan">Orphan</string>
     <string name="cursed">Cursed</string>
-    <string name="sound_cientist">Sound Cientist</string>
+    <string name="sound_cientist">Sound Scientist</string>
     <string name="survivor">Survivor</string>
     <string name="requires_initial_tasks">You must have completed 10 Initial Tasks</string>
     <string name="requires_lerned_jutsus">Have %d Learned Jutsus</string>
     <string name="requires_wins_npc">Have %d Win NPC</string>
-    <string name="requires_wins_pvp">Ter %d Vitórias PVP</string>
-    <string name="requires_you_need_to_be_level">Você precisa estar no Level %d ou superior</string>
+    <string name="requires_wins_pvp">Have %d Wins PVP</string>
+    <string name="requires_you_need_to_be_level">You need to be Level %d or higher</string>
 
     <string name="requires_missions_rank">You must have completed %d Missions Rank %s or more</string>
     <string name="button_graduated">Graduated</string>

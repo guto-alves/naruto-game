@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.databinding.FragmentNinjaShopBinding;
 import com.gutotech.narutogame.ui.SectionFragment;
+import com.gutotech.narutogame.ui.WarningDialog;
 import com.gutotech.narutogame.ui.adapter.ItemShopRecyclerAdapter;
 import com.gutotech.narutogame.utils.FragmentUtil;
 
@@ -36,6 +37,11 @@ public class NinjaShopFragment extends Fragment implements SectionFragment {
         binding.shopItemsRecyclerView.setAdapter(adapter);
 
         viewModel.getShopItems().observe(getViewLifecycleOwner(), adapter::setItemsList);
+
+        viewModel.getShowWarningDialogEvent().observe(getViewLifecycleOwner(), resid -> {
+            WarningDialog warningDialog = WarningDialog.newInstance(resid);
+            warningDialog.openDialog(getParentFragmentManager());
+        });
 
         FragmentUtil.setSectionTitle(getActivity(), R.string.section_ninja_shop);
         return binding.getRoot();

@@ -19,8 +19,7 @@ import com.gutotech.narutogame.ui.adapter.ProfilesAdapter;
 import com.gutotech.narutogame.utils.FragmentUtil;
 import com.gutotech.narutogame.utils.StorageUtil;
 
-public class ChangeImageFragment extends Fragment implements SectionFragment {
-    private QuestionDialog questionDialog;
+public class ChangeImageFragment extends Fragment implements SectionFragment, QuestionDialog.OnButtonsClickListener {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -30,25 +29,37 @@ public class ChangeImageFragment extends Fragment implements SectionFragment {
         RecyclerView profilesRecyclerView = view.findViewById(R.id.profilesRecyclerView);
         profilesRecyclerView.setHasFixedSize(true);
 
-        questionDialog = new QuestionDialog(getString(R.string.question_change_profile_image));
         StorageUtil.listAll(
                 String.format("images/profile/%s/", CharOn.character.getNinja().getId()),
                 data -> {
-                    ProfilesAdapter adapter = new ProfilesAdapter(data, profilePath -> {
-                        questionDialog.setOnOkButton(v -> {
-                            CharOn.character.setProfilePath(profilePath);
-
-                            DrawerLayout drawer = getActivity().findViewById(R.id.drawerLayout);
-                            drawer.openDrawer(GravityCompat.START);
-                        });
-                        questionDialog.show(getParentFragmentManager(), "QuestionDialog");
-                    });
+                    ProfilesAdapter adapter = new ProfilesAdapter(data, mOnProfileClickListener);
                     profilesRecyclerView.setAdapter(adapter);
                 });
 
         FragmentUtil.setSectionTitle(getActivity(), R.string.section_change_image);
 
         return view;
+    }
+
+    private String mProfilePath;
+
+    private final ProfilesAdapter.OnProfileClickListener mOnProfileClickListener = profilePath -> {
+        mProfilePath = profilePath;
+
+        QuestionDialog questionDialog = QuestionDialog.newInstance(
+                R.string.question_change_profile_image);
+        questionDialog.openDialog(getParentFragmentManager());
+    };
+
+    @Override
+    public void onPositiveClick() {
+        CharOn.character.setProfilePath(mProfilePath);
+
+        DrawerLayout drawer = getActivity().findViewById(R.id.drawerLayout);
+        drawer.openDrawer(GravityCompat.START);
+    }
+
+    public void onCancelClick() {
     }
 
     @Override

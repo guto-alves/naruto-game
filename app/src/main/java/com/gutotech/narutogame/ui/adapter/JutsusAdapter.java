@@ -55,7 +55,7 @@ public class JutsusAdapter extends RecyclerView.Adapter<JutsusAdapter.ViewHolder
     @Override
     public JutsusAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View itemView = LayoutInflater.from(viewGroup.getContext()).inflate(
-                R.layout.recycler_battle_jutsu, viewGroup, false);
+                R.layout.adapter_battle_jutsu_item, viewGroup, false);
         return new ViewHolder(itemView);
     }
 

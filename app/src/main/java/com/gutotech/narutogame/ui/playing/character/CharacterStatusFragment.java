@@ -14,7 +14,7 @@ import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.databinding.FragmentCharacterStatusBinding;
 import com.gutotech.narutogame.ui.SectionFragment;
-import com.gutotech.narutogame.ui.adapter.AttributesRecyclerViewAdapter;
+import com.gutotech.narutogame.ui.adapter.AttributesStatusAdapter;
 import com.gutotech.narutogame.ui.adapter.FormulasRecyclerViewAdapter;
 import com.gutotech.narutogame.utils.FragmentUtil;
 
@@ -31,7 +31,7 @@ public class CharacterStatusFragment extends Fragment implements SectionFragment
         binding.setCharacter(CharOn.character);
 
         binding.attributesRecyclerView.setHasFixedSize(true);
-        binding.attributesRecyclerView.setAdapter(new AttributesRecyclerViewAdapter(
+        binding.attributesRecyclerView.setAdapter(new AttributesStatusAdapter(
                 CharOn.character.getAttributes().asList()));
 
         binding.formulasRecyclerView.setHasFixedSize(true);

@@ -51,6 +51,7 @@ public class DojoBatalhaLutadorFragment extends Fragment implements SectionFragm
                              Bundle savedInstanceState) {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_dojo_batalha_lutador,
                 container, false);
+        mBinding.setContext(getContext());
 
         BattleRepository.getInstance().get(CharOn.character.battleId, battle -> {
             mViewModel = new ViewModelProvider(this,
