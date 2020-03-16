@@ -11,6 +11,7 @@ import com.gutotech.narutogame.data.model.MissionInfo;
 import com.gutotech.narutogame.data.model.TimeMission;
 import com.gutotech.narutogame.data.repository.MissionRepository;
 import com.gutotech.narutogame.ui.adapter.MissionsAdapter;
+import com.gutotech.narutogame.utils.SingleLiveEvent;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -26,6 +27,8 @@ public class MissionsViewModel extends ViewModel implements MissionsAdapter.OnAc
     public final ObservableField<Mission.Rank> rankSelected = new ObservableField<>(Mission.Rank.RANK_D);
 
     private MutableLiveData<List<Mission>> mMissions = new MutableLiveData<>();
+
+    private SingleLiveEvent<Void> mShowWarningDialogEvent = new SingleLiveEvent<>();
 
     public MissionsViewModel() {
         filterMissions();
@@ -113,10 +116,16 @@ public class MissionsViewModel extends ViewModel implements MissionsAdapter.OnAc
 
     @Override
     public void onAcceptClick(Mission task) {
-        if (CharOn.character.getTotalDailyMissions() < 3) {
+        if (CharOn.character.getTotalDailyMissions() <= 3) {
             TimeMission timeMission = (TimeMission) task;
             MissionRepository.getInstance().acceptTimeMission(timeMission);
             CharOn.character.setMission(true);
+        } else {
+            mShowWarningDialogEvent.call();
         }
+    }
+
+    public LiveData<Void> getShowWarningDialogEvent() {
+        return mShowWarningDialogEvent;
     }
 }

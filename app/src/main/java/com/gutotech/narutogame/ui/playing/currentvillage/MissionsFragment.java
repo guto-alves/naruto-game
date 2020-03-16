@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.databinding.FragmentMissionsBinding;
 import com.gutotech.narutogame.ui.SectionFragment;
+import com.gutotech.narutogame.ui.WarningDialog;
 import com.gutotech.narutogame.ui.adapter.MissionsAdapter;
 import com.gutotech.narutogame.utils.FragmentUtil;
 
@@ -35,6 +36,12 @@ public class MissionsFragment extends Fragment implements SectionFragment {
         binding.missionsRecyclerView.setAdapter(adapter);
 
         viewModel.getMissions().observe(getViewLifecycleOwner(), adapter::setMissions);
+
+        viewModel.getShowWarningDialogEvent().observe(getViewLifecycleOwner(), aVoid -> {
+            WarningDialog warningDialog = WarningDialog.newInstance(
+                    R.string.reached_the_limit_of_daily_time_missions);
+            warningDialog.openDialog(getParentFragmentManager());
+        });
 
         FragmentUtil.setSectionTitle(getActivity(), R.string.section_missions);
         return binding.getRoot();

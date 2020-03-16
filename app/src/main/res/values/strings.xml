@@ -2055,6 +2055,7 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="special">Special</string>
     <string name="you_cannot_battle_with_an_ally">You cannot battle with an ally!</string>
     <string name="attributes_uppercase">ATTRIBUTES</string>
+    <string name="reached_the_limit_of_daily_time_missions">You have reached the limit of daily time missions!</string>
 
 
 </resources>

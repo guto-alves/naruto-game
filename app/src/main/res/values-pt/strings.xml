@@ -2006,6 +2006,7 @@
     <string name="special">Especial</string>
     <string name="you_cannot_battle_with_an_ally">Você não pode batalhar com um aliado!</string>
     <string name="attributes_uppercase">Atributos</string>
+    <string name="reached_the_limit_of_daily_time_missions">Você atingiu o limite de missões de tempo diário!</string>
 
 
 </resources>
