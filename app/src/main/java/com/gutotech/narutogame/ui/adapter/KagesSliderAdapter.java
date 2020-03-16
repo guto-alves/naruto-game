@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.Character;
+import com.gutotech.narutogame.data.model.GraduationUtils;
 import com.gutotech.narutogame.utils.StorageUtil;
 import com.smarteist.autoimageslider.SliderViewAdapter;
 
@@ -54,7 +55,9 @@ public class KagesSliderAdapter extends SliderViewAdapter<KagesSliderAdapter.Sli
                     viewHolder.profileImageView, kage.getNinja().getId());
             viewHolder.nameTextView.setText(kage.getNick());
             viewHolder.descriptionTextView.setText(mContext.getString(
-                    R.string.label_graduation_and_lvl, kage.getLevel()));
+                    R.string.label_graduation_and_lvl,
+                    mContext.getString(GraduationUtils.getName(kage.getGraduationId(), kage.getVillage())),
+                    kage.getLevel()));
         }
     }
 
@@ -64,10 +67,10 @@ public class KagesSliderAdapter extends SliderViewAdapter<KagesSliderAdapter.Sli
     }
 
     static class SliderAdapterVH extends SliderViewAdapter.ViewHolder {
-        ImageView villageImageView;
-        ImageView profileImageView;
-        TextView nameTextView;
-        TextView descriptionTextView;
+        private ImageView villageImageView;
+        private ImageView profileImageView;
+        private TextView nameTextView;
+        private TextView descriptionTextView;
 
         SliderAdapterVH(View itemView) {
             super(itemView);

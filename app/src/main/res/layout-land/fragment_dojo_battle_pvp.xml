@@ -5,7 +5,13 @@
 
     <data>
 
+        <import type="com.gutotech.narutogame.data.model.GraduationUtils" />
+
         <import type="com.gutotech.narutogame.data.model.Jutsu" />
+
+        <variable
+            name="context"
+            type="android.content.Context" />
 
         <variable
             name="viewModel"
@@ -61,7 +67,7 @@
                     android:layout_marginTop="90dp"
                     android:gravity="center"
                     android:orientation="vertical"
-                    app:layout_constraintBottom_toBottomOf="@+id/LinearMeio"
+                    app:layout_constraintBottom_toBottomOf="@+id/vsLinearLayout"
                     app:layout_constraintStart_toStartOf="@+id/guideline55"
                     app:layout_constraintTop_toTopOf="parent">
 
@@ -88,7 +94,7 @@
 
                     <ImageView
                         android:id="@+id/myProfileImageView"
-                        loadProfile="@{viewModel.player.profilePath}"
+                        loadProfile="@{viewModel.fighters.player.profilePath}"
                         android:layout_width="145dp"
                         android:layout_height="155dp"
                         android:layout_marginTop="3dp" />
@@ -117,7 +123,7 @@
                             android:layout_marginRight="8dp"
                             android:layout_marginBottom="3dp"
                             android:gravity="center"
-                            android:text="@{viewModel.player.nick}"
+                            android:text="@{viewModel.fighters.player.nick}"
                             android:textColor="@android:color/white"
                             android:textSize="12sp"
                             android:textStyle="bold"
@@ -143,7 +149,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="0dp"
                             android:layout_weight="1"
-                            android:text="@{@string/label_graduation_and_lvl(viewModel.player.level)}"
+                            android:text="@{@string/label_graduation_and_lvl(context.getString(GraduationUtils.getName(viewModel.fighters.player.graduationId)), viewModel.fighters.player.level)}"
                             android:textColor="#FFD274"
                             android:textSize="8sp" />
 
@@ -162,7 +168,7 @@
                         android:layout_marginTop="3dp">
 
                         <ProgressBar
-                            android:id="@+id/hpMeProgressBar"
+                            android:id="@+id/playerHpProgressBar"
                             style="?android:attr/progressBarStyleHorizontal"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -176,7 +182,7 @@
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
-                            android:id="@+id/myHpTextView"
+                            android:id="@+id/playerHpTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="8dp"
@@ -185,9 +191,9 @@
                             android:textColor="@android:color/white"
                             android:textSize="10sp"
                             android:textStyle="bold"
-                            app:layout_constraintBottom_toBottomOf="@+id/hpMeProgressBar"
-                            app:layout_constraintEnd_toEndOf="@+id/hpMeProgressBar"
-                            app:layout_constraintTop_toTopOf="@+id/hpMeProgressBar" />
+                            app:layout_constraintBottom_toBottomOf="@+id/playerHpProgressBar"
+                            app:layout_constraintEnd_toEndOf="@+id/playerHpProgressBar"
+                            app:layout_constraintTop_toTopOf="@+id/playerHpProgressBar" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -222,6 +228,7 @@
                             app:layout_constraintBottom_toBottomOf="@+id/chakraMeProgressBar"
                             app:layout_constraintEnd_toEndOf="@+id/chakraMeProgressBar"
                             app:layout_constraintTop_toTopOf="@+id/chakraMeProgressBar" />
+                        
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -256,18 +263,19 @@
                             app:layout_constraintBottom_toBottomOf="@+id/staminaMeProgressBar"
                             app:layout_constraintEnd_toEndOf="@+id/staminaMeProgressBar"
                             app:layout_constraintTop_toTopOf="parent" />
+                        
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/LinearMeio"
+                    android:id="@+id/vsLinearLayout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="90dp"
                     android:gravity="center"
                     android:orientation="vertical"
                     android:padding="1dp"
-                    app:layout_constraintEnd_toStartOf="@+id/LinearOpo"
+                    app:layout_constraintEnd_toStartOf="@+id/opponentLinearLayout"
                     app:layout_constraintStart_toEndOf="@+id/MyLinear"
                     app:layout_constraintTop_toTopOf="parent">
 
@@ -304,13 +312,13 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/LinearOpo"
+                    android:id="@+id/opponentLinearLayout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="90dp"
                     android:gravity="center"
                     android:orientation="vertical"
-                    app:layout_constraintBottom_toBottomOf="@+id/LinearMeio"
+                    app:layout_constraintBottom_toBottomOf="@+id/vsLinearLayout"
                     app:layout_constraintEnd_toStartOf="@+id/guideline26"
                     app:layout_constraintTop_toTopOf="parent">
 
@@ -338,7 +346,7 @@
 
                     <ImageView
                         android:id="@+id/oppProfileImageView"
-                        loadProfile="@{viewModel.opponent.profilePath}"
+                        loadProfile="@{viewModel.fighters.opponent.profilePath}"
                         android:layout_width="145dp"
                         android:layout_height="155dp"
                         android:layout_marginTop="3dp" />
@@ -367,7 +375,7 @@
                             android:layout_marginRight="8dp"
                             android:layout_marginBottom="3dp"
                             android:gravity="center"
-                            android:text="@{viewModel.opponent.nick}"
+                            android:text="@{viewModel.fighters.opponent.nick}"
                             android:textColor="@android:color/white"
                             android:textSize="12sp"
                             android:textStyle="bold"
@@ -375,6 +383,7 @@
                             app:layout_constraintEnd_toEndOf="@+id/imageView17"
                             app:layout_constraintStart_toStartOf="@id/imageView17"
                             app:layout_constraintTop_toTopOf="@+id/imageView17" />
+
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <LinearLayout
@@ -393,7 +402,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="0dp"
                             android:layout_weight="1"
-                            android:text="@{@string/label_graduation_and_lvl(viewModel.opponent.level)}"
+                            android:text="@{@string/label_graduation_and_lvl(context.getString(GraduationUtils.getName(viewModel.fighters.opponent.graduationId)), viewModel.fighters.opponent.level)}"
                             android:textColor="#FFD274"
                             android:textSize="8sp" />
 
@@ -412,7 +421,7 @@
                         android:layout_marginTop="3dp">
 
                         <ProgressBar
-                            android:id="@+id/hpOpoProgressBar"
+                            android:id="@+id/oppHpProgressBar"
                             style="?android:attr/progressBarStyleHorizontal"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -426,7 +435,7 @@
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
-                            android:id="@+id/hpOpoTextView"
+                            android:id="@+id/oppHpTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
@@ -436,8 +445,8 @@
                             android:textSize="10sp"
                             android:textStyle="bold"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="@+id/hpOpoProgressBar"
-                            app:layout_constraintTop_toTopOf="@+id/hpOpoProgressBar" />
+                            app:layout_constraintStart_toStartOf="@+id/oppHpProgressBar"
+                            app:layout_constraintTop_toTopOf="@+id/oppHpProgressBar" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -523,7 +532,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/LinearMeio" />
+                    app:layout_constraintTop_toBottomOf="@id/vsLinearLayout" />
 
                 <TextView
                     android:id="@+id/textView42"

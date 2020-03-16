@@ -65,6 +65,8 @@ public class DojoRandomWaitRepository {
                 .child(CharOn.character.getNick())
                 .child("battleId");
 
+        removeObserver();
+
         valueEventListener = battleIdReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

@@ -79,7 +79,7 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
     private final static int RANKING_GROUP = 6;
 
     private MutableLiveData<List<MenuGroup>> menuGroups = new MutableLiveData<>();
-    private MutableLiveData<SectionFragment> currentSection = new MutableLiveData<>();
+    private MutableLiveData<SectionFragment> mCurrentSection = new MutableLiveData<>();
 
     private Character mCharacter;
 
@@ -182,7 +182,7 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
     }
 
     LiveData<SectionFragment> getCurrentSection() {
-        return currentSection;
+        return mCurrentSection;
     }
 
     // Bag
@@ -305,16 +305,16 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
     }
 
     public void onChangeImageButtonPressed() {
-        currentSection.setValue(new ChangeImageFragment());
+        mCurrentSection.setValue(new ChangeImageFragment());
     }
 
     private void setCurrentSection(int groupPosition, int childPosition) {
-        currentSection.setValue(menuGroups.getValue().get(groupPosition)
+        mCurrentSection.setValue(menuGroups.getValue().get(groupPosition)
                 .sections.get(childPosition));
     }
 
     private void setCurrentSection(SectionFragment section) {
-        currentSection.setValue(section);
+        mCurrentSection.setValue(section);
     }
 
     private void buildMenu() {
@@ -383,8 +383,8 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
         }
 
         List<SectionFragment> sections5 = new ArrayList<>();
-        if (!mCharacter.isMission() && !mCharacter.isBattle() && !mCharacter.isHospital()
-                && !mCharacter.isMap() && !mCharacter.isDojoWaitQueue()) {
+        if (!mCharacter.isMission() && !mCharacter.isBattle() && !mCharacter.isHospital() &&
+                !mCharacter.isMap() && !mCharacter.isDojoWaitQueue() && mCharacter.getGraduationId() > 0) {
             if (TextUtils.isEmpty(mCharacter.getTeam())) {
                 sections5.add(new TeamParticipateFragment());
                 sections5.add(new TeamCreateFragment());
@@ -509,9 +509,9 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
 
     private void execHealing(int totalIncrements) {
         for (int i = 0; i < totalIncrements; i++) {
-            mCharacter.getFormulas().addHeath((int) (mCharacter.getFormulas().getHealth() * 0.2));
-            mCharacter.getFormulas().addChakra((int) (mCharacter.getFormulas().getChakra() * 0.2));
-            mCharacter.getFormulas().addStamina((int) (mCharacter.getFormulas().getStamina() * 0.2));
+            mCharacter.getFormulas().addHeath((int) Math.ceil(mCharacter.getFormulas().getHealth() * 0.2));
+            mCharacter.getFormulas().addChakra((int) Math.ceil(mCharacter.getFormulas().getChakra() * 0.2));
+            mCharacter.getFormulas().addStamina((int) Math.ceil(mCharacter.getFormulas().getStamina() * 0.2));
         }
     }
 
@@ -553,6 +553,7 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
                 mCharacter.setDaysOfFidelity(1);
             }
 
+            mCharacter.setTotalDailyMissions(0);
             mCharacter.setFidelityReward(true);
             mCharacter.setNpcDailyCombat(0);
             mCharacter.setNumberOfDaysPlayed(mCharacter.getNumberOfDaysPlayed() + 1);

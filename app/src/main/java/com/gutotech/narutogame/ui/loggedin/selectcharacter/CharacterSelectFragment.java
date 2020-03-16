@@ -19,13 +19,13 @@ import com.gutotech.narutogame.data.model.Character;
 import com.gutotech.narutogame.databinding.FragmentPersonagemSelecionarBinding;
 import com.gutotech.narutogame.ui.ResultListener;
 import com.gutotech.narutogame.ui.SectionFragment;
-import com.gutotech.narutogame.ui.adapter.CharacterSelectRecyclerViewAdapter;
+import com.gutotech.narutogame.ui.adapter.CharacterSelectAdapter;
 import com.gutotech.narutogame.ui.loggedin.newcharacteer.CharacterCreateFragment;
 import com.gutotech.narutogame.ui.playing.PlayingActivity;
 import com.gutotech.narutogame.utils.FragmentUtil;
 
 public class CharacterSelectFragment extends Fragment implements SectionFragment, ResultListener,
-        CharacterSelectRecyclerViewAdapter.CharacterSelecetedListener {
+        CharacterSelectAdapter.CharacterSelecetedListener {
     private CharacterSelectViewModel mViewModel;
 
     private FragmentPersonagemSelecionarBinding mBinding;
@@ -41,7 +41,7 @@ public class CharacterSelectFragment extends Fragment implements SectionFragment
 
         mBinding.setViewModel(mViewModel);
 
-        CharacterSelectRecyclerViewAdapter charactersAdapter = new CharacterSelectRecyclerViewAdapter(this);
+        CharacterSelectAdapter charactersAdapter = new CharacterSelectAdapter(this);
         mBinding.charactersRecyclerView.setHasFixedSize(true);
         mBinding.charactersRecyclerView.setAdapter(charactersAdapter);
 

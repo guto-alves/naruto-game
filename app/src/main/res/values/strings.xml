@@ -737,7 +737,7 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="konoha_tzu_desc">Use the leaves as shurikens</string>
     <string name="bunshin_no_jutsu_ii">Bunshin no Jutsu II</string>
     <string name="bunshin_no_jutsu_ii_desc">Creates a clone used to distract the opponent.</string>
-    <string name="ninpou_mushou_de_hitei">Ninpou ? Mushou de Hitei</string>
+    <string name="ninpou_mushou_de_hitei">Ninpou • Mushou de Hitei</string>
     <string name="ninpou_mushou_de_hitei_desc">Creates a cloud of nails that attack the opponent with only the power of chakra</string>
     <string name="kage_shuriken_no_jutsu">Kage Shuriken no Jutsu</string>
     <string name="kage_shuriken_no_jutsu_desc">When you throw a shuriken, another is thrown in the shadow of the first</string>
@@ -793,7 +793,7 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="chou_oodama_rasengan_desc">It is the most powerful form of Rasengan, because as is done in Sage Mode means that uses the Chakra Nature, so its force of destruction is much higher. Its size is ten times larger than its user.</string>
     <string name="minirasenshuriken">Mini-Rasenshuriken</string>
     <string name="minirasenshuriken_desc">The ninja creates a small Rasenshuriken at the tip of your finger and shoots on target, but their destructive power is immense.</string>
-    <string name="ninpou_gyoraishin">Ninpou ? Gyoraishin</string>
+    <string name="ninpou_gyoraishin">Ninpou • Gyoraishin</string>
     <string name="ninpou_gyoraishin_desc">The shinobi plays a number of blades in the air and, after all fincarem the ground, using the own chakra present in the metal to make them sink.</string>
     <string name="sensei_chou_oodama_rasengan">Sensei Chou Oodama Rasengan</string>
     <string name="sensei_chou_oodama_rasengan_desc">It is the most powerful form of Rasengan, because as is done in Sage Mode means that uses the Chakra Nature, so its force of destruction is much higher. Its size is ten times larger than its user.</string>
@@ -866,7 +866,7 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="nehan_shouja_no_jutsu_desc">Genjutsu technique that makes many people enter a state of unconsciousness.</string>
     <string name="mateki_mugen_onki">Mateki Mugen Onki</string>
     <string name="mateki_mugen_onki_desc">A devastating technique, which makes the opponent believe that this being restrained by ropes in a strange place. The ability to print opponent who gives her flesh is melting off your body.</string>
-    <string name="hyakka_ninpou_hanachiri_nuko">Hyakka Ninpou ? Hanachiri Nuko</string>
+    <string name="hyakka_ninpou_hanachiri_nuko">Hyakka Ninpou • Hanachiri Nuko</string>
     <string name="hyakka_ninpou_hanachiri_nuko_desc">Uses a Genjutsu Genjutsu inside another, turning into petals to escape and attack the enemy.</string>
     <string name="sensei_kokohi_deboa">Sensei Kokohi Deboa</string>
     <string name="sensei_kokohi_deboa_desc">The essence of this technique is concentrated in a spinning back kick, with such speed that not a single person can follow the user\'s movement, smashing his enemy with overwhelming strength.</string>
@@ -878,7 +878,7 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="raigen_raikouchuu_desc">The ninja creates an intense light capable of blinding.</string>
     <string name="genjutsu_no_kiri_ii">Genjutsu no Kiri II</string>
     <string name="genjutsu_no_kiri_ii_desc">With this technique, the user creates a large mist around him to hide, like the Kirigakure no Jutsu, only much larger, and with the difference that people who get into this mist begin to hallucinate.</string>
-    <string name="magen_kasegui_no_jutsu">Magen ? Kasegui no Jutsu</string>
+    <string name="magen_kasegui_no_jutsu">Magen • Kasegui no Jutsu</string>
     <string name="magen_kasegui_no_jutsu_desc">Uchiha Itachi and Uchiha Sasuke used this technique when Orochimaru tried to steal their bodies with Fushi Tensei, they used it to revert control of Jutsu.</string>
     <string name="mugen_marou">Mugen Marou</string>
     <string name="mugen_marou_desc">Causes the opponent to enter a mental breakdown.</string>
@@ -888,7 +888,7 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="sensei_mateki_mugen_onki_desc">A devastating technique, which makes the opponent believe that this being restrained by ropes in a strange place. The ability to print opponent who gives her flesh is melting off your body.</string>
     <string name="magen_gamarinshou">Magen Gamarinshou</string>
     <string name="magen_gamarinshou_desc">A powerful genjutsu that paralyzes the opponent completely.</string>
-    <string name="hana_ninpou_bakuhatsu_kemuri_no_hanabira">Hana Ninpou ? Bakuhatsu Kemuri no Hanabira</string>
+    <string name="hana_ninpou_bakuhatsu_kemuri_no_hanabira">Hana Ninpou • Bakuhatsu Kemuri no Hanabira</string>
     <string name="hana_ninpou_bakuhatsu_kemuri_no_hanabira_desc">Unleash a powder to be inhaled, the five senses are stunned ninja, and may even stop working.</string>
     <string name="genjutsu_shibari">Genjutsu Shibari</string>
     <string name="genjutsu_shibari_desc">A genjutsu that paralyzes the opponent, so the user can easily kill you.</string>
@@ -902,7 +902,7 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="koburabijon_ito_sasshin_desc">The ninja brings up a tree behind the opponent, and then the tree trunk the traps, so the ninja can perform a physical attack.</string>
     <string name="shirano">Shirano</string>
     <string name="shirano_desc">Creates an ilusion that makes the enemies sees 6 copies of the user that group and explodes.</string>
-    <string name="sensei_magen_kasegui_no_jutsu">Sensei Magen ? Kasegui no Jutsu</string>
+    <string name="sensei_magen_kasegui_no_jutsu">Sensei Magen • Kasegui no Jutsu</string>
     <string name="sensei_magen_kasegui_no_jutsu_desc">The user fight with several swords, as if dancing in perfect sync with each attack using swords.</string>
     <string name="sensei_genjutsu_no_kiri">Sensei Genjutsu no Kiri</string>
     <string name="sensei_genjutsu_no_kiri_desc">With this technique, the user creates a large mist around him to hide, like the Kirigakure no Jutsu, only much larger, and with the difference that people who get into this mist begin to hallucinate.</string>
@@ -912,7 +912,7 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="about_the_ninja_jutsus_des">Learn new Jutsus to fight in duels and the best level for that scope the requirements of each jutsu.</string>
     <string name="jutsus_that_not_are_in_the_same_class">(jutsu that are not in the same class of your character have folded requirements)</string>
     <string name="congratulations_you_made_it">CONGRATULATIONS! YOU MADE IT!</string>
-    <string name="lerned_a_new_jutsu">Você se esforçou e aprendeu o jutsu</string>
+    <string name="lerned_a_new_jutsu">You have learned a new Jutsu</string>
     <string name="keep_training">Keep it up and learn new jutsus to grow strong!</string>
     <string name="insufficient_chakra_or_stamina">You do not have enough %s to train that Jutsu</string>
     <string name="scroll">Scroll</string>
@@ -2054,6 +2054,7 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="mission371_description">You are acclaimed by all residents of the City, you are a ninja friend and is always ready to help our village, this is the last mission before becoming a true hero, good luck.</string>
     <string name="special">Special</string>
     <string name="you_cannot_battle_with_an_ally">You cannot battle with an ally!</string>
+    <string name="attributes_uppercase">ATTRIBUTES</string>
 
 
 </resources>

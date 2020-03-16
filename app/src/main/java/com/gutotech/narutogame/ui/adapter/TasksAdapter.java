@@ -20,7 +20,7 @@ import com.gutotech.narutogame.data.model.Requirement;
 
 import java.util.List;
 
-public class TasksRecyclerViewAdapter extends RecyclerView.Adapter<TasksRecyclerViewAdapter.MyViewHolder> {
+public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.MyViewHolder> {
 
     public interface OnAcceptClickListener {
         void onAcceptClick(Mission task);
@@ -48,7 +48,7 @@ public class TasksRecyclerViewAdapter extends RecyclerView.Adapter<TasksRecycler
     private List<TimeMission> mTasks;
     private OnAcceptClickListener mOnAcceptClickListener;
 
-    public TasksRecyclerViewAdapter(Context context, OnAcceptClickListener listener) {
+    public TasksAdapter(Context context, OnAcceptClickListener listener) {
         mContext = context;
         mOnAcceptClickListener = listener;
     }

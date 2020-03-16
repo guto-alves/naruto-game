@@ -275,8 +275,8 @@
     <string name="top_of_chat_content_description">Topo do chat</string>
     <string name="warning_already_played_today">• Você já jogou no sorte ninja hoje!</string>
     <string name="credits_daily">1\nCrédito</string>
-    <string name="ryous_daily">2000 Ryous</string>
-    <string name="ryous_weekly">6000 Ryous</string>
+    <string name="ryous_daily">500 Ryous</string>
+    <string name="ryous_weekly">1500 Ryous</string>
     <string name="credits_weekly">3 Créditos</string>
     <string name="warning_dont_have_enough_ryous">• Você não tem ryous suficientes</string>
     <string name="warning_dont_have_enough_credits">• Você não tem créditos suficientes</string>
@@ -345,6 +345,8 @@
     <string name="button_cancel_mission">Cancelar Missão</string>
     <string name="button_not_received">Não Recebido</string>
     <string name="simple_block">Defender com as mãos</string>
+
+    <string name="requires_points">Requer %d ponto(s) em %s</string>
 
     <!-- JUTSUS -->
     <string name="simple_block_des">Realiza um bloqueio muito efetivo com as próprias mãos</string>
@@ -575,7 +577,7 @@
     <string name="kumoryuu_uragiri">Kumo-Ryuu Uragiri</string>
     <string name="kumoryuu_uragiri_desc">O ninja finge que vai atacar com a espada na frente, mas vira ela e corta atr?s.</string>
     <string name="suishou_tou">Suishou Tou</string>
-    <string name="suishou_tou_desc">O ninja cria uma l?mina em seu bra?o e a usa para atacar rapidamente.</string>
+    <string name="suishou_tou_desc">O ninja cria uma lâmina em seu bra?o e a usa para atacar rapidamente.</string>
     <string name="kusarigama_no_jutsu">Kusarigama no Jutsu</string>
     <string name="kusarigama_no_jutsu_desc">O ninja usa sua kusarigama para prender o inimigo com a corrente e atacar com a foice.</string>
     <string name="raikyuu">Raikyuu</string>
@@ -660,7 +662,7 @@
     <string name="bunshin_no_jutsu_i">Bunshin no Jutsu I</string>
     <string name="bunshin_no_jutsu_i_desc">Cria um clone usado para distrair o oponente.</string>
     <string name="konoha_tzu">Konoha Tzu</string>
-    <string name="konoha_tzu_desc">Utiliza as folhas das ?rvores como shurikens</string>
+    <string name="konoha_tzu_desc">Utiliza as folhas das árvores como shurikens</string>
     <string name="bunshin_no_jutsu_ii">Bunshin no Jutsu II</string>
     <string name="bunshin_no_jutsu_ii_desc">Cria um clone usado para distrair o oponente.</string>
     <string name="ninpou_mushou_de_hitei">Ninpou ? Mushou de Hitei</string>
@@ -672,9 +674,9 @@
     <string name="kawarimi_no_jutsu">Kawarimi no Jutsu</string>
     <string name="kawarimi_no_jutsu_desc">Quando em perigo, o Ninja rapidamente substitui o seu corpo por objetos inanimados.</string>
     <string name="kage_bunshin_no_jutsu_i">Kage Bunshin no Jutsu I</string>
-    <string name="kage_bunshin_no_jutsu_i_desc">Jutsu de clones (c?pias), cria clones do usuário, muito usado em combates corpo a corpo.</string>
+    <string name="kage_bunshin_no_jutsu_i_desc">Jutsu de clones (cópias), cria clones do usuário, muito usado em combates corpo a corpo.</string>
     <string name="kage_bunshin_no_jutsu_ii">Kage Bunshin no Jutsu II</string>
-    <string name="kage_bunshin_no_jutsu_ii_desc">Jutsu de clones (c?pias), cria clones do usuário, muito usado em combates corpo a corpo.</string>
+    <string name="kage_bunshin_no_jutsu_ii_desc">Jutsu de clones (cópias), cria clones do usuário, muito usado em combates corpo a corpo.</string>
     <string name="sensei_kage_bunshin_no_jutsu">Sensei Kage Bunshin no Jutsu</string>
     <string name="sensei_kage_bunshin_no_jutsu_desc">Jutsu de clones (c?pias), cria clones do usuário, muito usado em combates corpo a corpo.</string>
     <string name="rasengan">Rasengan</string>
@@ -719,8 +721,8 @@
     <string name="chou_oodama_rasengan_desc">Salta e cria um gigantesco rasengan com as m?os, aproximadamente 10x maior que um normal.</string>
     <string name="minirasenshuriken">Mini-Rasenshuriken</string>
     <string name="minirasenshuriken_desc">O ninja cria um pequeno Rasenshuriken na ponta de seu dedo e arremessa no alvo, por?m seu poder destrutivo ? imenso.</string>
-    <string name="ninpou_gyoraishin">Ninpou ? Gyoraishin</string>
-    <string name="ninpou_gyoraishin_desc">O shinobi joga um bom n?mero de l?minas no ar e, ap?s todas fincarem no ch?o, utiliza o pr?prio chakra presente no metal para fazer com que elas afundem.</string>
+    <string name="ninpou_gyoraishin">Ninpou • Gyoraishin</string>
+    <string name="ninpou_gyoraishin_desc">O shinobi joga um bom número de lâminas no ar e, após todas fincarem no chão, utiliza o pr?prio chakra presente no metal para fazer com que elas afundem.</string>
     <string name="sensei_chou_oodama_rasengan">Sensei Chou Oodama Rasengan</string>
     <string name="sensei_chou_oodama_rasengan_desc">Salta e cria um gigantesco rasengan com as m?os, aproximadamente 10x maior que um normal.</string>
     <string name="senpou_oodama_rasengan">Senpou Oodama Rasengan</string>
@@ -730,17 +732,17 @@
     <string name="reika_no_jutsu">Reika no Jutsu</string>
     <string name="reika_no_jutsu_desc">O ninja separa sua alma do corpo e pode possuir o inimigo, controlando-o totalmente.</string>
     <string name="hiraishin_no_jutsu_i">Hiraishin no Jutsu I</string>
-    <string name="hiraishin_no_jutsu_i_desc">O ninja se move na velocidade de um trov?o, podendo se desviar de ataques ou atacar o inimigo sem ele saber de onde veio.</string>
+    <string name="hiraishin_no_jutsu_i_desc">O ninja se move na velocidade de um trovão, podendo se desviar de ataques ou atacar o inimigo sem ele saber de onde veio.</string>
     <string name="rasenkyuugan">Rasenkyuugan</string>
     <string name="rasenkyuugan_desc">O usuário cria um Rasengan gigante e com seu chakra puxa todos os inimigos e os esmagam nesse Rasengan.</string>
     <string name="hiraishin_no_jutsu_ii">Hiraishin no Jutsu II</string>
-    <string name="hiraishin_no_jutsu_ii_desc">O ninja se move na velocidade de um trov?o, podendo se desviar de ataques ou atacar o inimigo sem ele saber de onde veio.</string>
+    <string name="hiraishin_no_jutsu_ii_desc">O ninja se move na velocidade de um trovão, podendo se desviar de ataques ou atacar o inimigo sem ele saber de onde veio.</string>
     <string name="wakusei_rasengan">Wakusei Rasengan</string>
-    <string name="wakusei_rasengan_desc">O ninja cria um Rasengan gigante com tr?s menores ao seu redor, que ao acertar o inimigo, cria um vortex gigante que arremessa o inimigo muito longe.</string>
+    <string name="wakusei_rasengan_desc">O ninja cria um Rasengan gigante com três menores ao seu redor, que ao acertar o inimigo, cria um vortex gigante que arremessa o inimigo muito longe.</string>
     <string name="oyako_rasengan">Oyako Rasengan</string>
     <string name="oyako_rasengan_desc">O ninja, com um chakra imenso, junta seu chakra com um clone perfeito e cria um massivo Rasengan capaz de confrontar at? os alvos mais poderosos.</string>
     <string name="sensei_hiraishin_no_jutsu">Sensei Hiraishin no Jutsu</string>
-    <string name="sensei_hiraishin_no_jutsu_desc">O ninja se move na velocidade de um trov?o, podendo se desviar de ataques ou atacar o inimigo sem ele saber de onde veio.</string>
+    <string name="sensei_hiraishin_no_jutsu_desc">O ninja se move na velocidade de um trovão, podendo se desviar de ataques ou atacar o inimigo sem ele saber de onde veio.</string>
     <string name="sensei_oyako_rasengan">Sensei Oyako Rasengan</string>
     <string name="sensei_oyako_rasengan_desc">O ninja, com um chakra imenso, junta seu chakra com um clone perfeito e cria um massivo Rasengan capaz de confrontar at? os alvos mais poderosos.</string>
 
@@ -907,7 +909,7 @@
     <string name="label_chakra">Chakra: %d</string>
     <string name="label_stamina">Stamina: %d</string>
     <string name="dojo_timer">%02d:%02d</string>
-    <string name="label_graduation_and_lvl">Genin - Lvl %d</string>
+    <string name="label_graduation_and_lvl">%s - Lvl %d</string>
     <string name="too_bad">QUE PENA!</string>
     <string name="you_have_lost_the_battle">Você perdeu o combate.\n\nIr para o</string>
     <string name="voc_foi_muito_machucado">VOCÊ FOI MUITO MACHUCADO!</string>
@@ -2003,6 +2005,7 @@
     <string name="mission371_description">Você é aclamado por todos os moradores da Cidade, você é um ninja amigo e esta sempre pronto para ajudar nossa Vila, esta é a última missão antes de se tornar um Herói de verdade, boa sorte.</string>
     <string name="special">Especial</string>
     <string name="you_cannot_battle_with_an_ally">Você não pode batalhar com um aliado!</string>
+    <string name="attributes_uppercase">Atributos</string>
 
 
 </resources>

@@ -14,12 +14,12 @@ import com.gutotech.narutogame.data.model.Formulas;
 import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.model.Graduation;
 import com.gutotech.narutogame.data.repository.CharacterRepository;
-import com.gutotech.narutogame.ui.adapter.DistributedPointsRecyclerAdapter;
+import com.gutotech.narutogame.ui.adapter.DistributedPointsAdapter;
 import com.gutotech.narutogame.utils.DateCustom;
 import com.gutotech.narutogame.utils.SingleLiveEvent;
 
 public class AcademyTrainingViewModel extends AndroidViewModel
-        implements DistributedPointsRecyclerAdapter.OnTrainButtonListener {
+        implements DistributedPointsAdapter.OnTrainButtonListener {
     private MutableLiveData<Integer> mSpentChakra = new MutableLiveData<>();
     private MutableLiveData<Integer> mSpentStamina = new MutableLiveData<>();
 

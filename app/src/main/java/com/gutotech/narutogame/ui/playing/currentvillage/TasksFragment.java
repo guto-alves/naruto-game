@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.databinding.FragmentTasksBinding;
 import com.gutotech.narutogame.ui.SectionFragment;
-import com.gutotech.narutogame.ui.adapter.TasksRecyclerViewAdapter;
+import com.gutotech.narutogame.ui.adapter.TasksAdapter;
 import com.gutotech.narutogame.utils.FragmentUtil;
 
 public class TasksFragment extends Fragment implements SectionFragment {
@@ -32,7 +32,7 @@ public class TasksFragment extends Fragment implements SectionFragment {
         binding.setViewModel(viewModel);
 
         binding.tasksRecyclerView.setHasFixedSize(true);
-        TasksRecyclerViewAdapter adapter = new TasksRecyclerViewAdapter(getActivity(), viewModel);
+        TasksAdapter adapter = new TasksAdapter(getActivity(), viewModel);
         binding.tasksRecyclerView.setAdapter(adapter);
 
         viewModel.getTasks().observe(getViewLifecycleOwner(), adapter::setTasks);

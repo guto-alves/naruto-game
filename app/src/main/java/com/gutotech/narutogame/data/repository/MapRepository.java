@@ -36,10 +36,6 @@ public class MapRepository {
         mapReference.setValue(CharOn.character);
     }
 
-    public void move(int currentPosition, int newPosition) {
-
-    }
-
     public void exit(int villageId) {
         DatabaseReference mapReference = FirebaseConfig.getDatabase()
                 .child("village-map")
@@ -49,7 +45,7 @@ public class MapRepository {
         mapReference.removeValue();
     }
 
-    private DatabaseReference mapReference;
+    private DatabaseReference mMapReference;
     private ValueEventListener mapValueEventListener;
 
     public LiveData<Map<Integer, List<Character>>> load(int villageId) {
@@ -57,10 +53,10 @@ public class MapRepository {
 
         Map<Integer, List<Character>> map = new HashMap<>();
 
-        mapReference = FirebaseConfig.getDatabase()
+        mMapReference = FirebaseConfig.getDatabase()
                 .child("village-map").child(String.valueOf(villageId));
 
-        mapValueEventListener = mapReference.addValueEventListener(new ValueEventListener() {
+        mapValueEventListener = mMapReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 map.clear();
@@ -88,7 +84,7 @@ public class MapRepository {
         return data;
     }
 
-    public void check(String nick, int villageId, Callback<Boolean> callback) {
+    public void checkOpponent(String nick, int villageId, Callback<Boolean> callback) {
         DatabaseReference mapReference = FirebaseConfig.getDatabase()
                 .child("village-map")
                 .child(String.valueOf(villageId))
@@ -97,11 +93,7 @@ public class MapRepository {
         mapReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.getValue(Character.class) != null) {
-                    callback.call(true);
-                } else {
-                    callback.call(false);
-                }
+                callback.call(dataSnapshot.exists());
             }
 
             @Override
@@ -112,7 +104,7 @@ public class MapRepository {
 
     public void close() {
         if (mapValueEventListener != null) {
-            mapReference.removeEventListener(mapValueEventListener);
+            mMapReference.removeEventListener(mapValueEventListener);
             mapValueEventListener = null;
         }
     }

@@ -15,7 +15,7 @@ import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.databinding.FragmentNinjaShopBinding;
 import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.WarningDialog;
-import com.gutotech.narutogame.ui.adapter.ItemShopRecyclerAdapter;
+import com.gutotech.narutogame.ui.adapter.ItemShopAdapter;
 import com.gutotech.narutogame.utils.FragmentUtil;
 
 public class NinjaShopFragment extends Fragment implements SectionFragment {
@@ -30,7 +30,7 @@ public class NinjaShopFragment extends Fragment implements SectionFragment {
                 .get(NinjaShopViewModel.class);
         binding.setViewModel(viewModel);
 
-        ItemShopRecyclerAdapter adapter = new ItemShopRecyclerAdapter(getActivity(),
+        ItemShopAdapter adapter = new ItemShopAdapter(getActivity(),
                 getParentFragmentManager(), viewModel);
 
         binding.shopItemsRecyclerView.setHasFixedSize(true);

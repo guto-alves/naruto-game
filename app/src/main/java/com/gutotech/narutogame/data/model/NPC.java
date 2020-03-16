@@ -28,7 +28,7 @@ public class Npc implements Serializable {
                                 .getPath()));
 
         character.getAttributes().updateFormulas(character.getClasse(),
-                character.getLevel() + (random.nextInt(3) - 1));
+                character.getLevel() - (random.nextInt(2) + 1));
         character.full();
         character.setTitle(0);
     }

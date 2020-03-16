@@ -64,7 +64,7 @@ public class QuestionDialog extends DialogFragment {
 
         Button cancelButton = view.findViewById(R.id.cancelButton);
         cancelButton.setOnClickListener(v -> {
-            OnButtonsClickListener clickListener = (OnButtonsClickListener) getActivity();
+            OnButtonsClickListener clickListener = (OnButtonsClickListener) getTargetFragment();
 
             if (clickListener != null) {
                 clickListener.onCancelClick();

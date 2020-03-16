@@ -1,5 +1,6 @@
 package com.gutotech.narutogame.ui.playing.currentvillage;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -22,43 +23,26 @@ import com.gutotech.narutogame.utils.FragmentUtil;
 public class MissionsWaitingFragment extends Fragment implements SectionFragment,
         QuestionDialog.OnButtonsClickListener {
     private MissionsWaitingViewModel mViewModel;
+    private FragmentMissionsWaitingBinding mBinding;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        FragmentMissionsWaitingBinding binding = DataBindingUtil.inflate(inflater,
-                R.layout.fragment_missions_waiting, container, false);
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_missions_waiting,
+                container, false);
 
-        MissionRepository.getInstance().getMissionTime(mission -> {
-            mViewModel = new ViewModelProvider(this, new MissionsWaitingViewModelFactory(mission))
-                    .get(MissionsWaitingViewModel.class);
-            binding.setViewModel(mViewModel);
-
-            MissionInfo info = mission.missionInfo();
-            binding.titleTextView.setText(info.title);
-            binding.descriptionTextView.setText(info.description);
-            binding.descriptionTextView2.setText(info.msgFinished);
-
-            mViewModel.getShowMissionCompletedMsg().observe(getViewLifecycleOwner(), rewards -> {
-                binding.msgConstraintLayout.setVisibility(View.GONE);
-                binding.cancelButton.setVisibility(View.GONE);
-                binding.rewardExpTextView.setText(String.valueOf(rewards.get(0)));
-                binding.rewardRyousTextView.setText(getString(R.string.ry, rewards.get(1)));
-                binding.missionCompletedLayout.setVisibility(View.VISIBLE);
-            });
-        });
-
-        binding.cancelButton.setOnClickListener(v -> showQuestionDialog());
+        mBinding.cancelButton.setOnClickListener(v -> showQuestionDialog());
 
         FragmentUtil.setSectionTitle(getActivity(), R.string.section_mission_status);
 
-        return binding.getRoot();
+        return mBinding.getRoot();
     }
 
     private void showQuestionDialog() {
-        QuestionDialog dialog = QuestionDialog.newInstance(
+        QuestionDialog questionDialog = QuestionDialog.newInstance(
                 R.string.question_cancel_mission);
-        dialog.openDialog(getParentFragmentManager());
+        questionDialog.setTargetFragment(this, 300);
+        questionDialog.openDialog(getParentFragmentManager());
     }
 
     @Override
@@ -68,6 +52,29 @@ public class MissionsWaitingFragment extends Fragment implements SectionFragment
 
     @Override
     public void onCancelClick() {
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        MissionRepository.getInstance().getMissionTime(mission -> {
+            mViewModel = new ViewModelProvider(this, new MissionsWaitingViewModelFactory(mission))
+                    .get(MissionsWaitingViewModel.class);
+            mBinding.setViewModel(mViewModel);
+
+            MissionInfo info = mission.missionInfo();
+            mBinding.titleTextView.setText(info.title);
+            mBinding.descriptionTextView.setText(info.description);
+            mBinding.descriptionTextView2.setText(info.msgFinished);
+
+            mViewModel.getShowMissionCompletedMsg().observe(getViewLifecycleOwner(), rewards -> {
+                mBinding.msgConstraintLayout.setVisibility(View.GONE);
+                mBinding.cancelButton.setVisibility(View.GONE);
+                mBinding.rewardExpTextView.setText(String.valueOf(rewards.get(0)));
+                mBinding.rewardRyousTextView.setText(getString(R.string.ry, rewards.get(1)));
+                mBinding.missionCompletedLayout.setVisibility(View.VISIBLE);
+            });
+        });
     }
 
     @Override

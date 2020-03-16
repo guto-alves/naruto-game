@@ -13,8 +13,10 @@ import com.gutotech.narutogame.data.repository.MissionRepository;
 import com.gutotech.narutogame.ui.adapter.MissionsAdapter;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.EnumSet;
+import java.util.Iterator;
 import java.util.List;
 
 public class MissionsViewModel extends ViewModel implements MissionsAdapter.OnAcceptClickListener {
@@ -82,26 +84,39 @@ public class MissionsViewModel extends ViewModel implements MissionsAdapter.OnAc
             }
         }
 
-        if (CharOn.character.getResumeOfMissions().getMissionsFinishedId() != null) {
+        if (missions.size() > 0) {
             Collections.sort(CharOn.character.getResumeOfMissions().getMissionsFinishedId());
 
-            int idCountRemoved = 0;
+            removeRepeatedMissions(
+                    CharOn.character.getResumeOfMissions().getMissionsFinishedId(),
+                    missions);
+        }
 
-            for (int missionId : CharOn.character.getResumeOfMissions().getMissionsFinishedId()) {
-                if (missionId > 9) {
-                    missions.remove((missionId - 10) - idCountRemoved);
-                    idCountRemoved++;
+        mMissions.postValue(missions);
+    }
+
+    private void removeRepeatedMissions(Collection<Integer> missionIds, Collection<Mission> missions) {
+        for (int missionId : missionIds) {
+            Iterator<Mission> missionIterator = missions.iterator();
+
+            while (missionIterator.hasNext()) {
+                Mission mission = missionIterator.next();
+                MissionInfo missionInfo = mission.missionInfo();
+
+                if (missionId == missionInfo.ordinal()) {
+                    missionIterator.remove();
+                    break;
                 }
             }
         }
-
-        mMissions.setValue(missions);
     }
 
     @Override
     public void onAcceptClick(Mission task) {
-        TimeMission timeMission = (TimeMission) task;
-        MissionRepository.getInstance().acceptTimeMission(timeMission);
-        CharOn.character.setMission(true);
+        if (CharOn.character.getTotalDailyMissions() < 3) {
+            TimeMission timeMission = (TimeMission) task;
+            MissionRepository.getInstance().acceptTimeMission(timeMission);
+            CharOn.character.setMission(true);
+        }
     }
 }

@@ -30,6 +30,7 @@ public class Bag {
         if (ramenList == null) {
             ramenList = new ArrayList<>();
         }
+
         if (ramenList.contains(ramen)) {
             int ramenIndex = ramenList.indexOf(ramen);
             Ramen r = ramenList.get(ramenIndex);

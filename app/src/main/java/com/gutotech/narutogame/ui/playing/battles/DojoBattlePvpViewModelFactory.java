@@ -10,18 +10,16 @@ import com.gutotech.narutogame.data.model.Battle;
 
 public class DojoBattlePvpViewModelFactory implements ViewModelProvider.Factory {
     private Application application;
-    private Battle battle;
 
-    DojoBattlePvpViewModelFactory(Application application, Battle battle) {
+    DojoBattlePvpViewModelFactory(Application application) {
         this.application = application;
-        this.battle = battle;
     }
 
     @NonNull
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
         if (modelClass.isAssignableFrom(DojoBattlePvpViewModel.class)) {
-            return (T) new DojoBattlePvpViewModel(application, battle);
+            return (T) new DojoBattlePvpViewModel(application);
         }
 
         throw new IllegalArgumentException("Unknown ViewModel class");

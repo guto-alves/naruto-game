@@ -8,10 +8,12 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.gutotech.narutogame.R;
 
 public class ProgressDialog extends DialogFragment {
+    private static final String DIALOG_TAG = "ProgressDialog";
 
     @NonNull
     @Override
@@ -23,5 +25,11 @@ public class ProgressDialog extends DialogFragment {
         builder.setView(view);
 
         return builder.create();
+    }
+
+    public void openDialog(FragmentManager fragmentManager) {
+        if (fragmentManager.findFragmentByTag(DIALOG_TAG) == null) {
+            show(fragmentManager, DIALOG_TAG);
+        }
     }
 }

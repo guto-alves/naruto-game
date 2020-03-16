@@ -18,7 +18,7 @@ import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.databinding.FragmentAcademyTrainningBinding;
 import com.gutotech.narutogame.ui.SectionFragment;
-import com.gutotech.narutogame.ui.adapter.DistributedPointsRecyclerAdapter;
+import com.gutotech.narutogame.ui.adapter.DistributedPointsAdapter;
 import com.gutotech.narutogame.utils.FragmentUtil;
 import com.gutotech.narutogame.utils.StorageUtil;
 
@@ -53,7 +53,7 @@ public class AcademyTrainingFragment extends Fragment implements SectionFragment
         });
 
         mBinding.distributedPointsRecyclerView.setHasFixedSize(true);
-        DistributedPointsRecyclerAdapter adapter = new DistributedPointsRecyclerAdapter(
+        DistributedPointsAdapter adapter = new DistributedPointsAdapter(
                 getContext(), viewModel);
         adapter.setDistributedPoints(CharOn.character.getAttributes().getDistributedPoints());
         mBinding.distributedPointsRecyclerView.setAdapter(adapter);

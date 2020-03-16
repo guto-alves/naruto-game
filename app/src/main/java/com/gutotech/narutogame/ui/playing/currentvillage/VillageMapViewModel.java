@@ -6,7 +6,6 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.gutotech.narutogame.R;
-import com.gutotech.narutogame.data.model.Battle;
 import com.gutotech.narutogame.data.model.Character;
 import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.model.Village;
@@ -60,14 +59,14 @@ public class VillageMapViewModel extends ViewModel implements VillageMapAdapter.
     @Override
     public void onDoubleClick(int newPosition) {
         if (isMovementValid(newPosition)) {
-            if (isPlaceEntry(newPosition)) {
+            CharOn.character.setMapPosition(newPosition);
+
+            if (isPlaceEntry(newPosition) && mVillage == CharOn.character.getVillage()) {
                 mMapRepository.exit(mVillage.id);
                 CharOn.character.setMap(false);
-                return;
+            } else {
+                mMapRepository.enter(mVillage.id);
             }
-
-            CharOn.character.setMapPosition(newPosition);
-            mMapRepository.enter(mVillage.id);
         } else {
             mShowWarningDialogEvent.setValue(R.string.this_place_is_far_away);
         }
@@ -79,21 +78,29 @@ public class VillageMapViewModel extends ViewModel implements VillageMapAdapter.
 
     @Override
     public void onBattleClick(Character opponent) {
+        if (opponent.getPlayerId().equals(CharOn.character.getPlayerId())) {
+            return;
+        }
+
         int levelDifference = Math.abs(opponent.getLevel() - CharOn.character.getLevel());
 
-        if (opponent.getPlayerId().equals(CharOn.character.getPlayerId())) {
-            //
-        } else if (levelDifference <= 2) {
-            mMapRepository.check(opponent.getNick(), mVillage.id, result -> {
-                if (result) {
-                    BattleRepository.getInstance().create(new Battle(CharOn.character, opponent));
-                } else {
-                    mShowWarningDialogEvent.setValue(R.string.player_unavailable_to_fight);
-                }
-            });
-        } else {
+        if (levelDifference >= 2) {
             mShowWarningDialogEvent.setValue(R.string.is_not_at_a_level_suitable_for_you);
+            return;
         }
+
+        if (opponent.getVillage() == CharOn.character.getVillage()) {
+            mShowWarningDialogEvent.setValue(R.string.you_cannot_battle_with_an_ally);
+            return;
+        }
+
+        mMapRepository.checkOpponent(opponent.getNick(), mVillage.id, result -> {
+            if (result) {
+                BattleRepository.getInstance().create(CharOn.character, opponent);
+            } else {
+                mShowWarningDialogEvent.setValue(R.string.player_unavailable_to_fight);
+            }
+        });
     }
 
     private void observe() {
@@ -103,10 +110,6 @@ public class VillageMapViewModel extends ViewModel implements VillageMapAdapter.
             CharOn.character.battleId = battleId;
             CharOn.character.setBattle(true);
         });
-    }
-
-    public void exit() {
-        mMapRepository.exit(mVillage.id);
     }
 
     private boolean isMovementValid(int newPosition) {

@@ -15,7 +15,7 @@ import com.gutotech.narutogame.data.model.Formula;
 
 import java.util.List;
 
-public class FormulasRecyclerViewAdapter extends RecyclerView.Adapter<FormulasRecyclerViewAdapter.MyViewHolder> {
+public class FormulasAdapter extends RecyclerView.Adapter<FormulasAdapter.MyViewHolder> {
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         private TextView nameTextView;
@@ -36,7 +36,7 @@ public class FormulasRecyclerViewAdapter extends RecyclerView.Adapter<FormulasRe
     private Formula[] mFormulas;
     private List<Integer> mTotalPointsForEachAttribute;
 
-    public FormulasRecyclerViewAdapter(List<Integer> formulas) {
+    public FormulasAdapter(List<Integer> formulas) {
         mTotalPointsForEachAttribute = formulas;
         mFormulas = Formula.values();
     }

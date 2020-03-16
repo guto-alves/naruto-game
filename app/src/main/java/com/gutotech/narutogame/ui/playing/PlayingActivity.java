@@ -16,9 +16,6 @@ import android.view.View;
 
 import androidx.core.view.GravityCompat;
 import androidx.appcompat.app.ActionBarDrawerToggle;
-
-import androidx.drawerlayout.widget.DrawerLayout;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
@@ -47,8 +44,6 @@ public class PlayingActivity extends AppCompatActivity {
     private ActivityPlayingBinding mBinding;
     private PlayingViewModel mViewModel;
 
-    private DrawerLayout mDrawer;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,8 +52,6 @@ public class PlayingActivity extends AppCompatActivity {
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_playing);
         mBinding.setLifecycleOwner(this);
         mBinding.setViewModel(mViewModel);
-
-        mDrawer = findViewById(R.id.drawerLayout);
 
         NavHeaderPlayingBinding navHeaderBinding = DataBindingUtil.inflate(getLayoutInflater(),
                 R.layout.nav_header_playing, mBinding.navView, false);
@@ -73,9 +66,9 @@ public class PlayingActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDrawer, toolbar,
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mBinding.drawerLayout, toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        mDrawer.addDrawerListener(toggle);
+        mBinding.drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
         mViewModel.getCurrentSection().observe(this, sectionFragment -> {
@@ -173,7 +166,7 @@ public class PlayingActivity extends AppCompatActivity {
             if (openChat) {
                 animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_in);
                 mBinding.scrollView.postDelayed(() ->
-                        mBinding.scrollView.smoothScrollTo(0, mBinding.scrollView.getBottom() + 500),
+                                mBinding.scrollView.smoothScrollTo(0, mBinding.scrollView.getBottom() + 500),
                         500);
             } else {
                 animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_out);
@@ -204,7 +197,7 @@ public class PlayingActivity extends AppCompatActivity {
     }
 
     public void closeDrawer() {
-        mDrawer.closeDrawer(GravityCompat.START);
+        mBinding.drawerLayout.closeDrawer(GravityCompat.START);
     }
 
 
@@ -236,8 +229,8 @@ public class PlayingActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (mDrawer.isDrawerOpen(GravityCompat.START)) {
-            mDrawer.closeDrawer(GravityCompat.START);
+        if (mBinding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            mBinding.drawerLayout.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
         }

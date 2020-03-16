@@ -141,7 +141,7 @@ public enum MissionInfo {
                     return context.getString(R.string.ry, value());
                 }
             }),
-            Arrays.asList(new Requirement() {
+            Collections.singletonList(new Requirement() {
                 @Override
                 public Object value() {
                     return 2;
@@ -275,7 +275,7 @@ public enum MissionInfo {
             }, new Reward() {
                 @Override
                 public int value() {
-                    return 1400;
+                    return 25;
                 }
 
                 @Override
@@ -502,6 +502,7 @@ public enum MissionInfo {
             }),
             Mission.Type.TIME, Mission.Rank.TASK),
 
+
     MISSION1(R.string.mission1, R.string.mission1_description, R.string.mission1_description,
             Arrays.asList(new Reward() {
                 @Override
@@ -696,7 +697,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION4(R.string.mission4, R.string.mission4_description, R.string.mission4_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION4(R.string.mission4, R.string.mission4_description, R.string.mission4_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -760,7 +762,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION5(R.string.mission5, R.string.mission5_description, R.string.mission5_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION5(R.string.mission5, R.string.mission5_description, R.string.mission5_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -824,11 +827,12 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION6(R.string.mission6, R.string.mission6_description, R.string.mission6_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION6(R.string.mission6, R.string.mission6_description, R.string.mission6_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
-                    return 200;
+                    return 100;
                 }
 
                 @Override
@@ -843,7 +847,7 @@ public enum MissionInfo {
             }, new Reward() {
                 @Override
                 public int value() {
-                    return 400;
+                    return 500;
                 }
 
                 @Override
@@ -888,11 +892,12 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION7(R.string.mission7, R.string.mission7_description, R.string.mission7_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION7(R.string.mission7, R.string.mission7_description, R.string.mission7_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
-                    return 200;
+                    return 100;
                 }
 
                 @Override
@@ -907,7 +912,7 @@ public enum MissionInfo {
             }, new Reward() {
                 @Override
                 public int value() {
-                    return 400;
+                    return 500;
                 }
 
                 @Override
@@ -952,11 +957,12 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION8(R.string.mission8, R.string.mission8_description, R.string.mission8_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION8(R.string.mission8, R.string.mission8_description, R.string.mission8_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
-                    return 200;
+                    return 100;
                 }
 
                 @Override
@@ -971,7 +977,7 @@ public enum MissionInfo {
             }, new Reward() {
                 @Override
                 public int value() {
-                    return 400;
+                    return 500;
                 }
 
                 @Override
@@ -1016,11 +1022,12 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION9(R.string.mission9, R.string.mission9_description, R.string.mission9_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION9(R.string.mission9, R.string.mission9_description, R.string.mission9_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
-                    return 200;
+                    return 100;
                 }
 
                 @Override
@@ -1035,7 +1042,7 @@ public enum MissionInfo {
             }, new Reward() {
                 @Override
                 public int value() {
-                    return 400;
+                    return 500;
                 }
 
                 @Override
@@ -1080,7 +1087,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION10(R.string.mission10, R.string.mission10_description, R.string.mission10_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION10(R.string.mission10, R.string.mission10_description, R.string.mission10_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -1131,7 +1139,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 5;
+                            return 6;
                         }
 
                         @Override
@@ -1144,7 +1152,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION11(R.string.mission11, R.string.mission11_description, R.string.mission11_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION11(R.string.mission11, R.string.mission11_description, R.string.mission11_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -1195,7 +1204,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 5;
+                            return 6;
                         }
 
                         @Override
@@ -1208,7 +1217,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION12(R.string.mission12, R.string.mission12_description, R.string.mission12_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION12(R.string.mission12, R.string.mission12_description, R.string.mission12_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -1259,7 +1269,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 5;
+                            return 6;
                         }
 
                         @Override
@@ -1272,7 +1282,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION13(R.string.mission13, R.string.mission13_description, R.string.mission13_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION13(R.string.mission13, R.string.mission13_description, R.string.mission13_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -1323,7 +1334,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 5;
+                            return 6;
                         }
 
                         @Override
@@ -1336,7 +1347,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION14(R.string.mission14, R.string.mission14_description, R.string.mission14_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION14(R.string.mission14, R.string.mission14_description, R.string.mission14_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -1387,7 +1399,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 5;
+                            return 6;
                         }
 
                         @Override
@@ -1400,11 +1412,12 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION15(R.string.mission15, R.string.mission15_description, R.string.mission15_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION15(R.string.mission15, R.string.mission15_description, R.string.mission15_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
-                    return 200;
+                    return 100;
                 }
 
                 @Override
@@ -1419,7 +1432,7 @@ public enum MissionInfo {
             }, new Reward() {
                 @Override
                 public int value() {
-                    return 400;
+                    return 525;
                 }
 
                 @Override
@@ -1451,7 +1464,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 5;
+                            return 6;
                         }
 
                         @Override
@@ -1464,11 +1477,12 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION16(R.string.mission16, R.string.mission16_description, R.string.mission16_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION16(R.string.mission16, R.string.mission16_description, R.string.mission16_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
-                    return 200;
+                    return 100;
                 }
 
                 @Override
@@ -1483,7 +1497,7 @@ public enum MissionInfo {
             }, new Reward() {
                 @Override
                 public int value() {
-                    return 400;
+                    return 525;
                 }
 
                 @Override
@@ -1515,7 +1529,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 5;
+                            return 6;
                         }
 
                         @Override
@@ -1528,11 +1542,12 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION17(R.string.mission17, R.string.mission17_description, R.string.mission17_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION17(R.string.mission17, R.string.mission17_description, R.string.mission17_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
-                    return 200;
+                    return 100;
                 }
 
                 @Override
@@ -1547,7 +1562,7 @@ public enum MissionInfo {
             }, new Reward() {
                 @Override
                 public int value() {
-                    return 400;
+                    return 525;
                 }
 
                 @Override
@@ -1579,7 +1594,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 5;
+                            return 6;
                         }
 
                         @Override
@@ -1592,11 +1607,12 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION18(R.string.mission18, R.string.mission18_description, R.string.mission18_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION18(R.string.mission18, R.string.mission18_description, R.string.mission18_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
-                    return 200;
+                    return 100;
                 }
 
                 @Override
@@ -1611,7 +1627,7 @@ public enum MissionInfo {
             }, new Reward() {
                 @Override
                 public int value() {
-                    return 400;
+                    return 525;
                 }
 
                 @Override
@@ -1643,7 +1659,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 5;
+                            return 6;
                         }
 
                         @Override
@@ -1656,7 +1672,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION19(R.string.mission19, R.string.mission19_description, R.string.mission19_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION19(R.string.mission19, R.string.mission19_description, R.string.mission19_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -1707,7 +1724,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 5;
+                            return 7;
                         }
 
                         @Override
@@ -1720,7 +1737,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION20(R.string.mission20, R.string.mission20_description, R.string.mission20_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION20(R.string.mission20, R.string.mission20_description, R.string.mission20_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -1771,7 +1789,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 5;
+                            return 7;
                         }
 
                         @Override
@@ -1784,7 +1802,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION21(R.string.mission21, R.string.mission21_description, R.string.mission21_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION21(R.string.mission21, R.string.mission21_description, R.string.mission21_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -1835,7 +1854,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 5;
+                            return 7;
                         }
 
                         @Override
@@ -1848,7 +1867,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION22(R.string.mission22, R.string.mission22_description, R.string.mission22_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION22(R.string.mission22, R.string.mission22_description, R.string.mission22_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -1899,7 +1919,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 5;
+                            return 7;
                         }
 
                         @Override
@@ -1912,7 +1932,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION23(R.string.mission23, R.string.mission23_description, R.string.mission23_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION23(R.string.mission23, R.string.mission23_description, R.string.mission23_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -1963,7 +1984,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 5;
+                            return 7;
                         }
 
                         @Override
@@ -1976,11 +1997,12 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION24(R.string.mission24, R.string.mission24_description, R.string.mission24_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION24(R.string.mission24, R.string.mission24_description, R.string.mission24_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
-                    return 200;
+                    return 100;
                 }
 
                 @Override
@@ -1995,7 +2017,7 @@ public enum MissionInfo {
             }, new Reward() {
                 @Override
                 public int value() {
-                    return 400;
+                    return 540;
                 }
 
                 @Override
@@ -2027,7 +2049,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 5;
+                            return 7;
                         }
 
                         @Override
@@ -2040,11 +2062,12 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION25(R.string.mission25, R.string.mission25_description, R.string.mission25_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION25(R.string.mission25, R.string.mission25_description, R.string.mission25_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
-                    return 200;
+                    return 100;
                 }
 
                 @Override
@@ -2059,7 +2082,7 @@ public enum MissionInfo {
             }, new Reward() {
                 @Override
                 public int value() {
-                    return 400;
+                    return 540;
                 }
 
                 @Override
@@ -2091,7 +2114,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 5;
+                            return 7;
                         }
 
                         @Override
@@ -2104,11 +2127,12 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION26(R.string.mission26, R.string.mission26_description, R.string.mission26_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION26(R.string.mission26, R.string.mission26_description, R.string.mission26_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
-                    return 200;
+                    return 100;
                 }
 
                 @Override
@@ -2123,7 +2147,7 @@ public enum MissionInfo {
             }, new Reward() {
                 @Override
                 public int value() {
-                    return 400;
+                    return 540;
                 }
 
                 @Override
@@ -2155,7 +2179,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 5;
+                            return 7;
                         }
 
                         @Override
@@ -2168,11 +2192,12 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION27(R.string.mission27, R.string.mission27_description, R.string.mission27_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION27(R.string.mission27, R.string.mission27_description, R.string.mission27_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
-                    return 200;
+                    return 100;
                 }
 
                 @Override
@@ -2187,7 +2212,7 @@ public enum MissionInfo {
             }, new Reward() {
                 @Override
                 public int value() {
-                    return 400;
+                    return 540;
                 }
 
                 @Override
@@ -2219,7 +2244,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 5;
+                            return 7;
                         }
 
                         @Override
@@ -2232,7 +2257,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION28(R.string.mission28, R.string.mission28_description, R.string.mission28_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION28(R.string.mission28, R.string.mission28_description, R.string.mission28_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -2283,7 +2309,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 5;
+                            return 8;
                         }
 
                         @Override
@@ -2296,7 +2322,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION29(R.string.mission29, R.string.mission29_description, R.string.mission29_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION29(R.string.mission29, R.string.mission29_description, R.string.mission29_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -2347,7 +2374,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 5;
+                            return 8;
                         }
 
                         @Override
@@ -2360,7 +2387,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION30(R.string.mission30, R.string.mission30_description, R.string.mission30_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION30(R.string.mission30, R.string.mission30_description, R.string.mission30_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -2411,7 +2439,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 5;
+                            return 8;
                         }
 
                         @Override
@@ -2424,7 +2452,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION31(R.string.mission31, R.string.mission31_description, R.string.mission31_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION31(R.string.mission31, R.string.mission31_description, R.string.mission31_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -2475,7 +2504,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 5;
+                            return 8;
                         }
 
                         @Override
@@ -2488,7 +2517,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION32(R.string.mission32, R.string.mission32_description, R.string.mission32_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION32(R.string.mission32, R.string.mission32_description, R.string.mission32_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -2539,7 +2569,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 5;
+                            return 8;
                         }
 
                         @Override
@@ -2552,11 +2582,12 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION33(R.string.mission33, R.string.mission33_description, R.string.mission33_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION33(R.string.mission33, R.string.mission33_description, R.string.mission33_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
-                    return 200;
+                    return 100;
                 }
 
                 @Override
@@ -2571,7 +2602,7 @@ public enum MissionInfo {
             }, new Reward() {
                 @Override
                 public int value() {
-                    return 400;
+                    return 560;
                 }
 
                 @Override
@@ -2603,7 +2634,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 5;
+                            return 8;
                         }
 
                         @Override
@@ -2616,11 +2647,12 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION34(R.string.mission34, R.string.mission34_description, R.string.mission34_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION34(R.string.mission34, R.string.mission34_description, R.string.mission34_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
-                    return 200;
+                    return 100;
                 }
 
                 @Override
@@ -2635,7 +2667,7 @@ public enum MissionInfo {
             }, new Reward() {
                 @Override
                 public int value() {
-                    return 400;
+                    return 560;
                 }
 
                 @Override
@@ -2667,7 +2699,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 5;
+                            return 8;
                         }
 
                         @Override
@@ -2680,11 +2712,12 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION35(R.string.mission35, R.string.mission35_description, R.string.mission35_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION35(R.string.mission35, R.string.mission35_description, R.string.mission35_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
-                    return 200;
+                    return 100;
                 }
 
                 @Override
@@ -2699,7 +2732,7 @@ public enum MissionInfo {
             }, new Reward() {
                 @Override
                 public int value() {
-                    return 400;
+                    return 560;
                 }
 
                 @Override
@@ -2731,7 +2764,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 5;
+                            return 8;
                         }
 
                         @Override
@@ -2744,11 +2777,12 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION36(R.string.mission36, R.string.mission36_description, R.string.mission36_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION36(R.string.mission36, R.string.mission36_description, R.string.mission36_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
-                    return 200;
+                    return 100;
                 }
 
                 @Override
@@ -2763,7 +2797,7 @@ public enum MissionInfo {
             }, new Reward() {
                 @Override
                 public int value() {
-                    return 400;
+                    return 560;
                 }
 
                 @Override
@@ -2795,7 +2829,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 5;
+                            return 8;
                         }
 
                         @Override
@@ -2808,7 +2842,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION37(R.string.mission37, R.string.mission37_description, R.string.mission37_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION37(R.string.mission37, R.string.mission37_description, R.string.mission37_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -2859,7 +2894,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 5;
+                            return 9;
                         }
 
                         @Override
@@ -2872,7 +2907,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION38(R.string.mission38, R.string.mission38_description, R.string.mission38_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION38(R.string.mission38, R.string.mission38_description, R.string.mission38_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -2923,7 +2959,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 5;
+                            return 9;
                         }
 
                         @Override
@@ -2936,7 +2972,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION39(R.string.mission39, R.string.mission39_description, R.string.mission39_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION39(R.string.mission39, R.string.mission39_description, R.string.mission39_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -2987,7 +3024,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 5;
+                            return 9;
                         }
 
                         @Override
@@ -3000,7 +3037,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION40(R.string.mission40, R.string.mission40_description, R.string.mission40_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION40(R.string.mission40, R.string.mission40_description, R.string.mission40_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -3051,7 +3089,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 5;
+                            return 9;
                         }
 
                         @Override
@@ -3064,7 +3102,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION41(R.string.mission41, R.string.mission41_description, R.string.mission41_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION41(R.string.mission41, R.string.mission41_description, R.string.mission41_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -3115,7 +3154,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 5;
+                            return 9;
                         }
 
                         @Override
@@ -3128,11 +3167,12 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION42(R.string.mission42, R.string.mission42_description, R.string.mission42_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION42(R.string.mission42, R.string.mission42_description, R.string.mission42_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
-                    return 200;
+                    return 100;
                 }
 
                 @Override
@@ -3147,7 +3187,7 @@ public enum MissionInfo {
             }, new Reward() {
                 @Override
                 public int value() {
-                    return 400;
+                    return 580;
                 }
 
                 @Override
@@ -3179,7 +3219,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 5;
+                            return 9;
                         }
 
                         @Override
@@ -3192,11 +3232,12 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION43(R.string.mission43, R.string.mission43_description, R.string.mission43_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION43(R.string.mission43, R.string.mission43_description, R.string.mission43_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
-                    return 200;
+                    return 100;
                 }
 
                 @Override
@@ -3211,7 +3252,7 @@ public enum MissionInfo {
             }, new Reward() {
                 @Override
                 public int value() {
-                    return 400;
+                    return 580;
                 }
 
                 @Override
@@ -3243,7 +3284,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 5;
+                            return 9;
                         }
 
                         @Override
@@ -3256,11 +3297,12 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION44(R.string.mission44, R.string.mission44_description, R.string.mission44_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION44(R.string.mission44, R.string.mission44_description, R.string.mission44_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
-                    return 200;
+                    return 100;
                 }
 
                 @Override
@@ -3275,7 +3317,7 @@ public enum MissionInfo {
             }, new Reward() {
                 @Override
                 public int value() {
-                    return 400;
+                    return 580;
                 }
 
                 @Override
@@ -3307,7 +3349,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 5;
+                            return 9;
                         }
 
                         @Override
@@ -3320,11 +3362,12 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION45(R.string.mission45, R.string.mission45_description, R.string.mission45_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION45(R.string.mission45, R.string.mission45_description, R.string.mission45_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
-                    return 200;
+                    return 100;
                 }
 
                 @Override
@@ -3339,7 +3382,7 @@ public enum MissionInfo {
             }, new Reward() {
                 @Override
                 public int value() {
-                    return 400;
+                    return 580;
                 }
 
                 @Override
@@ -3371,7 +3414,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 5;
+                            return 9;
                         }
 
                         @Override
@@ -3384,7 +3427,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION46(R.string.mission46, R.string.mission46_description, R.string.mission46_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION46(R.string.mission46, R.string.mission46_description, R.string.mission46_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -3435,7 +3479,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 5;
+                            return 10;
                         }
 
                         @Override
@@ -3448,7 +3492,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION47(R.string.mission47, R.string.mission47_description, R.string.mission47_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION47(R.string.mission47, R.string.mission47_description, R.string.mission47_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -3499,7 +3544,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 5;
+                            return 10;
                         }
 
                         @Override
@@ -3512,7 +3557,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION48(R.string.mission48, R.string.mission48_description, R.string.mission48_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION48(R.string.mission48, R.string.mission48_description, R.string.mission48_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -3563,7 +3609,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 5;
+                            return 10;
                         }
 
                         @Override
@@ -3576,7 +3622,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION49(R.string.mission49, R.string.mission49_description, R.string.mission49_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION49(R.string.mission49, R.string.mission49_description, R.string.mission49_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -3627,7 +3674,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 5;
+                            return 10;
                         }
 
                         @Override
@@ -3640,7 +3687,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION50(R.string.mission50, R.string.mission50_description, R.string.mission50_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION50(R.string.mission50, R.string.mission50_description, R.string.mission50_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -3691,7 +3739,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 5;
+                            return 10;
                         }
 
                         @Override
@@ -3704,11 +3752,12 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION51(R.string.mission51, R.string.mission51_description, R.string.mission51_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION51(R.string.mission51, R.string.mission51_description, R.string.mission51_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
-                    return 200;
+                    return 100;
                 }
 
                 @Override
@@ -3723,7 +3772,7 @@ public enum MissionInfo {
             }, new Reward() {
                 @Override
                 public int value() {
-                    return 400;
+                    return 600;
                 }
 
                 @Override
@@ -3755,7 +3804,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 5;
+                            return 10;
                         }
 
                         @Override
@@ -3768,11 +3817,12 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION52(R.string.mission52, R.string.mission52_description, R.string.mission52_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION52(R.string.mission52, R.string.mission52_description, R.string.mission52_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
-                    return 200;
+                    return 100;
                 }
 
                 @Override
@@ -3787,7 +3837,7 @@ public enum MissionInfo {
             }, new Reward() {
                 @Override
                 public int value() {
-                    return 400;
+                    return 600;
                 }
 
                 @Override
@@ -3819,7 +3869,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 5;
+                            return 10;
                         }
 
                         @Override
@@ -3832,11 +3882,12 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION53(R.string.mission53, R.string.mission53_description, R.string.mission53_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION53(R.string.mission53, R.string.mission53_description, R.string.mission53_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
-                    return 200;
+                    return 100;
                 }
 
                 @Override
@@ -3851,7 +3902,7 @@ public enum MissionInfo {
             }, new Reward() {
                 @Override
                 public int value() {
-                    return 400;
+                    return 600;
                 }
 
                 @Override
@@ -3883,7 +3934,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 5;
+                            return 10;
                         }
 
                         @Override
@@ -3896,11 +3947,12 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION54(R.string.mission54, R.string.mission54_description, R.string.mission54_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION54(R.string.mission54, R.string.mission54_description, R.string.mission54_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
-                    return 200;
+                    return 100;
                 }
 
                 @Override
@@ -3915,7 +3967,7 @@ public enum MissionInfo {
             }, new Reward() {
                 @Override
                 public int value() {
-                    return 400;
+                    return 600;
                 }
 
                 @Override
@@ -3947,7 +3999,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 5;
+                            return 10;
                         }
 
                         @Override
@@ -3960,7 +4012,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION55(R.string.mission55, R.string.mission55_description, R.string.mission55_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION55(R.string.mission55, R.string.mission55_description, R.string.mission55_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -4011,7 +4064,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 5;
+                            return 11;
                         }
 
                         @Override
@@ -4024,7 +4077,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION56(R.string.mission56, R.string.mission56_description, R.string.mission56_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION56(R.string.mission56, R.string.mission56_description, R.string.mission56_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -4075,7 +4129,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 5;
+                            return 11;
                         }
 
                         @Override
@@ -4088,7 +4142,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION57(R.string.mission57, R.string.mission57_description, R.string.mission57_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION57(R.string.mission57, R.string.mission57_description, R.string.mission57_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -4139,7 +4194,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 5;
+                            return 11;
                         }
 
                         @Override
@@ -4152,7 +4207,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION58(R.string.mission58, R.string.mission58_description, R.string.mission58_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION58(R.string.mission58, R.string.mission58_description, R.string.mission58_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -4203,7 +4259,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 5;
+                            return 11;
                         }
 
                         @Override
@@ -4216,7 +4272,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION59(R.string.mission59, R.string.mission59_description, R.string.mission59_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION59(R.string.mission59, R.string.mission59_description, R.string.mission59_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -4267,7 +4324,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 5;
+                            return 11;
                         }
 
                         @Override
@@ -4280,11 +4337,12 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION60(R.string.mission60, R.string.mission60_description, R.string.mission60_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION60(R.string.mission60, R.string.mission60_description, R.string.mission60_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
-                    return 200;
+                    return 100;
                 }
 
                 @Override
@@ -4299,7 +4357,7 @@ public enum MissionInfo {
             }, new Reward() {
                 @Override
                 public int value() {
-                    return 400;
+                    return 620;
                 }
 
                 @Override
@@ -4331,7 +4389,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 5;
+                            return 11;
                         }
 
                         @Override
@@ -4344,11 +4402,12 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION61(R.string.mission61, R.string.mission61_description, R.string.mission61_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION61(R.string.mission61, R.string.mission61_description, R.string.mission61_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
-                    return 200;
+                    return 100;
                 }
 
                 @Override
@@ -4363,7 +4422,7 @@ public enum MissionInfo {
             }, new Reward() {
                 @Override
                 public int value() {
-                    return 400;
+                    return 620;
                 }
 
                 @Override
@@ -4395,7 +4454,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 5;
+                            return 11;
                         }
 
                         @Override
@@ -4408,11 +4467,12 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION62(R.string.mission62, R.string.mission62_description, R.string.mission62_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION62(R.string.mission62, R.string.mission62_description, R.string.mission62_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
-                    return 200;
+                    return 100;
                 }
 
                 @Override
@@ -4427,7 +4487,7 @@ public enum MissionInfo {
             }, new Reward() {
                 @Override
                 public int value() {
-                    return 400;
+                    return 620;
                 }
 
                 @Override
@@ -4459,7 +4519,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 5;
+                            return 11;
                         }
 
                         @Override
@@ -4472,11 +4532,12 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION63(R.string.mission63, R.string.mission63_description, R.string.mission63_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION63(R.string.mission63, R.string.mission63_description, R.string.mission63_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
-                    return 200;
+                    return 100;
                 }
 
                 @Override
@@ -4491,7 +4552,7 @@ public enum MissionInfo {
             }, new Reward() {
                 @Override
                 public int value() {
-                    return 400;
+                    return 620;
                 }
 
                 @Override
@@ -4523,7 +4584,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 5;
+                            return 11;
                         }
 
                         @Override
@@ -4536,7 +4597,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION64(R.string.mission64, R.string.mission64_description, R.string.mission64_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION64(R.string.mission64, R.string.mission64_description, R.string.mission64_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -4587,7 +4649,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 5;
+                            return 12;
                         }
 
                         @Override
@@ -4600,7 +4662,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION65(R.string.mission65, R.string.mission65_description, R.string.mission65_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION65(R.string.mission65, R.string.mission65_description, R.string.mission65_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -4651,7 +4714,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 5;
+                            return 12;
                         }
 
                         @Override
@@ -4664,7 +4727,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION66(R.string.mission66, R.string.mission66_description, R.string.mission66_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION66(R.string.mission66, R.string.mission66_description, R.string.mission66_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -4715,7 +4779,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 5;
+                            return 12;
                         }
 
                         @Override
@@ -4728,7 +4792,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION67(R.string.mission67, R.string.mission67_description, R.string.mission67_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION67(R.string.mission67, R.string.mission67_description, R.string.mission67_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -4779,7 +4844,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 5;
+                            return 12;
                         }
 
                         @Override
@@ -4792,7 +4857,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION68(R.string.mission68, R.string.mission68_description, R.string.mission68_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION68(R.string.mission68, R.string.mission68_description, R.string.mission68_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -4843,7 +4909,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 5;
+                            return 12;
                         }
 
                         @Override
@@ -4856,11 +4922,12 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION69(R.string.mission69, R.string.mission69_description, R.string.mission69_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION69(R.string.mission69, R.string.mission69_description, R.string.mission69_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
-                    return 200;
+                    return 100;
                 }
 
                 @Override
@@ -4875,7 +4942,7 @@ public enum MissionInfo {
             }, new Reward() {
                 @Override
                 public int value() {
-                    return 400;
+                    return 640;
                 }
 
                 @Override
@@ -4907,7 +4974,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 5;
+                            return 12;
                         }
 
                         @Override
@@ -4920,11 +4987,12 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION70(R.string.mission70, R.string.mission70_description, R.string.mission70_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION70(R.string.mission70, R.string.mission70_description, R.string.mission70_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
-                    return 200;
+                    return 100;
                 }
 
                 @Override
@@ -4939,7 +5007,7 @@ public enum MissionInfo {
             }, new Reward() {
                 @Override
                 public int value() {
-                    return 400;
+                    return 640;
                 }
 
                 @Override
@@ -4971,7 +5039,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 5;
+                            return 12;
                         }
 
                         @Override
@@ -4984,11 +5052,12 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION71(R.string.mission71, R.string.mission71_description, R.string.mission71_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION71(R.string.mission71, R.string.mission71_description, R.string.mission71_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
-                    return 200;
+                    return 100;
                 }
 
                 @Override
@@ -5003,7 +5072,7 @@ public enum MissionInfo {
             }, new Reward() {
                 @Override
                 public int value() {
-                    return 400;
+                    return 640;
                 }
 
                 @Override
@@ -5035,7 +5104,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 5;
+                            return 12;
                         }
 
                         @Override
@@ -5048,11 +5117,12 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION72(R.string.mission72, R.string.mission72_description, R.string.mission72_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION72(R.string.mission72, R.string.mission72_description, R.string.mission72_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
-                    return 200;
+                    return 100;
                 }
 
                 @Override
@@ -5067,7 +5137,7 @@ public enum MissionInfo {
             }, new Reward() {
                 @Override
                 public int value() {
-                    return 400;
+                    return 640;
                 }
 
                 @Override
@@ -5099,7 +5169,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 5;
+                            return 12;
                         }
 
                         @Override
@@ -5112,7 +5182,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION73(R.string.mission73, R.string.mission73_description, R.string.mission73_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION73(R.string.mission73, R.string.mission73_description, R.string.mission73_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -5176,7 +5247,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION74(R.string.mission74, R.string.mission74_description, R.string.mission74_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION74(R.string.mission74, R.string.mission74_description, R.string.mission74_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -5240,7 +5312,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION75(R.string.mission75, R.string.mission75_description, R.string.mission75_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION75(R.string.mission75, R.string.mission75_description, R.string.mission75_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -5304,7 +5377,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION76(R.string.mission76, R.string.mission76_description, R.string.mission76_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION76(R.string.mission76, R.string.mission76_description, R.string.mission76_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -5368,7 +5442,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION77(R.string.mission77, R.string.mission77_description, R.string.mission77_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION77(R.string.mission77, R.string.mission77_description, R.string.mission77_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -5432,11 +5507,12 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION78(R.string.mission78, R.string.mission78_description, R.string.mission78_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION78(R.string.mission78, R.string.mission78_description, R.string.mission78_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
-                    return 200;
+                    return 100;
                 }
 
                 @Override
@@ -5451,7 +5527,7 @@ public enum MissionInfo {
             }, new Reward() {
                 @Override
                 public int value() {
-                    return 400;
+                    return 660;
                 }
 
                 @Override
@@ -5496,11 +5572,12 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION79(R.string.mission79, R.string.mission79_description, R.string.mission79_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION79(R.string.mission79, R.string.mission79_description, R.string.mission79_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
-                    return 200;
+                    return 100;
                 }
 
                 @Override
@@ -5515,7 +5592,7 @@ public enum MissionInfo {
             }, new Reward() {
                 @Override
                 public int value() {
-                    return 400;
+                    return 660;
                 }
 
                 @Override
@@ -5560,11 +5637,12 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION80(R.string.mission80, R.string.mission80_description, R.string.mission80_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION80(R.string.mission80, R.string.mission80_description, R.string.mission80_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
-                    return 200;
+                    return 100;
                 }
 
                 @Override
@@ -5579,7 +5657,7 @@ public enum MissionInfo {
             }, new Reward() {
                 @Override
                 public int value() {
-                    return 400;
+                    return 660;
                 }
 
                 @Override
@@ -5624,11 +5702,12 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION81(R.string.mission81, R.string.mission81_description, R.string.mission81_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION81(R.string.mission81, R.string.mission81_description, R.string.mission81_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
-                    return 200;
+                    return 100;
                 }
 
                 @Override
@@ -5643,7 +5722,7 @@ public enum MissionInfo {
             }, new Reward() {
                 @Override
                 public int value() {
-                    return 400;
+                    return 660;
                 }
 
                 @Override
@@ -5688,7 +5767,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION82(R.string.mission82, R.string.mission82_description, R.string.mission82_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION82(R.string.mission82, R.string.mission82_description, R.string.mission82_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -5739,7 +5819,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 5;
+                            return 14;
                         }
 
                         @Override
@@ -5752,7 +5832,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION83(R.string.mission83, R.string.mission83_description, R.string.mission83_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION83(R.string.mission83, R.string.mission83_description, R.string.mission83_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -5803,7 +5884,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 5;
+                            return 14;
                         }
 
                         @Override
@@ -5816,7 +5897,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION84(R.string.mission84, R.string.mission84_description, R.string.mission84_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION84(R.string.mission84, R.string.mission84_description, R.string.mission84_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -5867,7 +5949,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 5;
+                            return 14;
                         }
 
                         @Override
@@ -5880,7 +5962,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION85(R.string.mission85, R.string.mission85_description, R.string.mission85_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION85(R.string.mission85, R.string.mission85_description, R.string.mission85_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -5931,7 +6014,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 5;
+                            return 14;
                         }
 
                         @Override
@@ -5944,7 +6027,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION86(R.string.mission86, R.string.mission86_description, R.string.mission86_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION86(R.string.mission86, R.string.mission86_description, R.string.mission86_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -5995,7 +6079,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 5;
+                            return 14;
                         }
 
                         @Override
@@ -6008,11 +6092,12 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION87(R.string.mission87, R.string.mission87_description, R.string.mission87_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION87(R.string.mission87, R.string.mission87_description, R.string.mission87_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
-                    return 200;
+                    return 100;
                 }
 
                 @Override
@@ -6027,7 +6112,7 @@ public enum MissionInfo {
             }, new Reward() {
                 @Override
                 public int value() {
-                    return 400;
+                    return 680;
                 }
 
                 @Override
@@ -6059,7 +6144,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 5;
+                            return 14;
                         }
 
                         @Override
@@ -6072,11 +6157,12 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION88(R.string.mission88, R.string.mission88_description, R.string.mission88_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION88(R.string.mission88, R.string.mission88_description, R.string.mission88_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
-                    return 200;
+                    return 100;
                 }
 
                 @Override
@@ -6091,7 +6177,7 @@ public enum MissionInfo {
             }, new Reward() {
                 @Override
                 public int value() {
-                    return 400;
+                    return 680;
                 }
 
                 @Override
@@ -6123,7 +6209,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 5;
+                            return 14;
                         }
 
                         @Override
@@ -6140,7 +6226,7 @@ public enum MissionInfo {
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
-                    return 200;
+                    return 100;
                 }
 
                 @Override
@@ -6155,7 +6241,7 @@ public enum MissionInfo {
             }, new Reward() {
                 @Override
                 public int value() {
-                    return 400;
+                    return 680;
                 }
 
                 @Override
@@ -6187,7 +6273,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 5;
+                            return 14;
                         }
 
                         @Override
@@ -6200,11 +6286,12 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION90(R.string.mission90, R.string.mission90_description, R.string.mission90_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION90(R.string.mission90, R.string.mission90_description, R.string.mission90_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
-                    return 200;
+                    return 100;
                 }
 
                 @Override
@@ -6219,7 +6306,7 @@ public enum MissionInfo {
             }, new Reward() {
                 @Override
                 public int value() {
-                    return 400;
+                    return 680;
                 }
 
                 @Override
@@ -6251,7 +6338,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 5;
+                            return 14;
                         }
 
                         @Override
@@ -6264,11 +6351,12 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION91(R.string.mission91, R.string.mission91_description, R.string.mission91_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+    MISSION91(R.string.mission91, R.string.mission91_description, R.string.mission91_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
-                    return 200;
+                    return 250;
                 }
 
                 @Override
@@ -6283,7 +6371,7 @@ public enum MissionInfo {
             }, new Reward() {
                 @Override
                 public int value() {
-                    return 400;
+                    return 600;
                 }
 
                 @Override
@@ -6315,7 +6403,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 5;
+                            return 15;
                         }
 
                         @Override
@@ -6328,7 +6416,9 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_D), MISSION92(R.string.mission92, R.string.mission92_description, R.string.mission92_description,
+            Mission.Type.TIME, Mission.Rank.RANK_D),
+
+    MISSION92(R.string.mission92, R.string.mission92_description, R.string.mission92_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -6520,7 +6610,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_C), MISSION95(R.string.mission95, R.string.mission95_description, R.string.mission95_description,
+            Mission.Type.TIME, Mission.Rank.RANK_C),
+    MISSION95(R.string.mission95, R.string.mission95_description, R.string.mission95_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -6584,7 +6675,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_C), MISSION96(R.string.mission96, R.string.mission96_description, R.string.mission96_description,
+            Mission.Type.TIME, Mission.Rank.RANK_C),
+    MISSION96(R.string.mission96, R.string.mission96_description, R.string.mission96_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -6635,7 +6727,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 15;
+                            return 16;
                         }
 
                         @Override
@@ -6699,7 +6791,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 15;
+                            return 16;
                         }
 
                         @Override
@@ -6763,7 +6855,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 15;
+                            return 16;
                         }
 
                         @Override
@@ -6827,7 +6919,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 15;
+                            return 16;
                         }
 
                         @Override
@@ -6891,7 +6983,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 15;
+                            return 16;
                         }
 
                         @Override
@@ -6955,7 +7047,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 15;
+                            return 16;
                         }
 
                         @Override
@@ -7019,7 +7111,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 15;
+                            return 16;
                         }
 
                         @Override
@@ -7083,7 +7175,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 15;
+                            return 16;
                         }
 
                         @Override
@@ -7096,7 +7188,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_C), MISSION104(R.string.mission104, R.string.mission104_description, R.string.mission104_description,
+            Mission.Type.TIME, Mission.Rank.RANK_C),
+    MISSION104(R.string.mission104, R.string.mission104_description, R.string.mission104_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -7147,7 +7240,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 15;
+                            return 16;
                         }
 
                         @Override
@@ -7211,7 +7304,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 15;
+                            return 17;
                         }
 
                         @Override
@@ -7275,7 +7368,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 15;
+                            return 17;
                         }
 
                         @Override
@@ -7339,7 +7432,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 15;
+                            return 17;
                         }
 
                         @Override
@@ -7403,7 +7496,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 15;
+                            return 17;
                         }
 
                         @Override
@@ -7467,7 +7560,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 15;
+                            return 17;
                         }
 
                         @Override
@@ -7531,7 +7624,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 15;
+                            return 17;
                         }
 
                         @Override
@@ -7595,7 +7688,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 15;
+                            return 17;
                         }
 
                         @Override
@@ -7659,7 +7752,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 15;
+                            return 17;
                         }
 
                         @Override
@@ -7723,7 +7816,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 15;
+                            return 18;
                         }
 
                         @Override
@@ -7787,7 +7880,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 15;
+                            return 18;
                         }
 
                         @Override
@@ -7851,7 +7944,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 15;
+                            return 18;
                         }
 
                         @Override
@@ -7915,7 +8008,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 15;
+                            return 18;
                         }
 
                         @Override
@@ -7979,7 +8072,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 15;
+                            return 18;
                         }
 
                         @Override
@@ -8043,7 +8136,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 15;
+                            return 18;
                         }
 
                         @Override
@@ -8107,7 +8200,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 15;
+                            return 18;
                         }
 
                         @Override
@@ -8171,7 +8264,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 15;
+                            return 18;
                         }
 
                         @Override
@@ -8235,7 +8328,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 15;
+                            return 19;
                         }
 
                         @Override
@@ -8299,7 +8392,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 15;
+                            return 19;
                         }
 
                         @Override
@@ -8363,7 +8456,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 15;
+                            return 19;
                         }
 
                         @Override
@@ -8427,7 +8520,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 15;
+                            return 19;
                         }
 
                         @Override
@@ -8491,7 +8584,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 15;
+                            return 19;
                         }
 
                         @Override
@@ -8555,7 +8648,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 15;
+                            return 19;
                         }
 
                         @Override
@@ -8619,7 +8712,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 15;
+                            return 19;
                         }
 
                         @Override
@@ -8632,7 +8725,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_C), MISSION128(R.string.mission128, R.string.mission128_description, R.string.mission128_description,
+            Mission.Type.TIME, Mission.Rank.RANK_C),
+    MISSION128(R.string.mission128, R.string.mission128_description, R.string.mission128_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -8683,7 +8777,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 15;
+                            return 20;
                         }
 
                         @Override
@@ -8747,7 +8841,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 15;
+                            return 20;
                         }
 
                         @Override
@@ -8811,7 +8905,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 15;
+                            return 20;
                         }
 
                         @Override
@@ -8875,7 +8969,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 15;
+                            return 20;
                         }
 
                         @Override
@@ -8939,7 +9033,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 15;
+                            return 20;
                         }
 
                         @Override
@@ -9003,7 +9097,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 15;
+                            return 20;
                         }
 
                         @Override
@@ -9067,7 +9161,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 15;
+                            return 20;
                         }
 
                         @Override
@@ -9131,7 +9225,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 15;
+                            return 20;
                         }
 
                         @Override
@@ -9195,7 +9289,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 15;
+                            return 20;
                         }
 
                         @Override
@@ -9259,7 +9353,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 15;
+                            return 21;
                         }
 
                         @Override
@@ -9323,7 +9417,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 15;
+                            return 21;
                         }
 
                         @Override
@@ -9387,7 +9481,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 15;
+                            return 21;
                         }
 
                         @Override
@@ -9451,7 +9545,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 15;
+                            return 21;
                         }
 
                         @Override
@@ -9515,7 +9609,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 15;
+                            return 21;
                         }
 
                         @Override
@@ -9579,7 +9673,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 15;
+                            return 21;
                         }
 
                         @Override
@@ -9643,7 +9737,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 15;
+                            return 21;
                         }
 
                         @Override
@@ -9707,7 +9801,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 15;
+                            return 21;
                         }
 
                         @Override
@@ -9720,7 +9814,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_C), MISSION145(R.string.mission145, R.string.mission145_description, R.string.mission145_description,
+            Mission.Type.TIME, Mission.Rank.RANK_C),
+    MISSION145(R.string.mission145, R.string.mission145_description, R.string.mission145_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -9771,7 +9866,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 15;
+                            return 22;
                         }
 
                         @Override
@@ -9835,7 +9930,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 15;
+                            return 22;
                         }
 
                         @Override
@@ -9899,7 +9994,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 15;
+                            return 22;
                         }
 
                         @Override
@@ -9963,7 +10058,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 15;
+                            return 22;
                         }
 
                         @Override
@@ -10027,7 +10122,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 15;
+                            return 22;
                         }
 
                         @Override
@@ -10091,7 +10186,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 15;
+                            return 22;
                         }
 
                         @Override
@@ -10155,7 +10250,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 15;
+                            return 22;
                         }
 
                         @Override
@@ -10219,7 +10314,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 15;
+                            return 23;
                         }
 
                         @Override
@@ -10283,7 +10378,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 15;
+                            return 23;
                         }
 
                         @Override
@@ -10347,7 +10442,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 15;
+                            return 23;
                         }
 
                         @Override
@@ -10411,7 +10506,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 15;
+                            return 23;
                         }
 
                         @Override
@@ -10475,7 +10570,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 15;
+                            return 23;
                         }
 
                         @Override
@@ -10539,7 +10634,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 15;
+                            return 23;
                         }
 
                         @Override
@@ -10603,7 +10698,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 15;
+                            return 23;
                         }
 
                         @Override
@@ -10667,7 +10762,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 15;
+                            return 23;
                         }
 
                         @Override
@@ -10680,7 +10775,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_C), MISSION160(R.string.mission160, R.string.mission160_description, R.string.mission160_description,
+            Mission.Type.TIME, Mission.Rank.RANK_C),
+    MISSION160(R.string.mission160, R.string.mission160_description, R.string.mission160_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -10731,7 +10827,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 15;
+                            return 24;
                         }
 
                         @Override
@@ -10795,7 +10891,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 15;
+                            return 24;
                         }
 
                         @Override
@@ -10859,7 +10955,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 15;
+                            return 24;
                         }
 
                         @Override
@@ -10872,7 +10968,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_C), MISSION163(R.string.mission163, R.string.mission163_description, R.string.mission163_description,
+            Mission.Type.TIME, Mission.Rank.RANK_C),
+    MISSION163(R.string.mission163, R.string.mission163_description, R.string.mission163_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -10923,7 +11020,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 15;
+                            return 24;
                         }
 
                         @Override
@@ -10936,7 +11033,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_C), MISSION164(R.string.mission164, R.string.mission164_description, R.string.mission164_description,
+            Mission.Type.TIME, Mission.Rank.RANK_C),
+    MISSION164(R.string.mission164, R.string.mission164_description, R.string.mission164_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -10987,7 +11085,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 15;
+                            return 24;
                         }
 
                         @Override
@@ -11000,7 +11098,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_C), MISSION165(R.string.mission165, R.string.mission165_description, R.string.mission165_description,
+            Mission.Type.TIME, Mission.Rank.RANK_C),
+    MISSION165(R.string.mission165, R.string.mission165_description, R.string.mission165_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -11051,7 +11150,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 15;
+                            return 24;
                         }
 
                         @Override
@@ -11064,7 +11163,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_C), MISSION166(R.string.mission166, R.string.mission166_description, R.string.mission166_description,
+            Mission.Type.TIME, Mission.Rank.RANK_C),
+    MISSION166(R.string.mission166, R.string.mission166_description, R.string.mission166_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -11115,7 +11215,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 15;
+                            return 24;
                         }
 
                         @Override
@@ -11128,7 +11228,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_C), MISSION167(R.string.mission167, R.string.mission167_description, R.string.mission167_description,
+            Mission.Type.TIME, Mission.Rank.RANK_C),
+    MISSION167(R.string.mission167, R.string.mission167_description, R.string.mission167_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -11179,7 +11280,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 15;
+                            return 24;
                         }
 
                         @Override
@@ -11192,7 +11293,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_C), MISSION168(R.string.mission168, R.string.mission168_description, R.string.mission168_description,
+            Mission.Type.TIME, Mission.Rank.RANK_C),
+    MISSION168(R.string.mission168, R.string.mission168_description, R.string.mission168_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -11256,7 +11358,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_B), MISSION169(R.string.mission169, R.string.mission169_description, R.string.mission169_description,
+            Mission.Type.TIME, Mission.Rank.RANK_B),
+    MISSION169(R.string.mission169, R.string.mission169_description, R.string.mission169_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -11320,7 +11423,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_B), MISSION170(R.string.mission170, R.string.mission170_description, R.string.mission170_description,
+            Mission.Type.TIME, Mission.Rank.RANK_B),
+    MISSION170(R.string.mission170, R.string.mission170_description, R.string.mission170_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -11384,7 +11488,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_B), MISSION171(R.string.mission171, R.string.mission171_description, R.string.mission171_description,
+            Mission.Type.TIME, Mission.Rank.RANK_B),
+    MISSION171(R.string.mission171, R.string.mission171_description, R.string.mission171_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -11448,7 +11553,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_B), MISSION172(R.string.mission172, R.string.mission172_description, R.string.mission172_description,
+            Mission.Type.TIME, Mission.Rank.RANK_B),
+    MISSION172(R.string.mission172, R.string.mission172_description, R.string.mission172_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -11563,7 +11669,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 25;
+                            return 26;
                         }
 
                         @Override
@@ -11627,7 +11733,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 25;
+                            return 26;
                         }
 
                         @Override
@@ -11640,7 +11746,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_B), MISSION175(R.string.mission175, R.string.mission175_description, R.string.mission175_description,
+            Mission.Type.TIME, Mission.Rank.RANK_B),
+    MISSION175(R.string.mission175, R.string.mission175_description, R.string.mission175_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -11691,7 +11798,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 25;
+                            return 26;
                         }
 
                         @Override
@@ -11704,7 +11811,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_B), MISSION176(R.string.mission176, R.string.mission176_description, R.string.mission176_description,
+            Mission.Type.TIME, Mission.Rank.RANK_B),
+    MISSION176(R.string.mission176, R.string.mission176_description, R.string.mission176_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -11755,7 +11863,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 25;
+                            return 26;
                         }
 
                         @Override
@@ -11768,7 +11876,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_B), MISSION177(R.string.mission177, R.string.mission177_description, R.string.mission177_description,
+            Mission.Type.TIME, Mission.Rank.RANK_B),
+    MISSION177(R.string.mission177, R.string.mission177_description, R.string.mission177_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -11819,7 +11928,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 25;
+                            return 26;
                         }
 
                         @Override
@@ -11832,7 +11941,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_B), MISSION178(R.string.mission178, R.string.mission178_description, R.string.mission178_description,
+            Mission.Type.TIME, Mission.Rank.RANK_B),
+    MISSION178(R.string.mission178, R.string.mission178_description, R.string.mission178_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -11883,7 +11993,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 25;
+                            return 26;
                         }
 
                         @Override
@@ -11896,7 +12006,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_B), MISSION179(R.string.mission179, R.string.mission179_description, R.string.mission179_description,
+            Mission.Type.TIME, Mission.Rank.RANK_B),
+    MISSION179(R.string.mission179, R.string.mission179_description, R.string.mission179_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -11947,7 +12058,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 25;
+                            return 26;
                         }
 
                         @Override
@@ -11960,7 +12071,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_B), MISSION180(R.string.mission180, R.string.mission180_description, R.string.mission180_description,
+            Mission.Type.TIME, Mission.Rank.RANK_B),
+    MISSION180(R.string.mission180, R.string.mission180_description, R.string.mission180_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -12011,7 +12123,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 25;
+                            return 27;
                         }
 
                         @Override
@@ -12024,7 +12136,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_B), MISSION181(R.string.mission181, R.string.mission181_description, R.string.mission181_description,
+            Mission.Type.TIME, Mission.Rank.RANK_B),
+    MISSION181(R.string.mission181, R.string.mission181_description, R.string.mission181_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -12075,7 +12188,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 25;
+                            return 27;
                         }
 
                         @Override
@@ -12088,7 +12201,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_B), MISSION182(R.string.mission182, R.string.mission182_description, R.string.mission182_description,
+            Mission.Type.TIME, Mission.Rank.RANK_B),
+    MISSION182(R.string.mission182, R.string.mission182_description, R.string.mission182_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -12139,7 +12253,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 25;
+                            return 27;
                         }
 
                         @Override
@@ -12152,7 +12266,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_B), MISSION183(R.string.mission183, R.string.mission183_description, R.string.mission183_description,
+            Mission.Type.TIME, Mission.Rank.RANK_B),
+    MISSION183(R.string.mission183, R.string.mission183_description, R.string.mission183_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -12203,7 +12318,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 25;
+                            return 27;
                         }
 
                         @Override
@@ -12216,7 +12331,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_B), MISSION184(R.string.mission184, R.string.mission184_description, R.string.mission184_description,
+            Mission.Type.TIME, Mission.Rank.RANK_B),
+    MISSION184(R.string.mission184, R.string.mission184_description, R.string.mission184_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -12267,7 +12383,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 25;
+                            return 27;
                         }
 
                         @Override
@@ -12280,7 +12396,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_B), MISSION185(R.string.mission185, R.string.mission185_description, R.string.mission185_description,
+            Mission.Type.TIME, Mission.Rank.RANK_B),
+    MISSION185(R.string.mission185, R.string.mission185_description, R.string.mission185_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -12331,7 +12448,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 25;
+                            return 27;
                         }
 
                         @Override
@@ -12344,7 +12461,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_B), MISSION186(R.string.mission186, R.string.mission186_description, R.string.mission186_description,
+            Mission.Type.TIME, Mission.Rank.RANK_B),
+    MISSION186(R.string.mission186, R.string.mission186_description, R.string.mission186_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -12395,7 +12513,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 25;
+                            return 27;
                         }
 
                         @Override
@@ -12408,7 +12526,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_B), MISSION187(R.string.mission187, R.string.mission187_description, R.string.mission187_description,
+            Mission.Type.TIME, Mission.Rank.RANK_B),
+    MISSION187(R.string.mission187, R.string.mission187_description, R.string.mission187_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -12459,7 +12578,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 25;
+                            return 27;
                         }
 
                         @Override
@@ -12472,7 +12591,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_B), MISSION188(R.string.mission188, R.string.mission188_description, R.string.mission188_description,
+            Mission.Type.TIME, Mission.Rank.RANK_B),
+    MISSION188(R.string.mission188, R.string.mission188_description, R.string.mission188_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -12523,7 +12643,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 25;
+                            return 28;
                         }
 
                         @Override
@@ -12536,7 +12656,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_B), MISSION189(R.string.mission189, R.string.mission189_description, R.string.mission189_description,
+            Mission.Type.TIME, Mission.Rank.RANK_B),
+    MISSION189(R.string.mission189, R.string.mission189_description, R.string.mission189_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -12587,7 +12708,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 25;
+                            return 28;
                         }
 
                         @Override
@@ -12600,7 +12721,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_B), MISSION190(R.string.mission190, R.string.mission190_description, R.string.mission190_description,
+            Mission.Type.TIME, Mission.Rank.RANK_B),
+    MISSION190(R.string.mission190, R.string.mission190_description, R.string.mission190_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -12651,7 +12773,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 25;
+                            return 28;
                         }
 
                         @Override
@@ -12664,7 +12786,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_B), MISSION191(R.string.mission191, R.string.mission191_description, R.string.mission191_description,
+            Mission.Type.TIME, Mission.Rank.RANK_B),
+    MISSION191(R.string.mission191, R.string.mission191_description, R.string.mission191_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -12715,7 +12838,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 25;
+                            return 28;
                         }
 
                         @Override
@@ -12728,7 +12851,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_B), MISSION192(R.string.mission192, R.string.mission192_description, R.string.mission192_description,
+            Mission.Type.TIME, Mission.Rank.RANK_B),
+    MISSION192(R.string.mission192, R.string.mission192_description, R.string.mission192_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -12779,7 +12903,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 25;
+                            return 28;
                         }
 
                         @Override
@@ -12792,7 +12916,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_B), MISSION193(R.string.mission193, R.string.mission193_description, R.string.mission193_description,
+            Mission.Type.TIME, Mission.Rank.RANK_B),
+    MISSION193(R.string.mission193, R.string.mission193_description, R.string.mission193_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -12843,7 +12968,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 25;
+                            return 28;
                         }
 
                         @Override
@@ -12856,7 +12981,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_B), MISSION194(R.string.mission194, R.string.mission194_description, R.string.mission194_description,
+            Mission.Type.TIME, Mission.Rank.RANK_B),
+    MISSION194(R.string.mission194, R.string.mission194_description, R.string.mission194_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -12907,7 +13033,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 25;
+                            return 28;
                         }
 
                         @Override
@@ -12920,7 +13046,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_B), MISSION195(R.string.mission195, R.string.mission195_description, R.string.mission195_description,
+            Mission.Type.TIME, Mission.Rank.RANK_B),
+    MISSION195(R.string.mission195, R.string.mission195_description, R.string.mission195_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -12971,7 +13098,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 25;
+                            return 29;
                         }
 
                         @Override
@@ -12984,7 +13111,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_B), MISSION196(R.string.mission196, R.string.mission196_description, R.string.mission196_description,
+            Mission.Type.TIME, Mission.Rank.RANK_B),
+    MISSION196(R.string.mission196, R.string.mission196_description, R.string.mission196_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -13035,7 +13163,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 25;
+                            return 29;
                         }
 
                         @Override
@@ -13048,7 +13176,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_B), MISSION197(R.string.mission197, R.string.mission197_description, R.string.mission197_description,
+            Mission.Type.TIME, Mission.Rank.RANK_B),
+    MISSION197(R.string.mission197, R.string.mission197_description, R.string.mission197_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -13099,7 +13228,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 25;
+                            return 29;
                         }
 
                         @Override
@@ -13112,7 +13241,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_B), MISSION198(R.string.mission198, R.string.mission198_description, R.string.mission198_description,
+            Mission.Type.TIME, Mission.Rank.RANK_B),
+    MISSION198(R.string.mission198, R.string.mission198_description, R.string.mission198_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -13163,7 +13293,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 25;
+                            return 29;
                         }
 
                         @Override
@@ -13176,7 +13306,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_B), MISSION199(R.string.mission199, R.string.mission199_description, R.string.mission199_description,
+            Mission.Type.TIME, Mission.Rank.RANK_B),
+    MISSION199(R.string.mission199, R.string.mission199_description, R.string.mission199_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -13227,7 +13358,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 25;
+                            return 29;
                         }
 
                         @Override
@@ -13240,7 +13371,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_B), MISSION200(R.string.mission200, R.string.mission200_description, R.string.mission200_description,
+            Mission.Type.TIME, Mission.Rank.RANK_B),
+    MISSION200(R.string.mission200, R.string.mission200_description, R.string.mission200_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -13291,7 +13423,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 25;
+                            return 29;
                         }
 
                         @Override
@@ -13304,7 +13436,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_B), MISSION201(R.string.mission201, R.string.mission201_description, R.string.mission201_description,
+            Mission.Type.TIME, Mission.Rank.RANK_B),
+    MISSION201(R.string.mission201, R.string.mission201_description, R.string.mission201_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -13355,7 +13488,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 25;
+                            return 29;
                         }
 
                         @Override
@@ -13368,7 +13501,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_B), MISSION202(R.string.mission202, R.string.mission202_description, R.string.mission202_description,
+            Mission.Type.TIME, Mission.Rank.RANK_B),
+    MISSION202(R.string.mission202, R.string.mission202_description, R.string.mission202_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -13419,7 +13553,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 25;
+                            return 29;
                         }
 
                         @Override
@@ -13432,7 +13566,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_B), MISSION203(R.string.mission203, R.string.mission203_description, R.string.mission203_description,
+            Mission.Type.TIME, Mission.Rank.RANK_B),
+    MISSION203(R.string.mission203, R.string.mission203_description, R.string.mission203_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -13483,7 +13618,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 25;
+                            return 30;
                         }
 
                         @Override
@@ -13496,7 +13631,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_B), MISSION204(R.string.mission204, R.string.mission204_description, R.string.mission204_description,
+            Mission.Type.TIME, Mission.Rank.RANK_B),
+    MISSION204(R.string.mission204, R.string.mission204_description, R.string.mission204_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -13547,7 +13683,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 25;
+                            return 30;
                         }
 
                         @Override
@@ -13560,7 +13696,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_B), MISSION205(R.string.mission205, R.string.mission205_description, R.string.mission205_description,
+            Mission.Type.TIME, Mission.Rank.RANK_B),
+    MISSION205(R.string.mission205, R.string.mission205_description, R.string.mission205_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -13611,7 +13748,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 25;
+                            return 30;
                         }
 
                         @Override
@@ -13676,7 +13813,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 25;
+                            return 30;
                         }
 
                         @Override
@@ -13689,7 +13826,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_B), MISSION207(R.string.mission207, R.string.mission207_description, R.string.mission207_description,
+            Mission.Type.TIME, Mission.Rank.RANK_B),
+    MISSION207(R.string.mission207, R.string.mission207_description, R.string.mission207_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -13740,7 +13878,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 25;
+                            return 30;
                         }
 
                         @Override
@@ -13753,7 +13891,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_B), MISSION208(R.string.mission208, R.string.mission208_description, R.string.mission208_description,
+            Mission.Type.TIME, Mission.Rank.RANK_B),
+    MISSION208(R.string.mission208, R.string.mission208_description, R.string.mission208_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -13804,7 +13943,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 25;
+                            return 30;
                         }
 
                         @Override
@@ -13817,7 +13956,8 @@ public enum MissionInfo {
                             return "Lvl. " + getValue();
                         }
                     }),
-            Mission.Type.TIME, Mission.Rank.RANK_B), MISSION209(R.string.mission209, R.string.mission209_description, R.string.mission209_description,
+            Mission.Type.TIME, Mission.Rank.RANK_B),
+    MISSION209(R.string.mission209, R.string.mission209_description, R.string.mission209_description,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
@@ -13868,7 +14008,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 25;
+                            return 30;
                         }
 
                         @Override
@@ -13932,7 +14072,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 25;
+                            return 30;
                         }
 
                         @Override
@@ -13996,7 +14136,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 25;
+                            return 31;
                         }
 
                         @Override
@@ -14060,7 +14200,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 25;
+                            return 31;
                         }
 
                         @Override
@@ -14124,7 +14264,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 25;
+                            return 31;
                         }
 
                         @Override
@@ -14188,7 +14328,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 25;
+                            return 31;
                         }
 
                         @Override
@@ -14252,7 +14392,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 25;
+                            return 31;
                         }
 
                         @Override
@@ -14316,7 +14456,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 25;
+                            return 31;
                         }
 
                         @Override
@@ -14380,7 +14520,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 25;
+                            return 31;
                         }
 
                         @Override
@@ -14444,7 +14584,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 25;
+                            return 31;
                         }
 
                         @Override
@@ -14508,7 +14648,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 25;
+                            return 32;
                         }
 
                         @Override
@@ -14572,7 +14712,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 25;
+                            return 32;
                         }
 
                         @Override
@@ -14636,7 +14776,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 25;
+                            return 32;
                         }
 
                         @Override
@@ -14700,7 +14840,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 25;
+                            return 32;
                         }
 
                         @Override
@@ -14764,7 +14904,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 25;
+                            return 32;
                         }
 
                         @Override
@@ -14828,7 +14968,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 25;
+                            return 32;
                         }
 
                         @Override
@@ -14892,7 +15032,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 25;
+                            return 32;
                         }
 
                         @Override
@@ -14956,7 +15096,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 25;
+                            return 33;
                         }
 
                         @Override
@@ -15020,7 +15160,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 25;
+                            return 33;
                         }
 
                         @Override
@@ -15084,7 +15224,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 25;
+                            return 33;
                         }
 
                         @Override
@@ -15148,7 +15288,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 25;
+                            return 33;
                         }
 
                         @Override
@@ -15212,7 +15352,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 25;
+                            return 33;
                         }
 
                         @Override
@@ -15276,7 +15416,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 25;
+                            return 33;
                         }
 
                         @Override
@@ -15340,7 +15480,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 25;
+                            return 33;
                         }
 
                         @Override
@@ -15404,7 +15544,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 25;
+                            return 34;
                         }
 
                         @Override
@@ -15468,7 +15608,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 25;
+                            return 34;
                         }
 
                         @Override
@@ -15532,7 +15672,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 25;
+                            return 34;
                         }
 
                         @Override
@@ -15596,7 +15736,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 25;
+                            return 34;
                         }
 
                         @Override
@@ -15660,7 +15800,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 25;
+                            return 34;
                         }
 
                         @Override
@@ -15724,7 +15864,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 25;
+                            return 34;
                         }
 
                         @Override
@@ -23821,7 +23961,7 @@ public enum MissionInfo {
             Arrays.asList(new Requirement() {
                               @Override
                               public int getValue() {
-                                  return 5;
+                                  return 6;
                               }
 
                               @Override
@@ -23837,7 +23977,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 45;
+                            return 55;
                         }
 
                         @Override
@@ -23886,7 +24026,7 @@ public enum MissionInfo {
             Arrays.asList(new Requirement() {
                               @Override
                               public int getValue() {
-                                  return 5;
+                                  return 6;
                               }
 
                               @Override
@@ -23902,7 +24042,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 45;
+                            return 55;
                         }
 
                         @Override
@@ -23951,7 +24091,7 @@ public enum MissionInfo {
             Arrays.asList(new Requirement() {
                               @Override
                               public int getValue() {
-                                  return 5;
+                                  return 6;
                               }
 
                               @Override
@@ -23967,7 +24107,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 45;
+                            return 55;
                         }
 
                         @Override
@@ -24016,7 +24156,7 @@ public enum MissionInfo {
             Arrays.asList(new Requirement() {
                               @Override
                               public int getValue() {
-                                  return 5;
+                                  return 6;
                               }
 
                               @Override
@@ -24032,7 +24172,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 45;
+                            return 55;
                         }
 
                         @Override
@@ -24081,7 +24221,7 @@ public enum MissionInfo {
             Arrays.asList(new Requirement() {
                               @Override
                               public int getValue() {
-                                  return 5;
+                                  return 6;
                               }
 
                               @Override
@@ -24097,7 +24237,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 45;
+                            return 55;
                         }
 
                         @Override
@@ -24146,7 +24286,7 @@ public enum MissionInfo {
             Arrays.asList(new Requirement() {
                               @Override
                               public int getValue() {
-                                  return 5;
+                                  return 6;
                               }
 
                               @Override
@@ -24162,7 +24302,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 45;
+                            return 55;
                         }
 
                         @Override
@@ -24210,7 +24350,7 @@ public enum MissionInfo {
             Arrays.asList(new Requirement() {
                               @Override
                               public int getValue() {
-                                  return 5;
+                                  return 6;
                               }
 
                               @Override
@@ -24226,7 +24366,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 45;
+                            return 55;
                         }
 
                         @Override
@@ -24274,7 +24414,7 @@ public enum MissionInfo {
             Arrays.asList(new Requirement() {
                               @Override
                               public int getValue() {
-                                  return 5;
+                                  return 6;
                               }
 
                               @Override
@@ -24290,7 +24430,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 45;
+                            return 55;
                         }
 
                         @Override
@@ -24338,7 +24478,7 @@ public enum MissionInfo {
             Arrays.asList(new Requirement() {
                               @Override
                               public int getValue() {
-                                  return 5;
+                                  return 6;
                               }
 
                               @Override
@@ -24354,7 +24494,7 @@ public enum MissionInfo {
                     new Requirement() {
                         @Override
                         public int getValue() {
-                            return 45;
+                            return 55;
                         }
 
                         @Override

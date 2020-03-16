@@ -105,6 +105,7 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
                             android:orientation="horizontal">
 
                             <ImageButton
@@ -112,6 +113,7 @@
                                 android:layout_height="wrap_content"
                                 android:alpha="@{viewModel.character.village == Village.FOLHA ? 1.0f : 0.7f}"
                                 android:background="@{viewModel.character.village == Village.FOLHA ? @color/colorGreen : @android:color/transparent}"
+                                android:contentDescription="@string/leaf"
                                 android:onClick="@{() -> viewModel.onVillageSelected(Village.FOLHA)}"
                                 android:padding="5dp"
                                 android:src="@drawable/layout_vilas2_1" />
@@ -121,6 +123,7 @@
                                 android:layout_height="wrap_content"
                                 android:alpha="@{viewModel.character.village == Village.AREIA ? 1.0f : 0.7f}"
                                 android:background="@{viewModel.character.village == Village.AREIA ? @color/colorGreen : @android:color/transparent}"
+                                android:contentDescription="@string/sand"
                                 android:onClick="@{() -> viewModel.onVillageSelected(Village.AREIA)}"
                                 android:padding="5dp"
                                 android:src="@drawable/layout_vilas2_2" />
@@ -130,6 +133,7 @@
                                 android:layout_height="wrap_content"
                                 android:alpha="@{viewModel.character.village == Village.NEVOA ? 1.0f : 0.7f}"
                                 android:background="@{viewModel.character.village == Village.NEVOA ? @color/colorGreen : @android:color/transparent}"
+                                android:contentDescription="@string/mist"
                                 android:onClick="@{() -> viewModel.onVillageSelected(Village.NEVOA)}"
                                 android:padding="5dp"
                                 android:src="@drawable/layout_vilas2_3" />
@@ -139,6 +143,7 @@
                                 android:layout_height="wrap_content"
                                 android:alpha="@{viewModel.character.village == Village.PEDRA ? 1.0f : 0.7f}"
                                 android:background="@{viewModel.character.village == Village.PEDRA ? @color/colorGreen : @android:color/transparent}"
+                                android:contentDescription="@string/stone"
                                 android:onClick="@{() -> viewModel.onVillageSelected(Village.PEDRA)}"
                                 android:padding="5dp"
                                 android:src="@drawable/layout_vilas2_4" />
@@ -148,6 +153,7 @@
                                 android:layout_height="wrap_content"
                                 android:alpha="@{viewModel.character.village == Village.NUVEM ? 1.0f : 0.7f}"
                                 android:background="@{viewModel.character.village == Village.NUVEM ? @color/colorGreen : @android:color/transparent}"
+                                android:contentDescription="@string/cloud"
                                 android:onClick="@{() -> viewModel.onVillageSelected(Village.NUVEM)}"
                                 android:padding="5dp"
                                 android:src="@drawable/layout_vilas2_5" />
@@ -157,6 +163,7 @@
                                 android:layout_height="wrap_content"
                                 android:alpha="@{viewModel.character.village == Village.AKATSUKI ? 1.0f : 0.7f}"
                                 android:background="@{viewModel.character.village == Village.AKATSUKI ? @color/colorGreen : @android:color/transparent}"
+                                android:contentDescription="@string/akatsuki"
                                 android:onClick="@{() -> viewModel.onVillageSelected(Village.AKATSUKI)}"
                                 android:padding="5dp"
                                 android:src="@drawable/layout_vilas2_6" />
@@ -166,6 +173,7 @@
                                 android:layout_height="wrap_content"
                                 android:alpha="@{viewModel.character.village == Village.SOM ? 1.0f : 0.7f}"
                                 android:background="@{viewModel.character.village == Village.SOM ? @color/colorGreen : @android:color/transparent}"
+                                android:contentDescription="@string/sound"
                                 android:onClick="@{() -> viewModel.onVillageSelected(Village.SOM)}"
                                 android:padding="5dp"
                                 android:src="@drawable/layout_vilas2_7" />
@@ -175,6 +183,7 @@
                                 android:layout_height="wrap_content"
                                 android:alpha="@{viewModel.character.village == Village.CHUVA ? 1.0f : 0.7f}"
                                 android:background="@{viewModel.character.village == Village.CHUVA ? @color/colorGreen : @android:color/transparent}"
+                                android:contentDescription="@string/rain"
                                 android:onClick="@{() -> viewModel.onVillageSelected(Village.CHUVA)}"
                                 android:padding="5dp"
                                 android:src="@drawable/layout_vilas2_8" />

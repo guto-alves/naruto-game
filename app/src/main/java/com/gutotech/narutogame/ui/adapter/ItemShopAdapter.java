@@ -27,7 +27,7 @@ import com.gutotech.narutogame.data.model.Ramen;
 import java.util.List;
 import java.util.Locale;
 
-public class ItemShopRecyclerAdapter extends RecyclerView.Adapter<ItemShopRecyclerAdapter.ViewHolder> {
+public class ItemShopAdapter extends RecyclerView.Adapter<ItemShopAdapter.ViewHolder> {
 
     public interface OnBuyClickListener {
         void onBuyButtonClick(ShopItem item, int quantity);
@@ -62,8 +62,8 @@ public class ItemShopRecyclerAdapter extends RecyclerView.Adapter<ItemShopRecycl
     private FragmentManager mFragmentManager;
     private OnBuyClickListener mOnBuyButtonListener;
 
-    public ItemShopRecyclerAdapter(Context context, FragmentManager fragmentManager,
-                                   OnBuyClickListener onBuyButtonListener) {
+    public ItemShopAdapter(Context context, FragmentManager fragmentManager,
+                           OnBuyClickListener onBuyButtonListener) {
         mContext = context;
         mFragmentManager = fragmentManager;
         mOnBuyButtonListener = onBuyButtonListener;

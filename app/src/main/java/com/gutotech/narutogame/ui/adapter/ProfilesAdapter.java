@@ -20,12 +20,11 @@ public class ProfilesAdapter extends RecyclerView.Adapter<ProfilesAdapter.ViewHo
         void onProfileClick(String profilePath);
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         private ImageView profileImageView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-
             profileImageView = itemView.findViewById(R.id.profileImageView);
         }
     }
@@ -33,9 +32,7 @@ public class ProfilesAdapter extends RecyclerView.Adapter<ProfilesAdapter.ViewHo
     private List<StorageReference> mProfileList;
     private OnProfileClickListener mOnProfileClickListener;
 
-    public ProfilesAdapter(List<StorageReference> references,
-                           OnProfileClickListener onProfileClickListener) {
-        mProfileList = references;
+    public ProfilesAdapter(OnProfileClickListener onProfileClickListener) {
         mOnProfileClickListener = onProfileClickListener;
     }
 
@@ -43,22 +40,29 @@ public class ProfilesAdapter extends RecyclerView.Adapter<ProfilesAdapter.ViewHo
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_profile,
-                null, false);
+                parent, false);
         return new ViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        StorageReference storageReference = mProfileList.get(position);
-        StorageUtil.downloadImage(holder.profileImageView.getContext(), storageReference,
-                holder.profileImageView);
+        if (mProfileList != null) {
+            StorageReference storageReference = mProfileList.get(position);
+            StorageUtil.downloadImage(holder.profileImageView.getContext(), storageReference,
+                    holder.profileImageView);
 
-        holder.itemView.setOnClickListener(v ->
-                mOnProfileClickListener.onProfileClick(storageReference.getPath()));
+            holder.itemView.setOnClickListener(v ->
+                    mOnProfileClickListener.onProfileClick(storageReference.getPath()));
+        }
     }
 
     @Override
     public int getItemCount() {
-        return mProfileList.size();
+        return mProfileList != null ? mProfileList.size() : 0;
+    }
+
+    public void setProfileList(List<StorageReference> profileList) {
+        mProfileList = profileList;
+        notifyDataSetChanged();
     }
 }

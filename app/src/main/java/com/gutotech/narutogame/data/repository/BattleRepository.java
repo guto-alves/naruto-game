@@ -10,6 +10,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.gutotech.narutogame.data.firebase.FirebaseConfig;
 import com.gutotech.narutogame.data.model.Battle;
 import com.gutotech.narutogame.data.model.CharOn;
+import com.gutotech.narutogame.data.model.Character;
 
 public class BattleRepository {
     private static final BattleRepository ourInstance = new BattleRepository();
@@ -25,9 +26,10 @@ public class BattleRepository {
         return label + "-" + FirebaseConfig.getDatabase().child("battles").push().getKey();
     }
 
-    public void create(Battle battle) {
+    public void create(Character player, Character opponent) {
         String id = generateId("VILLAGEMAP-PVP");
 
+        Battle battle = new Battle(player, opponent);
         battle.setId(id);
 
         saveId(battle.getPlayer1().getNick(), id);
@@ -106,7 +108,6 @@ public class BattleRepository {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
             }
         });
     }
@@ -122,10 +123,8 @@ public class BattleRepository {
         battleEventListener = battleReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Battle battle = dataSnapshot.getValue(Battle.class);
-
-                if (battle == null) {
-                    callback.call(battle);
+                if (dataSnapshot.exists()) {
+                    callback.call(dataSnapshot.getValue(Battle.class));
                 }
             }
 
@@ -141,5 +140,4 @@ public class BattleRepository {
             battleEventListener = null;
         }
     }
-
 }

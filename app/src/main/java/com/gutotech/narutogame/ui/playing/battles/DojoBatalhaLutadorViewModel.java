@@ -67,14 +67,8 @@ public class DojoBatalhaLutadorViewModel extends ViewModel
     SingleLiveEvent<Void> showDrawnEvent = new SingleLiveEvent<>();
     SingleLiveEvent<Void> showInactivatedEvent = new SingleLiveEvent<>();
 
-    private long elapsedTime;
-
-    private int myTurn;
-
     DojoBatalhaLutadorViewModel(Battle battle) {
         mBattle = battle;
-
-        myTurn = 0;
 
         player = mBattle.getPlayer1();
         npc = new Npc(mBattle.getPlayer2());
@@ -92,17 +86,9 @@ public class DojoBatalhaLutadorViewModel extends ViewModel
         mBattleRepository = BattleRepository.getInstance();
 
         if (mBattle.getStatus() == Battle.Status.CONTINUE) {
-            init();
+            startTimer(calculateElapsedTime());
         } else {
-            finishFight();
-        }
-    }
-
-    void init() {
-        elapsedTime = Calendar.getInstance().getTimeInMillis() - mBattle.getAttackStart();
-
-        if (mCountDownTimer == null) {
-            startTimer();
+            showBattleResult();
         }
     }
 
@@ -138,14 +124,49 @@ public class DojoBatalhaLutadorViewModel extends ViewModel
         return oppBuffsDebuffsStatus;
     }
 
+
+    private void startTimer(long elapsedTime) {
+        mCountDownTimer = new CountDownTimer(
+                TIME_TO_ATTACK - elapsedTime, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                countDown.set(String.format(Locale.getDefault(), "%02d:%02d",
+                        TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished),
+                        TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) -
+                                TimeUnit.MINUTES.toSeconds(
+                                        TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished)
+                                )
+                        )
+                );
+            }
+
+            @Override
+            public void onFinish() {
+                countDown.set("--:--");
+
+                mBattle.setStatus(Battle.Status.PLAYER2_WON);
+                playerFormulas.setCurrentHealth(0);
+
+                showBattleResult();
+            }
+        }.start();
+    }
+
+    private void stopTimer() {
+        if (mCountDownTimer != null) {
+            mCountDownTimer.cancel();
+            mCountDownTimer = null;
+        }
+    }
+
+    private long calculateElapsedTime() {
+        return DateCustom.getTimeInMillis() - mBattle.getAttackStart();
+    }
+
+
     @Override
     public void onJutsuClick(View view, Jutsu jutsu) {
         startAnimationEvent.setValue(view);
-
-        if (mBattle.getCurrentPlayer() != myTurn) {
-            showWarningDialogEvent.setValue(R.string.it_is_not_your_turn_to_attack);
-            return;
-        }
 
         if (jutsu.getRemainingIntervals() != 0) {
             showWarningDialogEvent.setValue(R.string.jutsu_is_not_yet_available);
@@ -161,18 +182,17 @@ public class DojoBatalhaLutadorViewModel extends ViewModel
         JutsuInfo playerJutsuInfo = jutsu.getJutsuInfo();
 
         if (playerJutsuInfo.type == Jutsu.Type.ATK || playerJutsuInfo.type == Jutsu.Type.DEF) {
-            mCountDownTimer.cancel();
+            stopTimer();
 
             Jutsu jutsuNpc = npc.attack();
 
-            executeAttacks(jutsu, playerJutsuInfo, jutsuNpc, JutsuInfo.valueOf(jutsuNpc.getName()));
+            executeAttacks(jutsu, playerJutsuInfo, jutsuNpc, jutsuNpc.getJutsuInfo());
 
             updateFightStatus();
 
             mBattle.setAttackStart(DateCustom.getTimeInMillis());
-            elapsedTime = 0;
             saveBattle();
-            startTimer();
+            startTimer(calculateElapsedTime());
         } else {
             if (!buffOrDebuffUsed(playerJutsuInfo.type)) {
                 if (playerJutsuInfo.type == Jutsu.Type.BUFF) {
@@ -206,7 +226,7 @@ public class DojoBatalhaLutadorViewModel extends ViewModel
             mAllJutsus.set(jutsuIndex, jutsu);
             filterJutsus(mJutsuTypeSelected);
         } else {
-            finishFight();
+            showBattleResult();
         }
     }
 
@@ -238,34 +258,6 @@ public class DojoBatalhaLutadorViewModel extends ViewModel
         return false;
     }
 
-    private int calculateChanceOfSuccess(int jutsuAccuracy, int currentAccuracy) {
-        int chanceOfSuccess;
-
-        try {
-            chanceOfSuccess = (int) ((double) currentAccuracy / jutsuAccuracy * 100);
-        } catch (ArithmeticException e) {
-            chanceOfSuccess = 100;
-        }
-
-        if (chanceOfSuccess > 100) {
-            chanceOfSuccess = 100;
-        } else if (chanceOfSuccess < 0) {
-            chanceOfSuccess = 0;
-        }
-
-        return chanceOfSuccess;
-    }
-
-    private int calculateChanceOfError(int jutsuAccuracy, int currentAccuracy) {
-        return 100 - calculateChanceOfSuccess(jutsuAccuracy, currentAccuracy);
-    }
-
-    private final SecureRandom random = new SecureRandom();
-
-    private boolean missedTheJutsu(int chanceOfError) {
-        int n = random.nextInt(100);
-        return n < chanceOfError;
-    }
 
     private void executeAttacks(Jutsu myJutsu, JutsuInfo myJutsuInfo, Jutsu oppJutsu,
                                 JutsuInfo oppJutsuInfo) {
@@ -320,6 +312,35 @@ public class DojoBatalhaLutadorViewModel extends ViewModel
         addLog(new BattleLog(BattleLog.Type.END));
     }
 
+    private int calculateChanceOfSuccess(int jutsuAccuracy, int currentAccuracy) {
+        int chanceOfSuccess;
+
+        try {
+            chanceOfSuccess = (int) ((double) currentAccuracy / jutsuAccuracy * 100);
+        } catch (ArithmeticException e) {
+            chanceOfSuccess = 100;
+        }
+
+        if (chanceOfSuccess > 100) {
+            chanceOfSuccess = 100;
+        } else if (chanceOfSuccess < 0) {
+            chanceOfSuccess = 0;
+        }
+
+        return chanceOfSuccess;
+    }
+
+    private int calculateChanceOfError(int jutsuAccuracy, int currentAccuracy) {
+        return 100 - calculateChanceOfSuccess(jutsuAccuracy, currentAccuracy);
+    }
+
+    private final SecureRandom random = new SecureRandom();
+
+    private boolean missedTheJutsu(int chanceOfError) {
+        int n = random.nextInt(100);
+        return n < chanceOfError;
+    }
+
     private int calcuteDamage(Jutsu jutsu, JutsuInfo jutsuInfo, Formulas myFormulas,
                               Formulas oppFormulas) {
         int damage;
@@ -337,10 +358,32 @@ public class DojoBatalhaLutadorViewModel extends ViewModel
         return damage;
     }
 
+
     private void addLog(BattleLog log) {
         List<BattleLog> logs = mBattle.getBattleLogs();
         logs.add(log);
         mBattleLogs.setValue(logs);
+    }
+
+    public void filterJutsus(Jutsu.Type filteredType) {
+        mJutsuTypeSelected = filteredType;
+
+        List<Jutsu> filteredJutsus = new ArrayList<>();
+
+        for (int i = 0; i < mAllJutsus.size(); i++) {
+            Jutsu jutsu = mAllJutsus.get(i);
+            JutsuInfo jutsuInfo = jutsu.getJutsuInfo();
+
+            if (filteredType == Jutsu.Type.ATK &&
+                    (jutsuInfo.type == Jutsu.Type.ATK || jutsuInfo.type == Jutsu.Type.DEF)) {
+                filteredJutsus.add(jutsu);
+            } else if (filteredType == Jutsu.Type.BUFF &&
+                    (jutsuInfo.type == Jutsu.Type.BUFF || jutsuInfo.type == Jutsu.Type.DEBUFF)) {
+                filteredJutsus.add(jutsu);
+            }
+        }
+
+        mJutsus.setValue(filteredJutsus);
     }
 
     private void updateRemainingIntervals() {
@@ -383,26 +426,6 @@ public class DojoBatalhaLutadorViewModel extends ViewModel
         formulas.setAccuracy(formulas.getAccuracy() - buffOrDebuff.getAccuracy());
     }
 
-    public void filterJutsus(Jutsu.Type filteredType) {
-        mJutsuTypeSelected = filteredType;
-
-        List<Jutsu> filteredJutsus = new ArrayList<>();
-
-        for (int i = 0; i < mAllJutsus.size(); i++) {
-            Jutsu jutsu = mAllJutsus.get(i);
-            JutsuInfo jutsuInfo = jutsu.getJutsuInfo();
-
-            if (filteredType == Jutsu.Type.ATK &&
-                    (jutsuInfo.type == Jutsu.Type.ATK || jutsuInfo.type == Jutsu.Type.DEF)) {
-                filteredJutsus.add(jutsu);
-            } else if (filteredType == Jutsu.Type.BUFF &&
-                    (jutsuInfo.type == Jutsu.Type.BUFF || jutsuInfo.type == Jutsu.Type.DEBUFF)) {
-                filteredJutsus.add(jutsu);
-            }
-        }
-
-        mJutsus.setValue(filteredJutsus);
-    }
 
     private void updateFightStatus() {
         if ((npcFormulas.getCurrentHealth() < 10 || npcFormulas.getCurrentChakra() < 10 || npcFormulas.getCurrentStamina() < 10)
@@ -417,10 +440,10 @@ public class DojoBatalhaLutadorViewModel extends ViewModel
         }
     }
 
-    private void finishFight() {
+    private void showBattleResult() {
         if (mBattle.getStatus() == Battle.Status.PLAYER1_WON) {
             int earnedRyous = 100;
-            int earnedExp = 344 - (29 * player.getLevel()) > 0 ? 344 - (29 * player.getLevel()) : 0;
+            int earnedExp = Math.max(344 - (29 * player.getLevel()), 0);
 
             showWonEvent.setValue(new Integer[]{earnedRyous, earnedExp});
         } else if (mBattle.getStatus() == Battle.Status.PLAYER2_WON) {
@@ -445,67 +468,29 @@ public class DojoBatalhaLutadorViewModel extends ViewModel
             CharOn.character.getCombatOverview().setWinsNpc(CharOn.character.getCombatOverview().getWinsNpc() + 1);
 
             int earnedRyous = 100;
-            int earnedExp = 344 - (29 * player.getLevel()) > 0 ? 344 - (29 * player.getLevel()) : 0;
+            int earnedExp = Math.max(344 - (29 * player.getLevel()), 0);
 
-            CharOn.character.incrementExp(earnedExp);
             CharOn.character.addRyous(earnedRyous);
+            CharOn.character.incrementExp(earnedExp);
             CharOn.character.incrementScore(Score.VIT_DOJO_NPC);
         } else if (mBattle.getStatus() == Battle.Status.PLAYER2_WON) {
-            CharOn.character.getCombatOverview().setLossesNpc(CharOn.character.getCombatOverview().getLossesNpc() + 1);
+            CharOn.character.getCombatOverview().setLossesNpc(
+                    CharOn.character.getCombatOverview().getLossesNpc() + 1);
             CharOn.character.decrementScore(Score.DER_DOJO_NPC);
         } else if (mBattle.getStatus() == Battle.Status.DRAWN) {
-            CharOn.character.getCombatOverview().setDrawsNpc(CharOn.character.getCombatOverview().getDrawsNpc() + 1);
+            CharOn.character.getCombatOverview().setDrawsNpc(
+                    CharOn.character.getCombatOverview().getDrawsNpc() + 1);
         } else {
-            CharOn.character.getCombatOverview().setLossesNpc(CharOn.character.getCombatOverview().getLossesNpc() + 1);
+            CharOn.character.getCombatOverview().setLossesNpc(
+                    CharOn.character.getCombatOverview().getLossesNpc() + 1);
             CharOn.character.decrementScore(Score.DER_DOJO_NPC);
         }
 
         mBattleRepository.delete(mBattle.getId());
-        mBattle.setPlayerCount(0);
 
         CharOn.character.setBattle(false);
         CharOn.character.battleId = "";
         CharacterRepository.getInstance().save(CharOn.character);
-    }
-
-    private void startTimer() {
-        mCountDownTimer = new CountDownTimer(TIME_TO_ATTACK - elapsedTime, 1000) {
-            @Override
-            public void onTick(long millisUntilFinished) {
-                countDown.set(String.format(Locale.getDefault(), "%02d:%02d",
-                        TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished),
-                        TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) -
-                                TimeUnit.MINUTES.toSeconds(
-                                        TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished)
-                                )
-                        )
-                );
-            }
-
-            @Override
-            public void onFinish() {
-                countDown.set("--:--");
-
-                if (mBattle.getCurrentPlayer() != myTurn) {
-                    mBattle.setStatus(Battle.Status.PLAYER1_WON);
-                } else {
-                    mBattle.setStatus(Battle.Status.PLAYER2_WON);
-                    playerFormulas.setCurrentHealth(0);
-                }
-
-                finishFight();
-            }
-        }.start();
-    }
-
-    void stop() {
-        if (mCountDownTimer != null) {
-            mCountDownTimer.cancel();
-            mCountDownTimer = null;
-            if (mBattle.getPlayerCount() != 0) {
-                saveBattle();
-            }
-        }
     }
 
     private void saveBattle() {

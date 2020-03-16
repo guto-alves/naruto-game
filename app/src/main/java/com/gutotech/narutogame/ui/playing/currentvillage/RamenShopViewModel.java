@@ -8,11 +8,11 @@ import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.model.Ramen;
 import com.gutotech.narutogame.data.model.ShopItem;
 import com.gutotech.narutogame.data.repository.CharacterRepository;
-import com.gutotech.narutogame.ui.adapter.ItemShopRecyclerAdapter;
+import com.gutotech.narutogame.ui.adapter.ItemShopAdapter;
 import com.gutotech.narutogame.utils.SingleLiveEvent;
 
 public class RamenShopViewModel extends ViewModel
-        implements ItemShopRecyclerAdapter.OnBuyClickListener {
+        implements ItemShopAdapter.OnBuyClickListener {
     private SingleLiveEvent<Integer> showWarningEvent = new SingleLiveEvent<>();
 
     public RamenShopViewModel() {

@@ -229,22 +229,6 @@ public class DojoBatalhaLutadorFragment extends Fragment implements SectionFragm
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
-        if (mViewModel != null) {
-            mViewModel.init();
-        }
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        if (mViewModel != null) {
-            mViewModel.stop();
-        }
-    }
-
-    @Override
     public int getDescription() {
         return R.string.npc_battle;
     }

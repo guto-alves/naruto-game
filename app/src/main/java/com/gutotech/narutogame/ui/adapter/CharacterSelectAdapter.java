@@ -14,7 +14,7 @@ import com.gutotech.narutogame.utils.StorageUtil;
 
 import java.util.List;
 
-public class CharacterSelectRecyclerViewAdapter extends RecyclerView.Adapter<CharacterSelectRecyclerViewAdapter.ViewHolder> {
+public class CharacterSelectAdapter extends RecyclerView.Adapter<CharacterSelectAdapter.ViewHolder> {
 
     public interface CharacterSelecetedListener {
         void onCharacterSelected(Character character);
@@ -33,7 +33,7 @@ public class CharacterSelectRecyclerViewAdapter extends RecyclerView.Adapter<Cha
     private CharacterSelecetedListener mListener;
     private int mCharacterSelectedPosition;
 
-    public CharacterSelectRecyclerViewAdapter(CharacterSelecetedListener listener) {
+    public CharacterSelectAdapter(CharacterSelecetedListener listener) {
         mListener = listener;
     }
 

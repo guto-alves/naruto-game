@@ -18,4 +18,5 @@
         android:fromXDelta="5%p"
         android:startOffset="200"
         android:toXDelta="-5%p" />
+
 </set>

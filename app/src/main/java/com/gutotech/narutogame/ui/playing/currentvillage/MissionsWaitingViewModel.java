@@ -130,6 +130,7 @@ public class MissionsWaitingViewModel extends ViewModel {
         }
 
         mCharacter.getResumeOfMissions().getMissionsFinishedId().add(missionInfo.ordinal());
+        mCharacter.setTotalDailyMissions(mCharacter.getTotalDailyMissions() + 1);
 
         mCharacter.setMission(false);
     }

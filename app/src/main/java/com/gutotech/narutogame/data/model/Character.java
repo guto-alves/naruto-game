@@ -44,6 +44,8 @@ public class Character extends BaseObservable implements Serializable {
     private int npcDailyCombat;
     private int mapPosition;
 
+    private int totalDailyMissions;
+
     private boolean mission;
     private boolean battle;
     public String battleId;
@@ -409,6 +411,14 @@ public class Character extends BaseObservable implements Serializable {
     public void setNumberOfDaysPlayed(int numberOfDaysPlayed) {
         this.numberOfDaysPlayed = numberOfDaysPlayed;
         notifyPropertyChanged(BR.numberOfDaysPlayed);
+    }
+
+    public int getTotalDailyMissions() {
+        return totalDailyMissions;
+    }
+
+    public void setTotalDailyMissions(int totalDailyMissions) {
+        this.totalDailyMissions = totalDailyMissions;
     }
 
     @Bindable

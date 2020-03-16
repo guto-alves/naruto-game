@@ -24,7 +24,7 @@ import com.gutotech.narutogame.data.model.CharOn;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DistributedPointsRecyclerAdapter extends RecyclerView.Adapter<DistributedPointsRecyclerAdapter.MyViewHolder> {
+public class DistributedPointsAdapter extends RecyclerView.Adapter<DistributedPointsAdapter.MyViewHolder> {
 
     public interface OnTrainButtonListener {
         void onTrainButtonClick(int attributePosition, int quantitySelected);
@@ -69,7 +69,7 @@ public class DistributedPointsRecyclerAdapter extends RecyclerView.Adapter<Distr
     private ArrayAdapter<Integer> mRedistributePointsAdapter;
     private ArrayAdapter<Integer> mTrainPointsAdapter;
 
-    public DistributedPointsRecyclerAdapter(Context context, OnTrainButtonListener listener) {
+    public DistributedPointsAdapter(Context context, OnTrainButtonListener listener) {
         mContext = context;
         mListener = listener;
         mAttributes = Attribute.values();

@@ -16,7 +16,7 @@ import com.gutotech.narutogame.data.model.Scroll;
 import com.gutotech.narutogame.data.model.ShopItem;
 import com.gutotech.narutogame.data.model.Village;
 import com.gutotech.narutogame.data.repository.CharacterRepository;
-import com.gutotech.narutogame.ui.adapter.ItemShopRecyclerAdapter;
+import com.gutotech.narutogame.ui.adapter.ItemShopAdapter;
 import com.gutotech.narutogame.utils.SingleLiveEvent;
 
 import java.util.ArrayList;
@@ -24,7 +24,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class NinjaShopViewModel extends ViewModel implements
-        ItemShopRecyclerAdapter.OnBuyClickListener {
+        ItemShopAdapter.OnBuyClickListener {
     private MutableLiveData<List<ShopItem>> mShopItems = new MutableLiveData<>();
     public final ObservableField<ItemType> itemTypeSelected = new ObservableField<>(ItemType.SCROLL);
 

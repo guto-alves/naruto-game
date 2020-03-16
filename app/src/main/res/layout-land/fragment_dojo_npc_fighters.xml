@@ -149,8 +149,11 @@
                             app:layout_constraintBottom_toBottomOf="@+id/npcDailyCombatProgressBar"
                             app:layout_constraintStart_toStartOf="@+id/npcDailyCombatProgressBar"
                             app:layout_constraintTop_toTopOf="@+id/npcDailyCombatProgressBar" />
+
                     </androidx.constraintlayout.widget.ConstraintLayout>
+
                 </LinearLayout>
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <ProgressBar

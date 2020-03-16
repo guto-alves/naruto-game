@@ -374,6 +374,22 @@ public enum JutsuInfo {
             Jutsu.Type.ATK,
             Arrays.asList(
                     new Requirement() {
+                        public int getValue() {
+                            return 1;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getGraduationId() >= getValue();
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_grade,
+                                    context.getString(GraduationUtils.getName(getValue())));
+                        }
+                    },
+                    new Requirement() {
 
                         @Override
                         public Object value() {
@@ -717,7 +733,7 @@ public enum JutsuInfo {
                         }
                     }
             )),
-    KONOHA_REPPUU("dynamic_entry.jpg", R.string.konoha_reppuu, R.string.konoha_reppuu_desc,
+    KONOHA_REPPUU("chute_furacao_violento.jpg", R.string.konoha_reppuu, R.string.konoha_reppuu_desc,
             Jutsu.Type.ATK,
             Arrays.asList(
                     new Requirement() {
@@ -1364,7 +1380,7 @@ public enum JutsuInfo {
                         }
                     }
             )),
-    KONOHA_GOURIKI_SENPUU("dynamic_entry.jpg", R.string.konoha_gouriki_senpuu, R.string.konoha_gouriki_senpuu_desc,
+    KONOHA_GOURIKI_SENPUU("konoha_gouriki_senpuu.jpg", R.string.konoha_gouriki_senpuu, R.string.konoha_gouriki_senpuu_desc,
             Jutsu.Type.ATK,
             Arrays.asList(
                     new Requirement() {
@@ -2543,7 +2559,7 @@ public enum JutsuInfo {
                         }
                     }
             )),
-    RARIATTO("dynamic_entry.jpg", R.string.rariatto, R.string.rariatto_desc,
+    RARIATTO("lariat.jpg", R.string.rariatto, R.string.rariatto_desc,
             Jutsu.Type.ATK,
             Arrays.asList(
                     new Requirement() {
@@ -2657,7 +2673,7 @@ public enum JutsuInfo {
                         }
                     }
             )),
-    TAIHOU_SENTOU("dynamic_entry.jpg", R.string.taihou_sentou, R.string.taihou_sentou_desc,
+    TAIHOU_SENTOU("soco_canhao.jpg", R.string.taihou_sentou, R.string.taihou_sentou_desc,
             Jutsu.Type.ATK,
             Arrays.asList(
                     new Requirement() {
@@ -2885,7 +2901,7 @@ public enum JutsuInfo {
                         }
                     }
             )),
-    TATSUMAKI_KYAKU("dynamic_entry.jpg", R.string.tatsumaki_kyaku, R.string.tatsumaki_kyaku_desc,
+    TATSUMAKI_KYAKU("chute_tornado.jpg", R.string.tatsumaki_kyaku, R.string.tatsumaki_kyaku_desc,
             Jutsu.Type.ATK,
             Arrays.asList(
                     new Requirement() {
@@ -3380,7 +3396,7 @@ public enum JutsuInfo {
                         }
                     }
             )),
-    SEINSHUN_BURUPAPUA("dynamic_entry.jpg", R.string.seinshun_burupapua, R.string.seinshun_burupapua_desc,
+    SEINSHUN_BURUPAPUA("seinshun_burupapua.jpg", R.string.seinshun_burupapua, R.string.seinshun_burupapua_desc,
             Jutsu.Type.ATK,
             Arrays.asList(
                     new Requirement() {
@@ -6050,7 +6066,7 @@ public enum JutsuInfo {
                         }
                     }
             )),
-    KUMORYUU_MIKAZUKIGIRI("dynamic_entry.jpg", R.string.kumoryuu_mikazukigiri, R.string.kumoryuu_mikazukigiri_desc,
+    KUMORYUU_MIKAZUKIGIRI("Kumo-Ryuu-Mikazukigiri.jpg", R.string.kumoryuu_mikazukigiri, R.string.kumoryuu_mikazukigiri_desc,
             Jutsu.Type.ATK,
             Arrays.asList(
                     new Requirement() {
@@ -6107,7 +6123,7 @@ public enum JutsuInfo {
                         }
                     }
             )),
-    SENSEI_KUMORYUU_MIKAZUKIGIRI("Kumo-Ryuu_Mikazukigiri.jpg", R.string.sensei_kumoryuu_mikazukigiri, R.string.sensei_kumoryuu_mikazukigiri_desc,
+    SENSEI_KUMORYUU_MIKAZUKIGIRI("Kumo-Ryuu_Mikazukigiri.gif", R.string.sensei_kumoryuu_mikazukigiri, R.string.sensei_kumoryuu_mikazukigiri_desc,
             Jutsu.Type.ATK,
             Arrays.asList(
                     new Requirement() {
@@ -7078,7 +7094,7 @@ public enum JutsuInfo {
                     }
             )),
 
-    KUMORYUU_OMOTEGIRI("dynamic_entry.jpg", R.string.kumoryuu_omotegiri, R.string.kumoryuu_omotegiri_desc,
+    KUMORYUU_OMOTEGIRI("Kumo-Ryuu-Omotegiri.jpg", R.string.kumoryuu_omotegiri, R.string.kumoryuu_omotegiri_desc,
             Jutsu.Type.ATK,
             Arrays.asList(
                     new Requirement() {
@@ -8340,7 +8356,7 @@ public enum JutsuInfo {
                         }
                     }
             )),
-    NINPOU_MUSHOU_DE_HITEI("konoha_tizu.jpg", R.string.ninpou_mushou_de_hitei, R.string.ninpou_mushou_de_hitei_desc,
+    NINPOU_MUSHOU_DE_HITEI("mushou_de_hitei.jpg", R.string.ninpou_mushou_de_hitei, R.string.ninpou_mushou_de_hitei_desc,
             Jutsu.Type.ATK,
             Arrays.asList(
                     new Requirement() {
@@ -8816,7 +8832,7 @@ public enum JutsuInfo {
                         }
                     }
             )),
-    MEISAI_GAKURE_NO_JUTSU_I("konoha_tizu.jpg", R.string.meisai_gakure_no_jutsu_i, R.string.meisai_gakure_no_jutsu_i_desc,
+    MEISAI_GAKURE_NO_JUTSU_I("touton-no-jutsu.jpg", R.string.meisai_gakure_no_jutsu_i, R.string.meisai_gakure_no_jutsu_i_desc,
             Jutsu.Type.BUFF,
             Arrays.asList(
                     new Requirement() {
@@ -8854,7 +8870,7 @@ public enum JutsuInfo {
                         }
                     }
             )),
-    MEISAI_GAKURE_NO_JUTSU_II("konoha_tizu.jpg", R.string.meisai_gakure_no_jutsu_ii, R.string.meisai_gakure_no_jutsu_ii_desc,
+    MEISAI_GAKURE_NO_JUTSU_II("touton-no-jutsu.jpg", R.string.meisai_gakure_no_jutsu_ii, R.string.meisai_gakure_no_jutsu_ii_desc,
             Jutsu.Type.BUFF,
             Arrays.asList(
                     new Requirement() {
@@ -12288,7 +12304,7 @@ public enum JutsuInfo {
                     }
             )),
 
-    MAGEN_GAMARINSHOU("gamarinshou.jpg", R.string.magen_gamarinshou, R.string.magen_gamarinshou_desc,
+    MAGEN_GAMARINSHOU("gamarinshou.png", R.string.magen_gamarinshou, R.string.magen_gamarinshou_desc,
             Jutsu.Type.ATK,
             Arrays.asList(
                     new Requirement() {
@@ -12402,7 +12418,7 @@ public enum JutsuInfo {
                         }
                     }
             )),
-    GENJUTSU_SHIBARI("gen-shibari.jpg", R.string.genjutsu_shibari, R.string.genjutsu_shibari_desc,
+    GENJUTSU_SHIBARI("gen-shibari.png", R.string.genjutsu_shibari, R.string.genjutsu_shibari_desc,
             Jutsu.Type.ATK,
             Arrays.asList(
                     new Requirement() {

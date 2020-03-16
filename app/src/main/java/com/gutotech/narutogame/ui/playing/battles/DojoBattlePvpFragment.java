@@ -53,155 +53,149 @@ public class DojoBattlePvpFragment extends Fragment implements SectionFragment {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_dojo_battle_pvp,
                 container, false);
 
-        BattleRepository.getInstance().get(CharOn.character.battleId, battle -> {
-            mViewModel = new ViewModelProvider(this,
-                    new DojoBattlePvpViewModelFactory(getActivity().getApplication(), battle))
-                    .get(DojoBattlePvpViewModel.class);
+        mViewModel = new ViewModelProvider(this,
+                new DojoBattlePvpViewModelFactory(getActivity().getApplication()))
+                .get(DojoBattlePvpViewModel.class);
 
-            mBinding.setViewModel(mViewModel);
+        mBinding.setViewModel(mViewModel);
 
-            mBinding.classJutsusButton.setText(CharOn.character.getClasse().name.substring(0, 3));
+        mBinding.classJutsusButton.setText(CharOn.character.getClasse().name.substring(0, 3));
 
-            mBinding.myStatusImageView.setOnClickListener(v ->
-                    showStatus(v, mViewModel.getPlayerFormulas()));
+        mBinding.myStatusImageView.setOnClickListener(v ->
+                showStatus(v, mViewModel.getPlayerFormulas()));
 
-            mBinding.oppStatusImageView.setOnClickListener(v ->
-                    showStatus(v, mViewModel.getOppFormulas()));
+        mBinding.oppStatusImageView.setOnClickListener(v ->
+                showStatus(v, mViewModel.getOppFormulas()));
 
-            mBinding.myBuffsDebuffsStatusRecyclerView.setHasFixedSize(true);
-            BuffsDebuffStatusAdapter adapter = new BuffsDebuffStatusAdapter(getContext());
-            mBinding.myBuffsDebuffsStatusRecyclerView.setAdapter(adapter);
-            mViewModel.getMyBuffsDebuffsStatus().observe(getViewLifecycleOwner(), adapter::setBuffsDebuffsList);
+        mBinding.myBuffsDebuffsStatusRecyclerView.setHasFixedSize(true);
+        BuffsDebuffStatusAdapter adapter = new BuffsDebuffStatusAdapter(getContext());
+        mBinding.myBuffsDebuffsStatusRecyclerView.setAdapter(adapter);
+        mViewModel.getMyBuffsDebuffsStatus().observe(getViewLifecycleOwner(), adapter::setBuffsDebuffsList);
 
-            mBinding.oppBuffsDebuffsStatusRecyclerView.setHasFixedSize(true);
-            BuffsDebuffStatusAdapter adapter2 = new BuffsDebuffStatusAdapter(getContext());
-            mBinding.oppBuffsDebuffsStatusRecyclerView.setAdapter(adapter2);
-            mViewModel.getOppBuffsDebuffsStatus().observe(getViewLifecycleOwner(), adapter2::setBuffsDebuffsList);
+        mBinding.oppBuffsDebuffsStatusRecyclerView.setHasFixedSize(true);
+        BuffsDebuffStatusAdapter adapter2 = new BuffsDebuffStatusAdapter(getContext());
+        mBinding.oppBuffsDebuffsStatusRecyclerView.setAdapter(adapter2);
+        mViewModel.getOppBuffsDebuffsStatus().observe(getViewLifecycleOwner(), adapter2::setBuffsDebuffsList);
 
-            mBinding.battleLogRecyclerView.setHasFixedSize(true);
-            BattleLogAdapter logAdapter = new BattleLogAdapter(getActivity(), this::showJutsuInfo);
-            mBinding.battleLogRecyclerView.setAdapter(logAdapter);
-            mViewModel.getBattleLogs().observe(getViewLifecycleOwner(), battlesLogs -> {
-                logAdapter.setBattleLogs(battlesLogs);
-                mBinding.battleLogRecyclerView.smoothScrollToPosition(logAdapter.getItemCount());
-            });
+        mBinding.battleLogRecyclerView.setHasFixedSize(true);
+        BattleLogAdapter logAdapter = new BattleLogAdapter(getActivity(), this::showJutsuInfo);
+        mBinding.battleLogRecyclerView.setAdapter(logAdapter);
+        mViewModel.getBattleLogs().observe(getViewLifecycleOwner(), battlesLogs -> {
+            logAdapter.setBattleLogs(battlesLogs);
+            mBinding.battleLogRecyclerView.smoothScrollToPosition(logAdapter.getItemCount());
+        });
 
-            mBinding.myJutsusRecyclerView.setHasFixedSize(true);
-            JutsusAdapter jutsusAdapter = new JutsusAdapter(getActivity(), mViewModel);
-            mBinding.myJutsusRecyclerView.setAdapter(jutsusAdapter);
-            mViewModel.getJutsus().observe(getViewLifecycleOwner(), jutsusAdapter::setJutsusList);
+        mBinding.myJutsusRecyclerView.setHasFixedSize(true);
+        JutsusAdapter jutsusAdapter = new JutsusAdapter(getActivity(), mViewModel);
+        mBinding.myJutsusRecyclerView.setAdapter(jutsusAdapter);
+        mViewModel.getJutsus().observe(getViewLifecycleOwner(), jutsusAdapter::setJutsusList);
 
-            mViewModel.showJutsuInfoPopupEvent.observe(getViewLifecycleOwner(), this::showJutsuInfo);
+        mViewModel.showJutsuInfoPopupEvent.observe(getViewLifecycleOwner(), this::showJutsuInfo);
 
-            mViewModel.showWarningDialogEvent.observe(getViewLifecycleOwner(), this::showWarningDialog);
+        mViewModel.showWarningDialogEvent.observe(getViewLifecycleOwner(), this::showWarningDialog);
 
-            mViewModel.startAnimationEvent.observe(getViewLifecycleOwner(), view -> {
-                Animation animation = AnimationUtils.loadAnimation(getActivity(), R.anim.fade_out);
-                view.startAnimation(animation);
-            });
+        mViewModel.startAnimationEvent.observe(getViewLifecycleOwner(), view -> {
+            Animation animation = AnimationUtils.loadAnimation(getActivity(), R.anim.fade_out);
+            view.startAnimation(animation);
+        });
 
-            mBinding.battleResultLayout.descriptionTextView.setMovementMethod(
-                    LinkMovementMethod.getInstance());
+        mBinding.battleResultLayout.descriptionTextView.setMovementMethod(
+                LinkMovementMethod.getInstance());
 
-            mViewModel.showWonEvent.observe(getViewLifecycleOwner(), rewards -> {
-                SpannableStringBuilder description = new SpannableStringBuilder();
-                description.append(getString(R.string.combat_won_description, rewards[0], rewards[1]));
-                description.append(" ");
-                int length = description.length();
-                description.append(CharOn.character.battleId.contains("VILLAGEMAP-PVP") ?
-                        getString(R.string.village_map) : "Dojo");
-                description.setSpan(new ForegroundColorSpan(Color.BLUE), length, description.length(),
-                        Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
-                description.setSpan(new ClickableSpan() {
-                    @Override
-                    public void onClick(@NonNull View widget) {
-                        mViewModel.exit();
-                        if (CharOn.character.battleId.contains("VILLAGEMAP-PVP")) {
-                            FragmentUtil.goTo(getActivity(), new VillageMapFragment());
-                        } else {
-                            FragmentUtil.goTo(getActivity(), new DojoFragment());
-                        }
+        mViewModel.showWonEvent.observe(getViewLifecycleOwner(), rewards -> {
+            SpannableStringBuilder description = new SpannableStringBuilder();
+            description.append(getString(R.string.combat_won_description, rewards[0], rewards[1]));
+            description.append(" ");
+            int length = description.length();
+
+            description.append(CharOn.character.battleId.contains("VILLAGEMAP-PVP") ?
+                    getString(R.string.village_map) : "Dojo");
+
+            description.setSpan(new ForegroundColorSpan(Color.BLUE), length, description.length(),
+                    Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+
+            description.setSpan(new ClickableSpan() {
+                @Override
+                public void onClick(@NonNull View widget) {
+                    mViewModel.exit();
+                    if (CharOn.character.battleId.contains("VILLAGEMAP-PVP")) {
+                        FragmentUtil.goTo(getActivity(), new VillageMapFragment());
+                    } else {
+                        FragmentUtil.goTo(getActivity(), new DojoFragment());
                     }
-                }, length, description.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
-                description.append(getString(R.string.training_points_for_your_participation));
+                }
+            }, length, description.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
 
-                showBattleResult(R.string.end_of_the_battle, description);
-            });
+            description.append(getString(R.string.training_points_for_your_participation));
 
-            mViewModel.showLostEvent.observe(getViewLifecycleOwner(), aVoid -> {
-                SpannableStringBuilder description = new SpannableStringBuilder();
-                description.append(getString(R.string.you_have_lost_the_battle));
-                description.append(" ");
-                int length = description.length();
-                description.append("Hospital");
-                description.setSpan(new ForegroundColorSpan(Color.BLUE), length, description.length(),
-                        Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
-                description.setSpan(
-                        new ClickableSpan() {
-                            @Override
-                            public void onClick(@NonNull View widget) {
-                                mViewModel.exit();
-                                CharOn.character.setHospital(true);
-                            }
-                        }, length, description.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
-                description.append(getString(R.string.training_points_for_your_participation));
+            showBattleResult(R.string.end_of_the_battle, description);
+        });
 
-                showBattleResult(R.string.too_bad, description);
-            });
+        mViewModel.showLostEvent.observe(getViewLifecycleOwner(), aVoid -> {
+            SpannableStringBuilder description = new SpannableStringBuilder();
+            description.append(getString(R.string.you_have_lost_the_battle));
+            description.append(" ");
+            int length = description.length();
+            description.append("Hospital");
+            description.setSpan(new ForegroundColorSpan(Color.BLUE), length, description.length(),
+                    Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+            description.setSpan(
+                    new ClickableSpan() {
+                        @Override
+                        public void onClick(@NonNull View widget) {
+                            mViewModel.exit();
+                            CharOn.character.setHospital(true);
+                        }
+                    }, length, description.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+            description.append(getString(R.string.training_points_for_your_participation));
 
-            mViewModel.showDrawnEvent.observe(getViewLifecycleOwner(), aVoid -> {
-                SpannableStringBuilder description = new SpannableStringBuilder();
-                description.append(getString(R.string.drawn_description));
-                description.append(" ");
-                int length = description.length();
-                description.append("Hospital");
-                description.setSpan(new ForegroundColorSpan(Color.BLUE), length, description.length(),
-                        Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
-                description.setSpan(
-                        new ClickableSpan() {
-                            @Override
-                            public void onClick(@NonNull View widget) {
-                                mViewModel.exit();
-                                CharOn.character.setHospital(true);
-                            }
-                        }, length, description.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+            showBattleResult(R.string.too_bad, description);
+        });
 
-                showBattleResult(R.string.empate, description);
-            });
+        mViewModel.showDrawnEvent.observe(getViewLifecycleOwner(), aVoid -> {
+            SpannableStringBuilder description = new SpannableStringBuilder();
+            description.append(getString(R.string.drawn_description));
+            description.append(" ");
+            int length = description.length();
+            description.append("Hospital");
+            description.setSpan(new ForegroundColorSpan(Color.BLUE), length, description.length(),
+                    Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+            description.setSpan(
+                    new ClickableSpan() {
+                        @Override
+                        public void onClick(@NonNull View widget) {
+                            mViewModel.exit();
+                            CharOn.character.setHospital(true);
+                        }
+                    }, length, description.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
 
-            mViewModel.showInactivatedEvent.observe(getViewLifecycleOwner(), aVoid -> {
-                SpannableStringBuilder description = new SpannableStringBuilder();
-                description.append(getString(R.string.lost_by_inactivity));
-                int length = description.length();
-                description.append(getString(R.string.click_here));
-                description.setSpan(new ForegroundColorSpan(Color.BLUE), length, description.length(),
-                        Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
-                description.setSpan(
-                        new ClickableSpan() {
-                            @Override
-                            public void onClick(@NonNull View widget) {
-                                mViewModel.exit();
-                                CharOn.character.setHospital(true);
-                            }
-                        }, length, description.length(),
-                        Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
-                description.append(" ");
-                description.append(getString(R.string.to_preceed));
+            showBattleResult(R.string.empate, description);
+        });
 
-                showBattleResult(R.string.too_bad, description);
-            });
+        mViewModel.showInactivatedEvent.observe(getViewLifecycleOwner(), aVoid -> {
+            SpannableStringBuilder description = new SpannableStringBuilder();
+            description.append(getString(R.string.lost_by_inactivity));
+            int length = description.length();
+            description.append(getString(R.string.click_here));
+            description.setSpan(new ForegroundColorSpan(Color.BLUE), length, description.length(),
+                    Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+            description.setSpan(
+                    new ClickableSpan() {
+                        @Override
+                        public void onClick(@NonNull View widget) {
+                            mViewModel.exit();
+                            CharOn.character.setHospital(true);
+                        }
+                    }, length, description.length(),
+                    Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+            description.append(" ");
+            description.append(getString(R.string.to_preceed));
+
+            showBattleResult(R.string.too_bad, description);
         });
 
         FragmentUtil.setSectionTitle(getActivity(), R.string.dojo_challenge);
         return mBinding.getRoot();
-    }
-
-    private void showBattleResult(@StringRes int title, SpannableStringBuilder description) {
-        StorageUtil.downloadProfileForMsg(getActivity(), mBinding.battleResultLayout.profileImageView);
-        mBinding.battleResultLayout.titleTextView.setText(title);
-        mBinding.battleResultLayout.descriptionTextView.setText(description);
-        mBinding.battleResultLayout.msgConstraintLayout.setVisibility(View.VISIBLE);
-        mBinding.myJutsusRecyclerView.setVisibility(View.GONE);
     }
 
     private void showStatus(View view, Formulas formulas) {
@@ -235,20 +229,12 @@ public class DojoBattlePvpFragment extends Fragment implements SectionFragment {
         dialog.openDialog(getParentFragmentManager());
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        if (mViewModel != null) {
-            mViewModel.init();
-        }
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        if (mViewModel != null) {
-            mViewModel.stop();
-        }
+    private void showBattleResult(@StringRes int title, SpannableStringBuilder description) {
+        StorageUtil.downloadProfileForMsg(getActivity(), mBinding.battleResultLayout.profileImageView);
+        mBinding.battleResultLayout.titleTextView.setText(title);
+        mBinding.battleResultLayout.descriptionTextView.setText(description);
+        mBinding.battleResultLayout.msgConstraintLayout.setVisibility(View.VISIBLE);
+        mBinding.myJutsusRecyclerView.setVisibility(View.GONE);
     }
 
     @Override

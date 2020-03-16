@@ -17,7 +17,7 @@ import com.gutotech.narutogame.R;
 
 public class WarningDialog extends DialogFragment {
     private static final String EXTRA_WARNING = "warning";
-    private static final String DIALOG_TAG = "DialogFragment";
+    private static final String DIALOG_TAG = "WarningDialog";
 
     private View.OnClickListener mOnClickListener;
 

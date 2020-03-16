@@ -9,13 +9,13 @@ import com.gutotech.narutogame.data.model.TimeMission;
 import com.gutotech.narutogame.data.model.Mission;
 import com.gutotech.narutogame.data.model.MissionInfo;
 import com.gutotech.narutogame.data.repository.MissionRepository;
-import com.gutotech.narutogame.ui.adapter.TasksRecyclerViewAdapter;
+import com.gutotech.narutogame.ui.adapter.TasksAdapter;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class TasksViewModel extends ViewModel implements TasksRecyclerViewAdapter.OnAcceptClickListener {
+public class TasksViewModel extends ViewModel implements TasksAdapter.OnAcceptClickListener {
     private static final long ONE_MINUTE = 60000;
 
     private MutableLiveData<List<TimeMission>> mTasks = new MutableLiveData<>();
