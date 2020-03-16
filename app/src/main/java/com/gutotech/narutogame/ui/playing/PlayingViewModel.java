@@ -144,7 +144,7 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
         });
 
         mChatRepository = ChatRepository.getInstance();
-        channel = String.valueOf(mCharacter.getVillage().id);
+        channel = mCharacter.getVillage().name();
 
         buildMenu();
         setCurrentSection(CHARACTER_GROUP, 0);
@@ -188,7 +188,7 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
     // Bag
     private MutableLiveData<List<Ramen>> mRamens = new MutableLiveData<>();
     private MutableLiveData<List<Scroll>> mScrolls = new MutableLiveData<>();
-    private SingleLiveEvent<Void> mDismissDialogEvent = new SingleLiveEvent<>();
+    private SingleLiveEvent<Void> mDismissBagDialogEvent = new SingleLiveEvent<>();
     private SingleLiveEvent<Integer> mShowWarningDialogEvent = new SingleLiveEvent<>();
 
     LiveData<List<Ramen>> getRamens() {
@@ -200,7 +200,7 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
     }
 
     LiveData<Void> getDismissBagDialog() {
-        return mDismissDialogEvent;
+        return mDismissBagDialogEvent;
     }
 
     public LiveData<Integer> getShowWarningDialogEvent() {
@@ -216,7 +216,7 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
         Ramen ramen = (Ramen) itemClicked;
 
         if (CharOn.character.getFormulas().isFull()) {
-            mDismissDialogEvent.call();
+            mDismissBagDialogEvent.call();
             mShowWarningDialogEvent.setValue(R.string.attributes_are_already_full);
             return;
         }
@@ -245,6 +245,11 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
 
     BagItemsAdapter.OnItemClickListener onScrollClickListener = (itemClicked, position) -> {
         Scroll scroll = (Scroll) itemClicked;
+
+        if (mCharacter.getMapId() == scroll.getVillage().ordinal()) {
+            return;
+        }
+
         scroll.setInventory(scroll.getInventory() - 1);
 
         List<Scroll> scrolls = mScrolls.getValue();
@@ -266,7 +271,7 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
         }
 
         CharacterRepository.getInstance().save(CharOn.character);
-        mDismissDialogEvent.call();
+        mDismissBagDialogEvent.call();
 
         VillageMapFragment villageMapFragment = new VillageMapFragment();
         Bundle bundle = new Bundle();
@@ -452,7 +457,7 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
 
     public void onChannelChanged(int position) {
         if (position == 0) {
-            channel = String.valueOf(mCharacter.getVillage().id);
+            channel = mCharacter.getVillage().name();
         } else {
             channel = "World";
         }

@@ -1,6 +1,7 @@
 package com.gutotech.narutogame.data.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Bag {
@@ -33,13 +34,14 @@ public class Bag {
 
         if (ramenList.contains(ramen)) {
             int ramenIndex = ramenList.indexOf(ramen);
-            Ramen r = ramenList.get(ramenIndex);
-            r.setInventory(r.getInventory() + quantity);
-            ramenList.set(ramenIndex, ramen);
+            Ramen myRamen = ramenList.get(ramenIndex);
+            myRamen.setInventory(myRamen.getInventory() + quantity);
+            ramenList.set(ramenIndex, myRamen);
         } else {
             ramen.setRequirements(null);
             ramen.setInventory(quantity);
             ramenList.add(ramen);
+            sortRamens(ramenList);
         }
     }
 
@@ -50,13 +52,32 @@ public class Bag {
 
         if (scrollList.contains(scroll)) {
             int scrollIndex = scrollList.indexOf(scroll);
-            Scroll r = scrollList.get(scrollIndex);
-            r.setInventory(r.getInventory() + quantity);
-            scrollList.set(scrollIndex, scroll);
+            Scroll myScroll = scrollList.get(scrollIndex);
+            myScroll.setInventory(myScroll.getInventory() + (scroll.getInventory() * quantity));
+            scrollList.set(scrollIndex, myScroll);
         } else {
             scroll.setRequirements(null);
-            scroll.setInventory(quantity);
+            scroll.setInventory(scroll.getInventory() * quantity);
             scrollList.add(scroll);
+            sortScrolls(scrollList);
         }
+    }
+
+    private void sortRamens(List<Ramen> ramens) {
+        Collections.sort(ramens, (ramen1, ramen2) -> {
+            if (ramen1.getRecovers() == ramen2.getRecovers()) {
+                return 0;
+            }
+            return ramen1.getRecovers() > ramen2.getRecovers() ? 1 : -1;
+        });
+    }
+
+    private void sortScrolls(List<Scroll> scrolls) {
+        Collections.sort(scrolls, (scroll1, scroll2) -> {
+            if (scroll1.getVillage().ordinal() == scroll2.getVillage().ordinal()) {
+                return 0;
+            }
+            return scroll1.getVillage().ordinal() > scroll2.getVillage().ordinal() ? 1 : -1;
+        });
     }
 }

@@ -21,14 +21,6 @@ public class Ramen extends ShopItem {
         this.recovers = recovers;
     }
 
-    public int getRecovers() {
-        return recovers;
-    }
-
-    public void setRecovers(int recovers) {
-        this.recovers = recovers;
-    }
-
     @Override
     public boolean equals(@Nullable Object obj) {
         if (!(obj instanceof Ramen)) {
@@ -36,5 +28,13 @@ public class Ramen extends ShopItem {
         }
 
         return getImage().equals(((Ramen) obj).getImage());
+    }
+
+    public int getRecovers() {
+        return recovers;
+    }
+
+    public void setRecovers(int recovers) {
+        this.recovers = recovers;
     }
 }

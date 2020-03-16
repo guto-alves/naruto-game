@@ -62,6 +62,7 @@ public class Character extends BaseObservable implements Serializable {
 
     public Character(String playerId) {
         this.playerId = playerId;
+        nick = "";
         level = 1;
         setNinja(Ninja.NARUTO);
         setProfilePath("1/1");

@@ -124,8 +124,6 @@ public class PlayingActivity extends AppCompatActivity {
 
         mViewModel.updateBag();
 
-        mViewModel.getDismissBagDialog().observe(this, aVoid -> bagDialog.dismiss());
-
         BagItemsAdapter ramensAdapter = new BagItemsAdapter(this,
                 mViewModel.onRamenClickListener);
         ramensRecyclerView.setAdapter(ramensAdapter);
@@ -157,6 +155,8 @@ public class PlayingActivity extends AppCompatActivity {
 
         bagDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         bagDialog.show();
+
+        mViewModel.getDismissBagDialog().observe(this, aVoid -> bagDialog.dismiss());
     }
 
     private void setUpChat() {
