@@ -1,9 +1,14 @@
 package com.gutotech.narutogame.data.model;
 
-public class ExtrasInformation {
+import androidx.databinding.BaseObservable;
+import androidx.databinding.Bindable;
+
+import com.gutotech.narutogame.BR;
+
+public class ExtrasInformation extends BaseObservable {
     private int totalTraining;
     private int distributedPoints;
-    private int totalHoursPlayed;
+    private int totalSecondsPlayed;
 
     public ExtrasInformation() {
     }
@@ -32,11 +37,13 @@ public class ExtrasInformation {
         this.distributedPoints = distributedPoints;
     }
 
-    public int getTotalHoursPlayed() {
-        return totalHoursPlayed;
+    @Bindable
+    public int getTotalSecondsPlayed() {
+        return totalSecondsPlayed;
     }
 
-    public void setTotalHoursPlayed(int totalHoursPlayed) {
-        this.totalHoursPlayed = totalHoursPlayed;
+    public void setTotalSecondsPlayed(int totalSecondsPlayed) {
+        this.totalSecondsPlayed = totalSecondsPlayed;
+        notifyPropertyChanged(BR.totalSecondsPlayed);
     }
 }

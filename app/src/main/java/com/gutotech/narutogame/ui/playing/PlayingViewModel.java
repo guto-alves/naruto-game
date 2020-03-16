@@ -492,6 +492,9 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
                 checkVariousRoutines(calendar.get(Calendar.HOUR_OF_DAY),
                         calendar.get(Calendar.MINUTE), calendar.get(Calendar.SECOND));
 
+                mCharacter.getExtrasInformation().setTotalSecondsPlayed(
+                        mCharacter.getExtrasInformation().getTotalSecondsPlayed() + 1);
+
                 mHandler.postDelayed(this, 1000);
             }
         };
