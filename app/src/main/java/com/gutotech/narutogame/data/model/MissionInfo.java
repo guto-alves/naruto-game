@@ -373,7 +373,7 @@ public enum MissionInfo {
             }, new Reward() {
                 @Override
                 public int value() {
-                    return 1600;
+                    return 25;
                 }
 
                 @Override

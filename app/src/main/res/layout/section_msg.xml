@@ -78,6 +78,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="5dp"
                 android:textColor="#FFD274"
+                android:textSize="12sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -86,7 +87,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center|start"
                 android:textColor="#D1D8F1"
-                android:textSize="12sp" />
+                android:textSize="10sp" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -331,6 +331,7 @@ public class DojoBattlePvpViewModel extends AndroidViewModel
                 addLog(new BattleLog(mFighters.getPlayer().getNick(), BattleLog.Type.BUFF_DEBUFF_WEAPON,
                         playerJutsuInfo.name, jutsu));
             } else {
+                showWarningDialogEvent.setValue(R.string.jutsu_is_not_yet_available);
                 return;
             }
         }
@@ -541,11 +542,6 @@ public class DojoBattlePvpViewModel extends AndroidViewModel
     }
 
     void exit() {
-        CharOn.character.getFormulas().setCurrentHealth(mPlayerFormulas.getCurrentHealth());
-        CharOn.character.getFormulas().setCurrentChakra(mPlayerFormulas.getCurrentChakra());
-        CharOn.character.getFormulas().setCurrentStamina(mPlayerFormulas.getCurrentStamina());
-
-
         if ((mBattle.getStatus() == Battle.Status.PLAYER1_WON && myTurn == 1) ||
                 (mBattle.getStatus() == Battle.Status.PLAYER2_WON && myTurn == 2)) {
             if (CharOn.character.battleId.contains("VILLAGEMAP-PVP")) {
@@ -577,6 +573,9 @@ public class DojoBattlePvpViewModel extends AndroidViewModel
             }
         }
 
+        CharOn.character.getFormulas().setCurrentHealth(mPlayerFormulas.getCurrentHealth());
+        CharOn.character.getFormulas().setCurrentChakra(mPlayerFormulas.getCurrentChakra());
+        CharOn.character.getFormulas().setCurrentStamina(mPlayerFormulas.getCurrentStamina());
         CharOn.character.getAttributes().incrementTraningPoints(50);
         CharOn.character.getExtrasInformation().incrementTotalTraining(50);
 

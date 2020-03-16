@@ -24,7 +24,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/villageMapRecyclerView"
                 android:layout_width="380dp"
-                android:layout_height="498dp"
+                android:layout_height="497dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="16dp"
@@ -45,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginLeft="24dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="32dp"
                 android:layout_marginEnd="24dp"
                 android:layout_marginRight="24dp"
                 android:orientation="horizontal"

@@ -103,6 +103,7 @@ public class CharacterCreateViewModel extends ViewModel
 
     public void onCreateButtonPressed() {
         mChar.setNick(mChar.getNick().trim());
+
         if (isValidNick()) {
             mCharacterRepository.checkByRepeatedNick(mChar.getNick().trim(), result -> {
                 if (result) {

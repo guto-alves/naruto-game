@@ -7,7 +7,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.view.GestureDetectorCompat;
@@ -74,30 +73,35 @@ public class VillageMapAdapter extends RecyclerView.Adapter<VillageMapAdapter.Vi
         final boolean IS_PLACE_ENTRY = mPlaceEntries.contains(position);
 
         if (IS_PLACE_ENTRY) {
-            holder.spriteImageView.setVisibility(View.VISIBLE);
             holder.spriteImageView.setImageResource(R.drawable.layout_ico_mapa_vila);
+            holder.spriteImageView.setVisibility(View.VISIBLE);
         }
 
-        if (mMap != null && !IS_PLACE_ENTRY) {
+        if (mMap != null) {
             List<Character> characterList = mMap.get(position);
 
             if (characterList != null) {
-                final int SIZE = characterList.size();
+                Character character;
 
-                Character character = characterList.get(random.nextInt(SIZE));
-
-                if (character.getNick().equals(CharOn.character.getNick())) {
+                if (IS_PLACE_ENTRY && characterList.contains(CharOn.character)) {
                     holder.backgroundImageView.setImageResource(R.drawable.layout_map_me2);
-                } else if (character.getVillage() == CharOn.character.getVillage()) {
-                    holder.backgroundImageView.setImageResource(R.drawable.layout_map_green2);
                 } else {
-                    holder.backgroundImageView.setImageResource(R.drawable.layout_map_red2);
+                    final int TOTAL_CHARS = characterList.size();
+
+                    character = characterList.get(random.nextInt(TOTAL_CHARS));
+
+                    if (character.getNick().equals(CharOn.character.getNick())) {
+                        holder.backgroundImageView.setImageResource(R.drawable.layout_map_me2);
+                    } else if (character.getVillage() == CharOn.character.getVillage()) {
+                        holder.backgroundImageView.setImageResource(R.drawable.layout_map_green2);
+                    } else {
+                        holder.backgroundImageView.setImageResource(R.drawable.layout_map_red2);
+                    }
+
+                    StorageUtil.downloadSprite(holder.spriteImageView, character.getNinja().getId());
+                    holder.spriteImageView.setVisibility(View.VISIBLE);
                 }
-
-                StorageUtil.downloadSprite(holder.spriteImageView, character.getNinja().getId());
-                holder.spriteImageView.setVisibility(View.VISIBLE);
-
-            } else {
+            } else if (!IS_PLACE_ENTRY) {
                 holder.backgroundImageView.setImageResource(R.drawable.layout_map_blank2);
                 holder.spriteImageView.setVisibility(View.GONE);
             }

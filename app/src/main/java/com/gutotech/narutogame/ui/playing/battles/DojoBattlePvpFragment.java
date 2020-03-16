@@ -27,6 +27,7 @@ import com.gutotech.narutogame.data.model.BattleLog;
 import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.model.Formulas;
 import com.gutotech.narutogame.data.model.Jutsu;
+import com.gutotech.narutogame.data.model.Village;
 import com.gutotech.narutogame.data.repository.BattleRepository;
 import com.gutotech.narutogame.databinding.FragmentDojoBattlePvpBinding;
 import com.gutotech.narutogame.databinding.PopupAttributesStatusBinding;
@@ -109,7 +110,7 @@ public class DojoBattlePvpFragment extends Fragment implements SectionFragment {
             int length = description.length();
 
             description.append(CharOn.character.battleId.contains("VILLAGEMAP-PVP") ?
-                    getString(R.string.village_map) : "Dojo");
+                    getString(R.string.village_map) : getString(R.string.dojo));
 
             description.setSpan(new ForegroundColorSpan(Color.BLUE), length, description.length(),
                     Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
@@ -119,7 +120,12 @@ public class DojoBattlePvpFragment extends Fragment implements SectionFragment {
                 public void onClick(@NonNull View widget) {
                     mViewModel.exit();
                     if (CharOn.character.battleId.contains("VILLAGEMAP-PVP")) {
-                        FragmentUtil.goTo(getActivity(), new VillageMapFragment());
+                        Bundle args = new Bundle();
+                        args.putSerializable("village", Village.values()[CharOn.character.getMapId()]);
+
+                        VillageMapFragment villageMapFragment = new VillageMapFragment();
+                        villageMapFragment.setArguments(args);
+                        FragmentUtil.goTo(getActivity(), villageMapFragment);
                     } else {
                         FragmentUtil.goTo(getActivity(), new DojoFragment());
                     }

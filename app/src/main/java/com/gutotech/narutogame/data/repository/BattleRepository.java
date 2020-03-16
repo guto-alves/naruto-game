@@ -47,7 +47,7 @@ public class BattleRepository {
         battleReference.setValue(id);
     }
 
-    public void removeId(String nick, String id) {
+    public void removeId(String nick) {
         DatabaseReference battleReference = FirebaseConfig.getDatabase()
                 .child("battle-id")
                 .child(nick);

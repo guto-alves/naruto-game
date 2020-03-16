@@ -32,13 +32,15 @@ public class VillageMapFragment extends Fragment implements SectionFragment {
         FragmentVillageMapBinding binding = DataBindingUtil.inflate(inflater,
                 R.layout.fragment_village_map, container, false);
 
-        Village village;
+        Village village = null;
 
         Bundle bundle = getArguments();
 
         if (bundle != null) {
             village = (Village) bundle.getSerializable("village");
-        } else {
+        }
+
+        if (village == null) {
             village = CharOn.character.getVillage();
         }
 

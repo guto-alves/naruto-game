@@ -68,7 +68,6 @@ public class NinjaShopViewModel extends ViewModel implements
                                     context.getString(GraduationUtils.getName(getValue())));
                         }
                     }), Village.FOLHA));
-
             mItems.add(new Scroll("2", R.string.scroll_to_sand, R.string.scroll_to_sand_des,
                     Collections.singletonList(new Requirement() {
                         public int getValue() {

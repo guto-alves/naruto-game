@@ -17,7 +17,7 @@ public class TeamParticipateViewModel extends ViewModel implements
         TeamsParticipateAdapter.OnParticipateClickListener {
     public final ObservableField<String> teamName = new ObservableField<>();
 
-    private final int VILLAGE_ID = CharOn.character.getVillage().id;
+    private final int VILLAGE_ID = CharOn.character.getVillage().ordinal();
 
     private MutableLiveData<List<Team>> mTeams = new MutableLiveData<>();
 

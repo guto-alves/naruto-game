@@ -38,7 +38,7 @@ public class StorageUtil {
         if (CharOn.character != null) {
             imageReference = FirebaseConfig.getStorage().child("images")
                     .child("msg")
-                    .child(String.valueOf(CharOn.character.getVillage().id))
+                    .child(String.valueOf(CharOn.character.getVillage().ordinal() + 1))
                     .child(generateProfileId() + ".png");
         } else {
             imageReference = FirebaseConfig.getStorage().child("images")
@@ -50,7 +50,7 @@ public class StorageUtil {
         downloadImage(context, imageReference, imageView);
     }
 
-    public static void downloadProfile(Context context, ImageView imageView, String path) {
+    static void downloadProfile(Context context, ImageView imageView, String path) {
         if (TextUtils.isEmpty(path)) {
             return;
         }

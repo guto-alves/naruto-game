@@ -33,7 +33,7 @@ public class VillageMapViewModel extends ViewModel implements VillageMapAdapter.
 
         mMapRepository = MapRepository.getInstance();
 
-        CharOn.character.setMapId(mVillage.id);
+        CharOn.character.setMapId(mVillage.ordinal());
 
         if (!CharOn.character.isMap()) {
             CharOn.character.setMap(true);
@@ -43,7 +43,7 @@ public class VillageMapViewModel extends ViewModel implements VillageMapAdapter.
             CharOn.character.setMapPosition(new SecureRandom().nextInt(MAP_SIZE));
         }
 
-        mMapRepository.enter(mVillage.id);
+        mMapRepository.enter(mVillage.ordinal());
 
         observe();
     }
@@ -53,7 +53,7 @@ public class VillageMapViewModel extends ViewModel implements VillageMapAdapter.
     }
 
     LiveData<Map<Integer, List<Character>>> getCharactersOnTheMap() {
-        return mMapRepository.load(mVillage.id);
+        return mMapRepository.load(mVillage.ordinal());
     }
 
     @Override
@@ -62,10 +62,10 @@ public class VillageMapViewModel extends ViewModel implements VillageMapAdapter.
             CharOn.character.setMapPosition(newPosition);
 
             if (isPlaceEntry(newPosition) && mVillage == CharOn.character.getVillage()) {
-                mMapRepository.exit(mVillage.id);
+                mMapRepository.exit(mVillage.ordinal());
                 CharOn.character.setMap(false);
             } else {
-                mMapRepository.enter(mVillage.id);
+                mMapRepository.enter(mVillage.ordinal());
             }
         } else {
             mShowWarningDialogEvent.setValue(R.string.this_place_is_far_away);
@@ -94,7 +94,7 @@ public class VillageMapViewModel extends ViewModel implements VillageMapAdapter.
             return;
         }
 
-        mMapRepository.checkOpponent(opponent.getNick(), mVillage.id, result -> {
+        mMapRepository.checkOpponent(opponent.getNick(), mVillage.ordinal(), result -> {
             if (result) {
                 BattleRepository.getInstance().create(CharOn.character, opponent);
             } else {
@@ -105,8 +105,8 @@ public class VillageMapViewModel extends ViewModel implements VillageMapAdapter.
 
     private void observe() {
         BattleRepository.getInstance().observeIds(battleId -> {
-            mMapRepository.exit(mVillage.id);
-            BattleRepository.getInstance().removeId(CharOn.character.getNick(), battleId);
+            mMapRepository.exit(mVillage.ordinal());
+            BattleRepository.getInstance().removeId(CharOn.character.getNick());
             CharOn.character.battleId = battleId;
             CharOn.character.setBattle(true);
         });

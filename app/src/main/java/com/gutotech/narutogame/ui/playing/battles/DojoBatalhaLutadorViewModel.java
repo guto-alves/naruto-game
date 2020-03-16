@@ -215,6 +215,7 @@ public class DojoBatalhaLutadorViewModel extends ViewModel
                 addLog(new BattleLog(player.getNick(), BattleLog.Type.BUFF_DEBUFF_WEAPON,
                         playerJutsuInfo.name, jutsu));
             } else {
+                showWarningDialogEvent.setValue(R.string.jutsu_is_not_yet_available);
                 return;
             }
         }

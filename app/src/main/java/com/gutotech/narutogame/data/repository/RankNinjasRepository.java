@@ -55,7 +55,15 @@ public class RankNinjasRepository {
                 List<Character> characterList = new ArrayList<>();
 
                 for (DataSnapshot snap : dataSnapshot.getChildren()) {
-                    characterList.add(snap.getValue(Character.class));
+                    Character character = snap.getValue(Character.class);
+
+                    if (character == null) {
+                        continue;
+                    }
+
+                    if (character.getGraduationId() > 0) {
+                        characterList.add(character);
+                    }
                 }
 
                 callback.call(characterList);
