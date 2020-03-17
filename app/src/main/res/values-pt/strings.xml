@@ -150,8 +150,8 @@
     <string name="choose_your_character">ESCOLHA SEU PERSONAGEM</string>
     <string name="section_mission_status">STATUS DA MISSÃO</string>
     <string name="teams">Equipes</string>
-    <string name="error_nick_length">O  name do seu personagem não pode ter mais de 10 caractéres</string>
-    <string name="error_invalid_nick">O  name do seu personagem só pode conter letras, números e underlines</string>
+    <string name="error_nick_length">O nome do seu personagem não pode ter mais de 10 caracteres</string>
+    <string name="error_invalid_nick">O nome do seu personagem só pode conter letras, números e underlines</string>
     <string name="warning">Aviso!</string>
     <string name="name_already_taken">Já existe um personagem com o nome escolhido</string>
     <string name="no_characters_selected">Nenhum personagem selecionado</string>

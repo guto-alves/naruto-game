@@ -2,6 +2,7 @@ package com.gutotech.narutogame.ui.loggedin.newcharacteer;
 
 import android.text.TextUtils;
 
+import androidx.databinding.ObservableField;
 import androidx.databinding.ObservableInt;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -24,11 +25,14 @@ import com.gutotech.narutogame.ui.adapter.ChooseNinjaAdapter;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 import java.util.UUID;
 
 public class CharacterCreateViewModel extends ViewModel
         implements ChooseNinjaAdapter.NinjaListener {
     public final ObservableInt currentGroupIndex = new ObservableInt(0);
+
+    public final ObservableField<Classe> classSelected = new ObservableField<>(Classe.TAI);
 
     private Character mChar;
 
@@ -40,25 +44,25 @@ public class CharacterCreateViewModel extends ViewModel
     private ResultListener mListener;
 
     public CharacterCreateViewModel() {
+        mCharacterRepository = CharacterRepository.getInstance();
+
         mChar = new Character(AuthRepository.getInstance().getUid());
         mChar.setJutsus(JutsuRepository.getInstance().getJutsusDefault(Classe.TAI));
 
         mAllNinjasList = Arrays.asList(Ninja.values());
         loadCurrentGroup();
-
-        mCharacterRepository = CharacterRepository.getInstance();
     }
 
     public void setListener(ResultListener listener) {
         mListener = listener;
     }
 
-    LiveData<List<Ninja>> getCurrentNinjasGroupList() {
-        return mCurrentNinjasGroupList;
-    }
-
     public Character getCharacter() {
         return mChar;
+    }
+
+    LiveData<List<Ninja>> getCurrentNinjasGroupList() {
+        return mCurrentNinjasGroupList;
     }
 
     public void onVillageSelected(Village vila) {
@@ -66,6 +70,7 @@ public class CharacterCreateViewModel extends ViewModel
     }
 
     public void onClassSelected(Classe classe) {
+        classSelected.set(classe);
         mChar.setClasse(classe);
         mChar.setAttributes(new Attributes(classe));
         mChar.updateFormulas();
@@ -76,7 +81,7 @@ public class CharacterCreateViewModel extends ViewModel
     @Override
     public void onNinjaClick(Ninja ninja) {
         mChar.setNinja(ninja);
-        mChar.setProfilePath(String.format("images/profile/%d/1.png", ninja.getId()));
+        mChar.setProfilePath(String.format(Locale.US, "images/profile/%d/1.png", ninja.getId()));
     }
 
     private void loadCurrentGroup() {
@@ -133,12 +138,9 @@ public class CharacterCreateViewModel extends ViewModel
         } else if (mChar.getNick().length() > 10) {
             mListener.onFailure(R.string.error_nick_length);
             valid = false;
-        } else {
-            String nickSemPontuacao = mChar.getNick().replaceAll("(?!_)\\p{P}", "");
-
-            if (!nickSemPontuacao.equals(mChar.getNick())) {
-                mListener.onFailure(R.string.error_invalid_nick);
-            }
+        } else if (!mChar.getNick().replaceAll("_", "").matches("\\w+")) {
+            mListener.onFailure(R.string.error_invalid_nick);
+            valid = false;
         }
 
         return valid;

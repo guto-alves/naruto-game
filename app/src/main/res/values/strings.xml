@@ -250,8 +250,8 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="clan_jutsus">Clan Jutsus</string>
     <string name="grades">Grades</string>
     <string name="choose_your_character">CHOOSE YOUR CHARACTER</string>
-    <string name="error_nick_length">O description do seu character não pode ter mais de 10 caractéres</string>
-    <string name="error_invalid_nick">O name do seu character só pode conter letras, números e underlines</string>
+    <string name="error_nick_length">Your character name cannot be longer than 10 characters</string>
+    <string name="error_invalid_nick">Your character name can only contain letters, numbers and underlines</string>
     <string name="warning">Warning!</string>
     <string name="name_already_taken">That name was already taken</string>
     <string name="no_characters_selected">No characters selected</string>
