@@ -25,15 +25,17 @@ public class VillageMapViewModel extends ViewModel implements VillageMapAdapter.
     private Village mVillage;
 
     private MapRepository mMapRepository;
+    private BattleRepository mBattleRepository;
 
     private SingleLiveEvent<Integer> mShowWarningDialogEvent = new SingleLiveEvent<>();
+    private SingleLiveEvent<Void> mShowProgressDialogEvent = new SingleLiveEvent<>();
+    private SingleLiveEvent<Void> mDismissProgressDialogEvent = new SingleLiveEvent<>();
 
     VillageMapViewModel(Village village) {
         mVillage = village;
 
         mMapRepository = MapRepository.getInstance();
-
-        CharOn.character.setMapId(mVillage.ordinal());
+        mBattleRepository = BattleRepository.getInstance();
 
         if (!CharOn.character.isMap()) {
             CharOn.character.setMap(true);
@@ -43,8 +45,6 @@ public class VillageMapViewModel extends ViewModel implements VillageMapAdapter.
             CharOn.character.setMapPosition(new SecureRandom().nextInt(MAP_SIZE));
         }
 
-        mMapRepository.enter(mVillage.ordinal());
-
         observe();
     }
 
@@ -52,8 +52,34 @@ public class VillageMapViewModel extends ViewModel implements VillageMapAdapter.
         return mShowWarningDialogEvent;
     }
 
+    LiveData<Void> getShowProgressDialogEvent() {
+        return mShowProgressDialogEvent;
+    }
+
+    LiveData<Void> getDismissProgressDialogEvent() {
+        return mDismissProgressDialogEvent;
+    }
+
     LiveData<Map<Integer, List<Character>>> getCharactersOnTheMap() {
         return mMapRepository.load(mVillage.ordinal());
+    }
+
+    private void observe() {
+        mBattleRepository.observeMyself(battleId -> {
+            if (battleId == null) {
+                mMapRepository.enter(mVillage.ordinal());
+                return;
+            }
+
+            mMapRepository.exit(mVillage.ordinal(), CharOn.character.getNick());
+
+            mBattleRepository.removeObserveMySelf();
+            mBattleRepository.removeId(CharOn.character.getNick());
+
+            CharOn.character.setMap(false);
+            CharOn.character.battleId = battleId;
+            CharOn.character.setBattle(true);
+        });
     }
 
     @Override
@@ -62,7 +88,7 @@ public class VillageMapViewModel extends ViewModel implements VillageMapAdapter.
             CharOn.character.setMapPosition(newPosition);
 
             if (isPlaceEntry(newPosition) && mVillage == CharOn.character.getVillage()) {
-                mMapRepository.exit(mVillage.ordinal());
+                mMapRepository.exit(mVillage.ordinal(), CharOn.character.getNick());
                 CharOn.character.setMap(false);
             } else {
                 mMapRepository.enter(mVillage.ordinal());
@@ -70,10 +96,6 @@ public class VillageMapViewModel extends ViewModel implements VillageMapAdapter.
         } else {
             mShowWarningDialogEvent.setValue(R.string.this_place_is_far_away);
         }
-    }
-
-    private boolean isPlaceEntry(int position) {
-        return mVillage.placeEntries.contains(position);
     }
 
     @Override
@@ -94,21 +116,18 @@ public class VillageMapViewModel extends ViewModel implements VillageMapAdapter.
             return;
         }
 
-        mMapRepository.checkOpponent(opponent.getNick(), mVillage.ordinal(), result -> {
-            if (result) {
-                BattleRepository.getInstance().create(CharOn.character, opponent);
+        mShowProgressDialogEvent.call();
+
+        mBattleRepository.opponentAvailable(opponent.getNick(), available -> {
+            mDismissProgressDialogEvent.call();
+
+            if (available) {
+                mMapRepository.exit(mVillage.ordinal(), CharOn.character.getNick());
+                mMapRepository.exit(mVillage.ordinal(), opponent.getNick());
+                mBattleRepository.create(CharOn.character, opponent);
             } else {
                 mShowWarningDialogEvent.setValue(R.string.player_unavailable_to_fight);
             }
-        });
-    }
-
-    private void observe() {
-        BattleRepository.getInstance().observeIds(battleId -> {
-            mMapRepository.exit(mVillage.ordinal());
-            BattleRepository.getInstance().removeId(CharOn.character.getNick());
-            CharOn.character.battleId = battleId;
-            CharOn.character.setBattle(true);
         });
     }
 
@@ -127,6 +146,10 @@ public class VillageMapViewModel extends ViewModel implements VillageMapAdapter.
 
     private int distance(Point point1, Point point2) {
         return (int) Math.sqrt(Math.pow(point2.x - point1.x, 2) + Math.pow(point2.y - point1.y, 2));
+    }
+
+    private boolean isPlaceEntry(int position) {
+        return mVillage.placeEntries.contains(position);
     }
 
     public void stop() {

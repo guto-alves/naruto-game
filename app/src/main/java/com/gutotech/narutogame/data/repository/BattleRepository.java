@@ -29,30 +29,12 @@ public class BattleRepository {
     public void create(Character player, Character opponent) {
         String id = generateId("VILLAGEMAP-PVP");
 
-        Battle battle = new Battle(player, opponent);
-        battle.setId(id);
+        Battle battle = new Battle(id, player, opponent);
 
         saveId(battle.getPlayer1().getNick(), id);
         saveId(battle.getPlayer2().getNick(), id);
 
         save(battle);
-    }
-
-    private void saveId(String nick, String id) {
-        DatabaseReference battleReference = FirebaseConfig.getDatabase()
-                .child("battle-id")
-                .child(nick)
-                .child("id");
-
-        battleReference.setValue(id);
-    }
-
-    public void removeId(String nick) {
-        DatabaseReference battleReference = FirebaseConfig.getDatabase()
-                .child("battle-id")
-                .child(nick);
-
-        battleReference.removeValue();
     }
 
     public void save(Battle battle) {
@@ -71,29 +53,23 @@ public class BattleRepository {
         battleReference.removeValue();
     }
 
-    public void observeIds(Callback<String> callback) {
+    private void saveId(String nick, String id) {
         DatabaseReference battleReference = FirebaseConfig.getDatabase()
-                .child("battle-id")
-                .child(CharOn.character.getNick())
+                .child("battle-ids")
+                .child(nick)
                 .child("id");
 
-        battleReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String battleId = dataSnapshot.getValue(String.class);
-
-                if (battleId == null) {
-                    return;
-                }
-
-                callback.call(battleId);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-            }
-        });
+        battleReference.setValue(id);
     }
+
+    public void removeId(String nick) {
+        DatabaseReference battleReference = FirebaseConfig.getDatabase()
+                .child("battle-ids")
+                .child(nick);
+
+        battleReference.removeValue();
+    }
+
 
     public void get(String battleId, Callback<Battle> callback) {
         DatabaseReference battleReference = FirebaseConfig.getDatabase()
@@ -112,15 +88,15 @@ public class BattleRepository {
         });
     }
 
-    private DatabaseReference battleReference;
-    private ValueEventListener battleEventListener;
+    private DatabaseReference mBattleReference;
+    private ValueEventListener mBattleEventListener;
 
     public void observeBattle(String battleId, Callback<Battle> callback) {
-        battleReference = FirebaseConfig.getDatabase()
+        mBattleReference = FirebaseConfig.getDatabase()
                 .child("battles")
                 .child(battleId);
 
-        battleEventListener = battleReference.addValueEventListener(new ValueEventListener() {
+        mBattleEventListener = mBattleReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
@@ -135,9 +111,59 @@ public class BattleRepository {
     }
 
     public void removeBattleListener() {
-        if (battleEventListener != null) {
-            battleReference.removeEventListener(battleEventListener);
-            battleEventListener = null;
+        if (mBattleEventListener != null) {
+            mBattleReference.removeEventListener(mBattleEventListener);
+            mBattleEventListener = null;
         }
+    }
+
+
+    // Watch for challengers
+    private DatabaseReference mBattleIdReference;
+    private ValueEventListener mBattleIdValueEventListener;
+
+    public void observeMyself(Callback<String> callback) {
+        mBattleIdReference = FirebaseConfig.getDatabase()
+                .child("battle-ids")
+                .child(CharOn.character.getNick())
+                .child("id");
+
+        mBattleIdValueEventListener = mBattleIdReference.addValueEventListener(
+                new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        callback.call(dataSnapshot.getValue(String.class));
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                    }
+                });
+    }
+
+    public void removeObserveMySelf() {
+        if (mBattleIdValueEventListener != null) {
+            mBattleIdReference.removeEventListener(mBattleIdValueEventListener);
+            mBattleIdValueEventListener = null;
+        }
+    }
+
+
+    public void opponentAvailable(String nick, Callback<Boolean> callback) {
+        DatabaseReference mapReference = FirebaseConfig.getDatabase()
+                .child("battle-ids")
+                .child(nick)
+                .child("id");
+
+        mapReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                callback.call(!dataSnapshot.exists());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
     }
 }

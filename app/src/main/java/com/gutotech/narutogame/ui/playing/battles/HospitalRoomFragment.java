@@ -29,6 +29,8 @@ public class HospitalRoomFragment extends Fragment implements SectionFragment {
 
         StorageUtil.downloadProfileForMsg(getContext(), view.findViewById(R.id.profileImageView));
 
+        CharOn.character.setMapId(CharOn.character.getVillage().ordinal());
+
         if (CharOn.character.getFormulas().isFull()) {
             CharOn.character.setHospital(false);
         } else {

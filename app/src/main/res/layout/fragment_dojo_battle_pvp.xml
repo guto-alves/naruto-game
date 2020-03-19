@@ -152,7 +152,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="0dp"
                                 android:layout_weight="1"
-                                android:text="@{@string/label_graduation_and_lvl(context.getString(GraduationUtils.getName(viewModel.fighters.player.graduationId)), viewModel.fighters.player.level)}"
+                                android:text="@{@string/label_graduation_and_lvl(context.getString(GraduationUtils.getName(viewModel.fighters.player.graduationId, viewModel.fighters.player.village)), viewModel.fighters.player.level)}"
                                 android:textColor="#FFD274"
                                 android:textSize="8sp" />
 
@@ -391,7 +391,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="0dp"
                                 android:layout_weight="1"
-                                android:text="@{@string/label_graduation_and_lvl(context.getString(GraduationUtils.getName(viewModel.fighters.opponent.graduationId)), viewModel.fighters.opponent.level)}"
+                                android:text="@{@string/label_graduation_and_lvl(context.getString(GraduationUtils.getName(viewModel.fighters.opponent.graduationId, viewModel.fighters.opponent.village)), viewModel.fighters.opponent.level)}"
                                 android:textColor="#FFD274"
                                 android:textSize="8sp" />
 

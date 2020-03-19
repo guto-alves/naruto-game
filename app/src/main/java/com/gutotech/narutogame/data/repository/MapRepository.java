@@ -36,11 +36,11 @@ public class MapRepository {
         mapReference.setValue(CharOn.character);
     }
 
-    public void exit(int villageId) {
+    public void exit(int villageId, String nick) {
         DatabaseReference mapReference = FirebaseConfig.getDatabase()
                 .child("village-map")
                 .child(String.valueOf(villageId))
-                .child(CharOn.character.getNick());
+                .child(nick);
 
         mapReference.removeValue();
     }
@@ -54,7 +54,8 @@ public class MapRepository {
         Map<Integer, List<Character>> map = new HashMap<>();
 
         mMapReference = FirebaseConfig.getDatabase()
-                .child("village-map").child(String.valueOf(villageId));
+                .child("village-map")
+                .child(String.valueOf(villageId));
 
         mapValueEventListener = mMapReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -82,24 +83,6 @@ public class MapRepository {
         });
 
         return data;
-    }
-
-    public void checkOpponent(String nick, int villageId, Callback<Boolean> callback) {
-        DatabaseReference mapReference = FirebaseConfig.getDatabase()
-                .child("village-map")
-                .child(String.valueOf(villageId))
-                .child(nick);
-
-        mapReference.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                callback.call(dataSnapshot.exists());
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-            }
-        });
     }
 
     public void close() {

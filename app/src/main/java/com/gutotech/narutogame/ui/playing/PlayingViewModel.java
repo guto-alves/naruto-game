@@ -68,6 +68,7 @@ import com.gutotech.narutogame.utils.MusicUtils;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 public class PlayingViewModel extends AndroidViewModel implements ExpandableListView.OnChildClickListener {
     private final static int USER_GROUP = 0;
@@ -215,15 +216,15 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
     BagItemsAdapter.OnItemClickListener onRamenClickListener = (itemClicked, position) -> {
         Ramen ramen = (Ramen) itemClicked;
 
-        if (CharOn.character.getFormulas().isFull()) {
+        if (mCharacter.getFormulas().isFull()) {
             mDismissBagDialogEvent.call();
             mShowWarningDialogEvent.setValue(R.string.attributes_are_already_full);
             return;
         }
 
-        CharOn.character.getFormulas().addHeath(ramen.getRecovers());
-        CharOn.character.getFormulas().addChakra(ramen.getRecovers());
-        CharOn.character.getFormulas().addStamina(ramen.getRecovers());
+        mCharacter.getFormulas().addHeath(ramen.getRecovers());
+        mCharacter.getFormulas().addChakra(ramen.getRecovers());
+        mCharacter.getFormulas().addStamina(ramen.getRecovers());
 
         ramen.setInventory(ramen.getInventory() - 1);
 
@@ -239,7 +240,7 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
             }
         }
 
-        CharacterRepository.getInstance().save(CharOn.character);
+        CharacterRepository.getInstance().save(mCharacter);
         mRamens.setValue(ramens);
     };
 
@@ -266,17 +267,16 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
 
         mScrolls.setValue(scrolls);
 
-        if (CharOn.character.isMap()) {
-            MapRepository.getInstance().exit(CharOn.character.getMapId());
+        if (mCharacter.isMap()) {
+            MapRepository.getInstance().exit(mCharacter.getMapId(), mCharacter.getNick());
         }
 
-        CharacterRepository.getInstance().save(CharOn.character);
+        mCharacter.setMapId(scroll.getVillage().ordinal());
+        CharacterRepository.getInstance().save(mCharacter);
+
         mDismissBagDialogEvent.call();
 
         VillageMapFragment villageMapFragment = new VillageMapFragment();
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("village", scroll.getVillage());
-        villageMapFragment.setArguments(bundle);
         setCurrentSection(villageMapFragment);
     };
 
@@ -506,7 +506,7 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
         int minutesRemaining = currentMinute % 2 == 0 ? 1 : 0;
         int secondsRemaining = 59 - currentSecond;
 
-        healing.set(String.format("00:%02d:%02d", minutesRemaining, secondsRemaining));
+        healing.set(String.format(Locale.US, "00:%02d:%02d", minutesRemaining, secondsRemaining));
 
         if (!mCharacter.isBattle()) {
             if (minutesRemaining == 0 && secondsRemaining == 0) {
@@ -528,7 +528,7 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
         int minutesRemaining = 59 - minute;
         int secondsRemaining = 59 - second;
 
-        variousRoutines.set(String.format("%02d:%02d:%02d",
+        variousRoutines.set(String.format(Locale.US, "%02d:%02d:%02d",
                 hoursRemaining, minutesRemaining, secondsRemaining));
 
         if (hoursRemaining == 0 && minutesRemaining == 0 && secondsRemaining == 0) {

@@ -591,7 +591,6 @@ public class DojoBattlePvpViewModel extends AndroidViewModel
 
         saveBattle();
 
-        CharOn.character.battleId = "";
         CharOn.character.setBattle(false);
     }
 

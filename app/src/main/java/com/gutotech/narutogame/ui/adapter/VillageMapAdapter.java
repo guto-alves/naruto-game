@@ -51,13 +51,15 @@ public class VillageMapAdapter extends RecyclerView.Adapter<VillageMapAdapter.Vi
 
     private VillageMapPopupWindow mPopupWindow;
 
-    public VillageMapAdapter(Context context, List<Integer> placeEntries, OnMapClickListener listener) {
+    public VillageMapAdapter(Context context, List<Integer> placeEntries,
+                             OnMapClickListener listener) {
         mContext = context;
         mPlaceEntries = placeEntries;
         mOnMapClickListener = listener;
 
         mPopupWindow = new VillageMapPopupWindow(context);
-        mPopupWindow.setBattleClickListener(opponent -> mOnMapClickListener.onBattleClick(opponent));
+        mPopupWindow.setBattleClickListener(opponent ->
+                mOnMapClickListener.onBattleClick(opponent));
     }
 
     @NonNull
@@ -81,14 +83,12 @@ public class VillageMapAdapter extends RecyclerView.Adapter<VillageMapAdapter.Vi
             List<Character> characterList = mMap.get(position);
 
             if (characterList != null) {
-                Character character;
-
                 if (IS_PLACE_ENTRY && characterList.contains(CharOn.character)) {
                     holder.backgroundImageView.setImageResource(R.drawable.layout_map_me2);
-                } else {
+                } else if (!IS_PLACE_ENTRY) {
                     final int TOTAL_CHARS = characterList.size();
 
-                    character = characterList.get(random.nextInt(TOTAL_CHARS));
+                    Character character = characterList.get(random.nextInt(TOTAL_CHARS));
 
                     if (character.getNick().equals(CharOn.character.getNick())) {
                         holder.backgroundImageView.setImageResource(R.drawable.layout_map_me2);
@@ -107,6 +107,10 @@ public class VillageMapAdapter extends RecyclerView.Adapter<VillageMapAdapter.Vi
             }
         }
 
+        if (mPopupWindow.isShowing() && mPopupWindow.getPosition() == position) {
+            mPopupWindow.setCharactersList(mMap.get(position), position);
+        }
+
         holder.itemView.setOnTouchListener(new View.OnTouchListener() {
             private GestureDetectorCompat mDetector = new GestureDetectorCompat(mContext,
                     new GestureDetector.SimpleOnGestureListener() {
@@ -117,7 +121,7 @@ public class VillageMapAdapter extends RecyclerView.Adapter<VillageMapAdapter.Vi
 
                         @Override
                         public boolean onSingleTapUp(MotionEvent e) {
-                            mPopupWindow.setCharactersList(mMap.get(position));
+                            mPopupWindow.setCharactersList(mMap.get(position), position);
 
                             int xoff;
                             int yoff;

@@ -46,6 +46,16 @@ public class Battle extends BaseObservable {
         attackStart = DateCustom.getTimeInMillis();
     }
 
+    public Battle(String id, Character player1, Character player2) {
+        this.id = id;
+        this.player1 = player1;
+        this.player2 = player2;
+        status = Status.CONTINUE;
+        currentPlayer = 1;
+        playerCount = 2;
+        attackStart = DateCustom.getTimeInMillis();
+    }
+
     public String getId() {
         return id;
     }

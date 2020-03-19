@@ -119,13 +119,9 @@ public class DojoBattlePvpFragment extends Fragment implements SectionFragment {
                 @Override
                 public void onClick(@NonNull View widget) {
                     mViewModel.exit();
-                    if (CharOn.character.battleId.contains("VILLAGEMAP-PVP")) {
-                        Bundle args = new Bundle();
-                        args.putSerializable("village", Village.values()[CharOn.character.getMapId()]);
 
-                        VillageMapFragment villageMapFragment = new VillageMapFragment();
-                        villageMapFragment.setArguments(args);
-                        FragmentUtil.goTo(getActivity(), villageMapFragment);
+                    if (CharOn.character.battleId.contains("VILLAGEMAP-PVP")) {
+                        FragmentUtil.goTo(getActivity(), new VillageMapFragment());
                     } else {
                         FragmentUtil.goTo(getActivity(), new DojoFragment());
                     }

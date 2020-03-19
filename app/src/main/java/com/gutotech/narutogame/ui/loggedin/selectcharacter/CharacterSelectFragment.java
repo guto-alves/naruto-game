@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
@@ -23,6 +24,8 @@ import com.gutotech.narutogame.ui.adapter.CharacterSelectAdapter;
 import com.gutotech.narutogame.ui.loggedin.newcharacteer.CharacterCreateFragment;
 import com.gutotech.narutogame.ui.playing.PlayingActivity;
 import com.gutotech.narutogame.utils.FragmentUtil;
+
+import es.dmoral.toasty.Toasty;
 
 public class CharacterSelectFragment extends Fragment implements SectionFragment, ResultListener,
         CharacterSelectAdapter.CharacterSelecetedListener {
@@ -93,8 +96,8 @@ public class CharacterSelectFragment extends Fragment implements SectionFragment
     }
 
     @Override
-    public void onFailure(int resId) {
-        Toast.makeText(getContext(), resId, Toast.LENGTH_SHORT).show();
+    public void onFailure(@StringRes int resId) {
+        Toasty.info(getContext(), resId, Toast.LENGTH_SHORT).show();
     }
 
     @Override

@@ -83,23 +83,23 @@ public class HomeFragment extends Fragment implements ResultListener, SectionFra
         return binding.getRoot();
     }
 
-    private ProgressDialog progressDialog = new ProgressDialog();
+    private ProgressDialog mProgressDialog = new ProgressDialog();
 
     @Override
     public void onStarted() {
-        progressDialog.show(getParentFragmentManager(), "ProgressDialog");
+        mProgressDialog.openDialog(getParentFragmentManager());
     }
 
     @Override
     public void onSuccess() {
-        progressDialog.dismiss();
+        mProgressDialog.dismiss();
         startActivity(new Intent(getActivity(), LoggedInActivity.class));
         getActivity().finish();
     }
 
     @Override
     public void onFailure(int resId) {
-        progressDialog.dismiss();
+        mProgressDialog.dismiss();
         Toasty.error(getActivity(), resId, Toast.LENGTH_SHORT).show();
     }
 

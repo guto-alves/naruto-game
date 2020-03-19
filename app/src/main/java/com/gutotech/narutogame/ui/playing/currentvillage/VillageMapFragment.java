@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.Village;
 import com.gutotech.narutogame.databinding.FragmentVillageMapBinding;
+import com.gutotech.narutogame.ui.ProgressDialog;
 import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.adapter.VillageMapAdapter;
 import com.gutotech.narutogame.data.model.CharOn;
@@ -32,17 +33,7 @@ public class VillageMapFragment extends Fragment implements SectionFragment {
         FragmentVillageMapBinding binding = DataBindingUtil.inflate(inflater,
                 R.layout.fragment_village_map, container, false);
 
-        Village village = null;
-
-        Bundle bundle = getArguments();
-
-        if (bundle != null) {
-            village = (Village) bundle.getSerializable("village");
-        }
-
-        if (village == null) {
-            village = CharOn.character.getVillage();
-        }
+        Village village = Village.values()[CharOn.character.getMapId()];
 
         binding.villageMapRecyclerView.setBackgroundResource(village.mapResId);
 
@@ -60,6 +51,18 @@ public class VillageMapFragment extends Fragment implements SectionFragment {
         viewModel.getCharactersOnTheMap().observe(getViewLifecycleOwner(), adapter::setMap);
 
         viewModel.getShowWarningDialogEvent().observe(getViewLifecycleOwner(), this::showDialog);
+
+        ProgressDialog progressDialog = new ProgressDialog();
+
+        viewModel.getShowProgressDialogEvent().observe(getViewLifecycleOwner(), aVoid ->
+                progressDialog.openDialog(getParentFragmentManager()));
+
+        viewModel.getDismissProgressDialogEvent().observe(getViewLifecycleOwner(), aVoid -> {
+            if (progressDialog.isVisible()) {
+                progressDialog.dismiss();
+            }
+        });
+
 
         ScaleGestureDetector mScaleGestureDetector = new ScaleGestureDetector(getActivity(),
                 new ScaleGestureDetector.SimpleOnScaleGestureListener() {
