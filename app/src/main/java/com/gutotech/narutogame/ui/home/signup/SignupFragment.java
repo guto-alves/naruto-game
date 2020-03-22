@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.databinding.FragmentSignupBinding;
 import com.gutotech.narutogame.ui.SectionFragment;
-import com.gutotech.narutogame.ui.ProgressDialog;
+import com.gutotech.narutogame.ui.ProgressDialogFragment;
 import com.gutotech.narutogame.ui.ResultListener;
 import com.gutotech.narutogame.utils.FragmentUtil;
 import com.gutotech.narutogame.utils.StorageUtil;
@@ -43,7 +43,7 @@ public class SignupFragment extends Fragment implements ResultListener, SectionF
         return binding.getRoot();
     }
 
-    private ProgressDialog progressDialog = new ProgressDialog();
+    private ProgressDialogFragment progressDialog = new ProgressDialogFragment();
 
     @Override
     public void onStarted() {

@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,13 +17,13 @@ import android.widget.ScrollView;
 
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.CharOn;
-import com.gutotech.narutogame.ui.QuestionDialog;
+import com.gutotech.narutogame.ui.QuestionDialogFragment;
 import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.adapter.ProfilesAdapter;
 import com.gutotech.narutogame.utils.FragmentUtil;
 
 public class ChangeImageFragment extends Fragment implements SectionFragment,
-        QuestionDialog.OnButtonsClickListener {
+        QuestionDialogFragment.QuestionDialogListener {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -50,14 +51,16 @@ public class ChangeImageFragment extends Fragment implements SectionFragment,
     private final ProfilesAdapter.OnProfileClickListener mOnProfileClickListener = profilePath -> {
         mProfilePath = profilePath;
 
-        QuestionDialog questionDialog = QuestionDialog.newInstance(
+        QuestionDialogFragment questionDialog = QuestionDialogFragment.newInstance(
                 R.string.question_change_profile_image);
-        questionDialog.setTargetFragment(ChangeImageFragment.this, 300);
-        questionDialog.openDialog(getParentFragmentManager());
+        questionDialog.show(getFragmentManager(), "QuestionDialogFragment");
+//        questionDialog.openDialog(getParentFragmentManager());
     };
 
     @Override
     public void onPositiveClick() {
+        Log.i("ChangeImage", "onPositiveClick");
+
         CharOn.character.setProfilePath(mProfilePath);
 
         try {

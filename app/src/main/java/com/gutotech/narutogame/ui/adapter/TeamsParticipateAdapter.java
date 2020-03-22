@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.Team;
+import com.gutotech.narutogame.data.repository.TeamRepository;
 
 import java.util.List;
 
@@ -59,8 +60,13 @@ public class TeamsParticipateAdapter extends RecyclerView.Adapter<TeamsParticipa
             Team team = mTeams.get(i);
 
             holder.teamNameTextView.setText(team.getName());
-            holder.leaderNameTextView.setText(team.getLeader());
-            holder.membersQuantityTextView.setText(String.valueOf(team.getMembersQuantity()));
+
+            TeamRepository.getInstance().getMember(team.getMemberIds().get(0), leader -> {
+                holder.leaderNameTextView.setText(leader.getNick());
+            });
+
+            holder.membersQuantityTextView.setText(String.valueOf(team.getMemberIds().size()));
+
             holder.participateButton.setOnClickListener(v ->
                     mOnParticipateClickListener.onParticipateClick(team));
 

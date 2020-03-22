@@ -1,7 +1,6 @@
 package com.gutotech.narutogame.ui.playing;
 
 import android.app.Application;
-import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.view.View;
@@ -32,7 +31,7 @@ import com.gutotech.narutogame.ui.loggedin.accountinfo.UserDataFragment;
 import com.gutotech.narutogame.ui.loggedin.changepassword.PasswordChangeFragment;
 import com.gutotech.narutogame.ui.loggedin.newcharacteer.CharacterCreateFragment;
 import com.gutotech.narutogame.ui.loggedin.selectcharacter.CharacterSelectFragment;
-import com.gutotech.narutogame.ui.loggedin.support.SuporteFragment;
+import com.gutotech.narutogame.ui.loggedin.support.SupportFragment;
 import com.gutotech.narutogame.ui.playing.academy.AcademyJutsuFragment;
 import com.gutotech.narutogame.ui.playing.academy.AcademyTrainingFragment;
 import com.gutotech.narutogame.ui.playing.academy.GraduationsFragment;
@@ -138,7 +137,7 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
                     }
                 } else if (propertyId == BR.titles) {
                     mTitles.postValue(mCharacter.getTitles());
-                } else if (propertyId == BR.graduationId) {
+                } else if (propertyId == BR.graduationId || propertyId == BR.team) {
                     buildMenu();
                 }
             }
@@ -333,7 +332,7 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
             sections0.add(new CharacterCreateFragment());
             sections0.add(new CharacterSelectFragment());
         }
-        sections0.add(new SuporteFragment());
+        sections0.add(new SupportFragment());
 
         List<SectionFragment> sections1 = new ArrayList<>();
         sections1.add(new CharacterStatusFragment());
@@ -389,7 +388,8 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
 
         List<SectionFragment> sections5 = new ArrayList<>();
         if (!mCharacter.isMission() && !mCharacter.isBattle() && !mCharacter.isHospital() &&
-                !mCharacter.isMap() && !mCharacter.isDojoWaitQueue() && mCharacter.getGraduationId() > 0) {
+                !mCharacter.isMap() && !mCharacter.isDojoWaitQueue()) {
+//            && mCharacter.getGraduationId() > 0
             if (TextUtils.isEmpty(mCharacter.getTeam())) {
                 sections5.add(new TeamParticipateFragment());
                 sections5.add(new TeamCreateFragment());

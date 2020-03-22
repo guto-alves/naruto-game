@@ -7,7 +7,9 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.gutotech.narutogame.R;
+import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.model.Team;
+import com.gutotech.narutogame.data.repository.TeamRepository;
 import com.gutotech.narutogame.utils.SingleLiveEvent;
 
 public class TeamCreateViewModel extends ViewModel {
@@ -15,13 +17,18 @@ public class TeamCreateViewModel extends ViewModel {
 
     private SingleLiveEvent<Integer> mShowWarningDialogEvent = new SingleLiveEvent<>();
 
+    private TeamRepository mTeamRepository = TeamRepository.getInstance();
+
     LiveData<Integer> getShowWarningDialogEvent() {
         return mShowWarningDialogEvent;
     }
 
     public void onCreateTeamClick() {
         if (isValidName()) {
-            Team team = new Team();
+            mTeamRepository.save(new Team(mTeamRepository.generateId(), teamName.get(),
+                    1, CharOn.character.getVillage().ordinal(), 0, 5000,
+                    1000, CharOn.character.getId()));
+            CharOn.character.setTeam(teamName.get());
         }
     }
 

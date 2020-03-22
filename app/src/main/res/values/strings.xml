@@ -413,9 +413,9 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
         tentaremos solucionar seu problema. Basta abrir um Ticket de Suporte informando o que houve
         e tentaremos te ajudar.</string>
     <string name="category">Category</string>
-    <string name="no_file_selected">No file selected</string>
+    <string name="no_file_selected">No image selected</string>
     <string name="when_it_happened">When it happened</string>
-    <string name="have_an_image_of_the_problem">Have an image of the problem? Use the file field below to add it</string>
+    <string name="have_an_image_of_the_problem">Have an image of the problem? Use the image field below to add it</string>
     <string name="updated_at">Updated at</string>
 
     <!-- JUTSUS -->
@@ -1180,7 +1180,9 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
         find an opponent, we will not be able to send you to battle and you could lose by inactivity.</string>
     <string name="waiting_room">Waiting room</string>
     <string name="team_information">TEAM INFORMATION</string>
-    <string name="team_info_description">The Team can only be excluded when only the Leader is in it, with no active mission. If a ninja changes teams, he will not earn the same reward in another team, he will only earn rewards at levels not yet reached.</string>
+    <string name="team_info_description">The Team can only be excluded when only the Leader is in
+        it, with no active mission. If a ninja changes teams, he will not earn the same reward in
+        another team, he will only earn rewards at levels not yet reached.</string>
     <string name="button_message_to_members">Message to Members</string>
     <string name="button_leave_the_team">Leave the Team</string>
     <string name="team_members">Team Members: %s</string>
@@ -2056,6 +2058,18 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="you_cannot_battle_with_an_ally">You cannot battle with an ally!</string>
     <string name="attributes_uppercase">ATTRIBUTES</string>
     <string name="reached_the_limit_of_daily_time_missions">You have reached the limit of daily time missions!</string>
+    <string name="invalid_title">Invalid title</string>
+    <string name="permission_denied">Permission Denied</string>
+    <string name="permission_denied_message">To attach an image of the problem you need to accept the permission</string>
+    <string name="invalid_description">Invalid description</string>
+    <string name="ticket_errors">The following issues prevented your ticket from being created:</string>
+    <string name="image">Image</string>
+    <string name="date">Date</string>
+    <string name="new_status">New</string>
+    <string name="awaiting_staff_reply">Awaiting STAFF reply</string>
+    <string name="closed">Closed</string>
+    <string name="error_uploading_image">Error uploading image</string>
+    <string name="team_exp_progress">%d Exp de / %d Exp</string>
 
 
 </resources>

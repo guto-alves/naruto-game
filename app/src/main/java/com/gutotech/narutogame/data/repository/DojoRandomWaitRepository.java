@@ -24,7 +24,7 @@ public class DojoRandomWaitRepository {
             if (!isQueue) {
                 DatabaseReference waitQueueReference = FirebaseConfig.getDatabase()
                         .child("dojo-random-wait")
-                        .child(CharOn.character.getNick());
+                        .child(CharOn.character.getId());
 
                 waitQueueReference.setValue(CharOn.character);
             }
@@ -34,7 +34,7 @@ public class DojoRandomWaitRepository {
     private void isQueue(Callback<Boolean> callback) {
         DatabaseReference waitQueueReference = FirebaseConfig.getDatabase()
                 .child("dojo-random-wait")
-                .child(CharOn.character.getNick());
+                .child(CharOn.character.getId());
 
         waitQueueReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -51,7 +51,7 @@ public class DojoRandomWaitRepository {
     public void exit() {
         DatabaseReference waitQueueReference = FirebaseConfig.getDatabase()
                 .child("dojo-random-wait")
-                .child(CharOn.character.getNick());
+                .child(CharOn.character.getId());
 
         waitQueueReference.removeValue();
     }
@@ -62,7 +62,7 @@ public class DojoRandomWaitRepository {
     public void observe(Callback<String> callback) {
         battleIdReference = FirebaseConfig.getDatabase()
                 .child("dojo-pvp-ids")
-                .child(CharOn.character.getNick())
+                .child(CharOn.character.getId())
                 .child("battleId");
 
         removeObserver();
@@ -92,7 +92,7 @@ public class DojoRandomWaitRepository {
     public void removeId() {
         DatabaseReference battleIdReference = FirebaseConfig.getDatabase()
                 .child("dojo-pvp-ids")
-                .child(CharOn.character.getNick());
+                .child(CharOn.character.getId());
 
         battleIdReference.removeValue();
     }

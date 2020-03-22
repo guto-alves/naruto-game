@@ -18,7 +18,7 @@ public class DateCustom {
     }
 
     public static String getDate() {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
         return simpleDateFormat.format(System.currentTimeMillis());
     }
 

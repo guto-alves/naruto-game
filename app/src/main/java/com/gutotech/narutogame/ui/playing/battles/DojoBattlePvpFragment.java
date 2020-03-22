@@ -27,12 +27,10 @@ import com.gutotech.narutogame.data.model.BattleLog;
 import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.model.Formulas;
 import com.gutotech.narutogame.data.model.Jutsu;
-import com.gutotech.narutogame.data.model.Village;
-import com.gutotech.narutogame.data.repository.BattleRepository;
 import com.gutotech.narutogame.databinding.FragmentDojoBattlePvpBinding;
 import com.gutotech.narutogame.databinding.PopupAttributesStatusBinding;
 import com.gutotech.narutogame.ui.SectionFragment;
-import com.gutotech.narutogame.ui.WarningDialog;
+import com.gutotech.narutogame.ui.WarningDialogFragment;
 import com.gutotech.narutogame.ui.adapter.BattleLogAdapter;
 import com.gutotech.narutogame.ui.adapter.BuffsDebuffStatusAdapter;
 import com.gutotech.narutogame.ui.adapter.JutsusAdapter;
@@ -227,7 +225,7 @@ public class DojoBattlePvpFragment extends Fragment implements SectionFragment {
     }
 
     private void showWarningDialog(@StringRes int resid) {
-        WarningDialog dialog = WarningDialog.newInstance(resid);
+        WarningDialogFragment dialog = WarningDialogFragment.newInstance(resid);
         dialog.openDialog(getParentFragmentManager());
     }
 

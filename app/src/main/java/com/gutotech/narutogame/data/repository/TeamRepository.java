@@ -10,6 +10,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.gutotech.narutogame.data.firebase.FirebaseConfig;
+import com.gutotech.narutogame.data.model.Character;
 import com.gutotech.narutogame.data.model.Team;
 
 import java.util.ArrayList;
@@ -38,12 +39,39 @@ public class TeamRepository {
         teamReference.setValue(team);
     }
 
+    public void remove(Team team) {
+        DatabaseReference teamReference = FirebaseConfig.getDatabase()
+                .child("teams")
+                .child(String.valueOf(team.getVillageId()))
+                .child(team.getId());
+
+        teamReference.removeValue();
+    }
+
+    public void getTeam(String teamName, Callback<Team> callback) {
+        DatabaseReference teamReference = FirebaseConfig.getDatabase()
+                .child("teams");
+
+        Query query = teamReference.orderByChild("name").equalTo(teamName);
+
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                callback.call(dataSnapshot.getValue(Team.class));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
+    }
+
     public void filterTeams(String teamName, int villageId, Callback<List<Team>> callback) {
         DatabaseReference teamReference = FirebaseConfig.getDatabase()
                 .child("teams")
                 .child(String.valueOf(villageId));
 
-        Query query = teamReference.orderByChild("teamName").startAt(teamName)
+        Query query = teamReference.orderByChild("name").startAt(teamName)
                 .endAt(teamName + "\uf8ff");
 
         query.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -60,8 +88,30 @@ public class TeamRepository {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
             }
         });
     }
+
+    public void getMember(String charId, Callback<Character> callback) {
+        CharacterRepository.getInstance().getChar(charId, callback);
+    }
+
+    public void isValidName(String teamName, Callback<Boolean> callback) {
+        DatabaseReference teamReference = FirebaseConfig.getDatabase()
+                .child("teams");
+
+        Query query = teamReference.orderByChild("name").equalTo(teamName);
+
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                callback.call(dataSnapshot.getChildrenCount() == 0);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
+    }
+
 }

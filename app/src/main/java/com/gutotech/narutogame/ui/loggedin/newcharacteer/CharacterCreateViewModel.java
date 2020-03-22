@@ -117,7 +117,7 @@ public class CharacterCreateViewModel extends ViewModel
 
                     NinjaLucky ninjaLucky = new NinjaLucky();
                     ninjaLucky.deselectAllDaysPlayed();
-                    NinjaLuckyRepository.getInstance().save(ninjaLucky, mChar.getNick());
+                    NinjaLuckyRepository.getInstance().save(mChar.getId(), ninjaLucky);
 
                     NinjaStatisticsRepository.getInstance().add(mChar.getNinja().getId());
 

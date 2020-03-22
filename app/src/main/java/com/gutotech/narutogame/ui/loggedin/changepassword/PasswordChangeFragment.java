@@ -6,7 +6,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
 import androidx.databinding.DataBindingUtil;
-import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -18,7 +17,7 @@ import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.databinding.FragmentPasswordChangeBinding;
 import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.ResultListener;
-import com.gutotech.narutogame.ui.ProgressDialog;
+import com.gutotech.narutogame.ui.ProgressDialogFragment;
 import com.gutotech.narutogame.utils.FragmentUtil;
 import com.gutotech.narutogame.utils.StorageUtil;
 
@@ -54,7 +53,7 @@ public class PasswordChangeFragment extends Fragment implements SectionFragment,
         builder.create().show();
     }
 
-    private ProgressDialog progressDialog = new ProgressDialog();
+    private ProgressDialogFragment progressDialog = new ProgressDialogFragment();
 
     @Override
     public void onStarted() {

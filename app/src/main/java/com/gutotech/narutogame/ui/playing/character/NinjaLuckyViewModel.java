@@ -48,7 +48,7 @@ public class NinjaLuckyViewModel extends ViewModel {
     private NinjaLucky ninjaLucky;
 
     public NinjaLuckyViewModel() {
-        NinjaLuckyRepository.getInstance().get(CharOn.character.getNick(), data -> {
+        NinjaLuckyRepository.getInstance().get(CharOn.character.getId(), data -> {
             ninjaLucky = data;
             daysOfWeek.postValue(ninjaLucky.getDaysOfWeek());
         });
@@ -136,7 +136,7 @@ public class NinjaLuckyViewModel extends ViewModel {
 
         ninjaLucky.selectDayAsPlayed(DateCustom.getDayOfWeek());
         ninjaLucky.setLastDayPlayed(DateCustom.getDayOfWeek());
-        NinjaLuckyRepository.getInstance().save(ninjaLucky, CharOn.character.getNick());
+        NinjaLuckyRepository.getInstance().save(CharOn.character.getId(), ninjaLucky);
     }
 
     void onAnimationEnd() {

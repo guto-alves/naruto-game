@@ -1,7 +1,6 @@
 package com.gutotech.narutogame.data.repository;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.MutableLiveData;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -11,50 +10,44 @@ import com.gutotech.narutogame.data.firebase.FirebaseConfig;
 import com.gutotech.narutogame.data.model.NinjaLucky;
 
 public class NinjaLuckyRepository {
-    private static NinjaLuckyRepository sInstance;
+    private static NinjaLuckyRepository sInstance = new NinjaLuckyRepository();
 
     private NinjaLuckyRepository() {
     }
 
     public static NinjaLuckyRepository getInstance() {
-        if (sInstance == null) {
-            sInstance = new NinjaLuckyRepository();
-        }
         return sInstance;
     }
 
-
-    public void save(NinjaLucky ninjaLucky, String charNick) {
+    public void save(String charId, NinjaLucky ninjaLucky) {
         DatabaseReference ninjaLuckyRef = FirebaseConfig.getDatabase()
                 .child("ninja-lucky")
-                .child(charNick);
+                .child(charId);
 
         ninjaLuckyRef.setValue(ninjaLucky);
     }
 
-    public void delete(String charNick) {
+    public void delete(String charId) {
         DatabaseReference ninjaLuckyRef = FirebaseConfig.getDatabase()
                 .child("ninja-lucky")
-                .child(charNick);
+                .child(charId);
 
         ninjaLuckyRef.removeValue();
     }
 
-    private DatabaseReference ninjaLuckyRef;
-    private ValueEventListener ninjaLuckyListener;
+    private DatabaseReference mNinjaLuckyRef;
+    private ValueEventListener mNinjaLuckyListener;
 
-    public void get(String charNick, Listener<NinjaLucky> listener) {
-        MutableLiveData k;
-
-        ninjaLuckyRef = FirebaseConfig.getDatabase()
+    public void get(String charId, Callback<NinjaLucky> listener) {
+        mNinjaLuckyRef = FirebaseConfig.getDatabase()
                 .child("ninja-lucky")
-                .child(charNick);
+                .child(charId);
 
-        ninjaLuckyListener = ninjaLuckyRef.addValueEventListener(new ValueEventListener() {
+        mNinjaLuckyListener = mNinjaLuckyRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 NinjaLucky ninjaLucky = dataSnapshot.getValue(NinjaLucky.class);
-                listener.onDataChange(ninjaLucky);
+                listener.call(ninjaLucky);
             }
 
             @Override
@@ -64,12 +57,8 @@ public class NinjaLuckyRepository {
     }
 
     public void removeEventListener() {
-        if (ninjaLuckyListener != null) {
-            ninjaLuckyRef.removeEventListener(ninjaLuckyListener);
+        if (mNinjaLuckyListener != null) {
+            mNinjaLuckyRef.removeEventListener(mNinjaLuckyListener);
         }
-    }
-
-    public interface Listener<T> {
-        void onDataChange(T data);
     }
 }

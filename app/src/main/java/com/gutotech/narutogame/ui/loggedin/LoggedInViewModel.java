@@ -17,7 +17,7 @@ import com.gutotech.narutogame.ui.loggedin.accountinfo.UserDataFragment;
 import com.gutotech.narutogame.ui.loggedin.changepassword.PasswordChangeFragment;
 import com.gutotech.narutogame.ui.loggedin.newcharacteer.CharacterCreateFragment;
 import com.gutotech.narutogame.ui.loggedin.selectcharacter.CharacterSelectFragment;
-import com.gutotech.narutogame.ui.loggedin.support.SuporteFragment;
+import com.gutotech.narutogame.ui.loggedin.support.SupportFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,7 +56,7 @@ public class LoggedInViewModel extends ViewModel implements ExpandableListView.O
         List<SectionFragment> sections1 = new ArrayList<>();
         sections1.add(new UserDataFragment());
         sections1.add(new PasswordChangeFragment());
-        sections1.add(new SuporteFragment());
+        sections1.add(new SupportFragment());
 
         List<SectionFragment> sections2 = new ArrayList<>();
         sections2.add(new CharacterSelectFragment());

@@ -60,7 +60,7 @@
     <string name="hint_city">Cidade</string>
     <string name="label_name">Nome:</string>
     <string name="section_title">Título da seção</string>
-    <string name="title">Títutlo</string>
+    <string name="title">Título</string>
     <string name="section_support_new_ticket">SUPPORT - NEW SUPPORT TICKET</string>
     <string name="section_dojo_challenge">DOJO CHALLENGE</string>
     <string name="forgot_my_password">Esqueci minha senha</string>
@@ -332,14 +332,13 @@
     <string name="ticket_created">Ticket de Suporte Criado com Sucesso</string>
     <string name="welcome_to_support_system">BEM VINDO AO SISTEMA DE SUPORTE</string>
     <string name="welcome_to_support_system_description">Bem-vindo ao Novo Sistema do Suporte, onde
-        tentaremos solucionar seu problema. Basta abrir um Ticket de Suporte informando o que houve
-        e tentaremos te ajudar.</string>
+        tentaremos solucionar seu problema. Basta abrir um Ticket de Suporte informando o que houve.</string>
     <string name="category">Categoria</string>
-    <string name="no_file_selected">Nenhum arquivo selecionado</string>
+    <string name="no_file_selected">Nenhuma imagem selecionada</string>
     <string name="when_it_happened">Quando ocorreu</string>
-    <string name="have_an_image_of_the_problem">Possui alguma imagem do problema? Use os campos de
-        arquivo abaixo para adiciona-las</string>
-    <string name="updated_at">Data de Atualização</string>
+    <string name="have_an_image_of_the_problem">Possui alguma imagem do problema? Use o campo de
+        imagem abaixo para adiciona-la</string>
+    <string name="updated_at">Atualizado em</string>
     <string name="button_open_support_ticket">Abrir Ticket de Suporte</string>
     <string name="button_go_to_the_queue">Ir para a fila</string>
     <string name="button_cancel_mission">Cancelar Missão</string>
@@ -2007,6 +2006,17 @@
     <string name="you_cannot_battle_with_an_ally">Você não pode batalhar com um aliado!</string>
     <string name="attributes_uppercase">Atributos</string>
     <string name="reached_the_limit_of_daily_time_missions">Você atingiu o limite de missões de tempo diário!</string>
-
+    <string name="permission_denied">Permissão Negada</string>
+    <string name="permission_denied_message">Para anexar uma imagem do problema é necessário aceitar a permissão</string>
+    <string name="invalid_title">Título inválido</string>
+    <string name="invalid_description">Descrição inválida</string>
+    <string name="ticket_errors">Os seguintes problemas impediram que seu ticket fosse criado:</string>
+    <string name="image">Imagem</string>
+    <string name="date">Data</string>
+    <string name="new_status">New</string>
+    <string name="awaiting_staff_reply">Awaiting STAFF reply</string>
+    <string name="closed">Fechado</string>
+    <string name="error_uploading_image">Erro ao fazer upload da imagem</string>
+    <string name="team_exp_progress">%d Exp de / %d Exp</string>
 
 </resources>

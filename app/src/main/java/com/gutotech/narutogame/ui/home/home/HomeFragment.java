@@ -18,7 +18,7 @@ import android.widget.Toast;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.repository.AuthRepository;
 import com.gutotech.narutogame.databinding.FragmentHomeBinding;
-import com.gutotech.narutogame.ui.ProgressDialog;
+import com.gutotech.narutogame.ui.ProgressDialogFragment;
 import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.adapter.KagesSliderAdapter;
 import com.gutotech.narutogame.ui.adapter.NinjaStatisticsAdapter;
@@ -83,7 +83,7 @@ public class HomeFragment extends Fragment implements ResultListener, SectionFra
         return binding.getRoot();
     }
 
-    private ProgressDialog mProgressDialog = new ProgressDialog();
+    private ProgressDialogFragment mProgressDialog = new ProgressDialogFragment();
 
     @Override
     public void onStarted() {

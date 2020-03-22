@@ -1,22 +1,33 @@
 package com.gutotech.narutogame.data.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Team {
     private String id;
     private String name;
     private int level;
+    private int villageId;
     private int currentExp;
     private int expUpar;
-
     private int score;
-    private int villageId;
 
-    private String leader;
-    private String member1;
-    private String member2;
-    private String member3;
-    private int membersQuantity;
+    private List<String> memberIds;
 
     public Team() {
+    }
+
+    public Team(String id, String name, int level, int villageId, int currentExp, int expUpar,
+                int score, String leader) {
+        this.id = id;
+        this.name = name;
+        this.level = level;
+        this.villageId = villageId;
+        this.currentExp = currentExp;
+        this.expUpar = expUpar;
+        this.score = score;
+        memberIds = new ArrayList<>();
+        memberIds.add(leader);
     }
 
     public String getId() {
@@ -75,43 +86,11 @@ public class Team {
         this.villageId = villageId;
     }
 
-    public String getLeader() {
-        return leader;
+    public List<String> getMemberIds() {
+        return memberIds;
     }
 
-    public void setLeader(String leader) {
-        this.leader = leader;
-    }
-
-    public String getMember1() {
-        return member1;
-    }
-
-    public void setMember1(String member1) {
-        this.member1 = member1;
-    }
-
-    public String getMember2() {
-        return member2;
-    }
-
-    public void setMember2(String member2) {
-        this.member2 = member2;
-    }
-
-    public String getMember3() {
-        return member3;
-    }
-
-    public void setMember3(String member3) {
-        this.member3 = member3;
-    }
-
-    public int getMembersQuantity() {
-        return membersQuantity;
-    }
-
-    public void setMembersQuantity(int membersQuantity) {
-        this.membersQuantity = membersQuantity;
+    public void setMemberIds(List<String> memberIds) {
+        this.memberIds = memberIds;
     }
 }

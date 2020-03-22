@@ -7,7 +7,7 @@
     android:layout_marginBottom="3dp">
 
     <TextView
-        android:id="@+id/tituloTextView"
+        android:id="@+id/titleTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -15,19 +15,21 @@
         android:gravity="center"
         android:text="@string/title"
         android:textColor="@color/tab_text_selector"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline19"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/categoriaTextView"
+        android:id="@+id/categoryTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:text="@string/category"
         android:textColor="@android:color/holo_orange_dark"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline21"
         app:layout_constraintStart_toStartOf="@+id/guideline19"
@@ -41,13 +43,14 @@
         android:layout_marginBottom="8dp"
         android:text="@string/status"
         android:textColor="@android:color/holo_blue_dark"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline22"
         app:layout_constraintStart_toStartOf="@+id/guideline21"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/atualizacaoTextView"
+        android:id="@+id/updatedAtTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"

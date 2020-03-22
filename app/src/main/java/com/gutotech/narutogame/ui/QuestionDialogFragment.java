@@ -1,5 +1,6 @@
 package com.gutotech.narutogame.ui;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,27 +16,30 @@ import androidx.fragment.app.FragmentManager;
 
 import com.gutotech.narutogame.R;
 
-public class QuestionDialog extends DialogFragment {
-    private static final String EXTRA_QUESTION = "question";
-    private static final String DIALOG_TAG = "QuestionDialog";
+public class QuestionDialogFragment extends DialogFragment {
 
-    public interface OnButtonsClickListener {
+    public interface QuestionDialogListener {
         void onPositiveClick();
-
         void onCancelClick();
     }
 
-    public static QuestionDialog newInstance(@StringRes int questionId) {
+    private static final String EXTRA_QUESTION = "question";
+    private static final String DIALOG_TAG = "QuestionDialogFragment";
+
+    private QuestionDialogListener mListener;
+
+    public static QuestionDialogFragment newInstance(@StringRes int questionId) {
         Bundle args = new Bundle();
         args.putInt(EXTRA_QUESTION, questionId);
 
-        QuestionDialog questionDialog = new QuestionDialog();
+        QuestionDialogFragment questionDialog = new QuestionDialogFragment();
         questionDialog.setArguments(args);
         return questionDialog;
     }
 
     public void openDialog(FragmentManager fragmentManager) {
         if (fragmentManager.findFragmentByTag(DIALOG_TAG) == null) {
+            setCancelable(false);
             show(fragmentManager, DIALOG_TAG);
         }
     }
@@ -53,10 +57,8 @@ public class QuestionDialog extends DialogFragment {
 
         Button okButton = view.findViewById(R.id.okButton);
         okButton.setOnClickListener(v -> {
-            OnButtonsClickListener clickListener = (OnButtonsClickListener) getTargetFragment();
-
-            if (clickListener != null) {
-                clickListener.onPositiveClick();
+            if (mListener != null) {
+                mListener.onPositiveClick();
             }
 
             dismiss();
@@ -64,15 +66,23 @@ public class QuestionDialog extends DialogFragment {
 
         Button cancelButton = view.findViewById(R.id.cancelButton);
         cancelButton.setOnClickListener(v -> {
-            OnButtonsClickListener clickListener = (OnButtonsClickListener) getTargetFragment();
-
-            if (clickListener != null) {
-                clickListener.onCancelClick();
+            if (mListener != null) {
+                mListener.onCancelClick();
             }
 
             dismiss();
         });
 
         return view;
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+
+        try {
+            mListener = (QuestionDialogListener) context;
+        } catch (ClassCastException ignored) {
+        }
     }
 }

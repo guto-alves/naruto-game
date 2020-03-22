@@ -12,12 +12,14 @@ import android.widget.TextView;
 
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.ui.SectionFragment;
-import com.gutotech.narutogame.ui.WarningDialog;
+import com.gutotech.narutogame.ui.WarningDialogFragment;
 import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.utils.FragmentUtil;
 import com.gutotech.narutogame.utils.StorageUtil;
 
-public class HospitalRoomFragment extends Fragment implements SectionFragment {
+public class HospitalRoomFragment extends Fragment implements SectionFragment,
+        WarningDialogFragment.WarningDialogListener {
+    private int mPayment;
 
     public HospitalRoomFragment() {
     }
@@ -34,24 +36,18 @@ public class HospitalRoomFragment extends Fragment implements SectionFragment {
         if (CharOn.character.getFormulas().isFull()) {
             CharOn.character.setHospital(false);
         } else {
-            int payment = 20 * CharOn.character.getLevel();
+            mPayment = 20 * CharOn.character.getLevel();
 
             TextView textView = view.findViewById(R.id.descriptionTextView);
-            textView.setText(getString(R.string.pay_specialist_description, payment));
+            textView.setText(getString(R.string.pay_specialist_description, mPayment));
 
             Button payButton = view.findViewById(R.id.payButton);
-            payButton.setText(getString(R.string.pay_ry, payment));
+            payButton.setText(getString(R.string.pay_ry, mPayment));
             payButton.setOnClickListener(view1 -> {
-                if (CharOn.character.getRyous() >= payment) {
-                    WarningDialog warningDialog = WarningDialog.newInstance(R.string.paid_hospital);
-                    warningDialog.setOnCloseListener(view2 -> {
-                        CharOn.character.subRyous(payment);
-                        CharOn.character.full();
-                        CharOn.character.setHospital(false);
-                    });
+                if (CharOn.character.getRyous() >= mPayment) {
+                    WarningDialogFragment warningDialog = WarningDialogFragment.newInstance(
+                            R.string.paid_hospital);
                     warningDialog.openDialog(getParentFragmentManager());
-                } else {
-                    // you don't have ryous enough
                 }
             });
         }
@@ -59,6 +55,13 @@ public class HospitalRoomFragment extends Fragment implements SectionFragment {
         FragmentUtil.setSectionTitle(getActivity(), R.string.section_hospital_room);
 
         return view;
+    }
+
+    @Override
+    public void onCloseClick() {
+        CharOn.character.subRyous(mPayment);
+        CharOn.character.full();
+        CharOn.character.setHospital(false);
     }
 
     @Override

@@ -17,7 +17,7 @@ import android.view.ViewGroup;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.Village;
 import com.gutotech.narutogame.databinding.FragmentVillageMapBinding;
-import com.gutotech.narutogame.ui.ProgressDialog;
+import com.gutotech.narutogame.ui.ProgressDialogFragment;
 import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.adapter.VillageMapAdapter;
 import com.gutotech.narutogame.data.model.CharOn;
@@ -52,7 +52,7 @@ public class VillageMapFragment extends Fragment implements SectionFragment {
 
         viewModel.getShowWarningDialogEvent().observe(getViewLifecycleOwner(), this::showDialog);
 
-        ProgressDialog progressDialog = new ProgressDialog();
+        ProgressDialogFragment progressDialog = new ProgressDialogFragment();
 
         viewModel.getShowProgressDialogEvent().observe(getViewLifecycleOwner(), aVoid ->
                 progressDialog.openDialog(getParentFragmentManager()));

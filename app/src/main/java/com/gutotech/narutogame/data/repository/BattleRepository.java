@@ -31,8 +31,8 @@ public class BattleRepository {
 
         Battle battle = new Battle(id, player, opponent);
 
-        saveId(battle.getPlayer1().getNick(), id);
-        saveId(battle.getPlayer2().getNick(), id);
+        saveId(battle.getPlayer1().getId(), id);
+        saveId(battle.getPlayer2().getId(), id);
 
         save(battle);
     }
@@ -53,19 +53,19 @@ public class BattleRepository {
         battleReference.removeValue();
     }
 
-    private void saveId(String nick, String id) {
+    private void saveId(String charId, String battleId) {
         DatabaseReference battleReference = FirebaseConfig.getDatabase()
                 .child("battle-ids")
-                .child(nick)
+                .child(charId)
                 .child("id");
 
-        battleReference.setValue(id);
+        battleReference.setValue(battleId);
     }
 
-    public void removeId(String nick) {
+    public void removeId(String charId) {
         DatabaseReference battleReference = FirebaseConfig.getDatabase()
                 .child("battle-ids")
-                .child(nick);
+                .child(charId);
 
         battleReference.removeValue();
     }
@@ -149,10 +149,10 @@ public class BattleRepository {
     }
 
 
-    public void opponentAvailable(String nick, Callback<Boolean> callback) {
+    public void opponentAvailable(String charId, Callback<Boolean> callback) {
         DatabaseReference mapReference = FirebaseConfig.getDatabase()
                 .child("battle-ids")
-                .child(nick)
+                .child(charId)
                 .child("id");
 
         mapReference.addListenerForSingleValueEvent(new ValueEventListener() {

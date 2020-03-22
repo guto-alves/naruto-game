@@ -31,22 +31,22 @@ public class MapRepository {
         DatabaseReference mapReference = FirebaseConfig.getDatabase()
                 .child("village-map")
                 .child(String.valueOf(villageId))
-                .child(CharOn.character.getNick());
+                .child(CharOn.character.getId());
 
         mapReference.setValue(CharOn.character);
     }
 
-    public void exit(int villageId, String nick) {
+    public void exit(int villageId, String charId) {
         DatabaseReference mapReference = FirebaseConfig.getDatabase()
                 .child("village-map")
                 .child(String.valueOf(villageId))
-                .child(nick);
+                .child(charId);
 
         mapReference.removeValue();
     }
 
     private DatabaseReference mMapReference;
-    private ValueEventListener mapValueEventListener;
+    private ValueEventListener mMapValueEventListener;
 
     public LiveData<Map<Integer, List<Character>>> load(int villageId) {
         MutableLiveData<Map<Integer, List<Character>>> data = new MutableLiveData<>();
@@ -57,7 +57,7 @@ public class MapRepository {
                 .child("village-map")
                 .child(String.valueOf(villageId));
 
-        mapValueEventListener = mMapReference.addValueEventListener(new ValueEventListener() {
+        mMapValueEventListener = mMapReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 map.clear();
@@ -86,9 +86,9 @@ public class MapRepository {
     }
 
     public void close() {
-        if (mapValueEventListener != null) {
-            mMapReference.removeEventListener(mapValueEventListener);
-            mapValueEventListener = null;
+        if (mMapValueEventListener != null) {
+            mMapReference.removeEventListener(mMapValueEventListener);
+            mMapValueEventListener = null;
         }
     }
 }

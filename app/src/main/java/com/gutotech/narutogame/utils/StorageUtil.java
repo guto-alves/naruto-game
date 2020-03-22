@@ -1,19 +1,27 @@
 package com.gutotech.narutogame.utils;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.text.TextUtils;
 import android.widget.ImageView;
 
+import androidx.annotation.NonNull;
+
 import com.bumptech.glide.Glide;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.firebase.FirebaseConfig;
 import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.repository.Callback;
 
+import java.io.ByteArrayOutputStream;
 import java.security.SecureRandom;
 import java.util.List;
+import java.util.UUID;
 
 public class StorageUtil {
     private final static SecureRandom random = new SecureRandom();
@@ -106,7 +114,7 @@ public class StorageUtil {
         downloadImage(context, imageReference, imageView);
     }
 
-    public static void downloadTopImage(Context context, ImageView imageView, int ninjaId) {
+    static void downloadTopImage(Context context, ImageView imageView, int ninjaId) {
         StorageReference imageReference = FirebaseConfig.getStorage()
                 .child("images")
                 .child("topo-logado")
@@ -154,4 +162,34 @@ public class StorageUtil {
     private static String generateProfileId() {
         return String.valueOf(random.nextInt(6) + 1);
     }
+
+    public static void upload(Bitmap bitmap, Callback<String> successListener,
+                              Callback<Exception> failureListener) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 70, baos);
+        byte[] bytes = baos.toByteArray();
+
+        final String imageName = UUID.randomUUID().toString() + ".jpg";
+
+        StorageReference imageRef = FirebaseConfig.getStorage()
+                .child("images")
+                .child("tickets")
+                .child(imageName);
+
+        UploadTask uploadTask = imageRef.putBytes(bytes);
+
+        uploadTask.addOnFailureListener(failureListener::call);
+
+        uploadTask.addOnSuccessListener(taskSnapshot -> {
+            successListener.call(imageName);
+
+//            taskSnapshot.getStorage().getDownloadUrl().addOnSuccessListener(
+//                    uri -> {
+////                                                    nomeDoArquivoTextView.setText(nomeDaImagem);
+////                                                    ticket.setImagem(nomeDaImagem);
+//                    }
+//            );
+        });
+    }
+
 }

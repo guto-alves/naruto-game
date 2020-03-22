@@ -17,62 +17,74 @@ import com.gutotech.narutogame.data.model.Ticket;
 import java.util.List;
 
 public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.MyViewHolder> {
-    private Context context;
-    private List<Ticket> ticketList;
+    private Context mContext;
+    private List<Ticket> mTicketList;
 
-    public TicketsAdapter(Context context, List<Ticket> ticketList) {
-        this.context = context;
-        this.ticketList = ticketList;
+    private String[] mCategories;
+
+    public TicketsAdapter(Context context) {
+        mContext = context;
+        mCategories = mContext.getResources().getStringArray(R.array.ticket_categories_list);
     }
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View itemLista = LayoutInflater.from(context).inflate(R.layout.recycler_tickets, viewGroup, false);
-        return new MyViewHolder(itemLista);
+        View itemView = LayoutInflater.from(mContext).inflate(
+                R.layout.recycler_tickets, viewGroup, false);
+        return new MyViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
-        Ticket ticket = ticketList.get(i);
+        if (mTicketList != null) {
+            Ticket ticket = mTicketList.get(i);
 
-        myViewHolder.tituloTextView.setText(ticket.getTitulo());
-        myViewHolder.tituloTextView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
+            myViewHolder.titleTextView.setText(ticket.getTitle());
+            myViewHolder.categoryTextView.setText(mCategories[ticket.getCategory()]);
+            myViewHolder.statusTextView.setText(ticket.getStatus().statusId);
+            myViewHolder.updatedAtTextView.setText(ticket.getDateUpdated());
+
+            myViewHolder.titleTextView.setOnClickListener(v -> {
+
+            });
+
+            if (i % 2 == 0) {
+                myViewHolder.bgTickets.setBackgroundColor(
+                        mContext.getResources().getColor(R.color.colorItem1));
+            } else {
+                myViewHolder.bgTickets.setBackgroundColor(
+                        mContext.getResources().getColor(R.color.colorItem2));
             }
-        });
-        myViewHolder.categoriaTextView.setText(ticket.getCategoria());
-        myViewHolder.statusTextView.setText(ticket.getStatus());
-        myViewHolder.atualizacaoTextView.setText(ticket.getDataAtualizacao());
-
-        if (i % 2 == 0)
-            myViewHolder.bgTickets.setBackgroundColor(context.getResources().getColor(R.color.colorItem1));
-        else
-            myViewHolder.bgTickets.setBackgroundColor(context.getResources().getColor(R.color.colorItem2));
+        }
     }
 
     @Override
     public int getItemCount() {
-        return ticketList.size();
+        return mTicketList != null ? mTicketList.size() : 0;
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
-        private TextView tituloTextView;
-        private TextView categoriaTextView;
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
+        private TextView titleTextView;
+        private TextView categoryTextView;
         private TextView statusTextView;
-        private TextView atualizacaoTextView;
+        private TextView updatedAtTextView;
         private ConstraintLayout bgTickets;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            tituloTextView = itemView.findViewById(R.id.tituloTextView);
-            categoriaTextView = itemView.findViewById(R.id.categoriaTextView);
+            titleTextView = itemView.findViewById(R.id.titleTextView);
+            categoryTextView = itemView.findViewById(R.id.categoryTextView);
             statusTextView = itemView.findViewById(R.id.statusTextView);
-            atualizacaoTextView = itemView.findViewById(R.id.atualizacaoTextView);
+            updatedAtTextView = itemView.findViewById(R.id.updatedAtTextView);
             bgTickets = itemView.findViewById(R.id.bgTictkes);
         }
+    }
+
+    public void setTicketList(List<Ticket> ticketList) {
+        mTicketList = ticketList;
+        notifyDataSetChanged();
     }
 }

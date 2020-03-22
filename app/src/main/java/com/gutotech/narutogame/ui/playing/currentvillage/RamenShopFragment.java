@@ -15,7 +15,7 @@ import android.view.ViewGroup;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.databinding.FragmentRamemShopBinding;
 import com.gutotech.narutogame.ui.SectionFragment;
-import com.gutotech.narutogame.ui.WarningDialog;
+import com.gutotech.narutogame.ui.WarningDialogFragment;
 import com.gutotech.narutogame.ui.adapter.ItemShopAdapter;
 import com.gutotech.narutogame.data.model.ShopUtils;
 import com.gutotech.narutogame.utils.FragmentUtil;
@@ -46,7 +46,7 @@ public class RamenShopFragment extends Fragment implements SectionFragment {
     }
 
     private void showWarningDialog(@StringRes int resid) {
-        WarningDialog dialog = WarningDialog.newInstance(resid);
+        WarningDialogFragment dialog = WarningDialogFragment.newInstance(resid);
         dialog.openDialog(getParentFragmentManager());
     }
 

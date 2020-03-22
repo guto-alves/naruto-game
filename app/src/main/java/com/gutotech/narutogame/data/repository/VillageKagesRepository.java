@@ -58,15 +58,25 @@ public class VillageKagesRepository {
                     List<Character> characters = new ArrayList<>();
 
                     for (DataSnapshot snap : dataSnapshot.getChildren()) {
-                        characters.add(snap.getValue(Character.class));
+                        Character character = snap.getValue(Character.class);
+
+                        if (character == null){
+                            continue;
+                        }
+
+                        if (character.getGraduationId() > 0) {
+                            characters.add(snap.getValue(Character.class));
+                        }
                     }
 
-                    sortByLevel(characters);
-
-                    callback.call(characters.get(characters.size() - 1));
-                } else {
-                    callback.call(null);
+                    if(characters.size() > 0) {
+                        sortByLevel(characters);
+                        callback.call(characters.get(characters.size() - 1));
+                        return;
+                    }
                 }
+
+                callback.call(null);
             }
 
             @Override

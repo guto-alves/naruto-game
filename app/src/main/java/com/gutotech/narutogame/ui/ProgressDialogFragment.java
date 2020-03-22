@@ -14,8 +14,8 @@ import androidx.fragment.app.FragmentManager;
 
 import com.gutotech.narutogame.R;
 
-public class ProgressDialog extends DialogFragment {
-    private static final String DIALOG_TAG = "ProgressDialog";
+public class ProgressDialogFragment extends DialogFragment {
+    private static final String DIALOG_TAG = "ProgressDialogFragment";
 
     @Nullable
     @Override

@@ -1,184 +1,187 @@
 package com.gutotech.narutogame.data.model;
 
-import java.util.List;
+import androidx.annotation.StringRes;
+import androidx.databinding.BaseObservable;
+import androidx.databinding.Bindable;
+import androidx.databinding.library.baseAdapters.BR;
 
-public class Ticket {
-    private String categoria;
-    private String titulo;
-    private String dataOcorrido;
-    private String horaOcorrido;
-    private String descricao;
-    private String imagem;
+import com.gutotech.narutogame.R;
 
-    private String status;
-    private String dataCriacao;
-    private String horaCriacao;
-    private String dataAtualizacao;
-    private String horaAtualizacao;
+public class Ticket extends BaseObservable {
+    public enum Status {
+        NEW(R.string.new_status), AWAITING(R.string.awaiting_staff_reply), CLOSED(R.string.closed);
+
+        @StringRes
+        public final int statusId;
+
+        Status(int statusId) {
+            this.statusId = statusId;
+        }
+    }
+
+    private String id;
     private String email;
-    private String ultimoAResponder;
-    private List<RespostaTicket> respostas;
+    private int category;
+    private String title;
+    private String dateOccurred;
+    private String timeOccurred;
+    private String description;
+    private String image;
+
+    private Status status;
+    private String dateCreation;
+    private String timeCreation;
+    private String dateUpdated;
+    private String timeUpdated;
+
+    private String lastToAnswer;
 
     public Ticket() {
     }
 
-    public Ticket(String titulo, String categoria, String status, String dataCriacao, String dataAtualizacao, String descricao) {
-        this.titulo = titulo;
-        this.categoria = categoria;
+    public Ticket(String id, String email, Status status) {
+        this.id = id;
+        this.email = email;
         this.status = status;
-        this.dataCriacao = dataCriacao;
-        this.dataAtualizacao = dataAtualizacao;
-        this.descricao = descricao;
+        lastToAnswer = "--";
     }
 
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-
-    public String getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
+    public Ticket(String email, int category, String title, String dateOccurred,
+                  String timeOccurred, String description, String image, Status status,
+                  String dateCreation, String timeCreation, String dateUpdated, String timeUpdated,
+                  String lastToAnswer) {
+        this.email = email;
+        this.category = category;
+        this.title = title;
+        this.dateOccurred = dateOccurred;
+        this.timeOccurred = timeOccurred;
+        this.description = description;
+        this.image = image;
         this.status = status;
+        this.dateCreation = dateCreation;
+        this.timeCreation = timeCreation;
+        this.dateUpdated = dateUpdated;
+        this.timeUpdated = timeUpdated;
+        this.lastToAnswer = lastToAnswer;
     }
 
-    public String getDataCriacao() {
-        return dataCriacao;
+    public String getId() {
+        return id;
     }
 
-    public void setDataCriacao(String dataCriacao) {
-        this.dataCriacao = dataCriacao;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String getHoraCriacao() {
-        return horaCriacao;
-    }
-
-    public void setHoraCriacao(String horaCriacao) {
-        this.horaCriacao = horaCriacao;
-    }
-
-    public String getDataAtualizacao() {
-        return dataAtualizacao;
-    }
-
-    public void setDataAtualizacao(String dataAtualizacao) {
-        this.dataAtualizacao = dataAtualizacao;
-    }
-
-    public String getHoraAtualizacao() {
-        return horaAtualizacao;
-    }
-
-    public void setHoraAtualizacao(String horaAtualizacao) {
-        this.horaAtualizacao = horaAtualizacao;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
+    @Bindable
     public String getEmail() {
         return email;
     }
 
     public void setEmail(String email) {
         this.email = email;
+        notifyPropertyChanged(BR.email);
     }
 
-    public String getUltimoAResponder() {
-        return ultimoAResponder;
+    public int getCategory() {
+        return category;
     }
 
-    public void setUltimoAResponder(String ultimoAResponder) {
-        this.ultimoAResponder = ultimoAResponder;
+    public void setCategory(int category) {
+        this.category = category;
     }
 
-    public String getDataOcorrido() {
-        return dataOcorrido;
+    @Bindable
+    public String getTitle() {
+        return title;
     }
 
-    public void setDataOcorrido(String dataOcorrido) {
-        this.dataOcorrido = dataOcorrido;
+    public void setTitle(String title) {
+        this.title = title;
+        notifyPropertyChanged(BR.title);
     }
 
-    public String getHoraOcorrido() {
-        return horaOcorrido;
+    public String getDateOccurred() {
+        return dateOccurred;
     }
 
-    public void setHoraOcorrido(String horaOcorrido) {
-        this.horaOcorrido = horaOcorrido;
+    public void setDateOccurred(String dateOccurred) {
+        this.dateOccurred = dateOccurred;
     }
 
-    public List<RespostaTicket> getRespostas() {
-        return respostas;
+    public String getTimeOccurred() {
+        return timeOccurred;
     }
 
-    public void setRespostas(List<RespostaTicket> respostas) {
-        this.respostas = respostas;
+    public void setTimeOccurred(String timeOccurred) {
+        this.timeOccurred = timeOccurred;
     }
 
-    private class RespostaTicket {
-        private String resposta;
-        private String respondidoPor;
-        private String data;
-        private String horario;
-
-        public String getResposta() {
-            return resposta;
-        }
-
-        public void setResposta(String resposta) {
-            this.resposta = resposta;
-        }
-
-        public String getRespondidoPor() {
-            return respondidoPor;
-        }
-
-        public void setRespondidoPor(String respondidoPor) {
-            this.respondidoPor = respondidoPor;
-        }
-
-        public String getData() {
-            return data;
-        }
-
-        public void setData(String data) {
-            this.data = data;
-        }
-
-        public String getHorario() {
-            return horario;
-        }
-
-        public void setHorario(String horario) {
-            this.horario = horario;
-        }
+    @Bindable
+    public String getDescription() {
+        return description;
     }
 
-    public String getImagem() {
-        return imagem;
+    public void setDescription(String description) {
+        this.description = description;
+        notifyPropertyChanged(BR.description);
     }
 
-    public void setImagem(String imagem) {
-        this.imagem = imagem;
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public String getDateCreation() {
+        return dateCreation;
+    }
+
+    public void setDateCreation(String dateCreation) {
+        this.dateCreation = dateCreation;
+    }
+
+    public String getTimeCreation() {
+        return timeCreation;
+    }
+
+    public void setTimeCreation(String timeCreation) {
+        this.timeCreation = timeCreation;
+    }
+
+    public String getDateUpdated() {
+        return dateUpdated;
+    }
+
+    public void setDateUpdated(String dateUpdated) {
+        this.dateUpdated = dateUpdated;
+    }
+
+    public String getTimeUpdated() {
+        return timeUpdated;
+    }
+
+    public void setTimeUpdated(String timeUpdated) {
+        this.timeUpdated = timeUpdated;
+    }
+
+    @Bindable
+    public String getLastToAnswer() {
+        return lastToAnswer;
+    }
+
+    public void setLastToAnswer(String lastToAnswer) {
+        this.lastToAnswer = lastToAnswer;
+        notifyPropertyChanged(BR.lastToAnswer);
     }
 }

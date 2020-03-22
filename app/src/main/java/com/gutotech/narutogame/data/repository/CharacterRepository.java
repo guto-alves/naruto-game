@@ -85,7 +85,8 @@ public class CharacterRepository {
         MutableLiveData<List<Character>> data = new MutableLiveData<>();
 
         Query charactersQuery = FirebaseConfig.getDatabase()
-                .child("characters").orderByChild("playerId")
+                .child("characters")
+                .orderByChild("playerId")
                 .equalTo(playerId);
 
         charactersQuery.addValueEventListener(new ValueEventListener() {

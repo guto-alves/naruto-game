@@ -1,6 +1,5 @@
 package com.gutotech.narutogame.ui.playing.currentvillage;
 
-import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -16,12 +15,12 @@ import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.MissionInfo;
 import com.gutotech.narutogame.data.repository.MissionRepository;
 import com.gutotech.narutogame.databinding.FragmentMissionsWaitingBinding;
-import com.gutotech.narutogame.ui.QuestionDialog;
+import com.gutotech.narutogame.ui.QuestionDialogFragment;
 import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.utils.FragmentUtil;
 
 public class MissionsWaitingFragment extends Fragment implements SectionFragment,
-        QuestionDialog.OnButtonsClickListener {
+        QuestionDialogFragment.QuestionDialogListener {
     private MissionsWaitingViewModel mViewModel;
     private FragmentMissionsWaitingBinding mBinding;
 
@@ -31,32 +30,6 @@ public class MissionsWaitingFragment extends Fragment implements SectionFragment
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_missions_waiting,
                 container, false);
 
-        mBinding.cancelButton.setOnClickListener(v -> showQuestionDialog());
-
-        FragmentUtil.setSectionTitle(getActivity(), R.string.section_mission_status);
-
-        return mBinding.getRoot();
-    }
-
-    private void showQuestionDialog() {
-        QuestionDialog questionDialog = QuestionDialog.newInstance(
-                R.string.question_cancel_mission);
-        questionDialog.setTargetFragment(this, 300);
-        questionDialog.openDialog(getParentFragmentManager());
-    }
-
-    @Override
-    public void onPositiveClick() {
-        mViewModel.onCancelMissionButtonPressed();
-    }
-
-    @Override
-    public void onCancelClick() {
-    }
-
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
         MissionRepository.getInstance().getMissionTime(mission -> {
             mViewModel = new ViewModelProvider(this, new MissionsWaitingViewModelFactory(mission))
                     .get(MissionsWaitingViewModel.class);
@@ -75,6 +48,28 @@ public class MissionsWaitingFragment extends Fragment implements SectionFragment
                 mBinding.missionCompletedLayout.setVisibility(View.VISIBLE);
             });
         });
+
+        mBinding.cancelButton.setOnClickListener(v -> showQuestionDialog());
+
+        FragmentUtil.setSectionTitle(getActivity(), R.string.section_mission_status);
+
+        return mBinding.getRoot();
+    }
+
+    private void showQuestionDialog() {
+        QuestionDialogFragment questionDialog = QuestionDialogFragment.newInstance(
+                R.string.question_cancel_mission);
+        questionDialog.setTargetFragment(this, 300);
+        questionDialog.openDialog(getParentFragmentManager());
+    }
+
+    @Override
+    public void onPositiveClick() {
+        mViewModel.onCancelMissionButtonPressed();
+    }
+
+    @Override
+    public void onCancelClick() {
     }
 
     @Override

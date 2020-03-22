@@ -15,7 +15,7 @@ import android.widget.ArrayAdapter;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.databinding.FragmentVipPlayerBinding;
 import com.gutotech.narutogame.ui.SectionFragment;
-import com.gutotech.narutogame.ui.WarningDialog;
+import com.gutotech.narutogame.ui.WarningDialogFragment;
 import com.gutotech.narutogame.utils.FragmentUtil;
 import com.gutotech.narutogame.utils.SpannableStringBuilderCustom;
 import com.gutotech.narutogame.utils.StorageUtil;
@@ -66,7 +66,7 @@ public class VipPlayerFragment extends Fragment implements SectionFragment {
         });
 
         viewModel.getShowWarningDialogEvent().observe(getViewLifecycleOwner(), resid -> {
-            WarningDialog dialog = WarningDialog.newInstance(resid);
+            WarningDialogFragment dialog = WarningDialogFragment.newInstance(resid);
             dialog.openDialog(getParentFragmentManager());
         });
 

@@ -31,7 +31,7 @@ import com.gutotech.narutogame.data.repository.BattleRepository;
 import com.gutotech.narutogame.databinding.FragmentDojoBatalhaLutadorBinding;
 import com.gutotech.narutogame.databinding.PopupAttributesStatusBinding;
 import com.gutotech.narutogame.ui.SectionFragment;
-import com.gutotech.narutogame.ui.WarningDialog;
+import com.gutotech.narutogame.ui.WarningDialogFragment;
 import com.gutotech.narutogame.ui.adapter.BattleLogAdapter;
 import com.gutotech.narutogame.ui.adapter.BuffsDebuffStatusAdapter;
 import com.gutotech.narutogame.ui.adapter.JutsusAdapter;
@@ -224,7 +224,7 @@ public class DojoBatalhaLutadorFragment extends Fragment implements SectionFragm
     }
 
     private void showWarningDialog(@StringRes int resid) {
-        WarningDialog dialog = WarningDialog.newInstance(resid);
+        WarningDialogFragment dialog = WarningDialogFragment.newInstance(resid);
         dialog.openDialog(getParentFragmentManager());
     }
 

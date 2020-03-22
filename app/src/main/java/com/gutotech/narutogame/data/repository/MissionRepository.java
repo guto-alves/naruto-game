@@ -23,7 +23,7 @@ public class MissionRepository {
     public void acceptTimeMission(TimeMission timeMission) {
         DatabaseReference missionReference = FirebaseConfig.getDatabase()
                 .child("missions")
-                .child(CharOn.character.getNick())
+                .child(CharOn.character.getId())
                 .child("time-mission");
 
         missionReference.setValue(timeMission);
@@ -32,7 +32,7 @@ public class MissionRepository {
     public void getMissionTime(Callback<TimeMission> callback) {
         DatabaseReference missionReference = FirebaseConfig.getDatabase()
                 .child("missions")
-                .child(CharOn.character.getNick())
+                .child(CharOn.character.getId())
                 .child("time-mission");
 
         missionReference.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -43,7 +43,6 @@ public class MissionRepository {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
             }
         });
     }
@@ -51,7 +50,7 @@ public class MissionRepository {
     public void finishTimeMission() {
         DatabaseReference missionReference = FirebaseConfig.getDatabase()
                 .child("missions")
-                .child(CharOn.character.getNick())
+                .child(CharOn.character.getId())
                 .child("time-mission");
 
         missionReference.removeValue();

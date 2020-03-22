@@ -30,7 +30,7 @@ import com.gutotech.narutogame.data.repository.AuthRepository;
 import com.gutotech.narutogame.databinding.ActivityPlayingBinding;
 import com.gutotech.narutogame.databinding.DialogGameRoutinesBinding;
 import com.gutotech.narutogame.databinding.NavHeaderPlayingBinding;
-import com.gutotech.narutogame.ui.WarningDialog;
+import com.gutotech.narutogame.ui.WarningDialogFragment;
 import com.gutotech.narutogame.ui.adapter.BagItemsAdapter;
 import com.gutotech.narutogame.ui.adapter.ChatMessageAdapter;
 import com.gutotech.narutogame.ui.adapter.ExpandableLoggedinAdapter;
@@ -91,7 +91,7 @@ public class PlayingActivity extends AppCompatActivity {
         });
 
         mViewModel.getShowWarningDialogEvent().observe(this, resid -> {
-            WarningDialog dialog = WarningDialog.newInstance(resid);
+            WarningDialogFragment dialog = WarningDialogFragment.newInstance(resid);
             dialog.openDialog(getSupportFragmentManager());
         });
 

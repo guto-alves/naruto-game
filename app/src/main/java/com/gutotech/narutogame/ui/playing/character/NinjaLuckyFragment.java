@@ -6,7 +6,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
 import androidx.databinding.DataBindingUtil;
-import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -18,7 +17,7 @@ import android.widget.ImageView;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.databinding.FragmentNinjaLuckyBinding;
 import com.gutotech.narutogame.ui.SectionFragment;
-import com.gutotech.narutogame.ui.WarningDialog;
+import com.gutotech.narutogame.ui.WarningDialogFragment;
 import com.gutotech.narutogame.ui.adapter.LotteryItemsAdapter;
 import com.gutotech.narutogame.utils.FragmentUtil;
 
@@ -51,8 +50,7 @@ public class NinjaLuckyFragment extends Fragment implements SectionFragment {
         mViewModel.getShowPremiumEvent().observe(getViewLifecycleOwner(), premiun ->
                 mBinding.premiumTextView.setText(premiun));
 
-        mViewModel.getShowWarningDialogEvent().observe(getViewLifecycleOwner(), resId ->
-                showWarningDialog(resId));
+        mViewModel.getShowWarningDialogEvent().observe(getViewLifecycleOwner(), this::showWarningDialog);
 
         FragmentUtil.setSectionTitle(getActivity(), R.string.section_ninja_lucky);
 
@@ -60,7 +58,7 @@ public class NinjaLuckyFragment extends Fragment implements SectionFragment {
     }
 
     private void showWarningDialog(@StringRes int resid) {
-        WarningDialog dialog = WarningDialog.newInstance(resid);
+        WarningDialogFragment dialog = WarningDialogFragment.newInstance(resid);
         dialog.openDialog(getParentFragmentManager());
     }
 

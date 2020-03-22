@@ -348,12 +348,14 @@ public class Character extends BaseObservable implements Serializable {
         this.online = online;
     }
 
+    @Bindable
     public String getTeam() {
         return team;
     }
 
     public void setTeam(String team) {
         this.team = team;
+        notifyPropertyChanged(BR.team);
     }
 
     @Bindable
