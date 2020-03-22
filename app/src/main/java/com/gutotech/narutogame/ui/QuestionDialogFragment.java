@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.gutotech.narutogame.R;
@@ -20,6 +21,7 @@ public class QuestionDialogFragment extends DialogFragment {
 
     public interface QuestionDialogListener {
         void onPositiveClick();
+
         void onCancelClick();
     }
 
@@ -29,17 +31,22 @@ public class QuestionDialogFragment extends DialogFragment {
     private QuestionDialogListener mListener;
 
     public static QuestionDialogFragment newInstance(@StringRes int questionId) {
+        return newInstance(null, questionId);
+    }
+
+    public static QuestionDialogFragment newInstance(Fragment targetFragment, @StringRes int questionId) {
         Bundle args = new Bundle();
         args.putInt(EXTRA_QUESTION, questionId);
 
         QuestionDialogFragment questionDialog = new QuestionDialogFragment();
+        questionDialog.setCancelable(false);
         questionDialog.setArguments(args);
+        questionDialog.setTargetFragment(targetFragment, 1);
         return questionDialog;
     }
 
     public void openDialog(FragmentManager fragmentManager) {
         if (fragmentManager.findFragmentByTag(DIALOG_TAG) == null) {
-            setCancelable(false);
             show(fragmentManager, DIALOG_TAG);
         }
     }
@@ -81,7 +88,7 @@ public class QuestionDialogFragment extends DialogFragment {
         super.onAttach(context);
 
         try {
-            mListener = (QuestionDialogListener) context;
+            mListener = (QuestionDialogListener) getTargetFragment();
         } catch (ClassCastException ignored) {
         }
     }

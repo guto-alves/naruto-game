@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.gutotech.narutogame.R;
@@ -34,21 +35,26 @@ public class WarningDialogFragment extends DialogFragment {
 
         WarningDialogFragment warningDialog = new WarningDialogFragment();
         warningDialog.setArguments(bundle);
+        warningDialog.setCancelable(false);
         return warningDialog;
     }
 
     public static WarningDialogFragment newInstance(@StringRes int warningId) {
+        return newInstance(null, warningId);
+    }
+
+    public static WarningDialogFragment newInstance(Fragment targetFragment, @StringRes int warningId) {
         Bundle bundle = new Bundle();
         bundle.putInt(EXTRA_WARNING, warningId);
 
         WarningDialogFragment warningDialog = new WarningDialogFragment();
         warningDialog.setArguments(bundle);
+        warningDialog.setTargetFragment(targetFragment, 1);
         return warningDialog;
     }
 
     public void openDialog(FragmentManager fragmentManager) {
         if (fragmentManager.findFragmentByTag(DIALOG_TAG) == null) {
-            setCancelable(false);
             show(fragmentManager, DIALOG_TAG);
         }
     }
@@ -88,7 +94,7 @@ public class WarningDialogFragment extends DialogFragment {
         super.onAttach(context);
 
         try {
-            mListener = (WarningDialogListener) context;
+            mListener = (WarningDialogListener) getTargetFragment();
         } catch (ClassCastException ignored) {
         }
     }
