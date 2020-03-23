@@ -2070,6 +2070,17 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="closed">Closed</string>
     <string name="error_uploading_image">Error uploading image</string>
     <string name="team_exp_progress">%d Exp de / %d Exp</string>
+    <string name="member">Member</string>
+    <string name="leader">Leader</string>
+    <string name="team_request_sent">Your request was sent. Now you just wait for the Leader choice.</string>
+    <string name="already_sent_an_request_to_this_team">You already have sent an request to this Team</string>
+    <string name="player">Player</string>
+    <string name="pendency">Pendency</string>
+    <string name="submit_changes">Submit Changes</string>
+    <string name="refuse">Refuse</string>
+    <string name="question_leave_the_team">Você realmente quer sair dessa Equipe? Serão necessário
+        0 ryous para sair. Lembrando que esse jogador não poderá mais participar dessa equipe.</string>
+    <string name="remove_member">Remove Member</string>
 
 
 </resources>

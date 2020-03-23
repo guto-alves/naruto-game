@@ -15,10 +15,15 @@ import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.repository.TeamRepository;
 import com.gutotech.narutogame.databinding.FragmentTeamDetailsBinding;
+import com.gutotech.narutogame.ui.QuestionDialogFragment;
 import com.gutotech.narutogame.ui.SectionFragment;
+import com.gutotech.narutogame.ui.adapter.TeamMembersAdapter;
+import com.gutotech.narutogame.ui.adapter.TeamRequestersAdapter;
 import com.gutotech.narutogame.utils.FragmentUtil;
 
-public class TeamDetailsFragment extends Fragment implements SectionFragment {
+public class TeamDetailsFragment extends Fragment implements SectionFragment,
+        QuestionDialogFragment.QuestionDialogListener {
+    private TeamDetailsViewModel mViewModel;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -30,21 +35,56 @@ public class TeamDetailsFragment extends Fragment implements SectionFragment {
         binding.teamInfoLayout.descriptionTextView.setText(R.string.team_info_description);
 
         TeamRepository.getInstance().getTeam(CharOn.character.getTeam(), team -> {
-            TeamDetailsViewModel viewModel = new ViewModelProvider(
+            mViewModel = new ViewModelProvider(
                     this, new TeamDetailsViewModelFactory(team))
                     .get(TeamDetailsViewModel.class);
 
-            binding.setViewModel(viewModel);
-        });
+            binding.setViewModel(mViewModel);
 
-     /*
-       Você realmente quer sair dessa Equipe? Serão necessário 0 ryous para
-       sair. Lembrando que esse jogador não poderá mais participar dessa equipe.
-    */
+            TeamMembersAdapter membersAdapter = new TeamMembersAdapter(getContext(), mViewModel);
+            binding.membersRecyclerView.setHasFixedSize(true);
+            binding.membersRecyclerView.setAdapter(membersAdapter);
+            mViewModel.getMembers().observe(getViewLifecycleOwner(), membersAdapter::setMembers);
+
+            if (team.getMemberIds().get(0).equals(CharOn.character.getId())) {
+                if (team.getMemberIds().size() == 1) {
+                    binding.deleteTeamButton.setVisibility(View.VISIBLE);
+                }
+
+                binding.requestersConstraintLayout.setVisibility(View.VISIBLE);
+
+                TeamRequestersAdapter requestersAdapter = new TeamRequestersAdapter(
+                        getContext(), mViewModel);
+                binding.requestersRecyclerView.setHasFixedSize(true);
+                binding.requestersRecyclerView.setAdapter(requestersAdapter);
+                mViewModel.getRequesters().observe(getViewLifecycleOwner(),
+                        requestersAdapter::setRequesters);
+            } else {
+                binding.leaveTeamButton.setVisibility(View.VISIBLE);
+            }
+
+            mViewModel.getShowQuestionDialogEvent().observe(getViewLifecycleOwner(), aVoid -> {
+                QuestionDialogFragment questionDialogFragment = QuestionDialogFragment.newInstance(
+                        this, R.string.question_leave_the_team);
+                questionDialogFragment.openDialog(getParentFragmentManager());
+            });
+
+            mViewModel.loadMembers();
+            mViewModel.loadRequesters();
+        });
 
         FragmentUtil.setSectionTitle(getActivity(), R.string.section_team);
 
         return binding.getRoot();
+    }
+
+    @Override
+    public void onPositiveClick() {
+        mViewModel.leaveTeam(CharOn.character.getId());
+    }
+
+    @Override
+    public void onCancelClick() {
     }
 
     @Override

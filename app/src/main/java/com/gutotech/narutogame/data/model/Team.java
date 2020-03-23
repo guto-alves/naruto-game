@@ -1,9 +1,13 @@
 package com.gutotech.narutogame.data.model;
 
+import androidx.databinding.BaseObservable;
+import androidx.databinding.Bindable;
+import androidx.databinding.library.baseAdapters.BR;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class Team {
+public class Team extends BaseObservable {
     private String id;
     private String name;
     private int level;
@@ -13,6 +17,8 @@ public class Team {
     private int score;
 
     private List<String> memberIds;
+
+    private List<String> requesterIds;
 
     public Team() {
     }
@@ -26,6 +32,7 @@ public class Team {
         this.currentExp = currentExp;
         this.expUpar = expUpar;
         this.score = score;
+
         memberIds = new ArrayList<>();
         memberIds.add(leader);
     }
@@ -38,12 +45,14 @@ public class Team {
         this.id = id;
     }
 
+    @Bindable
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
+        notifyPropertyChanged(BR.name);
     }
 
     public int getLevel() {
@@ -92,5 +101,13 @@ public class Team {
 
     public void setMemberIds(List<String> memberIds) {
         this.memberIds = memberIds;
+    }
+
+    public List<String> getRequesterIds() {
+        return requesterIds;
+    }
+
+    public void setRequesterIds(List<String> requesterIds) {
+        this.requesterIds = requesterIds;
     }
 }

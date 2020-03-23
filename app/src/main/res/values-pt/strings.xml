@@ -1113,9 +1113,9 @@
         inatividade.</string>
     <string name="waiting_room">Sala de espera</string>
     <string name="team_information">INFORMAÇÕES SOBRE EQUIPES</string>
-    <string name="team_info_description">The Team can only be excluded when only the Leader is in
-        it, with no active mission. If a ninja changes teams, he will not earn the same reward in
-        another team, he will only earn rewards at levels not yet reached.</string>
+    <string name="team_info_description">A Equipe só poderá ser excluida quando apenas o Líder
+        estiver nela, sem nenhuma missão ativa. Caso um ninja mude de equipe, não ganhará a mesma
+        recompensa em outra equipe, só ganhará recompensas em niveis ainda não atingidos.</string>
     <string name="button_message_to_members">Mensagem para Membros</string>
     <string name="button_leave_the_team">Sair da Equipe</string>
     <string name="team_members">Integrantes da Equipe: %s</string>
@@ -2018,5 +2018,16 @@
     <string name="closed">Fechado</string>
     <string name="error_uploading_image">Erro ao fazer upload da imagem</string>
     <string name="team_exp_progress">%d Exp de / %d Exp</string>
+    <string name="member">Integrante</string>
+    <string name="leader">Líder</string>
+    <string name="team_request_sent">Seu pedido para entrar na equipe foi enviado. Aguarde a aprovação do líder!</string>
+    <string name="already_sent_an_request_to_this_team">Você já enviou convite para essa Equipe</string>
+    <string name="player">Player</string>
+    <string name="pendency">Pendência(s)</string>
+    <string name="submit_changes">Enviar Alterações</string>
+    <string name="refuse">Recusar</string>
+    <string name="question_leave_the_team">Você realmente quer sair dessa Equipe? Serão necessário
+        0 ryous para sair. Lembrando que esse jogador não poderá mais participar dessa equipe.</string>
+    <string name="remove_member">Excluir Membro</string>
 
 </resources>

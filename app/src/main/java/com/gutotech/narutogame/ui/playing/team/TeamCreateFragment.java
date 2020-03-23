@@ -14,11 +14,13 @@ import android.view.ViewGroup;
 
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.databinding.FragmentTeamCreateBinding;
+import com.gutotech.narutogame.ui.ProgressDialogFragment;
 import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.WarningDialogFragment;
 import com.gutotech.narutogame.utils.FragmentUtil;
 
 public class TeamCreateFragment extends Fragment implements SectionFragment {
+    private ProgressDialogFragment mProgressDialog = new ProgressDialogFragment();
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -35,6 +37,12 @@ public class TeamCreateFragment extends Fragment implements SectionFragment {
         binding.msgLayout.descriptionTextView.setText(R.string.be_a_team_leader_description);
 
         viewModel.getShowWarningDialogEvent().observe(getViewLifecycleOwner(), this::showDialog);
+
+        viewModel.getShowProgressDialogEvent().observe(getViewLifecycleOwner(), aVoid ->
+                mProgressDialog.openDialog(getParentFragmentManager()));
+
+        viewModel.getDismissProgressDialogEvent().observe(getViewLifecycleOwner(), aVoid ->
+                mProgressDialog.dismiss());
 
         FragmentUtil.setSectionTitle(getActivity(), R.string.section_create_a_team);
         return binding.getRoot();

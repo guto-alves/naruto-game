@@ -58,7 +58,7 @@ public class StorageUtil {
         downloadImage(context, imageReference, imageView);
     }
 
-    static void downloadProfile(Context context, ImageView imageView, String path) {
+    public static void downloadProfile(Context context, ImageView imageView, String path) {
         if (TextUtils.isEmpty(path)) {
             return;
         }

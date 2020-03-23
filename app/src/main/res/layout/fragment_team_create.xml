@@ -67,7 +67,6 @@
                 android:layout_marginRight="32dp"
                 android:text="@string/requerement"
                 android:textColor="@android:color/white"
-                android:textSize="14sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView7"
                 app:layout_constraintEnd_toEndOf="@+id/imageView7"
@@ -92,8 +91,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/name"
-                    android:maxLength="25"
+                    android:inputType="textCapWords|textCapSentences"
+                    android:maxLength="10"
                     android:text="@={viewModel.teamName}" />
+
             </com.google.android.material.textfield.TextInputLayout>
 
             <androidx.constraintlayout.widget.Guideline
@@ -126,5 +127,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </ScrollView>
+
 </layout>

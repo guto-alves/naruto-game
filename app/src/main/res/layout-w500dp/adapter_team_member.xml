@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/profileImageView"
+        android:layout_width="226dp"
+        android:layout_height="241dp"
+        android:src="@drawable/layout_profile_1_1" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imageView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/layout_bg_profile"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/nickTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="GustavoAlvesB"
+            android:textColor="#C6DDE6"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/gradAndLvlTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="Genin Lvl.16"
+            android:textColor="#937b4d"
+            android:textSize="10sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nickTextView" />
+
+        <ImageView
+            android:id="@+id/imageView57"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/gradAndLvlTextView"
+            app:layout_constraintEnd_toStartOf="@+id/nickTextView"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/layout_on" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/textView61"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="8dp"
+        android:drawableStart="@drawable/layout_ico_shuriken"
+        android:drawableLeft="@drawable/layout_ico_shuriken"
+        android:gravity="center_vertical"
+        android:text="@string/member"
+        android:textColor="@android:color/holo_orange_dark" />
+
+    <Button
+        android:id="@+id/removeMemberButton"
+        style="@style/ButtonTheme"
+        android:layout_marginTop="8dp"
+        android:text="@string/remove_member"
+        android:textSize="12sp" />
+
+</LinearLayout>

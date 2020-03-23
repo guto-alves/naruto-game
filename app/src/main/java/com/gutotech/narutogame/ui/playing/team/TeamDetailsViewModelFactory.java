@@ -9,7 +9,7 @@ import com.gutotech.narutogame.data.model.Team;
 public class TeamDetailsViewModelFactory implements ViewModelProvider.Factory {
     private Team mTeam;
 
-    public TeamDetailsViewModelFactory(Team team) {
+    TeamDetailsViewModelFactory(Team team) {
         mTeam = team;
     }
 

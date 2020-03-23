@@ -35,9 +35,10 @@
         android:text="joovitorda"
         android:textColor="@color/colorText"
         android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline57"
         app:layout_constraintStart_toStartOf="@+id/guideline56"
-        tools:layout_editor_absoluteY="16dp" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/membersQuantityTextView"
@@ -54,8 +55,9 @@
     <Button
         android:id="@+id/participateButton"
         style="@style/ButtonTheme"
-        android:layout_height="wrap_content"
         android:text="@string/participate"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -72,4 +74,5 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.7" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -22,7 +22,7 @@ public class TeamsParticipateAdapter extends RecyclerView.Adapter<TeamsParticipa
         void onParticipateClick(Team team);
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         private TextView teamNameTextView;
         private TextView leaderNameTextView;
         private TextView membersQuantityTextView;
@@ -61,9 +61,8 @@ public class TeamsParticipateAdapter extends RecyclerView.Adapter<TeamsParticipa
 
             holder.teamNameTextView.setText(team.getName());
 
-            TeamRepository.getInstance().getMember(team.getMemberIds().get(0), leader -> {
-                holder.leaderNameTextView.setText(leader.getNick());
-            });
+            TeamRepository.getInstance().getMember(team.getMemberIds().get(0),
+                    leader -> holder.leaderNameTextView.setText(leader.getNick()));
 
             holder.membersQuantityTextView.setText(String.valueOf(team.getMemberIds().size()));
 
