@@ -1,10 +1,8 @@
 package com.gutotech.narutogame.ui.playing.user;
 
 import android.content.Context;
-import android.os.Build;
 import android.text.TextUtils;
 
-import androidx.annotation.RequiresApi;
 import androidx.databinding.ObservableField;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
@@ -24,7 +22,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.EnumSet;
 import java.util.List;
-import java.util.function.Consumer;
 
 public class VipPlayerViewModel extends ViewModel {
     public final int PRICE_TO_CHANGE_NAME = 2000;
@@ -91,6 +88,7 @@ public class VipPlayerViewModel extends ViewModel {
     LiveData<Integer> getShowWarningDialogEvent() {
         return mShowWarningDialogEvent;
     }
+
 
     // Spinner listeners
     public void onNinjaSelected(int position) {
@@ -206,7 +204,6 @@ public class VipPlayerViewModel extends ViewModel {
         }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
     public void onBuyRedistributePoints() {
         if (makePayment(PRICE_TO_REDISTRIBUTE_POINTS, mCharacter.getRyous())) {
             int totalDistributedPoints = mCharacter.getExtrasInformation().getDistributedPoints();

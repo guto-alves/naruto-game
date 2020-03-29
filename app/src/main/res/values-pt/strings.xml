@@ -223,7 +223,7 @@
     <string name="_3_credits">3 Créditos</string>
     <string name="error_select_an_method_to_create_team">Selecione uma forma de criar a equipe!</string>
     <string name="naruto_game_says">Naruto Game diz:</string>
-    <string name="error_the_name_of_team_cant_be_empty">Nome da equipe não pode ficar em branco!></string>
+    <string name="error_the_name_of_team_cant_be_empty">Nome da equipe não pode ficar em branco!</string>
     <string name="filter">Filtrar</string>
     <string name="leader_name">Nome do Líder</string>
     <string name="team_name">Nome da equipe</string>
@@ -1119,7 +1119,7 @@
     <string name="button_message_to_members">Mensagem para Membros</string>
     <string name="button_leave_the_team">Sair da Equipe</string>
     <string name="team_members">Integrantes da Equipe: %s</string>
-    <string name="requerement">Requerimento</string>
+    <string name="requirement">Requerimento</string>
     <string name="chakra_formula">Fórmula do Chakra</string>
     <string name="hp_formula">Fórmula da Vida</string>
     <string name="stamina_formula">Fórmula da Stamina</string>
@@ -2026,8 +2026,12 @@
     <string name="pendency">Pendência(s)</string>
     <string name="submit_changes">Enviar Alterações</string>
     <string name="refuse">Recusar</string>
-    <string name="question_leave_the_team">Você realmente quer sair dessa Equipe? Serão necessário
-        0 ryous para sair. Lembrando que esse jogador não poderá mais participar dessa equipe.</string>
+    <string name="question_leave_the_team">Você realmente quer sair dessa Equipe?</string>
     <string name="remove_member">Excluir Membro</string>
+    <string name="failure_to_the_create_team">Você não tem os requisitos necessários para criar a equipe.</string>
+    <string name="member_exp_progress">%d exp de %d exp</string>
+    <string name="button_delete_team">Excluir Equipe</string>
+    <string name="max_level">MÁX. LEVEL</string>
+    <string name="change">Alterar</string>
 
 </resources>

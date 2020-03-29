@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,6 +16,8 @@ import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.model.Character;
 import com.gutotech.narutogame.data.model.GraduationUtils;
+import com.gutotech.narutogame.data.model.Member;
+import com.gutotech.narutogame.data.repository.TeamRepository;
 import com.gutotech.narutogame.utils.StorageUtil;
 
 import java.util.List;
@@ -30,6 +33,8 @@ public class TeamMembersAdapter extends RecyclerView.Adapter<TeamMembersAdapter.
         private ImageView profileImageView;
         private TextView infoTextView;
         private TextView leaderOrMemberTextView;
+        private ProgressBar expProgressBar;
+        private TextView expTextView;
         private Button removeMemberButton;
 
         public ViewHolder(@NonNull View itemView) {
@@ -38,12 +43,15 @@ public class TeamMembersAdapter extends RecyclerView.Adapter<TeamMembersAdapter.
             nickTextView = itemView.findViewById(R.id.nickTextView);
             infoTextView = itemView.findViewById(R.id.infoTextView);
             leaderOrMemberTextView = itemView.findViewById(R.id.leaderOrMemberTextView);
+            expProgressBar = itemView.findViewById(R.id.expProgressBar);
+            expTextView = itemView.findViewById(R.id.expTextView);
             removeMemberButton = itemView.findViewById(R.id.removeMemberButton);
         }
     }
 
     private Context mContext;
-    private List<Character> mMembers;
+    private List<Member> mMembers;
+    private String mLeaderId;
     private RemoveMemberClickListener mRemoveMemberClickListener;
 
     public TeamMembersAdapter(Context context, RemoveMemberClickListener listener) {
@@ -62,39 +70,46 @@ public class TeamMembersAdapter extends RecyclerView.Adapter<TeamMembersAdapter.
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         if (mMembers != null) {
-            Character character = mMembers.get(position);
+            Member member = mMembers.get(position);
 
-            StorageUtil.downloadProfile(holder.profileImageView.getContext(),
-                    holder.profileImageView, character.getProfilePath());
+            holder.removeMemberButton.setVisibility(View.INVISIBLE);
 
-            holder.nickTextView.setText(character.getNick());
-            holder.infoTextView.setText(mContext.getString(R.string.label_graduation_and_lvl,
-                    mContext.getString(GraduationUtils.getName(character.getGraduationId(), character.getVillage())),
-                    character.getLevel()));
+            TeamRepository.getInstance().getMemberChar(member.getMemberId(), character -> {
+                StorageUtil.downloadProfile(holder.profileImageView.getContext(),
+                        holder.profileImageView, character.getProfilePath());
 
-            if (character.isOnline()) {
-                holder.nickTextView.setCompoundDrawablesWithIntrinsicBounds(
-                        R.drawable.layout_on, 0, 0, 0);
-            } else {
-                holder.nickTextView.setCompoundDrawablesWithIntrinsicBounds(
-                        R.drawable.layout_off, 0, 0, 0);
-            }
+                holder.nickTextView.setText(character.getNick());
+                holder.infoTextView.setText(mContext.getString(R.string.label_graduation_and_lvl,
+                        mContext.getString(GraduationUtils.getName(character.getGraduationId(), character.getVillage())),
+                        character.getLevel()));
 
-            if (mMembers.get(0).getId().equals(CharOn.character.getId())) {
-                holder.removeMemberButton.setVisibility(View.VISIBLE);
-            } else {
-                holder.removeMemberButton.setVisibility(View.INVISIBLE);
-            }
+                if (character.isOnline()) {
+                    holder.nickTextView.setCompoundDrawablesWithIntrinsicBounds(
+                            R.drawable.layout_on, 0, 0, 0);
+                } else {
+                    holder.nickTextView.setCompoundDrawablesWithIntrinsicBounds(
+                            R.drawable.layout_off, 0, 0, 0);
+                }
 
-            if (mMembers.get(0).getId().equals(character.getId())) {
-                holder.leaderOrMemberTextView.setText(R.string.leader);
-                holder.removeMemberButton.setVisibility(View.GONE);
-            } else {
-                holder.leaderOrMemberTextView.setText(R.string.member);
-            }
+                if (mLeaderId.equals(CharOn.character.getId())) {
+                    holder.removeMemberButton.setVisibility(View.VISIBLE);
+                }
 
-            holder.removeMemberButton.setOnClickListener(v ->
-                    mRemoveMemberClickListener.onRemoveMemberClick(character.getId()));
+                if (mLeaderId.equals(character.getId())) {
+                    holder.removeMemberButton.setVisibility(View.INVISIBLE);
+                    holder.leaderOrMemberTextView.setText(R.string.leader);
+                } else {
+                    holder.leaderOrMemberTextView.setText(R.string.member);
+                }
+
+                holder.removeMemberButton.setOnClickListener(v ->
+                        mRemoveMemberClickListener.onRemoveMemberClick(character.getId()));
+            });
+
+            holder.expProgressBar.setMax(member.getMaxExp());
+            holder.expProgressBar.setProgress(member.getCurrentExp());
+            holder.expTextView.setText(mContext.getString(
+                    R.string.member_exp_progress, member.getCurrentExp(), member.getMaxExp()));
         }
     }
 
@@ -103,8 +118,9 @@ public class TeamMembersAdapter extends RecyclerView.Adapter<TeamMembersAdapter.
         return mMembers != null ? mMembers.size() : 0;
     }
 
-    public void setMembers(List<Character> members) {
+    public void setMembers(List<Member> members, String leaderId) {
         mMembers = members;
+        mLeaderId = leaderId;
         notifyDataSetChanged();
     }
 }

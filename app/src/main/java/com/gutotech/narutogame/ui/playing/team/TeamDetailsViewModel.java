@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.model.Character;
+import com.gutotech.narutogame.data.model.Member;
 import com.gutotech.narutogame.data.model.Team;
 import com.gutotech.narutogame.data.repository.TeamRepository;
 import com.gutotech.narutogame.ui.adapter.TeamMembersAdapter;
@@ -17,62 +18,66 @@ import java.util.List;
 
 public class TeamDetailsViewModel extends ViewModel implements
         TeamRequestersAdapter.RequestersClickListener, TeamMembersAdapter.RemoveMemberClickListener {
-    private Team mTeam;
+    private MutableLiveData<Team> mTeam = new MutableLiveData<>();
 
-    private MutableLiveData<List<Character>> mMembers = new MutableLiveData<>();
+    private MutableLiveData<List<Member>> mMembers = new MutableLiveData<>();
     private MutableLiveData<List<Character>> mRequesters = new MutableLiveData<>();
 
     private SingleLiveEvent<Void> mShowQuestionDialogEvent = new SingleLiveEvent<>();
 
-    private TeamRepository mTeamRepository;
+    private TeamRepository mTeamRepository = TeamRepository.getInstance();
 
-    private List<String> acceptedRequestersId = new ArrayList<>();
-    private List<String> refusedRequestersId = new ArrayList<>();
+    private List<String> mAcceptedRequestersId = new ArrayList<>();
+    private List<String> mRefusedRequestersId = new ArrayList<>();
 
-    TeamDetailsViewModel(Team team) {
-        mTeam = team;
-        mTeamRepository = TeamRepository.getInstance();
-    }
+    public TeamDetailsViewModel() {
+        mTeamRepository.getTeam(CharOn.character.getTeam(), team -> {
+            mTeam.setValue(team);
 
-    void loadMembers() {
-        List<Character> members = new ArrayList<>();
-
-        for (String memberId : mTeam.getMemberIds()) {
-            mTeamRepository.getMember(memberId, member -> {
-                members.add(member);
-                mMembers.postValue(members);
-            });
-        }
-    }
-
-    void loadRequesters() {
-        if (mTeam.getRequesterIds() == null) {
-            return;
-        }
-
-        List<Character> requesters = new ArrayList<>();
-
-        for (String requesterId : mTeam.getRequesterIds()) {
-            mTeamRepository.getMember(requesterId, requester -> {
-                requesters.add(requester);
-                mRequesters.postValue(requesters);
-            });
-        }
-    }
-
-    public void onSubmitChanges() {
-        for (String acceptedRequesterId : acceptedRequestersId) {
-            if (mTeam.getMemberIds().size() < 4) {
-                mTeam.getMemberIds().add(acceptedRequesterId);
+            if (team.getLeaderId().equals(CharOn.character.getId())) {
+                loadRequesters();
             }
-        }
 
-        for (String refusedRequesterId : refusedRequestersId) {
-            mTeam.getMemberIds().remove(refusedRequesterId);
-        }
+            mTeamRepository.getMembers(team.getName(),
+                    members -> mMembers.postValue(members));
+        });
+    }
 
-        loadRequesters();
-        mTeamRepository.save(mTeam);
+    private void loadRequesters() {
+        mTeamRepository.onRequestersChangeListener(mTeam.getValue().getName(),
+                requesterIds -> {
+                    List<Character> requesters = new ArrayList<>();
+                    mRequesters.setValue(requesters);
+
+                    for (String requesterId : requesterIds) {
+                        mTeamRepository.getMemberChar(requesterId, requesterChar -> {
+                            requesters.add(requesterChar);
+                            mRequesters.postValue(requesters);
+                        });
+                    }
+                });
+    }
+
+
+    void leaveTeam(String memberId) {
+        mTeamRepository.notifyMember(memberId, "");
+        mTeamRepository.removeMember(memberId, mTeam.getValue().getName());
+    }
+
+    private void deleteTeam() {
+        mTeamRepository.remove(mTeam.getValue().getName());
+        mTeamRepository.removeMember(CharOn.character.getId(), mTeam.getValue().getName());
+        CharOn.character.setTeam("");
+    }
+
+    public void setTeamImage(String imagePath) {
+        mTeam.getValue().setImage(imagePath);
+        mTeamRepository.save(mTeam.getValue());
+    }
+
+
+    public void onSendMessage() {
+
     }
 
     public void onLeaveTeamClick() {
@@ -80,31 +85,61 @@ public class TeamDetailsViewModel extends ViewModel implements
     }
 
     public void onDeleteTeamClick() {
-        mTeamRepository.remove(mTeam);
-        CharOn.character.setTeam("");
+        deleteTeam();
     }
 
-    public void onSendMessage() {
-
+    @Override
+    public void onRemoveMemberClick(String memberId) {
+        leaveTeam(memberId);
     }
 
-    void leaveTeam(String memberId) {
-        int memberIndex = mTeam.getMemberIds().indexOf(memberId);
-        mTeam.getMemberIds().remove(memberIndex);
-        mTeamRepository.save(mTeam);
-        mTeamRepository.leaveTeam(memberId);
+    @Override
+    public void onAcceptClick(String requesterId, boolean checked) {
+        if (checked) {
+            mRefusedRequestersId.remove(requesterId);
+            mAcceptedRequestersId.add(requesterId);
+        } else {
+            mAcceptedRequestersId.remove(requesterId);
+        }
     }
 
-    void deleteTeam() {
-        mTeamRepository.remove(mTeam);
-        CharOn.character.setTeam("");
+    @Override
+    public void onRefuseClick(String requesterId, boolean checked) {
+        if (checked) {
+            mAcceptedRequestersId.remove(requesterId);
+            mRefusedRequestersId.add(requesterId);
+        } else {
+            mRefusedRequestersId.remove(requesterId);
+        }
     }
 
-    public Team getTeam() {
+    public void onSubmitChanges() {
+        int totalMembers = mMembers.getValue().size();
+
+        for (String acceptedRequesterId : mAcceptedRequestersId) {
+            if (totalMembers++ == 4) {
+                break;
+            }
+
+            mTeamRepository.removeRequester(acceptedRequesterId, mTeam.getValue().getName());
+            mTeamRepository.saveMember(new Member(acceptedRequesterId), mTeam.getValue().getName());
+            mTeamRepository.notifyMember(acceptedRequesterId, mTeam.getValue().getName());
+        }
+
+        for (String refusedRequesterId : mRefusedRequestersId) {
+            mTeamRepository.removeRequester(refusedRequesterId, mTeam.getValue().getName());
+        }
+
+        mAcceptedRequestersId.clear();
+        mRefusedRequestersId.clear();
+    }
+
+
+    public LiveData<Team> getTeam() {
         return mTeam;
     }
 
-    LiveData<List<Character>> getMembers() {
+    LiveData<List<Member>> getMembers() {
         return mMembers;
     }
 
@@ -114,38 +149,5 @@ public class TeamDetailsViewModel extends ViewModel implements
 
     LiveData<Void> getShowQuestionDialogEvent() {
         return mShowQuestionDialogEvent;
-    }
-
-    @Override
-    public void onAcceptClick(int index, boolean checked) {
-        String requesterId = mTeam.getRequesterIds().get(index);
-
-        if (checked) {
-            refusedRequestersId.remove(requesterId);
-
-            acceptedRequestersId.add(requesterId);
-        } else {
-            acceptedRequestersId.remove(requesterId);
-        }
-
-
-    }
-
-    @Override
-    public void onRefuseClick(int index, boolean checked) {
-        String requesterId = mTeam.getRequesterIds().get(index);
-
-        if (checked) {
-            acceptedRequestersId.remove(requesterId);
-
-            refusedRequestersId.add(mTeam.getRequesterIds().get(index));
-        } else {
-            refusedRequestersId.remove(requesterId);
-        }
-    }
-
-    @Override
-    public void onRemoveMemberClick(String memberId) {
-        leaveTeam(memberId);
     }
 }

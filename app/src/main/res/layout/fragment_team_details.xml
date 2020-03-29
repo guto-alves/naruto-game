@@ -26,26 +26,22 @@
                 layout="@layout/section_msg"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:visibility="gone" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout3"
                 android:layout_width="0dp"
                 android:layout_height="205dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
                 android:background="@drawable/layout_bg_guilds_foto"
-                android:paddingLeft="48dp"
-                android:paddingRight="48dp"
+                android:paddingStart="36dp"
+                android:paddingLeft="36dp"
+                android:paddingEnd="38dp"
+                android:paddingRight="38dp"
                 android:paddingBottom="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/teamInfoLayout"
-                tools:visibility="gone">
+                app:layout_constraintTop_toBottomOf="@+id/teamInfoLayout">
 
                 <ImageView
                     android:id="@+id/teamImageView"
@@ -60,16 +56,55 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <LinearLayout
+                android:id="@+id/changeImageLinearLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout3">
+
+                <TextView
+                    android:id="@+id/textView58"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:text="@string/image"
+                    android:textColor="@android:color/holo_orange_dark" />
+
+                <Button
+                    android:id="@+id/changeImageButton"
+                    style="@style/ButtonTheme"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:text="@string/change"
+                    android:textSize="12sp" />
+
+                <Button
+                    android:id="@+id/removeImageButton"
+                    style="@style/ButtonTheme"
+                    android:onClick="@{() -> viewModel.setTeamImage(``)}"
+                    android:text="@string/remove"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardView2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 app:cardBackgroundColor="#271C15"
                 app:cardCornerRadius="8dp"
                 app:cardUseCompatPadding="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout3">
+                app:layout_constraintTop_toBottomOf="@+id/changeImageLinearLayout">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -81,9 +116,10 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="8dp"
+                        android:baselineAligned="false"
                         android:gravity="center"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:padding="3dp">
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -94,7 +130,6 @@
                             android:orientation="vertical">
 
                             <TextView
-                                android:id="@+id/textView52"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="LEVEL"
@@ -102,11 +137,10 @@
                                 android:textSize="12sp" />
 
                             <TextView
-                                android:id="@+id/textView58"
+                                android:id="@+id/levelTextView"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@{String.valueOf(viewModel.team.level)}"
-                                android:textColor="@color/colorPrimary"
+                                android:textColor="#815841"
                                 android:textSize="36sp"
                                 android:textStyle="bold" />
 
@@ -121,12 +155,8 @@
                                 android:id="@+id/expProgressBar"
                                 style="?android:attr/progressBarStyleHorizontal"
                                 android:layout_width="0dp"
-                                android:layout_height="20dp"
-                                android:layout_marginTop="8dp"
-                                android:layout_marginBottom="8dp"
+                                android:layout_height="0dp"
                                 android:background="@drawable/layout_barra_exp_barra_vazia_580"
-                                android:max="@{viewModel.team.expUpar}"
-                                android:progress="@{viewModel.team.currentExp}"
                                 android:progressDrawable="@drawable/progressbar_exp_580"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -139,7 +169,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="16dp"
                                 android:layout_marginLeft="16dp"
-                                android:text="@{@string/team_exp_progress(viewModel.team.currentExp, viewModel.team.expUpar)}"
+                                android:layout_marginBottom="2dp"
                                 android:textColor="@android:color/white"
                                 android:textStyle="bold"
                                 app:layout_constraintBottom_toBottomOf="@+id/expProgressBar"
@@ -155,18 +185,16 @@
                             android:orientation="vertical">
 
                             <TextView
-                                android:id="@+id/textView67"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="MÁX. LEVEL"
+                                android:text="@string/max_level"
                                 android:textColor="@color/colorText"
                                 android:textSize="12sp" />
 
                             <TextView
-                                android:id="@+id/textView68"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="10"
+                                android:text="25"
                                 android:textColor="@android:color/holo_orange_dark"
                                 android:textSize="36sp" />
                         </LinearLayout>
@@ -198,30 +226,11 @@
                             android:id="@+id/deleteTeamButton"
                             style="@style/ButtonTheme"
                             android:onClick="@{() -> viewModel.onDeleteTeamClick()}"
-                            android:text="@string/button_leave_the_team"
+                            android:text="@string/button_delete_team"
                             android:textSize="12sp"
                             android:visibility="gone" />
 
                     </LinearLayout>
-
-                    <ScrollView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingTop="5dp"
-                        android:paddingBottom="5dp">
-
-                        <RatingBar
-                            android:id="@+id/levelRatingBar"
-                            style="@android:style/Widget.Holo.RatingBar"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="16dp"
-                            android:clickable="false"
-                            android:numStars="10"
-                            android:rating="@{viewModel.team.level}"
-                            android:stepSize="1" />
-
-                    </ScrollView>
 
                 </LinearLayout>
 
@@ -231,6 +240,7 @@
                 android:id="@+id/imageView33"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:scaleType="fitXY"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -238,12 +248,11 @@
                 app:srcCompat="@drawable/layout_barras_secoes_1" />
 
             <TextView
-                android:id="@+id/textView66"
+                android:id="@+id/teamNameTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginLeft="32dp"
-                android:text="@{@string/team_members(viewModel.team.name)}"
+                android:layout_marginStart="24dp"
+                android:layout_marginLeft="24dp"
                 android:textColor="#F3E6C4"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView33"
@@ -334,6 +343,7 @@
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@+id/imageView60"
                     app:layout_constraintEnd_toStartOf="@+id/textView105"
+                    app:layout_constraintStart_toStartOf="@+id/guideline67"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
@@ -355,14 +365,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    app:layout_constraintGuide_percent="0.50" />
+                    app:layout_constraintGuide_percent="0.53" />
 
                 <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/guideline67"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    app:layout_constraintGuide_percent="0.70" />
+                    app:layout_constraintGuide_percent="0.7" />
 
                 <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/guideline70"
@@ -373,9 +383,8 @@
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/requestersRecyclerView"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

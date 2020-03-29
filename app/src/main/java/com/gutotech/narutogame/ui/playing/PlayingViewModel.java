@@ -25,6 +25,7 @@ import com.gutotech.narutogame.data.model.Scroll;
 import com.gutotech.narutogame.data.repository.CharacterRepository;
 import com.gutotech.narutogame.data.repository.ChatRepository;
 import com.gutotech.narutogame.data.repository.MapRepository;
+import com.gutotech.narutogame.data.repository.TeamRepository;
 import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.adapter.BagItemsAdapter;
 import com.gutotech.narutogame.ui.loggedin.accountinfo.UserDataFragment;
@@ -137,8 +138,15 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
                     }
                 } else if (propertyId == BR.titles) {
                     mTitles.postValue(mCharacter.getTitles());
-                } else if (propertyId == BR.graduationId || propertyId == BR.team) {
+                } else if (propertyId == BR.graduationId) {
                     buildMenu();
+                } else if (propertyId == BR.team) {
+                    buildMenu();
+                    if (TextUtils.isEmpty(mCharacter.getTeam())) {
+                        setCurrentSection(CHARACTER_GROUP, 0);
+                    } else if (!mCharacter.isBattle()) {
+                        setCurrentSection(TEAM_GROUP, 0);
+                    }
                 }
             }
         });
@@ -604,6 +612,7 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
 
         mCharacter.setOnline(true);
         CharacterRepository.getInstance().save(mCharacter);
+        TeamRepository.getInstance().registerMyTeamChangeListener();
     }
 
     void stop() {
@@ -614,6 +623,7 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
         mCharacter.setOnline(false);
         mCharacter.setLastSeenInMillis(DateCustom.getTimeInMillis());
         CharacterRepository.getInstance().save(mCharacter);
+        TeamRepository.getInstance().removeMyTeamChangeListener();
     }
 
     void destroy() {

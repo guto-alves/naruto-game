@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.CharOn;
+import com.gutotech.narutogame.data.model.Member;
 import com.gutotech.narutogame.data.model.Team;
 import com.gutotech.narutogame.data.repository.TeamRepository;
 import com.gutotech.narutogame.utils.SingleLiveEvent;
@@ -15,11 +16,48 @@ import com.gutotech.narutogame.utils.SingleLiveEvent;
 public class TeamCreateViewModel extends ViewModel {
     public final ObservableField<String> teamName = new ObservableField<>();
 
+    private TeamRepository mTeamRepository = TeamRepository.getInstance();
+
     private SingleLiveEvent<Integer> mShowWarningDialogEvent = new SingleLiveEvent<>();
     private SingleLiveEvent<Void> mShowProgressDialogEvent = new SingleLiveEvent<>();
     private SingleLiveEvent<Void> mDismissProgressDialogEvent = new SingleLiveEvent<>();
 
-    private TeamRepository mTeamRepository = TeamRepository.getInstance();
+    public void onCreateTeamClick() {
+        if (isValidName()) {
+            mShowProgressDialogEvent.call();
+
+            int price = 5000;
+
+            if (CharOn.character.getGraduationId() >= 2) {
+                price = 2000;
+            }
+
+            if (CharOn.character.getRyous() < price) {
+                mShowWarningDialogEvent.setValue(R.string.failure_to_the_create_team);
+                return;
+            }
+
+            int finalPrice = price;
+
+            mTeamRepository.isValidName(teamName.get(), result -> {
+                mDismissProgressDialogEvent.call();
+                if (result) {
+                    CharOn.character.subRyous(finalPrice);
+                    mTeamRepository.save(new Team(teamName.get(), CharOn.character.getId(),
+                            CharOn.character.getVillage().ordinal()));
+                    mTeamRepository.saveMember(new Member(CharOn.character.getId()), teamName.get());
+                    CharOn.character.setTeam(teamName.get());
+                }
+            });
+        } else {
+            mShowWarningDialogEvent.setValue(R.string.error_the_name_of_team_cant_be_empty);
+        }
+    }
+
+    private boolean isValidName() {
+        return !TextUtils.isEmpty(teamName.get());
+    }
+
 
     LiveData<Integer> getShowWarningDialogEvent() {
         return mShowWarningDialogEvent;
@@ -31,33 +69,5 @@ public class TeamCreateViewModel extends ViewModel {
 
     LiveData<Void> getDismissProgressDialogEvent() {
         return mDismissProgressDialogEvent;
-    }
-
-    public void onCreateTeamClick() {
-        if (isValidName()) {
-            mShowProgressDialogEvent.call();
-
-            // if (CharOn.character.getGraduationId() > 1 && CharOn.character.getRyous() > 1000)
-
-            mTeamRepository.isValidName(teamName.get(), result -> {
-                if (result) {
-                    mTeamRepository.save(new Team(mTeamRepository.generateId(), teamName.get(),
-                            1, CharOn.character.getVillage().ordinal(), 0, 5000,
-                            1000, CharOn.character.getId()));
-
-                    mDismissProgressDialogEvent.call();
-                    CharOn.character.setTeam(teamName.get());
-                }
-            });
-        }
-    }
-
-    private boolean isValidName() {
-        if (TextUtils.isEmpty(teamName.get())) {
-            mShowWarningDialogEvent.setValue(R.string.error_the_name_of_team_cant_be_empty);
-            return false;
-        }
-
-        return true;
     }
 }

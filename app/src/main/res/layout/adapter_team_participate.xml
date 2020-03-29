@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -12,14 +11,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.5985401" />
+        app:layout_constraintGuide_percent="0.59" />
 
     <TextView
         android:id="@+id/teamNameTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Kings INS	"
         android:textColor="@color/colorText"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -32,7 +30,6 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="joovitorda"
         android:textColor="@color/colorText"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -44,7 +41,6 @@
         android:id="@+id/membersQuantityTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="1"
         android:textColor="@color/colorText"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -66,13 +62,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.2725061" />
+        app:layout_constraintGuide_percent="0.3" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline66"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.7" />
+        app:layout_constraintGuide_percent="0.71" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

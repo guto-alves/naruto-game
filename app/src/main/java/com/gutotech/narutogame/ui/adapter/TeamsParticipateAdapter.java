@@ -50,7 +50,7 @@ public class TeamsParticipateAdapter extends RecyclerView.Adapter<TeamsParticipa
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View itemView = LayoutInflater.from(viewGroup.getContext()).inflate(
-                R.layout.adapter_team_participate_item, viewGroup, false);
+                R.layout.adapter_team_participate, viewGroup, false);
         return new ViewHolder(itemView);
     }
 
@@ -61,10 +61,11 @@ public class TeamsParticipateAdapter extends RecyclerView.Adapter<TeamsParticipa
 
             holder.teamNameTextView.setText(team.getName());
 
-            TeamRepository.getInstance().getMember(team.getMemberIds().get(0),
-                    leader -> holder.leaderNameTextView.setText(leader.getNick()));
+            TeamRepository.getInstance().getLeaderName(team.getLeaderId(),
+                    name -> holder.leaderNameTextView.setText(name));
 
-            holder.membersQuantityTextView.setText(String.valueOf(team.getMemberIds().size()));
+            TeamRepository.getInstance().getMembers(team.getName(), members ->
+                    holder.membersQuantityTextView.setText(String.valueOf(members.size())));
 
             holder.participateButton.setOnClickListener(v ->
                     mOnParticipateClickListener.onParticipateClick(team));

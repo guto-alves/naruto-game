@@ -1,58 +1,57 @@
 package com.gutotech.narutogame.data.model;
 
-import androidx.databinding.BaseObservable;
-import androidx.databinding.Bindable;
-import androidx.databinding.library.baseAdapters.BR;
-
-import java.util.ArrayList;
-import java.util.List;
-
-public class Team extends BaseObservable {
-    private String id;
+public class Team {
     private String name;
+    private String image;
     private int level;
+    private String leaderId;
     private int villageId;
     private int currentExp;
-    private int expUpar;
+    private int maxExp; // increments of 600 in 600
     private int score;
-
-    private List<String> memberIds;
-
-    private List<String> requesterIds;
 
     public Team() {
     }
 
-    public Team(String id, String name, int level, int villageId, int currentExp, int expUpar,
-                int score, String leader) {
-        this.id = id;
+    public Team(String name, String leaderId, int villageId) {
         this.name = name;
-        this.level = level;
+        this.leaderId = leaderId;
         this.villageId = villageId;
-        this.currentExp = currentExp;
-        this.expUpar = expUpar;
-        this.score = score;
-
-        memberIds = new ArrayList<>();
-        memberIds.add(leader);
+        this.level = 1;
+        this.maxExp = 600;
+        this.score = 1000;
     }
 
-    public String getId() {
-        return id;
+    public void incrementExp(int expEarned) {
+        int newTotalExp = getCurrentExp() + expEarned;
+
+        while (newTotalExp >= getMaxExp()) {
+            newTotalExp = newTotalExp - getMaxExp();
+
+            setLevel(getLevel() + 1);
+            setMaxExp(getMaxExp() + 600);
+
+            score += Score.LEVEL;
+        }
+
+        setCurrentExp(newTotalExp);
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
 
-    @Bindable
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
-        notifyPropertyChanged(BR.name);
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public int getLevel() {
@@ -63,28 +62,12 @@ public class Team extends BaseObservable {
         this.level = level;
     }
 
-    public int getCurrentExp() {
-        return currentExp;
+    public String getLeaderId() {
+        return leaderId;
     }
 
-    public void setCurrentExp(int currentExp) {
-        this.currentExp = currentExp;
-    }
-
-    public int getExpUpar() {
-        return expUpar;
-    }
-
-    public void setExpUpar(int expUpar) {
-        this.expUpar = expUpar;
-    }
-
-    public int getScore() {
-        return score;
-    }
-
-    public void setScore(int score) {
-        this.score = score;
+    public void setLeaderId(String leaderId) {
+        this.leaderId = leaderId;
     }
 
     public int getVillageId() {
@@ -95,19 +78,27 @@ public class Team extends BaseObservable {
         this.villageId = villageId;
     }
 
-    public List<String> getMemberIds() {
-        return memberIds;
+    public int getCurrentExp() {
+        return currentExp;
     }
 
-    public void setMemberIds(List<String> memberIds) {
-        this.memberIds = memberIds;
+    public void setCurrentExp(int currentExp) {
+        this.currentExp = currentExp;
     }
 
-    public List<String> getRequesterIds() {
-        return requesterIds;
+    public int getMaxExp() {
+        return maxExp;
     }
 
-    public void setRequesterIds(List<String> requesterIds) {
-        this.requesterIds = requesterIds;
+    public void setMaxExp(int maxExp) {
+        this.maxExp = maxExp;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
     }
 }

@@ -1186,7 +1186,7 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="button_message_to_members">Message to Members</string>
     <string name="button_leave_the_team">Leave the Team</string>
     <string name="team_members">Team Members: %s</string>
-    <string name="requerement">Requerement</string>
+    <string name="requirement">Requirement</string>
     <string name="chakra_formula">Chakra Formula</string>
     <string name="hp_formula">HP Formula</string>
     <string name="stamina_formula">Stamina Formula</string>
@@ -2078,9 +2078,13 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="pendency">Pendency</string>
     <string name="submit_changes">Submit Changes</string>
     <string name="refuse">Refuse</string>
-    <string name="question_leave_the_team">Você realmente quer sair dessa Equipe? Serão necessário
-        0 ryous para sair. Lembrando que esse jogador não poderá mais participar dessa equipe.</string>
+    <string name="question_leave_the_team">Do you really want to leave this team?</string>
     <string name="remove_member">Remove Member</string>
+    <string name="failure_to_the_create_team">You do not have the requirements to create a team</string>
+    <string name="member_exp_progress">%d exp of %d exp</string>
+    <string name="button_delete_team">Delete Team</string>
+    <string name="max_level">MAX. LEVEL</string>
+    <string name="change">Change</string>
 
 
 </resources>

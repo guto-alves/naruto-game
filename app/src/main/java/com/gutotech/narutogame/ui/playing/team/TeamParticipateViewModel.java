@@ -52,16 +52,13 @@ public class TeamParticipateViewModel extends ViewModel implements
 
     @Override
     public void onParticipateClick(Team team) {
-        if (team.getRequesterIds() == null) {
-            team.setRequesterIds(new ArrayList<>());
-        }
-
-        if (team.getRequesterIds().contains(CharOn.character.getId())) {
-            mShowWarningDialogEvent.setValue(R.string.already_sent_an_request_to_this_team);
-        } else {
-            team.getRequesterIds().add(CharOn.character.getId());
-            mTeamRepository.save(team);
-            mShowWarningDialogEvent.setValue(R.string.team_request_sent);
-        }
+        mTeamRepository.requested(CharOn.character.getId(), team.getName(), requested -> {
+            if (requested) {
+                mShowWarningDialogEvent.setValue(R.string.already_sent_an_request_to_this_team);
+            } else {
+                mTeamRepository.saveRequester(CharOn.character.getId(), team.getName());
+                mShowWarningDialogEvent.setValue(R.string.team_request_sent);
+            }
+        });
     }
 }

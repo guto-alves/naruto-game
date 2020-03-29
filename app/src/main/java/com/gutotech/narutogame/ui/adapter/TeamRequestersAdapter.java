@@ -21,9 +21,9 @@ import java.util.List;
 public class TeamRequestersAdapter extends RecyclerView.Adapter<TeamRequestersAdapter.MyViewHolder> {
 
     public interface RequestersClickListener {
-        void onAcceptClick(int index, boolean checked);
+        void onAcceptClick(String requesterId, boolean checked);
 
-        void onRefuseClick(int index, boolean checked);
+        void onRefuseClick(String requesterId, boolean checked);
     }
 
     private Context mContext;
@@ -38,8 +38,8 @@ public class TeamRequestersAdapter extends RecyclerView.Adapter<TeamRequestersAd
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View itemView = LayoutInflater.from(mContext).inflate(R.layout.adapter_team_requester,
-                viewGroup, false);
+        View itemView = LayoutInflater.from(mContext).inflate(
+                R.layout.adapter_team_requester, viewGroup, false);
         return new MyViewHolder(itemView);
     }
 
@@ -62,15 +62,19 @@ public class TeamRequestersAdapter extends RecyclerView.Adapter<TeamRequestersAd
             }
 
             holder.acceptCheckBox.setOnClickListener(v ->
-                    mRequestersClickListener.onAcceptClick(i, holder.acceptCheckBox.isChecked()));
+                    mRequestersClickListener.onAcceptClick(
+                            character.getId(), holder.acceptCheckBox.isChecked()));
 
             holder.refuseCheckBox.setOnClickListener(v ->
-                    mRequestersClickListener.onRefuseClick(i, holder.acceptCheckBox.isChecked()));
+                    mRequestersClickListener.onRefuseClick(
+                            character.getId(), holder.refuseCheckBox.isChecked()));
 
             if (i % 2 == 0) {
-                holder.bgConstraint.setBackgroundColor(mContext.getResources().getColor(R.color.colorItem1));
+                holder.bgConstraint.setBackgroundColor(
+                        mContext.getResources().getColor(R.color.colorItem1));
             } else {
-                holder.bgConstraint.setBackgroundColor(mContext.getResources().getColor(R.color.colorItem2));
+                holder.bgConstraint.setBackgroundColor(
+                        mContext.getResources().getColor(R.color.colorItem2));
             }
         }
     }
