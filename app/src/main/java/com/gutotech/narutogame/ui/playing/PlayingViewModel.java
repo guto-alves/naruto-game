@@ -564,7 +564,7 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
             }
 
             if (Math.abs(currentDayOfYear - lastDayOfYearSeen) == 1) {
-                CharOn.character.setDaysOfFidelity((CharOn.character.getDaysOfFidelity() + 1) % 8);
+                CharOn.character.setDaysOfFidelity((CharOn.character.getDaysOfFidelity() + 1) % 9);
             } else {
                 mCharacter.setDaysOfFidelity(1);
             }
