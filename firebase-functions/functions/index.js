@@ -3,6 +3,11 @@ const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 admin.initializeApp();
 
+
+exports.getTime = functions.https.onCall((data, context) => {
+	return Date.now();
+});
+
 const MAX_MESSAGES = 300;
 
 exports.limitNumberOfMessages = functions.database.ref('/chats/{villageId}')
