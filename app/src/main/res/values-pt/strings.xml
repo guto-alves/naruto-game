@@ -1127,9 +1127,9 @@
     <string name="_1_of_attack_nin_gen">+1 de Ataque (Nin/Gen)</string>
     <string name="_1_of_accuracy">+1 de Precisão</string>
     <string name="percent_of_ninja_power">% de Poder Ninja</string>
-    <string name="ranking_ninjas_formulas">Fórmula do Ranking de Ninjas ( Pontos / Descrição )</string>
-    <string name="per_level_player">Por level do Jogador</string>
-    <string name="per_grade_player">Per Grade Player</string>
+    <string name="ninjas_ranking_formulas">Fórmula do Ranking de Ninjas (Pontos / Descrição)</string>
+    <string name="per_level_player">Por Level do Jogador</string>
+    <string name="per_grade_player">Por Graduação do player</string>
     <string name="logar_days_followed">Logar %d day (s) followed</string>
     <string name="fidelity_rewards">RECOMPENSAS DE FIDELIDADE</string>
     <string name="fidelity_rewards_description">Ao logar diariamente você pode coletar recompensas
@@ -2033,5 +2033,42 @@
     <string name="button_delete_team">Excluir Equipe</string>
     <string name="max_level">MÁX. LEVEL</string>
     <string name="change">Alterar</string>
+
+    <string name="attributes_and_formulas">Atributos e Fórmulas (Nome / Descrição / Bonûs)</string>
+
+    <string name="per_map_pvp_wins">Por Vitória Mapa PVP</string>
+    <string name="per_map_pvp_wins_des">( vitória mapa pvp * 60 )</string>
+    <string name="per_dojo_pvp_wins">Por Vitória Dojo PVP</string>
+    <string name="per_dojo_pvp_wins_des">( vitória dojo pvp * 30 )</string>
+    <string name="per_dojo_npc_wins">Por Vitória Dojo NPC</string>
+    <string name="per_dojo_npc_wins_des">( vítoria dojo npc * 5)</string>
+    <string name="per_map_loss">Por Derrota Mapa PVP</string>
+    <string name="per_map_loss_des">( derrota mapa pvp * -30)</string>
+    <string name="per_dojo_pvp_loss">Por Derrota Dojo PVP</string>
+    <string name="per_dojo_pvp_loss_des">( derrota dojo pvp * -30)</string>
+    <string name="per_dojo_npc_loss">Por Derrota Dojo NPC</string>
+    <string name="per_dojo_npc_loss_des">( derrota dojo npc * -15)</string>
+
+
+    <string name="training_by_100">+ Treino / 100</string>
+    <string name="total_training_des">( total do treino / 100)</string>
+    <string name="total_initial_task_des">( total de tarefa * 25 )</string>
+    <string name="total_de_miss_o_d_50">( total de missão D * 50 )</string>
+    <string name="per_mission_d_complete">Por missão D concluída</string>
+    <string name="per_mission_c_complete">Por missão C concluída</string>
+    <string name="per_mission_b_complete">Por missão B concluída</string>
+    <string name="per_mission_a_complete">Por missão A concluída</string>
+    <string name="per_mission_s_complete">Por missão S concluída</string>
+    <string name="per_total_missions_d_des">( total de missão D * 50 )</string>
+    <string name="per_total_missions_c_des">( total de missão C * 75 )</string>
+    <string name="per_total_missions_b_des">( total de missão B * 100 )</string>
+    <string name="per_total_missions_a_des">( total de missão A * 125 )</string>
+    <string name="per_total_missions_s_des">( total de missão S * 150 )</string>
+
+    <string name="total_of_training">Total de treino</string>
+    <string name="per_inital_task_complete">Por tarefa concluída</string>
+    <string name="per_grade_des">(a cada graduação + 2000 pontos)</string>
+    <string name="teams_ranking_formula">Fórmula do Ranking de Equipes (Pontos / Descrição)</string>
+    <string name="per_level_team">Por level da Equipe</string>
 
 </resources>

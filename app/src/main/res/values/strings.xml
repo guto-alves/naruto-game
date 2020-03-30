@@ -1194,7 +1194,7 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="_1_of_attack_nin_gen">+1 of Attack ( Nin / Gen )</string>
     <string name="_1_of_accuracy">+1 of Accuracy</string>
     <string name="percent_of_ninja_power">% de Ninja Power</string>
-    <string name="ranking_ninjas_formulas">Ranking Ninjas Ranking Formula (Points / Description)</string>
+    <string name="ninjas_ranking_formulas">Ninjas Ranking Formula (Points / Description)</string>
     <string name="per_level_player">Per Level Player</string>
     <string name="per_grade_player">Per Grade Player</string>
     <string name="logar_days_followed">Logar %d day (s) followed</string>
@@ -2085,6 +2085,44 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="button_delete_team">Delete Team</string>
     <string name="max_level">MAX. LEVEL</string>
     <string name="change">Change</string>
+    <string name="attributes_and_formulas">Attributes and Formulas (Name/ Description / Bonus)</string>
+
+
+    <string name="training_by_100">+ Training / 100</string>
+    <string name="total_training_des">( Total Training / 100 )</string>
+
+    <string name="per_map_pvp_wins">Per Map PVP wins</string>
+    <string name="per_map_pvp_wins_des">( map pvp wins * 60 )</string>
+    <string name="per_dojo_pvp_wins">Per Dojo PVP wins</string>
+    <string name="per_dojo_pvp_wins_des">( dojo pvp wins * 30 )</string>
+    <string name="per_dojo_npc_wins">Per Dojo NPC wins</string>
+    <string name="per_dojo_npc_wins_des">( dojo npc wins * 5)</string>
+
+    <string name="per_map_loss">Per Map loss</string>
+    <string name="per_map_loss_des">( mapa pvp * -30 )</string>
+    <string name="per_dojo_pvp_loss">Per dojo loss PVP</string>
+    <string name="per_dojo_pvp_loss_des">( dojo loss pvp * -30)</string>
+    <string name="per_dojo_npc_loss">Per dojo NPC loss</string>
+    <string name="per_dojo_npc_loss_des">( dojo npc * -15)</string>
+
+    <string name="per_inital_task_complete">Per initial task complete</string>
+    <string name="per_mission_d_complete">Per mission D complete</string>
+    <string name="per_mission_c_complete">Per mission C complete</string>
+    <string name="per_mission_b_complete">Per mission B complete</string>
+    <string name="per_mission_a_complete">Per mission A complete</string>
+    <string name="per_mission_s_complete">Per mission S complete</string>
+
+    <string name="total_initial_task_des">( Total Initial Tasks * 25 )</string>
+    <string name="per_total_missions_d_des">( total Missions D * 50 )</string>
+    <string name="per_total_missions_c_des">( total Missions C * 75 )</string>
+    <string name="per_total_missions_b_des">( total Missions B * 100 )</string>
+    <string name="per_total_missions_a_des">( total Missions A * 125 )</string>
+    <string name="per_total_missions_s_des">( total Missions S * 150 )</string>
+
+    <string name="total_of_training">Total of Training</string>
+    <string name="per_grade_des">( for each Graduation + 2000 points )</string>
+    <string name="teams_ranking_formula">Teams Ranking Formula (Points / Description)</string>
+    <string name="per_level_team">Per Level Team</string>
 
 
 </resources>
