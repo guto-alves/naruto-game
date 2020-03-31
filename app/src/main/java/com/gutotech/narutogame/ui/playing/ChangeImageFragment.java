@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,15 +51,12 @@ public class ChangeImageFragment extends Fragment implements SectionFragment,
         mProfilePath = profilePath;
 
         QuestionDialogFragment questionDialog = QuestionDialogFragment.newInstance(
-                R.string.question_change_profile_image);
-        questionDialog.show(getFragmentManager(), "QuestionDialogFragment");
-//        questionDialog.openDialog(getParentFragmentManager());
+                this, R.string.question_change_profile_image);
+        questionDialog.openDialog(getParentFragmentManager());
     };
 
     @Override
     public void onPositiveClick() {
-        Log.i("ChangeImage", "onPositiveClick");
-
         CharOn.character.setProfilePath(mProfilePath);
 
         try {
