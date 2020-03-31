@@ -24,6 +24,7 @@ import com.gutotech.narutogame.ui.adapter.KagesSliderAdapter;
 import com.gutotech.narutogame.ui.adapter.NinjaStatisticsAdapter;
 import com.gutotech.narutogame.ui.adapter.NewsAdapter;
 import com.gutotech.narutogame.ui.ResultListener;
+import com.gutotech.narutogame.ui.home.readnews.ReadNewsFragment;
 import com.gutotech.narutogame.ui.loggedin.LoggedInActivity;
 import com.gutotech.narutogame.utils.FragmentUtil;
 import com.gutotech.narutogame.ui.home.recuperarsenha.RecuperarSenhaFragment;
@@ -61,9 +62,17 @@ public class HomeFragment extends Fragment implements ResultListener, SectionFra
         binding.newsRecyclerView.setHasFixedSize(true);
         binding.newsRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(),
                 LinearLayout.HORIZONTAL));
-        NewsAdapter newsAdapter = new NewsAdapter(getActivity());
+        NewsAdapter newsAdapter = new NewsAdapter(getActivity(), newsClickListener);
         binding.newsRecyclerView.setAdapter(newsAdapter);
-        viewModel.getNews().observe(getViewLifecycleOwner(), newsAdapter::setNewsList);
+        viewModel.getNews().observe(getViewLifecycleOwner(),
+                news -> {
+                    if (news.size() > 0) {
+                        binding.newsRecyclerView.setVisibility(View.VISIBLE);
+                    } else {
+                        binding.newsRecyclerView.setVisibility(View.GONE);
+                    }
+                    newsAdapter.setNewsList(news);
+                });
 
         binding.ninjaStatisticsRecyclerView.setHasFixedSize(true);
         NinjaStatisticsAdapter ninjaStatisticsAdapter = new NinjaStatisticsAdapter(getActivity());
@@ -76,12 +85,25 @@ public class HomeFragment extends Fragment implements ResultListener, SectionFra
         binding.kagesSliderView.startAutoCycle();
         binding.kagesSliderView.setIndicatorAnimation(IndicatorAnimations.WORM);
         binding.kagesSliderView.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION);
-        viewModel.getKages().observe(getViewLifecycleOwner(), kagesSliderAdapter::renewItems);
+        viewModel.getKages().observe(getViewLifecycleOwner(), kages -> {
+            if (kages.size() > 0) {
+                binding.kagesCardView.setVisibility(View.VISIBLE);
+            }
+            kagesSliderAdapter.renewItems(kages);
+        });
 
         FragmentUtil.setSectionTitle(getActivity(), R.string.section_home);
 
         return binding.getRoot();
     }
+
+    private final NewsAdapter.NewsClickListener newsClickListener = news -> {
+        Bundle args = new Bundle();
+        args.putSerializable("news", news);
+        ReadNewsFragment readNewsFragment = new ReadNewsFragment();
+        readNewsFragment.setArguments(args);
+        FragmentUtil.goTo(getActivity(), readNewsFragment);
+    };
 
     private ProgressDialogFragment mProgressDialog = new ProgressDialogFragment();
 

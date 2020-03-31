@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="3dp">
+    android:layout_marginBottom="3dp"
+    android:background="#423727">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/detalheImageView"
+            android:id="@+id/detailImageView"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:scaleType="fitXY"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -24,41 +26,56 @@
             android:id="@+id/dateTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="3dp"
+            android:layout_marginLeft="3dp"
+            android:layout_marginTop="5dp"
             android:text="14/07"
             android:textColor="@android:color/black"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="@+id/detalheImageView"
-            app:layout_constraintTop_toTopOf="@+id/detalheImageView" />
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/detailImageView"
+            app:layout_constraintTop_toTopOf="@+id/detailImageView" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <ImageView
+        android:id="@+id/imageView26"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/layout_home_noticia_trofeu" />
+
     <LinearLayout
-        android:id="@+id/linearbgnoticia"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#423727"
         android:gravity="center"
         android:orientation="vertical"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp">
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp">
 
         <TextView
             android:id="@+id/titleTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:text="@string/title"
             android:textColor="#E3EDA4"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/messageTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:gravity="center"
+            android:text="Estamos investigando uma situação onde os botões para ativação dos ranges de ataque de 1 e de 5 levels pode ser clicado, como"
+            android:textColor="@color/colorText"
+            android:textSize="12sp" />
 
         <TextView
             android:id="@+id/postedByTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="posted by"
+            android:gravity="center"
+            android:text="posted by Gustavo"
             android:textColor="@android:color/holo_orange_light" />
     </LinearLayout>
 

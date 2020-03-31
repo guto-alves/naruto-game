@@ -1,37 +1,31 @@
 package com.gutotech.narutogame.data.model;
 
-import java.io.Serializable;
+import androidx.databinding.BaseObservable;
+import androidx.databinding.Bindable;
 
-public class News implements Serializable {
+import com.gutotech.narutogame.BR;
+
+import java.io.Serializable;
+import java.util.List;
+
+public class News extends BaseObservable implements Serializable {
     private String id;
-    private String date;
     private String title;
     private String message;
     private String by;
-    private int likes;
+    private String date;
+    private List<String> likes;
+    private int likesCount;
 
     public News() {
     }
 
-    public News(String date, String title, String message) {
-        this.date = date;
-        this.title = title;
-        this.message = message;
+    public String getId() {
+        return id;
     }
 
-    public News(String date, String title, String message, String by) {
-        this.date = date;
-        this.title = title;
-        this.message = message;
-        this.by = by;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -58,19 +52,29 @@ public class News implements Serializable {
         this.by = by;
     }
 
-    public String getId() {
-        return id;
+    public String getDate() {
+        return date;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setDate(String date) {
+        this.date = date;
     }
 
-    public int getLikes() {
+    public List<String> getLikes() {
         return likes;
     }
 
-    public void setLikes(int likes) {
+    public void setLikes(List<String> likes) {
         this.likes = likes;
+    }
+
+    @Bindable
+    public int getLikesCount() {
+        return likesCount;
+    }
+
+    public void setLikesCount(int likesCount) {
+        this.likesCount = likesCount;
+        notifyPropertyChanged(BR.likesCount);
     }
 }

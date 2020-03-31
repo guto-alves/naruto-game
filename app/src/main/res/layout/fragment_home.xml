@@ -135,8 +135,10 @@
                 android:id="@+id/newsRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/recycler_news_item" />
+                tools:listitem="@layout/adapter_news" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -183,6 +185,8 @@
                 android:id="@+id/ninjaStatisticsRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="230dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:spanCount="2"
                 tools:listitem="@layout/recycler_ninja_statistics_item" />
@@ -190,7 +194,9 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp">
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginRight="8dp">
 
                 <ImageView
                     android:id="@+id/imageView"
@@ -205,23 +211,29 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="24dp"
-                    android:layout_marginRight="24dp"
                     android:text="@string/kages_amp_vilas"
                     android:textColor="@color/colorText"
                     android:textSize="16sp"
                     android:textStyle="bold|italic"
                     android:typeface="serif"
                     app:layout_constraintBottom_toBottomOf="@+id/imageView"
-                    app:layout_constraintEnd_toEndOf="@+id/imageView"
-                    app:layout_constraintTop_toTopOf="@+id/imageView"
-                    app:layout_constraintVertical_bias="0.47" />
+                    app:layout_constraintEnd_toStartOf="@+id/guideline73"
+                    app:layout_constraintTop_toTopOf="@+id/imageView" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline73"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.9" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/kagesCardView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:visibility="gone"
                 app:cardCornerRadius="6dp"
                 app:cardElevation="5dp"
                 app:cardUseCompatPadding="true">

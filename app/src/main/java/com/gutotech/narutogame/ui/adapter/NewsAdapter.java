@@ -19,83 +19,96 @@ import java.util.List;
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> {
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public interface NewsClickListener {
+        void onNewsClick(News news);
+    }
+
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
         private TextView dateTextView;
         private TextView titleTextView;
         private TextView messageTextView;
         private TextView postedByTextView;
-        private ImageView detalheImageView;
-        private LinearLayout bg_linear;
+        private ImageView detailImageView;
+        private LinearLayout linearLayout;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-
             dateTextView = itemView.findViewById(R.id.dateTextView);
             titleTextView = itemView.findViewById(R.id.titleTextView);
             messageTextView = itemView.findViewById(R.id.messageTextView);
             postedByTextView = itemView.findViewById(R.id.postedByTextView);
-            detalheImageView = itemView.findViewById(R.id.detalheImageView);
-            bg_linear = itemView.findViewById(R.id.linearbgnoticia);
+            detailImageView = itemView.findViewById(R.id.detailImageView);
+            linearLayout = itemView.findViewById(R.id.linearLayout);
         }
     }
 
-    private final int TROPHY_NEWS = 0;
+    private final int LATEST_NEWS = 0;
 
-    private Context context;
-    private List<News> newsList;
+    private Context mContext;
+    private List<News> mNewsList;
+    private NewsClickListener mNewsClickListener;
 
-    public NewsAdapter(Context context) {
-        this.context = context;
+    public NewsAdapter(Context context, NewsClickListener listener) {
+        mContext = context;
+        mNewsClickListener = listener;
     }
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view;
-        if (i == TROPHY_NEWS)
-            view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recycler_noticias_trofeu, viewGroup, false);
-        else
-            view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recycler_news_item, viewGroup, false);
-
+        if (i == LATEST_NEWS) {
+            view = LayoutInflater.from(viewGroup.getContext()).inflate(
+                    R.layout.adapter_lastest_news, viewGroup, false);
+        } else {
+            view = LayoutInflater.from(viewGroup.getContext()).inflate(
+                    R.layout.adapter_news, viewGroup, false);
+        }
         return new MyViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int position) {
-        if (newsList != null) {
-            News news = newsList.get(position);
+        if (mNewsList != null) {
+            News news = mNewsList.get(position);
             myViewHolder.dateTextView.setText(news.getDate());
             myViewHolder.titleTextView.setText(news.getTitle());
-            myViewHolder.postedByTextView.setText("postado por " + news.getBy());
+            myViewHolder.postedByTextView.setText(mContext.getString(R.string.posted_by, news.getBy()));
 
-            if (position == 0)
+            if (position == LATEST_NEWS) {
                 myViewHolder.messageTextView.setText(news.getMessage());
+            }
+
+            myViewHolder.itemView.setOnClickListener(v -> mNewsClickListener.onNewsClick(news));
 
             if (position % 2 == 0) {
-                myViewHolder.detalheImageView.setImageResource(R.drawable.layout_home_detalhe);
-                myViewHolder.bg_linear.setBackgroundColor(context.getResources().getColor(R.color.colorItem1));
+                myViewHolder.detailImageView.setImageResource(R.drawable.layout_home_detalhe);
+                myViewHolder.linearLayout.setBackgroundColor(
+                        mContext.getResources().getColor(R.color.colorItem1));
             } else {
-                myViewHolder.detalheImageView.setImageResource(R.drawable.layout_home_detalhe1);
-                myViewHolder.bg_linear.setBackgroundColor(context.getResources().getColor(R.color.colorItem2));
+                myViewHolder.detailImageView.setImageResource(R.drawable.layout_home_detalhe1);
+                myViewHolder.linearLayout.setBackgroundColor(
+                        mContext.getResources().getColor(R.color.colorItem2));
             }
         }
     }
 
     @Override
     public int getItemCount() {
-        return newsList != null ? newsList.size() : 0;
+        return mNewsList != null ? mNewsList.size() : 0;
     }
 
     @Override
     public int getItemViewType(int position) {
-        if (position == TROPHY_NEWS)
-            return TROPHY_NEWS;
-        else
+        if (position == LATEST_NEWS) {
+            return LATEST_NEWS;
+        } else {
             return 1;
+        }
     }
 
     public void setNewsList(List<News> newsList) {
-        this.newsList = newsList;
+        mNewsList = newsList;
         notifyDataSetChanged();
     }
 }

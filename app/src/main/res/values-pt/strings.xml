@@ -61,7 +61,7 @@
     <string name="label_name">Nome:</string>
     <string name="section_title">Título da seção</string>
     <string name="title">Título</string>
-    <string name="section_support_new_ticket">SUPPORT - NEW SUPPORT TICKET</string>
+    <string name="section_support_new_ticket">NOVO TICKET DE SUPORTE</string>
     <string name="section_dojo_challenge">DOJO CHALLENGE</string>
     <string name="forgot_my_password">Esqueci minha senha</string>
     <string name="invalid_email">Campo \'Email\' com valor inválido!</string>
@@ -2053,7 +2053,6 @@
     <string name="training_by_100">+ Treino / 100</string>
     <string name="total_training_des">( total do treino / 100)</string>
     <string name="total_initial_task_des">( total de tarefa * 25 )</string>
-    <string name="total_de_miss_o_d_50">( total de missão D * 50 )</string>
     <string name="per_mission_d_complete">Por missão D concluída</string>
     <string name="per_mission_c_complete">Por missão C concluída</string>
     <string name="per_mission_b_complete">Por missão B concluída</string>
@@ -2070,5 +2069,9 @@
     <string name="per_grade_des">(a cada graduação + 2000 pontos)</string>
     <string name="teams_ranking_formula">Fórmula do Ranking de Equipes (Pontos / Descrição)</string>
     <string name="per_level_team">Por level da Equipe</string>
+    <string name="in">em</string>
+    <string name="posted_by">postado por %s</string>
+    <string name="s_people_like_this">%s pessoas curtiram isso.</string>
+    <string name="like">Curtir</string>
 
 </resources>

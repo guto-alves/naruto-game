@@ -114,7 +114,7 @@
     <string name="button_play">Play</string>
     <string name="ninjas_statistics">Ninja Statistics</string>
     <string name="email_not_found">Email not found</string>
-    <string name="kages_amp_vilas" translatable="false"><![CDATA[Kages & Vilas]]></string>
+    <string name="kages_amp_vilas" translatable="false"><![CDATA[Kages & Villages]]></string>
 
     <!-- Section SIGN UP -->
     <string name="section_create_account">CREATE YOUR ACCOUNT</string>
@@ -193,7 +193,7 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
 
     <!-- Suppport -->
     <string name="section_support">SUPPORT</string>
-    <string name="section_support_new_ticket">SUPPORT - NEW SUPPORT TICKET</string>
+    <string name="section_support_new_ticket">NEW SUPPORT TICKET</string>
     <string name="support">Support</string>
 
     <!-- Select character -->
@@ -407,11 +407,10 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="about_the_ninja_jutsus">ABOUT THE NINJA JUTSUS</string>
     <string name="jutsu">Jutsu</string>
     <string name="label_losses_map_pvp">PVP Map Losses:</string>
-    <string name="ticket_created">Ticket de Suporte Criado com Sucesso</string>
-    <string name="welcome_to_support_system">BEM VINDO AO SISTEMA DE SUPORTE</string>
-    <string name="welcome_to_support_system_description">Bem vindo ao Novo Sistema do Suporte, onde
-        tentaremos solucionar seu problema. Basta abrir um Ticket de Suporte informando o que houve
-        e tentaremos te ajudar.</string>
+    <string name="ticket_created">Support Ticket Created Successfully</string>
+    <string name="welcome_to_support_system">WELCOME TO THE SUPPORT SYSTEM</string>
+    <string name="welcome_to_support_system_description">Welcome to the New Support System, where
+        we will try to solve your problem. Just open a Support Ticket stating what happened.</string>
     <string name="category">Category</string>
     <string name="no_file_selected">No image selected</string>
     <string name="when_it_happened">When it happened</string>
@@ -2123,6 +2122,10 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="per_grade_des">( for each Graduation + 2000 points )</string>
     <string name="teams_ranking_formula">Teams Ranking Formula (Points / Description)</string>
     <string name="per_level_team">Per Level Team</string>
+    <string name="in">in</string>
+    <string name="posted_by">by %s</string>
+    <string name="s_people_like_this">%s people like this.</string>
+    <string name="like">Like</string>
 
 
 </resources>
