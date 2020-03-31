@@ -124,38 +124,31 @@
 
                             <EditText
                                 android:id="@+id/dateOccurredEditText"
-                                android:layout_width="100dp"
+                                android:layout_width="115dp"
                                 android:layout_height="wrap_content"
                                 android:layout_marginEnd="8dp"
                                 android:layout_marginRight="3dp"
                                 android:background="@android:color/white"
+                                android:gravity="center"
                                 android:hint="@string/date"
-                                android:inputType="none" />
+                                android:inputType="date" />
 
                         </LinearLayout>
 
                         <CalendarView
                             android:id="@+id/calendarView"
-                            android:layout_width="300dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginLeft="10dp"
-                            android:background="@android:color/white"
-                            android:visibility="gone" />
+                            android:layout_marginStart="8dp"
+                            android:layout_marginLeft="8dp"
+                            android:background="@android:color/white" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
                             android:gravity="center"
                             android:orientation="horizontal">
-
-                            <Spinner
-                                android:id="@+id/minuteOccurredSpinner"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="@android:color/white"
-                                android:padding="5dp"
-                                android:spinnerMode="dialog" />
 
                             <Spinner
                                 android:id="@+id/hourOccurredSpinner"
@@ -164,7 +157,15 @@
                                 android:layout_marginEnd="8dp"
                                 android:layout_marginRight="8dp"
                                 android:background="@android:color/white"
-                                android:padding="5dp"
+                                android:spinnerMode="dialog" />
+
+                            <Spinner
+                                android:id="@+id/minuteOccurredSpinner"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="8dp"
+                                android:layout_marginRight="8dp"
+                                android:background="@android:color/white"
                                 android:spinnerMode="dialog" />
                         </LinearLayout>
 
@@ -193,7 +194,7 @@
                             android:inputType="textMultiLine"
                             android:paddingLeft="3dp"
                             android:paddingRight="3dp"
-                            android:text="@{viewModel.description}" />
+                            android:text="@={viewModel.description}" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 

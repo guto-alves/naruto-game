@@ -90,7 +90,7 @@
 
                         <EditText
                             android:id="@+id/titleEditText"
-                            android:layout_width="150dp"
+                            android:layout_width="200dp"
                             android:layout_height="wrap_content"
                             android:background="@android:color/white"
                             android:inputType="textCapCharacters|textCapSentences"
@@ -124,13 +124,14 @@
 
                             <EditText
                                 android:id="@+id/dateOccurredEditText"
-                                android:layout_width="100dp"
+                                android:layout_width="115dp"
                                 android:layout_height="wrap_content"
                                 android:layout_marginEnd="8dp"
-                                android:layout_marginRight="3dp"
+                                android:layout_marginRight="8dp"
                                 android:background="@android:color/white"
+                                android:gravity="center"
                                 android:hint="@string/date"
-                                android:inputType="none" />
+                                android:inputType="date" />
 
                             <Spinner
                                 android:id="@+id/hourOccurredSpinner"
@@ -184,7 +185,7 @@
                             android:inputType="textMultiLine"
                             android:paddingLeft="3dp"
                             android:paddingRight="3dp"
-                            android:text="@{viewModel.description}" />
+                            android:text="@={viewModel.description}" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 

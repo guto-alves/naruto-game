@@ -19,6 +19,9 @@ import com.gutotech.narutogame.utils.FragmentUtil;
 
 public class SupportFragment extends Fragment implements SectionFragment {
 
+    public SupportFragment() {
+    }
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

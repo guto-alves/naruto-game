@@ -17,12 +17,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SupportNewViewModel extends ViewModel {
-    private Ticket mTicket;
-
-    private SupportRepository mSupportRepository;
-
     public final ObservableField<String> title = new ObservableField<>();
     public final ObservableField<String> description = new ObservableField<>();
+
+    private Ticket mTicket;
+    private SupportRepository mSupportRepository;
 
     private SingleLiveEvent<List<Integer>> mShowWarningDialogEvent = new SingleLiveEvent<>();
     private SingleLiveEvent<Void> mTicketCreatedEvent = new SingleLiveEvent<>();
@@ -41,7 +40,7 @@ public class SupportNewViewModel extends ViewModel {
     public void onCreateClick() {
         if (validateFields()) {
             mTicket.setTitle(title.get());
-            mTicket.setTitle(description.get());
+            mTicket.setDescription(description.get());
             mTicket.setDateCreation(DateCustom.getDate());
             mTicket.setTimeCreation(DateCustom.getTime());
             mTicket.setDateUpdated(DateCustom.getDate());
@@ -76,7 +75,7 @@ public class SupportNewViewModel extends ViewModel {
         }
     }
 
-    public Ticket getTicket() {
+    Ticket getTicket() {
         return mTicket;
     }
 

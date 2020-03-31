@@ -42,7 +42,11 @@ import es.dmoral.toasty.Toasty;
 import static android.content.Context.INPUT_METHOD_SERVICE;
 
 public class SupportNewFragment extends Fragment {
+    private SupportNewViewModel mViewModel;
     private FragmentSupportNewBinding mBinding;
+
+    public SupportNewFragment() {
+    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -50,15 +54,14 @@ public class SupportNewFragment extends Fragment {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_support_new,
                 container, false);
 
-        SupportNewViewModel viewModel = new ViewModelProvider(this)
-                .get(SupportNewViewModel.class);
+        mViewModel = new ViewModelProvider(this).get(SupportNewViewModel.class);
 
-        mBinding.setViewModel(viewModel);
+        mBinding.setViewModel(mViewModel);
 
+        mViewModel.getTicket().setDateOccurred(DateCustom.getDate());
         mBinding.dateOccurredEditText.setText(DateCustom.getDate());
         mBinding.dateOccurredEditText.setOnFocusChangeListener((v, hasFocus) -> {
             dismissKeyboard(v);
-
             if (hasFocus) {
                 mBinding.calendarView.setVisibility(View.VISIBLE);
             } else {
@@ -73,16 +76,20 @@ public class SupportNewFragment extends Fragment {
             mBinding.dateOccurredEditText.setInputType(inputType);
             return true;
         });
+        mBinding.dateOccurredEditText.setOnKeyListener((v, keyCode, event) -> {
+            dismissKeyboard(v);
+            return false;
+        });
 
 
         mBinding.calendarView.setVisibility(View.GONE);
         mBinding.calendarView.setOnDateChangeListener((view1, year, month, dayOfMonth) -> {
             String date = String.format(Locale.US,
-                    "%02d/%02d/%04d", dayOfMonth, month, year);
-
-            viewModel.getTicket().setDateOccurred(date);
+                    "%02d/%02d/%04d", dayOfMonth, month + 1, year);
+            mViewModel.getTicket().setDateOccurred(date);
             mBinding.dateOccurredEditText.setText(date);
             mBinding.calendarView.setVisibility(View.GONE);
+            mBinding.descriptionEditText.requestFocus();
         });
 
 
@@ -98,7 +105,7 @@ public class SupportNewFragment extends Fragment {
         mBinding.hourOccurredSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                viewModel.getTicket().setTimeOccurred(String.format(Locale.US,
+                mViewModel.getTicket().setTimeOccurred(String.format(Locale.US,
                         "%s:%s:00", mBinding.hourOccurredSpinner.getSelectedItem(),
                         mBinding.minuteOccurredSpinner.getSelectedItem()));
             }
@@ -107,7 +114,6 @@ public class SupportNewFragment extends Fragment {
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
-
 
         List<String> minutesList = new ArrayList<>();
         for (int i = 0; i < 60; i++) {
@@ -121,7 +127,7 @@ public class SupportNewFragment extends Fragment {
         mBinding.minuteOccurredSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                viewModel.getTicket().setTimeOccurred(String.format(Locale.US,
+                mViewModel.getTicket().setTimeOccurred(String.format(Locale.US,
                         "%s:%s:00", mBinding.hourOccurredSpinner.getSelectedItem(),
                         mBinding.minuteOccurredSpinner.getSelectedItem()));
             }
@@ -139,7 +145,7 @@ public class SupportNewFragment extends Fragment {
             }
         });
 
-        viewModel.getShowWarningDialogEvent().observe(getViewLifecycleOwner(), messageIds -> {
+        mViewModel.getShowWarningDialogEvent().observe(getViewLifecycleOwner(), messageIds -> {
             StringBuilder message = new StringBuilder();
 
             message.append(getString(R.string.ticket_errors)).append("\n\n");
@@ -152,10 +158,10 @@ public class SupportNewFragment extends Fragment {
             warningDialog.openDialog(getParentFragmentManager());
         });
 
-        viewModel.getTicketCreatedEvent().observe(getViewLifecycleOwner(), aVoid -> {
+        mViewModel.getTicketCreatedEvent().observe(getViewLifecycleOwner(), aVoid -> {
             SupportFragment supportFragment = new SupportFragment();
             supportFragment.setArguments(new Bundle());
-            FragmentUtil.goTo(getActivity(), supportFragment);
+            FragmentUtil.popBackStack(getActivity(), this, supportFragment);
         });
 
         FragmentUtil.setSectionTitle(getActivity(), R.string.section_support_new_ticket);
@@ -194,8 +200,10 @@ public class SupportNewFragment extends Fragment {
                 }
 
                 if (bitmap != null) {
-                    StorageUtil.upload(bitmap,
-                            imageName -> mBinding.imageNameTextView.setText(imageName),
+                    StorageUtil.upload(bitmap, imageName -> {
+                                mViewModel.getTicket().setImage(imageName);
+                                mBinding.imageNameTextView.setText(imageName);
+                            },
                             exception ->
                                     Toasty.error(getActivity(),
                                             R.string.error_uploading_image,
@@ -210,7 +218,8 @@ public class SupportNewFragment extends Fragment {
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
         for (int permissionResult : grantResults) {

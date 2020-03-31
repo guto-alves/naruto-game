@@ -31,7 +31,7 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.MyViewHo
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View itemView = LayoutInflater.from(mContext).inflate(
-                R.layout.recycler_tickets, viewGroup, false);
+                R.layout.adapter_ticket, viewGroup, false);
         return new MyViewHolder(itemView);
     }
 
