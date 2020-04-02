@@ -595,7 +595,6 @@
                     android:textColor="@color/colorText"
                     android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="@+id/pointsTextView16"
-                    app:layout_constraintEnd_toStartOf="@+id/guideline386"
                     app:layout_constraintStart_toStartOf="@+id/guideline376"
                     app:layout_constraintTop_toTopOf="parent" />
 
