@@ -169,6 +169,10 @@ public class VipPlayerViewModel extends ViewModel {
             return;
         }
 
+        if (mCharacter.getLevel() > 10) {
+            return;
+        }
+
         if (makePayment(PRICE_TO_CHANGE_VILLAGE, mCharacter.getRyous())) {
             mCharacter.setVillage(mVillages.get(mVillageSelectedIndex));
             if (!mCharacter.isMap()) {
