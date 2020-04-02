@@ -1,0 +1,647 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.gutotech.narutogame.data.model.Jutsu" />
+
+
+        <variable
+            name="viewModel"
+            type="com.gutotech.narutogame.ui.playing.battles.DojoBatalhaLutadorViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        tools:context=".ui.playing.battles.DojoBatalhaLutadorFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp">
+
+            <include
+                android:id="@+id/battleResultLayout"
+                layout="@layout/section_msg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="16dp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:background="@drawable/layout_combate_bg_topo_combate"
+                app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <LinearLayout
+                    android:id="@+id/LinearMe"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="90dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="@+id/LinearMeio"
+                    app:layout_constraintStart_toStartOf="@+id/guideline55"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/myStatusImageView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/layout_combates_stats" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/myBuffsDebuffsStatusRecyclerView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                            app:spanCount="4"
+                            tools:itemCount="2"
+                            tools:listitem="@layout/recycler_buffs_and_debuffs" />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/myProfileImageView"
+                        loadProfile="@{viewModel.player.profilePath}"
+                        android:layout_width="145dp"
+                        android:layout_height="155dp"
+                        android:layout_marginTop="3dp" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/imageView8"
+                            android:layout_width="145dp"
+                            android:layout_height="26dp"
+                            android:src="@drawable/layout_bg_profile"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/nickMeTextView"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginRight="8dp"
+                            android:layout_marginBottom="3dp"
+                            android:gravity="center"
+                            android:text="@{viewModel.player.nick}"
+                            android:textColor="@android:color/white"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="@+id/imageView8"
+                            app:layout_constraintEnd_toEndOf="@+id/imageView8"
+                            app:layout_constraintStart_toStartOf="@id/imageView8"
+                            app:layout_constraintTop_toTopOf="@+id/imageView8" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="3dp"
+                        android:layout_marginLeft="3dp"
+                        android:layout_marginTop="3dp"
+                        android:background="@drawable/layout_bg_gradu_lvl"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="3dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:textColor="#FFD274"
+                            android:textSize="8sp"
+                            app:graduationId="@{viewModel.player.graduationId}"
+                            app:level="@{viewModel.player.level}"
+                            app:village="@{viewModel.player.village}" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{@string/label_ninja_power_1(viewModel.playerFormulas.ninjaPower)}"
+                            android:textColor="#FFD274"
+                            android:textSize="8sp" />
+
+                    </LinearLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp">
+
+                        <ProgressBar
+                            android:id="@+id/hpMeProgressBar"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/layout_hp_on"
+                            android:max="@{viewModel.playerFormulas.health}"
+                            android:progress="@{viewModel.playerFormulas.health - viewModel.playerFormulas.currentHealth}"
+                            android:progressDrawable="@drawable/progressbar_hp_off"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.6"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/myHpTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginRight="8dp"
+                            android:text="@{@string/label_heath(viewModel.playerFormulas.currentHealth)}"
+                            android:textColor="@android:color/white"
+                            android:textSize="10sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="@+id/hpMeProgressBar"
+                            app:layout_constraintEnd_toEndOf="@+id/hpMeProgressBar"
+                            app:layout_constraintTop_toTopOf="@+id/hpMeProgressBar" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp">
+
+                        <ProgressBar
+                            android:id="@+id/myChakraProgressBar"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/layout_sp_on"
+                            android:max="@{viewModel.playerFormulas.chakra}"
+                            android:progress="@{viewModel.playerFormulas.chakra - viewModel.playerFormulas.currentChakra}"
+                            android:progressDrawable="@drawable/progressbar_sp_off"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.6"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/myChakraTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginRight="8dp"
+                            android:text="@{@string/label_chakra(viewModel.playerFormulas.currentChakra)}"
+                            android:textColor="@android:color/white"
+                            android:textSize="10sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="@+id/myChakraProgressBar"
+                            app:layout_constraintEnd_toEndOf="@+id/myChakraProgressBar"
+                            app:layout_constraintTop_toTopOf="@+id/myChakraProgressBar" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp">
+
+                        <ProgressBar
+                            android:id="@+id/myStaminaProgressBar"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/layout_sta_on"
+                            android:max="@{viewModel.playerFormulas.stamina}"
+                            android:progress="@{viewModel.playerFormulas.stamina - viewModel.playerFormulas.currentStamina}"
+                            android:progressDrawable="@drawable/progressbar_sta_off"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.6"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/staminaMeTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginRight="8dp"
+                            android:text="@{@string/label_stamina(viewModel.playerFormulas.currentStamina)}"
+                            android:textColor="@android:color/white"
+                            android:textSize="10sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="@+id/myStaminaProgressBar"
+                            app:layout_constraintEnd_toEndOf="@+id/myStaminaProgressBar"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/LinearMeio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="90dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="1dp"
+                    app:layout_constraintEnd_toStartOf="@+id/LinearOpo"
+                    app:layout_constraintStart_toEndOf="@+id/LinearMe"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:id="@+id/imageView16"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:layout_marginTop="64dp"
+                        android:src="@drawable/layout_combate_vs" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{viewModel.countDown}"
+                        android:textColor="@android:color/white" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/battleLogRecyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="90dp"
+                        android:layout_marginTop="16dp"
+                        android:background="@drawable/layout_combate_bg_log"
+                        android:paddingLeft="4dp"
+                        android:paddingRight="4dp"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/waiting_your_move"
+                        android:textColor="@android:color/holo_orange_dark"
+                        android:textSize="10sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/LinearOpo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="90dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="@+id/LinearMeio"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline26"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/oppStatusImageView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/layout_combates_stats" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/oppBuffsDebuffsStatusRecyclerView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                            app:spanCount="4"
+                            tools:itemCount="2"
+                            tools:listitem="@layout/recycler_buffs_and_debuffs" />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/oppProfileImageView"
+                        loadProfile="@{viewModel.npc.character.profilePath}"
+                        android:layout_width="145dp"
+                        android:layout_height="155dp"
+                        android:layout_marginTop="3dp" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="155dp"
+                        android:layout_height="27dp">
+
+                        <ImageView
+                            android:id="@+id/imageView17"
+                            android:layout_width="145dp"
+                            android:layout_height="26dp"
+                            android:layout_marginBottom="8dp"
+                            android:src="@drawable/layout_bg_profile"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/oppNickTextView"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginRight="8dp"
+                            android:layout_marginBottom="3dp"
+                            android:gravity="center"
+                            android:text="@{viewModel.npc.character.nick}"
+                            android:textColor="@android:color/white"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="@+id/imageView17"
+                            app:layout_constraintEnd_toEndOf="@+id/imageView17"
+                            app:layout_constraintStart_toStartOf="@id/imageView17"
+                            app:layout_constraintTop_toTopOf="@+id/imageView17" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="3dp"
+                        android:layout_marginLeft="3dp"
+                        android:layout_marginTop="3dp"
+                        android:background="@drawable/layout_bg_gradu_lvl"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="3dp">
+
+                        <TextView
+                            android:id="@+id/gradELvlOpoTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:textColor="#FFD274"
+                            android:textSize="8sp"
+                            app:graduationId="@{viewModel.npc.character.graduationId}"
+                            app:level="@{viewModel.npc.character.level}"
+                            app:village="@{viewModel.npc.character.village}" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{@string/label_ninja_power_1(viewModel.npcFormulas.ninjaPower)}"
+                            android:textColor="#FFD274"
+                            android:textSize="8sp" />
+
+                    </LinearLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp">
+
+                        <ProgressBar
+                            android:id="@+id/hpOpoProgressBar"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/layout_hp_off_r"
+                            android:max="@{viewModel.npcFormulas.health}"
+                            android:progress="@{viewModel.npcFormulas.currentHealth}"
+                            android:progressDrawable="@drawable/progressbar_hp_on_r"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.6"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/hpOpoTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginLeft="8dp"
+                            android:text="@{@string/label_heath(viewModel.npcFormulas.currentHealth)}"
+                            android:textColor="@android:color/white"
+                            android:textSize="10sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="@+id/hpOpoProgressBar"
+                            app:layout_constraintTop_toTopOf="@+id/hpOpoProgressBar" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp">
+
+                        <ProgressBar
+                            android:id="@+id/chakraOpoProgressBar"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/layout_sp_off_r"
+                            android:max="@{viewModel.npcFormulas.chakra}"
+                            android:progress="@{viewModel.npcFormulas.currentChakra}"
+                            android:progressDrawable="@drawable/progressbar_sp_on_r"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.6"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/chakraOpoTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginLeft="8dp"
+                            android:text="@{@string/label_chakra(viewModel.npcFormulas.currentChakra)}"
+                            android:textColor="@android:color/white"
+                            android:textSize="10sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="@+id/chakraOpoProgressBar"
+                            app:layout_constraintStart_toStartOf="@+id/chakraOpoProgressBar"
+                            app:layout_constraintTop_toTopOf="@+id/chakraOpoProgressBar" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp">
+
+                        <ProgressBar
+                            android:id="@+id/staminaOpoProgressBar"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/layout_sta_off_r"
+                            android:max="@{viewModel.npcFormulas.stamina}"
+                            android:progress="@{viewModel.npcFormulas.currentStamina}"
+                            android:progressDrawable="@drawable/progressbar_sta_on_r"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.6"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/staminaOpoTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginLeft="8dp"
+                            android:text="@{@string/label_stamina(viewModel.npcFormulas.currentStamina)}"
+                            android:textColor="@android:color/white"
+                            android:textSize="10sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="@+id/staminaOpoProgressBar"
+                            app:layout_constraintStart_toStartOf="@+id/staminaOpoProgressBar"
+                            app:layout_constraintTop_toTopOf="@+id/staminaOpoProgressBar" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/barraMeusJutsusImageView"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginRight="16dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/layout_titulo_secao3"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/LinearMeio" />
+
+                <TextView
+                    android:id="@+id/textView42"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="sans-serif-smallcaps"
+                    android:text="@string/my_jutsus"
+                    android:textColor="@android:color/white"
+                    android:textStyle="italic"
+                    app:layout_constraintBottom_toBottomOf="@+id/barraMeusJutsusImageView"
+                    app:layout_constraintStart_toStartOf="@+id/guideline55"
+                    app:layout_constraintTop_toTopOf="@+id/barraMeusJutsusImageView" />
+
+                <Button
+                    android:id="@+id/classJutsusButton"
+                    style="@android:style/Widget.Button.Toggle"
+                    android:layout_width="40dp"
+                    android:layout_height="20dp"
+                    android:layout_marginEnd="2dp"
+                    android:layout_marginRight="2dp"
+                    android:background="@drawable/layout_bg_gradu_lvl"
+                    android:onClick="@{() -> viewModel.filterJutsus(Jutsu.Type.ATK)}"
+                    android:textColor="#FFD274"
+                    android:textSize="10dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/buffAndDebuffsButton"
+                    app:layout_constraintEnd_toStartOf="@+id/buffAndDebuffsButton"
+                    app:layout_constraintTop_toTopOf="@+id/buffAndDebuffsButton" />
+
+                <Button
+                    android:id="@+id/buffAndDebuffsButton"
+                    style="@android:style/Widget.Button.Toggle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_marginEnd="2dp"
+                    android:layout_marginRight="2dp"
+                    android:background="@drawable/layout_bg_gradu_lvl"
+                    android:onClick="@{() -> viewModel.filterJutsus(Jutsu.Type.BUFF)}"
+                    android:text="@string/buffs_and_debuffs"
+                    android:textColor="#FFD274"
+                    android:textSize="10dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/weaponsButton"
+                    app:layout_constraintEnd_toStartOf="@+id/weaponsButton"
+                    app:layout_constraintTop_toTopOf="@+id/weaponsButton" />
+
+                <Button
+                    android:id="@+id/weaponsButton"
+                    style="@android:style/Widget.Button.Toggle"
+                    android:layout_width="50dp"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/layout_bg_gradu_lvl"
+                    android:onClick="@{() -> viewModel.filterJutsus(Jutsu.Type.WEAPON)}"
+                    android:text="@string/weapons"
+                    android:textColor="#FFD274"
+                    android:textSize="10dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline26"
+                    app:layout_constraintTop_toTopOf="@+id/barraMeusJutsusImageView" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline26"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.88" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline55"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.12" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:background="@drawable/layout_combate_bg_rodape_combate"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/myJutsusRecyclerView"
+                    android:layout_width="395dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="64dp"
+                    android:layout_marginRight="64dp"
+                    android:layout_marginBottom="40dp"
+                    android:background="#18100F"
+                    android:padding="5dp"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:spanCount="7"
+                    tools:listitem="@layout/adapter_battle_jutsu_item" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

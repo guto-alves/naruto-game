@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#312016</color>
+    <color name="colorPrimaryDark">#2B2019</color>
+    <color name="colorAccent">#0D91A3</color>
+
+    <color name="colorGreen">#0BD96C</color>
+    <color name="colorSectionTitle">#F3E6C4</color>
+    <color name="colorText">#D1D8F1</color>
+
+    <color name="colorItem1">#423727</color>
+    <color name="colorItem2">#271C15</color>
+
+    <color name="colorYellow">#E3EDA4</color>
+
+    <color name="colorBgDialog">#E1000000</color>
+
+    <color name="colorBgButton">#676767</color>
+
+    <color name="colorLogBlue">#235F8D</color>
+    <color name="colorLogAction">#CE7B53</color>
+    <color name="colorLogPurple">#8D2258</color>
+
+    <color name="colorYellowLight">#FFD273</color>
+
+    <color name="colorTeamRatingbar">#FCE187</color>
+
+    <color name="colorItemTitle">#FFD274</color>
+
+</resources>

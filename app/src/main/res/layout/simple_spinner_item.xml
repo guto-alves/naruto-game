@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@android:id/text1"
+    style="?android:attr/spinnerItemStyle"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:drawableStart="@drawable/layout_chat_chat_channel"
+    android:drawableLeft="@drawable/layout_chat_chat_channel"
+    android:drawablePadding="3dp"
+    android:ellipsize="marquee"
+    android:gravity="center_vertical"
+    android:singleLine="true"
+    android:textAlignment="inherit"
+    android:textColor="@android:color/white" />

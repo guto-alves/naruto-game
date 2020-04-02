@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.gutotech.narutogame.ui.home.signup.SignupViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="16dp"
+            android:paddingTop="16dp"
+            android:paddingRight="16dp"
+            android:paddingBottom="32dp">
+
+            <include
+                android:id="@+id/msgLayout"
+                layout="@layout/section_msg" />
+
+            <include
+                android:id="@+id/accountCreatedMsgLayout"
+                layout="@layout/section_msg"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/formToSignupLinearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="32dp"
+                    android:layout_marginRight="32dp"
+                    android:textColorHint="@color/colorYellow">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        style="@style/EditTextCustomTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/full_name"
+                        android:inputType="textCapWords|textCapSentences"
+                        android:text="@={viewModel.player.name}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="32dp"
+                    android:layout_marginRight="32dp"
+                    android:textColorHint="@color/colorYellow">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        style="@style/EditTextCustomTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/email"
+                        android:inputType="textEmailAddress"
+                        android:text="@={viewModel.player.email}"
+                        android:textColor="@android:color/white" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="32dp"
+                    android:layout_marginRight="32dp"
+                    android:textColorHint="@color/colorYellow"
+                    app:passwordToggleEnabled="true">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        style="@style/EditTextCustomTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:fontFamily="sans-serif"
+                        android:hint="@string/password"
+                        android:inputType="textPassword"
+                        android:text="@={viewModel.player.password}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="32dp"
+                    android:layout_marginRight="32dp"
+                    android:textColorHint="@color/colorYellow"
+                    app:passwordToggleEnabled="true">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        style="@style/EditTextCustomTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:fontFamily="sans-serif"
+                        android:hint="@string/confirm_password"
+                        android:inputType="textPassword"
+                        android:text="@={viewModel.confirmPassword}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <Button
+                    style="@style/ButtonTheme"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="32dp"
+                    android:onClick="@{() -> viewModel.onSignupButtonPressed()}"
+                    android:text="@string/signup" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</layout>

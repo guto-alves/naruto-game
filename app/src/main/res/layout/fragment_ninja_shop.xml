@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.gutotech.narutogame.data.model.ItemType" />
+
+        <variable
+            name="viewModel"
+            type="com.gutotech.narutogame.ui.playing.currentvillage.NinjaShopViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        tools:context=".ui.playing.currentvillage.NinjaShopFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/msgContraintLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#1D140F"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/imageView242"
+                    android:layout_width="wrap_content"
+                    android:layout_height="39dp"
+                    android:scaleType="center"
+                    android:src="@drawable/layout_pagina_repeat"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/imageView212"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/layout_msg_topo"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/imageView242" />
+
+                <ImageView
+                    android:id="@+id/imagemMsg2"
+                    profileForMsg="@{1}"
+                    android:layout_width="130dp"
+                    android:layout_height="0dp"
+                    android:scaleType="fitXY"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/imageView232"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/layout_msg_rodape2"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <ImageView
+                    android:id="@+id/imageView222"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/layout_msg_rodape1"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageView232"
+                    app:layout_constraintEnd_toEndOf="@+id/imageView232"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/imageView232" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
+                    android:padding="3dp"
+                    app:layout_constraintBottom_toTopOf="@+id/imageView222"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imagemMsg2"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView212">
+
+                    <TextView
+                        android:id="@+id/msgTitleTextView2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:text="@string/limit_ranged_weapons"
+                        android:textColor="#FFD274"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/msgMensagem2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:gravity="center|start"
+                        android:text="@string/limit_ranged_weapons_description"
+                        android:textColor="#D1D8F1"
+                        android:textSize="12sp" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ProgressBar
+                            android:id="@+id/armasQuinzenalProgressBar"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/layout_barra_exp_barra_vazia_340"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/armasQuinzenalTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginLeft="8dp"
+                            android:text="@string/_0_of_40_ranged_biweekly_weapons"
+                            android:textColor="@android:color/white"
+                            android:textSize="10sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="@+id/armasQuinzenalProgressBar"
+                            app:layout_constraintStart_toStartOf="@+id/armasQuinzenalProgressBar"
+                            app:layout_constraintTop_toTopOf="@+id/armasQuinzenalProgressBar" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout17"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/msgContraintLayout">
+
+                <Button
+                    style="@style/ButtonTheme"
+                    android:layout_gravity="center"
+                    android:background="@{viewModel.itemTypeSelected == ItemType.SCROLL ? @drawable/bg_button_orange : @drawable/bg_button}"
+                    android:onClick="@{() -> viewModel.onItemTypeSelected(ItemType.SCROLL)}"
+                    android:text="@string/scrolls" />
+
+                <Button
+                    style="@style/ButtonTheme"
+                    android:layout_marginTop="16dp"
+                    android:background="@{viewModel.itemTypeSelected == ItemType.MELEE_WEAPON ? @drawable/bg_button_orange : @drawable/bg_button}"
+                    android:onClick="@{() -> viewModel.onItemTypeSelected(ItemType.MELEE_WEAPON)}"
+                    android:text="@string/melee_weapon" />
+
+                <Button
+                    style="@style/ButtonTheme"
+                    android:layout_marginTop="16dp"
+                    android:background="@{viewModel.itemTypeSelected == ItemType.RANGED_WEAPON ? @drawable/bg_button_orange : @drawable/bg_button}"
+                    android:onClick="@{() -> viewModel.onItemTypeSelected(ItemType.RANGED_WEAPON)}"
+                    android:text="@string/ranged_weapon" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/imageView45"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/layout_barras_secoes_1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout17" />
+
+            <TextView
+                android:id="@+id/textView22"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/requirements"
+                android:textColor="@android:color/white"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView45"
+                app:layout_constraintEnd_toEndOf="@+id/imageView45"
+                app:layout_constraintStart_toStartOf="@+id/guideline9"
+                app:layout_constraintTop_toTopOf="@+id/imageView45" />
+
+            <TextView
+                android:id="@+id/textView25"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:text="@string/value"
+                android:textColor="@android:color/white"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView45"
+                app:layout_constraintEnd_toStartOf="@+id/textView26"
+                app:layout_constraintTop_toTopOf="@+id/imageView45"
+                app:layout_constraintVertical_bias="0.484" />
+
+            <TextView
+                android:id="@+id/textView26"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:text="@string/amount"
+                android:textColor="@android:color/white"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView45"
+                app:layout_constraintEnd_toStartOf="@+id/guideline9"
+                app:layout_constraintTop_toTopOf="@+id/imageView45" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/shopItemsRecyclerView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView45"
+                tools:itemCount="3"
+                tools:listitem="@layout/adapter_shop_item" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.70" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_batalhas_dojo_npc"
+        android:enabled="true"
+        android:title="@string/dojo_npc_fighters"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_batalhas_dojo_pvp"
+        android:title="@string/dojo_pvp_fighters"
+        app:showAsAction="ifRoom" />
+
+</menu>

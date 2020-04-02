@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/progress">
+        <clip>
+            <bitmap android:src="@drawable/layout_barras_topo_barra_topo_exp_fill"/>
+        </clip>
+    </item>
+
+</layer-list>

@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="jutsu"
+            type="com.gutotech.narutogame.data.model.Jutsu" />
+
+        <variable
+            name="jutsuInfo"
+            type="com.gutotech.narutogame.data.model.JutsuInfo" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_popup"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{jutsuInfo.name}"
+                android:textColor="@android:color/holo_blue_dark"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/combat_values"
+                android:textColor="@android:color/holo_orange_light"
+                android:textSize="12sp" />
+
+            <View
+                android:id="@+id/divider3"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="3dp"
+                android:background="@android:color/darker_gray" />
+
+            <TextView
+                android:id="@+id/effectsTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/effects_on_your_character"
+                android:textColor="@android:color/white"
+                android:textSize="12sp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/atkOrDefTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/layout_icones_atk_fisico"
+                android:drawableLeft="@drawable/layout_icones_atk_fisico"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical"
+                android:textColor="@android:color/white"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/atkOrDefTextView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/layout_icones_atk_magico"
+                android:drawableLeft="@drawable/layout_icones_atk_magico"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical"
+                android:textColor="@android:color/white"
+                android:textSize="12sp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/accTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/layout_icones_precisao"
+                android:drawableLeft="@drawable/layout_icones_precisao"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical"
+                android:text="@{@string/label_accuracy(jutsu.accuracy)}"
+                android:textColor="@android:color/white"
+                android:textSize="12sp"
+                android:visibility="gone" />
+
+            <View
+                android:id="@+id/divider5"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="3dp"
+                android:background="@android:color/darker_gray" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="3dp"
+                    android:layout_marginRight="3dp"
+                    android:text="@string/label_consumes_in_combat"
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:drawableStart="@drawable/layout_icones_p_chakra"
+                    android:drawableLeft="@drawable/layout_icones_p_chakra"
+                    android:gravity="center_vertical"
+                    android:text="@{String.valueOf(jutsu.consumesChakra)}"
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/layout_icones_p_stamina"
+                    android:drawableLeft="@drawable/layout_icones_p_stamina"
+                    android:gravity="center_vertical"
+                    android:text="@{String.valueOf(jutsu.consumesStamina)}"
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/divider7"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="3dp"
+                android:background="@android:color/darker_gray" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="3dp"
+                    android:layout_marginRight="3dp"
+                    android:text="@string/label_learn_this_jutsu_with"
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:drawableStart="@drawable/layout_icones_p_chakra"
+                    android:drawableLeft="@drawable/layout_icones_p_chakra"
+                    android:gravity="center_vertical"
+                    android:text="@{String.valueOf(jutsu.consumesChakra * 2)}"
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/layout_icones_p_stamina"
+                    android:drawableLeft="@drawable/layout_icones_p_stamina"
+                    android:gravity="center_vertical"
+                    android:text="@{String.valueOf(jutsu.consumesStamina * 2)}"
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</layout>
