@@ -16,8 +16,10 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.gutotech.narutogame.R;
+import com.gutotech.narutogame.data.firebase.FirebaseFunctionsUtils;
 import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.model.Character;
+import com.gutotech.narutogame.data.model.Graduation;
 import com.gutotech.narutogame.data.model.MenuGroup;
 import com.gutotech.narutogame.data.model.Message;
 import com.gutotech.narutogame.data.model.Ramen;
@@ -60,7 +62,6 @@ import com.gutotech.narutogame.ui.playing.team.TeamParticipateFragment;
 import com.gutotech.narutogame.ui.playing.user.FormulasFragment;
 import com.gutotech.narutogame.ui.playing.user.MensagensFragment;
 import com.gutotech.narutogame.ui.playing.user.VipPlayerFragment;
-import com.gutotech.narutogame.utils.DateCustom;
 import com.gutotech.narutogame.utils.MusicSettingsUtils;
 import com.gutotech.narutogame.utils.SingleLiveEvent;
 import com.gutotech.narutogame.utils.MusicUtils;
@@ -79,7 +80,7 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
     private final static int TEAM_GROUP = 5;
     private final static int RANKING_GROUP = 6;
 
-    private MutableLiveData<List<MenuGroup>> menuGroups = new MutableLiveData<>();
+    private MutableLiveData<List<MenuGroup>> mMenuGroups = new MutableLiveData<>();
     private MutableLiveData<SectionFragment> mCurrentSection = new MutableLiveData<>();
 
     private Character mCharacter;
@@ -107,10 +108,10 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
                     CharacterRepository.getInstance().save(mCharacter);
                     buildMenu();
                     if (mCharacter.isBattle()) {
-                        setCurrentSection(BATTLES_GROUP, 0);
                         if (musicEnabled.get()) {
                             mMusicUtil.setMusicType(MusicUtils.MusicType.BATTLE);
                         }
+                        setCurrentSection(BATTLES_GROUP, 0);
                     } else {
                         if (musicEnabled.get()) {
                             mMusicUtil.setMusicType(MusicUtils.MusicType.NORMAL);
@@ -125,7 +126,7 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
                     }
                 } else if (propertyId == BR.map) {
                     buildMenu();
-                    if (!mCharacter.isMap()) {
+                    if (!mCharacter.isMap() && !mCharacter.isBattle()) {
                         setCurrentSection(CHARACTER_GROUP, 0);
                     }
                 } else if (propertyId == BR.dojoWaitQueue) {
@@ -142,6 +143,7 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
                     buildMenu();
                 } else if (propertyId == BR.team) {
                     buildMenu();
+                    mUpdateChannelsEvent.call();
                     if (TextUtils.isEmpty(mCharacter.getTeam())) {
                         setCurrentSection(CHARACTER_GROUP, 0);
                     } else if (!mCharacter.isBattle()) {
@@ -151,46 +153,35 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
             }
         });
 
-        mChatRepository = ChatRepository.getInstance();
-        channel = mCharacter.getVillage().name();
-
         buildMenu();
         setCurrentSection(CHARACTER_GROUP, 0);
 
-        if (mCharacter.getLastSeenInMillis() == 0) {
-            mCharacter.setLastSeenInMillis(DateCustom.getTimeInMillis());
-            mCharacter.setNumberOfDaysPlayed(1);
-        }
+        FirebaseFunctionsUtils.getServerTime(currentTimestamp -> {
+            if (mCharacter.getLastSeenInMillis() == 0) {
+                mCharacter.setLastSeenInMillis(currentTimestamp);
+                mCharacter.setNumberOfDaysPlayed(1);
 
-        long lastSeenInMillis = mCharacter.getLastSeenInMillis();
-        long currentMillis = DateCustom.getTimeInMillis();
-        long diffMillis = currentMillis - lastSeenInMillis;
-        long TOTAL_INCREMENTS = diffMillis / 120000;
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTimeInMillis(currentTimestamp);
+                updateWeeklyLimitOfTraining(calendar.get(Calendar.DAY_OF_WEEK));
+            } else {
+                long elapsedTime = currentTimestamp - mCharacter.getLastSeenInMillis();
+                long TOTAL_INCREMENTS = elapsedTime / 120000;
 
-        if (TOTAL_INCREMENTS > 5) {
-            TOTAL_INCREMENTS = 5;
-        }
+                if (TOTAL_INCREMENTS > 5) {
+                    TOTAL_INCREMENTS = 5;
+                }
 
-        execHealing((int) TOTAL_INCREMENTS);
-        execVariousRoutines();
+                execHealing((int) TOTAL_INCREMENTS);
+                execVariousRoutines();
+            }
 
-        startGameRoutines();
+            startGameRoutines();
+        });
     }
 
     public Character getCharacter() {
         return mCharacter;
-    }
-
-    LiveData<List<Integer>> getTitles() {
-        return mTitles;
-    }
-
-    LiveData<List<MenuGroup>> getMenuGroups() {
-        return menuGroups;
-    }
-
-    LiveData<SectionFragment> getCurrentSection() {
-        return mCurrentSection;
     }
 
     // Bag
@@ -199,28 +190,16 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
     private SingleLiveEvent<Void> mDismissBagDialogEvent = new SingleLiveEvent<>();
     private SingleLiveEvent<Integer> mShowWarningDialogEvent = new SingleLiveEvent<>();
 
-    LiveData<List<Ramen>> getRamens() {
-        return mRamens;
-    }
-
-    LiveData<List<Scroll>> getScrolls() {
-        return mScrolls;
-    }
-
-    LiveData<Void> getDismissBagDialog() {
-        return mDismissBagDialogEvent;
-    }
-
-    public LiveData<Integer> getShowWarningDialogEvent() {
-        return mShowWarningDialogEvent;
-    }
-
     void updateBag() {
         mRamens.postValue(mCharacter.getBag().getRamenList());
         mScrolls.postValue(mCharacter.getBag().getScrollList());
     }
 
-    BagItemsAdapter.OnItemClickListener onRamenClickListener = (itemClicked, position) -> {
+    final BagItemsAdapter.OnItemClickListener onRamenClickListener = (itemClicked, position) -> {
+        if (mCharacter.isBattle() || mCharacter.isHospital()) {
+            return;
+        }
+
         Ramen ramen = (Ramen) itemClicked;
 
         if (mCharacter.getFormulas().isFull()) {
@@ -251,10 +230,11 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
         mRamens.setValue(ramens);
     };
 
-    BagItemsAdapter.OnItemClickListener onScrollClickListener = (itemClicked, position) -> {
+    final BagItemsAdapter.OnItemClickListener onScrollClickListener = (itemClicked, position) -> {
         Scroll scroll = (Scroll) itemClicked;
 
-        if (mCharacter.getMapId() == scroll.getVillage().ordinal()) {
+        if (mCharacter.isBattle() || mCharacter.isMission() || mCharacter.isDojoWaitQueue() ||
+                mCharacter.isHospital() || mCharacter.getMapId() == scroll.getVillage().ordinal()) {
             return;
         }
 
@@ -274,19 +254,39 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
 
         mScrolls.setValue(scrolls);
 
+        mDismissBagDialogEvent.call();
+
         if (mCharacter.isMap()) {
-            MapRepository.getInstance().exit(mCharacter.getMapId(), mCharacter.getNick());
+            MapRepository.getInstance().exit(mCharacter.getMapId(), mCharacter.getId());
         }
 
         mCharacter.setMapId(scroll.getVillage().ordinal());
         CharacterRepository.getInstance().save(mCharacter);
 
-        mDismissBagDialogEvent.call();
-
-        VillageMapFragment villageMapFragment = new VillageMapFragment();
-        setCurrentSection(villageMapFragment);
+        setCurrentSection(new VillageMapFragment());
     };
 
+    LiveData<List<Ramen>> getRamens() {
+        return mRamens;
+    }
+
+    LiveData<List<Scroll>> getScrolls() {
+        return mScrolls;
+    }
+
+    LiveData<Void> getDismissBagDialog() {
+        return mDismissBagDialogEvent;
+    }
+
+    public LiveData<Integer> getShowWarningDialogEvent() {
+        return mShowWarningDialogEvent;
+    }
+
+
+    // Menu
+    public void onChangeImageButtonPressed() {
+        mCurrentSection.setValue(new ChangeImageFragment());
+    }
 
     public void onTitleSelected(int position) {
         if (position == 0) {
@@ -296,10 +296,9 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
         }
     }
 
-
-    // Menu
     @Override
-    public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
+    public boolean onChildClick(ExpandableListView parent, View v, int groupPosition,
+                                int childPosition, long id) {
         setCurrentSection(groupPosition, childPosition);
         return false;
     }
@@ -309,19 +308,16 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
     }
 
     public void goToFidelity() {
-        if (mCharacter.isMap() || mCharacter.isMission()) {
-            setCurrentSection(CHARACTER_GROUP, 1);
-        } else {
+        if (!mCharacter.isMission() && !mCharacter.isBattle() && !mCharacter.isHospital() &&
+                !mCharacter.isMap()) {
             setCurrentSection(CHARACTER_GROUP, 2);
+        } else {
+            setCurrentSection(CHARACTER_GROUP, 1);
         }
     }
 
-    public void onChangeImageButtonPressed() {
-        mCurrentSection.setValue(new ChangeImageFragment());
-    }
-
     private void setCurrentSection(int groupPosition, int childPosition) {
-        mCurrentSection.setValue(menuGroups.getValue().get(groupPosition)
+        mCurrentSection.setValue(mMenuGroups.getValue().get(groupPosition)
                 .sections.get(childPosition));
     }
 
@@ -396,8 +392,8 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
 
         List<SectionFragment> sections5 = new ArrayList<>();
         if (!mCharacter.isMission() && !mCharacter.isBattle() && !mCharacter.isHospital() &&
-                !mCharacter.isMap() && !mCharacter.isDojoWaitQueue()) {
-//            && mCharacter.getGraduationId() > 0
+                !mCharacter.isMap() && !mCharacter.isDojoWaitQueue() &&
+                mCharacter.getGraduationId() > 0) {
             if (TextUtils.isEmpty(mCharacter.getTeam())) {
                 sections5.add(new TeamParticipateFragment());
                 sections5.add(new TeamCreateFragment());
@@ -426,88 +422,112 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
         groups.add(new MenuGroup(R.string.team, R.drawable.layout_categorias_topo_6, sections5));
         groups.add(new MenuGroup(R.string.ranking, R.drawable.layout_categorias_topo_9, sections6));
 
-        menuGroups.setValue(groups);
+        mMenuGroups.setValue(groups);
+    }
+
+    LiveData<List<Integer>> getTitles() {
+        return mTitles;
+    }
+
+    LiveData<List<MenuGroup>> getMenuGroups() {
+        return mMenuGroups;
+    }
+
+    LiveData<SectionFragment> getCurrentSection() {
+        return mCurrentSection;
     }
 
 
     // Chat
-    private ChatRepository mChatRepository;
     public ObservableBoolean chatOpened = new ObservableBoolean(false);
     public ObservableField<String> message = new ObservableField<>();
-    private String channel;
+    private ChatRepository mChatRepository = ChatRepository.getInstance();
+    private String mChannel = String.valueOf(CharOn.character.getVillage().ordinal());
     private MutableLiveData<List<Message>> mMessages = new MutableLiveData<>();
-    private SingleLiveEvent<Boolean> startChatAnimationEvent = new SingleLiveEvent<>();
-
-    LiveData<List<Message>> getChatMessages() {
-        return mMessages;
-    }
-
-    private void getMessages() {
-        mChatRepository.getMessages(channel, messages -> mMessages.setValue(messages));
-    }
-
-    LiveData<Boolean> getStartChatAnimationEvent() {
-        return startChatAnimationEvent;
-    }
+    private SingleLiveEvent<Boolean> mStartChatAnimationEvent = new SingleLiveEvent<>();
+    private SingleLiveEvent<Void> mUpdateChannelsEvent = new SingleLiveEvent<>();
 
     public void onChatClick() {
         chatOpened.set(!chatOpened.get());
 
         if (chatOpened.get()) {
-            getMessages();
-            startChatAnimationEvent.setValue(true);
+            mStartChatAnimationEvent.setValue(true);
+            addMessagesListener();
         } else {
-            startChatAnimationEvent.setValue(false);
-            mChatRepository.removeEventListener();
+            mStartChatAnimationEvent.setValue(false);
+            mChatRepository.removeMessagesListener();
             mMessages.setValue(null);
         }
     }
 
     public void onChannelChanged(int position) {
         if (position == 0) {
-            channel = mCharacter.getVillage().name();
+            mChannel = "World";
+        } else if (position == 1) {
+            mChannel = String.valueOf(mCharacter.getVillage().ordinal());
         } else {
-            channel = "World";
+            mChannel = "Team-" + mCharacter.getTeam();
         }
 
-        getMessages();
+        mMessages.setValue(null);
+        addMessagesListener();
     }
 
     public void onSendMessageButtonPressed() {
         if (!TextUtils.isEmpty(message.get())) {
             ChatRepository.getInstance().sendMessage(
-                    new Message(mCharacter.getNick(), message.get()), channel);
+                    new Message(mCharacter.getNick(), message.get()), mChannel);
             message.set("");
         }
     }
 
+    private void addMessagesListener() {
+        mChatRepository.addOnMessagesListener(mChannel, mMessages::setValue);
+    }
+
+    LiveData<List<Message>> getChatMessages() {
+        return mMessages;
+    }
+
+    LiveData<Boolean> getStartChatAnimationEvent() {
+        return mStartChatAnimationEvent;
+    }
+
+    LiveData<Void> getUpdateChannelsEvent() {
+        return mUpdateChannelsEvent;
+    }
 
     // Game Routines
     public final ObservableField<String> healing = new ObservableField<>("--:--:--");
     public final ObservableField<String> variousRoutines = new ObservableField<>("--:--:--");
-
     private Handler mHandler;
+    private long mCurrentTimestamp;
 
     private void startGameRoutines() {
-        mHandler = new Handler();
-        Runnable mRunnable = new Runnable() {
-            @Override
-            public void run() {
-                Calendar calendar = Calendar.getInstance();
+        FirebaseFunctionsUtils.getServerTime(currentTimestamp -> {
+            mCurrentTimestamp = currentTimestamp;
 
-                checkHealing(calendar.get(Calendar.MINUTE), calendar.get(Calendar.SECOND));
+            mHandler = new Handler();
+            Runnable mRunnable = new Runnable() {
+                @Override
+                public void run() {
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.setTimeInMillis(mCurrentTimestamp);
 
-                checkVariousRoutines(calendar.get(Calendar.HOUR_OF_DAY),
-                        calendar.get(Calendar.MINUTE), calendar.get(Calendar.SECOND));
+                    checkHealing(calendar.get(Calendar.MINUTE), calendar.get(Calendar.SECOND));
 
-                mCharacter.getExtrasInformation().setTotalSecondsPlayed(
-                        mCharacter.getExtrasInformation().getTotalSecondsPlayed() + 1);
+                    checkVariousRoutines(calendar.get(Calendar.HOUR_OF_DAY),
+                            calendar.get(Calendar.MINUTE), calendar.get(Calendar.SECOND));
 
-                mHandler.postDelayed(this, 1000);
-            }
-        };
+                    mCharacter.getExtrasInformation().setTotalSecondsPlayed(
+                            mCharacter.getExtrasInformation().getTotalSecondsPlayed() + 1);
 
-        mHandler.post(mRunnable);
+                    mCurrentTimestamp += 1002;
+                    mHandler.postDelayed(this, 1000);
+                }
+            };
+            mHandler.post(mRunnable);
+        });
     }
 
     private void checkHealing(int currentMinute, int currentSecond) {
@@ -545,35 +565,48 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
     }
 
     private void execVariousRoutines() {
-        Calendar calendar = Calendar.getInstance();
+        FirebaseFunctionsUtils.getServerTime(currentTimestamp -> {
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTimeInMillis(currentTimestamp);
 
-        int currentDayOfYear = calendar.get(Calendar.DAY_OF_YEAR);
-        int currentDayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
+            int currentDayOfYear = calendar.get(Calendar.DAY_OF_YEAR);
+            int currentDayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
 
-        long lastSeenInMillis = CharOn.character.getLastSeenInMillis();
-        calendar.setTimeInMillis(lastSeenInMillis);
-        int lastDayOfYearSeen = calendar.get(Calendar.DAY_OF_YEAR);
-        int lastDayOfWeekSeen = calendar.get(Calendar.DAY_OF_WEEK);
+            long lastSeenInMillis = CharOn.character.getLastSeenInMillis();
+            calendar.setTimeInMillis(lastSeenInMillis);
+            int lastDayOfYearSeen = calendar.get(Calendar.DAY_OF_YEAR);
+            int lastDayOfWeekSeen = calendar.get(Calendar.DAY_OF_WEEK);
 
-        if (lastDayOfYearSeen != currentDayOfYear) {
-            if ((currentDayOfWeek - lastDayOfWeekSeen == 0) ||
-                    (lastDayOfWeekSeen < Calendar.TUESDAY && currentDayOfWeek > Calendar.TUESDAY) ||
-                    (lastDayOfWeekSeen > currentDayOfWeek && currentDayOfWeek > Calendar.TUESDAY) ||
-                    (currentDayOfWeek == Calendar.TUESDAY)) {
-                mCharacter.getAttributes().setTrainingProgress(0);
+            if (lastDayOfYearSeen != currentDayOfYear) {
+                if ((currentDayOfWeek - lastDayOfWeekSeen == 0) ||
+                        (lastDayOfWeekSeen < Calendar.TUESDAY && currentDayOfWeek > Calendar.TUESDAY) ||
+                        (lastDayOfWeekSeen > currentDayOfWeek && currentDayOfWeek > Calendar.TUESDAY) ||
+                        (currentDayOfWeek == Calendar.TUESDAY)) {
+                    mCharacter.getAttributes().setTrainingProgress(0);
+                }
+
+                if (Math.abs(currentDayOfYear - lastDayOfYearSeen) == 1) {
+                    CharOn.character.setDaysOfFidelity((CharOn.character.getDaysOfFidelity() + 1) % 9);
+                } else {
+                    mCharacter.setDaysOfFidelity(1);
+                }
+
+                updateWeeklyLimitOfTraining(currentDayOfWeek);
+
+                mCharacter.setTotalDailyMissions(0);
+                mCharacter.setFidelityReward(true);
+                mCharacter.setNpcDailyCombat(0);
+                mCharacter.setNumberOfDaysPlayed(mCharacter.getNumberOfDaysPlayed() + 1);
             }
+        });
+    }
 
-            if (Math.abs(currentDayOfYear - lastDayOfYearSeen) == 1) {
-                CharOn.character.setDaysOfFidelity((CharOn.character.getDaysOfFidelity() + 1) % 9);
-            } else {
-                mCharacter.setDaysOfFidelity(1);
-            }
+    private void updateWeeklyLimitOfTraining(int dayOfWeek) {
+        int days = dayOfWeek >= 3 ? dayOfWeek - 2 : dayOfWeek + 5;
 
-            mCharacter.setTotalDailyMissions(0);
-            mCharacter.setFidelityReward(true);
-            mCharacter.setNpcDailyCombat(0);
-            mCharacter.setNumberOfDaysPlayed(mCharacter.getNumberOfDaysPlayed() + 1);
-        }
+        int weeklyLimitOfTraining = Graduation.values()[mCharacter.getGraduationId()]
+                .dailyTrainingLimit * days;
+        mCharacter.getAttributes().setWeeklyLimitOfTraining(weeklyLimitOfTraining);
     }
 
 
@@ -620,9 +653,12 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
             mMusicUtil.pause();
         }
 
-        mCharacter.setOnline(false);
-        mCharacter.setLastSeenInMillis(DateCustom.getTimeInMillis());
-        CharacterRepository.getInstance().save(mCharacter);
+        FirebaseFunctionsUtils.getServerTime(currentTimestamp -> {
+            mCharacter.setOnline(false);
+            mCharacter.setLastSeenInMillis(currentTimestamp);
+            CharacterRepository.getInstance().save(mCharacter);
+        });
+
         TeamRepository.getInstance().removeMyTeamChangeListener();
     }
 
@@ -634,6 +670,6 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
 
 
     void logout() {
-        mChatRepository.removeEventListener();
+        mChatRepository.removeMessagesListener();
     }
 }

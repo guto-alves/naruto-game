@@ -17,7 +17,7 @@ import com.gutotech.narutogame.databinding.FragmentUsuarioDadosBinding;
 import com.gutotech.narutogame.ui.ResultListener;
 import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.utils.FragmentUtil;
-import com.gutotech.narutogame.utils.StorageUtil;
+import com.gutotech.narutogame.data.firebase.StorageUtils;
 
 import es.dmoral.toasty.Toasty;
 
@@ -49,7 +49,7 @@ public class UserDataFragment extends Fragment implements SectionFragment, Resul
 
     @Override
     public void onSuccess() {
-        StorageUtil.downloadProfileForMsg(getActivity(), mBinding.updatedAccountLayout.profileImageView);
+        StorageUtils.downloadProfileForMsg(getActivity(), mBinding.updatedAccountLayout.profileImageView);
         mBinding.updatedAccountLayout.titleTextView.setText(R.string.user_info_updated);
         mBinding.updatedAccountLayout.descriptionTextView.setText(R.string.user_info_updated_description);
         mBinding.updatedAccountLayout.msgConstraintLayout.setVisibility(View.VISIBLE);

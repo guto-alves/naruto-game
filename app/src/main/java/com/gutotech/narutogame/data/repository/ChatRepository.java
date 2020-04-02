@@ -35,17 +35,17 @@ public class ChatRepository {
         messageRef.child("chats").child(channel).child(key).setValue(message);
     }
 
-    private DatabaseReference messagesRef;
-    private ChildEventListener messagesListener;
+    private DatabaseReference mMessagesRef;
+    private ChildEventListener mMessagesEventListener;
 
-    public void getMessages(String channel, MessagesListener listener) {
+    public void addOnMessagesListener(String channel, MessagesListener listener) {
+        removeMessagesListener();
+
         List<Message> messageList = new ArrayList<>();
 
-        removeEventListener();
+        mMessagesRef = FirebaseConfig.getDatabase().child("chats").child(channel);
 
-        messagesRef = FirebaseConfig.getDatabase().child("chats").child(channel);
-
-        messagesListener = new ChildEventListener() {
+        mMessagesEventListener = new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 Message newMessage = dataSnapshot.getValue(Message.class);
@@ -82,12 +82,13 @@ public class ChatRepository {
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         };
-        messagesRef.addChildEventListener(messagesListener);
+        mMessagesRef.addChildEventListener(mMessagesEventListener);
     }
 
-    public void removeEventListener() {
-        if (messagesListener != null) {
-            messagesRef.removeEventListener(messagesListener);
+    public void removeMessagesListener() {
+        if (mMessagesEventListener != null) {
+            mMessagesRef.removeEventListener(mMessagesEventListener);
+            mMessagesEventListener = null;
         }
     }
 

@@ -15,7 +15,7 @@ import android.widget.TextView;
 import com.google.firebase.storage.StorageReference;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.firebase.FirebaseConfig;
-import com.gutotech.narutogame.utils.StorageUtil;
+import com.gutotech.narutogame.data.firebase.StorageUtils;
 import com.gutotech.narutogame.data.model.NinjaStatistics;
 
 import java.util.List;
@@ -61,7 +61,7 @@ public class NinjaStatisticsAdapter extends RecyclerView.Adapter<NinjaStatistics
 
             StorageReference imageRef = FirebaseConfig.getStorage().child("images").child("home")
                     .child(ninjaStatistics.ninjaId + ".jpg");
-            StorageUtil.downloadImage(mContext, imageRef, myViewHolder.imageView);
+            StorageUtils.downloadImage(mContext, imageRef, myViewHolder.imageView);
 
             myViewHolder.nameTextView.setText(ninjaStatistics.name);
             myViewHolder.totalPlayersTextView.setText(mContext.getString(R.string.players,

@@ -14,11 +14,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.CharOn;
-import com.gutotech.narutogame.data.model.Character;
 import com.gutotech.narutogame.data.model.GraduationUtils;
 import com.gutotech.narutogame.data.model.Member;
 import com.gutotech.narutogame.data.repository.TeamRepository;
-import com.gutotech.narutogame.utils.StorageUtil;
+import com.gutotech.narutogame.data.firebase.StorageUtils;
 
 import java.util.List;
 
@@ -75,7 +74,7 @@ public class TeamMembersAdapter extends RecyclerView.Adapter<TeamMembersAdapter.
             holder.removeMemberButton.setVisibility(View.INVISIBLE);
 
             TeamRepository.getInstance().getMemberChar(member.getMemberId(), character -> {
-                StorageUtil.downloadProfile(holder.profileImageView.getContext(),
+                StorageUtils.downloadProfile(holder.profileImageView.getContext(),
                         holder.profileImageView, character.getProfilePath());
 
                 holder.nickTextView.setText(character.getNick());

@@ -24,8 +24,6 @@ public class TeamCreateViewModel extends ViewModel {
 
     public void onCreateTeamClick() {
         if (isValidName()) {
-            mShowProgressDialogEvent.call();
-
             int price = 5000;
 
             if (CharOn.character.getGraduationId() >= 2) {
@@ -36,6 +34,8 @@ public class TeamCreateViewModel extends ViewModel {
                 mShowWarningDialogEvent.setValue(R.string.failure_to_the_create_team);
                 return;
             }
+
+            mShowProgressDialogEvent.call();
 
             int finalPrice = price;
 

@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.model.Reward;
-import com.gutotech.narutogame.utils.StorageUtil;
+import com.gutotech.narutogame.data.firebase.StorageUtils;
 
 import java.util.List;
 
@@ -62,7 +62,7 @@ public class FidelityRewardsAdapter extends RecyclerView.Adapter<FidelityRewards
             final Reward reward = mRewards.get(position);
             final int DAY = position + 1;
 
-            StorageUtil.downloadFidelityImage(mContext, holder.imageView, DAY);
+            StorageUtils.downloadFidelityImage(mContext, holder.imageView, DAY);
 
             holder.nameTextView.setText(mContext.getString(
                     R.string.logar_days_followed, DAY));

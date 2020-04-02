@@ -4,27 +4,24 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.gutotech.narutogame.R;
+import com.gutotech.narutogame.data.firebase.FirebaseFunctionsUtils;
 import com.gutotech.narutogame.data.model.Battle;
 import com.gutotech.narutogame.data.model.CharOn;
+import com.gutotech.narutogame.data.model.Fighters;
 import com.gutotech.narutogame.data.model.Formulas;
 import com.gutotech.narutogame.data.model.Npc;
 import com.gutotech.narutogame.data.repository.BattleRepository;
 import com.gutotech.narutogame.data.repository.CharacterRepository;
-import com.gutotech.narutogame.utils.DateCustom;
 import com.gutotech.narutogame.utils.SingleLiveEvent;
 
 public class DojoNpcFightersViewModel extends ViewModel {
     static final int MAX_DAILY_COMBAT = 10;
 
-    private Battle mBattle;
+    private Fighters mFighters = new Fighters();
 
-    private SingleLiveEvent<Void> showProgressBar = new SingleLiveEvent<>();
-    private SingleLiveEvent<Integer> showStatusEvent = new SingleLiveEvent<>();
-    private SingleLiveEvent<Npc> showFightersEvent = new SingleLiveEvent<>();
-
-    public DojoNpcFightersViewModel() {
-        mBattle = new Battle();
-    }
+    private SingleLiveEvent<Void> mShowProgressBarEvent = new SingleLiveEvent<>();
+    private SingleLiveEvent<Integer> mShowStatusEvent = new SingleLiveEvent<>();
+    private SingleLiveEvent<Npc> mShowFightersEvent = new SingleLiveEvent<>();
 
     void init() {
         if (CharOn.character.getNpcDailyCombat() < MAX_DAILY_COMBAT) {
@@ -33,51 +30,54 @@ public class DojoNpcFightersViewModel extends ViewModel {
             if ((double) formulas.getCurrentHealth() / formulas.getHealth() >= 0.5 &&
                     (double) formulas.getCurrentChakra() / formulas.getChakra() >= 0.5 &&
                     (double) formulas.getCurrentStamina() / formulas.getStamina() >= 0.5) {
-                showProgressBar.call();
+                mShowProgressBarEvent.call();
                 generateNpc();
             } else {
-                showStatusEvent.setValue(R.string.too_weak_to_fight);
+                mShowStatusEvent.setValue(R.string.too_weak_to_fight);
             }
         }
     }
 
-    SingleLiveEvent<Void> getShowProgressBar() {
-        return showProgressBar;
-    }
-
-    LiveData<Integer> getShowStatusEvent() {
-        return showStatusEvent;
-    }
-
-    LiveData<Npc> getShowFightersEvent() {
-        return showFightersEvent;
-    }
-
-    public Battle getBattle() {
-        return mBattle;
-    }
-
     private void generateNpc() {
         CharacterRepository.getInstance().getChar(CharOn.character.getId(),
-                npcCharacter -> {
-                    Npc.create(npcCharacter);
-                    mBattle.setPlayer2(npcCharacter);
-                    mBattle.setPlayer1(CharOn.character);
-                    showFightersEvent.call();
+                baseChar -> {
+                    Npc.create(baseChar);
+                    mFighters.setOpponent(baseChar);
+                    mFighters.setPlayer(CharOn.character);
+                    mShowFightersEvent.call();
                 }
         );
     }
 
     public void onAcceptBattleButtonPressed() {
-        mBattle.setId(BattleRepository.getInstance().generateId("DOJO-NPC"));
-        mBattle.setPlayer1(CharOn.character);
-        mBattle.setStatus(Battle.Status.CONTINUE);
-        mBattle.setPlayerCount(1);
-        mBattle.setAttackStart(DateCustom.getTimeInMillis());
+        FirebaseFunctionsUtils.getServerTime(currentTimestamp -> {
+            Battle battle = new Battle(
+                    BattleRepository.getInstance().generateId("DOJO-NPC"),
+                    mFighters.getPlayer(),
+                    mFighters.getOpponent(),
+                    currentTimestamp);
 
-        BattleRepository.getInstance().save(mBattle);
+            BattleRepository.getInstance().save(battle);
 
-        CharOn.character.battleId = mBattle.getId();
-        CharOn.character.setBattle(true);
+            CharOn.character.battleId = battle.getId();
+            CharOn.character.setBattle(true);
+        });
+    }
+
+
+    public Fighters getFighters() {
+        return mFighters;
+    }
+
+    LiveData<Void> getShowProgressBar() {
+        return mShowProgressBarEvent;
+    }
+
+    LiveData<Integer> getShowStatusEvent() {
+        return mShowStatusEvent;
+    }
+
+    LiveData<Npc> getShowFightersEvent() {
+        return mShowFightersEvent;
     }
 }

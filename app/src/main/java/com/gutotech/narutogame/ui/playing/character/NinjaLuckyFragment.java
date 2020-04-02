@@ -34,7 +34,6 @@ public class NinjaLuckyFragment extends Fragment implements SectionFragment {
                              Bundle savedInstanceState) {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_ninja_lucky,
                 container, false);
-        mBinding.setLifecycleOwner(this);
 
         mViewModel = new ViewModelProvider(this).get(NinjaLuckyViewModel.class);
         mBinding.setViewModel(mViewModel);
@@ -47,8 +46,8 @@ public class NinjaLuckyFragment extends Fragment implements SectionFragment {
 
         mViewModel.getStartAnimationEvent().observe(getViewLifecycleOwner(), i -> startAnimation());
 
-        mViewModel.getShowPremiumEvent().observe(getViewLifecycleOwner(), premiun ->
-                mBinding.premiumTextView.setText(premiun));
+        mViewModel.getShowPremiumEvent().observe(getViewLifecycleOwner(),
+                mBinding.premiumTextView::setText);
 
         mViewModel.getShowWarningDialogEvent().observe(getViewLifecycleOwner(), this::showWarningDialog);
 

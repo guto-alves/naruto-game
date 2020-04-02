@@ -57,7 +57,7 @@ public class CharacterSelectFragment extends Fragment implements SectionFragment
             }
         });
 
-        mViewModel.getRemoveCharacterEvent().observe(getViewLifecycleOwner(), onClickListener -> {
+        mViewModel.getShowQuestionDialogEvent().observe(getViewLifecycleOwner(), onClickListener -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
             builder.setTitle(R.string.naruto_game_says);
             builder.setMessage(R.string.want_to_delete_this_ninja);
@@ -67,10 +67,10 @@ public class CharacterSelectFragment extends Fragment implements SectionFragment
             builder.show();
         });
 
-        mViewModel.getShowRemovingErrorDialog().observe(getViewLifecycleOwner(), aVoid -> {
+        mViewModel.getShowErrorDialogEvent().observe(getViewLifecycleOwner(), resId -> {
             AlertDialog.Builder builder1 = new AlertDialog.Builder(getContext());
             builder1.setTitle(R.string.warning);
-            builder1.setMessage(R.string.remove_character_while_logged_in);
+            builder1.setMessage(resId);
             builder1.setPositiveButton(R.string.close, null);
             builder1.create().show();
         });
@@ -79,6 +79,7 @@ public class CharacterSelectFragment extends Fragment implements SectionFragment
 
         return mBinding.getRoot();
     }
+
 
     @Override
     public int getDescription() {

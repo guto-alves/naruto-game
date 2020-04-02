@@ -36,7 +36,7 @@ import com.gutotech.narutogame.ui.adapter.BattleLogAdapter;
 import com.gutotech.narutogame.ui.adapter.BuffsDebuffStatusAdapter;
 import com.gutotech.narutogame.ui.adapter.JutsusAdapter;
 import com.gutotech.narutogame.utils.FragmentUtil;
-import com.gutotech.narutogame.utils.StorageUtil;
+import com.gutotech.narutogame.data.firebase.StorageUtils;
 
 public class DojoBatalhaLutadorFragment extends Fragment implements SectionFragment {
     private FragmentDojoBatalhaLutadorBinding mBinding;
@@ -51,7 +51,6 @@ public class DojoBatalhaLutadorFragment extends Fragment implements SectionFragm
                              Bundle savedInstanceState) {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_dojo_batalha_lutador,
                 container, false);
-        mBinding.setContext(getContext());
 
         BattleRepository.getInstance().get(CharOn.character.battleId, battle -> {
             mViewModel = new ViewModelProvider(this,
@@ -190,7 +189,7 @@ public class DojoBatalhaLutadorFragment extends Fragment implements SectionFragm
     }
 
     private void showBattleResult(@StringRes int title, SpannableStringBuilder description) {
-        StorageUtil.downloadProfileForMsg(getActivity(), mBinding.battleResultLayout.profileImageView);
+        StorageUtils.downloadProfileForMsg(getActivity(), mBinding.battleResultLayout.profileImageView);
         mBinding.battleResultLayout.titleTextView.setText(title);
         mBinding.battleResultLayout.descriptionTextView.setText(description);
         mBinding.battleResultLayout.msgConstraintLayout.setVisibility(View.VISIBLE);

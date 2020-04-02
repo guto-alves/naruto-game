@@ -1,12 +1,18 @@
 package com.gutotech.narutogame.data.model;
 
+import androidx.annotation.StringRes;
+
 public class LotteryItem {
     private String image;
-    private String description;
+
+    @StringRes
+    private int description;
+
     private int ChancesOfWin;
+
     private Premium premium;
 
-    public LotteryItem(String image, String description, int ChancesOfWin, Premium premium) {
+    public LotteryItem(String image, @StringRes int description, int ChancesOfWin, Premium premium) {
         this.image = image;
         this.description = description;
         this.ChancesOfWin = ChancesOfWin;
@@ -21,11 +27,12 @@ public class LotteryItem {
         this.image = image;
     }
 
-    public String getDescription() {
+    @StringRes
+    public int getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
+    public void setDescription(@StringRes int description) {
         this.description = description;
     }
 

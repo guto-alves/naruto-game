@@ -21,7 +21,7 @@ import com.gutotech.narutogame.data.model.JutsuInfo;
 import com.gutotech.narutogame.data.model.Requirement;
 import com.gutotech.narutogame.ui.playing.RequirementDialogFragment;
 import com.gutotech.narutogame.ui.playing.academy.LearnJutsuInfoPopupWindow;
-import com.gutotech.narutogame.utils.StorageUtil;
+import com.gutotech.narutogame.data.firebase.StorageUtils;
 import com.gutotech.narutogame.data.model.Jutsu;
 
 import java.util.List;
@@ -78,7 +78,7 @@ public class JutsusLearnAdapter extends RecyclerView.Adapter<JutsusLearnAdapter.
             final Jutsu jutsu = mJutsusList.get(i);
             JutsuInfo jutsuInfo = jutsu.getJutsuInfo();
 
-            StorageUtil.downloadJutsu(holder.jutsuImageView, jutsuInfo.image);
+            StorageUtils.downloadJutsu(holder.jutsuImageView, jutsuInfo.image);
             holder.nameTextView.setText(jutsuInfo.name);
             holder.descriptionTextView.setText(jutsuInfo.description);
 
@@ -93,7 +93,8 @@ public class JutsusLearnAdapter extends RecyclerView.Adapter<JutsusLearnAdapter.
             }
 
             holder.requerImageView.setOnClickListener(v -> {
-                DialogFragment dialog = new RequirementDialogFragment(jutsuInfo.requirements, folded);
+                DialogFragment dialog = RequirementDialogFragment.getInstance(
+                        jutsuInfo.requirements, folded);
                 dialog.show(mFragmentManager, "RequirementDialogFragment");
             });
 

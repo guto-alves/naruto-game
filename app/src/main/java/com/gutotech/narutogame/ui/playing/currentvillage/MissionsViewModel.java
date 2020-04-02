@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.gutotech.narutogame.data.firebase.FirebaseFunctionsUtils;
 import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.model.Mission;
 import com.gutotech.narutogame.data.model.MissionInfo;
@@ -21,10 +22,10 @@ import java.util.Iterator;
 import java.util.List;
 
 public class MissionsViewModel extends ViewModel implements MissionsAdapter.OnAcceptClickListener {
-    private static final long TIME_BASE = 1800000; // 30 minutes
-
     public final ObservableField<Mission.Type> typeSelected = new ObservableField<>(Mission.Type.TIME);
     public final ObservableField<Mission.Rank> rankSelected = new ObservableField<>(Mission.Rank.RANK_D);
+
+    private static final long TIME_BASE = 1800000; // 30 minutes
 
     private MutableLiveData<List<Mission>> mMissions = new MutableLiveData<>();
 
@@ -46,6 +47,20 @@ public class MissionsViewModel extends ViewModel implements MissionsAdapter.OnAc
     public void onRankSelected(Mission.Rank rank) {
         rankSelected.set(rank);
         filterMissions();
+    }
+
+    @Override
+    public void onAcceptClick(Mission mission) {
+        if (CharOn.character.getTotalDailyMissions() <= 3) {
+            FirebaseFunctionsUtils.getServerTime(currentTimestamp -> {
+                TimeMission timeMission = (TimeMission) mission;
+                timeMission.setInitialTimestamp(currentTimestamp);
+                MissionRepository.getInstance().acceptTimeMission(timeMission);
+                CharOn.character.setMission(true);
+            });
+        } else {
+            mShowWarningDialogEvent.call();
+        }
     }
 
     private void filterMissions() {
@@ -88,11 +103,8 @@ public class MissionsViewModel extends ViewModel implements MissionsAdapter.OnAc
         }
 
         if (missions.size() > 0) {
-            Collections.sort(CharOn.character.getResumeOfMissions().getMissionsFinishedId());
-
-            removeRepeatedMissions(
-                    CharOn.character.getResumeOfMissions().getMissionsFinishedId(),
-                    missions);
+            Collections.sort(CharOn.character.getMissionsFinishedId());
+            removeRepeatedMissions(CharOn.character.getMissionsFinishedId(), missions);
         }
 
         mMissions.postValue(missions);
@@ -111,17 +123,6 @@ public class MissionsViewModel extends ViewModel implements MissionsAdapter.OnAc
                     break;
                 }
             }
-        }
-    }
-
-    @Override
-    public void onAcceptClick(Mission task) {
-        if (CharOn.character.getTotalDailyMissions() <= 3) {
-            TimeMission timeMission = (TimeMission) task;
-            MissionRepository.getInstance().acceptTimeMission(timeMission);
-            CharOn.character.setMission(true);
-        } else {
-            mShowWarningDialogEvent.call();
         }
     }
 

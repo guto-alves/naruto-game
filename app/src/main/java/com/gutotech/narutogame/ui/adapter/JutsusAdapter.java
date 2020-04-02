@@ -17,7 +17,7 @@ import android.widget.TextView;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.Jutsu;
 import com.gutotech.narutogame.data.model.JutsuInfo;
-import com.gutotech.narutogame.utils.StorageUtil;
+import com.gutotech.narutogame.data.firebase.StorageUtils;
 
 import java.util.List;
 
@@ -64,7 +64,7 @@ public class JutsusAdapter extends RecyclerView.Adapter<JutsusAdapter.ViewHolder
         if (mJutsusList != null) {
             Jutsu jutsu = mJutsusList.get(i);
 
-            StorageUtil.downloadJutsu(holder.jutsuImageView, JutsuInfo.valueOf(jutsu.getName()).image);
+            StorageUtils.downloadJutsu(holder.jutsuImageView, JutsuInfo.valueOf(jutsu.getName()).image);
 
             if (jutsu.getRemainingIntervals() > 0) {
                 holder.jutsuImageView.setAlpha(0.5f);

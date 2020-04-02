@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.Character;
 import com.gutotech.narutogame.data.model.GraduationUtils;
-import com.gutotech.narutogame.utils.StorageUtil;
+import com.gutotech.narutogame.data.firebase.StorageUtils;
 import com.smarteist.autoimageslider.SliderViewAdapter;
 
 import java.util.List;
@@ -51,7 +51,7 @@ public class KagesSliderAdapter extends SliderViewAdapter<KagesSliderAdapter.Sli
             Character kage = mKages.get(position);
 
             viewHolder.villageImageView.setImageResource(kage.getVillage().homeResId);
-            StorageUtil.downloadKageImage(viewHolder.profileImageView.getContext(),
+            StorageUtils.downloadKageImage(viewHolder.profileImageView.getContext(),
                     viewHolder.profileImageView, kage.getNinja().getId());
             viewHolder.nameTextView.setText(kage.getNick());
             viewHolder.descriptionTextView.setText(mContext.getString(

@@ -5,13 +5,7 @@
 
     <data>
 
-        <import type="com.gutotech.narutogame.data.model.GraduationUtils" />
-
         <import type="com.gutotech.narutogame.data.model.Jutsu" />
-
-        <variable
-            name="context"
-            type="android.content.Context" />
 
         <variable
             name="viewModel"
@@ -83,6 +77,7 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
                             android:layout_marginLeft="5dp"
                             android:orientation="horizontal">
 
@@ -97,7 +92,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                                app:spanCount="4"
+                                app:spanCount="3"
                                 tools:itemCount="2"
                                 tools:listitem="@layout/recycler_buffs_and_debuffs" />
                         </LinearLayout>
@@ -115,7 +110,8 @@
                             <ImageView
                                 android:id="@+id/imageView8"
                                 android:layout_width="117dp"
-                                android:layout_height="21dp"
+                                android:layout_height="22dp"
+                                android:scaleType="fitXY"
                                 android:src="@drawable/layout_bg_profile"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -152,14 +148,16 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="0dp"
                                 android:layout_weight="1"
-                                android:text="@{@string/label_graduation_and_lvl(context.getString(GraduationUtils.getName(viewModel.fighters.player.graduationId, viewModel.fighters.player.village)), viewModel.fighters.player.level)}"
                                 android:textColor="#FFD274"
-                                android:textSize="8sp" />
+                                android:textSize="8sp"
+                                app:graduationId="@{viewModel.fighters.player.graduationId}"
+                                app:level="@{viewModel.fighters.player.level}"
+                                app:village="@{viewModel.fighters.player.village}" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@{@string/label_ninja_power_1(viewModel.playerFormulas.ninjaPower)}"
+                                android:text="@{@string/label_ninja_power_1(viewModel.fighters.player.formulas.ninjaPower)}"
                                 android:textColor="#FFD274"
                                 android:textSize="8sp" />
 
@@ -337,7 +335,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                                app:spanCount="4"
+                                app:spanCount="3"
                                 tools:itemCount="2"
                                 tools:listitem="@layout/recycler_buffs_and_debuffs" />
                         </LinearLayout>
@@ -355,7 +353,8 @@
                             <ImageView
                                 android:id="@+id/imageView17"
                                 android:layout_width="117dp"
-                                android:layout_height="21dp"
+                                android:layout_height="22dp"
+                                android:scaleType="fitXY"
                                 android:src="@drawable/layout_bg_profile"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -391,14 +390,16 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="0dp"
                                 android:layout_weight="1"
-                                android:text="@{@string/label_graduation_and_lvl(context.getString(GraduationUtils.getName(viewModel.fighters.opponent.graduationId, viewModel.fighters.opponent.village)), viewModel.fighters.opponent.level)}"
                                 android:textColor="#FFD274"
-                                android:textSize="8sp" />
+                                android:textSize="8sp"
+                                app:graduationId="@{viewModel.fighters.opponent.graduationId}"
+                                app:level="@{viewModel.fighters.opponent.level}"
+                                app:village="@{viewModel.fighters.opponent.village}" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@{@string/label_ninja_power_1(viewModel.oppFormulas.ninjaPower)}"
+                                android:text="@{@string/label_ninja_power_1(viewModel.fighters.opponent.formulas.ninjaPower)}"
                                 android:textColor="#FFD274"
                                 android:textSize="8sp" />
 

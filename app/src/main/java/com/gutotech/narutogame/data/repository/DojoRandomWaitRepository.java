@@ -25,7 +25,6 @@ public class DojoRandomWaitRepository {
                 DatabaseReference waitQueueReference = FirebaseConfig.getDatabase()
                         .child("dojo-random-wait")
                         .child(CharOn.character.getId());
-
                 waitQueueReference.setValue(CharOn.character);
             }
         });

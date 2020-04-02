@@ -13,7 +13,7 @@ import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.Jutsu;
 import com.gutotech.narutogame.data.model.JutsuInfo;
 import com.gutotech.narutogame.ui.playing.battles.BuffDebuffInfoPopupWindow;
-import com.gutotech.narutogame.utils.StorageUtil;
+import com.gutotech.narutogame.data.firebase.StorageUtils;
 
 import java.util.List;
 
@@ -49,7 +49,7 @@ public class BuffsDebuffStatusAdapter extends RecyclerView.Adapter<BuffsDebuffSt
             Jutsu jutsu = mBuffsDebuffsList.get(position);
             JutsuInfo jutsuInfo = jutsu.getJutsuInfo();
 
-            StorageUtil.downloadJutsu(holder.buffDebuffImageView, jutsuInfo.image);
+            StorageUtils.downloadJutsu(holder.buffDebuffImageView, jutsuInfo.image);
 
             holder.itemView.setOnClickListener(v -> showBuffDebuffInfo(v, jutsu));
         }

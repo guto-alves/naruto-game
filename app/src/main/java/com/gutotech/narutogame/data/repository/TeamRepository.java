@@ -1,7 +1,5 @@
 package com.gutotech.narutogame.data.repository;
 
-import android.util.Log;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -87,7 +85,9 @@ public class TeamRepository {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Team team = snapshot.getValue(Team.class);
 
-                    if (team != null && team.getVillageId() == villageId) {
+                    if (villageId == -1) {
+                        teams.add(team);
+                    } else if (team != null && team.getVillageId() == villageId) {
                         teams.add(team);
                     }
                 }
@@ -303,18 +303,19 @@ public class TeamRepository {
                 .child("teams-requesters");
 
         Query query = requestsReference.orderByChild(requesterId);
-
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    String key = snapshot.getKey();
+                    removeRequester(requesterId, key);
+                }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
-
-        requestsReference.removeValue();
     }
 
     public void requested(String requesterId, String teamName, Callback<Boolean> callback) {

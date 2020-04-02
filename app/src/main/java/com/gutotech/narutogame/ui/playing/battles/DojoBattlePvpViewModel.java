@@ -11,6 +11,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.gutotech.narutogame.R;
+import com.gutotech.narutogame.data.firebase.FirebaseFunctionsUtils;
 import com.gutotech.narutogame.data.model.Battle;
 import com.gutotech.narutogame.data.model.BattleLog;
 import com.gutotech.narutogame.data.model.CharOn;
@@ -22,7 +23,6 @@ import com.gutotech.narutogame.data.model.JutsuInfo;
 import com.gutotech.narutogame.data.model.Score;
 import com.gutotech.narutogame.data.repository.BattleRepository;
 import com.gutotech.narutogame.ui.adapter.JutsusAdapter;
-import com.gutotech.narutogame.utils.DateCustom;
 import com.gutotech.narutogame.utils.SingleLiveEvent;
 import com.gutotech.narutogame.utils.SoundUtils;
 
@@ -37,6 +37,9 @@ public class DojoBattlePvpViewModel extends AndroidViewModel
     private static final SecureRandom random = new SecureRandom();
 
     private final long TIME_TO_ATTACK = 90000;
+
+    public int myTurn;
+
     public final ObservableField<String> countDown = new ObservableField<>("--:--");
     private CountDownTimer mCountDownTimer;
 
@@ -48,8 +51,6 @@ public class DojoBattlePvpViewModel extends AndroidViewModel
     private Formulas mPlayerFormulas;
     private Formulas mOppFormulas;
 
-    public int myTurn;
-
     private List<Jutsu> mAllJutsus;
     private MutableLiveData<List<Jutsu>> mJutsus = new MutableLiveData<>(new ArrayList<>());
     private Jutsu.Type mJutsuTypeSelected;
@@ -58,16 +59,21 @@ public class DojoBattlePvpViewModel extends AndroidViewModel
     private MutableLiveData<List<Jutsu>> oppBuffsDebuffsStatus = new MutableLiveData<>();
     private MutableLiveData<List<BattleLog>> mBattleLogs = new MutableLiveData<>(new ArrayList<>());
 
-    SingleLiveEvent<Object[]> showJutsuInfoPopupEvent = new SingleLiveEvent<>();
-    SingleLiveEvent<Integer> showWarningDialogEvent = new SingleLiveEvent<>();
-    SingleLiveEvent<View> startAnimationEvent = new SingleLiveEvent<>();
-    SingleLiveEvent<Integer[]> showWonEvent = new SingleLiveEvent<>();
-    SingleLiveEvent<Void> showLostEvent = new SingleLiveEvent<>();
-    SingleLiveEvent<Void> showDrawnEvent = new SingleLiveEvent<>();
-    SingleLiveEvent<Void> showInactivatedEvent = new SingleLiveEvent<>();
+    private SingleLiveEvent<Object[]> showJutsuInfoPopupEvent = new SingleLiveEvent<>();
+    private SingleLiveEvent<Integer> showWarningDialogEvent = new SingleLiveEvent<>();
+    private SingleLiveEvent<View> startAnimationEvent = new SingleLiveEvent<>();
+    private SingleLiveEvent<Integer[]> showWonEvent = new SingleLiveEvent<>();
+    private SingleLiveEvent<Void> showLostEvent = new SingleLiveEvent<>();
+    private SingleLiveEvent<Void> showDrawnEvent = new SingleLiveEvent<>();
+    private SingleLiveEvent<Void> showInactivatedEvent = new SingleLiveEvent<>();
 
-    DojoBattlePvpViewModel(@NonNull Application application) {
+
+    public DojoBattlePvpViewModel(@NonNull Application application) {
         super(application);
+
+        if (CharOn.character.isMap()) {
+            CharOn.character.setMap(false);
+        }
 
         mBattle = new Battle();
         mBattle.setId(CharOn.character.battleId);
@@ -81,54 +87,17 @@ public class DojoBattlePvpViewModel extends AndroidViewModel
         observeBattle();
     }
 
-    public Battle getBattle() {
-        return mBattle;
-    }
-
-    public void setBattle(Battle mBattle) {
-        this.mBattle = mBattle;
-    }
-
-    public Fighters getFighters() {
-        return mFighters;
-    }
-
-    public Formulas getPlayerFormulas() {
-        return mPlayerFormulas;
-    }
-
-    public Formulas getOppFormulas() {
-        return mOppFormulas;
-    }
-
-    LiveData<List<BattleLog>> getBattleLogs() {
-        return mBattleLogs;
-    }
-
-    LiveData<List<Jutsu>> getJutsus() {
-        return mJutsus;
-    }
-
-    LiveData<List<Jutsu>> getMyBuffsDebuffsStatus() {
-        return myBuffsDebuffsStatus;
-    }
-
-    LiveData<List<Jutsu>> getOppBuffsDebuffsStatus() {
-        return oppBuffsDebuffsStatus;
-    }
-
-
     private void observeBattle() {
         mBattleRepository.observeBattle(mBattle.getId(), battle -> {
             mBattle.setStatus(battle.getStatus());
             mBattle.setPlayer1(battle.getPlayer1());
             mBattle.setPlayer2(battle.getPlayer2());
             mBattle.setCurrentPlayer(battle.getCurrentPlayer());
-            mBattle.setOppJutsu(battle.getOppJutsu());
-            mBattle.setPlayer1BuffsDebuffsStatus(battle.getPlayer1BuffsDebuffsStatus());
-            mBattle.setPlayer2BuffsDebuffsStatus(battle.getPlayer2BuffsDebuffsStatus());
+            mBattle.setJutsuBuffer(battle.getJutsuBuffer());
+            mBattle.setBuffsDebuffsUsed1(battle.getBuffsDebuffsUsed1());
+            mBattle.setBuffsDebuffsUsed2(battle.getBuffsDebuffsUsed2());
             mBattle.setBattleLogs(battle.getBattleLogs());
-            mBattle.setPlayerCount(battle.getPlayerCount());
+            mBattle.setPlayersInBattle(battle.getPlayersInBattle());
 
             updateFighters();
 
@@ -137,10 +106,13 @@ public class DojoBattlePvpViewModel extends AndroidViewModel
                     SoundUtils.play(getApplication(), R.raw.battle);
                 }
 
-                mBattle.setAttackStart(battle.getAttackStart());
+                if (battle.getAttackStart() != mBattle.getAttackStart()) {
+                    mBattle.setAttackStart(battle.getAttackStart());
+                    FirebaseFunctionsUtils.getServerTime(currentTimestamp ->
+                            startTimer(TIME_TO_ATTACK -
+                                    (currentTimestamp - mBattle.getAttackStart())));
+                }
 
-                stopTimer();
-                startTimer(calculateElapsedTime());
                 mAllJutsus = mFighters.getPlayer().getJutsus();
                 filterJutsus(mJutsuTypeSelected);
             } else {
@@ -153,14 +125,14 @@ public class DojoBattlePvpViewModel extends AndroidViewModel
         if (mBattle.getPlayer1().equals(CharOn.character)) {
             mFighters.setPlayer(mBattle.getPlayer1());
             mFighters.setOpponent(mBattle.getPlayer2());
-            myBuffsDebuffsStatus.setValue(mBattle.getPlayer1BuffsDebuffsStatus());
-            oppBuffsDebuffsStatus.setValue(mBattle.getPlayer2BuffsDebuffsStatus());
+            myBuffsDebuffsStatus.setValue(mBattle.getBuffsDebuffsUsed1());
+            oppBuffsDebuffsStatus.setValue(mBattle.getBuffsDebuffsUsed2());
             myTurn = 1;
         } else {
             mFighters.setPlayer(mBattle.getPlayer2());
             mFighters.setOpponent(mBattle.getPlayer1());
-            myBuffsDebuffsStatus.setValue(mBattle.getPlayer2BuffsDebuffsStatus());
-            oppBuffsDebuffsStatus.setValue(mBattle.getPlayer1BuffsDebuffsStatus());
+            myBuffsDebuffsStatus.setValue(mBattle.getBuffsDebuffsUsed2());
+            oppBuffsDebuffsStatus.setValue(mBattle.getBuffsDebuffsUsed1());
             myTurn = 2;
         }
 
@@ -170,9 +142,12 @@ public class DojoBattlePvpViewModel extends AndroidViewModel
         mBattleLogs.setValue(mBattle.getBattleLogs());
     }
 
-    private void startTimer(long elapsedTime) {
-        mCountDownTimer = new CountDownTimer(
-                TIME_TO_ATTACK - elapsedTime, 1000) {
+    private void startTimer(long millisInFuture) {
+        if (mCountDownTimer != null) {
+            mCountDownTimer.cancel();
+            mCountDownTimer = null;
+        }
+        mCountDownTimer = new CountDownTimer(millisInFuture, 1000) {
 
             @Override
             public void onTick(long millisUntilFinished) {
@@ -202,17 +177,6 @@ public class DojoBattlePvpViewModel extends AndroidViewModel
                 saveBattle();
             }
         }.start();
-    }
-
-    private void stopTimer() {
-        if (mCountDownTimer != null) {
-            mCountDownTimer.cancel();
-            mCountDownTimer = null;
-        }
-    }
-
-    private long calculateElapsedTime() {
-        return DateCustom.getTimeInMillis() - mBattle.getAttackStart();
     }
 
     public void filterJutsus(Jutsu.Type filteredType) {
@@ -284,17 +248,22 @@ public class DojoBattlePvpViewModel extends AndroidViewModel
 
         if (playerJutsuInfo.type == Jutsu.Type.ATK || playerJutsuInfo.type == Jutsu.Type.DEF) {
             if (myTurn == 2) {
-                executeAttacks(jutsu, playerJutsuInfo, mBattle.getOppJutsu(),
-                        mBattle.getOppJutsu().getJutsuInfo());
+                executeAttacks(jutsu, playerJutsuInfo, mBattle.getJutsuBuffer(),
+                        mBattle.getJutsuBuffer().getJutsuInfo());
                 updateFightStatus();
             } else {
-                mBattle.setOppJutsu(jutsu);
+                mBattle.setJutsuBuffer(jutsu);
             }
 
-            updateRemainingIntervals();
-
-            mBattle.setCurrentPlayer(mBattle.getCurrentPlayer() % 2 + 1);
-            mBattle.setAttackStart(DateCustom.getTimeInMillis());
+            if (mBattle.getStatus() == Battle.Status.CONTINUE) {
+                updateRemainingIntervals();
+                FirebaseFunctionsUtils.getServerTime(currentTimestamp -> {
+                    mBattle.setCurrentPlayer(mBattle.getCurrentPlayer() % 2 + 1);
+                    mBattle.setAttackStart(currentTimestamp);
+                    saveBattle();
+                    startTimer(TIME_TO_ATTACK);
+                });
+            }
         } else {
             if (!buffOrDebuffUsed(playerJutsuInfo.type)) {
                 if (playerJutsuInfo.type == Jutsu.Type.BUFF) {
@@ -303,9 +272,9 @@ public class DojoBattlePvpViewModel extends AndroidViewModel
                     List<Jutsu> buffsAndDebuffs;
 
                     if (mBattle.getPlayer1().equals(CharOn.character)) {
-                        buffsAndDebuffs = mBattle.getPlayer1BuffsDebuffsStatus();
+                        buffsAndDebuffs = mBattle.getBuffsDebuffsUsed1();
                     } else {
-                        buffsAndDebuffs = mBattle.getPlayer2BuffsDebuffsStatus();
+                        buffsAndDebuffs = mBattle.getBuffsDebuffsUsed2();
                     }
 
                     buffsAndDebuffs.add(jutsu);
@@ -316,9 +285,9 @@ public class DojoBattlePvpViewModel extends AndroidViewModel
                     List<Jutsu> buffsAndDebuffs;
 
                     if (mBattle.getPlayer1().equals(CharOn.character)) {
-                        buffsAndDebuffs = mBattle.getPlayer1BuffsDebuffsStatus();
+                        buffsAndDebuffs = mBattle.getBuffsDebuffsUsed1();
                     } else {
-                        buffsAndDebuffs = mBattle.getPlayer2BuffsDebuffsStatus();
+                        buffsAndDebuffs = mBattle.getBuffsDebuffsUsed2();
                     }
 
                     buffsAndDebuffs.add(jutsu);
@@ -352,7 +321,6 @@ public class DojoBattlePvpViewModel extends AndroidViewModel
         objects[0] = calculateChanceOfSuccess(jutsu.getAccuracy(), mPlayerFormulas.getAccuracy());
         objects[1] = jutsu;
         objects[2] = anchor;
-
         showJutsuInfoPopupEvent.setValue(objects);
     }
 
@@ -544,7 +512,7 @@ public class DojoBattlePvpViewModel extends AndroidViewModel
     void exit() {
         if ((mBattle.getStatus() == Battle.Status.PLAYER1_WON && myTurn == 1) ||
                 (mBattle.getStatus() == Battle.Status.PLAYER2_WON && myTurn == 2)) {
-            if (CharOn.character.battleId.contains("VILLAGEMAP-PVP")) {
+            if (CharOn.character.battleId.contains("MAP-PVP")) {
                 CharOn.character.incrementScore(Score.VIT_MAPA_PVP);
                 CharOn.character.incrementExp(15 * mFighters.getPlayer().getLevel() + 100);
                 CharOn.character.addRyous(10 * mFighters.getPlayer().getLevel() + 150);
@@ -562,7 +530,7 @@ public class DojoBattlePvpViewModel extends AndroidViewModel
             CharOn.character.getCombatOverview().setDrawsPvp(
                     CharOn.character.getCombatOverview().getDrawsPvp() + 1);
         } else {
-            if (CharOn.character.battleId.contains("VILLAGEMAP-PVP")) {
+            if (CharOn.character.battleId.contains("MAP-PVP")) {
                 CharOn.character.incrementScore(Score.DER_MAPA_PVP);
                 CharOn.character.getCombatOverview().setLossesMapPvp(
                         CharOn.character.getCombatOverview().getLossesMapPvp() + 1);
@@ -579,23 +547,87 @@ public class DojoBattlePvpViewModel extends AndroidViewModel
         CharOn.character.getAttributes().incrementTraningPoints(50);
         CharOn.character.getExtrasInformation().incrementTotalTraining(50);
 
-        int playerCount = mBattle.getPlayerCount() - 1;
+        int playersInBattle = mBattle.getPlayersInBattle() - 1;
 
         mBattleRepository.removeBattleListener();
 
-        if (playerCount == 0) {
+        if (playersInBattle == 0) {
             mBattleRepository.delete(mBattle.getId());
         } else {
-            mBattle.setPlayerCount(playerCount);
+            mBattle.setPlayersInBattle(playersInBattle);
+            saveBattle();
         }
-
-        saveBattle();
 
         CharOn.character.setBattle(false);
     }
 
     private void saveBattle() {
         mBattleRepository.save(mBattle);
+    }
+
+
+    public Battle getBattle() {
+        return mBattle;
+    }
+
+    public void setBattle(Battle mBattle) {
+        this.mBattle = mBattle;
+    }
+
+    public Fighters getFighters() {
+        return mFighters;
+    }
+
+    public Formulas getPlayerFormulas() {
+        return mPlayerFormulas;
+    }
+
+    public Formulas getOppFormulas() {
+        return mOppFormulas;
+    }
+
+    LiveData<List<BattleLog>> getBattleLogs() {
+        return mBattleLogs;
+    }
+
+    LiveData<List<Jutsu>> getJutsus() {
+        return mJutsus;
+    }
+
+    LiveData<List<Jutsu>> getMyBuffsDebuffsStatus() {
+        return myBuffsDebuffsStatus;
+    }
+
+    LiveData<List<Jutsu>> getOppBuffsDebuffsStatus() {
+        return oppBuffsDebuffsStatus;
+    }
+
+    LiveData<Object[]> getShowJutsuInfoPopupEvent() {
+        return showJutsuInfoPopupEvent;
+    }
+
+    LiveData<Integer> getShowWarningDialogEvent() {
+        return showWarningDialogEvent;
+    }
+
+    LiveData<View> getStartAnimationEvent() {
+        return startAnimationEvent;
+    }
+
+    LiveData<Integer[]> getShowWonEvent() {
+        return showWonEvent;
+    }
+
+    LiveData<Void> getShowLostEvent() {
+        return showLostEvent;
+    }
+
+    LiveData<Void> getShowDrawnEvent() {
+        return showDrawnEvent;
+    }
+
+    LiveData<Void> getShowInactivatedEvent() {
+        return showInactivatedEvent;
     }
 }
 

@@ -22,7 +22,7 @@ import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.model.Character;
 import com.gutotech.narutogame.databinding.DialogRankCharacterBinding;
-import com.gutotech.narutogame.utils.StorageUtil;
+import com.gutotech.narutogame.data.firebase.StorageUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,7 +48,7 @@ public class RankingNinjasAdapter extends RecyclerView.Adapter<RankingNinjasAdap
         if (mNinjas != null) {
             final Character character = mNinjas.get(i);
 
-            StorageUtil.downloadDojo(mContext, holder.characterImageView, character.getNinja().getId());
+            StorageUtils.downloadDojo(mContext, holder.characterImageView, character.getNinja().getId());
 
             holder.positionTextView.setText(String.format("%dº", i + 1));
             holder.nickTextView.setText(character.getNick());

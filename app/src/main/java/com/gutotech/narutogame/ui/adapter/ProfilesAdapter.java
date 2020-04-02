@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.storage.StorageReference;
 import com.gutotech.narutogame.R;
-import com.gutotech.narutogame.utils.StorageUtil;
+import com.gutotech.narutogame.data.firebase.StorageUtils;
 
 import java.util.List;
 
@@ -48,7 +48,7 @@ public class ProfilesAdapter extends RecyclerView.Adapter<ProfilesAdapter.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         if (mProfileList != null) {
             StorageReference storageReference = mProfileList.get(position);
-            StorageUtil.downloadImage(holder.profileImageView.getContext(), storageReference,
+            StorageUtils.downloadImage(holder.profileImageView.getContext(), storageReference,
                     holder.profileImageView);
 
             holder.itemView.setOnClickListener(v ->

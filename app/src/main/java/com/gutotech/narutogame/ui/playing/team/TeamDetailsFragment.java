@@ -27,7 +27,7 @@ import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.adapter.TeamMembersAdapter;
 import com.gutotech.narutogame.ui.adapter.TeamRequestersAdapter;
 import com.gutotech.narutogame.utils.FragmentUtil;
-import com.gutotech.narutogame.utils.StorageUtil;
+import com.gutotech.narutogame.data.firebase.StorageUtils;
 
 import es.dmoral.toasty.Toasty;
 
@@ -54,7 +54,7 @@ public class TeamDetailsFragment extends Fragment implements SectionFragment,
                 binding.teamImageView.setBackgroundResource(R.drawable.layout_foto_equipe);
                 binding.removeImageButton.setVisibility(View.GONE);
             } else {
-                StorageUtil.downloadTeamImage(getContext(), binding.teamImageView, team.getImage());
+                StorageUtils.downloadTeamImage(getContext(), binding.teamImageView, team.getImage());
                 binding.removeImageButton.setVisibility(View.VISIBLE);
             }
 
@@ -146,7 +146,7 @@ public class TeamDetailsFragment extends Fragment implements SectionFragment,
                 }
 
                 if (bitmap != null) {
-                    StorageUtil.uploadTeamImage(bitmap, mViewModel::setTeamImage,
+                    StorageUtils.uploadTeamImage(bitmap, mViewModel::setTeamImage,
                             exception ->
                                     Toasty.error(getActivity(),
                                             R.string.error_uploading_image,

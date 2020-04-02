@@ -1,11 +1,14 @@
 package com.gutotech.narutogame.ui.playing.currentvillage;
 
 import android.os.CountDownTimer;
+import android.os.SystemClock;
 
 import androidx.databinding.ObservableField;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.gutotech.narutogame.data.firebase.FirebaseFunctionsUtils;
 import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.model.Character;
 import com.gutotech.narutogame.data.model.Mission;
@@ -14,7 +17,6 @@ import com.gutotech.narutogame.data.model.Reward;
 import com.gutotech.narutogame.data.model.Score;
 import com.gutotech.narutogame.data.model.TimeMission;
 import com.gutotech.narutogame.data.repository.MissionRepository;
-import com.gutotech.narutogame.utils.DateCustom;
 import com.gutotech.narutogame.utils.SingleLiveEvent;
 
 import java.util.ArrayList;
@@ -22,61 +24,50 @@ import java.util.List;
 import java.util.Locale;
 
 public class MissionsWaitingViewModel extends ViewModel {
-    private TimeMission mTimeMission;
-
-    private CountDownTimer mCountDownTimer;
     public final ObservableField<String> countDown = new ObservableField<>("--:--:--");
 
-    private SingleLiveEvent<List<Integer>> showMissionCompletedMsg = new SingleLiveEvent<>();
+    private TimeMission mTimeMission;
 
     private MissionRepository mMissionRepository;
 
+    private SingleLiveEvent<List<Integer>> showMissionCompletedMsg = new SingleLiveEvent<>();
+
+    private MutableLiveData<MissionInfo> mMissionInfo = new MutableLiveData<>();
+
     private Character mCharacter;
 
-    MissionsWaitingViewModel(TimeMission mission) {
-        mTimeMission = mission;
-
+    public MissionsWaitingViewModel() {
         mCharacter = CharOn.character;
 
         mMissionRepository = MissionRepository.getInstance();
 
-        init();
+        mMissionRepository.getMissionTime(mission -> {
+            mTimeMission = mission;
+            mMissionInfo.postValue(mTimeMission.missionInfo());
+
+            FirebaseFunctionsUtils.getServerTime(currentTimestamp ->
+                    startTimer(mTimeMission.getDurationMillis() -
+                            (currentTimestamp - mTimeMission.getInitialTimestamp())
+                    )
+            );
+        });
     }
 
-    void init() {
-        if (mTimeMission.getMillisStopped() > 0) {
-            mTimeMission.setMillisStopped(DateCustom.getTimeInMillis() - mTimeMission.getMillisStopped());
-        }
-
-        if (mTimeMission.getMillisStopped() >= mTimeMission.getMillisDuration()) {
-            showMissionCompletedMsg.setValue(getRewardValues(mTimeMission.missionInfo().rewards));
-        } else {
-            if (mCountDownTimer == null) {
-                startTimer();
-            }
-        }
-    }
-
-    LiveData<List<Integer>> getShowMissionCompletedMsg() {
-        return showMissionCompletedMsg;
-    }
-
-    private void startTimer() {
-        mCountDownTimer = new CountDownTimer(mTimeMission.getMillisDuration() -
-                mTimeMission.getMillisStopped(), 1000) {
+    private void startTimer(long millisInFuture) {
+        new CountDownTimer(millisInFuture, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                mTimeMission.setMillisDuration(millisUntilFinished);
                 int hours = (int) millisUntilFinished / 1000 / 60 / 60;
                 int minutes = (int) millisUntilFinished / 1000 / 60;
                 int seconds = (int) millisUntilFinished / 1000 % 60;
-                countDown.set(String.format(Locale.getDefault(), "%02d:%02d:%02d", hours, minutes, seconds));
+                countDown.set(String.format(Locale.US,
+                        "%02d:%02d:%02d", hours, minutes, seconds));
             }
 
             @Override
             public void onFinish() {
-                showMissionCompletedMsg.setValue(getRewardValues(mTimeMission.missionInfo().rewards));
-                mCountDownTimer = null;
+                showMissionCompletedMsg.setValue(
+                        getRewardValues(mTimeMission.missionInfo().rewards));
             }
         }.start();
     }
@@ -138,13 +129,12 @@ public class MissionsWaitingViewModel extends ViewModel {
         mCharacter.setMission(false);
     }
 
-    void stop() {
-        if (mCountDownTimer != null) {
-            mCountDownTimer.cancel();
-            mCountDownTimer = null;
 
-            mTimeMission.setMillisStopped(DateCustom.getTimeInMillis());
-            mMissionRepository.acceptTimeMission(mTimeMission);
-        }
+    LiveData<MissionInfo> getMissionInfo() {
+        return mMissionInfo;
+    }
+
+    LiveData<List<Integer>> getShowMissionCompletedMsg() {
+        return showMissionCompletedMsg;
     }
 }

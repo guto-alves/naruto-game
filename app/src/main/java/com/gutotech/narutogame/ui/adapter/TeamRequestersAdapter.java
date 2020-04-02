@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.Character;
-import com.gutotech.narutogame.utils.StorageUtil;
+import com.gutotech.narutogame.data.firebase.StorageUtils;
 
 import java.util.List;
 
@@ -48,7 +48,7 @@ public class TeamRequestersAdapter extends RecyclerView.Adapter<TeamRequestersAd
         if (mRequesters != null) {
             final Character character = mRequesters.get(i);
 
-            StorageUtil.downloadDojo(mContext, holder.characterImageView, character.getNinja().getId());
+            StorageUtils.downloadDojo(mContext, holder.characterImageView, character.getNinja().getId());
 
             holder.nickTextView.setText(character.getNick());
             holder.levelTextView.setText(String.valueOf(character.getLevel()));

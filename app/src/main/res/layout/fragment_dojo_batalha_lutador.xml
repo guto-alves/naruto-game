@@ -5,13 +5,7 @@
 
     <data>
 
-        <import type="com.gutotech.narutogame.data.model.GraduationUtils" />
-
         <import type="com.gutotech.narutogame.data.model.Jutsu" />
-
-        <variable
-            name="context"
-            type="android.content.Context" />
 
         <variable
             name="viewModel"
@@ -65,8 +59,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="90dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginRight="8dp"
                     android:gravity="center"
                     android:orientation="horizontal"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -98,7 +90,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                                app:spanCount="4"
+                                app:spanCount="3"
                                 tools:itemCount="2"
                                 tools:listitem="@layout/recycler_buffs_and_debuffs" />
                         </LinearLayout>
@@ -111,12 +103,13 @@
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="wrap_content"
-                            android:layout_height="21dp">
+                            android:layout_height="wrap_content">
 
                             <ImageView
                                 android:id="@+id/imageView8"
                                 android:layout_width="117dp"
-                                android:layout_height="21dp"
+                                android:layout_height="22dp"
+                                android:scaleType="fitXY"
                                 android:src="@drawable/layout_bg_profile"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -131,8 +124,8 @@
                                 android:textColor="@android:color/white"
                                 android:textSize="10sp"
                                 android:textStyle="bold"
-                                app:layout_constraintBottom_toBottomOf="@+id/imageView8"
-                                app:layout_constraintEnd_toEndOf="@+id/imageView8"
+                                app:layout_constraintBottom_toBottomOf="@id/imageView8"
+                                app:layout_constraintEnd_toEndOf="@id/imageView8"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="@+id/imageView8" />
 
@@ -152,9 +145,11 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="0dp"
                                 android:layout_weight="1"
-                                android:text="@{@string/label_graduation_and_lvl(context.getString(GraduationUtils.getName(viewModel.player.graduationId)), viewModel.player.level)}"
                                 android:textColor="#FFD274"
-                                android:textSize="8sp" />
+                                android:textSize="8sp"
+                                app:graduationId="@{viewModel.player.graduationId}"
+                                app:level="@{viewModel.player.level}"
+                                app:village="@{viewModel.player.village}" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -281,7 +276,7 @@
 
                         <ImageView
                             android:id="@+id/imageView16"
-                            android:layout_width="80dp"
+                            android:layout_width="70dp"
                             android:layout_height="80dp"
                             android:layout_marginTop="64dp"
                             android:src="@drawable/layout_combate_vs" />
@@ -313,7 +308,7 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/LinearOpo"
+                        android:id="@+id/opponentLinearLayout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -335,10 +330,10 @@
 
                             <androidx.recyclerview.widget.RecyclerView
                                 android:id="@+id/oppBuffsDebuffsStatusRecyclerView"
-                                android:layout_width="90dp"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                                app:spanCount="4"
+                                app:spanCount="3"
                                 tools:itemCount="2"
                                 tools:listitem="@layout/recycler_buffs_and_debuffs" />
                         </LinearLayout>
@@ -356,7 +351,8 @@
                             <ImageView
                                 android:id="@+id/imageView17"
                                 android:layout_width="117dp"
-                                android:layout_height="21dp"
+                                android:layout_height="22dp"
+                                android:scaleType="fitXY"
                                 android:src="@drawable/layout_bg_profile"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -392,9 +388,11 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="0dp"
                                 android:layout_weight="1"
-                                android:text="@{@string/label_graduation_and_lvl(context.getString(GraduationUtils.getName(viewModel.npc.character.graduationId)), viewModel.npc.character.level)}"
                                 android:textColor="#FFD274"
-                                android:textSize="8sp" />
+                                android:textSize="8sp"
+                                app:graduationId="@{viewModel.npc.character.graduationId}"
+                                app:level="@{viewModel.npc.character.level}"
+                                app:village="@{viewModel.npc.character.village}" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -531,7 +529,7 @@
                     android:id="@+id/textView42"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="6dp"
                     android:fontFamily="sans-serif-smallcaps"
                     android:text="@string/my_jutsus"
                     android:textColor="@android:color/white"

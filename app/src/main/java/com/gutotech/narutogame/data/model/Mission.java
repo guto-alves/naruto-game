@@ -1,5 +1,7 @@
 package com.gutotech.narutogame.data.model;
 
+import com.google.firebase.database.Exclude;
+
 public class Mission {
     public enum Type {TIME, SPECIAL}
 
@@ -22,6 +24,7 @@ public class Mission {
         this.missionInfo = missionInfo;
     }
 
+    @Exclude
     public MissionInfo missionInfo() {
         return MissionInfo.valueOf(getMissionInfo());
     }

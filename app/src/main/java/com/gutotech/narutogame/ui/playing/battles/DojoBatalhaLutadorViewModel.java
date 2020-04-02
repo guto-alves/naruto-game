@@ -9,6 +9,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.gutotech.narutogame.R;
+import com.gutotech.narutogame.data.firebase.FirebaseFunctionsUtils;
 import com.gutotech.narutogame.data.model.Battle;
 import com.gutotech.narutogame.data.model.BattleLog;
 import com.gutotech.narutogame.data.model.CharOn;
@@ -22,19 +23,21 @@ import com.gutotech.narutogame.data.model.Score;
 import com.gutotech.narutogame.data.repository.BattleRepository;
 import com.gutotech.narutogame.data.repository.CharacterRepository;
 import com.gutotech.narutogame.ui.adapter.JutsusAdapter;
-import com.gutotech.narutogame.utils.DateCustom;
 import com.gutotech.narutogame.utils.SingleLiveEvent;
 
 import java.security.SecureRandom;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 public class DojoBatalhaLutadorViewModel extends ViewModel
         implements JutsusAdapter.OnJutsuClickListener {
+    public final ObservableField<String> countDown = new ObservableField<>("--:--");
+
     private final long TIME_TO_ATTACK = 150000;
+
+    private CountDownTimer mCountDownTimer;
 
     private BattleRepository mBattleRepository;
 
@@ -55,10 +58,6 @@ public class DojoBatalhaLutadorViewModel extends ViewModel
 
     private MutableLiveData<List<BattleLog>> mBattleLogs = new MutableLiveData<>(new ArrayList<>());
 
-    private CountDownTimer mCountDownTimer;
-
-    public final ObservableField<String> countDown = new ObservableField<>("--:--");
-
     SingleLiveEvent<Object[]> showJutsuInfoPopupEvent = new SingleLiveEvent<>();
     SingleLiveEvent<Integer> showWarningDialogEvent = new SingleLiveEvent<>();
     SingleLiveEvent<View> startAnimationEvent = new SingleLiveEvent<>();
@@ -67,7 +66,7 @@ public class DojoBatalhaLutadorViewModel extends ViewModel
     SingleLiveEvent<Void> showDrawnEvent = new SingleLiveEvent<>();
     SingleLiveEvent<Void> showInactivatedEvent = new SingleLiveEvent<>();
 
-    DojoBatalhaLutadorViewModel(Battle battle) {
+    public DojoBatalhaLutadorViewModel(Battle battle) {
         mBattle = battle;
 
         player = mBattle.getPlayer1();
@@ -76,8 +75,8 @@ public class DojoBatalhaLutadorViewModel extends ViewModel
         playerFormulas = player.getFormulas();
         npcFormulas = npc.getCharacter().getFormulas();
 
-        myBuffsDebuffsStatus.setValue(mBattle.getPlayer1BuffsDebuffsStatus());
-        oppBuffsDebuffsStatus.setValue(mBattle.getPlayer2BuffsDebuffsStatus());
+        myBuffsDebuffsStatus.setValue(mBattle.getBuffsDebuffsUsed1());
+        oppBuffsDebuffsStatus.setValue(mBattle.getBuffsDebuffsUsed2());
         mBattleLogs.setValue(mBattle.getBattleLogs());
 
         mAllJutsus = player.getJutsus();
@@ -86,48 +85,17 @@ public class DojoBatalhaLutadorViewModel extends ViewModel
         mBattleRepository = BattleRepository.getInstance();
 
         if (mBattle.getStatus() == Battle.Status.CONTINUE) {
-            startTimer(calculateElapsedTime());
+            FirebaseFunctionsUtils.getServerTime(currentTimestamp -> {
+                startTimer(TIME_TO_ATTACK - (currentTimestamp - mBattle.getAttackStart()));
+            });
         } else {
             showBattleResult();
         }
     }
 
-    public Character getPlayer() {
-        return player;
-    }
 
-    public Npc getNpc() {
-        return npc;
-    }
-
-    public Formulas getPlayerFormulas() {
-        return playerFormulas;
-    }
-
-    public Formulas getNpcFormulas() {
-        return npcFormulas;
-    }
-
-    LiveData<List<BattleLog>> getBattleLogs() {
-        return mBattleLogs;
-    }
-
-    LiveData<List<Jutsu>> getJutsus() {
-        return mJutsus;
-    }
-
-    LiveData<List<Jutsu>> getMyBuffsDebuffsStatus() {
-        return myBuffsDebuffsStatus;
-    }
-
-    LiveData<List<Jutsu>> getOppBuffsDebuffsStatus() {
-        return oppBuffsDebuffsStatus;
-    }
-
-
-    private void startTimer(long elapsedTime) {
-        mCountDownTimer = new CountDownTimer(
-                TIME_TO_ATTACK - elapsedTime, 1000) {
+    private void startTimer(long millisInFuture) {
+        mCountDownTimer = new CountDownTimer(millisInFuture, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 countDown.set(String.format(Locale.getDefault(), "%02d:%02d",
@@ -159,10 +127,6 @@ public class DojoBatalhaLutadorViewModel extends ViewModel
         }
     }
 
-    private long calculateElapsedTime() {
-        return DateCustom.getTimeInMillis() - mBattle.getAttackStart();
-    }
-
 
     @Override
     public void onJutsuClick(View view, Jutsu jutsu) {
@@ -190,21 +154,27 @@ public class DojoBatalhaLutadorViewModel extends ViewModel
 
             updateFightStatus();
 
-            mBattle.setAttackStart(DateCustom.getTimeInMillis());
-            saveBattle();
-            startTimer(calculateElapsedTime());
+            if (mBattle.getStatus() == Battle.Status.CONTINUE) {
+                updateRemainingIntervals();
+                FirebaseFunctionsUtils.getServerTime(currentTimestamp -> {
+                    mBattle.setAttackStart(currentTimestamp);
+                    saveBattle();
+                    stopTimer();
+                    startTimer(TIME_TO_ATTACK);
+                });
+            }
         } else {
             if (!buffOrDebuffUsed(playerJutsuInfo.type)) {
                 if (playerJutsuInfo.type == Jutsu.Type.BUFF) {
                     addBuffOrDebuff(playerFormulas, jutsu);
 
-                    List<Jutsu> buffsAndDebuffs = mBattle.getPlayer1BuffsDebuffsStatus();
+                    List<Jutsu> buffsAndDebuffs = mBattle.getBuffsDebuffsUsed1();
                     buffsAndDebuffs.add(jutsu);
                     myBuffsDebuffsStatus.setValue(buffsAndDebuffs);
                 } else if (playerJutsuInfo.type == Jutsu.Type.DEBUFF) {
                     addBuffOrDebuff(npcFormulas, jutsu);
 
-                    List<Jutsu> buffsAndDebuffs = mBattle.getPlayer2BuffsDebuffsStatus();
+                    List<Jutsu> buffsAndDebuffs = mBattle.getBuffsDebuffsUsed2();
                     buffsAndDebuffs.add(jutsu);
                     oppBuffsDebuffsStatus.setValue(buffsAndDebuffs);
                 }
@@ -221,7 +191,6 @@ public class DojoBatalhaLutadorViewModel extends ViewModel
         }
 
         if (mBattle.getStatus() == Battle.Status.CONTINUE) {
-            updateRemainingIntervals();
             int jutsuIndex = mAllJutsus.indexOf(jutsu);
             jutsu.setRemainingIntervals(jutsu.getUsageInterval() - 1);
             mAllJutsus.set(jutsuIndex, jutsu);
@@ -496,5 +465,38 @@ public class DojoBatalhaLutadorViewModel extends ViewModel
 
     private void saveBattle() {
         mBattleRepository.save(mBattle);
+    }
+
+
+    public Character getPlayer() {
+        return player;
+    }
+
+    public Npc getNpc() {
+        return npc;
+    }
+
+    public Formulas getPlayerFormulas() {
+        return playerFormulas;
+    }
+
+    public Formulas getNpcFormulas() {
+        return npcFormulas;
+    }
+
+    LiveData<List<BattleLog>> getBattleLogs() {
+        return mBattleLogs;
+    }
+
+    LiveData<List<Jutsu>> getJutsus() {
+        return mJutsus;
+    }
+
+    LiveData<List<Jutsu>> getMyBuffsDebuffsStatus() {
+        return myBuffsDebuffsStatus;
+    }
+
+    LiveData<List<Jutsu>> getOppBuffsDebuffsStatus() {
+        return oppBuffsDebuffsStatus;
     }
 }

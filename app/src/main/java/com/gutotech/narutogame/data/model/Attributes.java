@@ -31,6 +31,7 @@ public class Attributes extends BaseObservable {
 
     private int totalFreePoints;
     private int totalRedistributePoints;
+    private int weeklyLimitOfTraining;
 
     private List<Integer> basePoints;
     private List<Integer> distributedPoints;
@@ -254,6 +255,16 @@ public class Attributes extends BaseObservable {
 
     public void setFormulas(Formulas formulas) {
         this.formulas = formulas;
+    }
+
+    @Bindable
+    public int getWeeklyLimitOfTraining() {
+        return weeklyLimitOfTraining;
+    }
+
+    public void setWeeklyLimitOfTraining(int weeklyLimitOfTraining) {
+        this.weeklyLimitOfTraining = weeklyLimitOfTraining;
+        notifyPropertyChanged(BR.weeklyLimitOfTraining);
     }
 
     @Bindable

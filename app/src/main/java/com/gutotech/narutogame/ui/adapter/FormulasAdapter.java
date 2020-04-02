@@ -17,7 +17,7 @@ import java.util.List;
 
 public class FormulasAdapter extends RecyclerView.Adapter<FormulasAdapter.MyViewHolder> {
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
         private TextView nameTextView;
         private ImageView iconImageView;
         private TextView totalTextView;

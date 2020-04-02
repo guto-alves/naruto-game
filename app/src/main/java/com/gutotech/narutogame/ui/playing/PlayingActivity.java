@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
@@ -26,6 +27,7 @@ import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 
 import com.gutotech.narutogame.R;
+import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.repository.AuthRepository;
 import com.gutotech.narutogame.databinding.ActivityPlayingBinding;
 import com.gutotech.narutogame.databinding.DialogGameRoutinesBinding;
@@ -159,15 +161,34 @@ public class PlayingActivity extends AppCompatActivity {
         mViewModel.getDismissBagDialog().observe(this, aVoid -> bagDialog.dismiss());
     }
 
+    private void updateChatChannels() {
+        List<String> channels = new ArrayList<>();
+        channels.add(getString(R.string.world));
+        channels.add(getString(CharOn.character.getVillage().name));
+        if (!TextUtils.isEmpty(CharOn.character.getTeam())) {
+            channels.add(getString(R.string.team));
+        }
+
+        ArrayAdapter<String> channelsAdapter = new ArrayAdapter<>(
+                this, R.layout.simple_spinner_item, channels);
+        channelsAdapter.setDropDownViewResource(R.layout.spinner_dropdown_chat);
+        mBinding.channelSpinner.setAdapter(channelsAdapter);
+        mBinding.channelSpinner.setSelection(1);
+    }
+
     private void setUpChat() {
+        updateChatChannels();
+
+        mViewModel.getUpdateChannelsEvent().observe(this, aVoid -> updateChatChannels());
+
         mViewModel.getStartChatAnimationEvent().observe(this, openChat -> {
             Animation animation;
 
             if (openChat) {
                 animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_in);
                 mBinding.scrollView.postDelayed(() ->
-                                mBinding.scrollView.smoothScrollTo(0, mBinding.scrollView.getBottom() + 500),
-                        500);
+                        mBinding.scrollView.smoothScrollTo(0,
+                                mBinding.scrollView.getBottom() + 500), 500);
             } else {
                 animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_out);
             }

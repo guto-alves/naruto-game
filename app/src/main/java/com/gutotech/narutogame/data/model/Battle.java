@@ -4,8 +4,6 @@ import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 import androidx.databinding.library.baseAdapters.BR;
 
-import com.gutotech.narutogame.utils.DateCustom;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,45 +13,28 @@ public class Battle extends BaseObservable {
     }
 
     private Status status;
-
     private String id;
-
     private Character player1;
     private Character player2;
-
     private int currentPlayer;
-
-    private List<BattleLog> battleLogs;
-
-    private List<Jutsu> player1BuffsDebuffsStatus;
-    private List<Jutsu> player2BuffsDebuffsStatus;
-
     private long attackStart;
-
-    private Jutsu oppJutsu;
-
-    private int playerCount;
+    private Jutsu jutsuBuffer;
+    private int playersInBattle;
+    private List<Jutsu> buffsDebuffsUsed1;
+    private List<Jutsu> buffsDebuffsUsed2;
+    private List<BattleLog> battleLogs;
 
     public Battle() {
     }
 
-    public Battle(Character player1, Character player2) {
-        this.player1 = player1;
-        this.player2 = player2;
-        status = Status.CONTINUE;
-        currentPlayer = 1;
-        playerCount = 2;
-        attackStart = DateCustom.getTimeInMillis();
-    }
-
-    public Battle(String id, Character player1, Character player2) {
+    public Battle(String id, Character player1, Character player2, long attackStart) {
         this.id = id;
         this.player1 = player1;
         this.player2 = player2;
+        this.attackStart = attackStart;
         status = Status.CONTINUE;
         currentPlayer = 1;
-        playerCount = 2;
-        attackStart = DateCustom.getTimeInMillis();
+        playersInBattle = 2;
     }
 
     public String getId() {
@@ -62,6 +43,14 @@ public class Battle extends BaseObservable {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
     @Bindable
@@ -94,12 +83,50 @@ public class Battle extends BaseObservable {
         notifyPropertyChanged(BR.currentPlayer);
     }
 
-    public int getPlayerCount() {
-        return playerCount;
+    public long getAttackStart() {
+        return attackStart;
     }
 
-    public void setPlayerCount(int playerCount) {
-        this.playerCount = playerCount;
+    public void setAttackStart(long attackStart) {
+        this.attackStart = attackStart;
+    }
+
+    public Jutsu getJutsuBuffer() {
+        return jutsuBuffer;
+    }
+
+    public void setJutsuBuffer(Jutsu jutsuBuffer) {
+        this.jutsuBuffer = jutsuBuffer;
+    }
+
+    public List<Jutsu> getBuffsDebuffsUsed1() {
+        if (buffsDebuffsUsed1 == null) {
+            buffsDebuffsUsed1 = new ArrayList<>();
+        }
+        return buffsDebuffsUsed1;
+    }
+
+    public void setBuffsDebuffsUsed1(List<Jutsu> buffsDebuffsUsed1) {
+        this.buffsDebuffsUsed1 = buffsDebuffsUsed1;
+    }
+
+    public List<Jutsu> getBuffsDebuffsUsed2() {
+        if (buffsDebuffsUsed2 == null) {
+            buffsDebuffsUsed2 = new ArrayList<>();
+        }
+        return buffsDebuffsUsed2;
+    }
+
+    public void setBuffsDebuffsUsed2(List<Jutsu> buffsDebuffsUsed2) {
+        this.buffsDebuffsUsed2 = buffsDebuffsUsed2;
+    }
+
+    public int getPlayersInBattle() {
+        return playersInBattle;
+    }
+
+    public void setPlayersInBattle(int playersInBattle) {
+        this.playersInBattle = playersInBattle;
     }
 
     public List<BattleLog> getBattleLogs() {
@@ -113,51 +140,4 @@ public class Battle extends BaseObservable {
         this.battleLogs = battleLogs;
     }
 
-    public List<Jutsu> getPlayer1BuffsDebuffsStatus() {
-        if (player1BuffsDebuffsStatus == null) {
-            player1BuffsDebuffsStatus = new ArrayList<>();
-        }
-
-        return player1BuffsDebuffsStatus;
-    }
-
-    public void setPlayer1BuffsDebuffsStatus(List<Jutsu> player1BuffsDebuffsStatus) {
-        this.player1BuffsDebuffsStatus = player1BuffsDebuffsStatus;
-    }
-
-    public List<Jutsu> getPlayer2BuffsDebuffsStatus() {
-        if (player2BuffsDebuffsStatus == null) {
-            player2BuffsDebuffsStatus = new ArrayList<>();
-        }
-
-        return player2BuffsDebuffsStatus;
-    }
-
-    public void setPlayer2BuffsDebuffsStatus(List<Jutsu> player2BuffsDebuffsStatus) {
-        this.player2BuffsDebuffsStatus = player2BuffsDebuffsStatus;
-    }
-
-    public long getAttackStart() {
-        return attackStart;
-    }
-
-    public void setAttackStart(long attackStart) {
-        this.attackStart = attackStart;
-    }
-
-    public Status getStatus() {
-        return status;
-    }
-
-    public void setStatus(Status status) {
-        this.status = status;
-    }
-
-    public Jutsu getOppJutsu() {
-        return oppJutsu;
-    }
-
-    public void setOppJutsu(Jutsu oppJutsu) {
-        this.oppJutsu = oppJutsu;
-    }
 }

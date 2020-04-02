@@ -5,13 +5,7 @@
 
     <data>
 
-        <import type="com.gutotech.narutogame.data.model.GraduationUtils" />
-
         <import type="com.gutotech.narutogame.data.model.Jutsu" />
-
-        <variable
-            name="context"
-            type="android.content.Context" />
 
         <variable
             name="viewModel"
@@ -149,9 +143,11 @@
                             android:layout_width="wrap_content"
                             android:layout_height="0dp"
                             android:layout_weight="1"
-                            android:text="@{@string/label_graduation_and_lvl(context.getString(GraduationUtils.getName(viewModel.fighters.player.graduationId)), viewModel.fighters.player.level)}"
                             android:textColor="#FFD274"
-                            android:textSize="8sp" />
+                            android:textSize="8sp"
+                            app:graduationId="@{viewModel.fighters.player.graduationId}"
+                            app:level="@{viewModel.fighters.player.level}"
+                            app:village="@{viewModel.fighters.player.village}" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -402,9 +398,11 @@
                             android:layout_width="wrap_content"
                             android:layout_height="0dp"
                             android:layout_weight="1"
-                            android:text="@{@string/label_graduation_and_lvl(context.getString(GraduationUtils.getName(viewModel.fighters.opponent.graduationId, viewModel.fighters.opponent.village)), viewModel.fighters.opponent.level)}"
                             android:textColor="#FFD274"
-                            android:textSize="8sp" />
+                            android:textSize="8sp"
+                            app:graduationId="@{viewModel.fighters.opponent.graduationId}"
+                            app:level="@{viewModel.fighters.opponent.level}"
+                            app:village="@{viewModel.fighters.opponent.village}" />
 
                         <TextView
                             android:layout_width="wrap_content"

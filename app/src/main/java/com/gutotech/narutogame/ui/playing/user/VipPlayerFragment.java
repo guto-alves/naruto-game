@@ -18,7 +18,7 @@ import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.WarningDialogFragment;
 import com.gutotech.narutogame.utils.FragmentUtil;
 import com.gutotech.narutogame.utils.SpannableStringBuilderCustom;
-import com.gutotech.narutogame.utils.StorageUtil;
+import com.gutotech.narutogame.data.firebase.StorageUtils;
 
 public class VipPlayerFragment extends Fragment implements SectionFragment {
 
@@ -57,7 +57,7 @@ public class VipPlayerFragment extends Fragment implements SectionFragment {
             builder.append();
             builder.append(resId, R.color.colorGreen);
 
-            StorageUtil.downloadProfileForMsg(getContext(), binding.actionResultLayout.profileImageView);
+            StorageUtils.downloadProfileForMsg(getContext(), binding.actionResultLayout.profileImageView);
             binding.actionResultLayout.titleTextView.setText(R.string.successfully_done);
             binding.actionResultLayout.descriptionTextView.setText(builder.getString());
             binding.actionResultLayout.msgConstraintLayout.setVisibility(View.VISIBLE);

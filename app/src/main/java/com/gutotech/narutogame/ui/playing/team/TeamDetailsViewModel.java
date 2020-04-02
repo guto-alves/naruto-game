@@ -121,7 +121,7 @@ public class TeamDetailsViewModel extends ViewModel implements
                 break;
             }
 
-            mTeamRepository.removeRequester(acceptedRequesterId, mTeam.getValue().getName());
+            mTeamRepository.removeAllRequests(acceptedRequesterId);
             mTeamRepository.saveMember(new Member(acceptedRequesterId), mTeam.getValue().getName());
             mTeamRepository.notifyMember(acceptedRequesterId, mTeam.getValue().getName());
         }

@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.Character;
-import com.gutotech.narutogame.utils.StorageUtil;
+import com.gutotech.narutogame.data.firebase.StorageUtils;
 
 import java.util.List;
 
@@ -57,7 +57,7 @@ public class CharacterSelectAdapter extends RecyclerView.Adapter<CharacterSelect
 
             Character character = mCharactersList.get(position);
 
-            StorageUtil.downloadSmallProfile(holder.profileImageView.getContext(),
+            StorageUtils.downloadSmallProfile(holder.profileImageView.getContext(),
                     holder.profileImageView, character.getNinja().getId());
 
             holder.profileImageView.setOnClickListener(v -> {

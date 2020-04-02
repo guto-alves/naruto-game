@@ -17,16 +17,24 @@ import com.gutotech.narutogame.ui.adapter.RequirementsAdapter;
 import java.util.List;
 
 public class RequirementDialogFragment extends DialogFragment {
-    private boolean mFolded;
-    private List<Requirement> mRequirements;
+    private boolean folded;
+    private List<Requirement> requirements;
 
-    public RequirementDialogFragment(List<Requirement> requirements) {
-        mRequirements = requirements;
+    public RequirementDialogFragment() {
     }
 
-    public RequirementDialogFragment(List<Requirement> requirements, boolean folded) {
-        mRequirements = requirements;
-        mFolded = folded;
+    public static RequirementDialogFragment getInstance(List<Requirement> requirements) {
+        RequirementDialogFragment dialog = new RequirementDialogFragment();
+        dialog.requirements = requirements;
+        dialog.folded = false;
+        return dialog;
+    }
+
+    public static RequirementDialogFragment getInstance(List<Requirement> requirements, boolean folded) {
+        RequirementDialogFragment dialog = new RequirementDialogFragment();
+        dialog.requirements = requirements;
+        dialog.folded = folded;
+        return dialog;
     }
 
     @NonNull
@@ -39,7 +47,7 @@ public class RequirementDialogFragment extends DialogFragment {
 
         RecyclerView requirementsRecyclerView = root.findViewById(R.id.requirementsRecyclerView);
         requirementsRecyclerView.setHasFixedSize(true);
-        requirementsRecyclerView.setAdapter(new RequirementsAdapter(getContext(), mRequirements, mFolded));
+        requirementsRecyclerView.setAdapter(new RequirementsAdapter(getContext(), requirements, folded));
 
         return builder.create();
     }

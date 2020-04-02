@@ -15,7 +15,8 @@ import com.gutotech.narutogame.data.model.Attribute;
 
 import java.util.List;
 
-public class AttributesStatusAdapter extends RecyclerView.Adapter<AttributesStatusAdapter.MyViewHolder> {
+public class AttributesStatusAdapter extends
+        RecyclerView.Adapter<AttributesStatusAdapter.MyViewHolder> {
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         private TextView nameTextView;

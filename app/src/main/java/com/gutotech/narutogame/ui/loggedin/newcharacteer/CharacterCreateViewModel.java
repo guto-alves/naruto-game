@@ -53,20 +53,9 @@ public class CharacterCreateViewModel extends ViewModel
         loadCurrentGroup();
     }
 
-    public void setListener(ResultListener listener) {
-        mListener = listener;
-    }
-
-    public Character getCharacter() {
-        return mChar;
-    }
-
-    LiveData<List<Ninja>> getCurrentNinjasGroupList() {
-        return mCurrentNinjasGroupList;
-    }
-
-    public void onVillageSelected(Village vila) {
-        mChar.setVillage(vila);
+    public void onVillageSelected(Village village) {
+        mChar.setVillage(village);
+        mChar.setMapId(village.ordinal());
     }
 
     public void onClassSelected(Classe classe) {
@@ -82,28 +71,6 @@ public class CharacterCreateViewModel extends ViewModel
     public void onNinjaClick(Ninja ninja) {
         mChar.setNinja(ninja);
         mChar.setProfilePath(String.format(Locale.US, "images/profile/%d/1.png", ninja.getId()));
-    }
-
-    private void loadCurrentGroup() {
-        int from = currentGroupIndex.get() * 6;
-        int to = from + 6;
-
-        mCurrentNinjasGroupList.setValue(mAllNinjasList.subList(from, to));
-    }
-
-    public void go() {
-        currentGroupIndex.set((currentGroupIndex.get() + 1) % 20);
-        loadCurrentGroup();
-    }
-
-    public void back() {
-        if (currentGroupIndex.get() - 1 >= 0) {
-            currentGroupIndex.set(currentGroupIndex.get() - 1);
-        } else {
-            currentGroupIndex.set(19);
-        }
-
-        loadCurrentGroup();
     }
 
     public void onCreateButtonPressed() {
@@ -129,6 +96,28 @@ public class CharacterCreateViewModel extends ViewModel
         }
     }
 
+    private void loadCurrentGroup() {
+        int from = currentGroupIndex.get() * 6;
+        int to = from + 6;
+
+        mCurrentNinjasGroupList.setValue(mAllNinjasList.subList(from, to));
+    }
+
+    public void go() {
+        currentGroupIndex.set((currentGroupIndex.get() + 1) % 20);
+        loadCurrentGroup();
+    }
+
+    public void back() {
+        if (currentGroupIndex.get() - 1 >= 0) {
+            currentGroupIndex.set(currentGroupIndex.get() - 1);
+        } else {
+            currentGroupIndex.set(19);
+        }
+
+        loadCurrentGroup();
+    }
+
     private boolean isValidNick() {
         boolean valid = true;
 
@@ -144,5 +133,17 @@ public class CharacterCreateViewModel extends ViewModel
         }
 
         return valid;
+    }
+
+    public void setListener(ResultListener listener) {
+        mListener = listener;
+    }
+
+    public Character getCharacter() {
+        return mChar;
+    }
+
+    LiveData<List<Ninja>> getCurrentNinjasGroupList() {
+        return mCurrentNinjasGroupList;
     }
 }

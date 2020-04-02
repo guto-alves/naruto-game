@@ -32,6 +32,11 @@
                 loadProfile="@{characterSelected.profilePath}"
                 android:layout_width="200dp"
                 android:layout_height="213dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                app:layout_constraintEnd_toStartOf="@+id/infoLinearLayout"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -39,8 +44,12 @@
                 android:id="@+id/infoLinearLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="@+id/profileImageView"
+                app:layout_constraintEnd_toStartOf="@+id/attributesLinearLayout"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/profileImageView"
                 app:layout_constraintTop_toTopOf="@+id/profileImageView">
 
@@ -191,7 +200,8 @@
                 android:layout_marginLeft="8dp"
                 android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/infoLinearLayout"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/infoLinearLayout"
                 app:layout_constraintTop_toTopOf="@id/infoLinearLayout">
 
                 <LinearLayout
@@ -445,10 +455,11 @@
                 android:id="@+id/textView5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginLeft="24dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginLeft="32dp"
                 android:text="@string/section_select_your_character"
                 android:textColor="@android:color/white"
+                android:textStyle="italic"
                 android:typeface="serif"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView6"
                 app:layout_constraintStart_toStartOf="@+id/imageView6"

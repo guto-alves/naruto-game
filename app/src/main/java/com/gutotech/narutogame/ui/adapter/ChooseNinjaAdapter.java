@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.Ninja;
-import com.gutotech.narutogame.utils.StorageUtil;
+import com.gutotech.narutogame.data.firebase.StorageUtils;
 
 import java.util.List;
 
@@ -50,7 +50,7 @@ public class ChooseNinjaAdapter extends RecyclerView.Adapter<ChooseNinjaAdapter.
         if (mNinjasList != null) {
             Ninja ninja = mNinjasList.get(position);
 
-            StorageUtil.downloadSmallProfile(holder.ninjaImageView.getContext(),
+            StorageUtils.downloadSmallProfile(holder.ninjaImageView.getContext(),
                     holder.ninjaImageView, ninja.getId());
 
             if (mPositionSelected == position) {

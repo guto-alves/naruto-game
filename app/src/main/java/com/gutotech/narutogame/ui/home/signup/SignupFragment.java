@@ -17,7 +17,7 @@ import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.ProgressDialogFragment;
 import com.gutotech.narutogame.ui.ResultListener;
 import com.gutotech.narutogame.utils.FragmentUtil;
-import com.gutotech.narutogame.utils.StorageUtil;
+import com.gutotech.narutogame.data.firebase.StorageUtils;
 
 import es.dmoral.toasty.Toasty;
 
@@ -36,7 +36,7 @@ public class SignupFragment extends Fragment implements ResultListener, SectionF
 
         binding.msgLayout.titleTextView.setText(R.string.just_a_bit_now);
         binding.msgLayout.descriptionTextView.setText(R.string.fullfill_the_form_below);
-        StorageUtil.downloadProfileForMsg(getActivity(), binding.msgLayout.profileImageView);
+        StorageUtils.downloadProfileForMsg(getActivity(), binding.msgLayout.profileImageView);
 
         FragmentUtil.setSectionTitle(getActivity(), R.string.section_create_account);
 
@@ -54,7 +54,7 @@ public class SignupFragment extends Fragment implements ResultListener, SectionF
     public void onSuccess() {
         binding.formToSignupLinearLayout.setVisibility(View.GONE);
 
-        StorageUtil.downloadProfileForMsg(getActivity(), binding.accountCreatedMsgLayout.profileImageView);
+        StorageUtils.downloadProfileForMsg(getActivity(), binding.accountCreatedMsgLayout.profileImageView);
         binding.accountCreatedMsgLayout.titleTextView.setText(R.string.accont_created_successfuly);
         binding.accountCreatedMsgLayout.descriptionTextView.setText(R.string.email_verification_sent);
         binding.accountCreatedMsgLayout.msgConstraintLayout.setVisibility(View.VISIBLE);

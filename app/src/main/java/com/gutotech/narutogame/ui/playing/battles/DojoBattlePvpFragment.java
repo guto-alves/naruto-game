@@ -36,7 +36,7 @@ import com.gutotech.narutogame.ui.adapter.BuffsDebuffStatusAdapter;
 import com.gutotech.narutogame.ui.adapter.JutsusAdapter;
 import com.gutotech.narutogame.ui.playing.currentvillage.VillageMapFragment;
 import com.gutotech.narutogame.utils.FragmentUtil;
-import com.gutotech.narutogame.utils.StorageUtil;
+import com.gutotech.narutogame.data.firebase.StorageUtils;
 
 public class DojoBattlePvpFragment extends Fragment implements SectionFragment {
     private FragmentDojoBattlePvpBinding mBinding;
@@ -52,10 +52,7 @@ public class DojoBattlePvpFragment extends Fragment implements SectionFragment {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_dojo_battle_pvp,
                 container, false);
 
-        mViewModel = new ViewModelProvider(this,
-                new DojoBattlePvpViewModelFactory(getActivity().getApplication()))
-                .get(DojoBattlePvpViewModel.class);
-
+        mViewModel = new ViewModelProvider(this).get(DojoBattlePvpViewModel.class);
         mBinding.setViewModel(mViewModel);
 
         mBinding.classJutsusButton.setText(CharOn.character.getClasse().name.substring(0, 3));
@@ -89,11 +86,11 @@ public class DojoBattlePvpFragment extends Fragment implements SectionFragment {
         mBinding.myJutsusRecyclerView.setAdapter(jutsusAdapter);
         mViewModel.getJutsus().observe(getViewLifecycleOwner(), jutsusAdapter::setJutsusList);
 
-        mViewModel.showJutsuInfoPopupEvent.observe(getViewLifecycleOwner(), this::showJutsuInfo);
+        mViewModel.getShowJutsuInfoPopupEvent().observe(getViewLifecycleOwner(), this::showJutsuInfo);
 
-        mViewModel.showWarningDialogEvent.observe(getViewLifecycleOwner(), this::showWarningDialog);
+        mViewModel.getShowWarningDialogEvent().observe(getViewLifecycleOwner(), this::showWarningDialog);
 
-        mViewModel.startAnimationEvent.observe(getViewLifecycleOwner(), view -> {
+        mViewModel.getStartAnimationEvent().observe(getViewLifecycleOwner(), view -> {
             Animation animation = AnimationUtils.loadAnimation(getActivity(), R.anim.fade_out);
             view.startAnimation(animation);
         });
@@ -101,13 +98,13 @@ public class DojoBattlePvpFragment extends Fragment implements SectionFragment {
         mBinding.battleResultLayout.descriptionTextView.setMovementMethod(
                 LinkMovementMethod.getInstance());
 
-        mViewModel.showWonEvent.observe(getViewLifecycleOwner(), rewards -> {
+        mViewModel.getShowWonEvent().observe(getViewLifecycleOwner(), rewards -> {
             SpannableStringBuilder description = new SpannableStringBuilder();
             description.append(getString(R.string.combat_won_description, rewards[0], rewards[1]));
             description.append(" ");
             int length = description.length();
 
-            description.append(CharOn.character.battleId.contains("VILLAGEMAP-PVP") ?
+            description.append(CharOn.character.battleId.contains("MAP-PVP") ?
                     getString(R.string.village_map) : getString(R.string.dojo));
 
             description.setSpan(new ForegroundColorSpan(Color.BLUE), length, description.length(),
@@ -118,7 +115,7 @@ public class DojoBattlePvpFragment extends Fragment implements SectionFragment {
                 public void onClick(@NonNull View widget) {
                     mViewModel.exit();
 
-                    if (CharOn.character.battleId.contains("VILLAGEMAP-PVP")) {
+                    if (CharOn.character.battleId.contains("MAP-PVP")) {
                         FragmentUtil.goTo(getActivity(), new VillageMapFragment());
                     } else {
                         FragmentUtil.goTo(getActivity(), new DojoFragment());
@@ -131,7 +128,7 @@ public class DojoBattlePvpFragment extends Fragment implements SectionFragment {
             showBattleResult(R.string.end_of_the_battle, description);
         });
 
-        mViewModel.showLostEvent.observe(getViewLifecycleOwner(), aVoid -> {
+        mViewModel.getShowLostEvent().observe(getViewLifecycleOwner(), aVoid -> {
             SpannableStringBuilder description = new SpannableStringBuilder();
             description.append(getString(R.string.you_have_lost_the_battle));
             description.append(" ");
@@ -152,7 +149,7 @@ public class DojoBattlePvpFragment extends Fragment implements SectionFragment {
             showBattleResult(R.string.too_bad, description);
         });
 
-        mViewModel.showDrawnEvent.observe(getViewLifecycleOwner(), aVoid -> {
+        mViewModel.getShowDrawnEvent().observe(getViewLifecycleOwner(), aVoid -> {
             SpannableStringBuilder description = new SpannableStringBuilder();
             description.append(getString(R.string.drawn_description));
             description.append(" ");
@@ -172,7 +169,7 @@ public class DojoBattlePvpFragment extends Fragment implements SectionFragment {
             showBattleResult(R.string.empate, description);
         });
 
-        mViewModel.showInactivatedEvent.observe(getViewLifecycleOwner(), aVoid -> {
+        mViewModel.getShowInactivatedEvent().observe(getViewLifecycleOwner(), aVoid -> {
             SpannableStringBuilder description = new SpannableStringBuilder();
             description.append(getString(R.string.lost_by_inactivity));
             int length = description.length();
@@ -230,7 +227,7 @@ public class DojoBattlePvpFragment extends Fragment implements SectionFragment {
     }
 
     private void showBattleResult(@StringRes int title, SpannableStringBuilder description) {
-        StorageUtil.downloadProfileForMsg(getActivity(), mBinding.battleResultLayout.profileImageView);
+        StorageUtils.downloadProfileForMsg(getActivity(), mBinding.battleResultLayout.profileImageView);
         mBinding.battleResultLayout.titleTextView.setText(title);
         mBinding.battleResultLayout.descriptionTextView.setText(description);
         mBinding.battleResultLayout.msgConstraintLayout.setVisibility(View.VISIBLE);

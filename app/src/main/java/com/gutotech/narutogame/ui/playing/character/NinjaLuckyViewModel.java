@@ -6,10 +6,12 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.gutotech.narutogame.R;
+import com.gutotech.narutogame.data.firebase.FirebaseFunctionsUtils;
 import com.gutotech.narutogame.data.model.Attribute;
 import com.gutotech.narutogame.data.model.LotteryItem;
 import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.model.NinjaLucky;
+import com.gutotech.narutogame.data.repository.Callback;
 import com.gutotech.narutogame.data.repository.CharacterRepository;
 import com.gutotech.narutogame.data.repository.NinjaLuckyRepository;
 import com.gutotech.narutogame.utils.DateCustom;
@@ -19,6 +21,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class NinjaLuckyViewModel extends ViewModel {
@@ -30,194 +33,202 @@ public class NinjaLuckyViewModel extends ViewModel {
     public static final int RYOUS_DAILY = 500;
     public static final int RYOUS_WEEKLY = 1500;
 
-    private MutableLiveData<Integer> playModeSelected;
-
     private static final int TOTAL_ITEMS = 22;
 
-    private int[] intervals = new int[TOTAL_ITEMS];
+    private int[] mIntervals = new int[TOTAL_ITEMS];
 
-    private MutableLiveData<List<LotteryItem>> lotteryItems;
-    private LotteryItem lotteryItemReceived;
+    private MutableLiveData<Integer> mPlayModeSelected;
 
-    private SingleLiveEvent<Integer> startAnimationEvent = new SingleLiveEvent<>();
-    private SingleLiveEvent<String> showPremiumEvent = new SingleLiveEvent<>();
-    private SingleLiveEvent<Integer> showWarningDialogEvent = new SingleLiveEvent<>();
+    private MutableLiveData<List<LotteryItem>> mLotteryItems;
+    private LotteryItem mLotteryItemReceived;
 
-    private MutableLiveData<List<Boolean>> daysOfWeek = new MutableLiveData<>();
+    private SingleLiveEvent<Void> mStartAnimationEvent = new SingleLiveEvent<>();
+    private SingleLiveEvent<Integer> mShowPremiumEvent = new SingleLiveEvent<>();
+    private SingleLiveEvent<Integer> mShowWarningDialogEvent = new SingleLiveEvent<>();
 
-    private NinjaLucky ninjaLucky;
+    private MutableLiveData<List<Boolean>> mDaysOfWeek = new MutableLiveData<>();
+
+    private NinjaLucky mNinjaLucky;
+
+    private int mDayOfWeek;
 
     public NinjaLuckyViewModel() {
         NinjaLuckyRepository.getInstance().get(CharOn.character.getId(), data -> {
-            ninjaLucky = data;
-            daysOfWeek.postValue(ninjaLucky.getDaysOfWeek());
+            mNinjaLucky = data;
+            mDaysOfWeek.postValue(mNinjaLucky.getDaysOfWeek());
         });
 
-        playModeSelected = new MutableLiveData<>(RYOUS_DAILY);
+        mPlayModeSelected = new MutableLiveData<>(RYOUS_DAILY);
 
-        lotteryItems = new MutableLiveData<>(buildItems());
+        mLotteryItems = new MutableLiveData<>(buildItems());
 
         calculateIntervals();
     }
 
-    LiveData<List<LotteryItem>> getLotteryItems() {
-        return lotteryItems;
-    }
-
-    public LiveData<Integer> getPlayModeSelected() {
-        return playModeSelected;
-    }
-
-    public LiveData<List<Boolean>> getDaysOfWeek() {
-        return daysOfWeek;
-    }
-
-    LiveData<Integer> getStartAnimationEvent() {
-        return startAnimationEvent;
-    }
-
-    LiveData<String> getShowPremiumEvent() {
-        return showPremiumEvent;
-    }
-
-    LiveData<Integer> getShowWarningDialogEvent() {
-        return showWarningDialogEvent;
-    }
-
     public void onPlayModeSeleted(@PlayMode int mode) {
-        playModeSelected.setValue(mode);
+        mPlayModeSelected.setValue(mode);
     }
 
     public void onPlayButtonPressed() {
-        if (validatePlay()) {
-            play();
-        }
+        validatePlay(result -> {
+            if (result) {
+                play();
+            }
+        });
     }
 
-    private boolean validatePlay() {
-        int currentDay = DateCustom.getDayOfWeek();
+    private void validatePlay(Callback<Boolean> callback) {
+        FirebaseFunctionsUtils.getServerTime(currentTimestamp -> {
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTimeInMillis(currentTimestamp);
+            mDayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
 
-        if (ninjaLucky != null) {
-            if (playModeSelected.getValue() == RYOUS_DAILY) {
-                if (!ninjaLucky.played(currentDay)) {
-                    if (CharOn.character.getRyous() >= RYOUS_DAILY) {
-                        CharOn.character.subRyous(RYOUS_DAILY);
-                        return true;
-                    } else {
-                        showWarningDialogEvent.setValue(R.string.warning_dont_have_enough_ryous);
-                    }
+            if (mNinjaLucky == null) {
+                callback.call(false);
+            }
+
+            if (mPlayModeSelected.getValue() == RYOUS_DAILY) {
+                if (mNinjaLucky.played(mDayOfWeek)) {
+                    mShowWarningDialogEvent.setValue(R.string.warning_already_played_today);
+                    callback.call(false);
+                }
+
+                if (CharOn.character.getRyous() >= RYOUS_DAILY) {
+                    CharOn.character.subRyous(RYOUS_DAILY);
+                    callback.call(true);
                 } else {
-                    showWarningDialogEvent.setValue(R.string.warning_already_played_today);
+                    mShowWarningDialogEvent.setValue(R.string.warning_dont_have_enough_ryous);
+                }
+            } else if (mNinjaLucky.playedAllDays()) {
+                if (CharOn.character.getRyous() >= RYOUS_WEEKLY) {
+                    CharOn.character.subRyous(RYOUS_WEEKLY);
+                    callback.call(true);
+                } else {
+                    mShowWarningDialogEvent.setValue(R.string.warning_dont_have_enough_ryous);
                 }
             } else {
-                if (ninjaLucky.playedAllDays()) {
-                    if (CharOn.character.getRyous() >= RYOUS_WEEKLY) {
-                        CharOn.character.subRyous(RYOUS_WEEKLY);
-                        return true;
-                    } else {
-                        showWarningDialogEvent.setValue(R.string.warning_dont_have_enough_ryous);
-                    }
-                } else {
-                    showWarningDialogEvent.setValue(R.string.warning_havent_played_the_entire_week_yet);
-                }
+                mShowWarningDialogEvent.setValue(R.string.warning_havent_played_the_entire_week_yet);
             }
-        }
 
-        return false;
+            callback.call(false);
+        });
     }
 
     private void play() {
-        startAnimationEvent.call();
+        mStartAnimationEvent.call();
 
-        lotteryItemReceived = generatePremium();
+        mLotteryItemReceived = generatePremium();
 
-        lotteryItemReceived.getPremium().receive();
+        mLotteryItemReceived.getPremium().receive();
         CharacterRepository.getInstance().save(CharOn.character);
 
-        ninjaLucky.selectDayAsPlayed(DateCustom.getDayOfWeek());
-        ninjaLucky.setLastDayPlayed(DateCustom.getDayOfWeek());
-        NinjaLuckyRepository.getInstance().save(CharOn.character.getId(), ninjaLucky);
+        mNinjaLucky.selectDayAsPlayed(mDayOfWeek);
+        NinjaLuckyRepository.getInstance().save(CharOn.character.getId(), mNinjaLucky);
     }
 
     void onAnimationEnd() {
-        showPremiumEvent.setValue(lotteryItemReceived.getDescription());
+        mShowPremiumEvent.setValue(mLotteryItemReceived.getDescription());
     }
 
     private void calculateIntervals() {
-        intervals[0] = lotteryItems.getValue().get(0).getChancesOfWin();
+        mIntervals[0] = mLotteryItems.getValue().get(0).getChancesOfWin();
 
         for (int i = 1; i < TOTAL_ITEMS; i++) {
-            intervals[i] = intervals[i - 1] + lotteryItems.getValue().get(i).getChancesOfWin();
+            mIntervals[i] = mIntervals[i - 1] + mLotteryItems.getValue().get(i).getChancesOfWin();
         }
     }
 
     private LotteryItem generatePremium() {
-        int n = new SecureRandom().nextInt(intervals[TOTAL_ITEMS - 1]) + 1;
+        int n = new SecureRandom().nextInt(mIntervals[TOTAL_ITEMS - 1]) + 1;
 
         int winnerItemIndex = 0;
 
-        if (n > intervals[0]) {
+        if (n > mIntervals[0]) {
             for (int i = 1; i < TOTAL_ITEMS; i++) {
-                if (n > intervals[i - 1] && n <= intervals[i]) {
+                if (n > mIntervals[i - 1] && n <= mIntervals[i]) {
                     winnerItemIndex = i;
                     break;
                 }
             }
         }
 
-        return lotteryItems.getValue().get(winnerItemIndex);
+        return mLotteryItems.getValue().get(winnerItemIndex);
     }
 
     private List<LotteryItem> buildItems() {
-        List<LotteryItem> lotteryItems = new ArrayList<>();
+        List<LotteryItem> mLotteryItems = new ArrayList<>();
 
-        lotteryItems.add(new LotteryItem("1", "1 Ryou", 1,
+        mLotteryItems.add(new LotteryItem("1", R.string.ryou1, 1,
                 () -> CharOn.character.addRyous(1)));
-        lotteryItems.add(new LotteryItem("3", "2000 Ryous", 50,
+        mLotteryItems.add(new LotteryItem("3", R.string.ryous2000, 50,
                 () -> CharOn.character.addRyous(2000)));
-        lotteryItems.add(new LotteryItem("4", "5000 Ryous", 20,
+        mLotteryItems.add(new LotteryItem("4", R.string.ryous5000, 20,
                 () -> CharOn.character.addRyous(5000)));
-        lotteryItems.add(new LotteryItem("5", "10000 Ryous", 10,
+        mLotteryItems.add(new LotteryItem("5", R.string.ryous10000, 10,
                 () -> CharOn.character.addRyous(10000)));
-        lotteryItems.add(new LotteryItem("6", "25000 Ryous", 5,
+        mLotteryItems.add(new LotteryItem("6", R.string.ryous25000, 5,
                 () -> CharOn.character.addRyous(25000)));
-        lotteryItems.add(new LotteryItem("7", "50000 Ryous", 1,
+        mLotteryItems.add(new LotteryItem("7", R.string.ryous50000, 1,
                 () -> CharOn.character.addRyous(50000)));
 
-        lotteryItems.add(new LotteryItem("9", "1 Experience Points", 1,
+        mLotteryItems.add(new LotteryItem("9", R.string.exppoints1, 1,
                 () -> CharOn.character.incrementExp(1)));
-        lotteryItems.add(new LotteryItem("11", "1500 Experience Points", 50,
+        mLotteryItems.add(new LotteryItem("11", R.string.exppoints1500, 50,
                 () -> CharOn.character.incrementExp(1500)));
-        lotteryItems.add(new LotteryItem("12", "2000 Experience Points", 40,
+        mLotteryItems.add(new LotteryItem("12", R.string.exppoints2000, 40,
                 () -> CharOn.character.incrementExp(2000)));
-        lotteryItems.add(new LotteryItem("13", "2500 Experience Points", 30,
+        mLotteryItems.add(new LotteryItem("13", R.string.exppoints2500, 30,
                 () -> CharOn.character.incrementExp(2500)));
-        lotteryItems.add(new LotteryItem("14", "3000 Experience Points", 20,
+        mLotteryItems.add(new LotteryItem("14", R.string.exppoints3000, 20,
                 () -> CharOn.character.incrementExp(3000)));
-        lotteryItems.add(new LotteryItem("15", "15000 Experience Points", 1,
+        mLotteryItems.add(new LotteryItem("15", R.string.exppoints15000, 1,
                 () -> CharOn.character.incrementExp(15000)));
 
-        lotteryItems.add(new LotteryItem("29", "1 Taijutsu Point", 30,
+        mLotteryItems.add(new LotteryItem("29", R.string.tai1, 30,
                 () -> CharOn.character.getAttributes().earn(Attribute.TAI.id)));
-        lotteryItems.add(new LotteryItem("30", "1 Ninjustu Point", 30,
+        mLotteryItems.add(new LotteryItem("30", R.string.nin1, 30,
                 () -> CharOn.character.getAttributes().earn(Attribute.NIN.id)));
-        lotteryItems.add(new LotteryItem("31", "1 Genjutsu Point", 30,
+        mLotteryItems.add(new LotteryItem("31", R.string.gen1, 30,
                 () -> CharOn.character.getAttributes().earn(Attribute.GEN.id)));
-        lotteryItems.add(new LotteryItem("20388", "1 Bukijutsu Point", 30,
+        mLotteryItems.add(new LotteryItem("20388", R.string.buki1, 30,
                 () -> CharOn.character.getAttributes().earn(Attribute.BUK.id)));
-        lotteryItems.add(new LotteryItem("32", "1 Agility Point", 30,
+        mLotteryItems.add(new LotteryItem("32", R.string.agility1, 30,
                 () -> CharOn.character.getAttributes().earn(Attribute.AGI.id)));
-        lotteryItems.add(new LotteryItem("33", "1 Seal Point", 30,
+        mLotteryItems.add(new LotteryItem("33", R.string.seal1, 30,
                 () -> CharOn.character.getAttributes().earn(Attribute.SEAL.id)));
-        lotteryItems.add(new LotteryItem("34", "1 Strenght Point", 30,
+        mLotteryItems.add(new LotteryItem("34", R.string.strenght1, 30,
                 () -> CharOn.character.getAttributes().earn(Attribute.FOR.id)));
-        lotteryItems.add(new LotteryItem("35", "1 Intelligence Point", 30,
+        mLotteryItems.add(new LotteryItem("35", R.string.inte1, 30,
                 () -> CharOn.character.getAttributes().earn(Attribute.INTE.id)));
-        lotteryItems.add(new LotteryItem("36", "1 Resistance Point", 30,
+        mLotteryItems.add(new LotteryItem("36", R.string.res1, 30,
                 () -> CharOn.character.getAttributes().earn(Attribute.RES.id)));
-        lotteryItems.add(new LotteryItem("20392", "1 Energy Point", 30,
+        mLotteryItems.add(new LotteryItem("20392", R.string.energy1, 30,
                 () -> CharOn.character.getAttributes().earn(Attribute.ENER.id)));
 
-        return lotteryItems;
+        return mLotteryItems;
+    }
+
+    LiveData<List<LotteryItem>> getLotteryItems() {
+        return mLotteryItems;
+    }
+
+    public LiveData<Integer> getPlayModeSelected() {
+        return mPlayModeSelected;
+    }
+
+    public LiveData<List<Boolean>> getDaysOfWeek() {
+        return mDaysOfWeek;
+    }
+
+    LiveData<Void> getStartAnimationEvent() {
+        return mStartAnimationEvent;
+    }
+
+    LiveData<Integer> getShowPremiumEvent() {
+        return mShowPremiumEvent;
+    }
+
+    LiveData<Integer> getShowWarningDialogEvent() {
+        return mShowWarningDialogEvent;
     }
 }

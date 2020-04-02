@@ -929,37 +929,26 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
 
     <string name="scroll_to_leaf">Teletransport Scroll to Leaf</string>
     <string name="scroll_to_leaf_des">Using this scroll, your character will be teleported to the Leaf map.</string>
-
     <string name="scroll_to_hot_springs">Teletransport Scroll to Hot Springs</string>
     <string name="scroll_to_hot_springs_des">Using this scroll, your character will be teleported to the Hot Springs map.</string>
-
     <string name="scroll_to_snow">Teletransport Scroll to Snow</string>
     <string name="scroll_to_snow_des">Using this scroll, your character will be teleported to the Snow map.</string>
-
     <string name="scroll_to_waterfall">Teletransport Scroll to Waterfall</string>
     <string name="scroll_to_waterfall_des">Using this scroll, your character will be teleported to the Waterfall map.</string>
-
     <string name="scroll_to_rain">Teletransport Scroll to Rain</string>
     <string name="scroll_to_rain_des">Using this scroll, your character will be teleported to the Rain map.</string>
-
     <string name="scroll_to_sound">Teletransport Scroll to Sound</string>
     <string name="scroll_to_sound_des">Using this scroll, your character will be teleported to the Sound map.</string>
-
     <string name="scroll_to_akatsuki">Teletransport Scroll to Akatsuki</string>
     <string name="scroll_to_akatsuki_des">Using this scroll, your character will be teleported to the Akatsuki map.</string>
-
     <string name="scroll_to_cloud">Teletransport Scroll to Cloud</string>
     <string name="scroll_to_cloud_des">Using this scroll, your character will be teleported to the Cloud map.</string>
-
     <string name="scroll_to_stone">Teletransport Scroll to Stone</string>
     <string name="scroll_to_stone_des">Using this scroll, your character will be teleported to the Stone map.</string>
-
     <string name="scroll_to_mist">Teletransport Scroll to Mist</string>
     <string name="scroll_to_mist_des">Using this scroll, your character will be teleported to the Mist map.</string>
-
     <string name="scroll_to_sand">Teletransport Scroll to Sand</string>
     <string name="scroll_to_sand_des">Using this scroll, your character will be teleported to the Sand map.</string>
-
     <string name="scroll_to_grass">Teletransport Scroll to Grass</string>
     <string name="scroll_to_grass_des">Using this scroll, your character will be teleported to the Grass map.</string>
 
@@ -968,7 +957,7 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
         game, that limit is 10 battles. This limit is renewed every day at Midnight (00:00 hour)</string>
     <string name="npc_daily_combat">%d of 10 NPC Daily Combat</string>
     <string name="updating_the_list_of_fighters">Updating the list of fighters…</string>
-    <string name="too_weak_to_fight">You can\'t fight on this terrible health, recover yourself an try again</string>
+    <string name="too_weak_to_fight">You can\'t fight on this terrible health, recover yourself and try again</string>
     <string name="dojo_challenge">DOJO CHALLENGE</string>
     <string name="npc_battle">NPC Battle</string>
     <string name="my_jutsus">MY JUTSUS</string>
@@ -1080,9 +1069,9 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="map_char_info" translatable="false">%s [Lvl %d]\n%s</string>
     <string name="battle_button">Battle button</string>
     <string name="battle">Battle</string>
-    <string name="allied_ninja">Allied Ninja\n( Green Background Color )</string>
-    <string name="enemy_ninja">Enemy Ninja\n( Red Background Color )</string>
-    <string name="bb_target_ninja">BB Target Ninja\n( Yellow Background Color )</string>
+    <string name="allied_ninja">Allied Ninja\n(Green Background Color)</string>
+    <string name="enemy_ninja">Enemy Ninja\n(Red Background Color)</string>
+    <string name="bb_target_ninja">BB Target Ninja\n(Yellow Background Color)</string>
     <string name="place_entry">Place Entry</string>
     <string name="event_ninja">Event Ninja\n(Purple Background Color)</string>
     <string name="neutral_ninja">Neutral Ninja\n(Gray Background Color)</string>
@@ -2111,7 +2100,7 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="per_mission_a_complete">Per mission A complete</string>
     <string name="per_mission_s_complete">Per mission S complete</string>
 
-    <string name="total_initial_task_des">( Total Initial Tasks * 25 )</string>
+    <string name="total_initial_task_des">( total Initial Tasks * 25 )</string>
     <string name="per_total_missions_d_des">( total Missions D * 50 )</string>
     <string name="per_total_missions_c_des">( total Missions C * 75 )</string>
     <string name="per_total_missions_b_des">( total Missions B * 100 )</string>
@@ -2126,6 +2115,31 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="posted_by">by %s</string>
     <string name="s_people_like_this">%s people like this.</string>
     <string name="like">Like</string>
+    <string name="error_remove_character_member_of_a_team">You can\'t remove this character while
+        being a member of a Team</string>
+    <string name="world">World</string>
+    <string name="ryou1">1 Ryou</string>
+    <string name="ryous2000">2000 Ryous</string>
+    <string name="ryous5000">5000 Ryous</string>
+    <string name="ryous10000">10000 Ryous</string>
+    <string name="ryous25000">25000 Ryous</string>
+    <string name="ryous50000">50000 Ryous</string>
+    <string name="exppoints1">1 Experience Points</string>
+    <string name="exppoints1500">1500 Experience Points</string>
+    <string name="exppoints2000">2000 Experience Points</string>
+    <string name="exppoints2500">2500 Experience Points</string>
+    <string name="exppoints3000">3000 Experience Points</string>
+    <string name="exppoints15000">15000 Experience Points</string>
+    <string name="tai1">1 Taijutsu Point</string>
+    <string name="nin1">1 Ninjustu Point</string>
+    <string name="inte1">1 Intelligence Point</string>
+    <string name="res1">1 Resistance Point</string>
+    <string name="energy1">1 Energy Point</string>
+    <string name="agility1">1 Agility Point</string>
+    <string name="buki1">1 Bukijutsu Point</string>
+    <string name="gen1">1 Genjutsu Point</string>
+    <string name="seal1">1 Seal Point</string>
+    <string name="strenght1">1 Strenght Point</string>
 
 
 </resources>

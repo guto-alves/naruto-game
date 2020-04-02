@@ -198,7 +198,7 @@
 
                         <ImageView
                             android:id="@+id/profileImageView"
-                            loadProfile="@{viewModel.battle.player1.profilePath}"
+                            loadProfile="@{viewModel.fighters.player.profilePath}"
                             android:layout_width="117dp"
                             android:layout_height="125dp" />
 
@@ -228,7 +228,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="8dp"
                                 android:gravity="center"
-                                android:text="@{viewModel.battle.player1.nick}"
+                                android:text="@{viewModel.fighters.player.nick}"
                                 android:textColor="@android:color/white"
                                 android:textSize="12sp"
                                 android:textStyle="bold"
@@ -262,7 +262,7 @@
 
                         <ImageView
                             android:id="@+id/profileNpcImageView"
-                            loadProfile="@{viewModel.battle.player2.profilePath}"
+                            loadProfile="@{viewModel.fighters.opponent.profilePath}"
                             android:layout_width="117dp"
                             android:layout_height="125dp" />
 
@@ -292,7 +292,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="8dp"
                                 android:gravity="center"
-                                android:text="@{viewModel.battle.player2.nick}"
+                                android:text="@{viewModel.fighters.opponent.nick}"
                                 android:textColor="@android:color/white"
                                 android:textSize="12sp"
                                 android:textStyle="bold"

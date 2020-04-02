@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.ShopItem;
-import com.gutotech.narutogame.utils.StorageUtil;
+import com.gutotech.narutogame.data.firebase.StorageUtils;
 import com.gutotech.narutogame.data.model.Ramen;
 
 import java.util.List;
@@ -58,9 +58,9 @@ public class BagItemsAdapter extends RecyclerView.Adapter<BagItemsAdapter.ViewHo
             ShopItem item = mItems.get(i);
 
             if (item instanceof Ramen) {
-                StorageUtil.downloadRamen(mContext, holder.itemImageView, item.getImage());
+                StorageUtils.downloadRamen(mContext, holder.itemImageView, item.getImage());
             } else {
-                StorageUtil.downloadScroll(mContext, holder.itemImageView, item.getImage());
+                StorageUtils.downloadScroll(mContext, holder.itemImageView, item.getImage());
             }
 
             holder.quantityTextView.setText(mContext.getString(

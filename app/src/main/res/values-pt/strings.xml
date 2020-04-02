@@ -1013,12 +1013,12 @@
     <string name="this_place_is_empty">Este local está vazio</string>
     <string name="battle_button">Battle button</string>
     <string name="battle">Batalhar</string>
-    <string name="allied_ninja">Ninja Aliado\n( Cor de Fundo Verde )</string>
-    <string name="enemy_ninja">Ninja Inimigo\n( Cor de Fundo Vermelho )</string>
-    <string name="bb_target_ninja">Ninja Alvo do BB\n( Cor de Fundo Amarelo )</string>
+    <string name="allied_ninja">Ninja Aliado\n(Cor de Fundo Verde)</string>
+    <string name="enemy_ninja">Ninja Inimigo\n(Cor de Fundo Vermelho)</string>
+    <string name="bb_target_ninja">Ninja Alvo do BB\n(Cor de Fundo Amarelo)</string>
     <string name="place_entry">Entrada de Local</string>
-    <string name="event_ninja">Ninja de Evento\n( Cor de Fundo Roxo )</string>
-    <string name="neutral_ninja">Ninja Neutro\n( Cor de Fundo Cinza )</string>
+    <string name="event_ninja">Ninja de Evento\n(Cor de Fundo Roxo)</string>
+    <string name="neutral_ninja">Ninja Neutro\n(Cor de Fundo Cinza)</string>
     <string name="send_message">Enviar Mensagem</string>
     <string name="map_legends">Legendas</string>
     <string name="players">%d Jogadores</string>
@@ -2073,5 +2073,30 @@
     <string name="posted_by">postado por %s</string>
     <string name="s_people_like_this">%s pessoas curtiram isso.</string>
     <string name="like">Curtir</string>
+    <string name="error_remove_character_member_of_a_team">Não é possível deletar esse jogador
+        enquanto ele fizer parte de uma equipe!</string>
+    <string name="world">Mundo</string>
+    <string name="ryou1">1 Ryou</string>
+    <string name="ryous2000">2000 Ryous</string>
+    <string name="ryous5000">5000 Ryous</string>
+    <string name="ryous10000">10000 Ryous</string>
+    <string name="ryous25000">25000 Ryous</string>
+    <string name="ryous50000">50000 Ryous</string>
+    <string name="exppoints1">1 Ponto de Experiência</string>
+    <string name="exppoints1500">1500 Pontos de Experiência</string>
+    <string name="exppoints2000">2000 Pontos de Experiência</string>
+    <string name="exppoints2500">2500 Pontos de Experiência</string>
+    <string name="exppoints3000">3000 Pontos de Experiência</string>
+    <string name="exppoints15000">15000 Pontos de Experiência</string>
+    <string name="tai1">1 Ponto de Taijutsu</string>
+    <string name="nin1">1 Ponto de Ninjustu</string>
+    <string name="inte1">1 Ponto de Inteligência</string>
+    <string name="res1">1 Ponto de Resistência</string>
+    <string name="energy1">1 Ponto de Energia</string>
+    <string name="agility1">1 Ponto de Agilidade</string>
+    <string name="buki1">1 Ponto de Bukijutsu</string>
+    <string name="gen1">1 Ponto de Genjutsu</string>
+    <string name="seal1">1 Ponto de Selo</string>
+    <string name="strenght1">1 Ponto de Força</string>
 
 </resources>

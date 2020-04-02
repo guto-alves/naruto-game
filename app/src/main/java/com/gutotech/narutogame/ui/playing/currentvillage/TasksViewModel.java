@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.gutotech.narutogame.data.firebase.FirebaseFunctionsUtils;
 import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.model.TimeMission;
 import com.gutotech.narutogame.data.model.Mission;
@@ -13,6 +14,7 @@ import com.gutotech.narutogame.ui.adapter.TasksAdapter;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.EnumSet;
 import java.util.List;
 
 public class TasksViewModel extends ViewModel implements TasksAdapter.OnAcceptClickListener {
@@ -24,30 +26,19 @@ public class TasksViewModel extends ViewModel implements TasksAdapter.OnAcceptCl
         loadInitialTasks();
     }
 
-    LiveData<List<TimeMission>> getTasks() {
-        return mTasks;
-    }
-
     private void loadInitialTasks() {
         List<TimeMission> tasks = new ArrayList<>();
 
-        tasks.add(new TimeMission(MissionInfo.TASK1.name(), ONE_MINUTE));
-        tasks.add(new TimeMission(MissionInfo.TASK2.name(), ONE_MINUTE));
-        tasks.add(new TimeMission(MissionInfo.TASK3.name(), ONE_MINUTE));
-        tasks.add(new TimeMission(MissionInfo.TASK4.name(), ONE_MINUTE));
-        tasks.add(new TimeMission(MissionInfo.TASK5.name(), ONE_MINUTE));
-        tasks.add(new TimeMission(MissionInfo.TASK6.name(), ONE_MINUTE));
-        tasks.add(new TimeMission(MissionInfo.TASK7.name(), ONE_MINUTE));
-        tasks.add(new TimeMission(MissionInfo.TASK8.name(), ONE_MINUTE));
-        tasks.add(new TimeMission(MissionInfo.TASK9.name(), ONE_MINUTE));
-        tasks.add(new TimeMission(MissionInfo.TASK10.name(), ONE_MINUTE));
+        for (MissionInfo missionInfo : EnumSet.range(MissionInfo.TASK1, MissionInfo.TASK10)) {
+            tasks.add(new TimeMission(missionInfo.name(), ONE_MINUTE));
+        }
 
-        if (CharOn.character.getResumeOfMissions().getMissionsFinishedId() != null) {
-            Collections.sort(CharOn.character.getResumeOfMissions().getMissionsFinishedId());
+        if (CharOn.character.getMissionsFinishedId() != null) {
+            Collections.sort(CharOn.character.getMissionsFinishedId());
 
             int idCountRemoved = 0;
 
-            for (int missionId : CharOn.character.getResumeOfMissions().getMissionsFinishedId()) {
+            for (int missionId : CharOn.character.getMissionsFinishedId()) {
                 tasks.remove(missionId - idCountRemoved);
                 idCountRemoved++;
             }
@@ -58,8 +49,16 @@ public class TasksViewModel extends ViewModel implements TasksAdapter.OnAcceptCl
 
     @Override
     public void onAcceptClick(Mission task) {
-        TimeMission timeMission = (TimeMission) task;
-        MissionRepository.getInstance().acceptTimeMission(timeMission);
-        CharOn.character.setMission(true);
+        FirebaseFunctionsUtils.getServerTime(currentTimestamp -> {
+            TimeMission timeMission = (TimeMission) task;
+            timeMission.setInitialTimestamp(currentTimestamp);
+            MissionRepository.getInstance().acceptTimeMission(timeMission);
+            CharOn.character.setMission(true);
+        });
+    }
+
+
+    LiveData<List<TimeMission>> getTasks() {
+        return mTasks;
     }
 }

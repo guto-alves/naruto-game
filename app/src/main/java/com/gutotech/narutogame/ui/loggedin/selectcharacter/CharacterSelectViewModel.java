@@ -1,6 +1,7 @@
 package com.gutotech.narutogame.ui.loggedin.selectcharacter;
 
 import android.content.DialogInterface;
+import android.text.TextUtils;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
@@ -20,17 +21,57 @@ import java.util.List;
 public class CharacterSelectViewModel extends ViewModel {
     private Character mCharacterSelected;
 
-    private CharacterRepository mRepository;
+    private CharacterRepository mRepository = CharacterRepository.getInstance();
 
     private ResultListener mListener;
 
-    private SingleLiveEvent<DialogInterface.OnClickListener> showQuestionDialog =
+    private SingleLiveEvent<DialogInterface.OnClickListener> mShowQuestionDialogEvent =
             new SingleLiveEvent<>();
 
-    private SingleLiveEvent<Void> showErrorDialog = new SingleLiveEvent<>();
+    private SingleLiveEvent<Integer> mShowErrorDialogEvent = new SingleLiveEvent<>();
 
-    public CharacterSelectViewModel() {
-        mRepository = CharacterRepository.getInstance();
+    public void onPlayButtonPressed() {
+        if (mCharacterSelected != null) {
+            CharOn.character = mCharacterSelected;
+            mListener.onSuccess();
+        } else {
+            mListener.onFailure(R.string.no_characters_selected);
+        }
+    }
+
+    public void onRemoveCharacterButtonPressed() {
+        if (mCharacterSelected == null) {
+            mListener.onFailure(R.string.no_characters_selected);
+            return;
+        }
+
+        if (!TextUtils.isEmpty(mCharacterSelected.getTeam())) {
+            mShowErrorDialogEvent.setValue(R.string.error_remove_character_member_of_a_team);
+            return;
+        }
+
+        mShowQuestionDialogEvent.setValue((dialog, which) -> {
+            if (CharOn.character == null) {
+                deleteCharacterSelected();
+            } else {
+                if (getCharacterSelected().getNick().equals(CharOn.character.getNick())) {
+                    mShowErrorDialogEvent.setValue(R.string.remove_character_while_logged_in);
+                } else {
+                    deleteCharacterSelected();
+                }
+            }
+        });
+    }
+
+    private void deleteCharacterSelected() {
+        mRepository.delete(mCharacterSelected.getId());
+        NinjaLuckyRepository.getInstance().delete(mCharacterSelected.getNick());
+        NinjaStatisticsRepository.getInstance().remove(mCharacterSelected.getNinja().getId());
+    }
+
+
+    public void setListener(ResultListener listener) {
+        mListener = listener;
     }
 
     LiveData<List<Character>> getCharactersList() {
@@ -45,46 +86,11 @@ public class CharacterSelectViewModel extends ViewModel {
         this.mCharacterSelected = characterSelected;
     }
 
-    SingleLiveEvent<DialogInterface.OnClickListener> getRemoveCharacterEvent() {
-        return showQuestionDialog;
+    LiveData<DialogInterface.OnClickListener> getShowQuestionDialogEvent() {
+        return mShowQuestionDialogEvent;
     }
 
-    SingleLiveEvent<Void> getShowRemovingErrorDialog() {
-        return showErrorDialog;
-    }
-
-    public void setListener(ResultListener listener) {
-        mListener = listener;
-    }
-
-    public void onPlayButtonPressed() {
-        if (mCharacterSelected != null) {
-            CharOn.character = mCharacterSelected;
-            mListener.onSuccess();
-        } else {
-            mListener.onFailure(R.string.no_characters_selected);
-        }
-    }
-
-    public void onRemoveCharacterButtonPressed() {
-        if (mCharacterSelected != null) {
-            showQuestionDialog.setValue((dialog, which) -> {
-                if (CharOn.character == null) {
-                    deleteCharacterSelected();
-                } else {
-                    if (getCharacterSelected().getNick().equals(CharOn.character.getNick())) {
-                        showErrorDialog.call();
-                    } else {
-                        deleteCharacterSelected();
-                    }
-                }
-            });
-        }
-    }
-
-    private void deleteCharacterSelected() {
-        mRepository.delete(mCharacterSelected.getId());
-        NinjaLuckyRepository.getInstance().delete(mCharacterSelected.getNick());
-        NinjaStatisticsRepository.getInstance().remove(mCharacterSelected.getNinja().getId());
+    LiveData<Integer> getShowErrorDialogEvent() {
+        return mShowErrorDialogEvent;
     }
 }

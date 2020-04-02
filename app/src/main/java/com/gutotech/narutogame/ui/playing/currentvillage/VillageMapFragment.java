@@ -27,6 +27,8 @@ import com.gutotech.narutogame.utils.FragmentUtil;
 public class VillageMapFragment extends Fragment implements SectionFragment {
     private float mScaleFactor = 1.0f;
 
+    private ProgressDialogFragment mProgressDialog = new ProgressDialogFragment();
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -52,24 +54,21 @@ public class VillageMapFragment extends Fragment implements SectionFragment {
 
         viewModel.getShowWarningDialogEvent().observe(getViewLifecycleOwner(), this::showDialog);
 
-        ProgressDialogFragment progressDialog = new ProgressDialogFragment();
-
         viewModel.getShowProgressDialogEvent().observe(getViewLifecycleOwner(), aVoid ->
-                progressDialog.openDialog(getParentFragmentManager()));
+                mProgressDialog.openDialog(getParentFragmentManager()));
 
         viewModel.getDismissProgressDialogEvent().observe(getViewLifecycleOwner(), aVoid -> {
-            if (progressDialog.isVisible()) {
-                progressDialog.dismiss();
+            if (mProgressDialog.isVisible()) {
+                mProgressDialog.dismiss();
             }
         });
-
 
         ScaleGestureDetector mScaleGestureDetector = new ScaleGestureDetector(getActivity(),
                 new ScaleGestureDetector.SimpleOnScaleGestureListener() {
                     @Override
                     public boolean onScale(ScaleGestureDetector detector) {
                         mScaleFactor *= detector.getScaleFactor();
-                        mScaleFactor = Math.max(0.1f, Math.min(mScaleFactor, 2.0f));
+                        mScaleFactor = Math.max(0.1f, Math.min(mScaleFactor, 1.5f));
                         binding.villageMapRecyclerView.setScaleX(mScaleFactor);
                         binding.villageMapRecyclerView.setScaleY(mScaleFactor);
                         return true;

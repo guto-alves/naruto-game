@@ -19,7 +19,7 @@ import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.ResultListener;
 import com.gutotech.narutogame.ui.ProgressDialogFragment;
 import com.gutotech.narutogame.utils.FragmentUtil;
-import com.gutotech.narutogame.utils.StorageUtil;
+import com.gutotech.narutogame.data.firebase.StorageUtils;
 
 public class PasswordChangeFragment extends Fragment implements SectionFragment, ResultListener {
     private FragmentPasswordChangeBinding binding;
@@ -35,7 +35,7 @@ public class PasswordChangeFragment extends Fragment implements SectionFragment,
                 container, false);
         binding.setViewModel(viewModel);
 
-        StorageUtil.downloadProfileForMsg(getActivity(), binding.msgLayout.profileImageView);
+        StorageUtils.downloadProfileForMsg(getActivity(), binding.msgLayout.profileImageView);
         binding.msgLayout.titleTextView.setText(R.string.be_advised);
         binding.msgLayout.descriptionTextView.setText(R.string.be_advised_description);
 
@@ -62,7 +62,7 @@ public class PasswordChangeFragment extends Fragment implements SectionFragment,
 
     @Override
     public void onSuccess() {
-        StorageUtil.downloadProfileForMsg(getActivity(), binding.passwordChangedMsgLayout.profileImageView);
+        StorageUtils.downloadProfileForMsg(getActivity(), binding.passwordChangedMsgLayout.profileImageView);
         binding.passwordChangedMsgLayout.titleTextView.setText(R.string.congratulations);
         binding.passwordChangedMsgLayout.descriptionTextView.setText(R.string.password_changed);
         binding.passwordChangedMsgLayout.msgConstraintLayout.setVisibility(View.VISIBLE);

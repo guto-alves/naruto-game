@@ -21,6 +21,7 @@ public class NinjaLucky {
 
     public void selectDayAsPlayed(int day) {
         daysOfWeek.set(day, true);
+        setLastDayPlayed(day);
     }
 
     public boolean playedAllDays() {

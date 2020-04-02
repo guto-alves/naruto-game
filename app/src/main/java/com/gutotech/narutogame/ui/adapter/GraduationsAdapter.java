@@ -78,7 +78,7 @@ public class GraduationsAdapter extends RecyclerView.Adapter<GraduationsAdapter.
         holder.descriptionTextView.setText(GraduationUtils.getDescription(graduationId));
 
         holder.requerImageView.setOnClickListener(v -> {
-            DialogFragment dialog = new RequirementDialogFragment(graduation.requirements);
+            DialogFragment dialog = RequirementDialogFragment.getInstance(graduation.requirements);
             dialog.show(mFragmentManager, "RequirementDialogFragment");
         });
 

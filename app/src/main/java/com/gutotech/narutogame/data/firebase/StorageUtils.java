@@ -1,4 +1,4 @@
-package com.gutotech.narutogame.utils;
+package com.gutotech.narutogame.data.firebase;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -18,7 +18,7 @@ import java.security.SecureRandom;
 import java.util.List;
 import java.util.UUID;
 
-public class StorageUtil {
+public class StorageUtils {
     private final static SecureRandom random = new SecureRandom();
 
     // @param path Example: images/profile/4/
@@ -109,7 +109,7 @@ public class StorageUtil {
         downloadImage(context, imageReference, imageView);
     }
 
-    static void downloadTopImage(Context context, ImageView imageView, int ninjaId) {
+    public static void downloadTopImage(Context context, ImageView imageView, int ninjaId) {
         StorageReference imageReference = FirebaseConfig.getStorage()
                 .child("images")
                 .child("topo-logado")

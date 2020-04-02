@@ -5,13 +5,8 @@
 
     <data>
 
-        <import type="com.gutotech.narutogame.data.model.GraduationUtils" />
-
         <import type="com.gutotech.narutogame.data.model.Jutsu" />
 
-        <variable
-            name="context"
-            type="android.content.Context" />
 
         <variable
             name="viewModel"
@@ -148,9 +143,11 @@
                             android:layout_width="wrap_content"
                             android:layout_height="0dp"
                             android:layout_weight="1"
-                            android:text="@{@string/label_graduation_and_lvl(context.getString(GraduationUtils.getName(viewModel.player.graduationId)), viewModel.player.level)}"
                             android:textColor="#FFD274"
-                            android:textSize="8sp" />
+                            android:textSize="8sp"
+                            app:graduationId="@{viewModel.player.graduationId}"
+                            app:level="@{viewModel.player.level}"
+                            app:village="@{viewModel.player.village}" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -402,9 +399,11 @@
                             android:layout_width="wrap_content"
                             android:layout_height="0dp"
                             android:layout_weight="1"
-                            android:text="@{@string/label_graduation_and_lvl(context.getString(GraduationUtils.getName(viewModel.npc.character.graduationId)), viewModel.npc.character.level)}"
                             android:textColor="#FFD274"
-                            android:textSize="8sp" />
+                            android:textSize="8sp"
+                            app:graduationId="@{viewModel.npc.character.graduationId}"
+                            app:level="@{viewModel.npc.character.level}"
+                            app:village="@{viewModel.npc.character.village}" />
 
                         <TextView
                             android:layout_width="wrap_content"

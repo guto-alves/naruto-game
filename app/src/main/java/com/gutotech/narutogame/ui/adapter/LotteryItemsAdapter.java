@@ -13,7 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.gutotech.narutogame.R;
-import com.gutotech.narutogame.utils.StorageUtil;
+import com.gutotech.narutogame.data.firebase.StorageUtils;
 import com.gutotech.narutogame.data.model.LotteryItem;
 
 import java.util.List;
@@ -57,7 +57,7 @@ public class LotteryItemsAdapter extends RecyclerView.Adapter<LotteryItemsAdapte
         if (lotteryItems != null) {
             LotteryItem item = lotteryItems.get(i);
 
-            StorageUtil.downloadLotteryItem(holder.itemImageView, item.getImage());
+            StorageUtils.downloadLotteryItem(holder.itemImageView, item.getImage());
             holder.descriptionTextView.setText(item.getDescription());
             holder.chanceTextView.setText(String.format(Locale.getDefault(),
                     "%d%%", item.getChancesOfWin()));

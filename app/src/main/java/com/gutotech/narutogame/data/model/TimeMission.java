@@ -1,36 +1,30 @@
 package com.gutotech.narutogame.data.model;
 
 public class TimeMission extends Mission {
-    private long millisDuration;
-    private long millisStopped;
+    private long durationMillis;
+    private long initialTimestamp;
 
     public TimeMission() {
     }
 
-    public TimeMission(String missionInfo, long millisDuration) {
+    public TimeMission(String missionInfo, long durationMillis) {
         super(missionInfo);
-        this.millisDuration = millisDuration;
+        this.durationMillis = durationMillis;
     }
 
-    public TimeMission(String missionInfo, long millisDuration, long millisStopped) {
-        super(missionInfo);
-        this.millisDuration = millisDuration;
-        this.millisStopped = millisStopped;
+    public long getDurationMillis() {
+        return durationMillis;
     }
 
-    public long getMillisDuration() {
-        return millisDuration;
+    public void setDurationMillis(long durationMillis) {
+        this.durationMillis = durationMillis;
     }
 
-    public void setMillisDuration(long millisDuration) {
-        this.millisDuration = millisDuration;
+    public long getInitialTimestamp() {
+        return initialTimestamp;
     }
 
-    public long getMillisStopped() {
-        return millisStopped;
-    }
-
-    public void setMillisStopped(long millisStopped) {
-        this.millisStopped = millisStopped;
+    public void setInitialTimestamp(long initialTimestamp) {
+        this.initialTimestamp = initialTimestamp;
     }
 }

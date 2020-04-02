@@ -6,6 +6,7 @@ import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 import androidx.databinding.library.baseAdapters.BR;
 
+import com.google.firebase.database.Exclude;
 import com.gutotech.narutogame.R;
 
 import java.io.Serializable;
@@ -90,8 +91,14 @@ public class Character extends BaseObservable implements Serializable {
                 25, 100), 10);
     }
 
+    @Exclude
     public Formulas getFormulas() {
         return getAttributes().getFormulas();
+    }
+
+    @Exclude
+    public List<Integer> getMissionsFinishedId() {
+        return getResumeOfMissions().getMissionsFinishedId();
     }
 
     public void updateFormulas() {

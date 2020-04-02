@@ -21,7 +21,7 @@ import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.Requirement;
 import com.gutotech.narutogame.data.model.ShopItem;
 import com.gutotech.narutogame.ui.playing.RequirementDialogFragment;
-import com.gutotech.narutogame.utils.StorageUtil;
+import com.gutotech.narutogame.data.firebase.StorageUtils;
 import com.gutotech.narutogame.data.model.Ramen;
 
 import java.util.List;
@@ -83,9 +83,9 @@ public class ItemShopAdapter extends RecyclerView.Adapter<ItemShopAdapter.ViewHo
             final ShopItem itemShop = mItemsList.get(i);
 
             if (itemShop instanceof Ramen) {
-                StorageUtil.downloadRamen(mContext, holder.itemImageView, itemShop.getImage());
+                StorageUtils.downloadRamen(mContext, holder.itemImageView, itemShop.getImage());
             } else {
-                StorageUtil.downloadScroll(mContext, holder.itemImageView, itemShop.getImage());
+                StorageUtils.downloadScroll(mContext, holder.itemImageView, itemShop.getImage());
             }
 
             holder.nameTextView.setText(itemShop.getName());
@@ -116,7 +116,7 @@ public class ItemShopAdapter extends RecyclerView.Adapter<ItemShopAdapter.ViewHo
             });
 
             holder.requerImageView.setOnClickListener(v -> {
-                DialogFragment dialog = new RequirementDialogFragment(itemShop.getRequirements());
+                DialogFragment dialog =  RequirementDialogFragment.getInstance(itemShop.getRequirements());
                 dialog.show(mFragmentManager, "RequirementDialogFragment");
             });
 

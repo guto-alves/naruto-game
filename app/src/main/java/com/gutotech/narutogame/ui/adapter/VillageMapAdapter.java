@@ -17,7 +17,7 @@ import com.gutotech.narutogame.data.model.Character;
 import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.ui.playing.currentvillage.VillageMapPopupWindow;
 import com.gutotech.narutogame.ui.playing.currentvillage.VillageMapViewModel;
-import com.gutotech.narutogame.utils.StorageUtil;
+import com.gutotech.narutogame.data.firebase.StorageUtils;
 
 import java.security.SecureRandom;
 import java.util.List;
@@ -98,7 +98,7 @@ public class VillageMapAdapter extends RecyclerView.Adapter<VillageMapAdapter.Vi
                         holder.backgroundImageView.setImageResource(R.drawable.layout_map_red2);
                     }
 
-                    StorageUtil.downloadSprite(holder.spriteImageView, character.getNinja().getId());
+                    StorageUtils.downloadSprite(holder.spriteImageView, character.getNinja().getId());
                     holder.spriteImageView.setVisibility(View.VISIBLE);
                 }
             } else if (!IS_PLACE_ENTRY) {

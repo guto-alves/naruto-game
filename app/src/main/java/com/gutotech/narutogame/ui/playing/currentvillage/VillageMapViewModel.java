@@ -1,6 +1,7 @@
 package com.gutotech.narutogame.ui.playing.currentvillage;
 
 import android.graphics.Point;
+import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
@@ -33,7 +34,6 @@ public class VillageMapViewModel extends ViewModel implements VillageMapAdapter.
 
     VillageMapViewModel(Village village) {
         mVillage = village;
-
         mMapRepository = MapRepository.getInstance();
         mBattleRepository = BattleRepository.getInstance();
 
@@ -45,41 +45,15 @@ public class VillageMapViewModel extends ViewModel implements VillageMapAdapter.
             CharOn.character.setMapPosition(new SecureRandom().nextInt(MAP_SIZE));
         }
 
-        observe();
-    }
+        mMapRepository.enter(mVillage.ordinal());
 
-    LiveData<Integer> getShowWarningDialogEvent() {
-        return mShowWarningDialogEvent;
-    }
-
-    LiveData<Void> getShowProgressDialogEvent() {
-        return mShowProgressDialogEvent;
-    }
-
-    LiveData<Void> getDismissProgressDialogEvent() {
-        return mDismissProgressDialogEvent;
-    }
-
-    LiveData<Map<Integer, List<Character>>> getCharactersOnTheMap() {
-        return mMapRepository.load(mVillage.ordinal());
-    }
-
-    private void observe() {
-        mBattleRepository.observeMyself(battleId -> {
-            if (battleId == null) {
-                mMapRepository.enter(mVillage.ordinal());
-                return;
-            }
-
-            mMapRepository.exit(mVillage.ordinal(), CharOn.character.getId());
-
-            mBattleRepository.removeObserveMySelf();
-            mBattleRepository.removeId(CharOn.character.getId());
-
-            CharOn.character.setMap(false);
-            CharOn.character.battleId = battleId;
-            CharOn.character.setBattle(true);
-        });
+        mBattleRepository.addOnBattleRequestChangeListener(CharOn.character.getId(),
+                mVillage.ordinal(), battleId -> {
+                    mMapRepository.exit(mVillage.ordinal(), CharOn.character.getId());
+                    mDismissProgressDialogEvent.call();
+                    CharOn.character.battleId = battleId;
+                    CharOn.character.setBattle(true);
+                });
     }
 
     @Override
@@ -118,17 +92,21 @@ public class VillageMapViewModel extends ViewModel implements VillageMapAdapter.
 
         mShowProgressDialogEvent.call();
 
-        mBattleRepository.opponentAvailable(opponent.getNick(), available -> {
-            mDismissProgressDialogEvent.call();
+        String battleId = mBattleRepository.generateId("MAP-PVP");
 
-            if (available) {
-                mMapRepository.exit(mVillage.ordinal(), CharOn.character.getId());
-                mMapRepository.exit(mVillage.ordinal(), opponent.getId());
-                mBattleRepository.create(CharOn.character, opponent);
-            } else {
-                mShowWarningDialogEvent.setValue(R.string.player_unavailable_to_fight);
-            }
-        });
+        mBattleRepository.requestBattle(battleId, CharOn.character.getId(),
+                opponent.getId(), mVillage.ordinal(),
+                result -> {
+                    mDismissProgressDialogEvent.call();
+
+                    if (result) {
+                        mMapRepository.exit(mVillage.ordinal(), CharOn.character.getId());
+                        mMapRepository.exit(mVillage.ordinal(), opponent.getId());
+                        mBattleRepository.create(battleId, CharOn.character, opponent);
+                    } else {
+                        mShowWarningDialogEvent.setValue(R.string.player_unavailable_to_fight);
+                    }
+                });
     }
 
     private boolean isMovementValid(int newPosition) {
@@ -154,5 +132,22 @@ public class VillageMapViewModel extends ViewModel implements VillageMapAdapter.
 
     public void stop() {
         mMapRepository.close();
+    }
+
+
+    LiveData<Map<Integer, List<Character>>> getCharactersOnTheMap() {
+        return mMapRepository.load(mVillage.ordinal());
+    }
+
+    LiveData<Integer> getShowWarningDialogEvent() {
+        return mShowWarningDialogEvent;
+    }
+
+    LiveData<Void> getShowProgressDialogEvent() {
+        return mShowProgressDialogEvent;
+    }
+
+    LiveData<Void> getDismissProgressDialogEvent() {
+        return mDismissProgressDialogEvent;
     }
 }

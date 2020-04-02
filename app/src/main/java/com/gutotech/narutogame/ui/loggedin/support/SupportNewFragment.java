@@ -31,7 +31,7 @@ import com.gutotech.narutogame.databinding.FragmentSupportNewBinding;
 import com.gutotech.narutogame.ui.WarningDialogFragment;
 import com.gutotech.narutogame.utils.DateCustom;
 import com.gutotech.narutogame.utils.FragmentUtil;
-import com.gutotech.narutogame.utils.StorageUtil;
+import com.gutotech.narutogame.data.firebase.StorageUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -200,7 +200,7 @@ public class SupportNewFragment extends Fragment {
                 }
 
                 if (bitmap != null) {
-                    StorageUtil.upload(bitmap, imageName -> {
+                    StorageUtils.upload(bitmap, imageName -> {
                                 mViewModel.getTicket().setImage(imageName);
                                 mBinding.imageNameTextView.setText(imageName);
                             },

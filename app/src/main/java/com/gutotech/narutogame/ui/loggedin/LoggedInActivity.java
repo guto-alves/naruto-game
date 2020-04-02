@@ -10,7 +10,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.view.View;
 import android.widget.ExpandableListView;
@@ -24,7 +24,7 @@ import com.gutotech.narutogame.utils.MusicSettingsUtils;
 import com.gutotech.narutogame.utils.MusicUtils;
 
 public class LoggedInActivity extends AppCompatActivity {
-    private DrawerLayout drawer;
+    private DrawerLayout mDrawer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +34,7 @@ public class LoggedInActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        LoggedInViewModel viewModel = ViewModelProviders.of(this)
+        LoggedInViewModel viewModel = new ViewModelProvider(this)
                 .get(LoggedInViewModel.class);
 
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -47,9 +47,7 @@ public class LoggedInActivity extends AppCompatActivity {
         ExpandableAdapter adapter = new ExpandableAdapter();
         expandableListView.setAdapter(adapter);
         expandableListView.setOnChildClickListener(viewModel);
-        expandableListView.expandGroup(LoggedInViewModel.USER_GROUP);
         expandableListView.expandGroup(LoggedInViewModel.CHARACTER_GROUP);
-        expandableListView.expandGroup(LoggedInViewModel.MAIN_GROUP);
 
         viewModel.getMenuGroups().observe(this, adapter::setMenuGroups);
 
@@ -58,21 +56,22 @@ public class LoggedInActivity extends AppCompatActivity {
             closeDrawer();
         });
 
-        drawer = findViewById(R.id.drawer_layout);
+        mDrawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
+                this, mDrawer, toolbar, R.string.navigation_drawer_open,
+                R.string.navigation_drawer_close);
+        mDrawer.addDrawerListener(toggle);
         toggle.syncState();
     }
 
     private void closeDrawer() {
-        drawer.closeDrawer(GravityCompat.START);
+        mDrawer.closeDrawer(GravityCompat.START);
     }
 
     @Override
     public void onBackPressed() {
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
+        if (mDrawer.isDrawerOpen(GravityCompat.START)) {
+            closeDrawer();
         } else {
             super.onBackPressed();
         }
@@ -83,7 +82,6 @@ public class LoggedInActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
         if (MusicSettingsUtils.enabled(this)) {
             mMusicUtils = new MusicUtils(this);
             mMusicUtils.start();
@@ -93,7 +91,6 @@ public class LoggedInActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-
         if (mMusicUtils != null) {
             mMusicUtils.pause();
         }
@@ -102,7 +99,6 @@ public class LoggedInActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
         if (mMusicUtils != null) {
             mMusicUtils.release();
         }

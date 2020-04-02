@@ -1,6 +1,6 @@
 package com.gutotech.narutogame.data.model;
 
-import com.gutotech.narutogame.utils.StorageUtil;
+import com.gutotech.narutogame.data.firebase.StorageUtils;
 
 import java.io.Serializable;
 import java.security.SecureRandom;
@@ -22,7 +22,7 @@ public class Npc implements Serializable {
         character.setNick(ninja.getName());
         character.setProfilePath("");
 
-        StorageUtil.listAll(String.format("images/profile/%d/", ninja.getId()),
+        StorageUtils.listAll(String.format("images/profile/%d/", ninja.getId()),
                 profiles -> character.setProfilePath(
                         profiles.get(random.nextInt(profiles.size()))
                                 .getPath()));

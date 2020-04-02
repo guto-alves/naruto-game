@@ -77,8 +77,8 @@ exports.formBattle = functions.database.ref('/dojo-random-wait')
 						.child('battleId')
 						.set(battle.id);
 
-					snapshot.ref.child(battle.player1.nick).set(null);
-					snapshot.ref.child(battle.player2.nick).set(null);
+					snapshot.ref.child(battle.player1.id).set(null);
+					snapshot.ref.child(battle.player2.id).set(null);
 					
 					j = count;
 					i = count;

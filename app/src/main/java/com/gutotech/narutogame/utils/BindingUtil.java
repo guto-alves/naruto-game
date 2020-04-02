@@ -1,5 +1,6 @@
 package com.gutotech.narutogame.utils;
 
+import android.content.Context;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -13,19 +14,22 @@ import com.github.rtoshiro.util.format.SimpleMaskFormatter;
 import com.github.rtoshiro.util.format.text.MaskTextWatcher;
 import com.google.android.material.textfield.TextInputEditText;
 import com.gutotech.narutogame.R;
+import com.gutotech.narutogame.data.firebase.StorageUtils;
+import com.gutotech.narutogame.data.model.GraduationUtils;
+import com.gutotech.narutogame.data.model.Village;
 
 public class BindingUtil {
 
     @BindingAdapter(value = "loadProfile")
     public static void setLoadProfile(ImageView imageView, String path) {
         if (!TextUtils.isEmpty(path)) {
-            StorageUtil.downloadProfile(imageView.getContext(), imageView, path);
+            StorageUtils.downloadProfile(imageView.getContext(), imageView, path);
         }
     }
 
     @BindingAdapter("loadTopImage")
     public static void setLoadTopImage(ImageView imageView, int ninjaId) {
-        StorageUtil.downloadTopImage(imageView.getContext(), imageView, ninjaId);
+        StorageUtils.downloadTopImage(imageView.getContext(), imageView, ninjaId);
     }
 
     @BindingAdapter("stringRes")
@@ -37,6 +41,18 @@ public class BindingUtil {
         }
 
         textView.setText(text);
+    }
+
+    @BindingAdapter({"graduationId", "village", "level"})
+    public static void setFighterInfo(TextView textView, int graduationId, Village village, int level) {
+        if (village == null || level == 0) {
+            return;
+        }
+
+        Context context = textView.getContext();
+        String graduation = context.getString(GraduationUtils.getName(graduationId, village));
+        textView.setText(context.getString(R.string.label_graduation_and_lvl,
+                graduation, level));
     }
 
     @BindingAdapter("mask")
@@ -61,6 +77,6 @@ public class BindingUtil {
 
     @BindingAdapter("profileForMsg")
     public static void setProfileForMsg(ImageView imageView, Integer i) {
-        StorageUtil.downloadProfileForMsg(imageView.getContext(), imageView);
+        StorageUtils.downloadProfileForMsg(imageView.getContext(), imageView);
     }
 }

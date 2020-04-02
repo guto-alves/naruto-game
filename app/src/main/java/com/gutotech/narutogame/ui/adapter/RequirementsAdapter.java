@@ -18,12 +18,11 @@ import java.util.List;
 
 public class RequirementsAdapter extends RecyclerView.Adapter<RequirementsAdapter.ViewHolder> {
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         private TextView requirementTextView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-
             requirementTextView = itemView.findViewById(R.id.requirementTextView);
         }
     }

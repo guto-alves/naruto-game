@@ -171,6 +171,9 @@ public class VipPlayerViewModel extends ViewModel {
 
         if (makePayment(PRICE_TO_CHANGE_VILLAGE, mCharacter.getRyous())) {
             mCharacter.setVillage(mVillages.get(mVillageSelectedIndex));
+            if (!mCharacter.isMap()) {
+                mCharacter.setMapId(mCharacter.getVillage().ordinal());
+            }
             CharacterRepository.getInstance().save(mCharacter);
 
             mShowSuccessMessageEvent.setValue(R.string.change_village);

@@ -374,23 +374,17 @@
                                 android:background="@drawable/layout_bg_mensagem_chat"
                                 android:gravity="center_vertical"
                                 android:orientation="horizontal"
-                                android:paddingLeft="16dp"
-                                android:paddingRight="16dp">
-
-                                <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:contentDescription="@string/top_of_chat_content_description"
-                                    app:srcCompat="@drawable/layout_chat_chat_channel" />
+                                android:paddingLeft="8dp"
+                                android:paddingRight="8dp">
 
                                 <Spinner
                                     android:id="@+id/channelSpinner"
-                                    style="@android:style/Widget.DeviceDefault.Light.Spinner"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:background="@drawable/layout_bg_mensagem_chat"
                                     android:entries="@array/chat_channel_list"
-                                    android:onItemSelected="@{(parent, v, position, id) -> viewModel.onChannelChanged(position)}" />
+                                    android:onItemSelected="@{(parent, v, position, id) -> viewModel.onChannelChanged(position)}"
+                                    android:popupBackground="@drawable/layout_bg_mensagem_chat" />
 
                                 <EditText
                                     android:id="@+id/messageEditText"

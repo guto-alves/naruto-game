@@ -15,7 +15,7 @@ import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.WarningDialogFragment;
 import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.utils.FragmentUtil;
-import com.gutotech.narutogame.utils.StorageUtil;
+import com.gutotech.narutogame.data.firebase.StorageUtils;
 
 public class HospitalRoomFragment extends Fragment implements SectionFragment,
         WarningDialogFragment.WarningDialogListener {
@@ -29,7 +29,7 @@ public class HospitalRoomFragment extends Fragment implements SectionFragment,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_hospital_room, container, false);
 
-        StorageUtil.downloadProfileForMsg(getContext(), view.findViewById(R.id.profileImageView));
+        StorageUtils.downloadProfileForMsg(getContext(), view.findViewById(R.id.profileImageView));
 
         CharOn.character.setMapId(CharOn.character.getVillage().ordinal());
 
@@ -46,7 +46,7 @@ public class HospitalRoomFragment extends Fragment implements SectionFragment,
             payButton.setOnClickListener(view1 -> {
                 if (CharOn.character.getRyous() >= mPayment) {
                     WarningDialogFragment warningDialog = WarningDialogFragment.newInstance(
-                            R.string.paid_hospital);
+                            this, R.string.paid_hospital);
                     warningDialog.openDialog(getParentFragmentManager());
                 }
             });

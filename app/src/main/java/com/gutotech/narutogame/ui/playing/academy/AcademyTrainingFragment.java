@@ -20,7 +20,7 @@ import com.gutotech.narutogame.databinding.FragmentAcademyTrainningBinding;
 import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.adapter.DistributedPointsAdapter;
 import com.gutotech.narutogame.utils.FragmentUtil;
-import com.gutotech.narutogame.utils.StorageUtil;
+import com.gutotech.narutogame.data.firebase.StorageUtils;
 
 public class AcademyTrainingFragment extends Fragment implements SectionFragment {
     private FragmentAcademyTrainningBinding mBinding;
@@ -39,14 +39,13 @@ public class AcademyTrainingFragment extends Fragment implements SectionFragment
         mBinding.msgLayout.titleTextView.setText(R.string.attribute_training_title);
         mBinding.msgLayout.descriptionTextView.setText(R.string.attribute_training_description);
 
-        viewModel.trainingCompletedEvent.observe(getViewLifecycleOwner(), trainingPointsEarned ->
+        viewModel.getTrainingCompletedEvent().observe(getViewLifecycleOwner(), trainingPointsEarned ->
                 showTrainingResult(R.string.training_completed,
                         getString(R.string.you_earned_ability_points, trainingPointsEarned))
         );
 
-        viewModel.trainingErrorEvent.observe(getViewLifecycleOwner(), v -> {
+        viewModel.getTrainingErrorEvent().observe(getViewLifecycleOwner(), v -> {
             showTrainingResult(R.string.problem, getString(R.string.you_dont_have_chakra_for_this_training));
-
             Animation animation = AnimationUtils.loadAnimation(getActivity(), R.anim.problem_shake);
             animation.setRepeatCount(3);
             mBinding.trainingResult.msgConstraintLayout.startAnimation(animation);
@@ -68,7 +67,7 @@ public class AcademyTrainingFragment extends Fragment implements SectionFragment
     }
 
     private void showTrainingResult(@StringRes int titleId, String description) {
-        StorageUtil.downloadProfileForMsg(getContext(), mBinding.trainingResult.profileImageView);
+        StorageUtils.downloadProfileForMsg(getContext(), mBinding.trainingResult.profileImageView);
         mBinding.trainingResult.titleTextView.setText(titleId);
         mBinding.trainingResult.descriptionTextView.setText(description);
         mBinding.trainingResult.msgConstraintLayout.setVisibility(View.VISIBLE);
