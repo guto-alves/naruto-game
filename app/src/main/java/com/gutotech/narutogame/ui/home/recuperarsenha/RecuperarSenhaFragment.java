@@ -6,7 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,7 +25,7 @@ public class RecuperarSenhaFragment extends Fragment implements ResultListener, 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        RecuperarSenhaViewModel viewModel = ViewModelProviders.of(this)
+        RecuperarSenhaViewModel viewModel = new ViewModelProvider(this)
                 .get(RecuperarSenhaViewModel.class);
 
         FragmentRecuperarSenhaBinding binding = DataBindingUtil.inflate(inflater,

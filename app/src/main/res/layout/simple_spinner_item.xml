@@ -11,4 +11,4 @@
     android:gravity="center_vertical"
     android:singleLine="true"
     android:textAlignment="inherit"
-    android:textColor="@android:color/white" />
+    android:textColor="#c6dde6" />

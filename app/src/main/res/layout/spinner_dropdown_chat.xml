@@ -7,4 +7,4 @@
     android:ellipsize="marquee"
     android:padding="8dp"
     android:singleLine="true"
-    android:textColor="@android:color/white" />
+    android:textColor="#c6dde6" />

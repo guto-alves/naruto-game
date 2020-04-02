@@ -352,6 +352,7 @@
                     android:layout_marginLeft="32dp"
                     android:text="@string/choose_your_character"
                     android:textColor="@android:color/white"
+                    android:textStyle="italic"
                     android:typeface="serif"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/imageView9"

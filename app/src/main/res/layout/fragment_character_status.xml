@@ -43,7 +43,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="@string/combat_overview"
-                    android:textColor="#FFD274"
+                    android:textColor="#ffd273"
                     android:textSize="16sp"
                     android:textStyle="bold|italic"
                     android:typeface="serif"
@@ -80,7 +80,7 @@
                             android:layout_marginEnd="3dp"
                             android:layout_marginRight="3dp"
                             android:text="@string/label_wins_npc"
-                            android:textColor="#0BD96C"
+                            android:textColor="#09d96b"
                             android:textSize="12sp" />
 
                         <TextView
@@ -147,7 +147,7 @@
                             android:layout_marginEnd="3dp"
                             android:layout_marginRight="3dp"
                             android:text="@string/label_derrotas_npc"
-                            android:textColor="@android:color/holo_red_dark"
+                            android:textColor="#ff635b"
                             android:textSize="12sp" />
 
                         <TextView
@@ -170,7 +170,7 @@
                             android:layout_marginEnd="3dp"
                             android:layout_marginRight="3dp"
                             android:text="@string/label_derrotas_dojo_pvp"
-                            android:textColor="@android:color/holo_red_dark"
+                            android:textColor="#ff635b"
                             android:textSize="12sp" />
 
                         <TextView
@@ -194,7 +194,7 @@
                             android:layout_marginEnd="3dp"
                             android:layout_marginRight="3dp"
                             android:text="@string/label_losses_map_pvp"
-                            android:textColor="@android:color/holo_red_dark"
+                            android:textColor="#ff635b"
                             android:textSize="12sp" />
 
                         <TextView
@@ -275,7 +275,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="@string/resume_of_missions"
-                    android:textColor="#FFD274"
+                    android:textColor="#ffd273"
                     android:textSize="16sp"
                     android:textStyle="bold|italic"
                     android:typeface="serif"
@@ -313,7 +313,7 @@
                             android:layout_marginEnd="3dp"
                             android:layout_marginRight="3dp"
                             android:text="@string/label_rank_s"
-                            android:textColor="#0BD96C"
+                            android:textColor="#09d96b"
                             android:textSize="12sp" />
 
                         <TextView
@@ -461,7 +461,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="@string/extras_information"
-                    android:textColor="#FFD274"
+                    android:textColor="#ffd273"
                     android:textSize="16sp"
                     android:textStyle="bold|italic"
                     android:typeface="serif"
@@ -577,6 +577,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginLeft="32dp"
+                android:layout_marginBottom="5dp"
                 android:text="@string/attributes"
                 android:textColor="#F3E6C4"
                 android:textSize="18sp"
@@ -621,6 +622,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginLeft="32dp"
+                android:layout_marginBottom="5dp"
                 android:text="@string/formulas"
                 android:textColor="#F3E6C4"
                 android:textSize="18sp"
@@ -647,14 +649,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.7518248" />
+                app:layout_constraintGuide_percent="0.72" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline63"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.25" />
+                app:layout_constraintGuide_percent="0.27" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline"

@@ -7,7 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,7 +27,7 @@ public class PasswordChangeFragment extends Fragment implements SectionFragment,
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        PasswordChangeViewModel viewModel = ViewModelProviders.of(this)
+        PasswordChangeViewModel viewModel = new ViewModelProvider(this)
                 .get(PasswordChangeViewModel.class);
         viewModel.setListener(this);
 
@@ -57,7 +57,7 @@ public class PasswordChangeFragment extends Fragment implements SectionFragment,
 
     @Override
     public void onStarted() {
-        progressDialog.show(getFragmentManager(), "ProgressDialog");
+        progressDialog.show(getParentFragmentManager(), "ProgressDialog");
     }
 
     @Override
