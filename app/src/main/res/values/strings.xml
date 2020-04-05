@@ -126,7 +126,7 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="email" translatable="false">Email</string>
     <string name="password">Password</string>
     <string name="confirm_password">Confirm Password</string>
-    <string name="signup">Signup</string>
+    <string name="signup">Sign up</string>
     <string name="accont_created_successfuly">ACCOUNT CREATED SUCCESSFULLY</string>
     <string name="email_verification_sent" translatable="false">You will receive an email soon</string>
     <string name="new_invalid_password">The given password is invalid. [Password should be at least 6 characters]</string>
@@ -288,8 +288,8 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
         results in battles, in dojo NPC even with your enemies. The days NOT trained, will be
         cumulated: For example, if you can\'t train tuesday and wednesday, at thursday you can
         train the sum of tuesday, wednesday and thursday. At Tuesdays, the week limit is renewed,
-        even you do not have trained, then, ever try train your week limit until mondays.
-        The Attribute Training is key to have a good character, so, never forget to training it</string>
+        even you do not have trained, then, ever try train your week limit until mondays.\n\nThe
+        Attribute Training is key to have a good character, so, never forget to training it</string>
     <string name="attribute_training_title">LEARN ABOUT THE TRAINING ATTRIBUTES</string>
     <string name="training_completed">TRAINING COMPLETED</string>
     <string name="distributed_points">DISTRIBUTED POINTS</string>
@@ -977,7 +977,8 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="waiting_your_move">Waiting your Move</string>
     <string name="empate">DRAW!</string>
     <string name="drawn_description">Because they were both very tired, the match ended in a draw!\n\nGo to</string>
-    <string name="combat_won_description">Nicely Done! You have won the battle!\nYour reward is RY$ %d and %d experience points\n\nGo to back</string>
+    <string name="combat_won_description">Nicely Done! You have won the battle!\nYour reward is RY$
+        %d and %d experience points\n\nGo to back</string>
     <string name="error_updating_name">Error updating name</string>
     <string name="error_requires_recent_athentication">This operation is sensitive and requires
         recent authentication. Log in again before retrying this request.</string>
@@ -1185,7 +1186,7 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="ninjas_ranking_formulas">Ninjas Ranking Formula (Points / Description)</string>
     <string name="per_level_player">Per Level Player</string>
     <string name="per_grade_player">Per Grade Player</string>
-    <string name="logar_days_followed">Logar %d day (s) followed</string>
+    <string name="logar_days_followed">Logar %d day(s) followed</string>
     <string name="fidelity_rewards">FIDELITY REWARDS</string>
     <string name="fidelity_rewards_description">To log every day you can collect rewards for your character. You should enter the game for 8 consecutive days to get all the rewards and start again. If you do not log one day, the counter will return to the first day.</string>
     <string name="fidelity_reward_1_description">%d Ryous</string>
@@ -2139,7 +2140,12 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="buki1">1 Bukijutsu Point</string>
     <string name="gen1">1 Genjutsu Point</string>
     <string name="seal1">1 Seal Point</string>
-    <string name="strenght1">1 Strenght Point</string>
+    <string name="strenght1">1 Strength Point</string>
+    <string name="daily">DAILY</string>
+    <string name="weekly">WEEKLY</string>
+    <string name="dont_enough_money_for_treatment">Sorry, but you don\'t have enough money to pay for treatment.</string>
+    <string name="cannot_use_items_during_the_battle">You cannot use items during the battle!</string>
+    <string name="error_multiple_logins">Only one device can use the account at a time.</string>
 
 
 </resources>

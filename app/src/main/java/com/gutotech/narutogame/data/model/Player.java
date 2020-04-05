@@ -15,6 +15,7 @@ public class Player extends BaseObservable {
     private String state;
     private String neighborhood;
     private String city;
+    private boolean signedIn;
 
     public Player() {
     }
@@ -110,5 +111,13 @@ public class Player extends BaseObservable {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public boolean isSignedIn() {
+        return signedIn;
+    }
+
+    public void setSignedIn(boolean signedIn) {
+        this.signedIn = signedIn;
     }
 }

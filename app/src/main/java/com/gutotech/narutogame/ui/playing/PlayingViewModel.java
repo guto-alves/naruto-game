@@ -24,9 +24,11 @@ import com.gutotech.narutogame.data.model.MenuGroup;
 import com.gutotech.narutogame.data.model.Message;
 import com.gutotech.narutogame.data.model.Ramen;
 import com.gutotech.narutogame.data.model.Scroll;
+import com.gutotech.narutogame.data.repository.AuthRepository;
 import com.gutotech.narutogame.data.repository.CharacterRepository;
 import com.gutotech.narutogame.data.repository.ChatRepository;
 import com.gutotech.narutogame.data.repository.MapRepository;
+import com.gutotech.narutogame.data.repository.PlayerRepository;
 import com.gutotech.narutogame.data.repository.TeamRepository;
 import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.adapter.BagItemsAdapter;
@@ -196,17 +198,23 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
     }
 
     final BagItemsAdapter.OnItemClickListener onRamenClickListener = (itemClicked, position) -> {
-        if (mCharacter.isBattle() || mCharacter.isHospital()) {
+        if (mCharacter.isHospital()) {
             return;
         }
 
-        Ramen ramen = (Ramen) itemClicked;
+        if (!mCharacter.isItemsEnabled()) {
+            mDismissBagDialogEvent.call();
+            mShowWarningDialogEvent.setValue(R.string.cannot_use_items_during_the_battle);
+            return;
+        }
 
         if (mCharacter.getFormulas().isFull()) {
             mDismissBagDialogEvent.call();
             mShowWarningDialogEvent.setValue(R.string.attributes_are_already_full);
             return;
         }
+
+        Ramen ramen = (Ramen) itemClicked;
 
         mCharacter.getFormulas().addHeath(ramen.getRecovers());
         mCharacter.getFormulas().addChakra(ramen.getRecovers());
@@ -231,10 +239,16 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
     };
 
     final BagItemsAdapter.OnItemClickListener onScrollClickListener = (itemClicked, position) -> {
+        if (mCharacter.isBattle()) {
+            mDismissBagDialogEvent.call();
+            mShowWarningDialogEvent.setValue(R.string.cannot_use_items_during_the_battle);
+            return;
+        }
+
         Scroll scroll = (Scroll) itemClicked;
 
-        if (mCharacter.isBattle() || mCharacter.isMission() || mCharacter.isDojoWaitQueue() ||
-                mCharacter.isHospital() || mCharacter.getMapId() == scroll.getVillage().ordinal()) {
+        if (mCharacter.isMission() || mCharacter.isDojoWaitQueue() || mCharacter.isHospital() ||
+                mCharacter.getMapId() == scroll.getVillage().ordinal()) {
             return;
         }
 
@@ -262,7 +276,6 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
 
         mCharacter.setMapId(scroll.getVillage().ordinal());
         CharacterRepository.getInstance().save(mCharacter);
-
         setCurrentSection(new VillageMapFragment());
     };
 
@@ -668,8 +681,9 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
         }
     }
 
-
     void logout() {
         mChatRepository.removeMessagesListener();
+        PlayerRepository.getInstance().setSignedIn(false, null);
+        AuthRepository.getInstance().signOut();
     }
 }

@@ -28,7 +28,6 @@ import android.widget.LinearLayout;
 
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.CharOn;
-import com.gutotech.narutogame.data.repository.AuthRepository;
 import com.gutotech.narutogame.databinding.ActivityPlayingBinding;
 import com.gutotech.narutogame.databinding.DialogGameRoutinesBinding;
 import com.gutotech.narutogame.databinding.NavHeaderPlayingBinding;
@@ -68,8 +67,9 @@ public class PlayingActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mBinding.drawerLayout, toolbar,
-                R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,
+                mBinding.drawerLayout, toolbar, R.string.navigation_drawer_open,
+                R.string.navigation_drawer_close);
         mBinding.drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
@@ -98,6 +98,7 @@ public class PlayingActivity extends AppCompatActivity {
         });
 
         setUpChat();
+        setUpBag();
     }
 
     public void showGameRoutines(View view) {
@@ -106,32 +107,33 @@ public class PlayingActivity extends AppCompatActivity {
 
         DialogGameRoutinesBinding binding = DataBindingUtil.inflate(getLayoutInflater(),
                 R.layout.dialog_game_routines, null, false);
-
-        routinesDialog.setContentView(binding.getRoot());
-
         binding.setViewModel(mViewModel);
 
+        routinesDialog.setContentView(binding.getRoot());
         routinesDialog.show();
     }
 
+    private Dialog mBagDialog;
+
     public void showBag(View view) {
-        Dialog bagDialog = new Dialog(this);
-        bagDialog.setContentView(R.layout.dialog_bag);
-
-        RecyclerView ramensRecyclerView = bagDialog.findViewById(R.id.ramensRecyclerView);
-        RecyclerView scrollsRecyclerView = bagDialog.findViewById(R.id.scrollsRecyclerView);
-
-        ramensRecyclerView.setHasFixedSize(true);
-        scrollsRecyclerView.setHasFixedSize(true);
-
         mViewModel.updateBag();
+        mBagDialog.show();
+    }
 
+    private void setUpBag() {
+        mBagDialog = new Dialog(this);
+        mBagDialog.setContentView(R.layout.dialog_bag);
+        mBagDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        RecyclerView ramensRecyclerView = mBagDialog.findViewById(R.id.ramensRecyclerView);
+        ramensRecyclerView.setHasFixedSize(true);
         BagItemsAdapter ramensAdapter = new BagItemsAdapter(this,
                 mViewModel.onRamenClickListener);
         ramensRecyclerView.setAdapter(ramensAdapter);
 
         mViewModel.getRamens().observe(this, ramens -> {
-            LinearLayout ramensLinearLayout = bagDialog.findViewById(R.id.ramensLinearLayout);
+            LinearLayout ramensLinearLayout = mBagDialog.findViewById(R.id.ramensLinearLayout);
+
             if (ramens != null) {
                 ramensAdapter.setItems(new ArrayList<>(ramens));
                 ramensLinearLayout.setVisibility(View.VISIBLE);
@@ -140,12 +142,14 @@ public class PlayingActivity extends AppCompatActivity {
             }
         });
 
+        RecyclerView scrollsRecyclerView = mBagDialog.findViewById(R.id.scrollsRecyclerView);
+        scrollsRecyclerView.setHasFixedSize(true);
         BagItemsAdapter scrollsAdapter = new BagItemsAdapter(this,
                 mViewModel.onScrollClickListener);
         scrollsRecyclerView.setAdapter(scrollsAdapter);
 
         mViewModel.getScrolls().observe(this, scrolls -> {
-            LinearLayout scrollsLinearLayout = bagDialog.findViewById(R.id.scrollsLinearLayout);
+            LinearLayout scrollsLinearLayout = mBagDialog.findViewById(R.id.scrollsLinearLayout);
 
             if (scrolls != null) {
                 scrollsAdapter.setItems(new ArrayList<>(scrolls));
@@ -155,25 +159,7 @@ public class PlayingActivity extends AppCompatActivity {
             }
         });
 
-        bagDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        bagDialog.show();
-
-        mViewModel.getDismissBagDialog().observe(this, aVoid -> bagDialog.dismiss());
-    }
-
-    private void updateChatChannels() {
-        List<String> channels = new ArrayList<>();
-        channels.add(getString(R.string.world));
-        channels.add(getString(CharOn.character.getVillage().name));
-        if (!TextUtils.isEmpty(CharOn.character.getTeam())) {
-            channels.add(getString(R.string.team));
-        }
-
-        ArrayAdapter<String> channelsAdapter = new ArrayAdapter<>(
-                this, R.layout.simple_spinner_item, channels);
-        channelsAdapter.setDropDownViewResource(R.layout.spinner_dropdown_chat);
-        mBinding.channelSpinner.setAdapter(channelsAdapter);
-        mBinding.channelSpinner.setSelection(1);
+        mViewModel.getDismissBagDialog().observe(this, aVoid -> mBagDialog.dismiss());
     }
 
     private void setUpChat() {
@@ -188,7 +174,7 @@ public class PlayingActivity extends AppCompatActivity {
                 animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_in);
                 mBinding.scrollView.postDelayed(() ->
                         mBinding.scrollView.smoothScrollTo(0,
-                                mBinding.scrollView.getBottom() + 500), 500);
+                                mBinding.scrollView.getBottom() + 1000), 500);
             } else {
                 animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_out);
             }
@@ -210,17 +196,26 @@ public class PlayingActivity extends AppCompatActivity {
         });
     }
 
+    private void updateChatChannels() {
+        List<String> channels = new ArrayList<>();
+        channels.add(getString(R.string.world));
+        channels.add(getString(CharOn.character.getVillage().name));
+        if (!TextUtils.isEmpty(CharOn.character.getTeam())) {
+            channels.add(getString(R.string.team));
+        }
+
+        ArrayAdapter<String> channelsAdapter = new ArrayAdapter<>(
+                this, R.layout.simple_spinner_item, channels);
+        channelsAdapter.setDropDownViewResource(R.layout.spinner_dropdown_chat);
+        mBinding.channelSpinner.setAdapter(channelsAdapter);
+        mBinding.channelSpinner.setSelection(1);
+    }
+
     public void onLogoutClick(View view) {
         mViewModel.logout();
-        AuthRepository.getInstance().signOut();
         startActivity(new Intent(PlayingActivity.this, HomeActivity.class));
         finish();
     }
-
-    public void closeDrawer() {
-        mBinding.drawerLayout.closeDrawer(GravityCompat.START);
-    }
-
 
     // Pinch to zoom
     private ScaleGestureDetector mScaleGestureDetector;
@@ -247,11 +242,14 @@ public class PlayingActivity extends AppCompatActivity {
         return super.dispatchTouchEvent(ev);
     }
 
+    public void closeDrawer() {
+        mBinding.drawerLayout.closeDrawer(GravityCompat.START);
+    }
 
     @Override
     public void onBackPressed() {
         if (mBinding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            mBinding.drawerLayout.closeDrawer(GravityCompat.START);
+            closeDrawer();
         } else {
             super.onBackPressed();
         }

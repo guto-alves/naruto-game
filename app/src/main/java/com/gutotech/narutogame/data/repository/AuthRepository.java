@@ -25,8 +25,9 @@ public class AuthRepository {
     }
 
     public static AuthRepository getInstance() {
-        if (sInstance == null)
+        if (sInstance == null) {
             sInstance = new AuthRepository();
+        }
         return sInstance;
     }
 

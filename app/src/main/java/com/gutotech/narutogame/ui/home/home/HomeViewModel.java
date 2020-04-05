@@ -12,6 +12,7 @@ import com.gutotech.narutogame.data.model.NinjaStatistics;
 import com.gutotech.narutogame.data.repository.AuthRepository;
 import com.gutotech.narutogame.data.repository.NewsRepository;
 import com.gutotech.narutogame.data.repository.NinjaStatisticsRepository;
+import com.gutotech.narutogame.data.repository.PlayerRepository;
 import com.gutotech.narutogame.data.repository.VillageKagesRepository;
 import com.gutotech.narutogame.ui.ResultListener;
 
@@ -22,11 +23,13 @@ public class HomeViewModel extends ViewModel {
     public String password;
 
     private AuthRepository mAuthRepository;
+    private PlayerRepository mPlayerRepository;
 
     private ResultListener mAuthListener;
 
     public HomeViewModel() {
         mAuthRepository = AuthRepository.getInstance();
+        mPlayerRepository = PlayerRepository.getInstance();
     }
 
     public LiveData<List<News>> getNews() {
@@ -49,18 +52,24 @@ public class HomeViewModel extends ViewModel {
         mAuthListener.onStarted();
 
         if (validateFields()) {
-            mAuthRepository.signIn(email, password,
-                    new AuthRepository.Completable() {
-                        @Override
-                        public void onComplete() {
+            mAuthRepository.signIn(email, password, new AuthRepository.Completable() {
+                @Override
+                public void onComplete() {
+                    mPlayerRepository.setSignedIn(true, successful -> {
+                        if (successful) {
                             mAuthListener.onSuccess();
-                        }
-
-                        @Override
-                        public void onError(int resId) {
-                            mAuthListener.onFailure(resId);
+                        } else {
+                            mAuthRepository.signOut();
+                            mAuthListener.onFailure(R.string.error_multiple_logins);
                         }
                     });
+                }
+
+                @Override
+                public void onError(int resId) {
+                    mAuthListener.onFailure(resId);
+                }
+            });
         }
     }
 
