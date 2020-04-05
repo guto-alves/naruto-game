@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.databinding.FragmentDojoNpcFightersBinding;
 import com.gutotech.narutogame.data.model.CharOn;
+import com.gutotech.narutogame.ui.ProgressDialogFragment;
 
 public class DojoNPCFightersFragment extends Fragment {
 
@@ -53,6 +54,15 @@ public class DojoNPCFightersFragment extends Fragment {
             binding.fightersLinearLayout.setVisibility(View.VISIBLE);
             binding.statusTextView.setVisibility(View.GONE);
             binding.statusProgressBar.setVisibility(View.GONE);
+        });
+
+        ProgressDialogFragment progressDialogFragment = new ProgressDialogFragment();
+        viewModel.getProgressDialogEvent().observe(getViewLifecycleOwner(), visible -> {
+            if (visible) {
+                progressDialogFragment.openDialog(getParentFragmentManager());
+            } else {
+                progressDialogFragment.dismiss();
+            }
         });
 
         return binding.getRoot();

@@ -92,7 +92,7 @@
                         loadProfile="@{viewModel.player.profilePath}"
                         android:layout_width="145dp"
                         android:layout_height="155dp"
-                        android:layout_marginTop="3dp" />
+                        android:layout_marginTop="8dp" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="wrap_content"
@@ -293,7 +293,7 @@
                         android:id="@+id/battleLogRecyclerView"
                         android:layout_width="match_parent"
                         android:layout_height="90dp"
-                        android:layout_marginTop="16dp"
+                        android:layout_marginTop="8dp"
                         android:background="@drawable/layout_combate_bg_log"
                         android:paddingLeft="4dp"
                         android:paddingRight="4dp"
@@ -346,17 +346,16 @@
                         loadProfile="@{viewModel.npc.character.profilePath}"
                         android:layout_width="145dp"
                         android:layout_height="155dp"
-                        android:layout_marginTop="3dp" />
+                        android:layout_marginTop="8dp" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="155dp"
-                        android:layout_height="27dp">
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
 
                         <ImageView
                             android:id="@+id/imageView17"
                             android:layout_width="145dp"
                             android:layout_height="26dp"
-                            android:layout_marginBottom="8dp"
                             android:src="@drawable/layout_bg_profile"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"

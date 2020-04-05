@@ -22,6 +22,7 @@ public class DojoNpcFightersViewModel extends ViewModel {
     private SingleLiveEvent<Void> mShowProgressBarEvent = new SingleLiveEvent<>();
     private SingleLiveEvent<Integer> mShowStatusEvent = new SingleLiveEvent<>();
     private SingleLiveEvent<Npc> mShowFightersEvent = new SingleLiveEvent<>();
+    private SingleLiveEvent<Boolean> mProgressDialogEvent = new SingleLiveEvent<>();
 
     void init() {
         if (CharOn.character.getNpcDailyCombat() < MAX_DAILY_COMBAT) {
@@ -50,6 +51,8 @@ public class DojoNpcFightersViewModel extends ViewModel {
     }
 
     public void onAcceptBattleButtonPressed() {
+        mProgressDialogEvent.setValue(true);
+
         FirebaseFunctionsUtils.getServerTime(currentTimestamp -> {
             Battle battle = new Battle(
                     BattleRepository.getInstance().generateId("DOJO-NPC"),
@@ -58,6 +61,8 @@ public class DojoNpcFightersViewModel extends ViewModel {
                     currentTimestamp);
 
             BattleRepository.getInstance().save(battle);
+
+            mProgressDialogEvent.setValue(false);
 
             CharOn.character.battleId = battle.getId();
             CharOn.character.setBattle(true);
@@ -79,5 +84,9 @@ public class DojoNpcFightersViewModel extends ViewModel {
 
     LiveData<Npc> getShowFightersEvent() {
         return mShowFightersEvent;
+    }
+
+    LiveData<Boolean> getProgressDialogEvent() {
+        return mProgressDialogEvent;
     }
 }

@@ -106,7 +106,7 @@ public class BattleLogAdapter extends RecyclerView.Adapter<BattleLogAdapter.View
                 holder.textView.setVisibility(View.GONE);
             }
 
-            holder.textView.setText(logBuilder.getString());
+            holder.textView.setText(logBuilder.builder());
             holder.textView.setMovementMethod(LinkMovementMethod.getInstance());
         }
     }

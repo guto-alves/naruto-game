@@ -18,8 +18,6 @@ import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.PopupWindow;
 
 import com.gutotech.narutogame.R;
@@ -62,10 +60,12 @@ public class DojoBatalhaLutadorFragment extends Fragment implements SectionFragm
             mBinding.classJutsusButton.setText(CharOn.character.getClasse().name.substring(0, 3));
 
             mBinding.myStatusImageView.setOnClickListener(v ->
-                    showStatus(v, mViewModel.getPlayerFormulas()));
+                    showStatus(v, mViewModel.getPlayerFormulas())
+            );
 
             mBinding.oppStatusImageView.setOnClickListener(v ->
-                    showStatus(v, mViewModel.getNpcFormulas()));
+                    showStatus(v, mViewModel.getNpcFormulas())
+            );
 
             mBinding.myBuffsDebuffsStatusRecyclerView.setHasFixedSize(true);
             BuffsDebuffStatusAdapter adapter = new BuffsDebuffStatusAdapter(getContext());
@@ -93,11 +93,6 @@ public class DojoBatalhaLutadorFragment extends Fragment implements SectionFragm
             mViewModel.showJutsuInfoPopupEvent.observe(getViewLifecycleOwner(), this::showJutsuInfo);
 
             mViewModel.showWarningDialogEvent.observe(getViewLifecycleOwner(), this::showWarningDialog);
-
-            mViewModel.startAnimationEvent.observe(getViewLifecycleOwner(), view -> {
-                Animation animation = AnimationUtils.loadAnimation(getActivity(), R.anim.fade_out);
-                view.startAnimation(animation);
-            });
 
             mBinding.battleResultLayout.descriptionTextView.setMovementMethod(
                     LinkMovementMethod.getInstance());

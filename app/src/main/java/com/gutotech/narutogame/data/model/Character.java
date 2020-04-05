@@ -28,35 +28,36 @@ public class Character extends BaseObservable implements Serializable {
     private long ryous;
     private int title;
     private List<Integer> titles;
+    private int score;
     private int graduationId;
+    private String team;
     private Attributes attributes;
     private List<Jutsu> jutsus;
     private Bag bag;
-    private CombatOverview combatOverview;
-    private ResumeOfMissions resumeOfMissions;
+    private boolean itemsEnabled;
     private ExtrasInformation extrasInformation;
-    private String team;
+
+    private CombatOverview combatOverview;
+    private int npcDailyCombat;
+    private boolean battle;
+    public String battleId;
+    private boolean dojoWaitQueue;
+    private boolean hospital;
+
+    private ResumeOfMissions resumeOfMissions;
+    private int totalDailyMissions;
+    private boolean mission;
+
+    private int mapPosition;
+    private boolean map;
+    private int mapId;
+
+    private int daysOfFidelity;
+    private boolean fidelityReward;
 
     private long lastSeenInMillis;
     private boolean online;
     private int numberOfDaysPlayed;
-
-    private int score;
-    private int npcDailyCombat;
-    private int mapPosition;
-
-    private int totalDailyMissions;
-
-    private boolean mission;
-    private boolean battle;
-    public String battleId;
-    private boolean hospital;
-    private boolean map;
-    private int mapId;
-    private boolean dojoWaitQueue;
-
-    private int daysOfFidelity;
-    private boolean fidelityReward;
 
     public Character() {
     }
@@ -89,6 +90,7 @@ public class Character extends BaseObservable implements Serializable {
         bag.addRamen(new Ramen(
                 "nissin", R.string.ninja_snack, R.string.ninja_snack_description,
                 25, 100), 10);
+        itemsEnabled = true;
     }
 
     @Exclude
@@ -178,7 +180,7 @@ public class Character extends BaseObservable implements Serializable {
             return false;
         }
 
-        return getNick().equals(((Character) obj).getNick());
+        return getId().equals(((Character) obj).getId());
     }
 
 
@@ -345,6 +347,14 @@ public class Character extends BaseObservable implements Serializable {
 
     public void setBag(Bag bag) {
         this.bag = bag;
+    }
+
+    public boolean isItemsEnabled() {
+        return itemsEnabled;
+    }
+
+    public void setItemsEnabled(boolean itemsEnabled) {
+        this.itemsEnabled = itemsEnabled;
     }
 
     public boolean isOnline() {

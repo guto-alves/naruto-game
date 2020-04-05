@@ -48,6 +48,10 @@ public class HospitalRoomFragment extends Fragment implements SectionFragment,
                     WarningDialogFragment warningDialog = WarningDialogFragment.newInstance(
                             this, R.string.paid_hospital);
                     warningDialog.openDialog(getParentFragmentManager());
+                } else {
+                    WarningDialogFragment warningDialog = WarningDialogFragment.newInstance(
+                            R.string.dont_enough_money_for_treatment);
+                    warningDialog.openDialog(getParentFragmentManager());
                 }
             });
         }

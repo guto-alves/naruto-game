@@ -60,7 +60,6 @@ public class DojoBatalhaLutadorViewModel extends ViewModel
 
     SingleLiveEvent<Object[]> showJutsuInfoPopupEvent = new SingleLiveEvent<>();
     SingleLiveEvent<Integer> showWarningDialogEvent = new SingleLiveEvent<>();
-    SingleLiveEvent<View> startAnimationEvent = new SingleLiveEvent<>();
     SingleLiveEvent<Integer[]> showWonEvent = new SingleLiveEvent<>();
     SingleLiveEvent<Void> showLostEvent = new SingleLiveEvent<>();
     SingleLiveEvent<Void> showDrawnEvent = new SingleLiveEvent<>();
@@ -129,9 +128,7 @@ public class DojoBatalhaLutadorViewModel extends ViewModel
 
 
     @Override
-    public void onJutsuClick(View view, Jutsu jutsu) {
-        startAnimationEvent.setValue(view);
-
+    public void onJutsuClick(Jutsu jutsu) {
         if (jutsu.getRemainingIntervals() != 0) {
             showWarningDialogEvent.setValue(R.string.jutsu_is_not_yet_available);
             return;
@@ -163,32 +160,31 @@ public class DojoBatalhaLutadorViewModel extends ViewModel
                     startTimer(TIME_TO_ATTACK);
                 });
             }
-        } else {
-            if (!buffOrDebuffUsed(playerJutsuInfo.type)) {
-                if (playerJutsuInfo.type == Jutsu.Type.BUFF) {
-                    addBuffOrDebuff(playerFormulas, jutsu);
+        } else if (!buffOrDebuffUsed(playerJutsuInfo.type)) {
+            if (playerJutsuInfo.type == Jutsu.Type.BUFF) {
+                addBuffOrDebuff(playerFormulas, jutsu);
 
-                    List<Jutsu> buffsAndDebuffs = mBattle.getBuffsDebuffsUsed1();
-                    buffsAndDebuffs.add(jutsu);
-                    myBuffsDebuffsStatus.setValue(buffsAndDebuffs);
-                } else if (playerJutsuInfo.type == Jutsu.Type.DEBUFF) {
-                    addBuffOrDebuff(npcFormulas, jutsu);
+                List<Jutsu> buffsAndDebuffs = mBattle.getBuffsDebuffsUsed1();
+                buffsAndDebuffs.add(jutsu);
+                myBuffsDebuffsStatus.setValue(buffsAndDebuffs);
+            } else if (playerJutsuInfo.type == Jutsu.Type.DEBUFF) {
+                addBuffOrDebuff(npcFormulas, jutsu);
 
-                    List<Jutsu> buffsAndDebuffs = mBattle.getBuffsDebuffsUsed2();
-                    buffsAndDebuffs.add(jutsu);
-                    oppBuffsDebuffsStatus.setValue(buffsAndDebuffs);
-                }
-
-                playerFormulas.subChakra(jutsu.getConsumesChakra());
-                playerFormulas.subStamina(jutsu.getConsumesStamina());
-
-                addLog(new BattleLog(player.getNick(), BattleLog.Type.BUFF_DEBUFF_WEAPON,
-                        playerJutsuInfo.name, jutsu));
-            } else {
-                showWarningDialogEvent.setValue(R.string.jutsu_is_not_yet_available);
-                return;
+                List<Jutsu> buffsAndDebuffs = mBattle.getBuffsDebuffsUsed2();
+                buffsAndDebuffs.add(jutsu);
+                oppBuffsDebuffsStatus.setValue(buffsAndDebuffs);
             }
+
+            playerFormulas.subChakra(jutsu.getConsumesChakra());
+            playerFormulas.subStamina(jutsu.getConsumesStamina());
+
+            addLog(new BattleLog(player.getNick(), BattleLog.Type.BUFF_DEBUFF_WEAPON,
+                    playerJutsuInfo.name, jutsu));
+        } else {
+            showWarningDialogEvent.setValue(R.string.jutsu_is_not_yet_available);
+            return;
         }
+
 
         if (mBattle.getStatus() == Battle.Status.CONTINUE) {
             int jutsuIndex = mAllJutsus.indexOf(jutsu);
@@ -206,7 +202,6 @@ public class DojoBatalhaLutadorViewModel extends ViewModel
         objects[0] = calculateChanceOfSuccess(jutsu.getAccuracy(), playerFormulas.getAccuracy());
         objects[1] = jutsu;
         objects[2] = anchor;
-
         showJutsuInfoPopupEvent.setValue(objects);
     }
 
@@ -435,7 +430,8 @@ public class DojoBatalhaLutadorViewModel extends ViewModel
         CharOn.character.getFormulas().setCurrentStamina(playerFormulas.getCurrentStamina());
 
         if (mBattle.getStatus() == Battle.Status.PLAYER1_WON) {
-            CharOn.character.getCombatOverview().setWinsNpc(CharOn.character.getCombatOverview().getWinsNpc() + 1);
+            CharOn.character.getCombatOverview().setWinsNpc(
+                    CharOn.character.getCombatOverview().getWinsNpc() + 1);
 
             int earnedRyous = 100;
             int earnedExp = Math.max(344 - (29 * player.getLevel()), 0);

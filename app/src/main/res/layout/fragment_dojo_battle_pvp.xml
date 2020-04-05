@@ -79,6 +79,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="5dp"
                             android:layout_marginLeft="5dp"
+                            android:layout_marginBottom="8dp"
                             android:orientation="horizontal">
 
                             <ImageView
@@ -122,6 +123,7 @@
                                 android:id="@+id/nickMeTextView"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_marginBottom="5dp"
                                 android:text="@{viewModel.fighters.player.nick}"
                                 android:textColor="@android:color/white"
                                 android:textSize="10sp"
@@ -273,6 +275,8 @@
                         android:id="@+id/vsLinearLayout"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
+                        android:layout_marginLeft="3dp"
+                        android:layout_marginRight="3dp"
                         android:gravity="center"
                         android:orientation="vertical"
                         android:padding="1dp">
@@ -300,13 +304,6 @@
                             android:paddingRight="4dp"
                             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="@{viewModel.battle.currentPlayer == viewModel.myTurn ? @string/waiting_your_move : @string/wait_opponent_move}"
-                            android:textColor="@android:color/holo_orange_dark"
-                            android:textSize="8sp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -321,6 +318,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="5dp"
                             android:layout_marginRight="5dp"
+                            android:layout_marginBottom="8dp"
                             android:gravity="end"
                             android:orientation="horizontal">
 
@@ -365,6 +363,7 @@
                                 android:id="@+id/oppNickTextView"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_marginBottom="5dp"
                                 android:text="@{viewModel.fighters.opponent.nick}"
                                 android:textColor="@android:color/white"
                                 android:textSize="10sp"
@@ -514,14 +513,26 @@
                     android:id="@+id/jutsusBarImageView"
                     android:layout_width="0dp"
                     android:layout_height="40dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginLeft="16dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
                     android:layout_marginTop="8dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginRight="16dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginRight="10dp"
                     android:scaleType="fitXY"
                     android:src="@drawable/layout_titulo_secao3"
                     app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/movementTextView" />
+
+                <TextView
+                    android:id="@+id/movementTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/waiting_your_move"
+                    android:textColor="#ff7d1c"
+                    android:textSize="8sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/infoFightersLinearLayout" />

@@ -18,8 +18,6 @@ import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.PopupWindow;
 
 import com.gutotech.narutogame.R;
@@ -37,6 +35,7 @@ import com.gutotech.narutogame.ui.adapter.JutsusAdapter;
 import com.gutotech.narutogame.ui.playing.currentvillage.VillageMapFragment;
 import com.gutotech.narutogame.utils.FragmentUtil;
 import com.gutotech.narutogame.data.firebase.StorageUtils;
+import com.gutotech.narutogame.utils.SpannableStringBuilderCustom;
 
 public class DojoBattlePvpFragment extends Fragment implements SectionFragment {
     private FragmentDojoBattlePvpBinding mBinding;
@@ -58,20 +57,22 @@ public class DojoBattlePvpFragment extends Fragment implements SectionFragment {
         mBinding.classJutsusButton.setText(CharOn.character.getClasse().name.substring(0, 3));
 
         mBinding.myStatusImageView.setOnClickListener(v ->
-                showStatus(v, mViewModel.getPlayerFormulas()));
+                showStatus(v, mViewModel.getPlayerFormulas())
+        );
 
         mBinding.oppStatusImageView.setOnClickListener(v ->
-                showStatus(v, mViewModel.getOppFormulas()));
+                showStatus(v, mViewModel.getOppFormulas())
+        );
 
         mBinding.myBuffsDebuffsStatusRecyclerView.setHasFixedSize(true);
         BuffsDebuffStatusAdapter adapter = new BuffsDebuffStatusAdapter(getContext());
         mBinding.myBuffsDebuffsStatusRecyclerView.setAdapter(adapter);
-        mViewModel.getMyBuffsDebuffsStatus().observe(getViewLifecycleOwner(), adapter::setBuffsDebuffsList);
+        mViewModel.getmPlayerBuffsDebuffsStatus().observe(getViewLifecycleOwner(), adapter::setBuffsDebuffsList);
 
         mBinding.oppBuffsDebuffsStatusRecyclerView.setHasFixedSize(true);
         BuffsDebuffStatusAdapter adapter2 = new BuffsDebuffStatusAdapter(getContext());
         mBinding.oppBuffsDebuffsStatusRecyclerView.setAdapter(adapter2);
-        mViewModel.getOppBuffsDebuffsStatus().observe(getViewLifecycleOwner(), adapter2::setBuffsDebuffsList);
+        mViewModel.getmOppBuffsDebuffsStatus().observe(getViewLifecycleOwner(), adapter2::setBuffsDebuffsList);
 
         mBinding.battleLogRecyclerView.setHasFixedSize(true);
         BattleLogAdapter logAdapter = new BattleLogAdapter(getActivity(), this::showJutsuInfo);
@@ -90,26 +91,17 @@ public class DojoBattlePvpFragment extends Fragment implements SectionFragment {
 
         mViewModel.getShowWarningDialogEvent().observe(getViewLifecycleOwner(), this::showWarningDialog);
 
-        mViewModel.getStartAnimationEvent().observe(getViewLifecycleOwner(), view -> {
-            Animation animation = AnimationUtils.loadAnimation(getActivity(), R.anim.fade_out);
-            view.startAnimation(animation);
-        });
-
         mBinding.battleResultLayout.descriptionTextView.setMovementMethod(
                 LinkMovementMethod.getInstance());
 
         mViewModel.getShowWonEvent().observe(getViewLifecycleOwner(), rewards -> {
-            SpannableStringBuilder description = new SpannableStringBuilder();
+            SpannableStringBuilderCustom description = new SpannableStringBuilderCustom(getContext());
             description.append(getString(R.string.combat_won_description, rewards[0], rewards[1]));
+            description.append("\n\n\n");
+            description.append(R.string.go_to_back);
             description.append(" ");
-            int length = description.length();
-
             description.append(CharOn.character.battleId.contains("MAP-PVP") ?
-                    getString(R.string.village_map) : getString(R.string.dojo));
-
-            description.setSpan(new ForegroundColorSpan(Color.BLUE), length, description.length(),
-                    Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
-
+                    R.string.village_map : R.string.dojo, android.R.color.holo_blue_light);
             description.setSpan(new ClickableSpan() {
                 @Override
                 public void onClick(@NonNull View widget) {
@@ -121,11 +113,10 @@ public class DojoBattlePvpFragment extends Fragment implements SectionFragment {
                         FragmentUtil.goTo(getActivity(), new DojoFragment());
                     }
                 }
-            }, length, description.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+            });
+            description.append(R.string.training_points_for_your_participation);
 
-            description.append(getString(R.string.training_points_for_your_participation));
-
-            showBattleResult(R.string.end_of_the_battle, description);
+            showBattleResult(R.string.end_of_the_battle, description.builder());
         });
 
         mViewModel.getShowLostEvent().observe(getViewLifecycleOwner(), aVoid -> {
@@ -191,7 +182,7 @@ public class DojoBattlePvpFragment extends Fragment implements SectionFragment {
             showBattleResult(R.string.too_bad, description);
         });
 
-        FragmentUtil.setSectionTitle(getActivity(), R.string.dojo_challenge);
+        FragmentUtil.setSectionTitle(getActivity(), R.string.section_dojo);
         return mBinding.getRoot();
     }
 
@@ -232,6 +223,11 @@ public class DojoBattlePvpFragment extends Fragment implements SectionFragment {
         mBinding.battleResultLayout.descriptionTextView.setText(description);
         mBinding.battleResultLayout.msgConstraintLayout.setVisibility(View.VISIBLE);
         mBinding.myJutsusRecyclerView.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
     }
 
     @Override
