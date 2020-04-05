@@ -12,18 +12,17 @@ import com.google.firebase.database.MutableData;
 import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
 import com.gutotech.narutogame.data.firebase.FirebaseConfig;
+import com.gutotech.narutogame.data.model.Ninja;
 import com.gutotech.narutogame.data.model.NinjaStatistics;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class NinjaStatisticsRepository {
     private static NinjaStatisticsRepository sInstance;
 
-    private DatabaseReference ninjaStatisticsRef;
-
     private NinjaStatisticsRepository() {
-        ninjaStatisticsRef = FirebaseConfig.getDatabase().child("ninja-statistics");
     }
 
     public static NinjaStatisticsRepository getInstance() {
@@ -33,23 +32,26 @@ public class NinjaStatisticsRepository {
         return sInstance;
     }
 
-    public void add(int ninjaId) {
+    public void add(Ninja ninja) {
         DatabaseReference ninjaStatisticsRef = FirebaseConfig.getDatabase()
                 .child("ninja-statistics")
-                .child(String.valueOf(ninjaId));
+                .child(String.valueOf(ninja.getId()));
 
         ninjaStatisticsRef.runTransaction(new Transaction.Handler() {
             @NonNull
             @Override
             public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
-                NinjaStatistics ninjaStatistics = mutableData.getValue(NinjaStatistics.class);
+                NinjaStatistics ninjaStatistics = new NinjaStatistics(ninja);
 
-                if (ninjaStatistics == null) {
-                    return Transaction.success(mutableData);
+                if (mutableData.getValue() != null) {
+                    ninjaStatistics = mutableData.getValue(NinjaStatistics.class);
+
+                    if (ninjaStatistics == null) {
+                        return Transaction.success(mutableData);
+                    }
                 }
 
                 ninjaStatistics.totalPlayers++;
-
                 mutableData.setValue(ninjaStatistics);
 
                 return Transaction.success(mutableData);
@@ -77,15 +79,20 @@ public class NinjaStatisticsRepository {
                     return Transaction.success(mutableData);
                 }
 
-                if (ninjaStatistics.totalPlayers > 0) {
-                    ninjaStatistics.totalPlayers--;
+                ninjaStatistics.totalPlayers--;
+
+                if (ninjaStatistics.totalPlayers == 0) {
+                    ninjaStatistics = null;
                 }
+
+                mutableData.setValue(ninjaStatistics);
 
                 return Transaction.success(mutableData);
             }
 
             @Override
-            public void onComplete(@Nullable DatabaseError databaseError, boolean b, @Nullable DataSnapshot dataSnapshot) {
+            public void onComplete(@Nullable DatabaseError databaseError, boolean b,
+                                   @Nullable DataSnapshot dataSnapshot) {
             }
         });
     }
@@ -95,11 +102,11 @@ public class NinjaStatisticsRepository {
 
         List<NinjaStatistics> ninjaStatisticsList = new ArrayList<>();
 
-        ninjaStatisticsRef.addValueEventListener(new ValueEventListener() {
+        DatabaseReference ninjaStatisticsRef = FirebaseConfig.getDatabase().child("ninja-statistics");
+
+        ninjaStatisticsRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                ninjaStatisticsList.clear();
-
                 for (DataSnapshot data : dataSnapshot.getChildren()) {
                     NinjaStatistics ninjaStatistics = data.getValue(NinjaStatistics.class);
 
@@ -107,6 +114,13 @@ public class NinjaStatisticsRepository {
                         ninjaStatisticsList.add(ninjaStatistics);
                     }
                 }
+
+                Collections.sort(ninjaStatisticsList, (ninja1, ninja2) -> {
+                    if (ninja1.totalPlayers == ninja2.totalPlayers) {
+                        return 0;
+                    }
+                    return ninja1.totalPlayers > ninja2.totalPlayers ? -1 : 1;
+                });
 
                 data.postValue(ninjaStatisticsList);
             }

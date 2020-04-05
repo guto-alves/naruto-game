@@ -11,5 +11,6 @@ public class NinjaStatistics {
     public NinjaStatistics(Ninja ninja) {
         ninjaId = ninja.getId();
         name = ninja.getName();
+        totalPlayers = 0;
     }
 }

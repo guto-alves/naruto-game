@@ -22,6 +22,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.EnumSet;
 import java.util.List;
+import java.util.Locale;
 
 public class VipPlayerViewModel extends ViewModel {
     public final int PRICE_TO_CHANGE_NAME = 2000;
@@ -141,11 +142,12 @@ public class VipPlayerViewModel extends ViewModel {
         if (makePayment(PRICE_TO_CHANGE_CHARACTER, mCharacter.getRyous())) {
             Ninja newNinja = mNinjas.get(mNinjaSelectedIndex);
 
-            NinjaStatisticsRepository.getInstance().add(newNinja.getId());
+            NinjaStatisticsRepository.getInstance().add(newNinja);
             NinjaStatisticsRepository.getInstance().remove(mCharacter.getNinja().getId());
 
             mCharacter.setNinja(newNinja);
-            mCharacter.setProfilePath(String.format("images/profile/%d/1.png", newNinja.getId()));
+            mCharacter.setProfilePath(String.format(Locale.US,
+                    "images/profile/%d/1.png", newNinja.getId()));
 
             mShowSuccessMessageEvent.setValue(R.string.character_change);
         }

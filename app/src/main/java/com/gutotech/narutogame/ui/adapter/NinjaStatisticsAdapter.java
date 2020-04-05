@@ -30,11 +30,9 @@ public class NinjaStatisticsAdapter extends RecyclerView.Adapter<NinjaStatistics
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-
             imageView = itemView.findViewById(R.id.imageView);
             nameTextView = itemView.findViewById(R.id.nameTextView);
             totalPlayersTextView = itemView.findViewById(R.id.totalPlayersTextView);
-
             bgLinear = itemView.findViewById(R.id.bgLinear);
         }
     }
@@ -59,7 +57,8 @@ public class NinjaStatisticsAdapter extends RecyclerView.Adapter<NinjaStatistics
         if (mNinjaStatisticsList != null) {
             NinjaStatistics ninjaStatistics = mNinjaStatisticsList.get(i);
 
-            StorageReference imageRef = FirebaseConfig.getStorage().child("images").child("home")
+            StorageReference imageRef = FirebaseConfig.getStorage()
+                    .child("images/home")
                     .child(ninjaStatistics.ninjaId + ".jpg");
             StorageUtils.downloadImage(mContext, imageRef, myViewHolder.imageView);
 
@@ -68,9 +67,11 @@ public class NinjaStatisticsAdapter extends RecyclerView.Adapter<NinjaStatistics
                     ninjaStatistics.totalPlayers));
 
             if (i / 2 % 2 == 1) {
-                myViewHolder.bgLinear.setBackgroundColor(mContext.getResources().getColor(R.color.colorItem2));
+                myViewHolder.bgLinear.setBackgroundColor(
+                        mContext.getResources().getColor(R.color.colorItem2));
             } else {
-                myViewHolder.bgLinear.setBackgroundColor(mContext.getResources().getColor(R.color.colorItem1));
+                myViewHolder.bgLinear.setBackgroundColor(
+                        mContext.getResources().getColor(R.color.colorItem1));
             }
         }
     }

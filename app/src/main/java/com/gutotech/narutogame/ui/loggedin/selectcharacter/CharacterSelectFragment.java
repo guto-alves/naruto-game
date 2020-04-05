@@ -80,10 +80,10 @@ public class CharacterSelectFragment extends Fragment implements SectionFragment
         return mBinding.getRoot();
     }
 
-
     @Override
-    public int getDescription() {
-        return R.string.select_character;
+    public void onCharacterSelected(Character character) {
+        mBinding.setCharacterSelected(character);
+        mViewModel.setCharacterSelected(character);
     }
 
     @Override
@@ -102,8 +102,7 @@ public class CharacterSelectFragment extends Fragment implements SectionFragment
     }
 
     @Override
-    public void onCharacterSelected(Character character) {
-        mBinding.setCharacterSelected(character);
-        mViewModel.setCharacterSelected(character);
+    public int getDescription() {
+        return R.string.select_character;
     }
 }

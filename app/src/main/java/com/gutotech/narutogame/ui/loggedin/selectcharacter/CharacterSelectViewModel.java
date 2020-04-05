@@ -13,6 +13,7 @@ import com.gutotech.narutogame.data.repository.AuthRepository;
 import com.gutotech.narutogame.data.repository.CharacterRepository;
 import com.gutotech.narutogame.data.repository.NinjaLuckyRepository;
 import com.gutotech.narutogame.data.repository.NinjaStatisticsRepository;
+import com.gutotech.narutogame.data.repository.TeamRepository;
 import com.gutotech.narutogame.ui.ResultListener;
 import com.gutotech.narutogame.utils.SingleLiveEvent;
 
@@ -21,7 +22,7 @@ import java.util.List;
 public class CharacterSelectViewModel extends ViewModel {
     private Character mCharacterSelected;
 
-    private CharacterRepository mRepository = CharacterRepository.getInstance();
+    private CharacterRepository mCharRepository = CharacterRepository.getInstance();
 
     private ResultListener mListener;
 
@@ -32,6 +33,7 @@ public class CharacterSelectViewModel extends ViewModel {
 
     public void onPlayButtonPressed() {
         if (mCharacterSelected != null) {
+            TeamRepository.getInstance().removeMyTeamChangeListener();
             CharOn.character = mCharacterSelected;
             mListener.onSuccess();
         } else {
@@ -64,8 +66,8 @@ public class CharacterSelectViewModel extends ViewModel {
     }
 
     private void deleteCharacterSelected() {
-        mRepository.delete(mCharacterSelected.getId());
-        NinjaLuckyRepository.getInstance().delete(mCharacterSelected.getNick());
+        mCharRepository.delete(mCharacterSelected.getId());
+        NinjaLuckyRepository.getInstance().delete(mCharacterSelected.getId());
         NinjaStatisticsRepository.getInstance().remove(mCharacterSelected.getNinja().getId());
     }
 
@@ -75,7 +77,7 @@ public class CharacterSelectViewModel extends ViewModel {
     }
 
     LiveData<List<Character>> getCharactersList() {
-        return mRepository.getMyCharacters(AuthRepository.getInstance().getUid());
+        return mCharRepository.getMyCharacters(AuthRepository.getInstance().getUid());
     }
 
     private Character getCharacterSelected() {

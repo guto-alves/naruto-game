@@ -59,7 +59,7 @@ public class VipPlayerFragment extends Fragment implements SectionFragment {
 
             StorageUtils.downloadProfileForMsg(getContext(), binding.actionResultLayout.profileImageView);
             binding.actionResultLayout.titleTextView.setText(R.string.successfully_done);
-            binding.actionResultLayout.descriptionTextView.setText(builder.getString());
+            binding.actionResultLayout.descriptionTextView.setText(builder.builder());
             binding.actionResultLayout.msgConstraintLayout.setVisibility(View.VISIBLE);
 
             binding.scrollView.post(() -> binding.scrollView.smoothScrollTo(0, 0));

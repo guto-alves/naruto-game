@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.databinding.FragmentPersonagemCriarBinding;
+import com.gutotech.narutogame.ui.ProgressDialogFragment;
 import com.gutotech.narutogame.ui.ResultListener;
 import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.adapter.ChooseNinjaAdapter;
@@ -54,23 +55,28 @@ public class CharacterCreateFragment extends Fragment implements SectionFragment
         alert.show();
     }
 
-    @Override
-    public int getDescription() {
-        return R.string.create_character;
-    }
+    private ProgressDialogFragment mProgressDialog = new ProgressDialogFragment();
 
     @Override
     public void onStarted() {
+        mProgressDialog.openDialog(getParentFragmentManager());
     }
 
     @Override
     public void onSuccess() {
+        mProgressDialog.dismiss();
         showAlert(R.string.ninja_successfully_created, R.string.congratulations_character_created);
         FragmentUtil.goTo(getActivity(), new CharacterSelectFragment());
     }
 
     @Override
     public void onFailure(int resId) {
+        mProgressDialog.dismiss();
         showAlert(R.string.warning, resId);
+    }
+
+    @Override
+    public int getDescription() {
+        return R.string.create_character;
     }
 }

@@ -31,7 +31,6 @@ import java.util.UUID;
 public class CharacterCreateViewModel extends ViewModel
         implements ChooseNinjaAdapter.NinjaListener {
     public final ObservableInt currentGroupIndex = new ObservableInt(0);
-
     public final ObservableField<Classe> classSelected = new ObservableField<>(Classe.TAI);
 
     private Character mChar;
@@ -70,13 +69,16 @@ public class CharacterCreateViewModel extends ViewModel
     @Override
     public void onNinjaClick(Ninja ninja) {
         mChar.setNinja(ninja);
-        mChar.setProfilePath(String.format(Locale.US, "images/profile/%d/1.png", ninja.getId()));
+        mChar.setProfilePath(String.format(Locale.US,
+                "images/profile/%d/1.png", ninja.getId()));
     }
 
     public void onCreateButtonPressed() {
         mChar.setNick(mChar.getNick().trim());
 
         if (isValidNick()) {
+            mListener.onStarted();
+
             mCharacterRepository.checkByRepeatedNick(mChar.getNick().trim(), result -> {
                 if (result) {
                     mChar.setId(UUID.randomUUID().toString());
@@ -86,7 +88,7 @@ public class CharacterCreateViewModel extends ViewModel
                     ninjaLucky.deselectAllDaysPlayed();
                     NinjaLuckyRepository.getInstance().save(mChar.getId(), ninjaLucky);
 
-                    NinjaStatisticsRepository.getInstance().add(mChar.getNinja().getId());
+                    NinjaStatisticsRepository.getInstance().add(mChar.getNinja());
 
                     mListener.onSuccess();
                 } else {
@@ -99,7 +101,6 @@ public class CharacterCreateViewModel extends ViewModel
     private void loadCurrentGroup() {
         int from = currentGroupIndex.get() * 6;
         int to = from + 6;
-
         mCurrentNinjasGroupList.setValue(mAllNinjasList.subList(from, to));
     }
 
@@ -114,7 +115,6 @@ public class CharacterCreateViewModel extends ViewModel
         } else {
             currentGroupIndex.set(19);
         }
-
         loadCurrentGroup();
     }
 
