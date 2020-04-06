@@ -9,7 +9,7 @@ import java.util.List;
 
 public class Battle extends BaseObservable {
     public enum Status {
-        CONTINUE, PLAYER1_WON, PLAYER2_WON, DRAWN
+        CONTINUE, PLAYER1_WON, PLAYER2_WON, PLAYER1_INACTIVATED, PLAYER2_INACTIVATED, DRAWN
     }
 
     private Status status;

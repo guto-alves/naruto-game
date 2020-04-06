@@ -42,7 +42,6 @@
                     android:textColor="@android:color/white"
                     android:textSize="18sp"
                     android:textStyle="bold"
-                    android:typeface="normal"
                     app:fontFamily="casual"
                     app:layout_constraintBottom_toBottomOf="@+id/imageView12"
                     app:layout_constraintStart_toStartOf="@+id/guideline15"

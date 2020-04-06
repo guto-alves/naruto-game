@@ -55,7 +55,7 @@
                 app:layout_constraintStart_toStartOf="parent">
 
                 <LinearLayout
-                    android:id="@+id/MyLinear"
+                    android:id="@+id/playerLinearLayout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="90dp"
@@ -272,7 +272,7 @@
                     android:orientation="vertical"
                     android:padding="1dp"
                     app:layout_constraintEnd_toStartOf="@+id/opponentLinearLayout"
-                    app:layout_constraintStart_toEndOf="@+id/MyLinear"
+                    app:layout_constraintStart_toEndOf="@+id/playerLinearLayout"
                     app:layout_constraintTop_toTopOf="parent">
 
                     <ImageView
@@ -298,14 +298,6 @@
                         android:paddingRight="5dp"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="8dp"
-                        android:gravity="center"
-                        android:text="@{viewModel.battle.currentPlayer == viewModel.myTurn ? @string/waiting_your_move : @string/wait_opponent_move}"
-                        android:textColor="#ff7d1c"
-                        android:textSize="8sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -517,6 +509,19 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </LinearLayout>
 
+
+                <TextView
+                    android:id="@+id/textView67"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@{viewModel.battle.currentPlayer == viewModel.myTurn ? @string/waiting_your_move : @string/wait_opponent_move}"
+                    android:textColor="#ff7d1c"
+                    android:textSize="8sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/vsLinearLayout" />
+
                 <ImageView
                     android:id="@+id/barraMeusJutsusImageView"
                     android:layout_width="0dp"
@@ -531,7 +536,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/vsLinearLayout" />
+                    app:layout_constraintTop_toBottomOf="@id/textView67" />
 
                 <TextView
                     android:id="@+id/textView42"

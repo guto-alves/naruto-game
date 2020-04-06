@@ -19,7 +19,7 @@ import java.util.List;
 
 public class BuffsDebuffStatusAdapter extends RecyclerView.Adapter<BuffsDebuffStatusAdapter.ViewHolder> {
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         private ImageView buffDebuffImageView;
 
         public ViewHolder(@NonNull View itemView) {

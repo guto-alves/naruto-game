@@ -29,6 +29,8 @@ public class VillageMapFragment extends Fragment implements SectionFragment {
 
     private ProgressDialogFragment mProgressDialog = new ProgressDialogFragment();
 
+    private VillageMapAdapter mVillageMapAdapter;
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -44,18 +46,18 @@ public class VillageMapFragment extends Fragment implements SectionFragment {
 
         binding.setViewModel(viewModel);
 
-        VillageMapAdapter adapter = new VillageMapAdapter(getActivity(),
+        mVillageMapAdapter = new VillageMapAdapter(getActivity(),
                 village.placeEntries, viewModel);
 
         binding.villageMapRecyclerView.setHasFixedSize(true);
-        binding.villageMapRecyclerView.setAdapter(adapter);
+        binding.villageMapRecyclerView.setAdapter(mVillageMapAdapter);
 
-        viewModel.getCharactersOnTheMap().observe(getViewLifecycleOwner(), adapter::setMap);
+        viewModel.getCharactersOnTheMap().observe(getViewLifecycleOwner(), mVillageMapAdapter::setMap);
 
         viewModel.getShowWarningDialogEvent().observe(getViewLifecycleOwner(), this::showDialog);
 
         viewModel.getShowProgressDialogEvent().observe(getViewLifecycleOwner(), aVoid ->
-                mProgressDialog.openDialog(getParentFragmentManager()));
+                mProgressDialog.show(getParentFragmentManager(), "ProgressDialogFragment"));
 
         viewModel.getDismissProgressDialogEvent().observe(getViewLifecycleOwner(), aVoid -> {
             if (mProgressDialog.isVisible()) {
@@ -87,6 +89,15 @@ public class VillageMapFragment extends Fragment implements SectionFragment {
         builder.setMessage(messageId);
         builder.setPositiveButton("OK", null);
         builder.create().show();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        mVillageMapAdapter.dismissPopupWindow();
+        if (mProgressDialog.isVisible()) {
+            mProgressDialog.dismiss();
+        }
     }
 
     @Override

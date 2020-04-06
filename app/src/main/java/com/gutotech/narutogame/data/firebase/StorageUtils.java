@@ -9,7 +9,6 @@ import com.bumptech.glide.Glide;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.gutotech.narutogame.data.firebase.FirebaseConfig;
 import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.repository.Callback;
 
@@ -64,16 +63,14 @@ public class StorageUtils {
 
     public static void downloadSmallProfile(Context context, ImageView imageView, int ninjaId) {
         StorageReference imageRef = FirebaseConfig.getStorage()
-                .child("images")
-                .child("criacao")
-                .child("pequenas")
+                .child("images/criacao/pequenas")
                 .child(ninjaId + ".png");
         downloadImage(context, imageRef, imageView);
     }
 
     public static void downloadLotteryItem(ImageView imageView, String image) {
         StorageReference imageRef = FirebaseConfig.getStorage()
-                .child("images/loteria/")
+                .child("images/loteria")
                 .child(image + ".png");
         downloadImage(imageView.getContext(), imageRef, imageView);
     }
@@ -87,48 +84,42 @@ public class StorageUtils {
 
     public static void downloadJutsu(ImageView imageView, String image) {
         StorageReference imageReference = FirebaseConfig.getStorage()
-                .child("images")
-                .child("jutsu")
+                .child("images/jutsu")
                 .child(image);
         downloadImage(imageView.getContext(), imageReference, imageView);
     }
 
     public static void downloadRamen(Context context, ImageView imageView, String image) {
         StorageReference imageReference = FirebaseConfig.getStorage()
-                .child("images")
-                .child("comidas")
+                .child("images/comidas")
                 .child(image + ".jpg");
         downloadImage(context, imageReference, imageView);
     }
 
     public static void downloadScroll(Context context, ImageView imageView, String id) {
         StorageReference imageReference = FirebaseConfig.getStorage()
-                .child("images")
-                .child("pergaminhos")
+                .child("images/pergaminhos")
                 .child(id + ".png");
         downloadImage(context, imageReference, imageView);
     }
 
     public static void downloadTopImage(Context context, ImageView imageView, int ninjaId) {
         StorageReference imageReference = FirebaseConfig.getStorage()
-                .child("images")
-                .child("topo-logado")
+                .child("images/topo-logado")
                 .child(ninjaId + ".jpg");
         downloadImage(context, imageReference, imageView);
     }
 
     public static void downloadFidelityImage(Context context, ImageView imageView, int day) {
         StorageReference imageReference = FirebaseConfig.getStorage()
-                .child("images")
-                .child("fidelity")
+                .child("images/fidelity")
                 .child(day + ".png");
         downloadImage(context, imageReference, imageView);
     }
 
     public static void baixarArmaImage(Context context, ImageView imageView, String name, String alcance) {
         StorageReference imageReference = FirebaseConfig.getStorage()
-                .child("images")
-                .child("armas")
+                .child("images/armas")
                 .child(alcance)
                 .child(name + ".jpg");
         downloadImage(context, imageReference, imageView);
@@ -136,24 +127,21 @@ public class StorageUtils {
 
     public static void downloadDojo(Context context, ImageView imageView, int ninjaId) {
         StorageReference imageReference = FirebaseConfig.getStorage()
-                .child("images")
-                .child("dojo")
+                .child("images/dojo")
                 .child(ninjaId + ".png");
         downloadImage(context, imageReference, imageView);
     }
 
     public static void downloadKageImage(Context context, ImageView imageView, int ninjaId) {
         StorageReference imageReference = FirebaseConfig.getStorage()
-                .child("images")
-                .child("home")
+                .child("images/home")
                 .child(ninjaId + ".jpg");
         downloadImage(context, imageReference, imageView);
     }
 
     public static void downloadTeamImage(Context context, ImageView imageView, String path) {
         StorageReference imageReference = FirebaseConfig.getStorage()
-                .child("images")
-                .child("teams")
+                .child("images/teams")
                 .child(path);
         downloadImage(context, imageReference, imageView);
     }
@@ -176,8 +164,7 @@ public class StorageUtils {
         final String imageName = UUID.randomUUID().toString() + ".png";
 
         StorageReference imageRef = FirebaseConfig.getStorage()
-                .child("images")
-                .child("tickets")
+                .child("images/tickets")
                 .child(imageName);
 
         UploadTask uploadTask = imageRef.putBytes(bytes);
@@ -196,8 +183,7 @@ public class StorageUtils {
         final String imageName = UUID.randomUUID().toString() + ".png";
 
         StorageReference imageRef = FirebaseConfig.getStorage()
-                .child("images")
-                .child("teams")
+                .child("images/teams")
                 .child(imageName);
 
         UploadTask uploadTask = imageRef.putBytes(bytes);

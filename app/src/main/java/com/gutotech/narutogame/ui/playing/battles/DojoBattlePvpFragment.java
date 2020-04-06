@@ -92,94 +92,83 @@ public class DojoBattlePvpFragment extends Fragment implements SectionFragment {
         mViewModel.getShowWarningDialogEvent().observe(getViewLifecycleOwner(), this::showWarningDialog);
 
         mBinding.battleResultLayout.descriptionTextView.setMovementMethod(
-                LinkMovementMethod.getInstance());
+                LinkMovementMethod.getInstance()
+        );
 
         mViewModel.getShowWonEvent().observe(getViewLifecycleOwner(), rewards -> {
             SpannableStringBuilderCustom description = new SpannableStringBuilderCustom(getContext());
             description.append(getString(R.string.combat_won_description, rewards[0], rewards[1]));
-            description.append("\n\n\n");
-            description.append(R.string.go_to_back);
-            description.append(" ");
+            description.append();
             description.append(CharOn.character.battleId.contains("MAP-PVP") ?
-                    R.string.village_map : R.string.dojo, android.R.color.holo_blue_light);
-            description.setSpan(new ClickableSpan() {
-                @Override
-                public void onClick(@NonNull View widget) {
-                    mViewModel.exit();
+                            R.string.village_map : R.string.dojo,
+                    new ForegroundColorSpan(Color.BLUE),
+                    new ClickableSpan() {
+                        @Override
+                        public void onClick(@NonNull View widget) {
+                            mViewModel.exit();
 
-                    if (CharOn.character.battleId.contains("MAP-PVP")) {
-                        FragmentUtil.goTo(getActivity(), new VillageMapFragment());
-                    } else {
-                        FragmentUtil.goTo(getActivity(), new DojoFragment());
-                    }
-                }
-            });
+                            if (CharOn.character.battleId.contains("MAP-PVP")) {
+                                FragmentUtil.goTo(getActivity(), new VillageMapFragment());
+                            } else {
+                                FragmentUtil.goTo(getActivity(), new DojoFragment());
+                            }
+                        }
+                    });
             description.append(R.string.training_points_for_your_participation);
 
-            showBattleResult(R.string.end_of_the_battle, description.builder());
+            showBattleResult(R.string.end_of_the_battle, description.getStringBuilder());
         });
 
         mViewModel.getShowLostEvent().observe(getViewLifecycleOwner(), aVoid -> {
-            SpannableStringBuilder description = new SpannableStringBuilder();
-            description.append(getString(R.string.you_have_lost_the_battle));
-            description.append(" ");
-            int length = description.length();
-            description.append("Hospital");
-            description.setSpan(new ForegroundColorSpan(Color.BLUE), length, description.length(),
-                    Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
-            description.setSpan(
+            SpannableStringBuilderCustom description = new SpannableStringBuilderCustom(getContext());
+            description.append(R.string.you_have_lost_the_battle);
+            description.append();
+            description.append(R.string.hospital,
+                    new ForegroundColorSpan(Color.BLUE),
                     new ClickableSpan() {
                         @Override
                         public void onClick(@NonNull View widget) {
                             mViewModel.exit();
                             CharOn.character.setHospital(true);
                         }
-                    }, length, description.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+                    });
             description.append(getString(R.string.training_points_for_your_participation));
 
-            showBattleResult(R.string.too_bad, description);
+            showBattleResult(R.string.too_bad, description.getStringBuilder());
         });
 
         mViewModel.getShowDrawnEvent().observe(getViewLifecycleOwner(), aVoid -> {
-            SpannableStringBuilder description = new SpannableStringBuilder();
+            SpannableStringBuilderCustom description = new SpannableStringBuilderCustom(getContext());
             description.append(getString(R.string.drawn_description));
-            description.append(" ");
-            int length = description.length();
-            description.append("Hospital");
-            description.setSpan(new ForegroundColorSpan(Color.BLUE), length, description.length(),
-                    Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
-            description.setSpan(
+            description.append();
+            description.append(R.string.hospital,
+                    new ForegroundColorSpan(Color.BLUE),
                     new ClickableSpan() {
                         @Override
                         public void onClick(@NonNull View widget) {
                             mViewModel.exit();
                             CharOn.character.setHospital(true);
                         }
-                    }, length, description.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+                    });
 
-            showBattleResult(R.string.empate, description);
+            showBattleResult(R.string.empate, description.getStringBuilder());
         });
 
         mViewModel.getShowInactivatedEvent().observe(getViewLifecycleOwner(), aVoid -> {
-            SpannableStringBuilder description = new SpannableStringBuilder();
-            description.append(getString(R.string.lost_by_inactivity));
-            int length = description.length();
-            description.append(getString(R.string.click_here));
-            description.setSpan(new ForegroundColorSpan(Color.BLUE), length, description.length(),
-                    Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
-            description.setSpan(
+            SpannableStringBuilderCustom description = new SpannableStringBuilderCustom(getContext());
+            description.append(R.string.lost_by_inactivity);
+            description.append(R.string.click_here,
+                    new ForegroundColorSpan(Color.BLUE),
                     new ClickableSpan() {
                         @Override
                         public void onClick(@NonNull View widget) {
                             mViewModel.exit();
                             CharOn.character.setHospital(true);
                         }
-                    }, length, description.length(),
-                    Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
-            description.append(" ");
-            description.append(getString(R.string.to_preceed));
-
-            showBattleResult(R.string.too_bad, description);
+                    });
+            description.append();
+            description.append(R.string.to_preceed);
+            showBattleResult(R.string.too_bad, description.getStringBuilder());
         });
 
         FragmentUtil.setSectionTitle(getActivity(), R.string.section_dojo);
@@ -218,16 +207,13 @@ public class DojoBattlePvpFragment extends Fragment implements SectionFragment {
     }
 
     private void showBattleResult(@StringRes int title, SpannableStringBuilder description) {
-        StorageUtils.downloadProfileForMsg(getActivity(), mBinding.battleResultLayout.profileImageView);
-        mBinding.battleResultLayout.titleTextView.setText(title);
-        mBinding.battleResultLayout.descriptionTextView.setText(description);
-        mBinding.battleResultLayout.msgConstraintLayout.setVisibility(View.VISIBLE);
-        mBinding.myJutsusRecyclerView.setVisibility(View.GONE);
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
+        if (mBinding.battleResultLayout.msgConstraintLayout.getVisibility() == View.GONE) {
+            StorageUtils.downloadProfileForMsg(getActivity(), mBinding.battleResultLayout.profileImageView);
+            mBinding.battleResultLayout.titleTextView.setText(title);
+            mBinding.battleResultLayout.descriptionTextView.setText(description);
+            mBinding.battleResultLayout.msgConstraintLayout.setVisibility(View.VISIBLE);
+            mBinding.myJutsusRecyclerView.setVisibility(View.GONE);
+        }
     }
 
     @Override

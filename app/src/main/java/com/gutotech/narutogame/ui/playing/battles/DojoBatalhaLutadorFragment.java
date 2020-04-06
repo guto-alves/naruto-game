@@ -35,6 +35,7 @@ import com.gutotech.narutogame.ui.adapter.BuffsDebuffStatusAdapter;
 import com.gutotech.narutogame.ui.adapter.JutsusAdapter;
 import com.gutotech.narutogame.utils.FragmentUtil;
 import com.gutotech.narutogame.data.firebase.StorageUtils;
+import com.gutotech.narutogame.utils.SpannableStringBuilderCustom;
 
 public class DojoBatalhaLutadorFragment extends Fragment implements SectionFragment {
     private FragmentDojoBatalhaLutadorBinding mBinding;
@@ -95,87 +96,76 @@ public class DojoBatalhaLutadorFragment extends Fragment implements SectionFragm
             mViewModel.showWarningDialogEvent.observe(getViewLifecycleOwner(), this::showWarningDialog);
 
             mBinding.battleResultLayout.descriptionTextView.setMovementMethod(
-                    LinkMovementMethod.getInstance());
+                    LinkMovementMethod.getInstance()
+            );
 
             mViewModel.showWonEvent.observe(getViewLifecycleOwner(), rewards -> {
-                SpannableStringBuilder description = new SpannableStringBuilder();
+                SpannableStringBuilderCustom description = new SpannableStringBuilderCustom(getContext());
                 description.append(getString(R.string.combat_won_description, rewards[0], rewards[1]));
-                description.append(" ");
-                int length = description.length();
-                description.append("Dojo");
-                description.setSpan(new ForegroundColorSpan(Color.BLUE), length, description.length(),
-                        Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
-                description.setSpan(new ClickableSpan() {
-                    @Override
-                    public void onClick(@NonNull View widget) {
-                        mViewModel.exit();
-                        FragmentUtil.goTo(getActivity(), new DojoFragment());
-                    }
-                }, length, description.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+                description.append();
+                description.append(R.string.dojo,
+                        new ForegroundColorSpan(Color.BLUE),
+                        new ClickableSpan() {
+                            @Override
+                            public void onClick(@NonNull View widget) {
+                                mViewModel.exit();
+                                FragmentUtil.goTo(getActivity(), new DojoFragment());
+                            }
+                        });
 
-                showBattleResult(R.string.end_of_the_battle, description);
+                showBattleResult(R.string.end_of_the_battle, description.getStringBuilder());
             });
 
             mViewModel.showLostEvent.observe(getViewLifecycleOwner(), aVoid -> {
-                SpannableStringBuilder description = new SpannableStringBuilder();
-                description.append(getString(R.string.you_have_lost_the_battle));
+                SpannableStringBuilderCustom description = new SpannableStringBuilderCustom(getContext());
+                description.append(R.string.you_have_lost_the_battle);
                 description.append(" ");
-                int length = description.length();
-                description.append("Hospital");
-                description.setSpan(new ForegroundColorSpan(Color.BLUE), length, description.length(),
-                        Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
-                description.setSpan(
+                description.append(R.string.hospital,
+                        new ForegroundColorSpan(Color.BLUE),
                         new ClickableSpan() {
                             @Override
                             public void onClick(@NonNull View widget) {
                                 mViewModel.exit();
                                 CharOn.character.setHospital(true);
                             }
-                        }, length, description.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+                        });
 
-                showBattleResult(R.string.too_bad, description);
+                showBattleResult(R.string.too_bad, description.getStringBuilder());
             });
 
             mViewModel.showDrawnEvent.observe(getViewLifecycleOwner(), aVoid -> {
-                SpannableStringBuilder description = new SpannableStringBuilder();
-                description.append(getString(R.string.drawn_description));
+                SpannableStringBuilderCustom description = new SpannableStringBuilderCustom(getContext());
+                description.append(R.string.drawn_description);
                 description.append(" ");
-                int length = description.length();
-                description.append("Hospital");
-                description.setSpan(new ForegroundColorSpan(Color.BLUE), length, description.length(),
-                        Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
-                description.setSpan(
+                description.append(R.string.hospital,
+                        new ForegroundColorSpan(Color.BLUE),
                         new ClickableSpan() {
                             @Override
                             public void onClick(@NonNull View widget) {
                                 mViewModel.exit();
                                 CharOn.character.setHospital(true);
                             }
-                        }, length, description.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+                        });
 
-                showBattleResult(R.string.empate, description);
+                showBattleResult(R.string.empate, description.getStringBuilder());
             });
 
             mViewModel.showInactivatedEvent.observe(getViewLifecycleOwner(), aVoid -> {
-                SpannableStringBuilder description = new SpannableStringBuilder();
-                description.append(getString(R.string.lost_by_inactivity));
-                int length = description.length();
-                description.append(getString(R.string.click_here));
-                description.setSpan(new ForegroundColorSpan(Color.BLUE), length, description.length(),
-                        Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
-                description.setSpan(
+                SpannableStringBuilderCustom description = new SpannableStringBuilderCustom(getContext());
+                description.append(R.string.lost_by_inactivity);
+                description.append(R.string.click_here,
+                        new ForegroundColorSpan(Color.BLUE),
                         new ClickableSpan() {
                             @Override
                             public void onClick(@NonNull View widget) {
                                 mViewModel.exit();
                                 CharOn.character.setHospital(true);
                             }
-                        }, length, description.length(),
-                        Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+                        });
                 description.append(" ");
                 description.append(getString(R.string.to_preceed));
 
-                showBattleResult(R.string.too_bad, description);
+                showBattleResult(R.string.too_bad, description.getStringBuilder());
             });
         });
 

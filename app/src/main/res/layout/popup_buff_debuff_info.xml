@@ -18,7 +18,7 @@
         android:fillViewport="true">
 
         <LinearLayout
-            android:layout_width="200dp"
+            android:layout_width="215dp"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_popup"
             android:orientation="vertical"

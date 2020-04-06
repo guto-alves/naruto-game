@@ -52,7 +52,8 @@ public class ProfilesAdapter extends RecyclerView.Adapter<ProfilesAdapter.ViewHo
                     holder.profileImageView);
 
             holder.itemView.setOnClickListener(v ->
-                    mOnProfileClickListener.onProfileClick(storageReference.getPath()));
+                    mOnProfileClickListener.onProfileClick(storageReference.getPath())
+            );
         }
     }
 

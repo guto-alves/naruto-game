@@ -166,13 +166,11 @@ public class DojoBattlePvpViewModel extends AndroidViewModel
             public void onFinish() {
                 countDown.set("--:--");
 
-                int currentPlayer = mBattle.getCurrentPlayer();
-
-                if (currentPlayer != myTurn) {
-                    mBattle.setStatus(myTurn == 1 ? Battle.Status.PLAYER1_WON : Battle.Status.PLAYER2_WON);
-                } else {
-                    mBattle.setStatus(myTurn == 1 ? Battle.Status.PLAYER2_WON : Battle.Status.PLAYER1_WON);
+                if (mBattle.getCurrentPlayer() == myTurn) {
+                    mBattle.setStatus(myTurn == 1 ? Battle.Status.PLAYER1_INACTIVATED : Battle.Status.PLAYER2_INACTIVATED);
                     mPlayerFormulas.setCurrentHealth(0);
+                } else {
+                    mBattle.setStatus(myTurn == 1 ? Battle.Status.PLAYER1_WON : Battle.Status.PLAYER2_WON);
                 }
 
                 saveBattle();
@@ -266,9 +264,11 @@ public class DojoBattlePvpViewModel extends AndroidViewModel
         formulas.setAccuracy(formulas.getAccuracy() - buffOrDebuff.getAccuracy());
     }
 
+    private boolean awaitingShiftChange = false;
+
     @Override
     public void onJutsuClick(Jutsu jutsu) {
-        if (mBattle.getCurrentPlayer() != myTurn) {
+        if (mBattle.getCurrentPlayer() != myTurn || awaitingShiftChange) {
             showWarningDialogEvent.setValue(R.string.it_is_not_your_turn_to_attack);
             return;
         }
@@ -287,6 +287,8 @@ public class DojoBattlePvpViewModel extends AndroidViewModel
         JutsuInfo playerJutsuInfo = jutsu.getJutsuInfo();
 
         if (playerJutsuInfo.type == Jutsu.Type.ATK || playerJutsuInfo.type == Jutsu.Type.DEF) {
+            awaitingShiftChange = true;
+
             if (myTurn == 2) {
                 executeAttacks(jutsu, playerJutsuInfo, mBattle.getJutsuBuffer(),
                         mBattle.getJutsuBuffer().getJutsuInfo());
@@ -302,6 +304,7 @@ public class DojoBattlePvpViewModel extends AndroidViewModel
                     mBattle.setAttackStart(currentTimestamp);
                     saveBattle();
                     startTimer(TIME_TO_ATTACK);
+                    awaitingShiftChange = false;
                 });
             }
         } else if (!buffOrDebuffUsed(playerJutsuInfo.type)) {
@@ -345,7 +348,11 @@ public class DojoBattlePvpViewModel extends AndroidViewModel
 
         if (mBattle.getStatus() == Battle.Status.CONTINUE) {
             int jutsuIndex = mAllJutsus.indexOf(jutsu);
-            jutsu.setRemainingIntervals(jutsu.getUsageInterval() - 1);
+            if (playerJutsuInfo.type == Jutsu.Type.BUFF || playerJutsuInfo.type == Jutsu.Type.DEBUFF) {
+                jutsu.setRemainingIntervals(jutsu.getUsageInterval());
+            } else {
+                jutsu.setRemainingIntervals(jutsu.getUsageInterval() - 1);
+            }
             mAllJutsus.set(jutsuIndex, jutsu);
             mFighters.getPlayer().setJutsus(mAllJutsus);
         }
@@ -371,8 +378,8 @@ public class DojoBattlePvpViewModel extends AndroidViewModel
         boolean myMissed = missedTheJutsu(myChanceOfError);
         boolean oppMissed = missedTheJutsu(oppChanceOfError);
 
-        int myDamage = calcuteDamage(myJutsu, myJutsuInfo, mPlayerFormulas, mOppFormulas);
-        int oppDamage = calcuteDamage(oppJutsu, oppJutsuInfo, mOppFormulas, mPlayerFormulas);
+        int myDamage = calculateDamage(myJutsu, myJutsuInfo, mPlayerFormulas, mOppFormulas);
+        int oppDamage = calculateDamage(oppJutsu, oppJutsuInfo, mOppFormulas, mPlayerFormulas);
 
         if (!myMissed && !oppMissed) {
             if (myDamage > 0 && oppDamage > 0) {
@@ -447,8 +454,8 @@ public class DojoBattlePvpViewModel extends AndroidViewModel
         return n < chanceOfError;
     }
 
-    private int calcuteDamage(Jutsu jutsu, JutsuInfo jutsuInfo, Formulas myFormulas,
-                              Formulas mOppFormulas) {
+    private int calculateDamage(Jutsu jutsu, JutsuInfo jutsuInfo, Formulas myFormulas,
+                                Formulas mOppFormulas) {
         int damage;
 
         if (jutsuInfo.type == Jutsu.Type.ATK) {
@@ -491,15 +498,15 @@ public class DojoBattlePvpViewModel extends AndroidViewModel
             mShowDrawnEvent.call();
         } else if ((mBattle.getStatus() == Battle.Status.PLAYER1_WON && myTurn == 1) ||
                 (mBattle.getStatus() == Battle.Status.PLAYER2_WON && myTurn == 2)) {
-            int earnedRyous;
-            int earnedExp;
+            int earnedRyous = 0;
+            int earnedExp = 0;
 
             if (CharOn.character.battleId.contains("MAP-PVP")) {
-                earnedExp = 15 * mFighters.getPlayer().getLevel() + 100;
-                earnedRyous = 10 * mFighters.getPlayer().getLevel() + 150;
-            } else {
-                earnedExp = Math.max(344 - (29 * mFighters.getPlayer().getLevel()), 0);
-                earnedRyous = 100;
+                earnedRyous = 16 * mFighters.getPlayer().getLevel() + 250;
+                earnedExp = 16 * mFighters.getPlayer().getLevel() + 150;
+            } else if (CharOn.character.getGraduationId() == 1) { // Dojo PVP
+                earnedRyous = 10 * CharOn.character.getLevel() + 100;
+                earnedExp = Math.max(300 - 20 * CharOn.character.getLevel(), 0);
             }
 
             mShowWonEvent.setValue(new Integer[]{earnedRyous, earnedExp});
@@ -508,6 +515,9 @@ public class DojoBattlePvpViewModel extends AndroidViewModel
             CharOn.character.getFormulas().setCurrentChakra(mPlayerFormulas.getCurrentChakra());
             CharOn.character.getFormulas().setCurrentStamina(mPlayerFormulas.getCurrentStamina());
             CharOn.character.setItemsEnabled(true);
+        } else if ((mBattle.getStatus() == Battle.Status.PLAYER1_INACTIVATED && myTurn == 1) ||
+                (mBattle.getStatus() == Battle.Status.PLAYER2_INACTIVATED && myTurn == 2)) {
+            mShowInactivatedEvent.call();
         } else {
             mShowLostEvent.call();
         }
@@ -518,39 +528,39 @@ public class DojoBattlePvpViewModel extends AndroidViewModel
                 (mBattle.getStatus() == Battle.Status.PLAYER2_WON && myTurn == 2)) {
             if (CharOn.character.battleId.contains("MAP-PVP")) {
                 CharOn.character.incrementScore(Score.VIT_MAPA_PVP);
-                CharOn.character.incrementExp(15 * mFighters.getPlayer().getLevel() + 100);
-                CharOn.character.addRyous(10 * mFighters.getPlayer().getLevel() + 150);
+                CharOn.character.addRyous(16 * mFighters.getPlayer().getLevel() + 250);
+                CharOn.character.incrementExp(16 * mFighters.getPlayer().getLevel() + 150);
                 CharOn.character.getCombatOverview().setWinsMapPvp(
                         CharOn.character.getCombatOverview().getWinsMapPvp() + 1);
             } else {
                 CharOn.character.incrementScore(Score.VIT_DOJO_PVP);
-                CharOn.character.incrementExp(
-                        Math.max(344 - (29 * mFighters.getPlayer().getLevel()), 0));
-                CharOn.character.addRyous(100);
+                if (CharOn.character.getGraduationId() == 1) {
+                    CharOn.character.addRyous(10 * CharOn.character.getLevel() + 100);
+                    CharOn.character.incrementExp(Math.max(300 - 20 * CharOn.character.getLevel(), 0));
+                }
                 CharOn.character.getCombatOverview().setWinsDojoPvp(
                         CharOn.character.getCombatOverview().getWinsDojoPvp() + 1);
             }
         } else if (mBattle.getStatus() == Battle.Status.DRAWN) {
             CharOn.character.getCombatOverview().setDrawsPvp(
                     CharOn.character.getCombatOverview().getDrawsPvp() + 1);
+        } else if (CharOn.character.battleId.contains("MAP-PVP")) {
+            CharOn.character.decrementScore(Score.DER_MAPA_PVP);
+            CharOn.character.getCombatOverview().setLossesMapPvp(
+                    CharOn.character.getCombatOverview().getLossesMapPvp() + 1);
         } else {
-            if (CharOn.character.battleId.contains("MAP-PVP")) {
-                CharOn.character.incrementScore(Score.DER_MAPA_PVP);
-                CharOn.character.getCombatOverview().setLossesMapPvp(
-                        CharOn.character.getCombatOverview().getLossesMapPvp() + 1);
-            } else {
-                CharOn.character.incrementScore(Score.DER_DOJO_PVP);
-                CharOn.character.getCombatOverview().setLossesDojoPvp(
-                        CharOn.character.getCombatOverview().getLossesDojoPvp() + 1);
-            }
+            CharOn.character.decrementScore(Score.DER_DOJO_PVP);
+            CharOn.character.getCombatOverview().setLossesDojoPvp(
+                    CharOn.character.getCombatOverview().getLossesDojoPvp() + 1);
         }
 
         CharOn.character.getAttributes().incrementTraningPoints(50);
         CharOn.character.getExtrasInformation().incrementTotalTraining(50);
 
-        int playersInBattle = mBattle.getPlayersInBattle() - 1;
 
         mBattleRepository.removeBattleListener();
+
+        int playersInBattle = mBattle.getPlayersInBattle() - 1;
 
         if (playersInBattle == 0) {
             mBattleRepository.delete(mBattle.getId());

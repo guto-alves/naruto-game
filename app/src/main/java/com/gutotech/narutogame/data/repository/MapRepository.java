@@ -49,8 +49,9 @@ public class MapRepository {
     private ValueEventListener mMapValueEventListener;
 
     public LiveData<Map<Integer, List<Character>>> load(int villageId) {
-        MutableLiveData<Map<Integer, List<Character>>> data = new MutableLiveData<>();
+        close();
 
+        MutableLiveData<Map<Integer, List<Character>>> data = new MutableLiveData<>();
         Map<Integer, List<Character>> map = new HashMap<>();
 
         mMapReference = FirebaseConfig.getDatabase()

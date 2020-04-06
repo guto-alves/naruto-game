@@ -66,6 +66,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/manual_training"
                     android:textColor="@android:color/white"
+                    android:textSize="12sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@+id/imageView27"
                     app:layout_constraintEnd_toStartOf="@+id/guideline23"
@@ -78,6 +79,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/quantity"
                     android:textColor="@android:color/white"
+                    android:textSize="12sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@+id/imageView27"
                     app:layout_constraintStart_toStartOf="@+id/guideline23"
@@ -122,6 +124,7 @@
                         android:layout_marginRight="3dp"
                         android:drawableEnd="@drawable/layout_icones_p_chakra"
                         android:drawableRight="@drawable/layout_icones_p_chakra"
+                        android:gravity="center"
                         android:text="@{@string/you_will_spent(viewModel.spentChakra)}"
                         android:textColor="@color/colorText" />
 
@@ -133,6 +136,7 @@
                         android:layout_marginRight="3dp"
                         android:drawableEnd="@drawable/layout_icones_p_stamina"
                         android:drawableRight="@drawable/layout_icones_p_stamina"
+                        android:gravity="center"
                         android:text="@{@string/you_will_spent(viewModel.spentStamina)}"
                         android:textColor="@color/colorText" />
                 </LinearLayout>
@@ -199,7 +203,7 @@
                         android:layout_marginRight="5dp"
                         android:text="@string/icon_bar"
                         android:textColor="@android:color/holo_orange_light"
-                        android:textSize="18sp" />
+                        android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/textView54"
@@ -210,7 +214,7 @@
                         android:textColor="@android:color/white"
                         android:textSize="16sp"
                         android:textStyle="bold"
-                        android:typeface="serif" />
+                        app:fontFamily="casual" />
                 </LinearLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -221,12 +225,8 @@
                         android:id="@+id/limitOfTrainingProgressBar"
                         style="?android:attr/progressBarStyleHorizontal"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginLeft="8dp"
+                        android:layout_height="20dp"
                         android:layout_marginTop="8dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginRight="8dp"
                         android:layout_marginBottom="8dp"
                         android:background="@drawable/layout_barra_exp_barra_vazia_765"
                         android:max="@{viewModel.weeklyLimitOfTraining}"
@@ -254,8 +254,8 @@
                     android:id="@+id/textView55"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:text="@string/limit_of_traning_bar_description"
-                    android:textAlignment="center"
                     android:textColor="@color/colorText"
                     android:textSize="12sp" />
             </LinearLayout>
@@ -287,7 +287,7 @@
                         android:layout_marginRight="5dp"
                         android:text="@string/icon_bar"
                         android:textColor="@android:color/holo_blue_light"
-                        android:textSize="18sp" />
+                        android:textSize="16sp" />
 
                     <TextView
                         android:layout_width="0dp"
@@ -297,7 +297,7 @@
                         android:textColor="@android:color/white"
                         android:textSize="16sp"
                         android:textStyle="bold"
-                        android:typeface="serif" />
+                        app:fontFamily="casual" />
                 </LinearLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -308,12 +308,8 @@
                         android:id="@+id/nextAbiliityPointProgressBar"
                         style="?android:attr/progressBarStyleHorizontal"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginLeft="8dp"
+                        android:layout_height="20dp"
                         android:layout_marginTop="8dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginRight="8dp"
                         android:layout_marginBottom="8dp"
                         android:background="@drawable/layout_barra_exp_barra_vazia_765"
                         android:max="@{viewModel.attributes.totalTrainingPoints}"
@@ -340,8 +336,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:text="@string/ability_point_bar_description"
-                    android:textAlignment="center"
                     android:textColor="@color/colorText"
                     android:textSize="12sp" />
             </LinearLayout>
@@ -368,6 +364,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
                     android:layout_marginLeft="24dp"
+                    android:layout_marginTop="3dp"
                     android:text="@string/distributed_points"
                     android:textColor="@android:color/white"
                     android:textStyle="bold"

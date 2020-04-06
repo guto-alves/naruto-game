@@ -911,17 +911,18 @@
     <string name="label_stamina">Stamina: %d</string>
     <string name="dojo_timer">%02d:%02d</string>
     <string name="label_graduation_and_lvl">%s - Lvl %d</string>
+    <string name="label_and_level">%s - Level %d</string>
     <string name="too_bad">QUE PENA!</string>
     <string name="you_have_lost_the_battle">Você perdeu o combate.\n\nIr para o</string>
     <string name="voc_foi_muito_machucado">VOCÊ FOI MUITO MACHUCADO!</string>
     <string name="pay_ry">Pagar RY$ %d</string>
     <string name="end_of_the_battle">COMBATE ENCERRADO!</string>
-    <string name="lost_by_inactivity">You have lost the fight by inactivity\n</string>
+    <string name="lost_by_inactivity">Por ficar muito tempo sem efetuar nenhuma ação, você perdeu o combate!\n</string>
     <string name="click_here">Clique aqui</string>
     <string name="to_preceed">para continuar</string>
     <string name="waiting_your_move">Aguardando a sua ação</string>
     <string name="empate">EMPATE!</string>
-    <string name="drawn_description">Por ambos estarem muito cansados, o combate terminou em empate!\n\nIr para o </string>
+    <string name="drawn_description">Por ambos estarem muito cansados, o combate terminou em empate!\n\nIr para o</string>
     <string name="combat_won_description">Parabéns! Você venceu o combate!\nComo recompensa você
         estará recebendo RY$ %d e %d pontos de experiência\n\nVoltar ao</string>
     <string name="error_updating_name">Erro ao atualizar nome</string>
@@ -2106,5 +2107,15 @@
         suficiente para pagar o nosso especialista.</string>
     <string name="cannot_use_items_during_the_battle">Você não pode usar itens durante a batalha!</string>
     <string name="error_multiple_logins">Apenas um dispositivo pode usar a conta por vez</string>
+    <string name="hokage">Hokage</string>
+    <string name="kazekage">Kazekage</string>
+    <string name="mizukage">Mizukage</string>
+    <string name="tsuchikage">Tsuchikage</string>
+    <string name="raikage">Raikage</string>
+    <string name="amekage">Amekage</string>
+    <string name="otokage">Otokage</string>
+    <string name="dojo_pvp_warnings">As Batalhas Dojo PVP dão experiência e Ryous até o nível 15,
+        depois disso as batalhas darão apenas 50 pontos de treino para os vencedores.\n\nSomente Ninjas
+        com a graduação %s podem duelar no Dojo PVP</string>
 
 </resources>

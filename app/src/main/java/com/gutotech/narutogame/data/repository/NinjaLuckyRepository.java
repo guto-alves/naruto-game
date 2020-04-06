@@ -35,30 +35,20 @@ public class NinjaLuckyRepository {
         ninjaLuckyRef.removeValue();
     }
 
-    private DatabaseReference mNinjaLuckyRef;
-    private ValueEventListener mNinjaLuckyListener;
-
     public void get(String charId, Callback<NinjaLucky> listener) {
-        mNinjaLuckyRef = FirebaseConfig.getDatabase()
+        DatabaseReference ninjaLuckyRef = FirebaseConfig.getDatabase()
                 .child("ninja-lucky")
                 .child(charId);
 
-        mNinjaLuckyListener = mNinjaLuckyRef.addValueEventListener(new ValueEventListener() {
+        ninjaLuckyRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                NinjaLucky ninjaLucky = dataSnapshot.getValue(NinjaLucky.class);
-                listener.call(ninjaLucky);
+                listener.call(dataSnapshot.getValue(NinjaLucky.class));
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
-    }
-
-    public void removeEventListener() {
-        if (mNinjaLuckyListener != null) {
-            mNinjaLuckyRef.removeEventListener(mNinjaLuckyListener);
-        }
     }
 }

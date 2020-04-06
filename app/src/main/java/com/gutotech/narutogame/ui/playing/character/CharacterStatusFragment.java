@@ -26,21 +26,21 @@ public class CharacterStatusFragment extends Fragment implements SectionFragment
         FragmentCharacterStatusBinding binding = DataBindingUtil.inflate(inflater,
                 R.layout.fragment_character_status, container, false);
 
-        View view = binding.getRoot();
-
         binding.setCharacter(CharOn.character);
 
         binding.attributesRecyclerView.setHasFixedSize(true);
-        binding.attributesRecyclerView.setAdapter(new AttributesStatusAdapter(
-                CharOn.character.getAttributes().asList()));
+        binding.attributesRecyclerView.setAdapter(
+                new AttributesStatusAdapter(CharOn.character.getAttributes().asList())
+        );
 
         binding.formulasRecyclerView.setHasFixedSize(true);
-        binding.formulasRecyclerView.setAdapter(new FormulasAdapter(
-                CharOn.character.getAttributes().getFormulas().asList()));
+        binding.formulasRecyclerView.setAdapter(
+                new FormulasAdapter(CharOn.character.getFormulas().asList())
+        );
 
         FragmentUtil.setSectionTitle(getActivity(), R.string.section_character_status);
 
-        return view;
+        return binding.getRoot();
     }
 
     @Override

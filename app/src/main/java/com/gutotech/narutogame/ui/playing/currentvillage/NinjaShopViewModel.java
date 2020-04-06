@@ -25,8 +25,9 @@ import java.util.List;
 
 public class NinjaShopViewModel extends ViewModel implements
         ItemShopAdapter.OnBuyClickListener {
-    private MutableLiveData<List<ShopItem>> mShopItems = new MutableLiveData<>();
     public final ObservableField<ItemType> itemTypeSelected = new ObservableField<>(ItemType.SCROLL);
+
+    private MutableLiveData<List<ShopItem>> mShopItems = new MutableLiveData<>();
 
     private SingleLiveEvent<Integer> mShowWarningDialogEvent = new SingleLiveEvent<>();
 
@@ -34,17 +35,26 @@ public class NinjaShopViewModel extends ViewModel implements
         mShopItems.postValue(loadItems());
     }
 
-    LiveData<List<ShopItem>> getShopItems() {
-        return mShopItems;
-    }
-
-    public LiveData<Integer> getShowWarningDialogEvent() {
-        return mShowWarningDialogEvent;
-    }
-
     public void onItemTypeSelected(ItemType type) {
         itemTypeSelected.set(type);
         mShopItems.postValue(loadItems());
+    }
+
+    @Override
+    public void onBuyButtonClick(ShopItem item, int quantity) {
+        int price = item.getValue() * quantity;
+
+        if (CharOn.character.getRyous() >= price) {
+            CharOn.character.subRyous(price);
+
+            item.setRequirements(null);
+            CharOn.character.getBag().addScroll((Scroll) item, quantity);
+
+            CharacterRepository.getInstance().save(CharOn.character);
+            mShowWarningDialogEvent.setValue(R.string.warning_items_purchased);
+        } else {
+            mShowWarningDialogEvent.setValue(R.string.warning_dont_have_enough_ryous);
+        }
     }
 
     private List<ShopItem> loadItems() {
@@ -260,20 +270,11 @@ public class NinjaShopViewModel extends ViewModel implements
         return mItems;
     }
 
-    @Override
-    public void onBuyButtonClick(ShopItem item, int quantity) {
-        int price = item.getValue() * quantity;
+    LiveData<List<ShopItem>> getShopItems() {
+        return mShopItems;
+    }
 
-        if (CharOn.character.getRyous() >= price) {
-            CharOn.character.subRyous(price);
-
-            item.setRequirements(null);
-            CharOn.character.getBag().addScroll((Scroll) item, quantity);
-
-            CharacterRepository.getInstance().save(CharOn.character);
-            mShowWarningDialogEvent.setValue(R.string.warning_items_purchased);
-        } else {
-            mShowWarningDialogEvent.setValue(R.string.warning_dont_have_enough_ryous);
-        }
+    public LiveData<Integer> getShowWarningDialogEvent() {
+        return mShowWarningDialogEvent;
     }
 }

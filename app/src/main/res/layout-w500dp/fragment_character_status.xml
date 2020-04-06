@@ -24,23 +24,27 @@
             <!-- Combat Overview -->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/combatOverviewConstraintLayout"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="248dp"
-                android:layout_marginEnd="4dp"
-                android:layout_marginRight="4dp"
                 android:background="@drawable/layout_bg_home"
                 android:gravity="center|start"
                 android:orientation="vertical"
                 android:padding="5dp"
-                app:layout_constraintEnd_toStartOf="@+id/guideline2"
-                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintEnd_toStartOf="@+id/resumeOfMissionsConstraintLayout"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="spread"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/guideline">
+                app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
                     android:id="@+id/textView10"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginBottom="8dp"
                     android:gravity="center"
                     android:text="@string/combat_overview"
                     android:textColor="#ffd273"
@@ -49,8 +53,7 @@
                     android:typeface="serif"
                     app:layout_constraintBottom_toTopOf="@+id/guideline61"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintStart_toStartOf="parent" />
 
                 <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/guideline61"
@@ -60,13 +63,14 @@
                     app:layout_constraintGuide_begin="65dp" />
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:gravity="center"
                     android:orientation="vertical"
-                    app:layout_constraintTop_toTopOf="@+id/guideline61"
-                    tools:layout_editor_absoluteX="5dp">
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/guideline61">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -213,7 +217,7 @@
                         <TextView
                             android:id="@+id/expRecompensaTextView"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="19dp"
                             android:layout_marginEnd="3dp"
                             android:layout_marginRight="3dp"
                             android:text="@string/label_draws_pvp"
@@ -257,22 +261,26 @@
             <!-- Resume of Missions -->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/resumeOfMissionsConstraintLayout"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="248dp"
-                android:layout_marginStart="4dp"
-                android:layout_marginLeft="4dp"
                 android:background="@drawable/layout_bg_home"
                 android:gravity="center|start"
                 android:orientation="vertical"
                 android:padding="5dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/guideline2"
-                app:layout_constraintTop_toTopOf="@+id/guideline">
+                app:layout_constraintEnd_toStartOf="@+id/extrasInfoConstraintLayout"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/combatOverviewConstraintLayout"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
                     android:id="@+id/textView100"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginBottom="8dp"
                     android:gravity="center"
                     android:text="@string/resume_of_missions"
                     android:textColor="#ffd273"
@@ -281,8 +289,7 @@
                     android:typeface="serif"
                     app:layout_constraintBottom_toTopOf="@+id/guideline611"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintStart_toStartOf="parent" />
 
                 <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/guideline611"
@@ -309,7 +316,7 @@
 
                         <TextView
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="19dp"
                             android:layout_marginEnd="3dp"
                             android:layout_marginRight="3dp"
                             android:text="@string/label_rank_s"
@@ -444,21 +451,27 @@
             <!-- Extras Information -->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/extrasInfoConstraintLayout"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="248dp"
                 android:background="@drawable/layout_bg_home"
                 android:gravity="center|start"
                 android:orientation="vertical"
                 android:padding="5dp"
                 android:visibility="visible"
-                app:layout_constraintEnd_toStartOf="@+id/guideline62"
-                app:layout_constraintStart_toStartOf="@+id/guideline63"
-                app:layout_constraintTop_toBottomOf="@+id/resumeOfMissionsConstraintLayout">
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/resumeOfMissionsConstraintLayout"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
                     android:id="@+id/textView1000"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginBottom="8dp"
                     android:gravity="center"
                     android:text="@string/extras_information"
                     android:textColor="#ffd273"
@@ -467,8 +480,7 @@
                     android:typeface="serif"
                     app:layout_constraintBottom_toTopOf="@+id/guideline6111"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintStart_toStartOf="parent" />
 
                 <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/guideline6111"
@@ -564,19 +576,19 @@
                 android:id="@+id/imageView1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="32dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/layout_bg_home_madeira1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/extrasInfoConstraintLayout" />
+                app:layout_constraintTop_toBottomOf="@+id/resumeOfMissionsConstraintLayout" />
 
             <TextView
                 android:id="@+id/textView35"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginLeft="32dp"
+                android:layout_marginStart="48dp"
+                android:layout_marginLeft="48dp"
                 android:layout_marginBottom="5dp"
                 android:text="@string/attributes"
                 android:textColor="#F3E6C4"
@@ -620,8 +632,8 @@
                 android:id="@+id/textView38"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginLeft="32dp"
+                android:layout_marginStart="48dp"
+                android:layout_marginLeft="48dp"
                 android:layout_marginBottom="5dp"
                 android:text="@string/formulas"
                 android:textColor="#F3E6C4"
@@ -643,34 +655,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView5" />
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline62"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.73" />
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline63"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.27" />
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_begin="8dp" />
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.5" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

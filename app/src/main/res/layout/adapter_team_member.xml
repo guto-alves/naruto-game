@@ -56,19 +56,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:drawableStart="@drawable/ico_shuriken"
         android:drawableLeft="@drawable/ico_shuriken"
-        android:gravity="center_vertical"
+        android:gravity="center"
         android:text="@string/member"
         android:textColor="@android:color/holo_orange_dark"
-        android:textSize="10sp" />
+        android:textSize="12sp" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp">
 
         <ProgressBar
             android:id="@+id/expProgressBar"
@@ -77,7 +77,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:background="@drawable/layout_barra_exp_barra_vazia_121"

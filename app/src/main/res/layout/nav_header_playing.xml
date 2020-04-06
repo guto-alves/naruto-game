@@ -62,9 +62,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="@+id/topImageView"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guideline27"
-            app:layout_constraintTop_toTopOf="@+id/topImageView">
+            app:layout_constraintTop_toTopOf="parent">
 
             <ImageButton
                 android:layout_width="wrap_content"

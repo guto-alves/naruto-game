@@ -101,7 +101,7 @@ public class CharacterRepository {
 
                 sortByLevel(characterList);
 
-                data.postValue(characterList);
+                data.setValue(characterList);
             }
 
             @Override

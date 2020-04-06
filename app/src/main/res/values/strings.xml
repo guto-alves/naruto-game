@@ -966,6 +966,7 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="label_stamina">Stamina: %d</string>
     <string name="dojo_timer">%02d:%02d</string>
     <string name="label_graduation_and_lvl">%s - Lvl %d</string>
+    <string name="label_and_level">%s - Level %d</string>
     <string name="too_bad">TOO BAD!</string>
     <string name="you_have_lost_the_battle">You have lost the battle.\n\nGo to</string>
     <string name="voc_foi_muito_machucado">YOU WERE BADLY INJURED AND IS RESTING!</string>
@@ -1160,7 +1161,6 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
         you want to go.</string>
     <string name="training_points_for_your_participation">\nFor your participation you received 50
         training points!</string>
-
     <string name="looking_for_opponents">LOOKING FOR OPPONENTS</string>
     <string name="looking_for_opponents_description">We are currently looking for an opponent of
         the same level as yours, if we don\'t find the battle it could happen with an opponent with
@@ -2146,6 +2146,16 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="dont_enough_money_for_treatment">Sorry, but you don\'t have enough money to pay for treatment.</string>
     <string name="cannot_use_items_during_the_battle">You cannot use items during the battle!</string>
     <string name="error_multiple_logins">Only one device can use the account at a time.</string>
+    <string name="hokage">Hokage</string>
+    <string name="kazekage">Kazekage</string>
+    <string name="mizukage">Mizukage</string>
+    <string name="tsuchikage">Tsuchikage</string>
+    <string name="raikage">Raikage</string>
+    <string name="amekage">Amekage</string>
+    <string name="otokage">Otokage</string>
+    <string name="dojo_pvp_warnings">Dojo PVP Battles give experience and Ryous up to level 15,
+        after which the battles will only give 50 training points to the winners.\n\nOnly Ninjas with
+        the %s rank can duel in the PVP Dojo</string>
 
 
 </resources>

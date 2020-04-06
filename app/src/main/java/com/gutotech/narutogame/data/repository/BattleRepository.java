@@ -79,6 +79,7 @@ public class BattleRepository {
     private ValueEventListener mBattleEventListener;
 
     public void observeBattle(String battleId, Callback<Battle> callback) {
+        removeBattleListener();
         mBattleReference = FirebaseConfig.getDatabase()
                 .child("battles")
                 .child(battleId);

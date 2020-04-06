@@ -55,9 +55,10 @@ public class KagesSliderAdapter extends SliderViewAdapter<KagesSliderAdapter.Sli
                     viewHolder.profileImageView, kage.getNinja().getId());
             viewHolder.nameTextView.setText(kage.getNick());
             viewHolder.descriptionTextView.setText(mContext.getString(
-                    R.string.label_graduation_and_lvl,
-                    mContext.getString(GraduationUtils.getName(kage.getGraduationId(), kage.getVillage())),
-                    kage.getLevel()));
+                    R.string.label_and_level,
+                    mContext.getString(kage.getVillage().kageName),
+                    kage.getLevel())
+            );
         }
     }
 

@@ -11,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -24,12 +26,12 @@ import java.util.List;
 public class JutsusAdapter extends RecyclerView.Adapter<JutsusAdapter.ViewHolder> {
 
     public interface OnJutsuClickListener {
-        void onJutsuClick(View view, Jutsu jutsu);
+        void onJutsuClick(Jutsu jutsu);
 
         void onJutsuInfoClick(View anchor, Jutsu jutsu);
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         private ImageView jutsuImageView;
         private TextView remainingIntervals;
 
@@ -37,14 +39,14 @@ public class JutsusAdapter extends RecyclerView.Adapter<JutsusAdapter.ViewHolder
             super(itemView);
             jutsuImageView = itemView.findViewById(R.id.jutsuImageView);
             remainingIntervals = itemView.findViewById(R.id.remainingIntervals);
-
         }
     }
 
     private List<Jutsu> mJutsusList;
     private Context mContext;
-
     private OnJutsuClickListener mOnJutsuClickListener;
+    private boolean mAnimationRunning;
+    private boolean mUpdateJutsus;
 
     public JutsusAdapter(Context context, OnJutsuClickListener jutsuClickListener) {
         mContext = context;
@@ -85,7 +87,10 @@ public class JutsusAdapter extends RecyclerView.Adapter<JutsusAdapter.ViewHolder
 
                             @Override
                             public boolean onSingleTapUp(MotionEvent e) {
-                                mOnJutsuClickListener.onJutsuClick(holder.itemView, jutsu);
+                                Animation animation = AnimationUtils.loadAnimation(mContext, R.anim.fade_out);
+                                animation.setAnimationListener(mAnimationListener);
+                                holder.itemView.startAnimation(animation);
+                                mOnJutsuClickListener.onJutsuClick(jutsu);
                                 return super.onSingleTapUp(e);
                             }
 
@@ -111,6 +116,29 @@ public class JutsusAdapter extends RecyclerView.Adapter<JutsusAdapter.ViewHolder
 
     public void setJutsusList(List<Jutsu> jutsusList) {
         mJutsusList = jutsusList;
-        notifyDataSetChanged();
+        if (!mAnimationRunning) {
+            notifyDataSetChanged();
+        } else {
+            mUpdateJutsus = true;
+        }
     }
+
+    private final Animation.AnimationListener mAnimationListener = new Animation.AnimationListener() {
+        @Override
+        public void onAnimationStart(Animation animation) {
+            mAnimationRunning = true;
+        }
+
+        @Override
+        public void onAnimationEnd(Animation animation) {
+            mAnimationRunning = false;
+            if (mUpdateJutsus) {
+                notifyDataSetChanged();
+            }
+        }
+
+        @Override
+        public void onAnimationRepeat(Animation animation) {
+        }
+    };
 }

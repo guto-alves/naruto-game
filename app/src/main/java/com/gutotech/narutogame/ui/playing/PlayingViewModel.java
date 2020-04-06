@@ -527,10 +527,16 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
                     Calendar calendar = Calendar.getInstance();
                     calendar.setTimeInMillis(mCurrentTimestamp);
 
-                    checkHealing(calendar.get(Calendar.MINUTE), calendar.get(Calendar.SECOND));
+                    checkHealing(
+                            calendar.get(Calendar.MINUTE),
+                            calendar.get(Calendar.SECOND)
+                    );
 
-                    checkVariousRoutines(calendar.get(Calendar.HOUR_OF_DAY),
-                            calendar.get(Calendar.MINUTE), calendar.get(Calendar.SECOND));
+                    checkVariousRoutines(
+                            calendar.get(Calendar.HOUR_OF_DAY),
+                            calendar.get(Calendar.MINUTE),
+                            calendar.get(Calendar.SECOND)
+                    );
 
                     mCharacter.getExtrasInformation().setTotalSecondsPlayed(
                             mCharacter.getExtrasInformation().getTotalSecondsPlayed() + 1);

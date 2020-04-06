@@ -12,7 +12,7 @@ public class Scroll extends ShopItem {
 
     public Scroll(String image, int name, int description, List<Requirement> requirements,
                   Village village) {
-        super(image, name, description, requirements, 500, 10);
+        super(image, name, description, requirements, 200, 10);
         this.village = village;
     }
 

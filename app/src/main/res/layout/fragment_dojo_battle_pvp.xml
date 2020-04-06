@@ -58,7 +58,7 @@
                     android:id="@+id/infoFightersLinearLayout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="90dp"
+                    android:layout_marginTop="98dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginRight="8dp"
                     android:gravity="center"
@@ -529,8 +529,7 @@
                     android:id="@+id/movementTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/waiting_your_move"
+                    android:text="@{viewModel.battle.currentPlayer == viewModel.myTurn ? @string/waiting_your_move : @string/wait_opponent_move}"
                     android:textColor="#ff7d1c"
                     android:textSize="8sp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -539,7 +538,7 @@
 
                 <TextView
                     android:id="@+id/textView42"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:fontFamily="sans-serif-smallcaps"
@@ -547,6 +546,7 @@
                     android:textColor="@android:color/white"
                     android:textStyle="italic"
                     app:layout_constraintBottom_toBottomOf="@+id/jutsusBarImageView"
+                    app:layout_constraintEnd_toStartOf="@+id/classJutsusButton"
                     app:layout_constraintStart_toStartOf="@+id/guideline55"
                     app:layout_constraintTop_toTopOf="@+id/jutsusBarImageView" />
 
@@ -608,7 +608,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    app:layout_constraintGuide_percent="0.12" />
+                    app:layout_constraintGuide_percent="0.10" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

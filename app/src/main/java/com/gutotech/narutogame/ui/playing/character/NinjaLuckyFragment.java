@@ -26,16 +26,17 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class NinjaLuckyFragment extends Fragment implements SectionFragment {
-    private FragmentNinjaLuckyBinding mBinding;
     private NinjaLuckyViewModel mViewModel;
+    private FragmentNinjaLuckyBinding mBinding;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        mViewModel = new ViewModelProvider(this).get(NinjaLuckyViewModel.class);
+
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_ninja_lucky,
                 container, false);
-
-        mViewModel = new ViewModelProvider(this).get(NinjaLuckyViewModel.class);
+        mBinding.setLifecycleOwner(this);
         mBinding.setViewModel(mViewModel);
 
         mBinding.lotteryItemsRecyclerView.setHasFixedSize(true);

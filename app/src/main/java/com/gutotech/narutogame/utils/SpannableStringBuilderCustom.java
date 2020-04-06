@@ -61,6 +61,13 @@ public class SpannableStringBuilderCustom {
         append(" ");
     }
 
+    public void append(@StringRes int resId, CharacterStyle... styles) {
+        append(resId);
+        for (CharacterStyle style : styles) {
+            setSpan(style);
+        }
+    }
+
     public void setSpan(CharacterStyle span) {
         mStringBuilder.setSpan(span, index, mStringBuilder.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
     }
@@ -69,7 +76,7 @@ public class SpannableStringBuilderCustom {
         setSpan(new ForegroundColorSpan(ContextCompat.getColor(mContext, color)));
     }
 
-    public SpannableStringBuilder getString() {
+    public SpannableStringBuilder getStringBuilder() {
         return mStringBuilder;
     }
 }

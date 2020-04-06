@@ -50,7 +50,7 @@ public class JutsuInfoPopupWindow extends PopupWindow {
 
             SpannableStringBuilderCustom builder = new SpannableStringBuilderCustom(mContext);
             builder.append("100%", R.color.colorGreen);
-            mBinding.accChanceTextView.setText(builder.builder());
+            mBinding.accChanceTextView.setText(builder.getStringBuilder());
         } else if (jutsuInfo.type == Jutsu.Type.ATK) {
             int drawable;
 
@@ -75,7 +75,7 @@ public class JutsuInfoPopupWindow extends PopupWindow {
                 spannableBuilder.append(R.string.chance_of_error);
             }
 
-            mBinding.accChanceTextView.setText(spannableBuilder.builder());
+            mBinding.accChanceTextView.setText(spannableBuilder.getStringBuilder());
         } else {
             mBinding.accTextView.setVisibility(View.VISIBLE);
             mBinding.accLinearLayout.setVisibility(View.GONE);

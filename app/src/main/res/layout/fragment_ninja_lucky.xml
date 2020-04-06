@@ -15,7 +15,6 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/layout_pagina_repeat"
         android:fillViewport="true"
         tools:context=".ui.playing.character.NinjaLuckyFragment">
 
@@ -255,7 +254,7 @@
                 android:layout_marginStart="45dp"
                 android:layout_marginLeft="45dp"
                 android:layout_marginBottom="5dp"
-                android:onClick="@{() -> viewModel.onPlayModeSeleted(NinjaLuckyViewModel.RYOUS_DAILY)}"
+                android:onClick="@{() -> viewModel.onPlayModeSelected(NinjaLuckyViewModel.RYOUS_DAILY)}"
                 android:text="@string/ryous_daily"
                 android:textColor="@android:color/white"
                 android:textSize="8sp"
@@ -270,7 +269,7 @@
                 android:layout_marginEnd="45dp"
                 android:layout_marginRight="50dp"
                 android:layout_marginBottom="5dp"
-                android:onClick="@{() -> viewModel.onPlayModeSeleted(NinjaLuckyViewModel.RYOUS_WEEKLY)}"
+                android:onClick="@{() -> viewModel.onPlayModeSelected(NinjaLuckyViewModel.RYOUS_WEEKLY)}"
                 android:text="@string/ryous_weekly"
                 android:textColor="@android:color/white"
                 android:textSize="8sp"
@@ -389,7 +388,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:fontFamily="casual"
-                android:text="DAILY"
+                android:text="@string/daily"
                 android:textColor="@android:color/black"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/modeButton1"
@@ -402,7 +401,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:fontFamily="casual"
-                android:text="WEEKLY"
+                android:text="@string/weekly"
                 android:textColor="@android:color/black"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/modeButton3"

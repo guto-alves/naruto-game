@@ -47,7 +47,7 @@
                 <ImageView
                     android:id="@+id/profileImageView"
                     profileForMsg="@{1}"
-                    android:layout_width="120dp"
+                    android:layout_width="150dp"
                     android:layout_height="0dp"
                     android:scaleType="fitXY"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -74,6 +74,7 @@
                     android:src="@drawable/layout_msg_rodape1"
                     app:layout_constraintBottom_toBottomOf="@+id/imageView232"
                     app:layout_constraintEnd_toEndOf="@+id/imageView232"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/imageView232" />
 
                 <LinearLayout
@@ -95,7 +96,6 @@
                         android:layout_marginBottom="5dp"
                         android:text="@string/dojo_pvp_battles"
                         android:textColor="#ffd273"
-                        android:textSize="12sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -105,17 +105,15 @@
                         android:gravity="center|start"
                         android:text="@string/dojo_pvp_fighters_description"
                         android:textColor="#D1D8F1"
-                        android:textSize="10sp" />
+                        android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/dojoPvpWarningTextView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
-                        android:text="@string/dojo_pvp_warnings"
                         android:textColor="#ff7d1c"
-                        android:textSize="10sp" />
-
+                        android:textSize="12sp" />
                 </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
 

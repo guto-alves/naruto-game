@@ -73,14 +73,14 @@ public class VillageMapViewModel extends ViewModel implements VillageMapAdapter.
     }
 
     @Override
-    public void onBattleClick(Character opponent) {
+    public synchronized void onBattleClick(Character opponent) {
         if (opponent.getPlayerId().equals(CharOn.character.getPlayerId())) {
             return;
         }
 
         int levelDifference = Math.abs(opponent.getLevel() - CharOn.character.getLevel());
 
-        if (levelDifference >= 2) {
+        if (levelDifference > 2) {
             mShowWarningDialogEvent.setValue(R.string.is_not_at_a_level_suitable_for_you);
             return;
         }
@@ -133,7 +133,6 @@ public class VillageMapViewModel extends ViewModel implements VillageMapAdapter.
     public void stop() {
         mMapRepository.close();
     }
-
 
     LiveData<Map<Integer, List<Character>>> getCharactersOnTheMap() {
         return mMapRepository.load(mVillage.ordinal());

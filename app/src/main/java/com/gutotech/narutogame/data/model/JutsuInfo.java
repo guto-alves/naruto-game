@@ -4165,7 +4165,7 @@ public enum JutsuInfo {
                     }
             )),
     SOUSHUUJIN_II("Soushuujin.jpg", R.string.soushuujin_ii, R.string.soushuujin_ii_desc,
-            Jutsu.Type.ATK,
+            Jutsu.Type.DEBUFF,
             Arrays.asList(
                     new Requirement() {
                         public int getValue() {
@@ -4203,7 +4203,7 @@ public enum JutsuInfo {
                     }
             )),
     SOUSHUUJIN_I("Soushuujin.jpg", R.string.soushuujin_i, R.string.soushuujin_i_desc,
-            Jutsu.Type.ATK,
+            Jutsu.Type.DEBUFF,
             Arrays.asList(
                     new Requirement() {
                         public int getValue() {
@@ -4544,7 +4544,7 @@ public enum JutsuInfo {
                         }
                     }
             )),
-    SENSEI_SOUSHURIKEN_NO_JUTSU("dynamic_entry.jpg", R.string.sensei_soushuriken_no_jutsu, R.string.sensei_soushuriken_no_jutsu_desc,
+    SENSEI_SOUSHURIKEN_NO_JUTSU("Soushuriken_no_Jutsu.gif", R.string.sensei_soushuriken_no_jutsu, R.string.sensei_soushuriken_no_jutsu_desc,
             Jutsu.Type.ATK,
             Arrays.asList(
                     new Requirement() {
@@ -5215,7 +5215,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
+                            return 11;
                         }
 
                         @Override
@@ -5234,7 +5234,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 5;
+                            return 15;
                         }
 
                         @Override
@@ -5671,7 +5671,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 5;
+                            return 28;
                         }
 
                         @Override
@@ -5709,7 +5709,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 5;
+                            return 28;
                         }
 
                         @Override
@@ -5918,7 +5918,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
+                            return 23;
                         }
 
                         @Override
@@ -5937,7 +5937,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 5;
+                            return 31;
                         }
 
                         @Override
@@ -5975,7 +5975,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
+                            return 23;
                         }
 
                         @Override
@@ -5994,7 +5994,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 5;
+                            return 31;
                         }
 
                         @Override
@@ -6032,7 +6032,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
+                            return 24;
                         }
 
                         @Override
@@ -6051,7 +6051,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 5;
+                            return 32;
                         }
 
                         @Override
@@ -6089,7 +6089,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
+                            return 24;
                         }
 
                         @Override
@@ -6108,7 +6108,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 5;
+                            return 32;
                         }
 
                         @Override
@@ -6146,7 +6146,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
+                            return 26;
                         }
 
                         @Override
@@ -6165,7 +6165,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 5;
+                            return 34;
                         }
 
                         @Override
@@ -6489,26 +6489,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
-                        }
-
-                        @Override
-                        public boolean check(boolean folded) {
-                            return CharOn.character.getAttributes().getStrength() >= value(folded);
-                        }
-
-                        @Override
-                        public String toString(Context context, boolean folded) {
-                            return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
-                            );
-                        }
-                    },
-                    new Requirement() {
-
-                        @Override
-                        public Object value() {
-                            return 5;
+                            return 38;
                         }
 
                         @Override
@@ -6546,26 +6527,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
-                        }
-
-                        @Override
-                        public boolean check(boolean folded) {
-                            return CharOn.character.getAttributes().getStrength() >= value(folded);
-                        }
-
-                        @Override
-                        public String toString(Context context, boolean folded) {
-                            return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
-                            );
-                        }
-                    },
-                    new Requirement() {
-
-                        @Override
-                        public Object value() {
-                            return 5;
+                            return 38;
                         }
 
                         @Override
@@ -6603,7 +6565,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
+                            return 29;
                         }
 
                         @Override
@@ -6622,7 +6584,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 5;
+                            return 39;
                         }
 
                         @Override
@@ -6660,7 +6622,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
+                            return 29;
                         }
 
                         @Override
@@ -6679,7 +6641,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 5;
+                            return 39;
                         }
 
                         @Override
@@ -6717,7 +6679,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
+                            return 29;
                         }
 
                         @Override
@@ -6736,7 +6698,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 5;
+                            return 39;
                         }
 
                         @Override
@@ -6774,7 +6736,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
+                            return 30;
                         }
 
                         @Override
@@ -6793,7 +6755,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 5;
+                            return 40;
                         }
 
                         @Override
@@ -6831,7 +6793,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
+                            return 30;
                         }
 
                         @Override
@@ -6850,7 +6812,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 5;
+                            return 40;
                         }
 
                         @Override
@@ -6888,7 +6850,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
+                            return 31;
                         }
 
                         @Override
@@ -6907,7 +6869,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 5;
+                            return 41;
                         }
 
                         @Override
@@ -6945,7 +6907,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
+                            return 31;
                         }
 
                         @Override
@@ -6964,7 +6926,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 5;
+                            return 41;
                         }
 
                         @Override
@@ -7002,7 +6964,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
+                            return 32;
                         }
 
                         @Override
@@ -7021,7 +6983,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 5;
+                            return 42;
                         }
 
                         @Override
@@ -7059,7 +7021,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
+                            return 33;
                         }
 
                         @Override
@@ -7078,7 +7040,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 5;
+                            return 44;
                         }
 
                         @Override
@@ -7516,26 +7478,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
-                        }
-
-                        @Override
-                        public boolean check(boolean folded) {
-                            return CharOn.character.getAttributes().getStrength() >= value(folded);
-                        }
-
-                        @Override
-                        public String toString(Context context, boolean folded) {
-                            return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
-                            );
-                        }
-                    },
-                    new Requirement() {
-
-                        @Override
-                        public Object value() {
-                            return 5;
+                            return 48;
                         }
 
                         @Override
@@ -7573,26 +7516,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
-                        }
-
-                        @Override
-                        public boolean check(boolean folded) {
-                            return CharOn.character.getAttributes().getStrength() >= value(folded);
-                        }
-
-                        @Override
-                        public String toString(Context context, boolean folded) {
-                            return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
-                            );
-                        }
-                    },
-                    new Requirement() {
-
-                        @Override
-                        public Object value() {
-                            return 5;
+                            return 48;
                         }
 
                         @Override
@@ -7630,7 +7554,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
+                            return 37;
                         }
 
                         @Override
@@ -7649,7 +7573,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 5;
+                            return 49;
                         }
 
                         @Override
@@ -7744,7 +7668,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
+                            return 37;
                         }
 
                         @Override
@@ -7763,7 +7687,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 5;
+                            return 49;
                         }
 
                         @Override
@@ -7801,7 +7725,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
+                            return 39;
                         }
 
                         @Override
@@ -7820,7 +7744,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 5;
+                            return 50;
                         }
 
                         @Override
@@ -7858,7 +7782,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
+                            return 38;
                         }
 
                         @Override
@@ -7877,7 +7801,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 5;
+                            return 51;
                         }
 
                         @Override
@@ -7915,7 +7839,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
+                            return 38;
                         }
 
                         @Override
@@ -7934,7 +7858,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 5;
+                            return 51;
                         }
 
                         @Override
@@ -7972,7 +7896,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
+                            return 39;
                         }
 
                         @Override
@@ -7991,7 +7915,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 5;
+                            return 52;
                         }
 
                         @Override
@@ -8029,7 +7953,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
+                            return 41;
                         }
 
                         @Override
@@ -8048,7 +7972,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 5;
+                            return 54;
                         }
 
                         @Override
@@ -8087,7 +8011,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
+                            return 41;
                         }
 
                         @Override
@@ -8106,7 +8030,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 5;
+                            return 55;
                         }
 
                         @Override
@@ -8144,7 +8068,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
+                            return 44;
                         }
 
                         @Override
@@ -8163,7 +8087,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 5;
+                            return 58;
                         }
 
                         @Override
@@ -9103,7 +9027,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
+                            return 19;
                         }
 
                         @Override
@@ -9122,7 +9046,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 5;
+                            return 25;
                         }
 
                         @Override
@@ -9160,7 +9084,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
+                            return 21;
                         }
 
                         @Override
@@ -9179,7 +9103,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 5;
+                            return 28;
                         }
 
                         @Override
@@ -9195,7 +9119,7 @@ public enum JutsuInfo {
                     }
             )),
     AYATSUITO_NO_JUTSU_I("Ayatsuito-no-Jutsu.jpg", R.string.ayatsuito_no_jutsu_i, R.string.ayatsuito_no_jutsu_i_desc,
-            Jutsu.Type.ATK,
+            Jutsu.Type.BUFF,
             Arrays.asList(
                     new Requirement() {
                         public int getValue() {
@@ -9217,26 +9141,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
-                        }
-
-                        @Override
-                        public boolean check(boolean folded) {
-                            return CharOn.character.getAttributes().getIntelligence() >= value(folded);
-                        }
-
-                        @Override
-                        public String toString(Context context, boolean folded) {
-                            return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.INTE.name)
-                            );
-                        }
-                    },
-                    new Requirement() {
-
-                        @Override
-                        public Object value() {
-                            return 5;
+                            return 28;
                         }
 
                         @Override
@@ -9252,7 +9157,7 @@ public enum JutsuInfo {
                     }
             )),
     AYATSUITO_NO_JUTSU_II("Ayatsuito-no-Jutsu.jpg", R.string.ayatsuito_no_jutsu_ii, R.string.ayatsuito_no_jutsu_ii_desc,
-            Jutsu.Type.ATK,
+            Jutsu.Type.BUFF,
             Arrays.asList(
                     new Requirement() {
                         public int getValue() {
@@ -9274,26 +9179,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
-                        }
-
-                        @Override
-                        public boolean check(boolean folded) {
-                            return CharOn.character.getAttributes().getIntelligence() >= value(folded);
-                        }
-
-                        @Override
-                        public String toString(Context context, boolean folded) {
-                            return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.INTE.name)
-                            );
-                        }
-                    },
-                    new Requirement() {
-
-                        @Override
-                        public Object value() {
-                            return 5;
+                            return 28;
                         }
 
                         @Override
@@ -9331,7 +9217,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
+                            return 23;
                         }
 
                         @Override
@@ -9350,7 +9236,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 5;
+                            return 30;
                         }
 
                         @Override
@@ -9388,7 +9274,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
+                            return 24;
                         }
 
                         @Override
@@ -9407,7 +9293,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 5;
+                            return 32;
                         }
 
                         @Override
@@ -9445,7 +9331,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
+                            return 24;
                         }
 
                         @Override
@@ -9464,7 +9350,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 5;
+                            return 32;
                         }
 
                         @Override
@@ -9502,7 +9388,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
+                            return 26;
                         }
 
                         @Override
@@ -9521,7 +9407,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 5;
+                            return 34;
                         }
 
                         @Override
@@ -9595,7 +9481,7 @@ public enum JutsuInfo {
                     }
             )),
     TAJUU_KAGE_BUNSHIN_NO_JUTSU_I("tajuu-kage-bunshin.jpg", R.string.tajuu_kage_bunshin_no_jutsu_i, R.string.tajuu_kage_bunshin_no_jutsu_i_desc,
-            Jutsu.Type.ATK,
+            Jutsu.Type.BUFF,
             Arrays.asList(
                     new Requirement() {
                         public int getValue() {
@@ -9617,26 +9503,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
-                        }
-
-                        @Override
-                        public boolean check(boolean folded) {
-                            return CharOn.character.getAttributes().getIntelligence() >= value(folded);
-                        }
-
-                        @Override
-                        public String toString(Context context, boolean folded) {
-                            return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.INTE.name)
-                            );
-                        }
-                    },
-                    new Requirement() {
-
-                        @Override
-                        public Object value() {
-                            return 5;
+                            return 38;
                         }
 
                         @Override
@@ -9709,7 +9576,7 @@ public enum JutsuInfo {
                     }
             )),
     TAJUU_KAGE_BUNSHIN_NO_JUTSU_II("tajuu-kage-bunshin.jpg", R.string.tajuu_kage_bunshin_no_jutsu_ii, R.string.tajuu_kage_bunshin_no_jutsu_ii_desc,
-            Jutsu.Type.ATK,
+            Jutsu.Type.BUFF,
             Arrays.asList(
                     new Requirement() {
                         public int getValue() {
@@ -9731,26 +9598,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
-                        }
-
-                        @Override
-                        public boolean check(boolean folded) {
-                            return CharOn.character.getAttributes().getIntelligence() >= value(folded);
-                        }
-
-                        @Override
-                        public String toString(Context context, boolean folded) {
-                            return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.INTE.name)
-                            );
-                        }
-                    },
-                    new Requirement() {
-
-                        @Override
-                        public Object value() {
-                            return 5;
+                            return 38;
                         }
 
                         @Override
@@ -9788,7 +9636,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
+                            return 30;
                         }
 
                         @Override
@@ -9807,7 +9655,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 5;
+                            return 40;
                         }
 
                         @Override
@@ -9959,7 +9807,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
+                            return 33;
                         }
 
                         @Override
@@ -9978,7 +9826,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 5;
+                            return 44;
                         }
 
                         @Override
@@ -10017,7 +9865,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
+                            return 34;
                         }
 
                         @Override
@@ -10036,7 +9884,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 5;
+                            return 45;
                         }
 
                         @Override
@@ -10074,7 +9922,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
+                            return 34;
                         }
 
                         @Override
@@ -10093,7 +9941,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 5;
+                            return 45;
                         }
 
                         @Override
@@ -10131,7 +9979,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
+                            return 36;
                         }
 
                         @Override
@@ -10150,7 +9998,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 5;
+                            return 48;
                         }
 
                         @Override
@@ -10166,7 +10014,7 @@ public enum JutsuInfo {
                     }
             )),
     HIRAISHIN_NO_JUTSU_I("Hiraishin no Jutsu.jpg", R.string.hiraishin_no_jutsu_i, R.string.hiraishin_no_jutsu_i_desc,
-            Jutsu.Type.ATK,
+            Jutsu.Type.BUFF,
             Arrays.asList(
                     new Requirement() {
                         public int getValue() {
@@ -10188,26 +10036,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
-                        }
-
-                        @Override
-                        public boolean check(boolean folded) {
-                            return CharOn.character.getAttributes().getIntelligence() >= value(folded);
-                        }
-
-                        @Override
-                        public String toString(Context context, boolean folded) {
-                            return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.INTE.name)
-                            );
-                        }
-                    },
-                    new Requirement() {
-
-                        @Override
-                        public Object value() {
-                            return 5;
+                            return 48;
                         }
 
                         @Override
@@ -10245,7 +10074,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
+                            return 36;
                         }
 
                         @Override
@@ -10264,7 +10093,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 5;
+                            return 48;
                         }
 
                         @Override
@@ -10280,7 +10109,7 @@ public enum JutsuInfo {
                     }
             )),
     HIRAISHIN_NO_JUTSU_II("Hiraishin no Jutsu.jpg", R.string.hiraishin_no_jutsu_ii, R.string.hiraishin_no_jutsu_ii_desc,
-            Jutsu.Type.ATK,
+            Jutsu.Type.BUFF,
             Arrays.asList(
                     new Requirement() {
                         public int getValue() {
@@ -10302,26 +10131,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
-                        }
-
-                        @Override
-                        public boolean check(boolean folded) {
-                            return CharOn.character.getAttributes().getIntelligence() >= value(folded);
-                        }
-
-                        @Override
-                        public String toString(Context context, boolean folded) {
-                            return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.INTE.name)
-                            );
-                        }
-                    },
-                    new Requirement() {
-
-                        @Override
-                        public Object value() {
-                            return 5;
+                            return 48;
                         }
 
                         @Override
@@ -10359,7 +10169,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
+                            return 38;
                         }
 
                         @Override
@@ -10378,7 +10188,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 5;
+                            return 50;
                         }
 
                         @Override
@@ -10416,7 +10226,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
+                            return 39;
                         }
 
                         @Override
@@ -10435,7 +10245,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 5;
+                            return 52;
                         }
 
                         @Override
@@ -10473,7 +10283,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
+                            return 41;
                         }
 
                         @Override
@@ -10492,7 +10302,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 5;
+                            return 54;
                         }
 
                         @Override
@@ -10531,7 +10341,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
+                            return 44;
                         }
 
                         @Override
@@ -10550,7 +10360,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 5;
+                            return 58;
                         }
 
                         @Override

@@ -23,29 +23,13 @@ public class AcademyJutsuViewModel extends ViewModel
 
     private MutableLiveData<Classe> mClassSelected;
 
-    private SingleLiveEvent<Integer> showCongratulationsEvent = new SingleLiveEvent<>();
-    private SingleLiveEvent<Integer> showWarningEvent = new SingleLiveEvent<>();
+    private SingleLiveEvent<Integer> mShowCongratulationsEvent = new SingleLiveEvent<>();
+    private SingleLiveEvent<Integer> mShowWarningEvent = new SingleLiveEvent<>();
 
     public AcademyJutsuViewModel() {
         mJutsus = new MutableLiveData<>();
         mClassSelected = new MutableLiveData<>(CharOn.character.getClasse());
         filterJutsus();
-    }
-
-    LiveData<List<Jutsu>> getJutsus() {
-        return mJutsus;
-    }
-
-    public LiveData<Classe> getClassSelected() {
-        return mClassSelected;
-    }
-
-    LiveData<Integer> getShowCongratulationsEvent() {
-        return showCongratulationsEvent;
-    }
-
-    LiveData<Integer> getShowWarningEvent() {
-        return showWarningEvent;
     }
 
     public void onClassButtonPressed(Classe classe) {
@@ -61,20 +45,38 @@ public class AcademyJutsuViewModel extends ViewModel
     @Override
     public void onTrainClick(Jutsu jutsu) {
         Formulas formulas = CharOn.character.getAttributes().getFormulas();
+
         if (formulas.getCurrentChakra() >= jutsu.getConsumesChakra() * 2) {
             if (formulas.getCurrentStamina() >= jutsu.getConsumesStamina() * 2) {
                 formulas.subChakra(jutsu.getConsumesChakra() * 2);
                 formulas.subStamina(jutsu.getConsumesStamina() * 2);
                 CharOn.character.getJutsus().add(jutsu);
+                JutsuRepository.getInstance().sort(CharOn.character.getJutsus());
                 CharacterRepository.getInstance().save(CharOn.character);
 
-                showCongratulationsEvent.setValue(JutsuInfo.valueOf(jutsu.getName()).name);
+                mShowCongratulationsEvent.setValue(JutsuInfo.valueOf(jutsu.getName()).name);
                 filterJutsus();
             } else {
-                showWarningEvent.setValue(R.string.stamina);
+                mShowWarningEvent.setValue(R.string.stamina);
             }
         } else {
-            showWarningEvent.setValue(R.string.chakra);
+            mShowWarningEvent.setValue(R.string.chakra);
         }
+    }
+
+    LiveData<List<Jutsu>> getJutsus() {
+        return mJutsus;
+    }
+
+    public LiveData<Classe> getClassSelected() {
+        return mClassSelected;
+    }
+
+    LiveData<Integer> getShowCongratulationsEvent() {
+        return mShowCongratulationsEvent;
+    }
+
+    LiveData<Integer> getShowWarningEvent() {
+        return mShowWarningEvent;
     }
 }

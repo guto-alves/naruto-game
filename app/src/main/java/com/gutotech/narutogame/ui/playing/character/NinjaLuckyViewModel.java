@@ -50,22 +50,23 @@ public class NinjaLuckyViewModel extends ViewModel {
 
     private NinjaLucky mNinjaLucky;
 
+    private final NinjaLuckyRepository mNinjaLuckyRepository = NinjaLuckyRepository.getInstance();
+
     private int mDayOfWeek;
 
     public NinjaLuckyViewModel() {
-        NinjaLuckyRepository.getInstance().get(CharOn.character.getId(), data -> {
-            mNinjaLucky = data;
+        mNinjaLuckyRepository.get(CharOn.character.getId(), ninjaLucky -> {
+            mNinjaLucky = ninjaLucky;
             mDaysOfWeek.postValue(mNinjaLucky.getDaysOfWeek());
         });
 
         mPlayModeSelected = new MutableLiveData<>(RYOUS_DAILY);
-
         mLotteryItems = new MutableLiveData<>(buildItems());
 
         calculateIntervals();
     }
 
-    public void onPlayModeSeleted(@PlayMode int mode) {
+    public void onPlayModeSelected(@PlayMode int mode) {
         mPlayModeSelected.setValue(mode);
     }
 
@@ -79,51 +80,57 @@ public class NinjaLuckyViewModel extends ViewModel {
 
     private void validatePlay(Callback<Boolean> callback) {
         FirebaseFunctionsUtils.getServerTime(currentTimestamp -> {
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTimeInMillis(currentTimestamp);
-            mDayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
+            synchronized (NinjaLuckyViewModel.this) {
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTimeInMillis(currentTimestamp);
+                mDayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
 
-            if (mNinjaLucky == null) {
+                if (mNinjaLucky == null) {
+                    callback.call(false);
+                    return;
+                }
+
+                if (mPlayModeSelected.getValue() == RYOUS_DAILY) {
+                    if (mNinjaLucky.played(mDayOfWeek)) {
+                        mShowWarningDialogEvent.setValue(R.string.warning_already_played_today);
+                        callback.call(false);
+                        return;
+                    }
+
+                    if (CharOn.character.getRyous() >= RYOUS_DAILY) {
+                        CharOn.character.subRyous(RYOUS_DAILY);
+                        callback.call(true);
+                        return;
+                    } else {
+                        mShowWarningDialogEvent.setValue(R.string.warning_dont_have_enough_ryous);
+                    }
+                } else if (mNinjaLucky.playedAllDays()) {
+                    if (CharOn.character.getRyous() >= RYOUS_WEEKLY) {
+                        CharOn.character.subRyous(RYOUS_WEEKLY);
+                        callback.call(true);
+                        return;
+                    } else {
+                        mShowWarningDialogEvent.setValue(R.string.warning_dont_have_enough_ryous);
+                    }
+                } else {
+                    mShowWarningDialogEvent.setValue(R.string.warning_havent_played_the_entire_week_yet);
+                }
+
                 callback.call(false);
             }
-
-            if (mPlayModeSelected.getValue() == RYOUS_DAILY) {
-                if (mNinjaLucky.played(mDayOfWeek)) {
-                    mShowWarningDialogEvent.setValue(R.string.warning_already_played_today);
-                    callback.call(false);
-                }
-
-                if (CharOn.character.getRyous() >= RYOUS_DAILY) {
-                    CharOn.character.subRyous(RYOUS_DAILY);
-                    callback.call(true);
-                } else {
-                    mShowWarningDialogEvent.setValue(R.string.warning_dont_have_enough_ryous);
-                }
-            } else if (mNinjaLucky.playedAllDays()) {
-                if (CharOn.character.getRyous() >= RYOUS_WEEKLY) {
-                    CharOn.character.subRyous(RYOUS_WEEKLY);
-                    callback.call(true);
-                } else {
-                    mShowWarningDialogEvent.setValue(R.string.warning_dont_have_enough_ryous);
-                }
-            } else {
-                mShowWarningDialogEvent.setValue(R.string.warning_havent_played_the_entire_week_yet);
-            }
-
-            callback.call(false);
         });
     }
 
     private void play() {
         mStartAnimationEvent.call();
 
-        mLotteryItemReceived = generatePremium();
-
+        mLotteryItemReceived = generateItem();
         mLotteryItemReceived.getPremium().receive();
         CharacterRepository.getInstance().save(CharOn.character);
 
         mNinjaLucky.selectDayAsPlayed(mDayOfWeek);
-        NinjaLuckyRepository.getInstance().save(CharOn.character.getId(), mNinjaLucky);
+        mNinjaLuckyRepository.save(CharOn.character.getId(), mNinjaLucky);
+        mDaysOfWeek.postValue(mNinjaLucky.getDaysOfWeek());
     }
 
     void onAnimationEnd() {
@@ -138,7 +145,7 @@ public class NinjaLuckyViewModel extends ViewModel {
         }
     }
 
-    private LotteryItem generatePremium() {
+    private LotteryItem generateItem() {
         int n = new SecureRandom().nextInt(mIntervals[TOTAL_ITEMS - 1]) + 1;
 
         int winnerItemIndex = 0;

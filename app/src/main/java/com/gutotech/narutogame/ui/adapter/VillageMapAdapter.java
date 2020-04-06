@@ -135,7 +135,6 @@ public class VillageMapAdapter extends RecyclerView.Adapter<VillageMapAdapter.Vi
                             yoff = -holder.itemView.getHeight() + 5;
 
                             mPopupWindow.showAsDropDown(holder.itemView, xoff, yoff);
-
                             return true;
                         }
 
@@ -161,5 +160,9 @@ public class VillageMapAdapter extends RecyclerView.Adapter<VillageMapAdapter.Vi
     public void setMap(Map<Integer, List<Character>> map) {
         mMap = map;
         notifyDataSetChanged();
+    }
+
+    public void dismissPopupWindow(){
+        mPopupWindow.dismiss();
     }
 }
