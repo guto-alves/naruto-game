@@ -23,7 +23,7 @@ import java.util.List;
 public class CharsInPositionAdapter extends RecyclerView.Adapter<CharsInPositionAdapter.ViewHolder> {
 
     public interface OnBattleClickListener {
-        void onBattleClick(Character opp);
+        void onBattleClick(Character opponent);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -77,14 +77,20 @@ public class CharsInPositionAdapter extends RecyclerView.Adapter<CharsInPosition
             if (character.equals(CharOn.character)) {
                 holder.charInfoTextView.setText(R.string.you_are_here);
                 holder.battleImageButton.setVisibility(View.GONE);
+            } else if (character.getLevel() > CharOn.character.getLevel() &&
+                    character.getLevel() - CharOn.character.getLevel() > 7) {
+                holder.charInfoTextView.setText(mContext.getString(R.string.map_char_info,
+                        "??", "??", "??????????"));
+                holder.battleImageButton.setVisibility(View.VISIBLE);
             } else {
                 holder.charInfoTextView.setText(mContext.getString(R.string.map_char_info, character.getNick(),
-                        character.getLevel(), mContext.getString(character.getVillage().name)));
+                        String.valueOf(character.getLevel()), mContext.getString(character.getVillage().name)));
                 holder.battleImageButton.setVisibility(View.VISIBLE);
             }
 
             holder.battleImageButton.setOnClickListener(v ->
-                    mOnBattleClickListener.onBattleClick(character));
+                    mOnBattleClickListener.onBattleClick(character)
+            );
 
             holder.backgroundImageView.setVisibility(View.VISIBLE);
             holder.spriteImageView.setVisibility(View.VISIBLE);
@@ -94,8 +100,8 @@ public class CharsInPositionAdapter extends RecyclerView.Adapter<CharsInPosition
             set.applyTo(holder.constraintLayout);
         } else {
             holder.charInfoTextView.setText(R.string.this_place_is_empty);
-            holder.backgroundImageView.setVisibility(View.GONE);
             holder.spriteImageView.setVisibility(View.GONE);
+            holder.backgroundImageView.setVisibility(View.GONE);
             holder.battleImageButton.setVisibility(View.GONE);
             ConstraintSet set = new ConstraintSet();
             set.clone(holder.constraintLayout);

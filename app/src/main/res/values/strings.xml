@@ -1068,7 +1068,7 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
         in Naruto Game.\nSelect your character and start your training right now</string>
     <string name="this_place_is_far_away">This place is far away!</string>
     <string name="this_place_is_empty">Empty</string>
-    <string name="map_char_info" translatable="false">%s [Lvl %d]\n%s</string>
+    <string name="map_char_info" translatable="false">%s [Lvl %s]\n%s</string>
     <string name="battle_button">Battle button</string>
     <string name="battle">Battle</string>
     <string name="allied_ninja">Allied Ninja\n(Green Background Color)</string>
@@ -1188,15 +1188,19 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="per_grade_player">Per Grade Player</string>
     <string name="logar_days_followed">Logar %d day(s) followed</string>
     <string name="fidelity_rewards">FIDELITY REWARDS</string>
-    <string name="fidelity_rewards_description">To log every day you can collect rewards for your character. You should enter the game for 8 consecutive days to get all the rewards and start again. If you do not log one day, the counter will return to the first day.</string>
+    <string name="fidelity_rewards_description">To log every day you can collect rewards for your
+        character. You should enter the game for 8 consecutive days to get all the rewards and
+        start again. If you do not log one day, the counter will return to the first day.</string>
     <string name="fidelity_reward_1_description">%d Ryous</string>
     <string name="value_in_ryous">%d Ryous</string>
     <string name="value_in_experience">%d Experience</string>
     <string name="reward_in_ramen">%d Shio Tyashu-Ramen</string>
     <string name="to_be_a_member">I WANT TO BE A MEMBER</string>
-    <string name="to_be_a_member_description">Choose the Team and click Participate to send a request to join this Team</string>
+    <string name="to_be_a_member_description">Choose the Team and click Participate to send a
+        request to join this Team</string>
     <string name="change_name_of_the_character">Change Name of the character</string>
-    <string name="change_name_of_the_character_des">Change the name of your Ninja. (Max of 14 characters, no spaces, only letters and numbers)</string>
+    <string name="change_name_of_the_character_des">Change the name of your Ninja. (Max of 10
+        characters, no spaces, only letters and numbers)</string>
     <string name="character_change">Character Change</string>
     <string name="change_the_character_of_your_ninja">Change the character of your Ninja</string>
     <string name="class_change">Class Change</string>

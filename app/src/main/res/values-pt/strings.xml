@@ -1147,7 +1147,7 @@
     <string name="to_be_a_member_description">Escolha a Equipe de seu amigo e clique no botão
         participar para enviar um pedido para entrar na equipe.</string>
     <string name="change_name_of_the_character">Mudar Nome do Personagem</string>
-    <string name="change_name_of_the_character_des">Mude o nome do Personagem (Máximo de 14
+    <string name="change_name_of_the_character_des">Mude o nome do Personagem (Máximo de 10
         caracteres, sem espaços, somente letras e números)</string>
     <string name="character_change">Trocar o Personagem</string>
     <string name="change_the_character_of_your_ninja">Mude o personagem do seu ninja.</string>

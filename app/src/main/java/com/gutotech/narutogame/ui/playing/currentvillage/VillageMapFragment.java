@@ -46,8 +46,9 @@ public class VillageMapFragment extends Fragment implements SectionFragment {
 
         binding.setViewModel(viewModel);
 
-        mVillageMapAdapter = new VillageMapAdapter(getActivity(),
-                village.placeEntries, viewModel);
+        mVillageMapAdapter = new VillageMapAdapter(
+                getActivity(), village.placeEntries, viewModel
+        );
 
         binding.villageMapRecyclerView.setHasFixedSize(true);
         binding.villageMapRecyclerView.setAdapter(mVillageMapAdapter);
