@@ -6,8 +6,7 @@
   Naruto Game  
 </h1>
 
-In the game you become a Ninja Student, and your mission is develop
-your skills and make your way to become Kage!
+In our game you will be a ninja and your mission is to develop your skills and chart your own ninja path to become Kage!
 
 ## Download
 [Naruto Game.apk](https://drive.google.com/file/d/1b3zi_l62uieVYfC9qeddQtzBui1YSzA5/view?usp=sharing)
