@@ -13,12 +13,16 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
 import com.gutotech.narutogame.R;
+import com.gutotech.narutogame.data.model.Classe;
 import com.gutotech.narutogame.databinding.FragmentVipPlayerBinding;
 import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.WarningDialogFragment;
 import com.gutotech.narutogame.utils.FragmentUtil;
 import com.gutotech.narutogame.utils.SpannableStringBuilderCustom;
 import com.gutotech.narutogame.data.firebase.StorageUtils;
+
+import java.util.Collections;
+import java.util.List;
 
 public class VipPlayerFragment extends Fragment implements SectionFragment {
 
@@ -37,8 +41,8 @@ public class VipPlayerFragment extends Fragment implements SectionFragment {
                 android.R.layout.simple_spinner_item, viewModel.getNinjas());
         ninjasAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        ArrayAdapter classesAdapter = new ArrayAdapter(getActivity(),
-                android.R.layout.simple_spinner_item, viewModel.getClasses());
+        ArrayAdapter<List<Classe>> classesAdapter = new ArrayAdapter<>(getActivity(),
+                android.R.layout.simple_spinner_item, Collections.singletonList(viewModel.getClasses()));
         classesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         ArrayAdapter villagesAdapter = new ArrayAdapter(getActivity(),

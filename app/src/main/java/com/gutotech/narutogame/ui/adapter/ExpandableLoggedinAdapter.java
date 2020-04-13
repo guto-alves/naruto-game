@@ -11,7 +11,6 @@ import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.MenuGroup;
 import com.gutotech.narutogame.ui.SectionFragment;
 
-import java.util.HashMap;
 import java.util.List;
 
 public class ExpandableLoggedinAdapter extends BaseExpandableListAdapter {
@@ -53,7 +52,8 @@ public class ExpandableLoggedinAdapter extends BaseExpandableListAdapter {
     }
 
     @Override
-    public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
+    public View getGroupView(int groupPosition, boolean isExpanded, View convertView,
+                             ViewGroup parent) {
         if (convertView == null) {
             convertView = LayoutInflater.from(parent.getContext()).inflate(
                     R.layout.expandable_logado_list_group, null, false);

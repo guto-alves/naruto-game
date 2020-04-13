@@ -9,7 +9,6 @@ import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.model.Classe;
 import com.gutotech.narutogame.data.model.Formulas;
 import com.gutotech.narutogame.data.model.Jutsu;
-import com.gutotech.narutogame.data.model.JutsuInfo;
 import com.gutotech.narutogame.data.repository.CharacterRepository;
 import com.gutotech.narutogame.data.repository.JutsuRepository;
 import com.gutotech.narutogame.ui.adapter.JutsusLearnAdapter;
@@ -19,15 +18,16 @@ import java.util.List;
 
 public class AcademyJutsuViewModel extends ViewModel
         implements JutsusLearnAdapter.OnTrainClickListener {
-    private MutableLiveData<List<Jutsu>> mJutsus;
+    private MutableLiveData<List<Jutsu>> mJutsus = new MutableLiveData<>();
 
     private MutableLiveData<Classe> mClassSelected;
 
     private SingleLiveEvent<Integer> mShowCongratulationsEvent = new SingleLiveEvent<>();
     private SingleLiveEvent<Integer> mShowWarningEvent = new SingleLiveEvent<>();
 
+    private JutsuRepository mJutsuRepository = JutsuRepository.getInstance();
+
     public AcademyJutsuViewModel() {
-        mJutsus = new MutableLiveData<>();
         mClassSelected = new MutableLiveData<>(CharOn.character.getClasse());
         filterJutsus();
     }
@@ -38,23 +38,23 @@ public class AcademyJutsuViewModel extends ViewModel
     }
 
     private void filterJutsus() {
-        JutsuRepository.getInstance().filterJutsus(mClassSelected.getValue(),
-                jutsus -> mJutsus.postValue(jutsus));
+        mJutsuRepository.filterJutsus(mClassSelected.getValue(), mJutsus::postValue);
     }
 
     @Override
-    public void onTrainClick(Jutsu jutsu) {
+    public synchronized void onTrainClick(Jutsu jutsu) {
         Formulas formulas = CharOn.character.getAttributes().getFormulas();
 
         if (formulas.getCurrentChakra() >= jutsu.getConsumesChakra() * 2) {
             if (formulas.getCurrentStamina() >= jutsu.getConsumesStamina() * 2) {
                 formulas.subChakra(jutsu.getConsumesChakra() * 2);
                 formulas.subStamina(jutsu.getConsumesStamina() * 2);
+
                 CharOn.character.getJutsus().add(jutsu);
-                JutsuRepository.getInstance().sort(CharOn.character.getJutsus());
+                mJutsuRepository.sort(CharOn.character.getJutsus());
                 CharacterRepository.getInstance().save(CharOn.character);
 
-                mShowCongratulationsEvent.setValue(JutsuInfo.valueOf(jutsu.getName()).name);
+                mShowCongratulationsEvent.setValue(jutsu.getJutsuInfo().name);
                 filterJutsus();
             } else {
                 mShowWarningEvent.setValue(R.string.stamina);

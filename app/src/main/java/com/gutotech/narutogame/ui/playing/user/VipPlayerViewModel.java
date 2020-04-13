@@ -146,8 +146,9 @@ public class VipPlayerViewModel extends ViewModel {
             NinjaStatisticsRepository.getInstance().remove(mCharacter.getNinja().getId());
 
             mCharacter.setNinja(newNinja);
-            mCharacter.setProfilePath(String.format(Locale.US,
-                    "images/profile/%d/1.png", newNinja.getId()));
+            mCharacter.setProfilePath(
+                    String.format(Locale.US, "images/profile/%d/1.png", newNinja.getId())
+            );
 
             mShowSuccessMessageEvent.setValue(R.string.character_change);
         }

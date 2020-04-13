@@ -48,7 +48,7 @@ public class LotteryItemsAdapter extends RecyclerView.Adapter<LotteryItemsAdapte
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View itemView = LayoutInflater.from(viewGroup.getContext()).inflate(
-                R.layout.recycler_lottery_item, viewGroup, false);
+                R.layout.adapter_lottery_item, viewGroup, false);
         return new MyViewHolder(itemView);
     }
 

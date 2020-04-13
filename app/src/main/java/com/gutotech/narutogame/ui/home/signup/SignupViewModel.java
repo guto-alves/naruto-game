@@ -13,22 +13,22 @@ import com.gutotech.narutogame.data.repository.PlayerRepository;
 import com.gutotech.narutogame.ui.ResultListener;
 
 public class SignupViewModel extends ViewModel {
-    private MutableLiveData<Player> player;
     public String confirmPassword;
+    private MutableLiveData<Player> mPlayer;
 
     private AuthRepository mAuthRepository;
     private ResultListener mAuthListener;
 
     public SignupViewModel() {
-        player = new MutableLiveData<>(new Player());
+        mPlayer = new MutableLiveData<>(new Player());
         mAuthRepository = AuthRepository.getInstance();
     }
 
     public LiveData<Player> getPlayer() {
-        return player;
+        return mPlayer;
     }
 
-    public void setAuthListener(ResultListener authListener) {
+    void setAuthListener(ResultListener authListener) {
         mAuthListener = authListener;
     }
 
@@ -37,17 +37,17 @@ public class SignupViewModel extends ViewModel {
 
         if (isValidPlayer()) {
             mAuthRepository.register(
-                    player.getValue().getName(),
-                    player.getValue().getEmail(),
-                    player.getValue().getPassword(),
+                    mPlayer.getValue().getName(),
+                    mPlayer.getValue().getEmail(),
+                    mPlayer.getValue().getPassword(),
                     new AuthRepository.Completable() {
                         @Override
                         public void onComplete() {
-                            player.getValue().setId(mAuthRepository.getUid());
+                            mPlayer.getValue().setId(mAuthRepository.getUid());
 
-                            PlayerRepository.getInstance().savePlayer(player.getValue());
+                            PlayerRepository.getInstance().savePlayer(mPlayer.getValue());
 
-                            player.setValue(new Player());
+                            mPlayer.setValue(new Player());
                             confirmPassword = "";
 
                             mAuthRepository.signOut();
@@ -66,19 +66,19 @@ public class SignupViewModel extends ViewModel {
     private boolean isValidPlayer() {
         boolean valid = true;
 
-        if (TextUtils.isEmpty(player.getValue().getName())) {
+        if (TextUtils.isEmpty(mPlayer.getValue().getName())) {
             mAuthListener.onFailure(R.string.name_field_requered);
             valid = false;
-        } else if (TextUtils.isEmpty(player.getValue().getEmail())) {
+        } else if (TextUtils.isEmpty(mPlayer.getValue().getEmail())) {
             mAuthListener.onFailure(R.string.email_field_requered);
             valid = false;
-        } else if (TextUtils.isEmpty(player.getValue().getPassword())) {
+        } else if (TextUtils.isEmpty(mPlayer.getValue().getPassword())) {
             mAuthListener.onFailure(R.string.password_field_requered);
             valid = false;
         } else if (TextUtils.isEmpty(confirmPassword)) {
             mAuthListener.onFailure(R.string.the_passwords_do_not_match);
             valid = false;
-        } else if (!player.getValue().getPassword().equals(confirmPassword)) {
+        } else if (!mPlayer.getValue().getPassword().equals(confirmPassword)) {
             mAuthListener.onFailure(R.string.different_passwords);
             valid = false;
         }

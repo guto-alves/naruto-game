@@ -93,7 +93,7 @@
                                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                                 app:spanCount="3"
                                 tools:itemCount="2"
-                                tools:listitem="@layout/recycler_buffs_and_debuffs" />
+                                tools:listitem="@layout/adapter_buff_debuff_status" />
                         </LinearLayout>
 
                         <ImageView
@@ -330,7 +330,7 @@
                                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                                 app:spanCount="3"
                                 tools:itemCount="2"
-                                tools:listitem="@layout/recycler_buffs_and_debuffs" />
+                                tools:listitem="@layout/adapter_buff_debuff_status" />
                         </LinearLayout>
 
                         <ImageView

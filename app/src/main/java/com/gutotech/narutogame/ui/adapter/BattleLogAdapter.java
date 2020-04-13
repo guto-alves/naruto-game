@@ -58,10 +58,10 @@ public class BattleLogAdapter extends RecyclerView.Adapter<BattleLogAdapter.View
         if (mBattleLogs != null) {
             BattleLog battleLog = mBattleLogs.get(position);
 
-            SpannableStringBuilderCustom logBuilder = new SpannableStringBuilderCustom(mContext);
-
             holder.divider.setVisibility(View.GONE);
             holder.textView.setVisibility(View.VISIBLE);
+
+            SpannableStringBuilderCustom logBuilder = new SpannableStringBuilderCustom(mContext);
 
             if (battleLog.getType() == BattleLog.Type.USES) {
                 logBuilder.append(battleLog.getNick());
@@ -120,4 +120,6 @@ public class BattleLogAdapter extends RecyclerView.Adapter<BattleLogAdapter.View
         mBattleLogs = logs;
         notifyDataSetChanged();
     }
+
+
 }

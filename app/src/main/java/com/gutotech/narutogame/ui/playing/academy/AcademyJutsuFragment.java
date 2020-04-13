@@ -63,9 +63,8 @@ public class AcademyJutsuFragment extends Fragment implements SectionFragment {
 
             showTrainingResult(R.string.congratulations_you_made_it, message);
 
-            mBinding.scrollView.post(() -> {
-                mBinding.scrollView.smoothScrollTo(0, mBinding.trainingResultLayout.getTop());
-            });
+            mBinding.scrollView.post(() ->
+                    mBinding.scrollView.smoothScrollTo(0, mBinding.trainingResultLayout.getTop()));
         });
 
         viewModel.getShowWarningEvent().observe(getViewLifecycleOwner(), resId -> {

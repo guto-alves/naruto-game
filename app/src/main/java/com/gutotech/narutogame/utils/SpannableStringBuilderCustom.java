@@ -21,19 +21,6 @@ public class SpannableStringBuilderCustom {
         mStringBuilder = new SpannableStringBuilder();
     }
 
-    public SpannableStringBuilderCustom(Context context, String text, @ColorRes int color) {
-        mContext = context;
-        mStringBuilder = new SpannableStringBuilder();
-        append(text, color);
-    }
-
-    public SpannableStringBuilderCustom(Context context, @StringRes int text, @ColorRes int color) {
-        mContext = context;
-        mStringBuilder = new SpannableStringBuilder();
-        append(text, color);
-    }
-
-
     public void append(String text) {
         index = mStringBuilder.length();
         mStringBuilder.append(text);

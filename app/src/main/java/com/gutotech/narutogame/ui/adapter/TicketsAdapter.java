@@ -40,7 +40,6 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.MyViewHo
         if (mTicketList != null) {
             Ticket ticket = mTicketList.get(i);
 
-
             myViewHolder.titleTextView.setText(ticket.getTitle());
             myViewHolder.categoryTextView.setText(mCategories[ticket.getCategory()]);
             myViewHolder.statusTextView.setText(ticket.getStatus().statusId);

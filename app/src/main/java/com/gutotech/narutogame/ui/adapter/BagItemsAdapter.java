@@ -48,7 +48,7 @@ public class BagItemsAdapter extends RecyclerView.Adapter<BagItemsAdapter.ViewHo
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View itemView = LayoutInflater.from(viewGroup.getContext()).inflate(
-                R.layout.recycler_bag_item, viewGroup, false);
+                R.layout.adapter_bag_item, viewGroup, false);
         return new ViewHolder(itemView);
     }
 

@@ -55,7 +55,7 @@ public class CharsInPositionAdapter extends RecyclerView.Adapter<CharsInPosition
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(
-                R.layout.recycler_map_position, parent, false);
+                R.layout.adapter_map_position, parent, false);
         return new ViewHolder(itemView);
     }
 

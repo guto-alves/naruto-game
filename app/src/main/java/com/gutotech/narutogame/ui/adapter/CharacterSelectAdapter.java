@@ -20,7 +20,7 @@ public class CharacterSelectAdapter extends RecyclerView.Adapter<CharacterSelect
         void onCharacterSelected(Character character);
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         private ImageView profileImageView;
 
         public ViewHolder(@NonNull View itemView) {
@@ -41,7 +41,7 @@ public class CharacterSelectAdapter extends RecyclerView.Adapter<CharacterSelect
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(
-                R.layout.adapter_small_profile, null, false);
+                R.layout.adapter_small_profile, parent, false);
         return new ViewHolder(itemView);
     }
 

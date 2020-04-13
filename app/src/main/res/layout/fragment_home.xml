@@ -257,7 +257,7 @@
                 android:layout_marginRight="8dp"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:spanCount="2"
-                tools:listitem="@layout/recycler_ninja_statistics_item" />
+                tools:listitem="@layout/adapter_ninja_statistics_item" />
 
         </LinearLayout>
 

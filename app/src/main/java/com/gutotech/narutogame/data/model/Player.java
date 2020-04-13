@@ -54,6 +54,7 @@ public class Player extends BaseObservable {
 
     public void setPassword(String password) {
         this.password = password;
+        notifyPropertyChanged(BR.password);
     }
 
     @Bindable

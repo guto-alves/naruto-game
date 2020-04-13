@@ -20,7 +20,7 @@ public class ChooseNinjaAdapter extends RecyclerView.Adapter<ChooseNinjaAdapter.
         void onNinjaClick(Ninja ninja);
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         private ImageView ninjaImageView;
 
         public ViewHolder(@NonNull View itemView) {

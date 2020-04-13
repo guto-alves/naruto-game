@@ -17,7 +17,8 @@ import com.gutotech.narutogame.data.firebase.StorageUtils;
 
 import java.util.List;
 
-public class BuffsDebuffStatusAdapter extends RecyclerView.Adapter<BuffsDebuffStatusAdapter.ViewHolder> {
+public class BuffsDebuffStatusAdapter
+        extends RecyclerView.Adapter<BuffsDebuffStatusAdapter.ViewHolder> {
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private ImageView buffDebuffImageView;
@@ -39,7 +40,7 @@ public class BuffsDebuffStatusAdapter extends RecyclerView.Adapter<BuffsDebuffSt
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(
-                R.layout.recycler_buffs_and_debuffs, parent, false);
+                R.layout.adapter_buff_debuff_status, parent, false);
         return new ViewHolder(itemView);
     }
 

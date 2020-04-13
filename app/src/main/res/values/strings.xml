@@ -128,7 +128,7 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="confirm_password">Confirm Password</string>
     <string name="signup">Sign up</string>
     <string name="accont_created_successfuly">ACCOUNT CREATED SUCCESSFULLY</string>
-    <string name="email_verification_sent" translatable="false">You will receive an email soon</string>
+    <string name="email_verification_sent">You will receive an email soon</string>
     <string name="new_invalid_password">The given password is invalid. [Password should be at least 6 characters]</string>
     <string name="invalid_email">Invalid email</string>
     <string name="weak_password">Weak Password</string>

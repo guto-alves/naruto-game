@@ -21,7 +21,7 @@ public class GraduationsViewModel extends ViewModel implements GraduationsAdapte
     }
 
     @Override
-    public void onGraduateClick(int graduationId, Graduation graduation) {
+    public synchronized void onGraduateClick(int graduationId, Graduation graduation) {
         CharOn.character.setGraduationId(graduationId);
         CharOn.character.addTitle(GraduationUtils.getName(graduationId));
         CharOn.character.incrementScore(Score.GRADUATION);

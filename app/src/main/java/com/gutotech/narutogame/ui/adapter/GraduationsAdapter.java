@@ -39,7 +39,6 @@ public class GraduationsAdapter extends RecyclerView.Adapter<GraduationsAdapter.
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-
             nameTextView = itemView.findViewById(R.id.nameTextView);
             descriptionTextView = itemView.findViewById(R.id.descriptionTextView);
             requerImageView = itemView.findViewById(R.id.requerImageView);
@@ -96,8 +95,9 @@ public class GraduationsAdapter extends RecyclerView.Adapter<GraduationsAdapter.
             holder.graduateButton.setText(R.string.button_graduate);
         }
 
-        holder.graduateButton.setOnClickListener(v -> mOnGraduateClickListener.onGraduateClick(
-                graduationId, graduation));
+        holder.graduateButton.setOnClickListener(v ->
+                mOnGraduateClickListener.onGraduateClick(graduationId, graduation)
+        );
 
         if (i % 2 == 0) {
             holder.bgConstraint.setBackgroundColor(mContext.getResources().getColor(R.color.colorItem1));
@@ -117,7 +117,6 @@ public class GraduationsAdapter extends RecyclerView.Adapter<GraduationsAdapter.
                 return false;
             }
         }
-
         return true;
     }
 }

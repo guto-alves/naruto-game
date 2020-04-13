@@ -41,7 +41,7 @@ public class RequirementsAdapter extends RecyclerView.Adapter<RequirementsAdapte
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(
-                R.layout.recycler_requirement_item, parent, false);
+                R.layout.adapter_requirement_item, parent, false);
         return new ViewHolder(itemView);
     }
 

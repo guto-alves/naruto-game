@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.Character;
-import com.gutotech.narutogame.data.model.GraduationUtils;
 import com.gutotech.narutogame.data.firebase.StorageUtils;
 import com.smarteist.autoimageslider.SliderViewAdapter;
 
@@ -25,16 +24,6 @@ public class KagesSliderAdapter extends SliderViewAdapter<KagesSliderAdapter.Sli
 
     public void renewItems(List<Character> kages) {
         mKages = kages;
-        notifyDataSetChanged();
-    }
-
-    public void deleteItem(int position) {
-        mKages.remove(position);
-        notifyDataSetChanged();
-    }
-
-    public void addItem(Character kage) {
-        mKages.add(kage);
         notifyDataSetChanged();
     }
 

@@ -48,7 +48,7 @@ public class NinjaStatisticsAdapter extends RecyclerView.Adapter<NinjaStatistics
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View itemView = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.recycler_ninja_statistics_item, viewGroup, false);
+                .inflate(R.layout.adapter_ninja_statistics_item, viewGroup, false);
         return new MyViewHolder(itemView);
     }
 

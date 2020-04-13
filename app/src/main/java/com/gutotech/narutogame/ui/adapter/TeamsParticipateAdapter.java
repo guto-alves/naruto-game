@@ -41,9 +41,9 @@ public class TeamsParticipateAdapter extends RecyclerView.Adapter<TeamsParticipa
     private List<Team> mTeams;
     private OnParticipateClickListener mOnParticipateClickListener;
 
-    public TeamsParticipateAdapter(Context context, OnParticipateClickListener l) {
+    public TeamsParticipateAdapter(Context context, OnParticipateClickListener listener) {
         mContext = context;
-        mOnParticipateClickListener = l;
+        mOnParticipateClickListener = listener;
     }
 
     @NonNull

@@ -22,49 +22,49 @@ import com.gutotech.narutogame.data.firebase.StorageUtils;
 import es.dmoral.toasty.Toasty;
 
 public class SignupFragment extends Fragment implements ResultListener, SectionFragment {
-    private FragmentSignupBinding binding;
+    private FragmentSignupBinding mBinding;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         SignupViewModel viewModel = new ViewModelProvider(this).get(SignupViewModel.class);
 
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_signup,
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_signup,
                 container, false);
-        binding.setViewModel(viewModel);
+        mBinding.setViewModel(viewModel);
         viewModel.setAuthListener(this);
 
-        binding.msgLayout.titleTextView.setText(R.string.just_a_bit_now);
-        binding.msgLayout.descriptionTextView.setText(R.string.fullfill_the_form_below);
-        StorageUtils.downloadProfileForMsg(getActivity(), binding.msgLayout.profileImageView);
+        mBinding.msgLayout.titleTextView.setText(R.string.just_a_bit_now);
+        mBinding.msgLayout.descriptionTextView.setText(R.string.fullfill_the_form_below);
+        StorageUtils.downloadProfileForMsg(getActivity(), mBinding.msgLayout.profileImageView);
 
         FragmentUtil.setSectionTitle(getActivity(), R.string.section_create_account);
 
-        return binding.getRoot();
+        return mBinding.getRoot();
     }
 
-    private ProgressDialogFragment progressDialog = new ProgressDialogFragment();
+    private ProgressDialogFragment mProgressDialog = new ProgressDialogFragment();
 
     @Override
     public void onStarted() {
-        progressDialog.show(getFragmentManager(), "ProgressDialog");
+        mProgressDialog.show(getParentFragmentManager(), "ProgressDialog");
     }
 
     @Override
     public void onSuccess() {
-        binding.formToSignupLinearLayout.setVisibility(View.GONE);
+        mBinding.formToSignupLinearLayout.setVisibility(View.GONE);
 
-        StorageUtils.downloadProfileForMsg(getActivity(), binding.accountCreatedMsgLayout.profileImageView);
-        binding.accountCreatedMsgLayout.titleTextView.setText(R.string.accont_created_successfuly);
-        binding.accountCreatedMsgLayout.descriptionTextView.setText(R.string.email_verification_sent);
-        binding.accountCreatedMsgLayout.msgConstraintLayout.setVisibility(View.VISIBLE);
+        StorageUtils.downloadProfileForMsg(getActivity(), mBinding.accountCreatedMsgLayout.profileImageView);
+        mBinding.accountCreatedMsgLayout.titleTextView.setText(R.string.accont_created_successfuly);
+        mBinding.accountCreatedMsgLayout.descriptionTextView.setText(R.string.email_verification_sent);
+        mBinding.accountCreatedMsgLayout.msgConstraintLayout.setVisibility(View.VISIBLE);
 
-        progressDialog.dismiss();
+        mProgressDialog.dismiss();
     }
 
     @Override
     public void onFailure(int resId) {
-        progressDialog.dismiss();
+        mProgressDialog.dismiss();
         Toasty.error(getContext(), resId, Toasty.LENGTH_LONG).show();
     }
 

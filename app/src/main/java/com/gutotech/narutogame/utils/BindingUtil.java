@@ -61,11 +61,6 @@ public class BindingUtil {
                 textView, new SimpleMaskFormatter(mask)));
     }
 
-    @BindingAdapter("show")
-    public static void setShow(View view, Boolean visible) {
-        view.setVisibility(visible ? View.VISIBLE : View.GONE);
-    }
-
     @BindingAdapter("background_play_mode")
     public static void setBackgroundPlayMode(Button button, Boolean selected) {
         if (selected) {

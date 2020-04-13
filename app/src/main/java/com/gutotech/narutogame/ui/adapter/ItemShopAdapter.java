@@ -45,7 +45,6 @@ public class ItemShopAdapter extends RecyclerView.Adapter<ItemShopAdapter.ViewHo
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-
             itemImageView = itemView.findViewById(R.id.imageView);
             nameTextView = itemView.findViewById(R.id.nameTextView);
             descriptionTextView = itemView.findViewById(R.id.descriptionTextView);
@@ -116,7 +115,7 @@ public class ItemShopAdapter extends RecyclerView.Adapter<ItemShopAdapter.ViewHo
             });
 
             holder.requerImageView.setOnClickListener(v -> {
-                DialogFragment dialog =  RequirementDialogFragment.getInstance(itemShop.getRequirements());
+                DialogFragment dialog = RequirementDialogFragment.getInstance(itemShop.getRequirements());
                 dialog.show(mFragmentManager, "RequirementDialogFragment");
             });
 
@@ -131,9 +130,13 @@ public class ItemShopAdapter extends RecyclerView.Adapter<ItemShopAdapter.ViewHo
             });
 
             if (i % 2 == 0) {
-                holder.bgLayout.setBackgroundColor(mContext.getResources().getColor(R.color.colorItem1));
+                holder.bgLayout.setBackgroundColor(
+                        mContext.getResources().getColor(R.color.colorItem1)
+                );
             } else {
-                holder.bgLayout.setBackgroundColor(mContext.getResources().getColor(R.color.colorItem2));
+                holder.bgLayout.setBackgroundColor(
+                        mContext.getResources().getColor(R.color.colorItem2)
+                );
             }
         }
     }

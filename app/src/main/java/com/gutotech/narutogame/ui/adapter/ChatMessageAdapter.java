@@ -39,7 +39,7 @@ public class ChatMessageAdapter extends RecyclerView.Adapter<ChatMessageAdapter.
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(
-                R.layout.recycler_chat_message, viewGroup, false);
+                R.layout.adapter_chat_message, viewGroup, false);
         return new ViewHolder(view);
     }
 

@@ -37,7 +37,6 @@ public class VillageMapAdapter extends RecyclerView.Adapter<VillageMapAdapter.Vi
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-
             backgroundImageView = itemView.findViewById(R.id.backgroundImageView);
             spriteImageView = itemView.findViewById(R.id.spriteImageView);
         }
