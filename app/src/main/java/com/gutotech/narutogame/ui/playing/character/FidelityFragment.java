@@ -39,7 +39,8 @@ public class FidelityFragment extends Fragment implements SectionFragment {
         viewModel.getRewards().observe(getViewLifecycleOwner(), adapter::setRewards);
 
         viewModel.getUpdateFidelityRewards().observe(getViewLifecycleOwner(), aVoid ->
-                adapter.notifyDataSetChanged());
+                adapter.notifyDataSetChanged()
+        );
 
         FragmentUtil.setSectionTitle(getActivity(), R.string.section_ninja_fidelity);
         return binding.getRoot();

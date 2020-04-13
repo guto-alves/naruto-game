@@ -136,7 +136,7 @@ public class FidelityViewModel extends ViewModel implements FidelityRewardsAdapt
                 CharOn.character.getBag().addRamen(
                         new Ramen("Shio_Tyashu-Ramen", R.string.shio_tyashu_ramen,
                                 R.string.shio_tyashu_ramen_description, 140, 600),
-                        5);
+                        value());
             }
 
             @Override

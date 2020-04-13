@@ -33,7 +33,7 @@ public class FidelityRewardsAdapter extends RecyclerView.Adapter<FidelityRewards
         mOnReceiveClickListener = listener;
     }
 
-    public class ViewModel extends RecyclerView.ViewHolder {
+    public static class ViewModel extends RecyclerView.ViewHolder {
         private ImageView imageView;
         private TextView nameTextView;
         private TextView descriptionTextView;
@@ -60,24 +60,23 @@ public class FidelityRewardsAdapter extends RecyclerView.Adapter<FidelityRewards
     public void onBindViewHolder(@NonNull ViewModel holder, int position) {
         if (mRewards != null) {
             final Reward reward = mRewards.get(position);
-            final int DAY = position + 1;
 
-            StorageUtils.downloadFidelityImage(mContext, holder.imageView, DAY);
+            StorageUtils.downloadFidelityImage(mContext, holder.imageView, position + 1);
 
             holder.nameTextView.setText(mContext.getString(
-                    R.string.logar_days_followed, DAY));
+                    R.string.logar_days_followed, position + 1));
             holder.descriptionTextView.setText(reward.toString(mContext));
 
             int daysOfFidelity = CharOn.character.getDaysOfFidelity();
 
-            if (DAY == daysOfFidelity && CharOn.character.hasFidelityReward()) {
+            if (position == daysOfFidelity && CharOn.character.hasFidelityReward()) {
                 holder.receiveButton.setText(R.string.receive);
                 holder.receiveButton.setOnClickListener(v ->
                         mOnReceiveClickListener.onReceiveClick(reward));
             } else {
                 holder.receiveButton.setOnClickListener(null);
 
-                if (DAY > daysOfFidelity) {
+                if (position > daysOfFidelity) {
                     holder.receiveButton.setText(R.string.button_not_received);
                     holder.receiveButton.setBackgroundResource(R.drawable.bg_red_button);
                 } else {

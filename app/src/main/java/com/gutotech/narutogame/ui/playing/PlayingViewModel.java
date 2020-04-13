@@ -604,16 +604,16 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
                     mCharacter.getAttributes().setTrainingProgress(0);
                 }
 
-                if (Math.abs(currentDayOfYear - lastDayOfYearSeen) == 1) {
-                    CharOn.character.setDaysOfFidelity((CharOn.character.getDaysOfFidelity() + 1) % 9);
+                if (currentDayOfYear - lastDayOfYearSeen == 1) {
+                    CharOn.character.setDaysOfFidelity((CharOn.character.getDaysOfFidelity() + 1) % 8);
                 } else {
-                    mCharacter.setDaysOfFidelity(1);
+                    mCharacter.setDaysOfFidelity(0);
                 }
 
                 updateWeeklyLimitOfTraining(currentDayOfWeek);
 
-                mCharacter.setTotalDailyMissions(0);
                 mCharacter.setFidelityReward(true);
+                mCharacter.setTotalDailyMissions(0);
                 mCharacter.setNpcDailyCombat(0);
                 mCharacter.setNumberOfDaysPlayed(mCharacter.getNumberOfDaysPlayed() + 1);
             }

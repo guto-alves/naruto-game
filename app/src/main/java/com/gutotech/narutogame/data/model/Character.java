@@ -80,7 +80,6 @@ public class Character extends BaseObservable implements Serializable {
         resumeOfMissions = new ResumeOfMissions();
         extrasInformation = new ExtrasInformation();
         mapPosition = -1;
-        daysOfFidelity = 1;
         fidelityReward = true;
 
         titles = new ArrayList<>();
