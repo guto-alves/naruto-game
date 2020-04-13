@@ -10408,7 +10408,7 @@ public enum JutsuInfo {
 
                         @Override
                         public boolean check(boolean folded) {
-                            return CharOn.character.getAttributes().getNinjutsu() >= value(folded);
+                            return CharOn.character.getAttributes().getGenjutsu() >= value(folded);
                         }
 
                         @Override
