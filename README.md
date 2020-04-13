@@ -6,11 +6,10 @@
   Naruto Game  
 </h1>
 
-In the game you become a Ninja Student, and your mission is develop
-your skills and make your way to become Kage!
+In our game you will be a ninja and your mission is to develop your skills and chart your own ninja path to become Kage!
 
 ## Download
-[Naruto Game.apk](https://github.com/guto-alves/naruto-game/releases/download/v1.1/Naruto.Game-1.1.apk)
+[Naruto Game.apk](https://drive.google.com/file/d/1b3zi_l62uieVYfC9qeddQtzBui1YSzA5/view?usp=sharing)
 
 ## Screenshots
 <a><img src="screenshots/create_character.jpg" height="400"/>
@@ -31,7 +30,7 @@ your skills and make your way to become Kage!
 </a>
 
 ## Disclaimer
-Naruto Game is a game developed by fans for fans (completely free), where players choose from some of the most attractive manga/anime characters to participate in battles.<br>
+Naruto Game is a game developed by fans for fans (completely free), where players choose from some of the most attractive manga/anime characters to participate online in Naruto RPG adventures with your friends.<br>
 Original characters and illustrations © Copyright 2002 by Masashi Kishimoto. All rights reserved
 
 ## Contribute
