@@ -13,7 +13,7 @@ import com.gutotech.narutogame.data.repository.AuthRepository;
 import com.gutotech.narutogame.data.repository.NewsRepository;
 import com.gutotech.narutogame.data.repository.NinjaStatisticsRepository;
 import com.gutotech.narutogame.data.repository.PlayerRepository;
-import com.gutotech.narutogame.data.repository.VillageKagesRepository;
+import com.gutotech.narutogame.data.repository.KagesRepository;
 import com.gutotech.narutogame.ui.ResultListener;
 
 import java.util.List;
@@ -41,7 +41,7 @@ public class HomeViewModel extends ViewModel {
     }
 
     LiveData<List<Character>> getKages() {
-        return VillageKagesRepository.getInstance().getKages();
+        return KagesRepository.getInstance().getKages();
     }
 
     void setAuthListener(ResultListener authListener) {

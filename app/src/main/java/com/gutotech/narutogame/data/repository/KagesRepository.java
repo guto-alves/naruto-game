@@ -18,14 +18,14 @@ import java.util.Collections;
 import java.util.EnumSet;
 import java.util.List;
 
-public class VillageKagesRepository {
-    private static VillageKagesRepository sInstance = new VillageKagesRepository();
+public class KagesRepository {
+    private static KagesRepository sInstance = new KagesRepository();
 
-    public static VillageKagesRepository getInstance() {
+    public static KagesRepository getInstance() {
         return sInstance;
     }
 
-    private VillageKagesRepository() {
+    private KagesRepository() {
     }
 
     public LiveData<List<Character>> getKages() {
@@ -60,7 +60,7 @@ public class VillageKagesRepository {
                     for (DataSnapshot snap : dataSnapshot.getChildren()) {
                         Character character = snap.getValue(Character.class);
 
-                        if (character == null){
+                        if (character == null) {
                             continue;
                         }
 
@@ -69,9 +69,9 @@ public class VillageKagesRepository {
                         }
                     }
 
-                    if(characters.size() > 0) {
+                    if (characters.size() > 0) {
                         sortByLevel(characters);
-                        callback.call(characters.get(characters.size() - 1));
+                        callback.call(characters.get(0));
                         return;
                     }
                 }
