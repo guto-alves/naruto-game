@@ -2165,6 +2165,25 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="date_and_time_format">%s at %s</string>
     <string name="points">points</string>
     <string name="recovers">Recovers</string>
+    <string name="ninja_snack_1x">1 x Ninja Snack</string>
+    <string name="missio_ebi_ramen_10x">10 x Misso Ebi-Ramen</string>
+    <string name="missio_ebi_ramen_20x">20 x Misso Ebi-Ramen</string>
+    <string name="missio_ebi_ramen_50x">50 x Misso Ebi-Ramen</string>
+
+    <string name="scroll_konoha_20x">20x Scroll of Teleportation to Konoha</string>
+    <string name="scroll_sand_20x">20x Scroll of Teleportation to Sand</string>
+    <string name="scroll_mist_20x">20x Scroll of Teleportation to Mist</string>
+    <string name="scroll_stone_20x">20x Scroll of Teleportation to Stone</string>
+    <string name="scroll_cloud_20x">20x Scroll of Teleportation to Cloud</string>
+    <string name="scroll_akatsuki_20x">20x Scroll of Teleportation to Akatsuki</string>
+    <string name="scroll_sound_20x">20x Scroll of Teleportation to Sound</string>
+    <string name="scroll_rain_20x">20x Scroll of Teleportation to Rain</string>
+    <string name="scroll_snow_20x">20x Scroll of Teleportation to Snow</string>
+    <string name="scroll_waterfall_20x">20x Scroll of Teleportation to Waterfall</string>
+    <string name="scroll_hot_springs_20x">20x Scroll of Teleportation to Hot Springs</string>
+    <string name="scroll_grass_20x">20x Scroll of Teleportation to Grass</string>
+
+
 
 
 </resources>

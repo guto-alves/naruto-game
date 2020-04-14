@@ -248,7 +248,7 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
         Scroll scroll = (Scroll) itemClicked;
 
         if (mCharacter.isMission() || mCharacter.isDojoWaitQueue() || mCharacter.isHospital() ||
-                mCharacter.getMapId() == scroll.getVillage().ordinal()) {
+                mCharacter.getGraduationId() == 0 || mCharacter.getMapId() == scroll.getVillage().ordinal()) {
             return;
         }
 

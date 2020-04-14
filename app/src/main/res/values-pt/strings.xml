@@ -2124,5 +2124,19 @@
     <string name="date_and_time_format">%s às %s</string>
     <string name="points">pontos</string>
     <string name="recovers">Recupera</string>
+    <string name="ninja_snack_1x">1 x Merenda Ninja</string>
+
+    <string name="scroll_konoha_20x">20x Pergaminho de Teletransporte para Folha</string>
+    <string name="scroll_sand_20x">20x Pergaminho de Teletransporte para Areia</string>
+    <string name="scroll_mist_20x">20x Pergaminho de Teletransporte para Névoa</string>
+    <string name="scroll_stone_20x">20x Pergaminho de Teletransporte para Pedra</string>
+    <string name="scroll_cloud_20x">20x Pergaminho de Teletransporte para Nuvem</string>
+    <string name="scroll_akatsuki_20x">20x Pergaminho de Teletransporte para Akatsuki</string>
+    <string name="scroll_sound_20x">20x Pergaminho de Teletransporte para Som</string>
+    <string name="scroll_rain_20x">20x Pergaminho de Teletransporte para Chuva</string>
+    <string name="scroll_snow_20x">20x Pergaminho de Teletransporte para Neve</string>
+    <string name="scroll_waterfall_20x">20x Pergaminho de Teletransporte para Cachoeira</string>
+    <string name="scroll_hot_springs_20x">20x Pergaminho de Teletransporte para Fontes Termais</string>
+    <string name="scroll_grass_20x">20x Pergaminho de Teletransporte para Grama</string>
 
 </resources>

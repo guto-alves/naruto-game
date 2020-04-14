@@ -21,7 +21,7 @@ import java.util.Locale;
 
 public class LotteryItemsAdapter extends RecyclerView.Adapter<LotteryItemsAdapter.MyViewHolder> {
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
         private ImageView itemImageView;
         private TextView descriptionTextView;
         private TextView chanceTextView;
@@ -29,7 +29,6 @@ public class LotteryItemsAdapter extends RecyclerView.Adapter<LotteryItemsAdapte
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-
             itemImageView = itemView.findViewById(R.id.itemImageView);
             descriptionTextView = itemView.findViewById(R.id.descriptionTextView);
             chanceTextView = itemView.findViewById(R.id.chanceTextView);
@@ -37,11 +36,11 @@ public class LotteryItemsAdapter extends RecyclerView.Adapter<LotteryItemsAdapte
         }
     }
 
-    private Context context;
-    private List<LotteryItem> lotteryItems;
+    private Context mContext;
+    private List<LotteryItem> mLotteryItems;
 
     public LotteryItemsAdapter(Context context) {
-        this.context = context;
+        mContext = context;
     }
 
     @NonNull
@@ -54,31 +53,31 @@ public class LotteryItemsAdapter extends RecyclerView.Adapter<LotteryItemsAdapte
 
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, int i) {
-        if (lotteryItems != null) {
-            LotteryItem item = lotteryItems.get(i);
+        if (mLotteryItems != null) {
+            LotteryItem item = mLotteryItems.get(i);
 
             StorageUtils.downloadLotteryItem(holder.itemImageView, item.getImage());
             holder.descriptionTextView.setText(item.getDescription());
-            holder.chanceTextView.setText(String.format(Locale.getDefault(),
+            holder.chanceTextView.setText(String.format(Locale.US,
                     "%d%%", item.getChancesOfWin()));
 
             if (i % 2 == 0) {
                 holder.bgConstraint.setBackgroundColor(
-                        context.getResources().getColor(R.color.colorItem1));
+                        mContext.getResources().getColor(R.color.colorItem1));
             } else {
                 holder.bgConstraint.setBackgroundColor(
-                        context.getResources().getColor(R.color.colorItem2));
+                        mContext.getResources().getColor(R.color.colorItem2));
             }
         }
     }
 
     @Override
     public int getItemCount() {
-        return lotteryItems != null ? lotteryItems.size() : 0;
+        return mLotteryItems != null ? mLotteryItems.size() : 0;
     }
 
     public void setLotteryItems(List<LotteryItem> lotteryItems) {
-        this.lotteryItems = lotteryItems;
+        mLotteryItems = lotteryItems;
         notifyDataSetChanged();
     }
 }

@@ -32,11 +32,11 @@ public class NinjaLuckyFragment extends Fragment implements SectionFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        mViewModel = new ViewModelProvider(this).get(NinjaLuckyViewModel.class);
-
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_ninja_lucky,
                 container, false);
         mBinding.setLifecycleOwner(this);
+
+        mViewModel = new ViewModelProvider(this).get(NinjaLuckyViewModel.class);
         mBinding.setViewModel(mViewModel);
 
         mBinding.lotteryItemsRecyclerView.setHasFixedSize(true);
