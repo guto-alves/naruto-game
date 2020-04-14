@@ -23,6 +23,7 @@ import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.model.Character;
 import com.gutotech.narutogame.databinding.DialogRankCharacterBinding;
 import com.gutotech.narutogame.data.firebase.StorageUtils;
+import com.gutotech.narutogame.utils.DateCustom;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,7 +51,7 @@ public class RankingNinjasAdapter extends RecyclerView.Adapter<RankingNinjasAdap
 
             StorageUtils.downloadDojo(mContext, holder.characterImageView, character.getNinja().getId());
 
-            holder.positionTextView.setText(String.format("%dº", i + 1));
+            holder.positionTextView.setText(mContext.getString(R.string.rank_position, i + 1));
             holder.nickTextView.setText(character.getNick());
             holder.levelTextView.setText(String.valueOf(character.getLevel()));
             holder.scoreTextView.setText(String.valueOf(character.getScore()));
@@ -87,11 +88,14 @@ public class RankingNinjasAdapter extends RecyclerView.Adapter<RankingNinjasAdap
             }
 
             if (character.equals(CharOn.character)) {
-                holder.bgConstraint.setBackgroundColor(mContext.getResources().getColor(R.color.colorLogPurple));
+                holder.bgConstraint.setBackgroundColor(
+                        mContext.getResources().getColor(R.color.colorLogPurple));
             } else if (i % 2 == 0) {
-                holder.bgConstraint.setBackgroundColor(mContext.getResources().getColor(R.color.colorItem1));
+                holder.bgConstraint.setBackgroundColor(
+                        mContext.getResources().getColor(R.color.colorItem1));
             } else {
-                holder.bgConstraint.setBackgroundColor(mContext.getResources().getColor(R.color.colorItem2));
+                holder.bgConstraint.setBackgroundColor(
+                        mContext.getResources().getColor(R.color.colorItem2));
             }
         }
     }
@@ -114,7 +118,6 @@ public class RankingNinjasAdapter extends RecyclerView.Adapter<RankingNinjasAdap
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-
             positionTextView = itemView.findViewById(R.id.positionTextView);
             nickTextView = itemView.findViewById(R.id.nickTextView);
             titleTextView = itemView.findViewById(R.id.titleTextView);
@@ -151,6 +154,12 @@ public class RankingNinjasAdapter extends RecyclerView.Adapter<RankingNinjasAdap
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         binding.titlesSpinner.setAdapter(adapter);
+
+        long timestamp = character.getLastSeenInMillis();
+        binding.lastSeenTextView.setText(
+                mContext.getString(R.string.date_and_time_format,
+                        DateCustom.getDate(timestamp), DateCustom.getTime(timestamp))
+        );
 
         profileDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         profileDialog.show();
