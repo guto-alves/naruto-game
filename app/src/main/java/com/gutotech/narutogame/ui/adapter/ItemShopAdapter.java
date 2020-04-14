@@ -1,6 +1,5 @@
 package com.gutotech.narutogame.ui.adapter;
 
-import android.app.Dialog;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
@@ -23,9 +22,9 @@ import com.gutotech.narutogame.data.model.ShopItem;
 import com.gutotech.narutogame.ui.playing.RequirementDialogFragment;
 import com.gutotech.narutogame.data.firebase.StorageUtils;
 import com.gutotech.narutogame.data.model.Ramen;
+import com.gutotech.narutogame.ui.playing.currentvillage.RamenInfoPopupWindow;
 
 import java.util.List;
-import java.util.Locale;
 
 public class ItemShopAdapter extends RecyclerView.Adapter<ItemShopAdapter.ViewHolder> {
 
@@ -60,12 +59,14 @@ public class ItemShopAdapter extends RecyclerView.Adapter<ItemShopAdapter.ViewHo
     private List<ShopItem> mItemsList;
     private FragmentManager mFragmentManager;
     private OnBuyClickListener mOnBuyButtonListener;
+    private RamenInfoPopupWindow mRamenInfoPopupWindow;
 
     public ItemShopAdapter(Context context, FragmentManager fragmentManager,
                            OnBuyClickListener onBuyButtonListener) {
         mContext = context;
         mFragmentManager = fragmentManager;
         mOnBuyButtonListener = onBuyButtonListener;
+        mRamenInfoPopupWindow = new RamenInfoPopupWindow(mContext);
     }
 
     @NonNull
@@ -111,7 +112,9 @@ public class ItemShopAdapter extends RecyclerView.Adapter<ItemShopAdapter.ViewHo
             });
 
             holder.itemImageView.setOnClickListener(v -> {
-                // show dialog with info about item
+                if (itemShop instanceof Ramen) {
+                    showRamenInfo((Ramen) itemShop, holder.itemImageView);
+                }
             });
 
             holder.requerImageView.setOnClickListener(v -> {
@@ -161,21 +164,9 @@ public class ItemShopAdapter extends RecyclerView.Adapter<ItemShopAdapter.ViewHo
         return true;
     }
 
-    private void exibirRecuperaRamen(Ramen ramen) {
-        Dialog dialog = new Dialog(mContext);
-        dialog.setContentView(R.layout.dialog_info_ramen);
-
-        TextView nomeTextView = dialog.findViewById(R.id.nomeTextView);
-        TextView recuperaHp = dialog.findViewById(R.id.recuperaHpTextView);
-        TextView recuperaChak = dialog.findViewById(R.id.recuperaChakraTextView);
-        TextView recuperaSta = dialog.findViewById(R.id.recuperaStaminaTextView);
-
-        nomeTextView.setText(ramen.getName());
-
-        recuperaHp.setText(String.format(Locale.getDefault(), "Recupera %d ponto(s)", ramen.getRecovers()));
-        recuperaChak.setText(String.format(Locale.getDefault(), "Recupera %d ponto(s)", ramen.getRecovers()));
-        recuperaSta.setText(String.format(Locale.getDefault(), "Recupera %d ponto(s)", ramen.getRecovers()));
-        dialog.show();
+    private void showRamenInfo(Ramen ramen, View anchor) {
+        mRamenInfoPopupWindow.setRamen(ramen);
+        mRamenInfoPopupWindow.showAsDropDown(anchor);
     }
 
 }

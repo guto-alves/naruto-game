@@ -2163,6 +2163,8 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="label_last_seen">Last Seen:</string>
     <string name="rank_position">%dº</string>
     <string name="date_and_time_format">%s at %s</string>
+    <string name="points">points</string>
+    <string name="recovers">Recovers</string>
 
 
 </resources>

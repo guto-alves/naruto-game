@@ -89,6 +89,7 @@
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
         android:layout_marginBottom="3dp"
+        android:gravity="center"
         android:inputType="numberSigned"
         android:maxLength="2"
         android:text="1"

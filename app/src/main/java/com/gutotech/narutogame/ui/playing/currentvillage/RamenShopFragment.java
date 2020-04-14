@@ -38,8 +38,7 @@ public class RamenShopFragment extends Fragment implements SectionFragment {
         binding.ramensRecyclerView.setAdapter(adapter);
         adapter.setItemsList(ShopUtils.getRamens());
 
-        viewModel.getShowWarningEvent().observe(getViewLifecycleOwner(), resId ->
-                showWarningDialog(resId));
+        viewModel.getShowWarningEvent().observe(getViewLifecycleOwner(), this::showWarningDialog);
 
         FragmentUtil.setSectionTitle(getActivity(), R.string.section_ramen_shop);
         return binding.getRoot();

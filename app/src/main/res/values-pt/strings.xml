@@ -2122,5 +2122,7 @@
     <string name="label_last_seen">Visto por último:</string>
     <string name="rank_position">%dº</string>
     <string name="date_and_time_format">%s às %s</string>
+    <string name="points">pontos</string>
+    <string name="recovers">Recupera</string>
 
 </resources>

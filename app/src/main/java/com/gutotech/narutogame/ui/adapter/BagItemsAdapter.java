@@ -63,11 +63,13 @@ public class BagItemsAdapter extends RecyclerView.Adapter<BagItemsAdapter.ViewHo
                 StorageUtils.downloadScroll(mContext, holder.itemImageView, item.getImage());
             }
 
-            holder.quantityTextView.setText(mContext.getString(
-                    R.string.item_quantity, item.getInventory())
+            holder.quantityTextView.setText(
+                    mContext.getString(R.string.item_quantity, item.getInventory())
             );
 
-            holder.itemView.setOnClickListener(v -> mOnItemClickListener.onItemClick(item, i));
+            holder.itemView.setOnClickListener(v ->
+                    mOnItemClickListener.onItemClick(item, i)
+            );
         }
     }
 
