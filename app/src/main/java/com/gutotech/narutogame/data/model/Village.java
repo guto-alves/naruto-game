@@ -28,13 +28,13 @@ public enum Village implements Serializable {
             R.drawable.layout_mapa_8, Arrays.asList(32, 36, 48, 74, 98, 102)),
 
     NEVE(R.string.snow, 0, R.drawable.layout_home_kages_1, R.drawable.layout_bandanas_1,
-            R.drawable.layout_map_9, null),
+            R.drawable.layout_map_9, Arrays.asList(56, 69, 73, 86, 98)),
     CACHOEIRA(R.string.waterfall, 0, R.drawable.layout_home_kages_1, R.drawable.layout_bandanas_1,
-            R.drawable.layout_map_10, null),
+            R.drawable.layout_map_10, Arrays.asList(55, 81, 88, 94, 101)),
     FONTES_TERMAIS(R.string.hot_springs, 0, R.drawable.layout_home_kages_1, R.drawable.layout_bandanas_1,
-            R.drawable.layout_map_11, null),
+            R.drawable.layout_map_11, Arrays.asList(34, 58, 62, 65, 98)),
     GRAMA(R.string.grass, 0, R.drawable.layout_home_kages_1, R.drawable.layout_bandanas_1,
-            R.drawable.layout_map_12, null);
+            R.drawable.layout_map_12, Arrays.asList(35, 51, 66, 82, 98));
 
     @StringRes
     public final int name;
@@ -53,8 +53,8 @@ public enum Village implements Serializable {
     @StringRes
     public final int kageName;
 
-    Village(@StringRes int name, @StringRes int kageName, @DrawableRes int homeResId, @DrawableRes int bandanaResId,
-            @DrawableRes int mapResId, List<Integer> placeEntries) {
+    Village(@StringRes int name, @StringRes int kageName, @DrawableRes int homeResId,
+            @DrawableRes int bandanaResId, @DrawableRes int mapResId, List<Integer> placeEntries) {
         this.name = name;
         this.kageName = kageName;
         this.homeResId = homeResId;
