@@ -20,7 +20,7 @@ import com.gutotech.narutogame.ui.ResultListener;
 import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.adapter.ChooseNinjaAdapter;
 import com.gutotech.narutogame.ui.loggedin.selectcharacter.CharacterSelectFragment;
-import com.gutotech.narutogame.utils.FragmentUtil;
+import com.gutotech.narutogame.utils.FragmentUtils;
 
 public class CharacterCreateFragment extends Fragment implements SectionFragment, ResultListener {
 
@@ -42,7 +42,7 @@ public class CharacterCreateFragment extends Fragment implements SectionFragment
         viewModel.getCurrentNinjasGroupList().observe(getViewLifecycleOwner(),
                 ninjasAdapter::setNinjasId);
 
-        FragmentUtil.setSectionTitle(getActivity(), R.string.section_create_character);
+        FragmentUtils.setSectionTitle(getActivity(), R.string.section_create_character);
 
         return binding.getRoot();
     }
@@ -66,7 +66,7 @@ public class CharacterCreateFragment extends Fragment implements SectionFragment
     public void onSuccess() {
         mProgressDialog.dismiss();
         showAlert(R.string.ninja_successfully_created, R.string.congratulations_character_created);
-        FragmentUtil.goTo(getActivity(), new CharacterSelectFragment());
+        FragmentUtils.goTo(getActivity(), new CharacterSelectFragment());
     }
 
     @Override

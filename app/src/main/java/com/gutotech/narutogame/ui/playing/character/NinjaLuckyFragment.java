@@ -19,7 +19,7 @@ import com.gutotech.narutogame.databinding.FragmentNinjaLuckyBinding;
 import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.WarningDialogFragment;
 import com.gutotech.narutogame.ui.adapter.LotteryItemsAdapter;
-import com.gutotech.narutogame.utils.FragmentUtil;
+import com.gutotech.narutogame.utils.FragmentUtils;
 
 import java.security.SecureRandom;
 import java.util.concurrent.ExecutorService;
@@ -52,7 +52,7 @@ public class NinjaLuckyFragment extends Fragment implements SectionFragment {
 
         mViewModel.getShowWarningDialogEvent().observe(getViewLifecycleOwner(), this::showWarningDialog);
 
-        FragmentUtil.setSectionTitle(getActivity(), R.string.section_ninja_lucky);
+        FragmentUtils.setSectionTitle(getActivity(), R.string.section_ninja_lucky);
 
         return mBinding.getRoot();
     }

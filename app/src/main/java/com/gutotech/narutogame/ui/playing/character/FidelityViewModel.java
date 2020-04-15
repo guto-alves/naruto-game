@@ -27,14 +27,6 @@ public class FidelityViewModel extends ViewModel implements FidelityRewardsAdapt
         mRewards.postValue(loadRewards());
     }
 
-    LiveData<List<Reward>> getRewards() {
-        return mRewards;
-    }
-
-    LiveData<Void> getUpdateFidelityRewards() {
-        return mUpdateFidelityRewards;
-    }
-
     @Override
     public void onReceiveClick(Reward reward) {
         reward.receive();
@@ -178,5 +170,13 @@ public class FidelityViewModel extends ViewModel implements FidelityRewardsAdapt
         });
 
         return rewards;
+    }
+
+    LiveData<List<Reward>> getRewards() {
+        return mRewards;
+    }
+
+    LiveData<Void> getUpdateFidelityRewards() {
+        return mUpdateFidelityRewards;
     }
 }

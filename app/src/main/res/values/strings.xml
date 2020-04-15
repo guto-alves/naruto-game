@@ -1106,8 +1106,8 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="game_routines">Game Routines</string>
     <string name="atualiza_o_ranking_de_ninjas">Updates the ranking of ninjas</string>
     <string name="atualiza_o_ranking_de_equipes_e_conquista">Updates team ranking</string>
-    <string name="various_routines_description">Releases training attributes. Clears the daily exp
-        earned on the teams. Renew daily NPC combats and duel training counters.</string>
+    <string name="various_routines_description">Clears the daily exp
+        earned on the teams. Renew daily NPC combats and duel counters and daily missions.</string>
     <string name="recovers_description">Recovers 20% of its attributes.</string>
     <string name="label_healing">Healing: %s</string>
     <string name="various_routines">Various Routines: %s</string>
@@ -2165,9 +2165,9 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="points">points</string>
     <string name="recovers">Recovers</string>
     <string name="ninja_snack_1x">1 x Ninja Snack</string>
-    <string name="missio_ebi_ramen_10x">10 x Misso Ebi-Ramen</string>
-    <string name="missio_ebi_ramen_20x">20 x Misso Ebi-Ramen</string>
-    <string name="missio_ebi_ramen_50x">50 x Misso Ebi-Ramen</string>
+    <string name="missio_ebi_ramen_10x" translatable="false">10 x Misso Ebi-Ramen</string>
+    <string name="missio_ebi_ramen_20x" translatable="false">20 x Misso Ebi-Ramen</string>
+    <string name="missio_ebi_ramen_50x" translatable="false">50 x Misso Ebi-Ramen</string>
 
     <string name="scroll_konoha_20x">20x Scroll of Teleportation to Konoha</string>
     <string name="scroll_sand_20x">20x Scroll of Teleportation to Sand</string>

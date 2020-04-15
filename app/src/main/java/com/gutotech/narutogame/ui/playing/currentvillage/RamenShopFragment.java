@@ -18,7 +18,7 @@ import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.WarningDialogFragment;
 import com.gutotech.narutogame.ui.adapter.ItemShopAdapter;
 import com.gutotech.narutogame.data.model.ShopUtils;
-import com.gutotech.narutogame.utils.FragmentUtil;
+import com.gutotech.narutogame.utils.FragmentUtils;
 
 public class RamenShopFragment extends Fragment implements SectionFragment {
 
@@ -40,7 +40,7 @@ public class RamenShopFragment extends Fragment implements SectionFragment {
 
         viewModel.getShowWarningEvent().observe(getViewLifecycleOwner(), this::showWarningDialog);
 
-        FragmentUtil.setSectionTitle(getActivity(), R.string.section_ramen_shop);
+        FragmentUtils.setSectionTitle(getActivity(), R.string.section_ramen_shop);
         return binding.getRoot();
     }
 

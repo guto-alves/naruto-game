@@ -16,7 +16,7 @@ import com.gutotech.narutogame.databinding.FragmentMissionsBinding;
 import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.WarningDialogFragment;
 import com.gutotech.narutogame.ui.adapter.MissionsAdapter;
-import com.gutotech.narutogame.utils.FragmentUtil;
+import com.gutotech.narutogame.utils.FragmentUtils;
 
 public class MissionsFragment extends Fragment implements SectionFragment {
 
@@ -43,7 +43,7 @@ public class MissionsFragment extends Fragment implements SectionFragment {
             warningDialog.openDialog(getParentFragmentManager());
         });
 
-        FragmentUtil.setSectionTitle(getActivity(), R.string.section_missions);
+        FragmentUtils.setSectionTitle(getActivity(), R.string.section_missions);
         return binding.getRoot();
     }
 

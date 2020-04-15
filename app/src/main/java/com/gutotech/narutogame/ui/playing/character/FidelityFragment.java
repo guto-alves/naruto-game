@@ -15,7 +15,7 @@ import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.databinding.FragmentFidelityBinding;
 import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.adapter.FidelityRewardsAdapter;
-import com.gutotech.narutogame.utils.FragmentUtil;
+import com.gutotech.narutogame.utils.FragmentUtils;
 
 public class FidelityFragment extends Fragment implements SectionFragment {
 
@@ -42,7 +42,7 @@ public class FidelityFragment extends Fragment implements SectionFragment {
                 adapter.notifyDataSetChanged()
         );
 
-        FragmentUtil.setSectionTitle(getActivity(), R.string.section_ninja_fidelity);
+        FragmentUtils.setSectionTitle(getActivity(), R.string.section_ninja_fidelity);
         return binding.getRoot();
     }
 

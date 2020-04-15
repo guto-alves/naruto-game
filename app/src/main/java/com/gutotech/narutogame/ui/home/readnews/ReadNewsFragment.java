@@ -18,7 +18,7 @@ import com.gutotech.narutogame.data.model.News;
 import com.gutotech.narutogame.data.repository.AuthRepository;
 import com.gutotech.narutogame.databinding.FragmentReadNewsBinding;
 import com.gutotech.narutogame.ui.adapter.NewsCommentsAdapter;
-import com.gutotech.narutogame.utils.FragmentUtil;
+import com.gutotech.narutogame.utils.FragmentUtils;
 
 public class ReadNewsFragment extends Fragment {
     private ReadNewsViewModel mViewModel;
@@ -63,7 +63,7 @@ public class ReadNewsFragment extends Fragment {
             mViewModel.getComments().observe(getViewLifecycleOwner(), adapter::setComments);
         }
 
-        FragmentUtil.setSectionTitle(getActivity(), R.string.section_read_news);
+        FragmentUtils.setSectionTitle(getActivity(), R.string.section_read_news);
 
         return binding.getRoot();
     }

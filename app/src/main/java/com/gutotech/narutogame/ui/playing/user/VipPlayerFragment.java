@@ -13,16 +13,12 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
 import com.gutotech.narutogame.R;
-import com.gutotech.narutogame.data.model.Classe;
 import com.gutotech.narutogame.databinding.FragmentVipPlayerBinding;
 import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.WarningDialogFragment;
-import com.gutotech.narutogame.utils.FragmentUtil;
+import com.gutotech.narutogame.utils.FragmentUtils;
 import com.gutotech.narutogame.utils.SpannableStringBuilderCustom;
 import com.gutotech.narutogame.data.firebase.StorageUtils;
-
-import java.util.Collections;
-import java.util.List;
 
 public class VipPlayerFragment extends Fragment implements SectionFragment {
 
@@ -37,15 +33,15 @@ public class VipPlayerFragment extends Fragment implements SectionFragment {
 
         binding.setViewModel(viewModel);
 
-        ArrayAdapter ninjasAdapter = new ArrayAdapter(getActivity(),
+        ArrayAdapter ninjasAdapter = new ArrayAdapter<>(getActivity(),
                 android.R.layout.simple_spinner_item, viewModel.getNinjas());
         ninjasAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        ArrayAdapter<List<Classe>> classesAdapter = new ArrayAdapter<>(getActivity(),
-                android.R.layout.simple_spinner_item, Collections.singletonList(viewModel.getClasses()));
+        ArrayAdapter classesAdapter = new ArrayAdapter<>(getActivity(),
+                android.R.layout.simple_spinner_item, viewModel.getClasses());
         classesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        ArrayAdapter villagesAdapter = new ArrayAdapter(getActivity(),
+        ArrayAdapter villagesAdapter = new ArrayAdapter<>(getActivity(),
                 android.R.layout.simple_spinner_item, viewModel.getVillages(getContext()));
         villagesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
@@ -63,7 +59,7 @@ public class VipPlayerFragment extends Fragment implements SectionFragment {
 
             StorageUtils.downloadProfileForMsg(getContext(), binding.actionResultLayout.profileImageView);
             binding.actionResultLayout.titleTextView.setText(R.string.successfully_done);
-            binding.actionResultLayout.descriptionTextView.setText(builder.getStringBuilder());
+            binding.actionResultLayout.descriptionTextView.setText(builder.getString());
             binding.actionResultLayout.msgConstraintLayout.setVisibility(View.VISIBLE);
 
             binding.scrollView.post(() -> binding.scrollView.smoothScrollTo(0, 0));
@@ -74,7 +70,7 @@ public class VipPlayerFragment extends Fragment implements SectionFragment {
             dialog.openDialog(getParentFragmentManager());
         });
 
-        FragmentUtil.setSectionTitle(getActivity(), R.string.section_vip_player);
+        FragmentUtils.setSectionTitle(getActivity(), R.string.section_vip_player);
 
         return binding.getRoot();
     }

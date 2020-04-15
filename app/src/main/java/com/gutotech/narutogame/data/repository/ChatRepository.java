@@ -50,7 +50,6 @@ public class ChatRepository {
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 Message newMessage = dataSnapshot.getValue(Message.class);
                 messageList.add(newMessage);
-
                 listener.onMessagesChanged(messageList);
             }
 
@@ -61,16 +60,7 @@ public class ChatRepository {
             @Override
             public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
                 Message messageRemoved = dataSnapshot.getValue(Message.class);
-
-                int size = messageList.size();
-
-                for (int i = 0; i < size; i++) {
-                    if (messageList.get(i).getId().equals(messageRemoved.getId())) {
-                        messageList.remove(i);
-                        break;
-                    }
-                }
-
+                messageList.remove(messageRemoved);
                 listener.onMessagesChanged(messageList);
             }
 

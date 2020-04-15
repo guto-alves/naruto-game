@@ -50,7 +50,7 @@ public class DojoNpcFightersViewModel extends ViewModel {
         );
     }
 
-    public void onAcceptBattleButtonPressed() {
+    public synchronized void onAcceptBattleButtonPressed() {
         mProgressDialogEvent.setValue(true);
 
         FirebaseFunctionsUtils.getServerTime(currentTimestamp -> {

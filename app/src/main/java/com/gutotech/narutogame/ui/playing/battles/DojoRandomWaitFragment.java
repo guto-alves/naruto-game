@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.databinding.FragmentDojoRandomWaitBinding;
 import com.gutotech.narutogame.ui.SectionFragment;
-import com.gutotech.narutogame.utils.FragmentUtil;
+import com.gutotech.narutogame.utils.FragmentUtils;
 
 public class DojoRandomWaitFragment extends Fragment implements SectionFragment {
 
@@ -34,7 +34,7 @@ public class DojoRandomWaitFragment extends Fragment implements SectionFragment 
 
         viewModel.init();
 
-        FragmentUtil.setSectionTitle(getActivity(), R.string.looking_for_opponents);
+        FragmentUtils.setSectionTitle(getActivity(), R.string.looking_for_opponents);
 
         return binding.getRoot();
     }

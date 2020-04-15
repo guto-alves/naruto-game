@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.ui.SectionFragment;
-import com.gutotech.narutogame.utils.FragmentUtil;
+import com.gutotech.narutogame.utils.FragmentUtils;
 
 public class HallOfFameFragment extends Fragment implements SectionFragment {
 
@@ -19,7 +19,7 @@ public class HallOfFameFragment extends Fragment implements SectionFragment {
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_halldafama, container, false);
 
-        FragmentUtil.setSectionTitle(getActivity(), R.string.section_hall_of_fame);
+        FragmentUtils.setSectionTitle(getActivity(), R.string.section_hall_of_fame);
 
         return root;
     }

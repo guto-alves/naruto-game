@@ -16,7 +16,7 @@ import com.gutotech.narutogame.databinding.FragmentSignupBinding;
 import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.ProgressDialogFragment;
 import com.gutotech.narutogame.ui.ResultListener;
-import com.gutotech.narutogame.utils.FragmentUtil;
+import com.gutotech.narutogame.utils.FragmentUtils;
 import com.gutotech.narutogame.data.firebase.StorageUtils;
 
 import es.dmoral.toasty.Toasty;
@@ -38,7 +38,7 @@ public class SignupFragment extends Fragment implements ResultListener, SectionF
         mBinding.msgLayout.descriptionTextView.setText(R.string.fullfill_the_form_below);
         StorageUtils.downloadProfileForMsg(getActivity(), mBinding.msgLayout.profileImageView);
 
-        FragmentUtil.setSectionTitle(getActivity(), R.string.section_create_account);
+        FragmentUtils.setSectionTitle(getActivity(), R.string.section_create_account);
 
         return mBinding.getRoot();
     }

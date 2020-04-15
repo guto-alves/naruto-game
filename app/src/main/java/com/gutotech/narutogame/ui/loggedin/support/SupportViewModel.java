@@ -11,16 +11,16 @@ import com.gutotech.narutogame.data.repository.SupportRepository;
 import java.util.List;
 
 public class SupportViewModel extends ViewModel {
-    private SupportRepository mSupportRepository;
 
     private MutableLiveData<List<Ticket>> mTickets = new MutableLiveData<>();
 
     public SupportViewModel() {
-        mSupportRepository = SupportRepository.getInstance();
+        SupportRepository mSupportRepository = SupportRepository.getInstance();
 
         mSupportRepository.getAll(
                 AuthRepository.getInstance().getCurrentUser().getEmail(),
-                mTickets::postValue);
+                mTickets::postValue
+        );
     }
 
     LiveData<List<Ticket>> getTickets() {

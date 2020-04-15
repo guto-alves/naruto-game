@@ -38,8 +38,7 @@ public class TeamDetailsViewModel extends ViewModel implements
                 loadRequesters();
             }
 
-            mTeamRepository.getMembers(team.getName(),
-                    members -> mMembers.postValue(members));
+            mTeamRepository.getMembers(team.getName(), members -> mMembers.postValue(members));
         });
     }
 

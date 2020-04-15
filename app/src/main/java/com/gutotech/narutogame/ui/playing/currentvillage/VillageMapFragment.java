@@ -22,7 +22,7 @@ import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.adapter.VillageMapAdapter;
 import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.ui.playing.PlayingActivity;
-import com.gutotech.narutogame.utils.FragmentUtil;
+import com.gutotech.narutogame.utils.FragmentUtils;
 
 public class VillageMapFragment extends Fragment implements SectionFragment {
     private float mScaleFactor = 1.0f;
@@ -80,7 +80,7 @@ public class VillageMapFragment extends Fragment implements SectionFragment {
 
         ((PlayingActivity) getActivity()).registerScaleGestureDetector(mScaleGestureDetector);
 
-        FragmentUtil.setSectionTitle(getActivity(), R.string.section_village_map);
+        FragmentUtils.setSectionTitle(getActivity(), R.string.section_village_map);
 
         return binding.getRoot();
     }

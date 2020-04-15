@@ -11,17 +11,16 @@ import android.view.ViewGroup;
 
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.ui.SectionFragment;
-import com.gutotech.narutogame.utils.FragmentUtil;
+import com.gutotech.narutogame.utils.FragmentUtils;
 
 public class RankEquipesFragment extends Fragment implements SectionFragment {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         View root = inflater.inflate(R.layout.fragment_rank_equipes, container, false);
 
-        FragmentUtil.setSectionTitle(getActivity(), R.string.section_teams_ranking);
+        FragmentUtils.setSectionTitle(getActivity(), R.string.section_teams_ranking);
 
         return root;
     }

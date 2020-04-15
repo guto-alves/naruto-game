@@ -23,13 +23,12 @@ import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.adapter.CharacterSelectAdapter;
 import com.gutotech.narutogame.ui.loggedin.newcharacteer.CharacterCreateFragment;
 import com.gutotech.narutogame.ui.playing.PlayingActivity;
-import com.gutotech.narutogame.utils.FragmentUtil;
+import com.gutotech.narutogame.utils.FragmentUtils;
 
 import es.dmoral.toasty.Toasty;
 
 public class CharacterSelectFragment extends Fragment implements SectionFragment, ResultListener,
         CharacterSelectAdapter.CharacterSelecetedListener {
-    private CharacterSelectViewModel mViewModel;
 
     private FragmentPersonagemSelecionarBinding mBinding;
 
@@ -39,25 +38,26 @@ public class CharacterSelectFragment extends Fragment implements SectionFragment
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_personagem_selecionar,
                 container, false);
 
-        mViewModel = new ViewModelProvider(this).get(CharacterSelectViewModel.class);
-        mViewModel.setListener(this);
+        CharacterSelectViewModel viewModel = new ViewModelProvider(this)
+                .get(CharacterSelectViewModel.class);
+        viewModel.setListener(this);
 
-        mBinding.setViewModel(mViewModel);
+        mBinding.setViewModel(viewModel);
 
         CharacterSelectAdapter charactersAdapter = new CharacterSelectAdapter(this);
         mBinding.charactersRecyclerView.setHasFixedSize(true);
         mBinding.charactersRecyclerView.setAdapter(charactersAdapter);
 
-        mViewModel.getCharactersList().observe(getViewLifecycleOwner(), characters -> {
+        viewModel.getCharactersList().observe(getViewLifecycleOwner(), characters -> {
             if (characters.size() == 0) {
-                FragmentUtil.goTo(getActivity(), new CharacterCreateFragment());
+                FragmentUtils.goTo(getActivity(), new CharacterCreateFragment());
             } else {
                 charactersAdapter.setCharactersList(characters);
                 onCharacterSelected(characters.get(0));
             }
         });
 
-        mViewModel.getShowQuestionDialogEvent().observe(getViewLifecycleOwner(), onClickListener -> {
+        viewModel.getShowQuestionDialogEvent().observe(getViewLifecycleOwner(), onClickListener -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
             builder.setTitle(R.string.naruto_game_says);
             builder.setMessage(R.string.want_to_delete_this_ninja);
@@ -67,7 +67,7 @@ public class CharacterSelectFragment extends Fragment implements SectionFragment
             builder.show();
         });
 
-        mViewModel.getShowErrorDialogEvent().observe(getViewLifecycleOwner(), resId -> {
+        viewModel.getShowErrorDialogEvent().observe(getViewLifecycleOwner(), resId -> {
             AlertDialog.Builder builder1 = new AlertDialog.Builder(getContext());
             builder1.setTitle(R.string.warning);
             builder1.setMessage(resId);
@@ -75,7 +75,7 @@ public class CharacterSelectFragment extends Fragment implements SectionFragment
             builder1.create().show();
         });
 
-        FragmentUtil.setSectionTitle(getActivity(), R.string.section_select_your_character);
+        FragmentUtils.setSectionTitle(getActivity(), R.string.section_select_your_character);
 
         return mBinding.getRoot();
     }
@@ -83,7 +83,15 @@ public class CharacterSelectFragment extends Fragment implements SectionFragment
     @Override
     public void onCharacterSelected(Character character) {
         mBinding.setCharacterSelected(character);
-        mViewModel.setCharacterSelected(character);
+
+        if (mBinding.healthProgressBar != null) {
+            mBinding.healthProgressBar.setMax(character.getFormulas().getHealth());
+            mBinding.healthProgressBar.setProgress(character.getFormulas().getCurrentHealth());
+            mBinding.chakraProgressBar.setMax(character.getFormulas().getChakra());
+            mBinding.chakraProgressBar.setProgress(character.getFormulas().getCurrentChakra());
+            mBinding.staminaProgressBar.setMax(character.getFormulas().getStamina());
+            mBinding.staminaProgressBar.setProgress(character.getFormulas().getCurrentStamina());
+        }
     }
 
     @Override

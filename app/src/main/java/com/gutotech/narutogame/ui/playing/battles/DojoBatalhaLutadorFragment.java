@@ -11,7 +11,6 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.text.SpannableStringBuilder;
-import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.text.style.ForegroundColorSpan;
@@ -33,7 +32,7 @@ import com.gutotech.narutogame.ui.WarningDialogFragment;
 import com.gutotech.narutogame.ui.adapter.BattleLogAdapter;
 import com.gutotech.narutogame.ui.adapter.BuffsDebuffStatusAdapter;
 import com.gutotech.narutogame.ui.adapter.JutsusAdapter;
-import com.gutotech.narutogame.utils.FragmentUtil;
+import com.gutotech.narutogame.utils.FragmentUtils;
 import com.gutotech.narutogame.data.firebase.StorageUtils;
 import com.gutotech.narutogame.utils.SpannableStringBuilderCustom;
 
@@ -109,11 +108,11 @@ public class DojoBatalhaLutadorFragment extends Fragment implements SectionFragm
                             @Override
                             public void onClick(@NonNull View widget) {
                                 mViewModel.exit();
-                                FragmentUtil.goTo(getActivity(), new DojoFragment());
+                                FragmentUtils.goTo(getActivity(), new DojoFragment());
                             }
                         });
 
-                showBattleResult(R.string.end_of_the_battle, description.getStringBuilder());
+                showBattleResult(R.string.end_of_the_battle, description.getString());
             });
 
             mViewModel.showLostEvent.observe(getViewLifecycleOwner(), aVoid -> {
@@ -130,7 +129,7 @@ public class DojoBatalhaLutadorFragment extends Fragment implements SectionFragm
                             }
                         });
 
-                showBattleResult(R.string.too_bad, description.getStringBuilder());
+                showBattleResult(R.string.too_bad, description.getString());
             });
 
             mViewModel.showDrawnEvent.observe(getViewLifecycleOwner(), aVoid -> {
@@ -147,7 +146,7 @@ public class DojoBatalhaLutadorFragment extends Fragment implements SectionFragm
                             }
                         });
 
-                showBattleResult(R.string.empate, description.getStringBuilder());
+                showBattleResult(R.string.empate, description.getString());
             });
 
             mViewModel.showInactivatedEvent.observe(getViewLifecycleOwner(), aVoid -> {
@@ -165,11 +164,11 @@ public class DojoBatalhaLutadorFragment extends Fragment implements SectionFragm
                 description.append(" ");
                 description.append(getString(R.string.to_preceed));
 
-                showBattleResult(R.string.too_bad, description.getStringBuilder());
+                showBattleResult(R.string.too_bad, description.getString());
             });
         });
 
-        FragmentUtil.setSectionTitle(getActivity(), R.string.dojo_challenge);
+        FragmentUtils.setSectionTitle(getActivity(), R.string.dojo_challenge);
         return mBinding.getRoot();
     }
 

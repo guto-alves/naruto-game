@@ -16,7 +16,7 @@ import com.gutotech.narutogame.databinding.FragmentCharacterStatusBinding;
 import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.adapter.AttributesStatusAdapter;
 import com.gutotech.narutogame.ui.adapter.FormulasAdapter;
-import com.gutotech.narutogame.utils.FragmentUtil;
+import com.gutotech.narutogame.utils.FragmentUtils;
 
 public class CharacterStatusFragment extends Fragment implements SectionFragment {
 
@@ -38,7 +38,7 @@ public class CharacterStatusFragment extends Fragment implements SectionFragment
                 new FormulasAdapter(CharOn.character.getFormulas().asList())
         );
 
-        FragmentUtil.setSectionTitle(getActivity(), R.string.section_character_status);
+        FragmentUtils.setSectionTitle(getActivity(), R.string.section_character_status);
 
         return binding.getRoot();
     }

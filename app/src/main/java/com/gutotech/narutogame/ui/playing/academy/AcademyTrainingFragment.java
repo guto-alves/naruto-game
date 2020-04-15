@@ -20,7 +20,7 @@ import com.gutotech.narutogame.databinding.FragmentAcademyTrainningBinding;
 import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.adapter.DistributedPointsAdapter;
 import com.gutotech.narutogame.ui.playing.user.FormulasFragment;
-import com.gutotech.narutogame.utils.FragmentUtil;
+import com.gutotech.narutogame.utils.FragmentUtils;
 import com.gutotech.narutogame.utils.SpannableStringBuilderCustom;
 
 public class AcademyTrainingFragment extends Fragment implements SectionFragment {
@@ -44,11 +44,11 @@ public class AcademyTrainingFragment extends Fragment implements SectionFragment
                 new ClickableSpan() {
                     @Override
                     public void onClick(@NonNull View widget) {
-                        FragmentUtil.goTo(getActivity(), new FormulasFragment());
+                        FragmentUtils.goTo(getActivity(), new FormulasFragment());
                     }
                 }, new ForegroundColorSpan(ContextCompat.getColor(getContext(), R.color.colorGreen)));
         builder.append(".");
-        mBinding.msgLayout.descriptionTextView.setText(builder.getStringBuilder());
+        mBinding.msgLayout.descriptionTextView.setText(builder.getString());
         mBinding.msgLayout.descriptionTextView.setMovementMethod(LinkMovementMethod.getInstance());
 
         mBinding.trainingPointsLayout.titleTextView.setText(R.string.training_points);
@@ -63,7 +63,7 @@ public class AcademyTrainingFragment extends Fragment implements SectionFragment
                 stringBuilder.append(getString(R.string.total_free_points, freePoints), R.color.colorGreen);
                 stringBuilder.append(" ");
                 stringBuilder.append(R.string.to_distribute_in_their_attributes);
-                mBinding.trainingPointsLayout.descriptionTextView.setText(stringBuilder.getStringBuilder());
+                mBinding.trainingPointsLayout.descriptionTextView.setText(stringBuilder.getString());
                 mBinding.trainingPointsLayout.msgConstraintLayout.setVisibility(View.VISIBLE);
 
                 mBinding.scrollView.post(() ->
@@ -80,7 +80,7 @@ public class AcademyTrainingFragment extends Fragment implements SectionFragment
                 getViewLifecycleOwner(), adapter::setDistributedPoints
         );
 
-        FragmentUtil.setSectionTitle(getActivity(), R.string.section_attribute_training);
+        FragmentUtils.setSectionTitle(getActivity(), R.string.section_attribute_training);
 
         return mBinding.getRoot();
     }

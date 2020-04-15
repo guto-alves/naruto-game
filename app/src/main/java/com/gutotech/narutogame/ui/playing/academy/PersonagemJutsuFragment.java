@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.ui.SectionFragment;
-import com.gutotech.narutogame.utils.FragmentUtil;
+import com.gutotech.narutogame.utils.FragmentUtils;
 
 public class PersonagemJutsuFragment extends Fragment  implements SectionFragment {
 
@@ -17,7 +17,7 @@ public class PersonagemJutsuFragment extends Fragment  implements SectionFragmen
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_personagem_jutsu, container, false);
 
-        FragmentUtil.setSectionTitle(getActivity(), R.string.section_jutsu_training);
+        FragmentUtils.setSectionTitle(getActivity(), R.string.section_jutsu_training);
         return root;
     }
 

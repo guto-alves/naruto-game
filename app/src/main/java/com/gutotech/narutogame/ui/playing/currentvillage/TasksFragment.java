@@ -15,7 +15,7 @@ import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.databinding.FragmentTasksBinding;
 import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.adapter.TasksAdapter;
-import com.gutotech.narutogame.utils.FragmentUtil;
+import com.gutotech.narutogame.utils.FragmentUtils;
 
 public class TasksFragment extends Fragment implements SectionFragment {
 
@@ -37,7 +37,7 @@ public class TasksFragment extends Fragment implements SectionFragment {
 
         viewModel.getTasks().observe(getViewLifecycleOwner(), adapter::setTasks);
 
-        FragmentUtil.setSectionTitle(getActivity(), R.string.section_initial_tasks);
+        FragmentUtils.setSectionTitle(getActivity(), R.string.section_initial_tasks);
         return binding.getRoot();
     }
 

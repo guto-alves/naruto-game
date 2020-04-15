@@ -16,7 +16,7 @@ import com.gutotech.narutogame.data.repository.PlayerRepository;
 import com.gutotech.narutogame.databinding.FragmentUsuarioDadosBinding;
 import com.gutotech.narutogame.ui.ResultListener;
 import com.gutotech.narutogame.ui.SectionFragment;
-import com.gutotech.narutogame.utils.FragmentUtil;
+import com.gutotech.narutogame.utils.FragmentUtils;
 import com.gutotech.narutogame.data.firebase.StorageUtils;
 
 import es.dmoral.toasty.Toasty;
@@ -43,7 +43,7 @@ public class UserDataFragment extends Fragment implements SectionFragment, Resul
             mBinding.setViewModel(viewModel);
         });
 
-        FragmentUtil.setSectionTitle(getActivity(), R.string.section_account_info);
+        FragmentUtils.setSectionTitle(getActivity(), R.string.section_account_info);
 
         return mBinding.getRoot();
     }

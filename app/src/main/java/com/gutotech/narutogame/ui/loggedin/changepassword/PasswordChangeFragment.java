@@ -18,7 +18,7 @@ import com.gutotech.narutogame.databinding.FragmentPasswordChangeBinding;
 import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.ResultListener;
 import com.gutotech.narutogame.ui.ProgressDialogFragment;
-import com.gutotech.narutogame.utils.FragmentUtil;
+import com.gutotech.narutogame.utils.FragmentUtils;
 import com.gutotech.narutogame.data.firebase.StorageUtils;
 
 public class PasswordChangeFragment extends Fragment implements SectionFragment, ResultListener {
@@ -39,7 +39,7 @@ public class PasswordChangeFragment extends Fragment implements SectionFragment,
         binding.msgLayout.titleTextView.setText(R.string.be_advised);
         binding.msgLayout.descriptionTextView.setText(R.string.be_advised_description);
 
-        FragmentUtil.setSectionTitle(getActivity(), R.string.section_change_password);
+        FragmentUtils.setSectionTitle(getActivity(), R.string.section_change_password);
 
         return binding.getRoot();
     }

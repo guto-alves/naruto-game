@@ -57,7 +57,6 @@ public class TasksViewModel extends ViewModel implements TasksAdapter.OnAcceptCl
         });
     }
 
-
     LiveData<List<TimeMission>> getTasks() {
         return mTasks;
     }

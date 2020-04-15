@@ -33,10 +33,10 @@ import com.gutotech.narutogame.databinding.DialogGameRoutinesBinding;
 import com.gutotech.narutogame.databinding.NavHeaderPlayingBinding;
 import com.gutotech.narutogame.ui.WarningDialogFragment;
 import com.gutotech.narutogame.ui.adapter.BagItemsAdapter;
-import com.gutotech.narutogame.ui.adapter.ChatMessageAdapter;
+import com.gutotech.narutogame.ui.adapter.ChatMessagesAdapter;
 import com.gutotech.narutogame.ui.adapter.ExpandableLoggedinAdapter;
 import com.gutotech.narutogame.ui.home.HomeActivity;
-import com.gutotech.narutogame.utils.FragmentUtil;
+import com.gutotech.narutogame.utils.FragmentUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -74,7 +74,7 @@ public class PlayingActivity extends AppCompatActivity {
         toggle.syncState();
 
         mViewModel.getCurrentSection().observe(this, sectionFragment -> {
-            FragmentUtil.goTo(this, (Fragment) sectionFragment);
+            FragmentUtils.goTo(this, (Fragment) sectionFragment);
             closeDrawer();
         });
 
@@ -183,7 +183,7 @@ public class PlayingActivity extends AppCompatActivity {
         });
 
         mBinding.messagesRecyclerView.setHasFixedSize(true);
-        ChatMessageAdapter adapter = new ChatMessageAdapter(this);
+        ChatMessagesAdapter adapter = new ChatMessagesAdapter();
         mBinding.messagesRecyclerView.setAdapter(adapter);
         mViewModel.getChatMessages().observe(this, messages -> {
             adapter.setMessageList(messages);

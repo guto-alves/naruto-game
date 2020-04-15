@@ -11,7 +11,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.gutotech.narutogame.R;
 
-public class FragmentUtil {
+public class FragmentUtils {
 
     public static void setSectionTitle(Activity activity, @StringRes int resId) {
         TextView sectionTitleTextView = activity.findViewById(R.id.sectionTitleTextView);

@@ -15,9 +15,6 @@ public class RamenShopViewModel extends ViewModel
         implements ItemShopAdapter.OnBuyClickListener {
     private SingleLiveEvent<Integer> showWarningEvent = new SingleLiveEvent<>();
 
-    public RamenShopViewModel() {
-    }
-
     LiveData<Integer> getShowWarningEvent() {
         return showWarningEvent;
     }

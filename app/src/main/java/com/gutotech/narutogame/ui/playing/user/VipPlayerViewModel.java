@@ -62,36 +62,6 @@ public class VipPlayerViewModel extends ViewModel {
         mVillages.remove(mCharacter.getVillage().ordinal());
     }
 
-    List<Ninja> getNinjas() {
-        return mNinjas;
-    }
-
-    List<Classe> getClasses() {
-        return mClasses;
-    }
-
-    String[] getVillages(Context context) {
-        String[] mVillageNames = new String[7];
-
-        int i = 0;
-
-        for (Village village : mVillages) {
-            mVillageNames[i++] = context.getString(village.getName());
-        }
-
-        return mVillageNames;
-    }
-
-    LiveData<Integer> getShowSuccessMessageEvent() {
-        return mShowSuccessMessageEvent;
-    }
-
-    LiveData<Integer> getShowWarningDialogEvent() {
-        return mShowWarningDialogEvent;
-    }
-
-
-    // Spinner listeners
     public void onNinjaSelected(int position) {
         mNinjaSelectedIndex = position;
     }
@@ -226,5 +196,34 @@ public class VipPlayerViewModel extends ViewModel {
 
             mShowSuccessMessageEvent.setValue(R.string.redistribute_points);
         }
+    }
+
+
+    List<Ninja> getNinjas() {
+        return mNinjas;
+    }
+
+    List<Classe> getClasses() {
+        return mClasses;
+    }
+
+    String[] getVillages(Context context) {
+        String[] mVillageNames = new String[7];
+
+        int i = 0;
+
+        for (Village village : mVillages) {
+            mVillageNames[i++] = context.getString(village.getName());
+        }
+
+        return mVillageNames;
+    }
+
+    LiveData<Integer> getShowSuccessMessageEvent() {
+        return mShowSuccessMessageEvent;
+    }
+
+    LiveData<Integer> getShowWarningDialogEvent() {
+        return mShowWarningDialogEvent;
     }
 }

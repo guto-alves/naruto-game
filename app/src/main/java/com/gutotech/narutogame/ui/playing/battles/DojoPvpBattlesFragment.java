@@ -14,7 +14,6 @@ import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.model.GraduationUtils;
 import com.gutotech.narutogame.databinding.FragmentDojoPvpBattlesBinding;
-import com.gutotech.narutogame.utils.FragmentUtil;
 
 public class DojoPvpBattlesFragment extends Fragment {
 

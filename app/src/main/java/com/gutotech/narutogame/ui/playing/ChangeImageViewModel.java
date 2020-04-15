@@ -24,6 +24,7 @@ public class ChangeImageViewModel extends ViewModel {
     private void loadReferences() {
         StorageUtils.listAll(
                 String.format("images/profile/%s/", CharOn.character.getNinja().getId()),
-                data -> mStorageRefs.postValue(data));
+                data -> mStorageRefs.postValue(data)
+        );
     }
 }

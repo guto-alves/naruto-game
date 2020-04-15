@@ -16,7 +16,7 @@ import com.gutotech.narutogame.databinding.FragmentTeamParticipateBinding;
 import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.WarningDialogFragment;
 import com.gutotech.narutogame.ui.adapter.TeamsParticipateAdapter;
-import com.gutotech.narutogame.utils.FragmentUtil;
+import com.gutotech.narutogame.utils.FragmentUtils;
 
 public class TeamParticipateFragment extends Fragment implements SectionFragment {
 
@@ -45,7 +45,7 @@ public class TeamParticipateFragment extends Fragment implements SectionFragment
             warningDialogFragment.openDialog(getParentFragmentManager());
         });
 
-        FragmentUtil.setSectionTitle(getActivity(), R.string.section_join_a_team);
+        FragmentUtils.setSectionTitle(getActivity(), R.string.section_join_a_team);
         return binding.getRoot();
     }
 

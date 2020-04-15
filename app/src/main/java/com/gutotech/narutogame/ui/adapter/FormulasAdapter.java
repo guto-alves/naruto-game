@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.Formula;
 
+import java.util.Collections;
 import java.util.List;
 
 public class FormulasAdapter extends RecyclerView.Adapter<FormulasAdapter.MyViewHolder> {
@@ -25,7 +26,6 @@ public class FormulasAdapter extends RecyclerView.Adapter<FormulasAdapter.MyView
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-
             nameTextView = itemView.findViewById(R.id.nameTextView);
             iconImageView = itemView.findViewById(R.id.iconImageView);
             totalTextView = itemView.findViewById(R.id.totalTextView);
@@ -35,10 +35,12 @@ public class FormulasAdapter extends RecyclerView.Adapter<FormulasAdapter.MyView
 
     private Formula[] mFormulas;
     private List<Integer> mTotalPointsForEachAttribute;
+    private int MAX;
 
     public FormulasAdapter(List<Integer> formulas) {
         mTotalPointsForEachAttribute = formulas;
         mFormulas = Formula.values();
+        MAX = Collections.max(mTotalPointsForEachAttribute);
     }
 
     @NonNull
@@ -57,6 +59,7 @@ public class FormulasAdapter extends RecyclerView.Adapter<FormulasAdapter.MyView
         myViewHolder.nameTextView.setText(formula.name);
         myViewHolder.iconImageView.setImageResource(formula.icon);
         myViewHolder.totalTextView.setText(String.valueOf(total));
+        myViewHolder.totalProgressBar.setMax(MAX);
         myViewHolder.totalProgressBar.setProgress(total);
     }
 

@@ -21,7 +21,7 @@ import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.databinding.FragmentAcademyJutsuBinding;
 import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.adapter.JutsusLearnAdapter;
-import com.gutotech.narutogame.utils.FragmentUtil;
+import com.gutotech.narutogame.utils.FragmentUtils;
 
 public class AcademyJutsuFragment extends Fragment implements SectionFragment {
     private FragmentAcademyJutsuBinding mBinding;
@@ -79,7 +79,7 @@ public class AcademyJutsuFragment extends Fragment implements SectionFragment {
             });
         });
 
-        FragmentUtil.setSectionTitle(getActivity(), R.string.section_learned_jutsus);
+        FragmentUtils.setSectionTitle(getActivity(), R.string.section_learned_jutsus);
         return mBinding.getRoot();
     }
 

@@ -14,9 +14,10 @@ import android.view.ViewGroup;
 
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.databinding.FragmentRecuperarSenhaBinding;
+import com.gutotech.narutogame.ui.ProgressDialogFragment;
 import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.ResultListener;
-import com.gutotech.narutogame.utils.FragmentUtil;
+import com.gutotech.narutogame.utils.FragmentUtils;
 
 import es.dmoral.toasty.Toasty;
 
@@ -35,18 +36,21 @@ public class RecuperarSenhaFragment extends Fragment implements ResultListener, 
 
         viewModel.setAuthListener(this);
 
-        FragmentUtil.setSectionTitle(getActivity(), R.string.section_i_forgot_my_password);
+        FragmentUtils.setSectionTitle(getActivity(), R.string.section_i_forgot_my_password);
 
         return binding.getRoot();
     }
 
+    private ProgressDialogFragment mProgressDialogFragment = new ProgressDialogFragment();
 
     @Override
     public void onStarted() {
+        mProgressDialogFragment.openDialog(getParentFragmentManager());
     }
 
     @Override
     public void onSuccess() {
+        mProgressDialogFragment.dismiss();
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle(R.string.password_was_sent);
         builder.setMessage(R.string.password_sent_description);
@@ -56,7 +60,8 @@ public class RecuperarSenhaFragment extends Fragment implements ResultListener, 
 
     @Override
     public void onFailure(int resId) {
-        Toasty.error(getActivity(), R.string.email_not_found, Toasty.LENGTH_SHORT).show();
+        mProgressDialogFragment.dismiss();
+        Toasty.error(getActivity(), resId, Toasty.LENGTH_SHORT).show();
     }
 
     @Override

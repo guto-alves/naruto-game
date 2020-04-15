@@ -1,25 +1,44 @@
 package com.gutotech.narutogame.ui.home.recuperarsenha;
 
+import androidx.databinding.ObservableField;
 import androidx.lifecycle.ViewModel;
 
 import com.gutotech.narutogame.data.repository.AuthRepository;
 import com.gutotech.narutogame.ui.ResultListener;
 
 public class RecuperarSenhaViewModel extends ViewModel {
-    public String emailAddress = "";
+    public final ObservableField<String> emailAddress = new ObservableField<>("");
 
-    public AuthRepository mAuthRepository;
+    private AuthRepository mAuthRepository;
     private ResultListener mAuthListener;
 
     public RecuperarSenhaViewModel() {
         mAuthRepository = AuthRepository.getInstance();
     }
 
-    public void setAuthListener(ResultListener mAuthListener) {
-        this.mAuthListener = mAuthListener;
+    void setAuthListener(ResultListener authListener) {
+        mAuthListener = authListener;
     }
 
     public void onRecoverPasswordButtonPressed() {
-        mAuthRepository.sendPasswordResetEmail(emailAddress, mAuthListener);
+        if (emailAddress.get().trim().isEmpty()) {
+            return;
+        }
+
+        mAuthListener.onStarted();
+
+        mAuthRepository.sendPasswordResetEmail(emailAddress.get(), new ResultListener() {
+
+            @Override
+            public void onSuccess() {
+                emailAddress.set("");
+                mAuthListener.onSuccess();
+            }
+
+            @Override
+            public void onFailure(int resId) {
+                mAuthListener.onFailure(resId);
+            }
+        });
     }
 }

@@ -15,7 +15,7 @@ import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.databinding.FragmentSupportBinding;
 import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.adapter.TicketsAdapter;
-import com.gutotech.narutogame.utils.FragmentUtil;
+import com.gutotech.narutogame.utils.FragmentUtils;
 
 public class SupportFragment extends Fragment implements SectionFragment {
 
@@ -41,7 +41,7 @@ public class SupportFragment extends Fragment implements SectionFragment {
         }
 
         binding.openSupportTicketButton.setOnClickListener(v ->
-                FragmentUtil.goTo(getActivity(), new SupportNewFragment(), true)
+                FragmentUtils.goTo(getActivity(), new SupportNewFragment(), true)
         );
 
         binding.ticketsRecyclerView.setHasFixedSize(true);
@@ -51,13 +51,13 @@ public class SupportFragment extends Fragment implements SectionFragment {
             args.putSerializable("ticket", ticket);
             SupportTicketFragment supportTicketFragment = new SupportTicketFragment();
             supportTicketFragment.setArguments(args);
-            FragmentUtil.goTo(getActivity(), supportTicketFragment, true);
+            FragmentUtils.goTo(getActivity(), supportTicketFragment, true);
         });
         binding.ticketsRecyclerView.setAdapter(adapter);
 
         viewModel.getTickets().observe(getViewLifecycleOwner(), adapter::setTicketList);
 
-        FragmentUtil.setSectionTitle(getActivity(), R.string.section_support);
+        FragmentUtils.setSectionTitle(getActivity(), R.string.section_support);
 
         return binding.getRoot();
     }

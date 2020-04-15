@@ -40,10 +40,6 @@ public class SpannableStringBuilderCustom {
         setForegroundColor(color);
     }
 
-    public void appendln() {
-        append("\n");
-    }
-
     public void append() {
         append(" ");
     }
@@ -63,7 +59,7 @@ public class SpannableStringBuilderCustom {
         setSpan(new ForegroundColorSpan(ContextCompat.getColor(mContext, color)));
     }
 
-    public SpannableStringBuilder getStringBuilder() {
+    public SpannableStringBuilder getString() {
         return mStringBuilder;
     }
 }

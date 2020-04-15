@@ -12,7 +12,7 @@ import android.widget.Button;
 
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.ui.SectionFragment;
-import com.gutotech.narutogame.utils.FragmentUtil;
+import com.gutotech.narutogame.utils.FragmentUtils;
 
 public class DojoFragment extends Fragment implements SectionFragment {
 
@@ -58,7 +58,7 @@ public class DojoFragment extends Fragment implements SectionFragment {
             goTo(new DojoNPCFightersFragment());
         }
 
-        FragmentUtil.setSectionTitle(getActivity(), R.string.section_dojo);
+        FragmentUtils.setSectionTitle(getActivity(), R.string.section_dojo);
 
         return view;
     }

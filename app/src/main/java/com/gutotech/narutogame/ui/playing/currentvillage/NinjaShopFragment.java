@@ -16,7 +16,7 @@ import com.gutotech.narutogame.databinding.FragmentNinjaShopBinding;
 import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.WarningDialogFragment;
 import com.gutotech.narutogame.ui.adapter.ItemShopAdapter;
-import com.gutotech.narutogame.utils.FragmentUtil;
+import com.gutotech.narutogame.utils.FragmentUtils;
 
 public class NinjaShopFragment extends Fragment implements SectionFragment {
 
@@ -43,7 +43,7 @@ public class NinjaShopFragment extends Fragment implements SectionFragment {
             warningDialog.openDialog(getParentFragmentManager());
         });
 
-        FragmentUtil.setSectionTitle(getActivity(), R.string.section_ninja_shop);
+        FragmentUtils.setSectionTitle(getActivity(), R.string.section_ninja_shop);
         return binding.getRoot();
     }
 

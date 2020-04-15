@@ -15,7 +15,7 @@ import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.model.Classe;
 import com.gutotech.narutogame.databinding.FragmentFormulasBinding;
 import com.gutotech.narutogame.ui.SectionFragment;
-import com.gutotech.narutogame.utils.FragmentUtil;
+import com.gutotech.narutogame.utils.FragmentUtils;
 
 public class FormulasFragment extends Fragment implements SectionFragment {
 
@@ -38,7 +38,7 @@ public class FormulasFragment extends Fragment implements SectionFragment {
             binding.genTextView.setText("* 14");
         }
 
-        FragmentUtil.setSectionTitle(getActivity(), R.string.section_formulas);
+        FragmentUtils.setSectionTitle(getActivity(), R.string.section_formulas);
 
         return binding.getRoot();
     }

@@ -26,7 +26,7 @@ import com.gutotech.narutogame.ui.QuestionDialogFragment;
 import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.adapter.TeamMembersAdapter;
 import com.gutotech.narutogame.ui.adapter.TeamRequestersAdapter;
-import com.gutotech.narutogame.utils.FragmentUtil;
+import com.gutotech.narutogame.utils.FragmentUtils;
 import com.gutotech.narutogame.data.firebase.StorageUtils;
 
 import es.dmoral.toasty.Toasty;
@@ -110,7 +110,7 @@ public class TeamDetailsFragment extends Fragment implements SectionFragment,
             }
         });
 
-        FragmentUtil.setSectionTitle(getActivity(), R.string.section_team);
+        FragmentUtils.setSectionTitle(getActivity(), R.string.section_team);
 
         return binding.getRoot();
     }

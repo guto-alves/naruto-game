@@ -19,7 +19,7 @@ import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.ui.QuestionDialogFragment;
 import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.adapter.ProfilesAdapter;
-import com.gutotech.narutogame.utils.FragmentUtil;
+import com.gutotech.narutogame.utils.FragmentUtils;
 
 public class ChangeImageFragment extends Fragment implements SectionFragment,
         QuestionDialogFragment.QuestionDialogListener {
@@ -40,7 +40,7 @@ public class ChangeImageFragment extends Fragment implements SectionFragment,
 
         viewModel.getStorageRefs().observe(getViewLifecycleOwner(), adapter::setProfileList);
 
-        FragmentUtil.setSectionTitle(getActivity(), R.string.section_change_image);
+        FragmentUtils.setSectionTitle(getActivity(), R.string.section_change_image);
 
         return view;
     }

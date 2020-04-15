@@ -11,7 +11,6 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.text.SpannableStringBuilder;
-import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.text.style.ForegroundColorSpan;
@@ -33,7 +32,7 @@ import com.gutotech.narutogame.ui.adapter.BattleLogAdapter;
 import com.gutotech.narutogame.ui.adapter.BuffsDebuffStatusAdapter;
 import com.gutotech.narutogame.ui.adapter.JutsusAdapter;
 import com.gutotech.narutogame.ui.playing.currentvillage.VillageMapFragment;
-import com.gutotech.narutogame.utils.FragmentUtil;
+import com.gutotech.narutogame.utils.FragmentUtils;
 import com.gutotech.narutogame.data.firebase.StorageUtils;
 import com.gutotech.narutogame.utils.SpannableStringBuilderCustom;
 
@@ -108,14 +107,14 @@ public class DojoBattlePvpFragment extends Fragment implements SectionFragment {
                             mViewModel.exit();
 
                             if (CharOn.character.battleId.contains("MAP-PVP")) {
-                                FragmentUtil.goTo(getActivity(), new VillageMapFragment());
+                                FragmentUtils.goTo(getActivity(), new VillageMapFragment());
                             } else {
-                                FragmentUtil.goTo(getActivity(), new DojoFragment());
+                                FragmentUtils.goTo(getActivity(), new DojoFragment());
                             }
                         }
                     });
 
-            showBattleResult(R.string.end_of_the_battle, description.getStringBuilder());
+            showBattleResult(R.string.end_of_the_battle, description.getString());
         });
 
         mViewModel.getShowLostEvent().observe(getViewLifecycleOwner(), aVoid -> {
@@ -132,7 +131,7 @@ public class DojoBattlePvpFragment extends Fragment implements SectionFragment {
                         }
                     });
 
-            showBattleResult(R.string.too_bad, description.getStringBuilder());
+            showBattleResult(R.string.too_bad, description.getString());
         });
 
         mViewModel.getShowDrawnEvent().observe(getViewLifecycleOwner(), aVoid -> {
@@ -149,7 +148,7 @@ public class DojoBattlePvpFragment extends Fragment implements SectionFragment {
                         }
                     });
 
-            showBattleResult(R.string.empate, description.getStringBuilder());
+            showBattleResult(R.string.empate, description.getString());
         });
 
         mViewModel.getShowInactivatedEvent().observe(getViewLifecycleOwner(), aVoid -> {
@@ -166,10 +165,10 @@ public class DojoBattlePvpFragment extends Fragment implements SectionFragment {
                     });
             description.append();
             description.append(R.string.to_preceed);
-            showBattleResult(R.string.too_bad, description.getStringBuilder());
+            showBattleResult(R.string.too_bad, description.getString());
         });
 
-        FragmentUtil.setSectionTitle(getActivity(), R.string.section_dojo);
+        FragmentUtils.setSectionTitle(getActivity(), R.string.section_dojo);
         return mBinding.getRoot();
     }
 

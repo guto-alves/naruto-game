@@ -15,7 +15,7 @@ import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.databinding.FragmentMissionsWaitingBinding;
 import com.gutotech.narutogame.ui.QuestionDialogFragment;
 import com.gutotech.narutogame.ui.SectionFragment;
-import com.gutotech.narutogame.utils.FragmentUtil;
+import com.gutotech.narutogame.utils.FragmentUtils;
 
 public class MissionsWaitingFragment extends Fragment implements SectionFragment,
         QuestionDialogFragment.QuestionDialogListener {
@@ -47,7 +47,7 @@ public class MissionsWaitingFragment extends Fragment implements SectionFragment
 
         mBinding.cancelButton.setOnClickListener(v -> showQuestionDialog());
 
-        FragmentUtil.setSectionTitle(getActivity(), R.string.section_mission_status);
+        FragmentUtils.setSectionTitle(getActivity(), R.string.section_mission_status);
 
         return mBinding.getRoot();
     }

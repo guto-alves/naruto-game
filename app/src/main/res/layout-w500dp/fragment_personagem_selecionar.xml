@@ -32,8 +32,8 @@
                 loadProfile="@{characterSelected.profilePath}"
                 android:layout_width="200dp"
                 android:layout_height="213dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
                 app:layout_constraintEnd_toStartOf="@+id/infoLinearLayout"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintHorizontal_chainStyle="packed"
@@ -42,10 +42,8 @@
 
             <LinearLayout
                 android:id="@+id/infoLinearLayout"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="@+id/profileImageView"
                 app:layout_constraintEnd_toStartOf="@+id/attributesLinearLayout"
@@ -266,7 +264,7 @@
                             android:layout_marginLeft="8dp">
 
                             <ProgressBar
-                                android:id="@+id/progressBar2"
+                                android:id="@+id/healthProgressBar"
                                 style="?android:attr/progressBarStyleHorizontal"
                                 android:layout_width="80dp"
                                 android:layout_height="0dp"
@@ -285,10 +283,10 @@
                                 android:text="@{String.valueOf(characterSelected.formulas.currentHealth)}"
                                 android:textColor="@android:color/white"
                                 android:textStyle="bold"
-                                app:layout_constraintBottom_toBottomOf="@+id/progressBar2"
-                                app:layout_constraintEnd_toEndOf="@id/progressBar2"
-                                app:layout_constraintStart_toStartOf="@+id/progressBar2"
-                                app:layout_constraintTop_toTopOf="@id/progressBar2" />
+                                app:layout_constraintBottom_toBottomOf="@+id/healthProgressBar"
+                                app:layout_constraintEnd_toEndOf="@id/healthProgressBar"
+                                app:layout_constraintStart_toStartOf="@+id/healthProgressBar"
+                                app:layout_constraintTop_toTopOf="@id/healthProgressBar" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
                     </LinearLayout>
 
@@ -430,13 +428,13 @@
                     android:layout_width="wrap_content"
                     android:layout_marginEnd="16dp"
                     android:layout_marginRight="16dp"
-                    android:onClick="@{() -> viewModel.onPlayButtonPressed()}"
+                    android:onClick="@{() -> viewModel.onPlayButtonPressed(characterSelected)}"
                     android:text="@string/Play" />
 
                 <Button
                     style="@style/ButtonTheme"
                     android:layout_width="wrap_content"
-                    android:onClick="@{() -> viewModel.onRemoveCharacterButtonPressed()}"
+                    android:onClick="@{() -> viewModel.onRemoveCharacterButtonPressed(characterSelected)}"
                     android:text="@string/remove" />
             </LinearLayout>
 

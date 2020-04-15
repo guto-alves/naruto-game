@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.ui.SectionFragment;
-import com.gutotech.narutogame.utils.FragmentUtil;
+import com.gutotech.narutogame.utils.FragmentUtils;
 
 public class ClansFragment extends Fragment implements SectionFragment {
 
@@ -19,7 +19,7 @@ public class ClansFragment extends Fragment implements SectionFragment {
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_clas, container, false);
 
-        FragmentUtil.setSectionTitle(getActivity(), R.string.section_clans);
+        FragmentUtils.setSectionTitle(getActivity(), R.string.section_clans);
 
         return root;
     }

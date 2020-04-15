@@ -17,7 +17,7 @@ import com.gutotech.narutogame.databinding.FragmentTeamCreateBinding;
 import com.gutotech.narutogame.ui.ProgressDialogFragment;
 import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.WarningDialogFragment;
-import com.gutotech.narutogame.utils.FragmentUtil;
+import com.gutotech.narutogame.utils.FragmentUtils;
 
 public class TeamCreateFragment extends Fragment implements SectionFragment {
     private ProgressDialogFragment mProgressDialog = new ProgressDialogFragment();
@@ -39,12 +39,14 @@ public class TeamCreateFragment extends Fragment implements SectionFragment {
         viewModel.getShowWarningDialogEvent().observe(getViewLifecycleOwner(), this::showDialog);
 
         viewModel.getShowProgressDialogEvent().observe(getViewLifecycleOwner(), aVoid ->
-                mProgressDialog.openDialog(getParentFragmentManager()));
+                mProgressDialog.openDialog(getParentFragmentManager())
+        );
 
         viewModel.getDismissProgressDialogEvent().observe(getViewLifecycleOwner(), aVoid ->
-                mProgressDialog.dismiss());
+                mProgressDialog.dismiss()
+        );
 
-        FragmentUtil.setSectionTitle(getActivity(), R.string.section_create_a_team);
+        FragmentUtils.setSectionTitle(getActivity(), R.string.section_create_a_team);
         return binding.getRoot();
     }
 

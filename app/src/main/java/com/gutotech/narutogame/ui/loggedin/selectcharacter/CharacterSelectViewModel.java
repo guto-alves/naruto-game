@@ -20,8 +20,6 @@ import com.gutotech.narutogame.utils.SingleLiveEvent;
 import java.util.List;
 
 public class CharacterSelectViewModel extends ViewModel {
-    private Character mCharacterSelected;
-
     private CharacterRepository mCharRepository = CharacterRepository.getInstance();
 
     private ResultListener mListener;
@@ -31,44 +29,42 @@ public class CharacterSelectViewModel extends ViewModel {
 
     private SingleLiveEvent<Integer> mShowErrorDialogEvent = new SingleLiveEvent<>();
 
-    public void onPlayButtonPressed() {
-        if (mCharacterSelected != null) {
+    public void onPlayButtonPressed(Character character) {
+        if (character != null) {
             TeamRepository.getInstance().removeMyTeamChangeListener();
-            CharOn.character = mCharacterSelected;
+            CharOn.character = character;
             mListener.onSuccess();
         } else {
             mListener.onFailure(R.string.no_characters_selected);
         }
     }
 
-    public void onRemoveCharacterButtonPressed() {
-        if (mCharacterSelected == null) {
+    public void onRemoveCharacterButtonPressed(Character character) {
+        if (character == null) {
             mListener.onFailure(R.string.no_characters_selected);
             return;
         }
 
-        if (!TextUtils.isEmpty(mCharacterSelected.getTeam())) {
+        if (!TextUtils.isEmpty(character.getTeam())) {
             mShowErrorDialogEvent.setValue(R.string.error_remove_character_member_of_a_team);
             return;
         }
 
         mShowQuestionDialogEvent.setValue((dialog, which) -> {
             if (CharOn.character == null) {
-                deleteCharacterSelected();
+                deleteCharacterSelected(character);
+            } else if (character.equals(CharOn.character)) {
+                mShowErrorDialogEvent.setValue(R.string.remove_character_while_logged_in);
             } else {
-                if (getCharacterSelected().getNick().equals(CharOn.character.getNick())) {
-                    mShowErrorDialogEvent.setValue(R.string.remove_character_while_logged_in);
-                } else {
-                    deleteCharacterSelected();
-                }
+                deleteCharacterSelected(character);
             }
         });
     }
 
-    private void deleteCharacterSelected() {
-        mCharRepository.delete(mCharacterSelected.getId());
-        NinjaLuckyRepository.getInstance().delete(mCharacterSelected.getId());
-        NinjaStatisticsRepository.getInstance().remove(mCharacterSelected.getNinja().getId());
+    private void deleteCharacterSelected(Character character) {
+        mCharRepository.delete(character.getId());
+        NinjaLuckyRepository.getInstance().delete(character.getId());
+        NinjaStatisticsRepository.getInstance().remove(character.getNinja().getId());
     }
 
 
@@ -78,14 +74,6 @@ public class CharacterSelectViewModel extends ViewModel {
 
     LiveData<List<Character>> getCharactersList() {
         return mCharRepository.getMyCharacters(AuthRepository.getInstance().getUid());
-    }
-
-    private Character getCharacterSelected() {
-        return mCharacterSelected;
-    }
-
-    void setCharacterSelected(Character characterSelected) {
-        this.mCharacterSelected = characterSelected;
     }
 
     LiveData<DialogInterface.OnClickListener> getShowQuestionDialogEvent() {

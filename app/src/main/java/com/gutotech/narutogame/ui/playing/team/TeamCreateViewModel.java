@@ -14,7 +14,7 @@ import com.gutotech.narutogame.data.repository.TeamRepository;
 import com.gutotech.narutogame.utils.SingleLiveEvent;
 
 public class TeamCreateViewModel extends ViewModel {
-    public final ObservableField<String> teamName = new ObservableField<>();
+    public final ObservableField<String> teamName = new ObservableField<>("");
 
     private TeamRepository mTeamRepository = TeamRepository.getInstance();
 
@@ -22,8 +22,8 @@ public class TeamCreateViewModel extends ViewModel {
     private SingleLiveEvent<Void> mShowProgressDialogEvent = new SingleLiveEvent<>();
     private SingleLiveEvent<Void> mDismissProgressDialogEvent = new SingleLiveEvent<>();
 
-    public void onCreateTeamClick() {
-        if (isValidName()) {
+    public synchronized void onCreateTeamClick() {
+        if (!TextUtils.isEmpty(teamName.get().trim())) {
             int price = 5000;
 
             if (CharOn.character.getGraduationId() >= 2) {
@@ -53,11 +53,6 @@ public class TeamCreateViewModel extends ViewModel {
             mShowWarningDialogEvent.setValue(R.string.error_the_name_of_team_cant_be_empty);
         }
     }
-
-    private boolean isValidName() {
-        return !TextUtils.isEmpty(teamName.get());
-    }
-
 
     LiveData<Integer> getShowWarningDialogEvent() {
         return mShowWarningDialogEvent;

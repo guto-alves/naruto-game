@@ -15,7 +15,7 @@ import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.databinding.FragmentRankNinjasBinding;
 import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.adapter.RankingNinjasAdapter;
-import com.gutotech.narutogame.utils.FragmentUtil;
+import com.gutotech.narutogame.utils.FragmentUtils;
 
 public class RankNinjasFragment extends Fragment implements SectionFragment {
 
@@ -39,7 +39,7 @@ public class RankNinjasFragment extends Fragment implements SectionFragment {
 
         viewModel.getNinjas().observe(getViewLifecycleOwner(), adapter::setNinjas);
 
-        FragmentUtil.setSectionTitle(getActivity(), R.string.section_ninjas_ranking);
+        FragmentUtils.setSectionTitle(getActivity(), R.string.section_ninjas_ranking);
 
         return binding.getRoot();
     }

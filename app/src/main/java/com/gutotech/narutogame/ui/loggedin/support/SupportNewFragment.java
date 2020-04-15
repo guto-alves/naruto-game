@@ -31,7 +31,7 @@ import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.databinding.FragmentSupportNewBinding;
 import com.gutotech.narutogame.ui.WarningDialogFragment;
 import com.gutotech.narutogame.utils.DateCustom;
-import com.gutotech.narutogame.utils.FragmentUtil;
+import com.gutotech.narutogame.utils.FragmentUtils;
 import com.gutotech.narutogame.data.firebase.StorageUtils;
 
 import java.util.ArrayList;
@@ -164,10 +164,10 @@ public class SupportNewFragment extends Fragment {
         mViewModel.getTicketCreatedEvent().observe(getViewLifecycleOwner(), aVoid -> {
             SupportFragment supportFragment = new SupportFragment();
             supportFragment.setArguments(new Bundle());
-            FragmentUtil.popBackStack(getActivity(), this, supportFragment);
+            FragmentUtils.popBackStack(getActivity(), this, supportFragment);
         });
 
-        FragmentUtil.setSectionTitle(getActivity(), R.string.section_support_new_ticket);
+        FragmentUtils.setSectionTitle(getActivity(), R.string.section_support_new_ticket);
 
         return mBinding.getRoot();
     }

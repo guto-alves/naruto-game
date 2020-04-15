@@ -24,7 +24,7 @@ import com.gutotech.narutogame.data.model.Score;
 import com.gutotech.narutogame.data.repository.BattleRepository;
 import com.gutotech.narutogame.ui.adapter.JutsusAdapter;
 import com.gutotech.narutogame.utils.SingleLiveEvent;
-import com.gutotech.narutogame.utils.SoundUtils;
+import com.gutotech.narutogame.utils.MediaPlayerUtil;
 
 import java.security.SecureRandom;
 import java.util.ArrayList;
@@ -104,7 +104,7 @@ public class DojoBattlePvpViewModel extends AndroidViewModel
 
             if (mBattle.getStatus() == Battle.Status.CONTINUE) {
                 if (battle.getCurrentPlayer() == myTurn && battle.getAttackStart() != mBattle.getAttackStart()) {
-                    SoundUtils.play(getApplication(), R.raw.battle);
+                    MediaPlayerUtil.play(getApplication(), R.raw.battle);
                 }
 
                 if (battle.getAttackStart() != mBattle.getAttackStart()) {

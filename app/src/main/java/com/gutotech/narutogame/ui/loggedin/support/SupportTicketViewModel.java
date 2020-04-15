@@ -20,7 +20,6 @@ public class SupportTicketViewModel extends ViewModel {
     private Ticket mTicket;
     private SupportRepository mSupportRepository;
     private MutableLiveData<List<TicketResponse>> mTicketResponses = new MutableLiveData<>();
-
     private SingleLiveEvent<Void> mAnswerAddedEvent = new SingleLiveEvent<>();
 
     public SupportTicketViewModel(Ticket ticket) {
@@ -28,14 +27,14 @@ public class SupportTicketViewModel extends ViewModel {
         mSupportRepository = SupportRepository.getInstance();
     }
 
-    private boolean awaiting = false;
+    private boolean mAwaiting = false;
 
     public void addAnswer() {
-        if (response.get().trim().isEmpty() || awaiting) {
+        if (response.get().trim().isEmpty() || mAwaiting) {
             return;
         }
 
-        awaiting = true;
+        mAwaiting = true;
 
         String answer = response.get();
         response.set("");
@@ -56,7 +55,7 @@ public class SupportTicketViewModel extends ViewModel {
             );
 
             mAnswerAddedEvent.call();
-            awaiting = false;
+            mAwaiting = false;
         });
     }
 

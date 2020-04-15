@@ -60,8 +60,8 @@ public class AttributesStatusAdapter extends
         myViewHolder.nameTextView.setText(attribute.name);
         myViewHolder.iconImageView.setImageResource(attribute.icon);
         myViewHolder.totalTextView.setText(String.valueOf(total));
-        myViewHolder.totalProgressBar.setProgress(total);
         myViewHolder.totalProgressBar.setMax(MAX);
+        myViewHolder.totalProgressBar.setProgress(total);
     }
 
     @Override

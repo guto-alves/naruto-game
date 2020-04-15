@@ -89,8 +89,9 @@ public class AuthRepository {
         mAuth.useAppLanguage();
         mAuth.sendPasswordResetEmail(emailAddress).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
-//                            Log.d(TAG, "Email sent.");
                 listener.onSuccess();
+            } else {
+                listener.onFailure(R.string.email_not_found);
             }
         });
     }

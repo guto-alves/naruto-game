@@ -1,5 +1,7 @@
 package com.gutotech.narutogame.data.model;
 
+import androidx.annotation.Nullable;
+
 public class Message {
     private String id;
     private String sender;
@@ -11,6 +13,14 @@ public class Message {
     public Message(String sender, String message) {
         this.sender = sender;
         this.message = message;
+    }
+
+    @Override
+    public boolean equals(@Nullable Object obj) {
+        if (!(obj instanceof Message)) {
+            return false;
+        }
+        return getId().equals(((Message) obj).getId());
     }
 
     public String getId() {

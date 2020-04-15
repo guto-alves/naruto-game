@@ -30,8 +30,9 @@ public class RankNinjasViewModel extends ViewModel {
     }
 
     private void filter() {
-        RankNinjasRepository.getInstance().filter(mVillageSelected, nick.get(), mOnline,
-                mNinjas::setValue);
+        RankNinjasRepository.getInstance().filter(
+                mVillageSelected, nick.get(), mOnline, mNinjas::setValue
+        );
     }
 
     public void onVillageSelected(int position) {

@@ -14,7 +14,7 @@ import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.WarningDialogFragment;
 import com.gutotech.narutogame.data.model.CharOn;
-import com.gutotech.narutogame.utils.FragmentUtil;
+import com.gutotech.narutogame.utils.FragmentUtils;
 import com.gutotech.narutogame.data.firebase.StorageUtils;
 
 public class HospitalRoomFragment extends Fragment implements SectionFragment,
@@ -56,7 +56,7 @@ public class HospitalRoomFragment extends Fragment implements SectionFragment,
             });
         }
 
-        FragmentUtil.setSectionTitle(getActivity(), R.string.section_hospital_room);
+        FragmentUtils.setSectionTitle(getActivity(), R.string.section_hospital_room);
 
         return view;
     }

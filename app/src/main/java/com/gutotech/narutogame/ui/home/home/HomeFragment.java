@@ -26,7 +26,7 @@ import com.gutotech.narutogame.ui.adapter.NewsAdapter;
 import com.gutotech.narutogame.ui.ResultListener;
 import com.gutotech.narutogame.ui.home.readnews.ReadNewsFragment;
 import com.gutotech.narutogame.ui.loggedin.LoggedInActivity;
-import com.gutotech.narutogame.utils.FragmentUtil;
+import com.gutotech.narutogame.utils.FragmentUtils;
 import com.gutotech.narutogame.ui.home.recuperarsenha.RecuperarSenhaFragment;
 import com.smarteist.autoimageslider.IndicatorAnimations;
 import com.smarteist.autoimageslider.SliderAnimations;
@@ -57,7 +57,7 @@ public class HomeFragment extends Fragment implements ResultListener, SectionFra
         });
 
         binding.forgotPasswordTextView.setOnClickListener(v ->
-                FragmentUtil.goTo(getActivity(), new RecuperarSenhaFragment()));
+                FragmentUtils.goTo(getActivity(), new RecuperarSenhaFragment()));
 
         binding.newsRecyclerView.setHasFixedSize(true);
         binding.newsRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(),
@@ -92,7 +92,7 @@ public class HomeFragment extends Fragment implements ResultListener, SectionFra
             kagesSliderAdapter.renewItems(kages);
         });
 
-        FragmentUtil.setSectionTitle(getActivity(), R.string.section_home);
+        FragmentUtils.setSectionTitle(getActivity(), R.string.section_home);
 
         return binding.getRoot();
     }
@@ -102,7 +102,7 @@ public class HomeFragment extends Fragment implements ResultListener, SectionFra
         args.putSerializable("news", news);
         ReadNewsFragment readNewsFragment = new ReadNewsFragment();
         readNewsFragment.setArguments(args);
-        FragmentUtil.goTo(getActivity(), readNewsFragment);
+        FragmentUtils.goTo(getActivity(), readNewsFragment);
     };
 
     private ProgressDialogFragment mProgressDialog = new ProgressDialogFragment();

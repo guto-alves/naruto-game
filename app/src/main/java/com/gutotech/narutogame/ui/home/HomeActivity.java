@@ -20,7 +20,7 @@ import android.widget.ImageView;
 
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.ui.adapter.ExpandableAdapter;
-import com.gutotech.narutogame.utils.FragmentUtil;
+import com.gutotech.narutogame.utils.FragmentUtils;
 import com.gutotech.narutogame.utils.MusicSettingsUtils;
 import com.gutotech.narutogame.utils.MusicUtils;
 
@@ -52,7 +52,7 @@ public class HomeActivity extends AppCompatActivity {
         viewModel.getMenuGroups().observe(this, adapter::setMenuGroups);
 
         viewModel.getCurrentSection().observe(this, sectionFragment -> {
-            FragmentUtil.goTo(HomeActivity.this, (Fragment) sectionFragment);
+            FragmentUtils.goTo(HomeActivity.this, (Fragment) sectionFragment);
             closeDrawer();
         });
 
