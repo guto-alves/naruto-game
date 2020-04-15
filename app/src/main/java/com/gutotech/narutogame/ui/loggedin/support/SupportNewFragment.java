@@ -14,6 +14,7 @@ import android.provider.MediaStore;
 
 import androidx.annotation.NonNull;
 
+import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -42,6 +43,7 @@ import es.dmoral.toasty.Toasty;
 import static android.content.Context.INPUT_METHOD_SERVICE;
 
 public class SupportNewFragment extends Fragment {
+    private static final int PERMISSION_REQUEST_READ_EXTERNAL_STORAGE = 1;
     private SupportNewViewModel mViewModel;
     private FragmentSupportNewBinding mBinding;
 
@@ -80,7 +82,6 @@ public class SupportNewFragment extends Fragment {
             dismissKeyboard(v);
             return false;
         });
-
 
         mBinding.calendarView.setVisibility(View.GONE);
         mBinding.calendarView.setOnDateChangeListener((view1, year, month, dayOfMonth) -> {
@@ -138,10 +139,12 @@ public class SupportNewFragment extends Fragment {
         });
 
         mBinding.attachImageButton.setOnClickListener(v -> {
-            Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-
-            if (intent.resolveActivity(getActivity().getPackageManager()) != null) {
-                startActivityForResult(intent, 200);
+            if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.READ_EXTERNAL_STORAGE)
+                    != PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                        PERMISSION_REQUEST_READ_EXTERNAL_STORAGE);
+            } else {
+                openGallery();
             }
         });
 
@@ -166,8 +169,6 @@ public class SupportNewFragment extends Fragment {
 
         FragmentUtil.setSectionTitle(getActivity(), R.string.section_support_new_ticket);
 
-        requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
-
         return mBinding.getRoot();
     }
 
@@ -175,6 +176,14 @@ public class SupportNewFragment extends Fragment {
         InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(INPUT_METHOD_SERVICE);
         if (imm != null) {
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+    }
+
+    private void openGallery() {
+        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+
+        if (intent.resolveActivity(getActivity().getPackageManager()) != null) {
+            startActivityForResult(intent, 200);
         }
     }
 
@@ -221,10 +230,10 @@ public class SupportNewFragment extends Fragment {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
-        for (int permissionResult : grantResults) {
-            if (permissionResult == PackageManager.PERMISSION_DENIED) {
-                mBinding.attachImageButton.setEnabled(false);
+        if (requestCode == PERMISSION_REQUEST_READ_EXTERNAL_STORAGE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                openGallery();
+            } else {
                 showAlertPermissionDenied();
             }
         }

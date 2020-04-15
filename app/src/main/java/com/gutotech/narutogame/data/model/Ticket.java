@@ -7,8 +7,10 @@ import androidx.databinding.library.baseAdapters.BR;
 
 import com.gutotech.narutogame.R;
 
-public class Ticket extends BaseObservable {
-    public enum Status {
+import java.io.Serializable;
+
+public class Ticket extends BaseObservable implements Serializable {
+    public enum Status implements Serializable {
         NEW(R.string.new_status), AWAITING(R.string.awaiting_staff_reply), CLOSED(R.string.closed);
 
         @StringRes
@@ -135,12 +137,14 @@ public class Ticket extends BaseObservable {
         this.image = image;
     }
 
+    @Bindable
     public Status getStatus() {
         return status;
     }
 
     public void setStatus(Status status) {
         this.status = status;
+        notifyPropertyChanged(BR.status);
     }
 
     public String getDateCreation() {
@@ -159,20 +163,24 @@ public class Ticket extends BaseObservable {
         this.timeCreation = timeCreation;
     }
 
+    @Bindable
     public String getDateUpdated() {
         return dateUpdated;
     }
 
     public void setDateUpdated(String dateUpdated) {
         this.dateUpdated = dateUpdated;
+        notifyPropertyChanged(BR.dateUpdated);
     }
 
+    @Bindable
     public String getTimeUpdated() {
         return timeUpdated;
     }
 
     public void setTimeUpdated(String timeUpdated) {
         this.timeUpdated = timeUpdated;
+        notifyPropertyChanged(BR.timeUpdated);
     }
 
     @Bindable

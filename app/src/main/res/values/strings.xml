@@ -2059,7 +2059,7 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="image">Image</string>
     <string name="date">Date</string>
     <string name="new_status">New</string>
-    <string name="awaiting_staff_reply">Awaiting STAFF reply</string>
+    <string name="awaiting_staff_reply">Awaiting response</string>
     <string name="closed">Closed</string>
     <string name="error_uploading_image">Error uploading image</string>
     <string name="team_exp_progress">%d Exp de / %d Exp</string>
@@ -2182,8 +2182,13 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="scroll_waterfall_20x">20x Scroll of Teleportation to Waterfall</string>
     <string name="scroll_hot_springs_20x">20x Scroll of Teleportation to Hot Springs</string>
     <string name="scroll_grass_20x">20x Scroll of Teleportation to Grass</string>
-
-
+    <string name="add_answer">Add Answer</string>
+    <string name="creation_date">Creation date</string>
+    <string name="account_e_mail">Account e-mail</string>
+    <string name="replied_by">Replied by</string>
+    <string name="incident_date">Incident Date</string>
+    <string name="last_answered_by">Last Answered by</string>
+    <string name="answer_added">Answer added!</string>
 
 
 </resources>

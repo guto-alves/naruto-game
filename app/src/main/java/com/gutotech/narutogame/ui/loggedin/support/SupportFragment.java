@@ -41,11 +41,18 @@ public class SupportFragment extends Fragment implements SectionFragment {
         }
 
         binding.openSupportTicketButton.setOnClickListener(v ->
-                FragmentUtil.goTo(getActivity(), new SupportNewFragment(), true));
+                FragmentUtil.goTo(getActivity(), new SupportNewFragment(), true)
+        );
 
         binding.ticketsRecyclerView.setHasFixedSize(true);
 
-        TicketsAdapter adapter = new TicketsAdapter(getActivity());
+        TicketsAdapter adapter = new TicketsAdapter(getActivity(), ticket -> {
+            Bundle args = new Bundle();
+            args.putSerializable("ticket", ticket);
+            SupportTicketFragment supportTicketFragment = new SupportTicketFragment();
+            supportTicketFragment.setArguments(args);
+            FragmentUtil.goTo(getActivity(), supportTicketFragment, true);
+        });
         binding.ticketsRecyclerView.setAdapter(adapter);
 
         viewModel.getTickets().observe(getViewLifecycleOwner(), adapter::setTicketList);

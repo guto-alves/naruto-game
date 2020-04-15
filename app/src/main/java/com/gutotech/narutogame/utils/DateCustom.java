@@ -1,10 +1,7 @@
 package com.gutotech.narutogame.utils;
 
-import android.os.SystemClock;
-
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Locale;
 
 public class DateCustom {
@@ -16,7 +13,7 @@ public class DateCustom {
     }
 
     public static String getDate() {
-        return getDate(SystemClock.elapsedRealtime());
+        return getDate(System.currentTimeMillis());
     }
 
     public static String getDate(long timestamp) {
@@ -25,8 +22,7 @@ public class DateCustom {
     }
 
     public static String getTime() {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss", Locale.US);
-        return simpleDateFormat.format(System.currentTimeMillis());
+        return getTime(System.currentTimeMillis());
     }
 
     public static String getTime(long timestamp) {

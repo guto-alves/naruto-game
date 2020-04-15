@@ -2017,7 +2017,7 @@
     <string name="image">Imagem</string>
     <string name="date">Data</string>
     <string name="new_status">New</string>
-    <string name="awaiting_staff_reply">Awaiting STAFF reply</string>
+    <string name="awaiting_staff_reply">Aguardando resposta</string>
     <string name="closed">Fechado</string>
     <string name="error_uploading_image">Erro ao fazer upload da imagem</string>
     <string name="team_exp_progress">%d Exp de / %d Exp</string>
@@ -2138,5 +2138,12 @@
     <string name="scroll_waterfall_20x">20x Pergaminho de Teletransporte para Cachoeira</string>
     <string name="scroll_hot_springs_20x">20x Pergaminho de Teletransporte para Fontes Termais</string>
     <string name="scroll_grass_20x">20x Pergaminho de Teletransporte para Grama</string>
+    <string name="add_answer">Adicionar Resposta</string>
+    <string name="creation_date">Creation date</string>
+    <string name="account_e_mail">Account e-Mail</string>
+    <string name="replied_by">Respondido por</string>
+    <string name="incident_date">Data do Ocorrido</string>
+    <string name="last_answered_by">Último a Responder</string>
+    <string name="answer_added">Resposta adicionada!</string>
 
 </resources>

@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.gutotech.narutogame.ui.loggedin.support.SupportTicketViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        tools:context=".ui.loggedin.support.SupportTicketFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <ImageView
+                android:id="@+id/imageView46"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY"
+                android:src="@drawable/layout_barras_secoes_1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView108"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginLeft="24dp"
+                android:fontFamily="monospace"
+                android:text="@{viewModel.ticket.title}"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView46"
+                app:layout_constraintStart_toStartOf="@+id/imageView46"
+                app:layout_constraintTop_toTopOf="@+id/imageView46" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout18"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@color/colorItem2"
+                android:orientation="vertical"
+                android:padding="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView46">
+
+                <TextView
+                    android:id="@+id/textView110"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/account_e_mail"
+                    android:textColor="@color/colorGreen" />
+
+                <TextView
+                    android:id="@+id/textView111"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{viewModel.ticket.email}"
+                    android:textColor="@color/colorText" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/category"
+                    android:textColor="@color/colorGreen" />
+
+                <TextView
+                    android:id="@+id/categoryTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/holo_orange_dark" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/status"
+                    android:textColor="@color/colorGreen" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{context.getString(viewModel.ticket.status.statusId)}"
+                    android:textColor="@android:color/holo_blue_light" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/incident_date"
+                    android:textColor="@color/colorGreen" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{@string/date_and_time_format(viewModel.ticket.dateOccurred, viewModel.ticket.timeOccurred)}"
+                    android:textColor="@color/colorText" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/creation_date"
+                    android:textColor="@color/colorGreen" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{@string/date_and_time_format(viewModel.ticket.dateCreation, viewModel.ticket.timeCreation)}"
+                    android:textColor="@color/colorText" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/updated_at"
+                    android:textColor="@color/colorGreen" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{@string/date_and_time_format(viewModel.ticket.dateUpdated, viewModel.ticket.timeUpdated)}"
+                    android:textColor="@color/colorText" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/last_answered_by"
+                    android:textColor="@color/colorGreen" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{viewModel.ticket.lastToAnswer}"
+                    android:textColor="@color/colorText" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@color/colorItem1" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@color/colorItem1" />
+
+                <TextView
+                    android:id="@+id/textView112"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{viewModel.ticket.description}"
+                    android:textColor="@color/colorText" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/colorItem1" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/responsesRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:itemCount="3"
+                    tools:listitem="@layout/adapter_ticket_response" />
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/addAnswerConstraintLayout"
+                android:layout_width="0dp"
+                android:layout_height="350dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout18">
+
+                <ImageView
+                    android:id="@+id/imageView47"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/layout_barras_secoes_1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView109"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginLeft="24dp"
+                    android:fontFamily="monospace"
+                    android:text="@string/add_answer"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageView47"
+                    app:layout_constraintStart_toStartOf="@+id/imageView47"
+                    app:layout_constraintTop_toTopOf="@+id/imageView47" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorItem1"
+                    android:orientation="vertical"
+                    android:paddingLeft="32dp"
+                    android:paddingRight="32dp"
+                    android:paddingBottom="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView47">
+
+                    <EditText
+                        android:id="@+id/editText2"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:background="@android:color/white"
+                        android:ems="10"
+                        android:gravity="start|top"
+                        android:inputType="textMultiLine"
+                        android:text="@={viewModel.response}" />
+
+                    <Button
+                        style="@style/ButtonTheme"
+                        android:layout_gravity="end"
+                        android:layout_marginTop="16dp"
+                        android:onClick="@{() -> viewModel.addAnswer()}"
+                        android:text="@string/add_answer" />
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

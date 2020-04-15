@@ -17,14 +17,37 @@ import com.gutotech.narutogame.data.model.Ticket;
 import java.util.List;
 
 public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.MyViewHolder> {
+
+    public interface TicketClickListener {
+        void onTicketClick(Ticket ticket);
+    }
+
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
+        private TextView titleTextView;
+        private TextView categoryTextView;
+        private TextView statusTextView;
+        private TextView updatedAtTextView;
+        private ConstraintLayout constraintLayout;
+
+        public MyViewHolder(@NonNull View itemView) {
+            super(itemView);
+            titleTextView = itemView.findViewById(R.id.titleTextView);
+            categoryTextView = itemView.findViewById(R.id.categoryTextView);
+            statusTextView = itemView.findViewById(R.id.statusTextView);
+            updatedAtTextView = itemView.findViewById(R.id.updatedAtTextView);
+            constraintLayout = itemView.findViewById(R.id.constraintLayout);
+        }
+    }
+
     private Context mContext;
     private List<Ticket> mTicketList;
-
     private String[] mCategories;
+    private TicketClickListener mTicketClickListener;
 
-    public TicketsAdapter(Context context) {
+    public TicketsAdapter(Context context, TicketClickListener clickListener) {
         mContext = context;
         mCategories = mContext.getResources().getStringArray(R.array.ticket_categories_list);
+        mTicketClickListener = clickListener;
     }
 
     @NonNull
@@ -45,16 +68,18 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.MyViewHo
             myViewHolder.statusTextView.setText(ticket.getStatus().statusId);
             myViewHolder.updatedAtTextView.setText(ticket.getDateUpdated());
 
-            myViewHolder.titleTextView.setOnClickListener(v -> {
-
-            });
+            myViewHolder.titleTextView.setOnClickListener(v ->
+                    mTicketClickListener.onTicketClick(ticket)
+            );
 
             if (i % 2 == 0) {
-                myViewHolder.bgTickets.setBackgroundColor(
-                        mContext.getResources().getColor(R.color.colorItem1));
+                myViewHolder.constraintLayout.setBackgroundColor(
+                        mContext.getResources().getColor(R.color.colorItem1)
+                );
             } else {
-                myViewHolder.bgTickets.setBackgroundColor(
-                        mContext.getResources().getColor(R.color.colorItem2));
+                myViewHolder.constraintLayout.setBackgroundColor(
+                        mContext.getResources().getColor(R.color.colorItem2)
+                );
             }
         }
     }
@@ -62,24 +87,6 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.MyViewHo
     @Override
     public int getItemCount() {
         return mTicketList != null ? mTicketList.size() : 0;
-    }
-
-    public static class MyViewHolder extends RecyclerView.ViewHolder {
-        private TextView titleTextView;
-        private TextView categoryTextView;
-        private TextView statusTextView;
-        private TextView updatedAtTextView;
-        private ConstraintLayout bgTickets;
-
-        public MyViewHolder(@NonNull View itemView) {
-            super(itemView);
-
-            titleTextView = itemView.findViewById(R.id.titleTextView);
-            categoryTextView = itemView.findViewById(R.id.categoryTextView);
-            statusTextView = itemView.findViewById(R.id.statusTextView);
-            updatedAtTextView = itemView.findViewById(R.id.updatedAtTextView);
-            bgTickets = itemView.findViewById(R.id.bgTictkes);
-        }
     }
 
     public void setTicketList(List<Ticket> ticketList) {
