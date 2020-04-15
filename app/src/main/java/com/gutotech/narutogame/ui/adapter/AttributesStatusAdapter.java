@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.Attribute;
 
+import java.util.Collections;
 import java.util.List;
 
 public class AttributesStatusAdapter extends
@@ -35,10 +36,12 @@ public class AttributesStatusAdapter extends
 
     private Attribute[] mAttributes;
     private List<Integer> mTotalPointsForEachAttribute;
+    private final int MAX;
 
     public AttributesStatusAdapter(List<Integer> attributes) {
         mTotalPointsForEachAttribute = attributes;
         mAttributes = Attribute.values();
+        MAX = Collections.max(mTotalPointsForEachAttribute);
     }
 
     @NonNull
@@ -58,6 +61,7 @@ public class AttributesStatusAdapter extends
         myViewHolder.iconImageView.setImageResource(attribute.icon);
         myViewHolder.totalTextView.setText(String.valueOf(total));
         myViewHolder.totalProgressBar.setProgress(total);
+        myViewHolder.totalProgressBar.setMax(MAX);
     }
 
     @Override

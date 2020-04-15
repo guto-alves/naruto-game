@@ -3,24 +3,25 @@ package com.gutotech.narutogame.ui.playing.academy;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.StringRes;
+import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
+import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 
 import com.gutotech.narutogame.R;
-import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.databinding.FragmentAcademyTrainningBinding;
 import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.adapter.DistributedPointsAdapter;
+import com.gutotech.narutogame.ui.playing.user.FormulasFragment;
 import com.gutotech.narutogame.utils.FragmentUtil;
-import com.gutotech.narutogame.data.firebase.StorageUtils;
+import com.gutotech.narutogame.utils.SpannableStringBuilderCustom;
 
 public class AcademyTrainingFragment extends Fragment implements SectionFragment {
     private FragmentAcademyTrainningBinding mBinding;
@@ -33,47 +34,55 @@ public class AcademyTrainingFragment extends Fragment implements SectionFragment
 
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_academy_trainning,
                 container, false);
-        mBinding.setLifecycleOwner(this);
         mBinding.setViewModel(viewModel);
 
         mBinding.msgLayout.titleTextView.setText(R.string.attribute_training_title);
-        mBinding.msgLayout.descriptionTextView.setText(R.string.attribute_training_description);
+        SpannableStringBuilderCustom builder = new SpannableStringBuilderCustom(getContext());
+        builder.append(R.string.attribute_training_description);
+        builder.append(" ");
+        builder.append(R.string.game_formulas,
+                new ClickableSpan() {
+                    @Override
+                    public void onClick(@NonNull View widget) {
+                        FragmentUtil.goTo(getActivity(), new FormulasFragment());
+                    }
+                }, new ForegroundColorSpan(ContextCompat.getColor(getContext(), R.color.colorGreen)));
+        builder.append(".");
+        mBinding.msgLayout.descriptionTextView.setText(builder.getStringBuilder());
+        mBinding.msgLayout.descriptionTextView.setMovementMethod(LinkMovementMethod.getInstance());
 
-        viewModel.getTrainingCompletedEvent().observe(getViewLifecycleOwner(), trainingPointsEarned ->
-                showTrainingResult(R.string.training_completed,
-                        getString(R.string.you_earned_ability_points, trainingPointsEarned))
-        );
+        mBinding.trainingPointsLayout.titleTextView.setText(R.string.training_points);
 
-        viewModel.getTrainingErrorEvent().observe(getViewLifecycleOwner(), v -> {
-            showTrainingResult(R.string.problem, getString(R.string.you_dont_have_chakra_for_this_training));
-            Animation animation = AnimationUtils.loadAnimation(getActivity(), R.anim.problem_shake);
-            animation.setRepeatCount(3);
-            mBinding.trainingResult.msgConstraintLayout.startAnimation(animation);
+        viewModel.getFreePoints().observe(getViewLifecycleOwner(), freePoints -> {
+            if (freePoints == 0) {
+                mBinding.trainingPointsLayout.msgConstraintLayout.setVisibility(View.GONE);
+            } else {
+                SpannableStringBuilderCustom stringBuilder = new SpannableStringBuilderCustom(getContext());
+                stringBuilder.append(R.string.you_still_have);
+                stringBuilder.append(" ");
+                stringBuilder.append(getString(R.string.total_free_points, freePoints), R.color.colorGreen);
+                stringBuilder.append(" ");
+                stringBuilder.append(R.string.to_distribute_in_their_attributes);
+                mBinding.trainingPointsLayout.descriptionTextView.setText(stringBuilder.getStringBuilder());
+                mBinding.trainingPointsLayout.msgConstraintLayout.setVisibility(View.VISIBLE);
+
+                mBinding.scrollView.post(() ->
+                        mBinding.scrollView.smoothScrollTo(0, mBinding.trainingPointsLayout.getRoot().getTop())
+                );
+            }
         });
 
         mBinding.distributedPointsRecyclerView.setHasFixedSize(true);
-        DistributedPointsAdapter adapter = new DistributedPointsAdapter(
-                getContext(), viewModel);
-        adapter.setDistributedPoints(CharOn.character.getAttributes().getDistributedPoints());
+        DistributedPointsAdapter adapter = new DistributedPointsAdapter(getContext(), viewModel);
         mBinding.distributedPointsRecyclerView.setAdapter(adapter);
 
-        viewModel.getUpdateDistributedPointsEvent().observe(getViewLifecycleOwner(), aVoid ->
-                adapter.setDistributedPoints(CharOn.character.getAttributes().getDistributedPoints())
+        viewModel.getDistributedPoints().observe(
+                getViewLifecycleOwner(), adapter::setDistributedPoints
         );
 
         FragmentUtil.setSectionTitle(getActivity(), R.string.section_attribute_training);
 
         return mBinding.getRoot();
-    }
-
-    private void showTrainingResult(@StringRes int titleId, String description) {
-        StorageUtils.downloadProfileForMsg(getContext(), mBinding.trainingResult.profileImageView);
-        mBinding.trainingResult.titleTextView.setText(titleId);
-        mBinding.trainingResult.descriptionTextView.setText(description);
-        mBinding.trainingResult.msgConstraintLayout.setVisibility(View.VISIBLE);
-
-        mBinding.scrollView.post(() ->
-                mBinding.scrollView.smoothScrollTo(0, mBinding.trainingResult.getRoot().getTop()));
     }
 
     @Override

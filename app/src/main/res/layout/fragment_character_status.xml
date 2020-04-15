@@ -498,30 +498,6 @@
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="3dp"
                             android:layout_marginRight="3dp"
-                            android:text="@string/label_total_de_treino"
-                            android:textColor="#ff7d1c"
-                            android:textSize="12sp" />
-
-                        <TextView
-                            android:id="@+id/totalTreinoTextView"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@{String.valueOf(character.extrasInformation.totalTraining)}"
-                            android:textColor="@android:color/white" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="3dp"
-                            android:layout_marginRight="3dp"
                             android:text="@string/label_pontos_distribu_dos"
                             android:textColor="#ff7d1c"
                             android:textSize="12sp" />

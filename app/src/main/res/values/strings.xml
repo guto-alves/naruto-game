@@ -283,13 +283,12 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="formulas">Formulas</string>
     <string name="label_wins_map_pvp">PVP Map Wins:</string>
     <string name="label_derrotas_dojo_pvp">PVP Dojo Losses:</string>
-    <string name="attribute_training_description">Your character is capable of attribute training
-        since Level 1, but this training has a daily limit. The more you train, better will be your
-        results in battles, in dojo NPC even with your enemies. The days NOT trained, will be
-        cumulated: For example, if you can\'t train tuesday and wednesday, at thursday you can
-        train the sum of tuesday, wednesday and thursday. At Tuesdays, the week limit is renewed,
-        even you do not have trained, then, ever try train your week limit until mondays.\n\nThe
-        Attribute Training is key to have a good character, so, never forget to training it</string>
+    <string name="attribute_training_description">Your character starts by earning 5 attribute
+        points on each level until level 5, after level 5 he starts to earn 2 points per level.
+        The more you train, better will be your results in battles, in dojo NPC even with your
+        enemies.\nThe Attribute Training is key to have a good character, so, never forget to
+        training it!\n\nTo find out more details about each Attribute and help you distribute your
+        points in the best possible way, go to</string>
     <string name="attribute_training_title">LEARN ABOUT THE TRAINING ATTRIBUTES</string>
     <string name="training_completed">TRAINING COMPLETED</string>
     <string name="distributed_points">DISTRIBUTED POINTS</string>
@@ -2189,6 +2188,10 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="incident_date">Incident Date</string>
     <string name="last_answered_by">Last Answered by</string>
     <string name="answer_added">Answer added!</string>
+    <string name="training_points">TRAINING POINTS</string>
+    <string name="to_distribute_in_their_attributes">to distribute in their attributes.</string>
+    <string name="you_still_have">You still have</string>
+    <string name="total_free_points">%d Free Points</string>
 
 
 </resources>

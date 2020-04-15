@@ -6,27 +6,18 @@ import androidx.databinding.Bindable;
 import com.gutotech.narutogame.BR;
 
 public class ExtrasInformation extends BaseObservable {
-    private int totalTraining;
     private int distributedPoints;
     private int totalSecondsPlayed;
 
     public ExtrasInformation() {
     }
 
-    public void incrementTotalTraining(int training) {
-        setTotalTraining(getTotalTraining() + training);
-    }
-
     public void incrementDistributedPoints(int quantity) {
         setDistributedPoints(getDistributedPoints() + quantity);
     }
 
-    public int getTotalTraining() {
-        return totalTraining;
-    }
-
-    public void setTotalTraining(int totalTraining) {
-        this.totalTraining = totalTraining;
+    public void decrementDistributedPoints(int quantity) {
+        setDistributedPoints(getDistributedPoints() - quantity);
     }
 
     public int getDistributedPoints() {

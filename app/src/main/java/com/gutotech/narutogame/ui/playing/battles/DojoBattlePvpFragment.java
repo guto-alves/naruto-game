@@ -114,7 +114,6 @@ public class DojoBattlePvpFragment extends Fragment implements SectionFragment {
                             }
                         }
                     });
-            description.append(R.string.training_points_for_your_participation);
 
             showBattleResult(R.string.end_of_the_battle, description.getStringBuilder());
         });
@@ -132,7 +131,6 @@ public class DojoBattlePvpFragment extends Fragment implements SectionFragment {
                             CharOn.character.setHospital(true);
                         }
                     });
-            description.append(getString(R.string.training_points_for_your_participation));
 
             showBattleResult(R.string.too_bad, description.getStringBuilder());
         });

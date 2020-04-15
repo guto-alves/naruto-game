@@ -19,7 +19,6 @@ import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.firebase.FirebaseFunctionsUtils;
 import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.model.Character;
-import com.gutotech.narutogame.data.model.Graduation;
 import com.gutotech.narutogame.data.model.MenuGroup;
 import com.gutotech.narutogame.data.model.Message;
 import com.gutotech.narutogame.data.model.Ramen;
@@ -94,6 +93,7 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
 
         mCharacter = CharOn.character;
         mTitles = new MutableLiveData<>(mCharacter.getTitles());
+        mChannel = String.valueOf(mCharacter.getVillage().ordinal());
 
         mCharacter.addOnPropertyChangedCallback(new Observable.OnPropertyChangedCallback() {
             @Override
@@ -162,10 +162,6 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
             if (mCharacter.getLastSeenInMillis() == 0) {
                 mCharacter.setLastSeenInMillis(currentTimestamp);
                 mCharacter.setNumberOfDaysPlayed(1);
-
-                Calendar calendar = Calendar.getInstance();
-                calendar.setTimeInMillis(currentTimestamp);
-                updateWeeklyLimitOfTraining(calendar.get(Calendar.DAY_OF_WEEK));
             } else {
                 long elapsedTime = currentTimestamp - mCharacter.getLastSeenInMillis();
                 long TOTAL_INCREMENTS = elapsedTime / 120000;
@@ -455,7 +451,7 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
     public ObservableBoolean chatOpened = new ObservableBoolean(false);
     public ObservableField<String> message = new ObservableField<>();
     private ChatRepository mChatRepository = ChatRepository.getInstance();
-    private String mChannel = String.valueOf(CharOn.character.getVillage().ordinal());
+    private String mChannel;
     private MutableLiveData<List<Message>> mMessages = new MutableLiveData<>();
     private SingleLiveEvent<Boolean> mStartChatAnimationEvent = new SingleLiveEvent<>();
     private SingleLiveEvent<Void> mUpdateChannelsEvent = new SingleLiveEvent<>();
@@ -586,31 +582,19 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
     private void execVariousRoutines() {
         FirebaseFunctionsUtils.getServerTime(currentTimestamp -> {
             Calendar calendar = Calendar.getInstance();
+
             calendar.setTimeInMillis(currentTimestamp);
-
             int currentDayOfYear = calendar.get(Calendar.DAY_OF_YEAR);
-            int currentDayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
 
-            long lastSeenInMillis = CharOn.character.getLastSeenInMillis();
-            calendar.setTimeInMillis(lastSeenInMillis);
+            calendar.setTimeInMillis(CharOn.character.getLastSeenInMillis());
             int lastDayOfYearSeen = calendar.get(Calendar.DAY_OF_YEAR);
-            int lastDayOfWeekSeen = calendar.get(Calendar.DAY_OF_WEEK);
 
             if (lastDayOfYearSeen != currentDayOfYear) {
-                if ((currentDayOfWeek - lastDayOfWeekSeen == 0) ||
-                        (lastDayOfWeekSeen < Calendar.TUESDAY && currentDayOfWeek > Calendar.TUESDAY) ||
-                        (lastDayOfWeekSeen > currentDayOfWeek && currentDayOfWeek > Calendar.TUESDAY) ||
-                        (currentDayOfWeek == Calendar.TUESDAY)) {
-                    mCharacter.getAttributes().setTrainingProgress(0);
-                }
-
                 if (currentDayOfYear - lastDayOfYearSeen == 1) {
                     CharOn.character.setDaysOfFidelity((CharOn.character.getDaysOfFidelity() + 1) % 8);
                 } else {
                     mCharacter.setDaysOfFidelity(0);
                 }
-
-                updateWeeklyLimitOfTraining(currentDayOfWeek);
 
                 mCharacter.setFidelityReward(true);
                 mCharacter.setTotalDailyMissions(0);
@@ -618,14 +602,6 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
                 mCharacter.setNumberOfDaysPlayed(mCharacter.getNumberOfDaysPlayed() + 1);
             }
         });
-    }
-
-    private void updateWeeklyLimitOfTraining(int dayOfWeek) {
-        int days = dayOfWeek >= 3 ? dayOfWeek - 2 : dayOfWeek + 5;
-
-        int weeklyLimitOfTraining = Graduation.values()[mCharacter.getGraduationId()]
-                .dailyTrainingLimit * days;
-        mCharacter.getAttributes().setWeeklyLimitOfTraining(weeklyLimitOfTraining);
     }
 
 

@@ -554,10 +554,6 @@ public class DojoBattlePvpViewModel extends AndroidViewModel
                     CharOn.character.getCombatOverview().getLossesDojoPvp() + 1);
         }
 
-        CharOn.character.getAttributes().incrementTraningPoints(50);
-        CharOn.character.getExtrasInformation().incrementTotalTraining(50);
-
-
         mBattleRepository.removeBattleListener();
 
         int playersInBattle = mBattle.getPlayersInBattle() - 1;

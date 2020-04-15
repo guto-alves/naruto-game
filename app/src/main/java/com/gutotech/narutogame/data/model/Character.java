@@ -23,8 +23,8 @@ public class Character extends BaseObservable implements Serializable {
     private Village village;
     private Classe classe;
     private int level;
-    private int exp;
-    private int expUpar;
+    private int currentExp;
+    private int levelUpExp;
     private long ryous;
     private int title;
     private List<Integer> titles;
@@ -75,7 +75,7 @@ public class Character extends BaseObservable implements Serializable {
         full();
         ryous = 500;
         score = 1000;
-        expUpar = 1200;
+        levelUpExp = 1200;
         combatOverview = new CombatOverview();
         resumeOfMissions = new ResumeOfMissions();
         extrasInformation = new ExtrasInformation();
@@ -92,16 +92,6 @@ public class Character extends BaseObservable implements Serializable {
         itemsEnabled = true;
     }
 
-    @Exclude
-    public Formulas getFormulas() {
-        return getAttributes().getFormulas();
-    }
-
-    @Exclude
-    public List<Integer> getMissionsFinishedId() {
-        return getResumeOfMissions().getMissionsFinishedId();
-    }
-
     public void updateFormulas() {
         getAttributes().updateFormulas(getClasse(), getLevel());
     }
@@ -111,20 +101,29 @@ public class Character extends BaseObservable implements Serializable {
     }
 
     public void incrementExp(int expEarned) {
-        int newTotalExp = getExp() + expEarned;
+        int newTotalExp = getCurrentExp() + expEarned;
 
-        while (newTotalExp >= getExpUpar()) {
-            newTotalExp = newTotalExp - getExpUpar();
-
-            setExpUpar(getExpUpar() + 1200);
-            setLevel(getLevel() + 1);
-
-            updateFormulas();
-            full();
-            incrementScore(Score.LEVEL);
+        while (newTotalExp >= getLevelUpExp()) {
+            newTotalExp = newTotalExp - getLevelUpExp();
+            levelUp();
         }
 
-        setExp(newTotalExp);
+        setCurrentExp(newTotalExp);
+    }
+
+    private void levelUp() {
+        setLevelUpExp(getLevelUpExp() + 1200);
+        setLevel(getLevel() + 1);
+
+        if (getLevel() <= 5) {
+            getAttributes().setTotalFreePoints(getAttributes().getTotalFreePoints() + 5);
+        } else {
+            getAttributes().setTotalFreePoints(getAttributes().getTotalFreePoints() + 2);
+        }
+
+        updateFormulas();
+        full();
+        incrementScore(Score.LEVEL);
     }
 
     public void incrementScore(int earnedScore) {
@@ -180,6 +179,16 @@ public class Character extends BaseObservable implements Serializable {
         }
 
         return getId().equals(((Character) obj).getId());
+    }
+
+    @Exclude
+    public Formulas getFormulas() {
+        return getAttributes().getFormulas();
+    }
+
+    @Exclude
+    public List<Integer> getMissionsFinishedId() {
+        return getResumeOfMissions().getMissionsFinishedId();
     }
 
 
@@ -310,23 +319,23 @@ public class Character extends BaseObservable implements Serializable {
     }
 
     @Bindable
-    public int getExp() {
-        return exp;
+    public int getCurrentExp() {
+        return currentExp;
     }
 
-    public void setExp(int exp) {
-        this.exp = exp;
-        notifyPropertyChanged(BR.exp);
+    public void setCurrentExp(int currentExp) {
+        this.currentExp = currentExp;
+        notifyPropertyChanged(BR.currentExp);
     }
 
     @Bindable
-    public int getExpUpar() {
-        return expUpar;
+    public int getLevelUpExp() {
+        return levelUpExp;
     }
 
-    public void setExpUpar(int expUpar) {
-        this.expUpar = expUpar;
-        notifyPropertyChanged(BR.expUpar);
+    public void setLevelUpExp(int levelUpExp) {
+        this.levelUpExp = levelUpExp;
+        notifyPropertyChanged(BR.levelUpExp);
     }
 
     public int getNpcDailyCombat() {

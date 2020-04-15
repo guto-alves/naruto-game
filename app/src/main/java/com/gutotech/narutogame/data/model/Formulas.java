@@ -4,8 +4,10 @@ import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 import androidx.databinding.library.baseAdapters.BR;
 
+import com.google.firebase.database.Exclude;
+
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Formulas extends BaseObservable implements Serializable {
@@ -20,11 +22,6 @@ public class Formulas extends BaseObservable implements Serializable {
     private int defTaiBuki;
     private int defNinGen;
     private int accuracy;
-    private int concentracao;
-    private int percepcao;
-    private int conviccao;
-    private double esquiva;
-    private int determinacao;
     private int ninjaPower;
 
     public Formulas() {
@@ -50,6 +47,7 @@ public class Formulas extends BaseObservable implements Serializable {
         setCurrentStamina(getStamina());
     }
 
+    @Exclude
     public boolean isFull() {
         return getCurrentHealth() == getHealth() &&
                 getCurrentChakra() == getChakra() &&
@@ -84,18 +82,16 @@ public class Formulas extends BaseObservable implements Serializable {
     }
 
     public List<Integer> asList() {
-        List<Integer> formulas = new ArrayList<>();
-
-        formulas.add(Formula.HEALTH.id, currentHealth);
-        formulas.add(Formula.CHAKRA.id, currentChakra);
-        formulas.add(Formula.STAMINA.id, currentStamina);
-        formulas.add(Formula.ATK_TAI.id, atkTaiBuki);
-        formulas.add(Formula.ATK_NIN.id, atkNinGen);
-        formulas.add(Formula.DEF_TAI.id, defTaiBuki);
-        formulas.add(Formula.DEF_NIN.id, defNinGen);
-        formulas.add(Formula.ACC.id, accuracy);
-
-        return formulas;
+        return Arrays.asList(
+                currentHealth,
+                currentChakra,
+                currentStamina,
+                atkTaiBuki,
+                atkNinGen,
+                defTaiBuki,
+                defNinGen,
+                accuracy
+        );
     }
 
 
@@ -178,46 +174,6 @@ public class Formulas extends BaseObservable implements Serializable {
     public void setAccuracy(int accuracy) {
         this.accuracy = accuracy;
         notifyPropertyChanged(BR.accuracy);
-    }
-
-    public int getConcentracao() {
-        return concentracao;
-    }
-
-    public void setConcentracao(int concentracao) {
-        this.concentracao = concentracao;
-    }
-
-    public int getPercepcao() {
-        return percepcao;
-    }
-
-    public void setPercepcao(int percepcao) {
-        this.percepcao = percepcao;
-    }
-
-    public int getConviccao() {
-        return conviccao;
-    }
-
-    public void setConviccao(int conviccao) {
-        this.conviccao = conviccao;
-    }
-
-    public double getEsquiva() {
-        return esquiva;
-    }
-
-    public void setEsquiva(double esquiva) {
-        this.esquiva = esquiva;
-    }
-
-    public int getDeterminacao() {
-        return determinacao;
-    }
-
-    public void setDeterminacao(int determinacao) {
-        this.determinacao = determinacao;
     }
 
     @Bindable

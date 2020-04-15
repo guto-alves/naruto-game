@@ -195,14 +195,12 @@
     <string name="formulas">Fórmulas</string>
     <string name="label_wins_map_pvp">Vitórias Mapa PVP:</string>
     <string name="label_derrotas_dojo_pvp">Derrotas Dojo PVP:</string>
-    <string name="attribute_training_description">Seu personagem é capaz de treinar seus atributos
-        desde o level 1 e esse treinamento possui um limite diário. Quanto mais você treinar, melhor
-        serão seus resultados em luta no dojo e contra seus inimigos. Os dias NÃO treinados vão se acumulando:
-        Por exemplo, se você não pode treinar na terça e na quarta, na quinta-feira você poderá treinar o
-        equivalente de terça, quarta e quinta. Terça-Feira, é o dia que é renovado o limite semanal,
-        mesmo que você não tenha treinado, portanto tente sempre treinar seu limite semanal até
-        segunda feira.\n\nO treinamento de atributos é a chave de ter um bom personagem, portanto,
-        jamais deixe de treina-lo!</string>
+    <string name="attribute_training_description">Seu personagem começa ganhando 5 pontos de
+        atributos a cada level até o level 5, após o level 5 ele ganha 2 pontos. Quanto mais pontos
+        distribuídos você tiver, melhor serão seus resultados em luta no dojo e
+        contra seus inimigos. O treinamento de atributos é a chave de ter um bom personagem,
+        portanto, jamais deixe de treina-lo!\n\nPara saber maiores detalhes sobre cada Atributo e te
+        ajudar a distribuir seus pontos dá melhor maneira possível, vá para</string>
     <string name="attribute_training_title">ENTENDA O TREINAMENTO DE ATRIBUTOS</string>
     <string name="training_completed">TREINAMENTO CONCLUÍDO</string>
     <string name="distributed_points">PONTOS DISTRIBUIDOS</string>
@@ -2145,5 +2143,9 @@
     <string name="incident_date">Data do Ocorrido</string>
     <string name="last_answered_by">Último a Responder</string>
     <string name="answer_added">Resposta adicionada!</string>
+    <string name="training_points">PONTOS DE TREINO</string>
+    <string name="to_distribute_in_their_attributes">para distribuir em seus Atributos.</string>
+    <string name="you_still_have">Você tem</string>
+    <string name="total_free_points">%d Pontos Livres</string>
 
 </resources>

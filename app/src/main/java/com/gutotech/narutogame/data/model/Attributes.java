@@ -4,7 +4,10 @@ import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 import androidx.databinding.library.baseAdapters.BR;
 
+import com.google.firebase.database.Exclude;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /*
@@ -24,28 +27,20 @@ import java.util.List;
 public class Attributes extends BaseObservable {
     public static final int TOTAL_ATTRIBUTES = 10;
 
-    private int trainingProgress;
-
-    private int totalTrainingPoints; // Total training points for next ability point
-    private int trainingPoints;
-
     private int totalFreePoints;
     private int totalRedistributePoints;
-    private int weeklyLimitOfTraining;
 
+    private Formulas formulas;
     private List<Integer> basePoints;
     private List<Integer> distributedPoints;
     private List<Integer> pointsEarned;
-
-    private Formulas formulas;
 
     public Attributes() {
     }
 
     public Attributes(Classe classe) {
+        totalFreePoints = 5;
         formulas = new Formulas();
-
-        totalTrainingPoints = 150;
 
         basePoints = new ArrayList<>();
         distributedPoints = new ArrayList<>();
@@ -129,25 +124,10 @@ public class Attributes extends BaseObservable {
 
         formulas.setAccuracy(getSeal());
 
-        formulas.setEsquiva((double) getAgility() / 6);
-
         formulas.setNinjaPower(getEnergy() * 200 +
                 (getStrength() + getIntelligence() + getResistance()) * 150 +
                 (getNinjutsu() + getGenjutsu() + getTaijutsu() + getBukijutsu()) * 200 +
                 (getAgility() + getSeal()) * 100);
-    }
-
-    public void incrementTraningPoints(int trainingPointsEarned) {
-        int newTotalTrainingPoints = getTrainingPoints() + trainingPointsEarned;
-
-        while (newTotalTrainingPoints >= totalTrainingPoints) {
-            newTotalTrainingPoints = newTotalTrainingPoints - totalTrainingPoints;
-
-            setTotalTrainingPoints(getTotalTrainingPoints() + 150);
-            totalFreePoints++;
-        }
-
-        setTrainingPoints(newTotalTrainingPoints);
     }
 
     public void earn(int attributeId) {
@@ -183,67 +163,75 @@ public class Attributes extends BaseObservable {
     }
 
     public List<Integer> asList() {
-        List<Integer> attributes = new ArrayList<>();
-
-        attributes.add(getTaijutsu());
-        attributes.add(getBukijutsu());
-        attributes.add(getNinjutsu());
-        attributes.add(getGenjutsu());
-        attributes.add(getSeal());
-        attributes.add(getAgility());
-        attributes.add(getStrength());
-        attributes.add(getIntelligence());
-        attributes.add(getResistance());
-        attributes.add(getEnergy());
-
-        return attributes;
+        return Arrays.asList(
+                getTaijutsu(),
+                getBukijutsu(),
+                getNinjutsu(),
+                getGenjutsu(),
+                getSeal(),
+                getAgility(),
+                getStrength(),
+                getIntelligence(),
+                getResistance(),
+                getEnergy()
+        );
     }
 
+    @Exclude
     public int getTaijutsu() {
         return basePoints.get(Attribute.TAI.id) + distributedPoints.get(Attribute.TAI.id)
                 + pointsEarned.get(Attribute.TAI.id);
     }
 
+    @Exclude
     public int getBukijutsu() {
         return basePoints.get(Attribute.BUK.id) + distributedPoints.get(Attribute.BUK.id)
                 + pointsEarned.get(Attribute.BUK.id);
     }
 
+    @Exclude
     public int getNinjutsu() {
         return basePoints.get(Attribute.NIN.id) + distributedPoints.get(Attribute.NIN.id)
                 + pointsEarned.get(Attribute.NIN.id);
     }
 
+    @Exclude
     public int getGenjutsu() {
         return basePoints.get(Attribute.GEN.id) + distributedPoints.get(Attribute.GEN.id)
                 + pointsEarned.get(Attribute.GEN.id);
     }
 
+    @Exclude
     public int getSeal() {
         return basePoints.get(Attribute.SEAL.id) + distributedPoints.get(Attribute.SEAL.id)
                 + pointsEarned.get(Attribute.SEAL.id);
     }
 
+    @Exclude
     public int getAgility() {
         return basePoints.get(Attribute.AGI.id) + distributedPoints.get(Attribute.AGI.id)
                 + pointsEarned.get(Attribute.AGI.id);
     }
 
+    @Exclude
     public int getStrength() {
         return basePoints.get(Attribute.FOR.id) + distributedPoints.get(Attribute.FOR.id)
                 + pointsEarned.get(Attribute.FOR.id);
     }
 
+    @Exclude
     public int getIntelligence() {
         return basePoints.get(Attribute.INTE.id) + distributedPoints.get(Attribute.INTE.id)
                 + pointsEarned.get(Attribute.INTE.id);
     }
 
+    @Exclude
     public int getResistance() {
         return basePoints.get(Attribute.RES.id) + distributedPoints.get(Attribute.RES.id)
                 + pointsEarned.get(Attribute.RES.id);
     }
 
+    @Exclude
     public int getEnergy() {
         return basePoints.get(Attribute.ENER.id) + distributedPoints.get(Attribute.ENER.id)
                 + pointsEarned.get(Attribute.ENER.id);
@@ -255,46 +243,6 @@ public class Attributes extends BaseObservable {
 
     public void setFormulas(Formulas formulas) {
         this.formulas = formulas;
-    }
-
-    @Bindable
-    public int getWeeklyLimitOfTraining() {
-        return weeklyLimitOfTraining;
-    }
-
-    public void setWeeklyLimitOfTraining(int weeklyLimitOfTraining) {
-        this.weeklyLimitOfTraining = weeklyLimitOfTraining;
-        notifyPropertyChanged(BR.weeklyLimitOfTraining);
-    }
-
-    @Bindable
-    public int getTrainingProgress() {
-        return trainingProgress;
-    }
-
-    public void setTrainingProgress(int trainingProgress) {
-        this.trainingProgress = trainingProgress;
-        notifyPropertyChanged(BR.trainingProgress);
-    }
-
-    @Bindable
-    public int getTotalTrainingPoints() {
-        return totalTrainingPoints;
-    }
-
-    public void setTotalTrainingPoints(int totalTrainingPoints) {
-        this.totalTrainingPoints = totalTrainingPoints;
-        notifyPropertyChanged(BR.totalTrainingPoints);
-    }
-
-    @Bindable
-    public int getTrainingPoints() {
-        return trainingPoints;
-    }
-
-    public void setTrainingPoints(int trainingPoints) {
-        this.trainingPoints = trainingPoints;
-        notifyPropertyChanged(BR.trainingPoints);
     }
 
     @Bindable
