@@ -134,7 +134,14 @@ public class NinjaLuckyViewModel extends ViewModel {
         mLotteryItemReceived.getPremium().receive();
         CharacterRepository.getInstance().save(CharOn.character);
 
-        mNinjaLucky.selectDayAsPlayed(mDayOfWeek);
+        if (mPlayModeSelected.getValue() == RYOUS_WEEKLY) {
+            mNinjaLucky.deselectAllDaysPlayed();
+        } else {
+            mNinjaLucky.selectDayAsPlayed(mDayOfWeek);
+        }
+
+        mNinjaLucky.setLastDayPlayed(mDayOfWeek);
+
         mNinjaLuckyRepository.save(CharOn.character.getId(), mNinjaLucky);
         mDaysOfWeek.postValue(mNinjaLucky.getDaysOfWeek());
     }

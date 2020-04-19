@@ -11,21 +11,20 @@ public class NinjaLucky {
     }
 
     public void deselectAllDaysPlayed() {
-        lastDayPlayed = 0;
+        lastDayPlayed = -1;
         daysOfWeek = new ArrayList<>();
 
-        for (int day = 0; day < 8; day++) {
+        for (int day = 0; day < 7; day++) {
             daysOfWeek.add(day, false);
         }
     }
 
     public void selectDayAsPlayed(int day) {
-        daysOfWeek.set(day, true);
-        setLastDayPlayed(day);
+        daysOfWeek.set(day - 1, true);
     }
 
     public boolean playedAllDays() {
-        for (Boolean dayPlayed : daysOfWeek) {
+        for (boolean dayPlayed : daysOfWeek) {
             if (!dayPlayed) {
                 return false;
             }
