@@ -38,8 +38,9 @@ import com.gutotech.narutogame.ui.loggedin.selectcharacter.CharacterSelectFragme
 import com.gutotech.narutogame.ui.loggedin.support.SupportFragment;
 import com.gutotech.narutogame.ui.playing.academy.AcademyJutsuFragment;
 import com.gutotech.narutogame.ui.playing.academy.AcademyTrainingFragment;
+import com.gutotech.narutogame.ui.playing.academy.ElementalJutsusFragment;
 import com.gutotech.narutogame.ui.playing.academy.GraduationsFragment;
-import com.gutotech.narutogame.ui.playing.academy.PersonagemJutsuFragment;
+import com.gutotech.narutogame.ui.playing.academy.CharacterJutsusFragment;
 import com.gutotech.narutogame.ui.playing.battles.DojoBatalhaLutadorFragment;
 import com.gutotech.narutogame.ui.playing.battles.DojoBattlePvpFragment;
 import com.gutotech.narutogame.ui.playing.battles.DojoFragment;
@@ -47,6 +48,7 @@ import com.gutotech.narutogame.ui.playing.battles.DojoRandomWaitFragment;
 import com.gutotech.narutogame.ui.playing.battles.HospitalRoomFragment;
 import com.gutotech.narutogame.ui.playing.battles.LogBatalhaFragment;
 import com.gutotech.narutogame.ui.playing.character.CharacterStatusFragment;
+import com.gutotech.narutogame.ui.playing.character.ElementsFragment;
 import com.gutotech.narutogame.ui.playing.character.FidelityFragment;
 import com.gutotech.narutogame.ui.playing.character.NinjaLuckyFragment;
 import com.gutotech.narutogame.ui.playing.currentvillage.MissionsFragment;
@@ -63,9 +65,9 @@ import com.gutotech.narutogame.ui.playing.team.TeamParticipateFragment;
 import com.gutotech.narutogame.ui.playing.user.FormulasFragment;
 import com.gutotech.narutogame.ui.playing.user.MensagensFragment;
 import com.gutotech.narutogame.ui.playing.user.VipPlayerFragment;
-import com.gutotech.narutogame.utils.MusicSettingsUtils;
+import com.gutotech.narutogame.utils.SettingsUtils;
 import com.gutotech.narutogame.utils.SingleLiveEvent;
-import com.gutotech.narutogame.utils.MusicUtils;
+import com.gutotech.narutogame.utils.BgMusicUtils;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -88,6 +90,12 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
 
     private MutableLiveData<List<Integer>> mTitles;
 
+    private SingleLiveEvent<Boolean> mFidelityAnimationEvent = new SingleLiveEvent<>();
+
+    LiveData<Boolean> getFidelityAnimationEvent() {
+        return mFidelityAnimationEvent;
+    }
+
     public PlayingViewModel(@NonNull Application application) {
         super(application);
 
@@ -95,10 +103,14 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
         mTitles = new MutableLiveData<>(mCharacter.getTitles());
         mChannel = String.valueOf(mCharacter.getVillage().ordinal());
 
+        mFidelityAnimationEvent.setValue(CharOn.character.isFidelityReward());
+
         mCharacter.addOnPropertyChangedCallback(new Observable.OnPropertyChangedCallback() {
             @Override
             public void onPropertyChanged(Observable sender, int propertyId) {
-                if (propertyId == BR.mission) {
+                if (propertyId == BR.fidelityReward) {
+                    mFidelityAnimationEvent.setValue(CharOn.character.isFidelityReward());
+                } else if (propertyId == BR.mission) {
                     CharacterRepository.getInstance().save(mCharacter);
                     buildMenu();
                     if (mCharacter.isMission()) {
@@ -110,13 +122,13 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
                     CharacterRepository.getInstance().save(mCharacter);
                     buildMenu();
                     if (mCharacter.isBattle()) {
-                        if (musicEnabled.get()) {
-                            mMusicUtil.setMusicType(MusicUtils.MusicType.BATTLE);
+                        if (mBgMusicEnabled) {
+                            mBgMusicUtils.setMusicType(BgMusicUtils.MusicType.BATTLE);
                         }
                         setCurrentSection(BATTLES_GROUP, 0);
                     } else {
-                        if (musicEnabled.get()) {
-                            mMusicUtil.setMusicType(MusicUtils.MusicType.NORMAL);
+                        if (mBgMusicEnabled) {
+                            mBgMusicUtils.setMusicType(BgMusicUtils.MusicType.NORMAL);
                         }
                     }
                 } else if (propertyId == BR.hospital) {
@@ -287,7 +299,7 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
         return mDismissBagDialogEvent;
     }
 
-    public LiveData<Integer> getShowWarningDialogEvent() {
+    LiveData<Integer> getShowWarningDialogEvent() {
         return mShowWarningDialogEvent;
     }
 
@@ -299,9 +311,9 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
 
     public void onTitleSelected(int position) {
         if (position == 0) {
-            mCharacter.setTitle(0);
+            mCharacter.setTitleIndex(0);
         } else {
-            mCharacter.setTitle(mCharacter.getTitles().get(position));
+            mCharacter.setTitleIndex(mCharacter.getTitles().get(position));
         }
     }
 
@@ -319,7 +331,7 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
     public void goToFidelity() {
         if (!mCharacter.isMission() && !mCharacter.isBattle() && !mCharacter.isHospital() &&
                 !mCharacter.isMap()) {
-            setCurrentSection(CHARACTER_GROUP, 2);
+            setCurrentSection(CHARACTER_GROUP, 3);
         } else {
             setCurrentSection(CHARACTER_GROUP, 1);
         }
@@ -352,6 +364,7 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
         if (!mCharacter.isMission() && !mCharacter.isBattle() && !mCharacter.isHospital() &&
                 !mCharacter.isMap()) {
             sections1.add(new NinjaLuckyFragment());
+            sections1.add(new ElementsFragment());
         }
         sections1.add(new FidelityFragment());
 
@@ -360,27 +373,26 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
                 && !mCharacter.isMap() && !mCharacter.isDojoWaitQueue()) {
             sections2.add(new GraduationsFragment());
             sections2.add(new AcademyTrainingFragment());
-            sections2.add(new PersonagemJutsuFragment());
+            sections2.add(new CharacterJutsusFragment());
             sections2.add(new AcademyJutsuFragment());
+            sections2.add(new ElementalJutsusFragment());
         }
 
         List<SectionFragment> sections3 = new ArrayList<>();
         if (mCharacter.isMap()) {
             sections3.add(new VillageMapFragment());
         } else if (!mCharacter.isHospital() && !mCharacter.isBattle() && !mCharacter.isDojoWaitQueue()) {
-            if (!mCharacter.isMission()) {
-                if (mCharacter.getGraduationId() == 0) {
-                    sections3.add(new TasksFragment());
-                } else {
-                    sections3.add(new MissionsFragment());
-                    sections3.add(new VillageMapFragment());
-                }
-
-                sections3.add(new RamenShopFragment());
-                sections3.add(new NinjaShopFragment());
-            } else {
+            if (mCharacter.isMission()) {
                 sections3.add(new MissionsWaitingFragment());
+            } else if (mCharacter.getGraduationId() == 0) {
+                sections3.add(new TasksFragment());
+            } else {
+                sections3.add(new MissionsFragment());
+                sections3.add(new VillageMapFragment());
             }
+
+            sections3.add(new RamenShopFragment());
+            sections3.add(new NinjaShopFragment());
         }
 
         List<SectionFragment> sections4 = new ArrayList<>();
@@ -606,36 +618,35 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
 
 
     // Background Music
-    public final ObservableBoolean musicEnabled = new ObservableBoolean(true);
-    private MusicUtils mMusicUtil;
+    private BgMusicUtils mBgMusicUtils;
+    private boolean mBgMusicEnabled;
 
-    public void onVolumeClick() {
-        musicEnabled.set(!MusicSettingsUtils.enabled(getApplication()));
+    void checkForSettingsChanged() {
+        mBgMusicEnabled = SettingsUtils.get(getApplication(), SettingsUtils.BG_MUSIC_KEY);
 
-        MusicSettingsUtils.set(getApplication(), musicEnabled.get());
-
-        if (musicEnabled.get()) {
-            mMusicUtil = new MusicUtils(getApplication());
+        if (mBgMusicEnabled) {
+            if (mBgMusicUtils == null) {
+                mBgMusicUtils = new BgMusicUtils(getApplication());
+            }
             if (mCharacter.isBattle()) {
-                mMusicUtil.setMusicType(MusicUtils.MusicType.BATTLE);
+                mBgMusicUtils.setMusicType(BgMusicUtils.MusicType.BATTLE);
             }
-            mMusicUtil.start();
-        } else {
-            if (mMusicUtil != null) {
-                mMusicUtil.release();
-            }
+            mBgMusicUtils.start();
+        } else if (mBgMusicUtils != null) {
+            mBgMusicUtils.release();
+            mBgMusicUtils = null;
         }
     }
 
     void start() {
-        musicEnabled.set(MusicSettingsUtils.enabled(getApplication()));
+        mBgMusicEnabled = SettingsUtils.get(getApplication(), SettingsUtils.BG_MUSIC_KEY);
 
-        if (musicEnabled.get()) {
-            if (mMusicUtil == null) {
-                mMusicUtil = new MusicUtils(getApplication());
+        if (mBgMusicEnabled) {
+            if (mBgMusicUtils == null) {
+                mBgMusicUtils = new BgMusicUtils(getApplication());
             }
 
-            mMusicUtil.start();
+            mBgMusicUtils.start();
         }
 
         mCharacter.setOnline(true);
@@ -644,8 +655,8 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
     }
 
     void stop() {
-        if (musicEnabled.get()) {
-            mMusicUtil.pause();
+        if (mBgMusicEnabled) {
+            mBgMusicUtils.pause();
         }
 
         FirebaseFunctionsUtils.getServerTime(currentTimestamp -> {
@@ -658,10 +669,12 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
     }
 
     void destroy() {
-        if (mMusicUtil != null) {
-            mMusicUtil.release();
+        if (mBgMusicUtils != null) {
+            mBgMusicUtils.release();
+            mBgMusicUtils = null;
         }
     }
+
 
     void logout() {
         mChatRepository.removeMessagesListener();

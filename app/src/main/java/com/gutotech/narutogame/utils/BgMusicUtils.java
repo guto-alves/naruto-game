@@ -8,8 +8,9 @@ import androidx.annotation.RawRes;
 import com.gutotech.narutogame.R;
 
 import java.security.SecureRandom;
+import java.util.Calendar;
 
-public class MusicUtils {
+public class BgMusicUtils {
     public enum MusicType {NORMAL, BATTLE}
 
     private static final SecureRandom random = new SecureRandom();
@@ -17,12 +18,12 @@ public class MusicUtils {
     private static final int TOTAL_VILLAGE_MUSICS = 11;
     private static final int TOTAL_BATTLE_MUSICS = 10;
 
-    private int[] mVillageMusics = new int[]{R.raw.e_o_treino, R.raw.entregar, R.raw.eu_sou_naruto,
+    private final int[] mVillageMusics = new int[]{R.raw.e_o_treino, R.raw.entregar, R.raw.eu_sou_naruto,
             R.raw.luz_do_dia_de_konoha, R.raw.modo_de_enganar, R.raw.morning,
             R.raw.naruto_daily_life, R.raw.noite, R.raw.tarde_de_konoha, R.raw.tema_kakashi,
             R.raw.tema_konohamaru};
 
-    private int[] mBattleMusics = new int[]{R.raw.estado_colados, R.raw.precisa_ser_forte,
+    private final int[] mBattleMusics = new int[]{R.raw.estado_colados, R.raw.precisa_ser_forte,
             R.raw.situacao_ma, R.raw.confronto, R.raw.mal, R.raw.vingador, R.raw.raikiri,
             R.raw.strong_and_strike, R.raw.raiva, R.raw.naruto_main_theme};
 
@@ -34,7 +35,7 @@ public class MusicUtils {
 
     private MusicType mMusicType;
 
-    public MusicUtils(Context context) {
+    public BgMusicUtils(Context context) {
         mContext = context;
         mMusicType = MusicType.NORMAL;
         prepare();
@@ -42,6 +43,8 @@ public class MusicUtils {
 
     private void prepare() {
         mMediaPlayer = MediaPlayer.create(mContext, generateMusic());
+        float volume = (float) (Math.log(10) / Math.log(100));
+        mMediaPlayer.setVolume(volume, volume);
         mMediaPlayer.setOnCompletionListener(mp -> playNext());
     }
 

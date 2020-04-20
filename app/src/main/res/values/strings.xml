@@ -4,7 +4,7 @@
     <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
     <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
     <string name="nav_header_desc" translatable="false">Navigation header</string>
-    <string name="action_settings" translatable="false">Settings</string>
+    <string name="action_settings">Settings</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="action_error">Error</string>
@@ -60,7 +60,7 @@
     <string name="section_graduations">GRADUATIONS</string>
     <string name="section_attribute_training">ATTRIBUTE TRAINING</string>
     <string name="secao_treinamento_de_jutsus">TREINAMENTO DE JUTSUS</string>
-    <string name="section_learned_jutsus">LEARNED JUTSUS</string>
+    <string name="section_learned_jutsus">LEARN JUTSUS</string>
 
     <!-- Grupo Sensei -->
     <string name="section_sensei" translatable="false">SENSEI</string>
@@ -246,7 +246,7 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="ninja_fidelity">Ninja Fidelity</string>
     <string name="attribute_training">Attribute Training</string>
     <string name="jutsu_training">Jutsu Training</string>
-    <string name="leaned_jutsus">Leaned Jutsus</string>
+    <string name="leaned_jutsus">Learn Jutsus</string>
     <string name="clan_jutsus">Clan Jutsus</string>
     <string name="grades">Grades</string>
     <string name="choose_your_character">CHOOSE YOUR CHARACTER</string>
@@ -350,8 +350,8 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="top_of_chat_content_description">Top of chat</string>
     <string name="warning_already_played_today">• You\'ve played in lucky ninja today!</string>
     <string name="credits_daily">1\nCredit</string>
-    <string name="ryous_daily">500 Ryous</string>
-    <string name="ryous_weekly">1500 Ryous</string>
+    <string name="ryous_daily">500\nRyous</string>
+    <string name="ryous_weekly">1500\nRyous</string>
     <string name="credits_weekly">3 Credits</string>
     <string name="warning_dont_have_enough_ryous">• You do not have enough ryous</string>
     <string name="warning_dont_have_enough_credits">• You do not have enough credits</string>
@@ -999,6 +999,7 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="label_consumes">Consumes:</string>
     <string name="attribute_icon">Attribute icon</string>
     <string name="label_base_defense">Base Defense: %d</string>
+    <string name="label_base_defense1">Base Defense:</string>
     <string name="combat_values">Combat values</string>
     <string name="label_consumes_in_combat">Consumes in combat:</string>
     <string name="label_learn_this_jutsu_with">Learn this jutsu with:</string>
@@ -1082,7 +1083,6 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="battle_pvp">PVP Battle</string>
     <string name="dojo">Dojo</string>
     <string name="label_ninja_power_1">Ninja Power: %d</string>
-    <string name="buffs_and_debuffs"><![CDATA[Buffs & Debuffs]]></string>
     <string name="weapons">Weapons</string>
     <string name="label_accuracy2">Accuracy:</string>
     <string name="label_defense_nin_gen">Defense ( Nin / Gen ):</string>
@@ -1247,7 +1247,7 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
         with Life itself.</string>
     <string name="nukenin_d_desc">You begin to steal villages and farmers, and becomes a wanted rank D.</string>
     <string name="nukenin_c_des">With some skill of the underworld, you begin to feel the power and insanity within you, being able to do some murders if necessary.</string>
-    <string name="nukenin_b_desc">Equivalent to the force of a Jounin, you become more skilled and able to control two elements perfectly, destroying entire villages.</string>
+    <string name="nukenin_b_desc">Equivalent to the force of a Jounin, you become more skilled and able to control two element perfectly, destroying entire villages.</string>
     <string name="nukenin_a_des">Are moved through the darkness, acting surreptitiously and killing
         all who get in his way. It is able to track targets, as well as ANBUs</string>
     <string name="bounty_hunter_desc">As strong as a Sannin, becoming practically the renegade
@@ -2192,6 +2192,177 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="to_distribute_in_their_attributes">to distribute in their attributes.</string>
     <string name="you_still_have">You still have</string>
     <string name="total_free_points">%d Free Points</string>
+    <string name="buffs_and_debuffs"><![CDATA[Buffs & Debuffs]]></string>
+    <string name="jutsu_description">Jutsu / Description</string>
+    <string name="learn">Learn</string>
+    <string name="katon_description">Masters of the Fire. This release has a huge advantage against Fuuton (Wind), but has a huge weakness against Suiton (Water).</string>
+    <string name="what_you_need_to_learn_this_element">Know what you need to learn this Element</string>
+    <string name="be_chuunin">• Be Chuunin</string>
+    <string name="your_class_can_t_be_taijutsu_or_bukijutsu">• Your class can\'t be Taijutsu or Bukijutsu</string>
+    <string name="fuuton_description">High velocity techniques. This release has huge advantage against Raiton (Thunder), but has huge weakness against Katon (Fire).</string>
+    <string name="raiton_description">Fast moving and high impact techniques. This release has huge advantage against Doton (Earth), but has huge weakness agains Fuuton (Wind).</string>
+    <string name="doton_description">High defensive and crushing techniques. This release has huge advantage against Suiton (Water), but has huge weakness against Raiton (Thunder).</string>
+    <string name="suiton_description">Multipurpose techniques. This release has huge advantage against Katon (Fire), but has huge weakness against Doton (Earth).</string>
+    <string name="learn_element_question">Are you sure do you want to learn this element?</string>
+    <string name="elements">Elements</string>
+    <string name="about_elements">ABOUT ELEMENTS</string>
+    <string name="elements_desc">Elements are present in all ninjas, and detemines what jutsus they can use.</string>
+    <string name="section_elements">ELEMENTS</string>
+    <string name="label_required_seal">Required Seal:</string>
+    <string name="progress_description_of">%d of %d</string>
+    <string name="how_the_jutsu_training_works">HOW THE JUTSU TRAINING WORKS</string>
+    <string name="how_the_jutsu_training_works_des">Após cada batalha PVP, todos os jutsus que foram usados ganham 1 ponto de habilidade. Para poder treinar (upar de level) um jutsu são requeridos, no mínino, 10 pontos de habilidade. Ou seja, você precisa usar ele 10 vezes. Como cada Jutsu possui 3 nívels, para alcançar a força máxima de um Jutsu você precisaria usar ele em 30 batalhas PVP.</string>
+    <string name="enhancements">Enhancements</string>
+    <string name="maintenance_status">The game is currently undergoing maintenance in order to update
+        the version of the game.\nWe apologize for any inconvenience caused.\nWe currently plan to
+        end maintenance on %s at %s. (Maintenance period may change without warning.)</string>
+    <string name="new_version_status">New version (%s) is available.\nPlease go to
+        %s and download the latest version.</string>
+    <string name="limit_battles_for_today">You can no longer fight with this player for today!</string>
+    <string name="label_skill_points">Skill Points:</string>
+    <string name="link_training_jutsus">And do not forget, all ninja jutsus can be evolved at</string>
+    <string name="my_jutsus_section">My Jutsus</string>
+    <string name="elemental_jutsus">Elemental Jutsus</string>
+    <string name="section_elemental_jutsus">ELEMENTAL JUTSUS</string>
+
+    <string name="suiton_hahonryu">Suiton Hahonryu</string>
+    <string name="suiton_hahonryu_desc">The user creates water trough his hands and then big water spheres to throw on enemies.</string>
+    <string name="suiton_mizu_kamikiri">Suiton Mizu Kamikiri</string>
+    <string name="suiton_mizu_kamikiri_desc">A water stream shapen than a blade.</string>
+    <string name="suiton_daibakufu_no_jutsu">Suiton Daibakufu no Jutsu</string>
+    <string name="suiton_daibakufu_no_jutsu_desc">The user throws high pressure water on enemies.</string>
+    <string name="suiton_haran_banshou">Suiton Haran Banshou</string>
+    <string name="suiton_haran_banshou_desc">The user creates a water torrent behind him, crushing everything and then the water goes forward flooding the environment.</string>
+    <string name="suiton_suijinheki">Suiton Suijinheki</string>
+    <string name="suiton_suijinheki_desc" />
+    <string name="suiton_kirigakure_no_jutsu">Suiton Kirigakure no Jutsu</string>
+    <string name="suiton_kirigakure_no_jutsu_desc">Creates a dense fog, reducing the visibility almost like to zero</string>
+    <string name="suiton_mizurappa">Suiton Mizurappa</string>
+    <string name="suiton_mizurappa_desc">Spits a water sphere on the enemy</string>
+    <string name="suiton_suiryuuben">Suiton Suiryuuben</string>
+    <string name="suiton_suiryuuben_desc">A pilar of water is created around the user, to protect him against enemy attacks</string>
+    <string name="suiton_bakusui_shouha">Suiton Bakusui Shouha</string>
+    <string name="suiton_bakusui_shouha_desc">The user spits a incredible amount of water on the enemy, or to flood the environment.</string>
+    <string name="suiton_suiryuudan_no_jutsu">Suiton Suiryuudan no Jutsu</string>
+    <string name="suiton_suiryuudan_no_jutsu_desc">The ninja creates a dragon made of water that devours the opponent.</string>
+    <string name="suiton_suihouke">Suiton Suihouke</string>
+    <string name="suiton_suihouke_desc">Traps an enemy with a water sphere</string>
+    <string name="suiton_goshokuzame">Suiton Goshokuzame</string>
+    <string name="suiton_goshokuzame_desc">Summons ravenous sharks to attack enemies in the water</string>
+    <string name="suiton_suijinchuu">Suiton Suijinchuu</string>
+    <string name="suiton_suijinchuu_desc">Spits a giant wave creating torrential waves that are capable of destroying villages.</string>
+    <string name="katon_housenka_no_jutsu">Katon Housenka no Jutsu</string>
+    <string name="katon_housenka_no_jutsu_desc">Fire technique, that consists in spit various fireballs, and sometimes can hide kunais or shurikens</string>
+    <string name="katon_kasumi_enbu_no_jutsu">Katon Kasumi Enbu no Jutsu</string>
+    <string name="katon_kasumi_enbu_no_jutsu_desc">The ninja expels an flammable gas</string>
+    <string name="katon_goukakyuu_chakra_no_jutsu">Katon Goukakyuu Chakra no jutsu</string>
+    <string name="katon_goukakyuu_chakra_no_jutsu_desc">Concentrates air and chakra in lungs and then expels a huge fireball to the front</string>
+    <string name="katon_bushin_katai">Katon Bushin Katai</string>
+    <string name="katon_bushin_katai_desc">The user creates up to 3 clones, made of fire.</string>
+    <string name="katon_kaizen_no_jutsu">Katon Kaizen no Jutsu</string>
+    <string name="katon_kaizen_no_jutsu_desc">This jutsu causes the release shinobi mouth a type of star fire, which may reach gigantic proportions.</string>
+    <string name="katon_endan_no_jutsu">Katon Endan no Jutsu</string>
+    <string name="katon_endan_no_jutsu_desc">The nija inspires some ar, and mix it with chakra based on fire, to spit an fire ball.</string>
+    <string name="katon_ryuuka_no_jutsu">Katon Ryuuka no Jutsu</string>
+    <string name="katon_ryuuka_no_jutsu_desc">The ninja creates a fire stream that pursue enemies.</string>
+    <string name="katon_ryuuen_houka_no_jutsu">Katon Ryuuen Houka no Jutsu</string>
+    <string name="katon_ryuuen_houka_no_jutsu_desc">The user spits several fireballs that take the form of a dragon\'s head.</string>
+    <string name="katon_hibashiri">Katon Hibashiri</string>
+    <string name="katon_hibashiri_desc">Create a tunnel of fire, that imprisions enemies and burn them</string>
+    <string name="katon_ninpou_hibashiri">Katon Ninpou Hibashiri</string>
+    <string name="katon_ninpou_hibashiri_desc">Create lines of fire, when it touches enemies imprison him</string>
+    <string name="katon_souenshou">Katon Souenshou</string>
+    <string name="katon_souenshou_desc">The ninja concentrate a big amount of chakra and then convert it to Katon nature.</string>
+    <string name="katon_gouka_mekkyaku">Katon Gouka Mekkyaku</string>
+    <string name="katon_gouka_mekkyaku_desc">The user launches a sea of &#8203;&#8203;flames from the mouth, burning everything in its path.</string>
+    <string name="katon_kakokuu">Katon Kakokuu</string>
+    <string name="katon_kakokuu_desc">Create a torrent of fire on the ground, spreading flames in a large area.</string>
+    <string name="fuuton_daitoppa">Fuuton Daitoppa</string>
+    <string name="fuuton_daitoppa_desc">Manipulates wind with chakra and throws it to hurt enemies.</string>
+    <string name="fuuton_kaze_shuriken">Fuuton Kaze Shuriken</string>
+    <string name="fuuton_kaze_shuriken_desc">Create invisible wind shurikens to throw in enemies</string>
+    <string name="fuuton_suiran_reppu">Fuuton Suiran Reppu</string>
+    <string name="fuuton_suiran_reppu_desc">Levitates kunais or shurikens with air to attack enemies.</string>
+    <string name="fuuton_kaze_kiri">Fuuton Kaze Kiri</string>
+    <string name="fuuton_kaze_kiri_desc">Generates air waves to block and even counter-attack.</string>
+    <string name="fuuton_atsuga">Fuuton Atsuga</string>
+    <string name="fuuton_atsuga_desc">Releases a typhoon at the desirable local.</string>
+    <string name="fuuton_juuha_shou">Fuuton Juuha Shou</string>
+    <string name="fuuton_juuha_shou_desc">Throws a wind boomerang.</string>
+    <string name="fuuton_zankuuha">Fuuton Zankuuha</string>
+    <string name="fuuton_zankuuha_desc">Manipulates air in the hands and throws it like impacts.</string>
+    <string name="fuuton_zankyokuhaana">Fuuton Zankyokuhaana</string>
+    <string name="fuuton_zankyokuhaana_desc">Generates powerful sound waves through his hands.</string>
+    <string name="fuuton_reppushou">Fuuton Reppushou</string>
+    <string name="fuuton_reppushou_desc">Fires an high pressure wind blast, hurling enemies away.</string>
+    <string name="fuuton_kaze_shunshin_no_jutsu">Fuuton Kaze Shunshin no Jutsu</string>
+    <string name="fuuton_kaze_shunshin_no_jutsu_desc">The ninja appears or disappears at high speed.</string>
+    <string name="fuuton_kaze_no_yaiba">Fuuton Kaze no Yaiba</string>
+    <string name="fuuton_kaze_no_yaiba_desc">Using chakra on his hands, the user cuts the air creating wind blasts.</string>
+    <string name="fuuton_kami_oroshi">Fuuton Kami Oroshi</string>
+    <string name="fuuton_kami_oroshi_desc">Creates a wind tunnel to trap enemies.</string>
+    <string name="fuuton_rasenshuriken">Fuuton Rasenshuriken</string>
+    <string name="fuuton_rasenshuriken_desc">An advanced form of Rasengan, the user concentrates wind particles with the high speed of rasengan, generating multiple chakra cuts, but can hurt the user in the process while hitting the enemy</string>
+    <string name="doton_dochuu_eigyo_no_jutsu">Doton Dochuu Eigyo no Jutsu</string>
+    <string name="doton_dochuu_eigyo_no_jutsu_desc">The ninja hides underground attacking the opponent by surprise.</string>
+    <string name="doton_doroku_gaeshi">Doton Doroku Gaeshi</string>
+    <string name="doton_doroku_gaeshi_desc">Hitting the ground a massive earth wall is created to defend the user</string>
+    <string name="doton_doryuuheki">Doton Doryuuheki</string>
+    <string name="doton_doryuuheki_desc">Spits some clay and then it turned into a wall or a shell to protect the user against enemy attacks.</string>
+    <string name="doton_doryou_dango">Doton Doryou Dango</string>
+    <string name="doton_doryou_dango_desc">Manipulate the earth to create and trhow rocks into enemies.</string>
+    <string name="doton_doryuu_jouheki">Doton Doryuu Jouheki</string>
+    <string name="doton_doryuu_jouheki_desc">Creates a massive hill made of rocks and earth.</string>
+    <string name="doton_ari_jigoku">Doton Ari Jigoku</string>
+    <string name="doton_ari_jigoku_desc">The user creates a swirl underneath the opponent sucking it.</string>
+    <string name="doton_kekkai_dorou_doumu">Doton Kekkai Dorou Doumu</string>
+    <string name="doton_kekkai_dorou_doumu_desc">Trap enemies into a shell made of earth and then can crumble it to hurt them</string>
+    <string name="doton_kouka_no_jutsu">Doton Kouka no Jutsu</string>
+    <string name="doton_kouka_no_jutsu_desc">Transofrm some parts or the entire body of the user into rock, enchancing the defenses.</string>
+    <string name="doton_retsudo_tenshou">Doton Retsudo Tenshou</string>
+    <string name="doton_retsudo_tenshou_desc">Create rocks just above the enemy.</string>
+    <string name="doton_otoshi_buta">Doton Otoshi Buta</string>
+    <string name="doton_otoshi_buta_desc">Using fast hand seals,crush enemies with an massive rock.</string>
+    <string name="doton_ex_reppuken_no_jutsu">Doton Ex Reppuken no Jutsu</string>
+    <string name="doton_ex_reppuken_no_jutsu_desc">Create localized earthquakes to disrupt enemy defenses of set a trap.</string>
+    <string name="doton_doro_houshi">Doton Doro Houshi</string>
+    <string name="doton_doro_houshi_desc">Creates mud in attempt to trap enemies</string>
+    <string name="doton_tsuchi_kairou">Doton Tsuchi Kairou</string>
+    <string name="doton_tsuchi_kairou_desc">Hitting the ground, huge pillars emerge in attempt to crush enemies.</string>
+    <string name="raiton_odori_rakurai_no_jutsu">Raiton Odori Rakurai no Jutsu</string>
+    <string name="raiton_odori_rakurai_no_jutsu_desc">Hitting the ground the user can summons multiple thunders at the local of impact.</string>
+    <string name="raiton_raikyuu">Raiton Raikyuu</string>
+    <string name="raiton_raikyuu_desc">Creates a lightning ball to throw on enemies.</string>
+    <string name="raiton_chidori">Raiton Chidori</string>
+    <string name="raiton_chidori_desc">Concentrate a high and compressed amount of raiton chakra, and then runs straight to the enemy to hit him harder. The chakra produces a caracterisct sound like a bird</string>
+    <string name="raiton_raiden">Raiton Raiden</string>
+    <string name="raiton_raiden_desc">The ninja does a clone and creates lightning in each hand, then these rays are connected by an \'electrical rope\' that cut the target while the electrocute.</string>
+    <string name="raiton_chidori_nagashi">Raiton Chidori Nagashi</string>
+    <string name="raiton_chidori_nagashi_desc">Extends the ffect of chidori to the body of the user.</string>
+    <string name="raiton_meshirai_no_jutsu">Raiton Meshirai no Jutsu</string>
+    <string name="raiton_meshirai_no_jutsu_desc">Manipulating Raiton Chakra, the user can summon a thunder.</string>
+    <string name="raiton_habateku_chidori">Raiton Habateku Chidori</string>
+    <string name="raiton_habateku_chidori_desc">Using a dark raiton, the power of the Chidori is enhanced multiple times.</string>
+    <string name="raiton_chidori_kouken">Raiton Chidori Kouken</string>
+    <string name="raiton_chidori_kouken_desc">Ninja strikes the ground with something that creates long-range lightningbolts.</string>
+    <string name="raiton_raigeki_no_yoroi">Raiton Raigeki no Yoroi</string>
+    <string name="raiton_raigeki_no_yoroi_desc">Using an metal object an spinning it faster, the user can summon a thunder</string>
+    <string name="raiton_chidori_eisou">Raiton Chidori Eisou</string>
+    <string name="raiton_chidori_eisou_desc">Transofrm the normal Chidory in an manipulated Raiton Chakra, that can turn be a sword, with size width and speed con the control of the user.</string>
+    <string name="raiton_senbon_chidori">Raiton Senbon Chidori</string>
+    <string name="raiton_senbon_chidori_desc">Fires multiple senbons made of electricity.</string>
+    <string name="raiton_kirin">Raiton Kirin</string>
+    <string name="raiton_kirin_desc">Creates a massive electrical dragon and then crush him on the enemies.</string>
+    <string name="raiton_limelight">Raiton Limelight</string>
+    <string name="raiton_limelight_desc">The ultimate jutsu performed by the former Guardians of the Land of Fire</string>
+    <string name="label_element">Element: %s</string>
+    <string name="bg_music">BG Music</string>
+    <string name="notifications">Notifications</string>
+    <string name="save">Save</string>
+    <string name="sound_fx">Sound FX</string>
+    <string name="plus">+ %d</string>
+    <string name="percent">%d %%</string>
+    <string name="upgrade">Upgrade</string>
 
 
 </resources>

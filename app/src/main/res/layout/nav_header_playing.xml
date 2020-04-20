@@ -50,6 +50,7 @@
                 app:srcCompat="@drawable/layout_topo_logado_icones_relogio" />
 
             <ImageButton
+                android:id="@+id/hasFidelityRewardImageButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/selector_buttons_topo"
@@ -81,15 +82,15 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:background="@drawable/selector_buttons_topo"
-                android:onClick="@{() -> viewModel.onVolumeClick()}"
-                android:src="@{viewModel.musicEnabled ? @drawable/ic_volume_up_24dp : @drawable/ic_volume_off_24dp}" />
+                android:onClick="onSettingsClick"
+                app:srcCompat="@drawable/ic_settings_24dp" />
 
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/selector_buttons_topo"
                 android:onClick="onLogoutClick"
-                android:visibility="@{viewModel.character.map ? View.INVISIBLE : View.VISIBLE}"
+                android:visibility="@{viewModel.character.map || viewModel.character.battle ? View.INVISIBLE : View.VISIBLE}"
                 app:srcCompat="@drawable/layout_logout" />
         </LinearLayout>
 
