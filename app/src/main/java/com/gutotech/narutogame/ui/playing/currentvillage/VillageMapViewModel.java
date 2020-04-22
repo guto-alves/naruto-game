@@ -1,7 +1,6 @@
 package com.gutotech.narutogame.ui.playing.currentvillage;
 
 import android.graphics.Point;
-import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
@@ -10,12 +9,13 @@ import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.Character;
 import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.model.Village;
-import com.gutotech.narutogame.data.repository.BattleRepository;
+import com.gutotech.narutogame.data.repository.BattlesRepository;
 import com.gutotech.narutogame.data.repository.MapRepository;
 import com.gutotech.narutogame.ui.adapter.VillageMapAdapter;
 import com.gutotech.narutogame.utils.SingleLiveEvent;
 
 import java.security.SecureRandom;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -26,7 +26,9 @@ public class VillageMapViewModel extends ViewModel implements VillageMapAdapter.
     private Village mVillage;
 
     private MapRepository mMapRepository;
-    private BattleRepository mBattleRepository;
+    private BattlesRepository mBattlesRepository;
+
+    private Map<String, Integer> mDuelCounter = new HashMap<>();
 
     private SingleLiveEvent<Integer> mShowWarningDialogEvent = new SingleLiveEvent<>();
     private SingleLiveEvent<Void> mShowProgressDialogEvent = new SingleLiveEvent<>();
@@ -35,7 +37,7 @@ public class VillageMapViewModel extends ViewModel implements VillageMapAdapter.
     VillageMapViewModel(Village village) {
         mVillage = village;
         mMapRepository = MapRepository.getInstance();
-        mBattleRepository = BattleRepository.getInstance();
+        mBattlesRepository = BattlesRepository.getInstance();
 
         if (!CharOn.character.isMap()) {
             CharOn.character.setMap(true);
@@ -45,9 +47,13 @@ public class VillageMapViewModel extends ViewModel implements VillageMapAdapter.
             CharOn.character.setMapPosition(new SecureRandom().nextInt(MAP_SIZE));
         }
 
+        mBattlesRepository.getDuelCounter(CharOn.character.getId(),
+                duelCounter -> mDuelCounter = duelCounter
+        );
+
         mMapRepository.enter(mVillage.ordinal());
 
-        mBattleRepository.addOnBattleRequestChangeListener(CharOn.character.getId(),
+        mBattlesRepository.addOnBattleRequestChangeListener(CharOn.character.getId(),
                 mVillage.ordinal(), battleId -> {
                     mMapRepository.exit(mVillage.ordinal(), CharOn.character.getId());
                     mDismissProgressDialogEvent.call();
@@ -72,6 +78,12 @@ public class VillageMapViewModel extends ViewModel implements VillageMapAdapter.
         }
     }
 
+    private int getOrDefault(String key) {
+        Integer value;
+        return (((value = mDuelCounter.get(key)) != null) || mDuelCounter.containsKey(key))
+                ? value : 0;
+    }
+
     @Override
     public synchronized void onBattleClick(Character opponent) {
         if (opponent.getPlayerId().equals(CharOn.character.getPlayerId())) {
@@ -90,11 +102,16 @@ public class VillageMapViewModel extends ViewModel implements VillageMapAdapter.
             return;
         }
 
+        if (getOrDefault(opponent.getId()) > 10) {
+            mShowWarningDialogEvent.setValue(R.string.limit_battles_for_today);
+            return;
+        }
+
         mShowProgressDialogEvent.call();
 
-        String battleId = mBattleRepository.generateId("MAP-PVP");
+        String battleId = mBattlesRepository.generateId("MAP-PVP");
 
-        mBattleRepository.requestBattle(battleId, CharOn.character.getId(),
+        mBattlesRepository.requestBattle(battleId, CharOn.character.getId(),
                 opponent.getId(), mVillage.ordinal(),
                 result -> {
                     mDismissProgressDialogEvent.call();
@@ -102,7 +119,9 @@ public class VillageMapViewModel extends ViewModel implements VillageMapAdapter.
                     if (result) {
                         mMapRepository.exit(mVillage.ordinal(), CharOn.character.getId());
                         mMapRepository.exit(mVillage.ordinal(), opponent.getId());
-                        mBattleRepository.create(battleId, CharOn.character, opponent);
+                        mBattlesRepository.create(battleId, CharOn.character, opponent);
+                        mBattlesRepository.incrementDuelCount(CharOn.character.getId(), opponent.getId());
+                        mBattlesRepository.incrementDuelCount(opponent.getId(), CharOn.character.getId());
                     } else {
                         mShowWarningDialogEvent.setValue(R.string.player_unavailable_to_fight);
                     }
@@ -133,6 +152,7 @@ public class VillageMapViewModel extends ViewModel implements VillageMapAdapter.
     public void stop() {
         mMapRepository.close();
     }
+
 
     LiveData<Map<Integer, List<Character>>> getCharactersOnTheMap() {
         return mMapRepository.load(mVillage.ordinal());

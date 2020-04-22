@@ -20,7 +20,7 @@ import com.gutotech.narutogame.data.model.Jutsu;
 import com.gutotech.narutogame.data.model.JutsuInfo;
 import com.gutotech.narutogame.data.model.Npc;
 import com.gutotech.narutogame.data.model.Score;
-import com.gutotech.narutogame.data.repository.BattleRepository;
+import com.gutotech.narutogame.data.repository.BattlesRepository;
 import com.gutotech.narutogame.data.repository.CharacterRepository;
 import com.gutotech.narutogame.ui.adapter.JutsusAdapter;
 import com.gutotech.narutogame.utils.SingleLiveEvent;
@@ -39,7 +39,7 @@ public class DojoBatalhaLutadorViewModel extends ViewModel
 
     private CountDownTimer mCountDownTimer;
 
-    private BattleRepository mBattleRepository;
+    private BattlesRepository mBattlesRepository;
 
     private Battle mBattle;
 
@@ -67,6 +67,7 @@ public class DojoBatalhaLutadorViewModel extends ViewModel
 
     public DojoBatalhaLutadorViewModel(Battle battle) {
         mBattle = battle;
+        mBattlesRepository = BattlesRepository.getInstance();
 
         player = mBattle.getPlayer1();
         npc = new Npc(mBattle.getPlayer2());
@@ -78,15 +79,13 @@ public class DojoBatalhaLutadorViewModel extends ViewModel
         oppBuffsDebuffsStatus.setValue(mBattle.getBuffsDebuffsUsed2());
         mBattleLogs.setValue(mBattle.getBattleLogs());
 
-        mAllJutsus = player.getJutsus();
+        mAllJutsus = player.getVisibleJutsus();
         filterJutsus(Jutsu.Type.ATK);
 
-        mBattleRepository = BattleRepository.getInstance();
-
         if (mBattle.getStatus() == Battle.Status.CONTINUE) {
-            FirebaseFunctionsUtils.getServerTime(currentTimestamp -> {
-                startTimer(TIME_TO_ATTACK - (currentTimestamp - mBattle.getAttackStart()));
-            });
+            FirebaseFunctionsUtils.getServerTime(currentTimestamp ->
+                    startTimer(TIME_TO_ATTACK - (currentTimestamp - mBattle.getAttackStart()))
+            );
         } else {
             showBattleResult();
         }
@@ -452,7 +451,7 @@ public class DojoBatalhaLutadorViewModel extends ViewModel
             CharOn.character.decrementScore(Score.DER_DOJO_NPC);
         }
 
-        mBattleRepository.delete(mBattle.getId());
+        mBattlesRepository.delete(mBattle.getId());
 
         CharOn.character.setBattle(false);
         CharOn.character.battleId = "";
@@ -460,7 +459,7 @@ public class DojoBatalhaLutadorViewModel extends ViewModel
     }
 
     private void saveBattle() {
-        mBattleRepository.save(mBattle);
+        mBattlesRepository.save(mBattle);
     }
 
 

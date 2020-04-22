@@ -1,9 +1,12 @@
 package com.gutotech.narutogame.ui.playing.currentvillage;
 
+import android.app.Application;
+
+import androidx.annotation.NonNull;
 import androidx.databinding.ObservableField;
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
 import com.gutotech.narutogame.data.firebase.FirebaseFunctionsUtils;
 import com.gutotech.narutogame.data.model.CharOn;
@@ -12,6 +15,7 @@ import com.gutotech.narutogame.data.model.MissionInfo;
 import com.gutotech.narutogame.data.model.TimeMission;
 import com.gutotech.narutogame.data.repository.MissionRepository;
 import com.gutotech.narutogame.ui.adapter.MissionsAdapter;
+import com.gutotech.narutogame.utils.NotificationsUtils;
 import com.gutotech.narutogame.utils.SingleLiveEvent;
 
 import java.util.ArrayList;
@@ -21,7 +25,7 @@ import java.util.EnumSet;
 import java.util.Iterator;
 import java.util.List;
 
-public class MissionsViewModel extends ViewModel implements MissionsAdapter.OnAcceptClickListener {
+public class MissionsViewModel extends AndroidViewModel implements MissionsAdapter.OnAcceptClickListener {
     public final ObservableField<Mission.Type> typeSelected = new ObservableField<>(Mission.Type.TIME);
     public final ObservableField<Mission.Rank> rankSelected = new ObservableField<>(Mission.Rank.RANK_D);
 
@@ -30,13 +34,11 @@ public class MissionsViewModel extends ViewModel implements MissionsAdapter.OnAc
     private MutableLiveData<List<Mission>> mMissions = new MutableLiveData<>();
 
     private SingleLiveEvent<Void> mShowWarningDialogEvent = new SingleLiveEvent<>();
+    private SingleLiveEvent<Boolean> mShowProgressBarEvent = new SingleLiveEvent<>();
 
-    public MissionsViewModel() {
+    public MissionsViewModel(@NonNull Application application) {
+        super(application);
         filterMissions();
-    }
-
-    LiveData<List<Mission>> getMissions() {
-        return mMissions;
     }
 
     public void onTypeSelected(Mission.Type type) {
@@ -50,13 +52,18 @@ public class MissionsViewModel extends ViewModel implements MissionsAdapter.OnAc
     }
 
     @Override
-    public void onAcceptClick(Mission mission) {
+    public synchronized void onAcceptClick(Mission mission) {
+        mShowProgressBarEvent.setValue(true);
+
         if (CharOn.character.getTotalDailyMissions() <= 3) {
             FirebaseFunctionsUtils.getServerTime(currentTimestamp -> {
                 TimeMission timeMission = (TimeMission) mission;
                 timeMission.setInitialTimestamp(currentTimestamp);
                 MissionRepository.getInstance().acceptTimeMission(timeMission);
+                NotificationsUtils.setAlarm(getApplication(),
+                        currentTimestamp + timeMission.getDurationMillis());
                 CharOn.character.setMission(true);
+                mShowProgressBarEvent.setValue(false);
             });
         } else {
             mShowWarningDialogEvent.call();
@@ -126,7 +133,16 @@ public class MissionsViewModel extends ViewModel implements MissionsAdapter.OnAc
         }
     }
 
-    public LiveData<Void> getShowWarningDialogEvent() {
+
+    LiveData<List<Mission>> getMissions() {
+        return mMissions;
+    }
+
+    LiveData<Void> getShowWarningDialogEvent() {
         return mShowWarningDialogEvent;
+    }
+
+    LiveData<Boolean> getShowProgressBarEvent() {
+        return mShowProgressBarEvent;
     }
 }

@@ -99,10 +99,10 @@
 
                             <TextView
                                 android:id="@+id/titleTextView"
-                                stringRes="@{viewModel.character.title}"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="2dp"
+                                android:text='@{viewModel.character.titleIndex == 0 ? "" : context.getString(viewModel.character.titles.get(viewModel.character.titleIndex - 1))}'
                                 android:textColor="#937B4D"
                                 android:textSize="10sp"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -134,7 +134,7 @@
                         android:layout_marginLeft="32dp"
                         android:layout_marginRight="32dp"
                         android:background="@android:color/white"
-                        android:onItemSelected="@{(parent, view, pos, id) -> viewModel.onTitleSelected(pos)}"
+                        android:selectedItemPosition="@={viewModel.character.titleIndex}"
                         android:spinnerMode="dialog" />
 
                     <LinearLayout
@@ -382,7 +382,6 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:background="@drawable/layout_bg_mensagem_chat"
-                                    android:entries="@array/chat_channel_list"
                                     android:onItemSelected="@{(parent, v, position, id) -> viewModel.onChannelChanged(position)}"
                                     android:popupBackground="@drawable/layout_bg_mensagem_chat" />
 

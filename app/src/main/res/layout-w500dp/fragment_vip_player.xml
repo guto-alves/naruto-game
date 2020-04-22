@@ -36,7 +36,7 @@
 
             <ImageView
                 android:id="@+id/imageView59"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
                 android:scaleType="fitXY"
@@ -49,14 +49,14 @@
                 android:id="@+id/textView94"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginLeft="32dp"
+                android:layout_marginStart="64dp"
+                android:layout_marginLeft="64dp"
                 android:text="@string/name_description"
                 android:textColor="@android:color/white"
                 android:textSize="12sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView59"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/imageView59"
                 app:layout_constraintTop_toTopOf="@+id/imageView59" />
 
             <TextView

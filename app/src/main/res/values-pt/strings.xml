@@ -920,7 +920,7 @@
     <string name="to_preceed">para continuar</string>
     <string name="waiting_your_move">Aguardando a sua ação</string>
     <string name="empate">EMPATE!</string>
-    <string name="drawn_description">Por ambos estarem muito cansados, o combate terminou em empate!\n\nIr para o</string>
+    <string name="drawn_description">"Por ambos estarem muito cansados, o combate terminou em empate!\n\nIr para o "</string>
     <string name="combat_won_description">Parabéns! Você venceu o combate!\nComo recompensa você
         estará recebendo RY$ %d e %d pontos de experiência\n\nVoltar ao</string>
     <string name="error_updating_name">Erro ao atualizar nome</string>
@@ -2145,8 +2145,8 @@
     <string name="last_answered_by">Último a Responder</string>
     <string name="answer_added">Resposta adicionada!</string>
     <string name="training_points">PONTOS DE TREINO</string>
-    <string name="to_distribute_in_their_attributes">para distribuir em seus Atributos.</string>
-    <string name="you_still_have">Você tem</string>
+    <string name="to_distribute_in_their_attributes">" para distribuir em seus Atributos."</string>
+    <string name="you_still_have">"Você tem "</string>
     <string name="total_free_points">%d Pontos Livres</string>
     <string name="jutsu_description">Jutsu / Descrição</string>
     <string name="learn">Aprender</string>
@@ -2158,7 +2158,7 @@
     <string name="raiton_description">O poder de rasgar os céus com o Trovão. Esse elemento tem grande vantagem contra o Doton (Terra), porém tem fraqueza ao elemento Fuuton (Vento).</string>
     <string name="doton_description">Técnicas a base da força da Terra. Esse elemento tem grande vantagem contra o Suiton (Água), porém tem fraqueza ao elemento Raiton (Trovão).</string>
     <string name="suiton_description">As técnicas que usam o elemento primordial a vida, água. Esse elemento tem grande vantagem contra o Katon (Fogo), porém tem fraqueza ao elemento Doton (Terra).</string>
-    <string name="learn_element_question">Você tem certeza do elemento que você quer aprender?</string>
+    <string name="learn_element_question">Tem certeza de que deseja aprender o elemento <b>%s</b>?</string>
     <string name="elements">Elementos</string>
     <string name="about_elements">SOBRE ELEMENTOS</string>
     <string name="elements_desc">Ninjutsu é qualquer técnica que manipula o chakra para ser
@@ -2167,7 +2167,11 @@
     <string name="label_required_seal">Precisão Requerida:</string>
     <string name="progress_description_of">%d de %d</string>
     <string name="how_the_jutsu_training_works">COMO FUNCIONA O TREINAMENTO DE JUTSUS</string>
-    <string name="how_the_jutsu_training_works_des">Após cada batalha PVP, todos os jutsus que foram usados ganham 1 ponto de habilidade. Para poder treinar (upar de level) um jutsu são requeridos, no mínino, 10 pontos de habilidade. Ou seja, você precisa usar ele 10 vezes. Como cada Jutsu possui 3 nívels, para alcançar a força máxima de um Jutsu você precisaria usar ele em 30 batalhas PVP.</string>
+    <string name="how_the_jutsu_training_works_des">Após cada batalha PVP, seu personagem ganha 1 ponto
+        de habilidade (caso você perca por inatividade não ganhará o ponto).\nPara poder treinar
+        (upar de level) um jutsu são requeridos, no mínino, 5 pontos de habilidade, ou seja, você
+        precisa lutar 5 batalhas PVP.\nComo cada Jutsu possui 3 levels, para alcançar a força máxima
+        de um Jutsu você precisa ter pelo menos 15 pontos.</string>
     <string name="enhancements">Aprimoramentos</string>
     <string name="maintenance_status">Atualmente, o jogo está em manutenção para atualizar a versão
         do jogo.\nPedimos desculpas por qualquer inconveniência causada.\nAtualmente, planejamos
@@ -2317,7 +2321,17 @@
     <string name="notifications">Notificações</string>
     <string name="save">Salvar</string>
     <string name="sound_fx">Efeitos Sonoros</string>
-    <string name="upgrade">Aprimorar</string>
-
+    <string name="upgrade">Equipar</string>
+    <string name="tsuru_kame_des">Tsuru-Kame é um escudo muito resistente com aparência de um casco de tartaruga. Além da defesa, ele possui um sistema de armas internas, capaz de atirar bombas e senbons.</string>
+    <string name="congrats_learned_new_element">Parabéns, você aprendeu um novo Elemento!</string>
+    <string name="learned_new_element_desc">Vá ate as <annotation link="link">Jutsus Elementais</annotation> e veja os novos jutsus que te esperam!</string>
+    <string name="unlearned">Desaprender</string>
+    <string name="unlearning_warning">Desaprender esse elemento fara você perder todas as habilidades
+        e jutsus do mesmo.\nTambém serão necessários 3000 ryous.\nQuer continuar?</string>
+    <string name="unlearned_element_title">Você desaprendeu um elemento!</string>
+    <string name="unlearned_element_description">Com isso, você desaprendeu todos os jutsus ligados a esse elemento!</string>
+    <string name="no_elements_selected">Nenhum elemento selecionado!</string>
+    <string name="mission_finished">Missão Completa</string>
+    <string name="mission_finished_description">%s completou a missão!</string>
 
 </resources>

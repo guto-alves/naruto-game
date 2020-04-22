@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="jutsu"
+            type="com.gutotech.narutogame.data.model.Jutsu" />
+
+        <import type="com.gutotech.narutogame.data.model.Classe" />
+
+        <variable
+            name="viewModel"
+            type="com.gutotech.narutogame.ui.playing.academy.CharacterJutsusViewModel" />
+    </data>
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        tools:context=".ui.playing.academy.CharacterJutsusFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:background="#1D140F"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/imageView242"
+                    android:layout_width="wrap_content"
+                    android:layout_height="39dp"
+                    android:scaleType="center"
+                    android:src="@drawable/layout_pagina_repeat"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/imageView212"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/layout_msg_topo"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/imageView242" />
+
+                <ImageView
+                    android:id="@+id/profileImageView"
+                    profileForMsg="@{1}"
+                    android:layout_width="150dp"
+                    android:layout_height="0dp"
+                    android:scaleType="fitXY"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.88" />
+
+                <ImageView
+                    android:id="@+id/imageView232"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/layout_msg_rodape2"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <ImageView
+                    android:id="@+id/imageView222"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/layout_msg_rodape1"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageView232"
+                    app:layout_constraintEnd_toEndOf="@+id/imageView232"
+                    app:layout_constraintStart_toStartOf="@+id/imageView232" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
+                    android:padding="3dp"
+                    app:layout_constraintBottom_toTopOf="@+id/imageView222"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/profileImageView"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView212">
+
+                    <TextView
+                        android:id="@+id/titleTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="5dp"
+                        android:text="@string/how_the_jutsu_training_works"
+                        android:textColor="#ffd273"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/descriptionTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center|start"
+                        android:text="@string/how_the_jutsu_training_works_des"
+                        android:textColor="#D1D8F1"
+                        android:textSize="12sp" />
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout50"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:paddingStart="24dp"
+                            android:paddingLeft="24dp"
+                            android:paddingEnd="3dp"
+                            android:paddingRight="3dp"
+                            android:text="@string/label_skill_points"
+                            android:textColor="#EDDA2D"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/skillPointsTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="@{String.valueOf(viewModel.character.skillPoints)}"
+                            android:textColor="@color/colorText"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TableLayout
+                android:id="@+id/tableLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <Button
+                        style="@style/ButtonTheme"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginRight="8dp"
+                        android:background="@{viewModel.classSelected == Classe.NIN? @drawable/bg_button_orange: @drawable/bg_button}"
+                        android:onClick="@{() -> viewModel.onClassButtonPressed(Classe.NIN)}"
+                        android:text="@string/ninjustu" />
+
+                    <Button
+                        style="@style/ButtonTheme"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginRight="8dp"
+                        android:background="@{viewModel.classSelected== Classe.TAI? @drawable/bg_button_orange: @drawable/bg_button}"
+                        android:onClick="@{() -> viewModel.onClassButtonPressed(Classe.TAI)}"
+                        android:text="@string/taijutsu" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="8dp">
+
+                    <Button
+                        style="@style/ButtonTheme"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginRight="8dp"
+                        android:background="@{viewModel.classSelected == Classe.BUK? @drawable/bg_button_orange: @drawable/bg_button}"
+                        android:onClick="@{() -> viewModel.onClassButtonPressed(Classe.BUK)}"
+                        android:text="@string/bukijutsu" />
+
+                    <Button
+                        style="@style/ButtonTheme"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginRight="8dp"
+                        android:background="@{viewModel.classSelected == Classe.GEN? @drawable/bg_button_orange: @drawable/bg_button}"
+                        android:onClick="@{() -> viewModel.onClassButtonPressed(Classe.GEN)}"
+                        android:text="@string/genjutsu" />
+                </TableRow>
+            </TableLayout>
+
+            <Button
+                android:id="@+id/button11"
+                style="@style/ButtonTheme"
+                android:layout_marginTop="8dp"
+                android:background="@{viewModel.classSelected == null? @drawable/bg_button_orange: @drawable/bg_button}"
+                android:onClick="@{() -> viewModel.onClassButtonPressed(null)}"
+                android:text="@string/buffs_and_debuffs"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
+
+            <ImageView
+                android:id="@+id/imageView19"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/layout_barras_secoes_1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/button11" />
+
+            <TextView
+                android:id="@+id/textView28"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:text="@string/jutsu_description"
+                android:textColor="@android:color/white"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView19"
+                app:layout_constraintEnd_toEndOf="@+id/imageView19"
+                app:layout_constraintStart_toStartOf="@+id/imageView19"
+                app:layout_constraintTop_toTopOf="@+id/imageView19" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/jutsusRecyclerView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toTopOf="@+id/constraintLayout7"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView19"
+                app:layout_constraintVertical_bias="0.0"
+                tools:itemCount="1"
+                tools:listitem="@layout/adapter_learned_jutsu" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout7"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@color/colorItem1"
+                android:padding="5dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <ImageView
+                    android:id="@+id/imageView48"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/jutsuImageLinearLayout"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/layout_pergaminho" />
+
+                <ImageView
+                    android:id="@+id/enhancementImageView1"
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:src='@{jutsu.enhancements.containsKey("slot1") ? context.getDrawable(jutsu.enhancements.get("slot1").image) : @drawable/layout_sem_aprimoramento}'
+                    app:layout_constraintBottom_toBottomOf="@id/imageView48"
+                    app:layout_constraintEnd_toStartOf="@+id/enhancementImageView2"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="@+id/imageView48"
+                    app:layout_constraintTop_toTopOf="@+id/imageView48" />
+
+                <ImageView
+                    android:id="@+id/enhancementImageView2"
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:layout_marginStart="3dp"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginEnd="3dp"
+                    android:layout_marginRight="3dp"
+                    android:src='@{jutsu.enhancements.containsKey("slot2") ? context.getDrawable(jutsu.enhancements.get("slot2").image) : @drawable/layout_sem_aprimoramento}'
+                    app:layout_constraintBottom_toBottomOf="@+id/imageView48"
+                    app:layout_constraintEnd_toStartOf="@+id/enhancementImageView3"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/enhancementImageView1"
+                    app:layout_constraintTop_toTopOf="@+id/imageView48" />
+
+                <ImageView
+                    android:id="@+id/enhancementImageView3"
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:src='@{jutsu.enhancements.containsKey("slot3") ? context.getDrawable(jutsu.enhancements.get("slot3").image) : @drawable/layout_sem_aprimoramento}'
+                    app:layout_constraintBottom_toBottomOf="@+id/imageView48"
+                    app:layout_constraintEnd_toEndOf="@+id/imageView48"
+                    app:layout_constraintStart_toEndOf="@+id/enhancementImageView2"
+                    app:layout_constraintTop_toTopOf="@+id/imageView48" />
+
+                <LinearLayout
+                    android:id="@+id/jutsuImageLinearLayout"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:background="@drawable/layout_bg_habilidades"
+                    android:gravity="center"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:id="@+id/jutsuImageView"
+                        jutsu_image="@{jutsu.jutsuInfo.image}"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:contentDescription="@string/jutsu_icon" />
+
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

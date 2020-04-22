@@ -15,20 +15,23 @@ import com.gutotech.narutogame.data.firebase.FirebaseConfig;
 import com.gutotech.narutogame.data.firebase.FirebaseFunctionsUtils;
 import com.gutotech.narutogame.data.model.Battle;
 import com.gutotech.narutogame.data.model.BattleRequest;
+import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.model.Character;
 import com.gutotech.narutogame.data.model.MapRequests;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
-public class BattleRepository {
-    private static final BattleRepository ourInstance = new BattleRepository();
+public class BattlesRepository {
+    private static final BattlesRepository ourInstance = new BattlesRepository();
 
-    public static BattleRepository getInstance() {
+    public static BattlesRepository getInstance() {
         return ourInstance;
     }
 
-    private BattleRepository() {
+    private BattlesRepository() {
     }
 
     public String generateId(String label) {
@@ -245,5 +248,62 @@ public class BattleRepository {
                                    @Nullable DataSnapshot dataSnapshot) {
             }
         });
+    }
+
+    public void getDuelCounter(String playerId, Callback<Map<String, Integer>> callback) {
+        DatabaseReference databaseReference = FirebaseConfig.getDatabase()
+                .child("duel-counters")
+                .child(playerId);
+
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Map<String, Integer> map = new HashMap<>();
+
+                for (DataSnapshot data : dataSnapshot.getChildren()) {
+                    map.put(data.getKey(), data.getValue(Integer.class));
+                }
+
+                callback.call(map);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
+    }
+
+    public void incrementDuelCount(String playerId, String opponentId) {
+        DatabaseReference databaseReference = FirebaseConfig.getDatabase()
+                .child("duel-counters")
+                .child(playerId)
+                .child(opponentId);
+
+        databaseReference.runTransaction(new Transaction.Handler() {
+            @NonNull
+            @Override
+            public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
+                int count = 0;
+
+                if (mutableData.getValue() != null) {
+                    count = mutableData.getValue(Integer.class);
+                }
+
+                mutableData.setValue(count + 1);
+                return Transaction.success(mutableData);
+            }
+
+            @Override
+            public void onComplete(@Nullable DatabaseError databaseError, boolean b, @Nullable DataSnapshot dataSnapshot) {
+            }
+        });
+    }
+
+    public void clearDuelsCount() {
+        DatabaseReference databaseReference = FirebaseConfig.getDatabase()
+                .child("duel-counters")
+                .child(CharOn.character.getId());
+
+        databaseReference.setValue(null);
     }
 }

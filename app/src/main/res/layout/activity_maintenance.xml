@@ -9,7 +9,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingBottom="32dp">
 
         <ImageView
             android:id="@+id/imageView53"
@@ -37,14 +38,14 @@
             android:layout_width="0dp"
             android:layout_height="80dp"
             android:scaleType="fitXY"
-            app:layout_constraintBottom_toTopOf="@+id/textView24"
+            app:layout_constraintBottom_toTopOf="@+id/descriptionTextView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:srcCompat="@drawable/layout_menu_deslogado" />
 
         <ImageView
-            android:id="@+id/imageView55"
+            android:id="@+id/goToHomeImageView"
             android:layout_width="110dp"
             android:layout_height="57dp"
             android:layout_marginTop="32dp"
@@ -55,31 +56,43 @@
             app:srcCompat="@drawable/layout_logo" />
 
         <TextView
-            android:id="@+id/textView24"
-            android:layout_width="wrap_content"
+            android:id="@+id/descriptionTextView"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
             android:layout_marginTop="16dp"
-            android:text="- Novidades pelo Facebook do jogo"
+            android:layout_marginEnd="32dp"
+            android:layout_marginRight="32dp"
+            android:autoLink="web"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="@string/maintenance_status"
             android:textColor="@color/colorText"
+            android:textIsSelectable="true"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView53" />
 
         <TextView
-            android:id="@+id/textView27"
-            android:layout_width="0dp"
+            android:id="@+id/obsTextView"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginLeft="32dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="32dp"
             android:layout_marginRight="32dp"
-            android:text="Para notícias atualizadas sobre o andamento da manutenção acesse nossas redes sociais: Grupo Anime Game"
+            android:autoLink="web"
+            android:clickable="true"
+            android:focusable="true"
             android:textColor="@color/colorText"
+            android:textIsSelectable="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView24" />
+            app:layout_constraintTop_toBottomOf="@+id/descriptionTextView" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

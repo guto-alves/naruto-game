@@ -26,13 +26,15 @@ public class Character extends BaseObservable implements Serializable {
     private int currentExp;
     private int levelUpExp;
     private long ryous;
-    private int title;
+    private int titleIndex;
     private List<Integer> titles;
     private int score;
     private int graduationId;
     private String team;
     private Attributes attributes;
     private List<Jutsu> jutsus;
+    private int skillPoints;
+    private Element element;
     private Bag bag;
     private boolean itemsEnabled;
     private ExtrasInformation extrasInformation;
@@ -81,9 +83,6 @@ public class Character extends BaseObservable implements Serializable {
         extrasInformation = new ExtrasInformation();
         mapPosition = -1;
         fidelityReward = true;
-
-        titles = new ArrayList<>();
-        titles.add(R.string.none);
 
         bag = new Bag();
         bag.addRamen(new Ramen(
@@ -147,6 +146,19 @@ public class Character extends BaseObservable implements Serializable {
         notifyPropertyChanged(BR.titles);
     }
 
+    @Exclude
+    public List<Jutsu> getVisibleJutsus() {
+        List<Jutsu> visibleJutsus = new ArrayList<>();
+
+        for (Jutsu jutsu : getJutsus()) {
+            if (jutsu.isVisible()) {
+                visibleJutsus.add(jutsu);
+            }
+        }
+
+        return visibleJutsus;
+    }
+
     public void validateJutsus() {
         Iterator<Jutsu> iterator = jutsus.iterator();
 
@@ -170,6 +182,14 @@ public class Character extends BaseObservable implements Serializable {
                 iterator.remove();
             }
         }
+    }
+
+    public void incrementSkillPoint() {
+        setSkillPoints(getSkillPoints() + 1);
+    }
+
+    public void removeSkillPoints() {
+        setSkillPoints(getSkillPoints() - 5);
     }
 
     @Override
@@ -404,18 +424,20 @@ public class Character extends BaseObservable implements Serializable {
     }
 
     @Bindable
-    @StringRes
-    public int getTitle() {
-        return title;
+    public int getTitleIndex() {
+        return titleIndex;
     }
 
-    public void setTitle(@StringRes int title) {
-        this.title = title;
-        notifyPropertyChanged(BR.title);
+    public void setTitleIndex(int titleIndex) {
+        this.titleIndex = titleIndex;
+        notifyPropertyChanged(BR.titleIndex);
     }
 
     @Bindable
     public List<Integer> getTitles() {
+        if (titles == null) {
+            titles = new ArrayList<>();
+        }
         return titles;
     }
 
@@ -429,6 +451,24 @@ public class Character extends BaseObservable implements Serializable {
 
     public void setJutsus(List<Jutsu> jutsus) {
         this.jutsus = jutsus;
+    }
+
+    @Bindable
+    public int getSkillPoints() {
+        return skillPoints;
+    }
+
+    public void setSkillPoints(int skillPoints) {
+        this.skillPoints = skillPoints;
+        notifyPropertyChanged(BR.skillPoints);
+    }
+
+    public Element getElement() {
+        return element;
+    }
+
+    public void setElement(Element element) {
+        this.element = element;
     }
 
     @Bindable

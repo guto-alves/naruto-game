@@ -3,10 +3,12 @@ package com.gutotech.narutogame.ui.playing.academy;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.PopupWindow;
 
+import androidx.core.widget.PopupWindowCompat;
 import androidx.databinding.DataBindingUtil;
 
 import com.gutotech.narutogame.R;
@@ -14,6 +16,7 @@ import com.gutotech.narutogame.data.model.Classe;
 import com.gutotech.narutogame.data.model.Jutsu;
 import com.gutotech.narutogame.data.model.JutsuInfo;
 import com.gutotech.narutogame.databinding.PopupLearnJutsuInfoBinding;
+import com.gutotech.narutogame.utils.SoundUtil;
 
 public class LearnJutsuInfoPopupWindow extends PopupWindow {
     private Context mContext;
@@ -93,5 +96,13 @@ public class LearnJutsuInfoPopupWindow extends PopupWindow {
                 }
             }
         }
+    }
+
+    @Override
+    public void showAsDropDown(View anchor) {
+        PopupWindowCompat.showAsDropDown(this, anchor, 0, 0,
+                Gravity.TOP | Gravity.END);
+
+        SoundUtil.play(mContext, R.raw.sound_pop);
     }
 }

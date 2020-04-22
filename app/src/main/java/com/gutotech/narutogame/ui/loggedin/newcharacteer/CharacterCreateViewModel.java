@@ -46,7 +46,7 @@ public class CharacterCreateViewModel extends ViewModel
         mCharacterRepository = CharacterRepository.getInstance();
 
         mChar = new Character(AuthRepository.getInstance().getUid());
-        mChar.setJutsus(JutsuRepository.getInstance().getJutsusDefault(Classe.TAI));
+        mChar.setJutsus(JutsuRepository.getInstance().getBasicJutsus(Classe.TAI));
 
         mAllNinjasList = Arrays.asList(Ninja.values());
         loadCurrentGroup();
@@ -63,7 +63,7 @@ public class CharacterCreateViewModel extends ViewModel
         mChar.setAttributes(new Attributes(classe));
         mChar.updateFormulas();
         mChar.full();
-        mChar.setJutsus(JutsuRepository.getInstance().getJutsusDefault(classe));
+        mChar.setJutsus(JutsuRepository.getInstance().getBasicJutsus(classe));
     }
 
     @Override

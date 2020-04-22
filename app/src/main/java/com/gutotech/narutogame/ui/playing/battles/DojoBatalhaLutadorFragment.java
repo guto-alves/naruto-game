@@ -24,7 +24,7 @@ import com.gutotech.narutogame.data.model.BattleLog;
 import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.model.Formulas;
 import com.gutotech.narutogame.data.model.Jutsu;
-import com.gutotech.narutogame.data.repository.BattleRepository;
+import com.gutotech.narutogame.data.repository.BattlesRepository;
 import com.gutotech.narutogame.databinding.FragmentDojoBatalhaLutadorBinding;
 import com.gutotech.narutogame.databinding.PopupAttributesStatusBinding;
 import com.gutotech.narutogame.ui.SectionFragment;
@@ -34,6 +34,7 @@ import com.gutotech.narutogame.ui.adapter.BuffsDebuffStatusAdapter;
 import com.gutotech.narutogame.ui.adapter.JutsusAdapter;
 import com.gutotech.narutogame.utils.FragmentUtils;
 import com.gutotech.narutogame.data.firebase.StorageUtils;
+import com.gutotech.narutogame.utils.SoundUtil;
 import com.gutotech.narutogame.utils.SpannableStringBuilderCustom;
 
 public class DojoBatalhaLutadorFragment extends Fragment implements SectionFragment {
@@ -50,7 +51,7 @@ public class DojoBatalhaLutadorFragment extends Fragment implements SectionFragm
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_dojo_batalha_lutador,
                 container, false);
 
-        BattleRepository.getInstance().get(CharOn.character.battleId, battle -> {
+        BattlesRepository.getInstance().get(CharOn.character.battleId, battle -> {
             mViewModel = new ViewModelProvider(this,
                     new DojoBatalhaLutadorViewModelFactory(battle))
                     .get(DojoBatalhaLutadorViewModel.class);
@@ -101,7 +102,6 @@ public class DojoBatalhaLutadorFragment extends Fragment implements SectionFragm
             mViewModel.showWonEvent.observe(getViewLifecycleOwner(), rewards -> {
                 SpannableStringBuilderCustom description = new SpannableStringBuilderCustom(getContext());
                 description.append(getString(R.string.combat_won_description, rewards[0], rewards[1]));
-                description.append();
                 description.append(R.string.dojo,
                         new ForegroundColorSpan(Color.BLUE),
                         new ClickableSpan() {
@@ -113,12 +113,12 @@ public class DojoBatalhaLutadorFragment extends Fragment implements SectionFragm
                         });
 
                 showBattleResult(R.string.end_of_the_battle, description.getString());
+                SoundUtil.play(getContext(), R.raw.win);
             });
 
             mViewModel.showLostEvent.observe(getViewLifecycleOwner(), aVoid -> {
                 SpannableStringBuilderCustom description = new SpannableStringBuilderCustom(getContext());
                 description.append(R.string.you_have_lost_the_battle);
-                description.append(" ");
                 description.append(R.string.hospital,
                         new ForegroundColorSpan(Color.BLUE),
                         new ClickableSpan() {
@@ -130,12 +130,12 @@ public class DojoBatalhaLutadorFragment extends Fragment implements SectionFragm
                         });
 
                 showBattleResult(R.string.too_bad, description.getString());
+                SoundUtil.play(getContext(), R.raw.lose);
             });
 
             mViewModel.showDrawnEvent.observe(getViewLifecycleOwner(), aVoid -> {
                 SpannableStringBuilderCustom description = new SpannableStringBuilderCustom(getContext());
                 description.append(R.string.drawn_description);
-                description.append(" ");
                 description.append(R.string.hospital,
                         new ForegroundColorSpan(Color.BLUE),
                         new ClickableSpan() {
@@ -165,6 +165,7 @@ public class DojoBatalhaLutadorFragment extends Fragment implements SectionFragm
                 description.append(getString(R.string.to_preceed));
 
                 showBattleResult(R.string.too_bad, description.getString());
+                SoundUtil.play(getContext(), R.raw.lose);
             });
         });
 
@@ -192,6 +193,7 @@ public class DojoBatalhaLutadorFragment extends Fragment implements SectionFragm
         popupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         popupWindow.setOutsideTouchable(true);
         popupWindow.showAsDropDown(view);
+        SoundUtil.play(getContext(), R.raw.sound_pop);
     }
 
     private void showJutsuInfo(Object[] objects) {

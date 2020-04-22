@@ -28,14 +28,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@{jutsuInfo.name}"
-                android:textColor="@android:color/holo_blue_dark"
+                android:textColor="#26b1f9"
                 android:textSize="12sp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/combat_values"
-                android:textColor="@android:color/holo_orange_light"
+                android:textColor="@android:color/holo_orange_dark"
                 android:textSize="12sp" />
 
             <View

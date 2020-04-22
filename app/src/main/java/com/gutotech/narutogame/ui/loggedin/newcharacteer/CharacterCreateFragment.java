@@ -13,6 +13,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.databinding.FragmentPersonagemCriarBinding;
 import com.gutotech.narutogame.ui.ProgressDialogFragment;
@@ -35,6 +37,16 @@ public class CharacterCreateFragment extends Fragment implements SectionFragment
                 R.layout.fragment_personagem_criar, container, false);
 
         binding.setViewModel(viewModel);
+
+        YoYo.with(Techniques.Pulse)
+                .duration(1200)
+                .repeat(YoYo.INFINITE)
+                .playOn(binding.goImageButton);
+
+        YoYo.with(Techniques.Pulse)
+                .duration(1200)
+                .repeat(YoYo.INFINITE)
+                .playOn(binding.backImageButton);
 
         ChooseNinjaAdapter ninjasAdapter = new ChooseNinjaAdapter(viewModel);
         binding.ninjasRecyclerView.setAdapter(ninjasAdapter);
@@ -71,7 +83,9 @@ public class CharacterCreateFragment extends Fragment implements SectionFragment
 
     @Override
     public void onFailure(int resId) {
-        mProgressDialog.dismiss();
+        if (mProgressDialog.isVisible()) {
+            mProgressDialog.dismiss();
+        }
         showAlert(R.string.warning, resId);
     }
 

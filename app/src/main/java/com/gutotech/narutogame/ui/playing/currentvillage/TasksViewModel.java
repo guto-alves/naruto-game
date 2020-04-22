@@ -1,8 +1,11 @@
 package com.gutotech.narutogame.ui.playing.currentvillage;
 
+import android.app.Application;
+
+import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
 import com.gutotech.narutogame.data.firebase.FirebaseFunctionsUtils;
 import com.gutotech.narutogame.data.model.CharOn;
@@ -11,18 +14,22 @@ import com.gutotech.narutogame.data.model.Mission;
 import com.gutotech.narutogame.data.model.MissionInfo;
 import com.gutotech.narutogame.data.repository.MissionRepository;
 import com.gutotech.narutogame.ui.adapter.TasksAdapter;
+import com.gutotech.narutogame.utils.NotificationsUtils;
+import com.gutotech.narutogame.utils.SingleLiveEvent;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.EnumSet;
 import java.util.List;
 
-public class TasksViewModel extends ViewModel implements TasksAdapter.OnAcceptClickListener {
+public class TasksViewModel extends AndroidViewModel implements TasksAdapter.OnAcceptClickListener {
     private static final long ONE_MINUTE = 60000;
 
     private MutableLiveData<List<TimeMission>> mTasks = new MutableLiveData<>();
+    private SingleLiveEvent<Boolean> mShowProgressBarEvent = new SingleLiveEvent<>();
 
-    public TasksViewModel() {
+    public TasksViewModel(@NonNull Application application) {
+        super(application);
         loadInitialTasks();
     }
 
@@ -44,20 +51,29 @@ public class TasksViewModel extends ViewModel implements TasksAdapter.OnAcceptCl
             }
         }
 
-        mTasks.setValue(tasks);
+        mTasks.postValue(tasks);
     }
 
     @Override
     public void onAcceptClick(Mission task) {
+        mShowProgressBarEvent.setValue(true);
+
         FirebaseFunctionsUtils.getServerTime(currentTimestamp -> {
             TimeMission timeMission = (TimeMission) task;
             timeMission.setInitialTimestamp(currentTimestamp);
             MissionRepository.getInstance().acceptTimeMission(timeMission);
+            NotificationsUtils.setAlarm(getApplication(),
+                    currentTimestamp + timeMission.getDurationMillis());
             CharOn.character.setMission(true);
+            mShowProgressBarEvent.setValue(false);
         });
     }
 
     LiveData<List<TimeMission>> getTasks() {
         return mTasks;
+    }
+
+    LiveData<Boolean> getShowProgressBarEvent() {
+        return mShowProgressBarEvent;
     }
 }

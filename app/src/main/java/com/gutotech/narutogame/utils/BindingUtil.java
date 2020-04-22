@@ -2,7 +2,6 @@ package com.gutotech.narutogame.utils;
 
 import android.content.Context;
 import android.text.TextUtils;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -20,7 +19,14 @@ import com.gutotech.narutogame.data.model.Village;
 
 public class BindingUtil {
 
-    @BindingAdapter(value = "loadProfile")
+    @BindingAdapter("jutsu_image")
+    public static void setJutsuImage(ImageView imageView, String path) {
+        if (!TextUtils.isEmpty(path)) {
+            StorageUtils.downloadJutsu(imageView, path);
+        }
+    }
+
+    @BindingAdapter("loadProfile")
     public static void setLoadProfile(ImageView imageView, String path) {
         if (!TextUtils.isEmpty(path)) {
             StorageUtils.downloadProfile(imageView.getContext(), imageView, path);
@@ -33,11 +39,11 @@ public class BindingUtil {
     }
 
     @BindingAdapter("stringRes")
-    public static void setStringRes(TextView textView, @StringRes int resId) {
+    public static void setStringRes(TextView textView, @StringRes int resid) {
         String text = "";
 
-        if (resId != 0) {
-            text = textView.getContext().getString(resId);
+        if (resid != 0) {
+            text = textView.getContext().getString(resid);
         }
 
         textView.setText(text);

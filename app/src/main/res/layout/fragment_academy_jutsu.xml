@@ -112,7 +112,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/msgMensagem"
+                        android:id="@+id/descriptionTextView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center|start"
@@ -128,6 +128,14 @@
                         android:text="@string/jutsus_that_not_are_in_the_same_class"
                         android:textColor="@android:color/holo_blue_light"
                         android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/linkTrainingJutsuTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/link_training_jutsus"
+                        android:textColor="@color/colorText"
+                        android:textSize="12sp" />
                 </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -135,11 +143,12 @@
                 android:id="@+id/trainingResultLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginRight="8dp"
                 android:background="#1D140F"
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/msgConstraint">
 

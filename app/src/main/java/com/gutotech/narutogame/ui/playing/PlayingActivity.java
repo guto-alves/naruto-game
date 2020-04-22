@@ -2,15 +2,18 @@ package com.gutotech.narutogame.ui.playing;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.text.TextUtils;
+import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
@@ -26,8 +29,11 @@ import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.CharOn;
+import com.gutotech.narutogame.data.repository.AuthRepository;
 import com.gutotech.narutogame.databinding.ActivityPlayingBinding;
 import com.gutotech.narutogame.databinding.DialogGameRoutinesBinding;
 import com.gutotech.narutogame.databinding.NavHeaderPlayingBinding;
@@ -37,6 +43,7 @@ import com.gutotech.narutogame.ui.adapter.ChatMessagesAdapter;
 import com.gutotech.narutogame.ui.adapter.ExpandableLoggedinAdapter;
 import com.gutotech.narutogame.ui.home.HomeActivity;
 import com.gutotech.narutogame.utils.FragmentUtils;
+import com.gutotech.narutogame.utils.SoundUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,10 +51,21 @@ import java.util.List;
 public class PlayingActivity extends AppCompatActivity {
     private ActivityPlayingBinding mBinding;
     private PlayingViewModel mViewModel;
+    private YoYo.YoYoString mRope;
+    private boolean mInitialization = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Configuration configuration = getResources().getConfiguration();
+        configuration.fontScale = (float) 1; // 0.85 small size, 1 normal size, 1,15 big etc
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        metrics.scaledDensity = configuration.fontScale * metrics.density;
+        configuration.densityDpi = (int) getResources().getDisplayMetrics().xdpi;
+        getBaseContext().getResources().updateConfiguration(configuration, metrics);
+
         mViewModel = new ViewModelProvider(this).get(PlayingViewModel.class);
 
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_playing);
@@ -76,10 +94,16 @@ public class PlayingActivity extends AppCompatActivity {
         mViewModel.getCurrentSection().observe(this, sectionFragment -> {
             FragmentUtils.goTo(this, (Fragment) sectionFragment);
             closeDrawer();
+            if (!mInitialization) {
+                SoundUtil.play(getApplicationContext(), R.raw.sound_btn06);
+            } else {
+                mInitialization = false;
+            }
         });
 
         mViewModel.getTitles().observe(this, titlesId -> {
             List<String> titles = new ArrayList<>();
+            titles.add(getString(R.string.none));
 
             for (int titleId : titlesId) {
                 titles.add(getString(titleId));
@@ -90,11 +114,23 @@ public class PlayingActivity extends AppCompatActivity {
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
             mBinding.titlesSpinner.setAdapter(adapter);
+            mBinding.titlesSpinner.setSelection(mViewModel.getCharacter().getTitleIndex());
         });
 
         mViewModel.getShowWarningDialogEvent().observe(this, resid -> {
             WarningDialogFragment dialog = WarningDialogFragment.newInstance(resid);
             dialog.openDialog(getSupportFragmentManager());
+        });
+
+        mViewModel.getFidelityAnimationEvent().observe(this, running -> {
+            if (running) {
+                mRope = YoYo.with(Techniques.Pulse)
+                        .duration(1200)
+                        .repeat(YoYo.INFINITE)
+                        .playOn(navHeaderBinding.hasFidelityRewardImageButton);
+            } else if (mRope != null) {
+                mRope.stop();
+            }
         });
 
         setUpChat();
@@ -111,6 +147,15 @@ public class PlayingActivity extends AppCompatActivity {
 
         routinesDialog.setContentView(binding.getRoot());
         routinesDialog.show();
+        SoundUtil.play(getApplicationContext(), R.raw.sound_pop);
+    }
+
+    public void onSettingsClick(View view) {
+        DialogFragment dialog = SettingsDialogFragment.getInstance(() ->
+                mViewModel.checkForSettingsChanged()
+        );
+        dialog.show(getSupportFragmentManager(), "SettingsDialogFragment");
+        SoundUtil.play(getApplicationContext(), R.raw.sound_pop);
     }
 
     private Dialog mBagDialog;
@@ -118,6 +163,7 @@ public class PlayingActivity extends AppCompatActivity {
     public void showBag(View view) {
         mViewModel.updateBag();
         mBagDialog.show();
+        SoundUtil.play(getApplicationContext(), R.raw.sound_pop);
     }
 
     private void setUpBag() {
@@ -211,6 +257,7 @@ public class PlayingActivity extends AppCompatActivity {
         mBinding.channelSpinner.setSelection(1);
     }
 
+
     public void onLogoutClick(View view) {
         mViewModel.logout();
         startActivity(new Intent(PlayingActivity.this, HomeActivity.class));
@@ -259,6 +306,9 @@ public class PlayingActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         mViewModel.start();
+        if (!AuthRepository.getInstance().isSignedIn()) {
+            finish();
+        }
     }
 
     @Override

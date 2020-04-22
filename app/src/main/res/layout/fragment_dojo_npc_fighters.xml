@@ -239,20 +239,13 @@
                         </androidx.constraintlayout.widget.ConstraintLayout>
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:id="@+id/imageView10"
-                            android:layout_width="80dp"
-                            android:layout_height="80dp"
-                            android:layout_marginBottom="10dp"
-                            android:src="@drawable/layout_combate_vs" />
-
-                    </LinearLayout>
+                    <ImageView
+                        android:id="@+id/vsImageView"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="10dp"
+                        android:src="@drawable/layout_combate_vs" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"

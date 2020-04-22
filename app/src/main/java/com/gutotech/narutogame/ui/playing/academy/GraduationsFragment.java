@@ -34,7 +34,8 @@ public class GraduationsFragment extends Fragment implements SectionFragment {
         binding.graduationsRecyclerView.setAdapter(adapter);
 
         viewModel.getUpdateGraduationsEvent().observe(getViewLifecycleOwner(), aVoid ->
-                adapter.notifyDataSetChanged());
+                adapter.notifyDataSetChanged()
+        );
 
         FragmentUtils.setSectionTitle(getActivity(), R.string.section_graduations);
 

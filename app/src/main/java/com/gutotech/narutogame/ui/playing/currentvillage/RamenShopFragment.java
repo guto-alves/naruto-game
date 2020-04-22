@@ -19,6 +19,7 @@ import com.gutotech.narutogame.ui.WarningDialogFragment;
 import com.gutotech.narutogame.ui.adapter.ItemShopAdapter;
 import com.gutotech.narutogame.data.model.ShopUtils;
 import com.gutotech.narutogame.utils.FragmentUtils;
+import com.gutotech.narutogame.utils.SoundUtil;
 
 public class RamenShopFragment extends Fragment implements SectionFragment {
 
@@ -47,6 +48,7 @@ public class RamenShopFragment extends Fragment implements SectionFragment {
     private void showWarningDialog(@StringRes int resid) {
         WarningDialogFragment dialog = WarningDialogFragment.newInstance(resid);
         dialog.openDialog(getParentFragmentManager());
+        SoundUtil.play(getContext(), R.raw.get_item02);
     }
 
     @Override

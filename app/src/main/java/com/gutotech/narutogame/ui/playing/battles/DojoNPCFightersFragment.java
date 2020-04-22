@@ -11,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.databinding.FragmentDojoNpcFightersBinding;
 import com.gutotech.narutogame.data.model.CharOn;
@@ -42,7 +44,8 @@ public class DojoNPCFightersFragment extends Fragment {
         binding.fightersLinearLayout.setVisibility(View.GONE);
 
         viewModel.getShowProgressBar().observe(getViewLifecycleOwner(), aVoid ->
-                binding.statusProgressBar.setVisibility(View.VISIBLE));
+                binding.statusProgressBar.setVisibility(View.VISIBLE)
+        );
 
         viewModel.getShowStatusEvent().observe(getViewLifecycleOwner(), resId -> {
             binding.statusTextView.setText(resId);
@@ -64,6 +67,11 @@ public class DojoNPCFightersFragment extends Fragment {
                 progressDialogFragment.dismiss();
             }
         });
+
+        YoYo.with(Techniques.RubberBand)
+                .duration(2000)
+                .repeat(YoYo.INFINITE)
+                .playOn(binding.vsImageView);
 
         return binding.getRoot();
     }

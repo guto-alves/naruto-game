@@ -5,7 +5,7 @@
 
     <item android:drawable="@drawable/bg_button_orange" android:state_focused="true" />
 
-    <item android:drawable="@drawable/bg_button_desabled" android:state_enabled="false" />
+    <item android:drawable="@drawable/bg_button_disabled" android:state_enabled="false" />
 
     <item android:drawable="@drawable/bg_button" />
 

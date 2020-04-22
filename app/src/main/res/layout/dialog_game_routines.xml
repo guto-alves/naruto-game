@@ -25,13 +25,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:text="@string/game_routines"
-                android:textColor="@android:color/holo_blue_dark" />
+                android:textColor="#26b1f9" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@{@string/label_healing(viewModel.healing)}"
-                android:textColor="@android:color/holo_blue_dark" />
+                android:textColor="#26b1f9" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -43,7 +43,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@{@string/various_routines(viewModel.variousRoutines)}"
-                android:textColor="@android:color/holo_blue_dark" />
+                android:textColor="#26b1f9" />
 
             <TextView
                 android:layout_width="match_parent"

@@ -41,6 +41,7 @@
                     android:id="@+id/textView10"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
                     android:gravity="center"
                     android:text="@string/combat_overview"
                     android:textColor="#ffd273"
@@ -273,6 +274,7 @@
                     android:id="@+id/textView100"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
                     android:gravity="center"
                     android:text="@string/resume_of_missions"
                     android:textColor="#ffd273"
@@ -459,6 +461,7 @@
                     android:id="@+id/textView1000"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
                     android:gravity="center"
                     android:text="@string/extras_information"
                     android:textColor="#ffd273"
@@ -621,20 +624,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/imageView5" />
 
             <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline62"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.73" />
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline63"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.27" />
-
-            <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -642,11 +631,25 @@
                 app:layout_constraintGuide_begin="8dp" />
 
             <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline63"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.25" />
+
+            <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 app:layout_constraintGuide_percent="0.5" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline62"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.75" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

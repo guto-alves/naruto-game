@@ -1,29 +1,40 @@
 package com.gutotech.narutogame.data.model;
 
 import androidx.annotation.Nullable;
+import androidx.databinding.BaseObservable;
+import androidx.databinding.Bindable;
+import androidx.databinding.library.baseAdapters.BR;
 
 import com.google.firebase.database.Exclude;
 
-public class Jutsu {
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
+
+public class Jutsu extends BaseObservable implements Serializable {
     public enum Type {ATK, DEF, BUFF, DEBUFF, WEAPON}
 
     private String name; // refers to JutsuInfo Enum
-
     private Classe classe;
-
     private int atk;
     private int baseDefense;
     private int accuracy;
-
     private int consumesChakra;
     private int consumesStamina;
-
     private int usageInterval;
     private int remainingIntervals;
-
     private int inventory;
+    private boolean visible;
+    private int level;
+    private Map<String, Enhancement> enhancements;
 
     public Jutsu() {
+    }
+
+    public Jutsu(String name, Classe classe, int atk, int baseDefense, int accuracy,
+                 int consumesChakra, int consumesStamina) {
+        this(name, classe, atk, baseDefense, accuracy, consumesChakra,
+                consumesStamina, 4);
     }
 
     public Jutsu(String name, Classe classe, int atk, int baseDefense, int accuracy,
@@ -36,33 +47,61 @@ public class Jutsu {
         this.consumesChakra = consumesChakra;
         this.consumesStamina = consumesStamina;
         this.usageInterval = usageInterval;
-        inventory = 1;
+        this.inventory = 1;
+        visible = true;
     }
 
-    public Jutsu(String name, Classe classe, int atk, int baseDefense, int accuracy,
-                 int consumesChakra, int consumesStamina) {
-        this.name = name;
-        this.classe = classe;
-        this.atk = atk;
-        this.baseDefense = baseDefense;
-        this.accuracy = accuracy;
-        this.consumesChakra = consumesChakra;
-        this.consumesStamina = consumesStamina;
-        this.usageInterval = 4;
-        inventory = 1;
+    public void activate(Enhancement enhancement, String slot) {
+        if (getEnhancements().containsKey(slot)) {
+            deactivate(slot);
+        }
+        getEnhancements().put(slot, enhancement);
+
+        setLevel(getLevel() + 1);
+        setAtk(getAtk() + enhancement.getAtk());
+        setBaseDefense(getBaseDefense() + enhancement.getDefense());
+        setAccuracy(getAccuracy() + enhancement.getAccuracy());
+
+        enhancement.setChakraBuffer((getConsumesChakra() * enhancement.getPercentOfChakra() / 100));
+        enhancement.setStaminaBuffer((getConsumesStamina() * enhancement.getPercentOfStamina() / 100));
+
+        setConsumesChakra(getConsumesChakra() + enhancement.getChakraBuffer());
+        setConsumesStamina(getConsumesStamina() + enhancement.getStaminaBuffer());
+
+        notifyPropertyChanged(BR.enhancements);
     }
 
-    public Jutsu(String name, Classe classe, int atk, int baseDefense, int accuracy,
-                 int consumesChakra, int consumesStamina, int usageInterval, int inventory) {
-        this.name = name;
-        this.classe = classe;
-        this.atk = atk;
-        this.baseDefense = baseDefense;
-        this.accuracy = accuracy;
-        this.consumesChakra = consumesChakra;
-        this.consumesStamina = consumesStamina;
-        this.usageInterval = usageInterval;
-        this.inventory = inventory;
+    private void deactivate(String slot) {
+        Enhancement enhancement = getEnhancements().get(slot);
+        setLevel(getLevel() - 1);
+        setAtk(getAtk() - enhancement.getAtk());
+        setBaseDefense(getBaseDefense() - enhancement.getDefense());
+        setAccuracy(getAccuracy() - enhancement.getAccuracy());
+        setConsumesChakra(getConsumesChakra() - enhancement.getChakraBuffer());
+        setConsumesStamina(getConsumesStamina() - enhancement.getStaminaBuffer());
+    }
+
+    @Exclude
+    public JutsuInfo getJutsuInfo() {
+        return JutsuInfo.valueOf(getName());
+    }
+
+    public boolean isBuffOrDebuff() {
+        return isBuffOrDebuff(getJutsuInfo());
+    }
+
+    public boolean isBuffOrDebuff(JutsuInfo jutsuInfo) {
+        return jutsuInfo.type == Jutsu.Type.BUFF
+                || jutsuInfo.type == Jutsu.Type.DEBUFF;
+    }
+
+    @Override
+    public boolean equals(@Nullable Object obj) {
+        if (!(obj instanceof Jutsu)) {
+            return false;
+        }
+
+        return getName().equals(((Jutsu) obj).getName());
     }
 
     public String getName() {
@@ -145,17 +184,31 @@ public class Jutsu {
         this.inventory = inventory;
     }
 
-    @Exclude
-    public JutsuInfo getJutsuInfo() {
-        return JutsuInfo.valueOf(getName());
+    public boolean isVisible() {
+        return visible;
     }
 
-    @Override
-    public boolean equals(@Nullable Object obj) {
-        if (!(obj instanceof Jutsu)) {
-            return false;
-        }
+    public void setVisible(boolean visible) {
+        this.visible = visible;
+    }
 
-        return getName().equals(((Jutsu) obj).getName());
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    @Bindable
+    public Map<String, Enhancement> getEnhancements() {
+        if (enhancements == null) {
+            enhancements = new HashMap<>();
+        }
+        return enhancements;
+    }
+
+    public void setEnhancements(Map<String, Enhancement> enhancements) {
+        this.enhancements = enhancements;
     }
 }

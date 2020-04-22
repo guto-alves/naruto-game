@@ -18,6 +18,7 @@ import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.ui.playing.currentvillage.VillageMapPopupWindow;
 import com.gutotech.narutogame.ui.playing.currentvillage.VillageMapViewModel;
 import com.gutotech.narutogame.data.firebase.StorageUtils;
+import com.gutotech.narutogame.utils.SoundUtil;
 
 import java.security.SecureRandom;
 import java.util.List;
@@ -57,8 +58,10 @@ public class VillageMapAdapter extends RecyclerView.Adapter<VillageMapAdapter.Vi
         mOnMapClickListener = listener;
 
         mPopupWindow = new VillageMapPopupWindow(context);
-        mPopupWindow.setBattleClickListener(opponent ->
-                mOnMapClickListener.onBattleClick(opponent));
+        mPopupWindow.setBattleClickListener(opponent -> {
+            mOnMapClickListener.onBattleClick(opponent);
+            SoundUtil.play(mContext, R.raw.knife);
+        });
     }
 
     @NonNull
@@ -120,6 +123,9 @@ public class VillageMapAdapter extends RecyclerView.Adapter<VillageMapAdapter.Vi
 
                         @Override
                         public boolean onSingleTapUp(MotionEvent e) {
+                            if (mMap == null) {
+                                return true;
+                            }
                             mPopupWindow.setCharactersList(mMap.get(position), position);
 
                             int xoff;
@@ -161,7 +167,7 @@ public class VillageMapAdapter extends RecyclerView.Adapter<VillageMapAdapter.Vi
         notifyDataSetChanged();
     }
 
-    public void dismissPopupWindow(){
+    public void dismissPopupWindow() {
         mPopupWindow.dismiss();
     }
 }

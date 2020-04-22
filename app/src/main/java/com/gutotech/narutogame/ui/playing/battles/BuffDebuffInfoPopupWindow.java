@@ -13,6 +13,7 @@ import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.Jutsu;
 import com.gutotech.narutogame.data.model.JutsuInfo;
 import com.gutotech.narutogame.databinding.PopupBuffDebuffInfoBinding;
+import com.gutotech.narutogame.utils.SoundUtil;
 
 public class BuffDebuffInfoPopupWindow extends PopupWindow {
     private Context mContext;
@@ -59,5 +60,11 @@ public class BuffDebuffInfoPopupWindow extends PopupWindow {
             mBinding.atkTextView2.setText(mContext.getString(R.string.label_atk_nin_gen,
                     jutsu.getAtk()));
         }
+    }
+
+    @Override
+    public void showAsDropDown(View anchor) {
+        super.showAsDropDown(anchor);
+        SoundUtil.play(mContext, R.raw.sound_pop);
     }
 }

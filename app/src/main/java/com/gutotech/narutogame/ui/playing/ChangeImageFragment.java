@@ -20,6 +20,7 @@ import com.gutotech.narutogame.ui.QuestionDialogFragment;
 import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.adapter.ProfilesAdapter;
 import com.gutotech.narutogame.utils.FragmentUtils;
+import com.gutotech.narutogame.utils.SoundUtil;
 
 public class ChangeImageFragment extends Fragment implements SectionFragment,
         QuestionDialogFragment.QuestionDialogListener {
@@ -53,6 +54,7 @@ public class ChangeImageFragment extends Fragment implements SectionFragment,
         QuestionDialogFragment questionDialog = QuestionDialogFragment.newInstance(
                 this, R.string.question_change_profile_image);
         questionDialog.openDialog(getParentFragmentManager());
+        SoundUtil.play(requireContext(), R.raw.sound_pop);
     };
 
     @Override

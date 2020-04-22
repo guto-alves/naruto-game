@@ -121,5 +121,4 @@ public class BattleLogAdapter extends RecyclerView.Adapter<BattleLogAdapter.View
         notifyDataSetChanged();
     }
 
-
 }

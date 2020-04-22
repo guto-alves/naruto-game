@@ -17,15 +17,19 @@ import androidx.fragment.app.FragmentManager;
 
 import com.gutotech.narutogame.R;
 
+import java.io.Serializable;
+
 public class QuestionDialogFragment extends DialogFragment {
 
-    public interface QuestionDialogListener {
+    public interface QuestionDialogListener extends Serializable {
         void onPositiveClick();
 
-        void onCancelClick();
+        default void onCancelClick() {
+        }
     }
 
     private static final String EXTRA_QUESTION = "question";
+    private static final String EXTRA_LISTENER = "listener";
     private static final String DIALOG_TAG = "QuestionDialogFragment";
 
     private QuestionDialogListener mListener;
@@ -45,6 +49,39 @@ public class QuestionDialogFragment extends DialogFragment {
         return questionDialog;
     }
 
+    public static QuestionDialogFragment newInstance(Fragment targetFragment, String question) {
+        Bundle args = new Bundle();
+        args.putString(EXTRA_QUESTION, question);
+
+        QuestionDialogFragment questionDialog = new QuestionDialogFragment();
+        questionDialog.setCancelable(false);
+        questionDialog.setArguments(args);
+        questionDialog.setTargetFragment(targetFragment, 1);
+        return questionDialog;
+    }
+
+    public static QuestionDialogFragment newInstance(@StringRes int questionId, QuestionDialogListener listener) {
+        Bundle args = new Bundle();
+        args.putInt(EXTRA_QUESTION, questionId);
+        args.putSerializable(EXTRA_LISTENER, listener);
+
+        QuestionDialogFragment questionDialog = new QuestionDialogFragment();
+        questionDialog.setCancelable(false);
+        questionDialog.setArguments(args);
+        return questionDialog;
+    }
+
+    public static QuestionDialogFragment newInstance(String question, QuestionDialogListener listener) {
+        Bundle args = new Bundle();
+        args.putString(EXTRA_QUESTION, question);
+        args.putSerializable(EXTRA_LISTENER, listener);
+
+        QuestionDialogFragment questionDialog = new QuestionDialogFragment();
+        questionDialog.setCancelable(false);
+        questionDialog.setArguments(args);
+        return questionDialog;
+    }
+
     public void openDialog(FragmentManager fragmentManager) {
         if (fragmentManager.findFragmentByTag(DIALOG_TAG) == null) {
             show(fragmentManager, DIALOG_TAG);
@@ -57,15 +94,26 @@ public class QuestionDialogFragment extends DialogFragment {
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.dialog_question, container, false);
 
+        TextView textView = view.findViewById(R.id.questionTextView);
+
         int resid = getArguments().getInt(EXTRA_QUESTION);
 
-        TextView textView = view.findViewById(R.id.questionTextView);
-        textView.setText(resid);
+        if (resid != 0) {
+            textView.setText(resid);
+        } else {
+            textView.setText(getArguments().getString(EXTRA_QUESTION));
+        }
 
         Button okButton = view.findViewById(R.id.okButton);
         okButton.setOnClickListener(v -> {
             if (mListener != null) {
                 mListener.onPositiveClick();
+            } else {
+                QuestionDialogListener listener = (QuestionDialogListener) getArguments()
+                        .getSerializable(EXTRA_LISTENER);
+                if (listener != null) {
+                    listener.onPositiveClick();
+                }
             }
 
             dismiss();

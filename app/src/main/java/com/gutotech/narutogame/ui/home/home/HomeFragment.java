@@ -18,8 +18,10 @@ import android.widget.Toast;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.repository.AuthRepository;
 import com.gutotech.narutogame.databinding.FragmentHomeBinding;
+import com.gutotech.narutogame.ui.MaintenanceActivity;
 import com.gutotech.narutogame.ui.ProgressDialogFragment;
 import com.gutotech.narutogame.ui.SectionFragment;
+import com.gutotech.narutogame.ui.SplashActivity;
 import com.gutotech.narutogame.ui.adapter.KagesSliderAdapter;
 import com.gutotech.narutogame.ui.adapter.NinjaStatisticsAdapter;
 import com.gutotech.narutogame.ui.adapter.NewsAdapter;
@@ -28,6 +30,7 @@ import com.gutotech.narutogame.ui.home.readnews.ReadNewsFragment;
 import com.gutotech.narutogame.ui.loggedin.LoggedInActivity;
 import com.gutotech.narutogame.utils.FragmentUtils;
 import com.gutotech.narutogame.ui.home.recuperarsenha.RecuperarSenhaFragment;
+import com.gutotech.narutogame.utils.SoundUtil;
 import com.smarteist.autoimageslider.IndicatorAnimations;
 import com.smarteist.autoimageslider.SliderAnimations;
 
@@ -57,7 +60,12 @@ public class HomeFragment extends Fragment implements ResultListener, SectionFra
         });
 
         binding.forgotPasswordTextView.setOnClickListener(v ->
-                FragmentUtils.goTo(getActivity(), new RecuperarSenhaFragment()));
+                FragmentUtils.goTo(getActivity(), new RecuperarSenhaFragment())
+        );
+
+        viewModel.getGameStatus().observe(getViewLifecycleOwner(), aVoid -> {
+            startActivity(new Intent(getActivity(), MaintenanceActivity.class));
+        });
 
         binding.newsRecyclerView.setHasFixedSize(true);
         binding.newsRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(),
@@ -117,12 +125,16 @@ public class HomeFragment extends Fragment implements ResultListener, SectionFra
         mProgressDialog.dismiss();
         startActivity(new Intent(getActivity(), LoggedInActivity.class));
         getActivity().finish();
+        SoundUtil.play(getContext(), R.raw.sound_btn02);
     }
 
     @Override
     public void onFailure(int resId) {
         mProgressDialog.dismiss();
-        Toasty.error(getActivity(), resId, Toast.LENGTH_SHORT).show();
+
+        if (resId != 0) {
+            Toasty.error(getActivity(), resId, Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override

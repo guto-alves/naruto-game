@@ -16,7 +16,7 @@ import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.ui.ResultListener;
 
 public class AuthRepository {
-    private static AuthRepository sInstance;
+    private static final AuthRepository sInstance = new AuthRepository();
 
     private static FirebaseAuth mAuth;
 
@@ -25,9 +25,6 @@ public class AuthRepository {
     }
 
     public static AuthRepository getInstance() {
-        if (sInstance == null) {
-            sInstance = new AuthRepository();
-        }
         return sInstance;
     }
 

@@ -20,6 +20,7 @@ import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.Jutsu;
 import com.gutotech.narutogame.data.model.JutsuInfo;
 import com.gutotech.narutogame.data.firebase.StorageUtils;
+import com.gutotech.narutogame.utils.SoundUtil;
 
 import java.util.List;
 
@@ -91,6 +92,7 @@ public class JutsusAdapter extends RecyclerView.Adapter<JutsusAdapter.ViewHolder
                                 animation.setAnimationListener(mAnimationListener);
                                 holder.itemView.startAnimation(animation);
                                 mOnJutsuClickListener.onJutsuClick(jutsu);
+                                SoundUtil.play(mContext, R.raw.sound_btn);
                                 return super.onSingleTapUp(e);
                             }
 

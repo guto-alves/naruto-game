@@ -16,6 +16,7 @@ import com.gutotech.narutogame.ui.WarningDialogFragment;
 import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.utils.FragmentUtils;
 import com.gutotech.narutogame.data.firebase.StorageUtils;
+import com.gutotech.narutogame.utils.SoundUtil;
 
 public class HospitalRoomFragment extends Fragment implements SectionFragment,
         WarningDialogFragment.WarningDialogListener {
@@ -53,6 +54,8 @@ public class HospitalRoomFragment extends Fragment implements SectionFragment,
                             R.string.dont_enough_money_for_treatment);
                     warningDialog.openDialog(getParentFragmentManager());
                 }
+
+                SoundUtil.play(getContext(), R.raw.sound_pop);
             });
         }
 

@@ -58,7 +58,8 @@ public class VillageMapFragment extends Fragment implements SectionFragment {
         viewModel.getShowWarningDialogEvent().observe(getViewLifecycleOwner(), this::showDialog);
 
         viewModel.getShowProgressDialogEvent().observe(getViewLifecycleOwner(), aVoid ->
-                mProgressDialog.show(getParentFragmentManager(), "ProgressDialogFragment"));
+                mProgressDialog.show(getParentFragmentManager(), "ProgressDialogFragment")
+        );
 
         viewModel.getDismissProgressDialogEvent().observe(getViewLifecycleOwner(), aVoid -> {
             if (mProgressDialog.isVisible()) {

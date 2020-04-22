@@ -24,6 +24,7 @@ import com.gutotech.narutogame.data.model.Message;
 import com.gutotech.narutogame.data.model.Ramen;
 import com.gutotech.narutogame.data.model.Scroll;
 import com.gutotech.narutogame.data.repository.AuthRepository;
+import com.gutotech.narutogame.data.repository.BattlesRepository;
 import com.gutotech.narutogame.data.repository.CharacterRepository;
 import com.gutotech.narutogame.data.repository.ChatRepository;
 import com.gutotech.narutogame.data.repository.MapRepository;
@@ -309,14 +310,6 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
         mCurrentSection.setValue(new ChangeImageFragment());
     }
 
-    public void onTitleSelected(int position) {
-        if (position == 0) {
-            mCharacter.setTitleIndex(0);
-        } else {
-            mCharacter.setTitleIndex(mCharacter.getTitles().get(position));
-        }
-    }
-
     @Override
     public boolean onChildClick(ExpandableListView parent, View v, int groupPosition,
                                 int childPosition, long id) {
@@ -384,15 +377,17 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
         } else if (!mCharacter.isHospital() && !mCharacter.isBattle() && !mCharacter.isDojoWaitQueue()) {
             if (mCharacter.isMission()) {
                 sections3.add(new MissionsWaitingFragment());
-            } else if (mCharacter.getGraduationId() == 0) {
-                sections3.add(new TasksFragment());
             } else {
-                sections3.add(new MissionsFragment());
-                sections3.add(new VillageMapFragment());
-            }
+                if (mCharacter.getGraduationId() == 0) {
+                    sections3.add(new TasksFragment());
+                } else {
+                    sections3.add(new MissionsFragment());
+                    sections3.add(new VillageMapFragment());
+                }
 
-            sections3.add(new RamenShopFragment());
-            sections3.add(new NinjaShopFragment());
+                sections3.add(new RamenShopFragment());
+                sections3.add(new NinjaShopFragment());
+            }
         }
 
         List<SectionFragment> sections4 = new ArrayList<>();
@@ -608,6 +603,7 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
                     mCharacter.setDaysOfFidelity(0);
                 }
 
+                BattlesRepository.getInstance().clearDuelsCount();
                 mCharacter.setFidelityReward(true);
                 mCharacter.setTotalDailyMissions(0);
                 mCharacter.setNpcDailyCombat(0);

@@ -34,6 +34,7 @@ import com.gutotech.narutogame.ui.adapter.JutsusAdapter;
 import com.gutotech.narutogame.ui.playing.currentvillage.VillageMapFragment;
 import com.gutotech.narutogame.utils.FragmentUtils;
 import com.gutotech.narutogame.data.firebase.StorageUtils;
+import com.gutotech.narutogame.utils.SoundUtil;
 import com.gutotech.narutogame.utils.SpannableStringBuilderCustom;
 
 public class DojoBattlePvpFragment extends Fragment implements SectionFragment {
@@ -115,6 +116,7 @@ public class DojoBattlePvpFragment extends Fragment implements SectionFragment {
                     });
 
             showBattleResult(R.string.end_of_the_battle, description.getString());
+            SoundUtil.play(getContext(), R.raw.win);
         });
 
         mViewModel.getShowLostEvent().observe(getViewLifecycleOwner(), aVoid -> {
@@ -132,11 +134,12 @@ public class DojoBattlePvpFragment extends Fragment implements SectionFragment {
                     });
 
             showBattleResult(R.string.too_bad, description.getString());
+            SoundUtil.play(getContext(), R.raw.lose);
         });
 
         mViewModel.getShowDrawnEvent().observe(getViewLifecycleOwner(), aVoid -> {
             SpannableStringBuilderCustom description = new SpannableStringBuilderCustom(getContext());
-            description.append(getString(R.string.drawn_description));
+            description.append(R.string.drawn_description);
             description.append();
             description.append(R.string.hospital,
                     new ForegroundColorSpan(Color.BLUE),
@@ -166,6 +169,7 @@ public class DojoBattlePvpFragment extends Fragment implements SectionFragment {
             description.append();
             description.append(R.string.to_preceed);
             showBattleResult(R.string.too_bad, description.getString());
+            SoundUtil.play(getContext(), R.raw.lose);
         });
 
         FragmentUtils.setSectionTitle(getActivity(), R.string.section_dojo);
@@ -184,6 +188,7 @@ public class DojoBattlePvpFragment extends Fragment implements SectionFragment {
         popupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         popupWindow.setOutsideTouchable(true);
         popupWindow.showAsDropDown(view);
+        SoundUtil.play(getContext(), R.raw.sound_pop);
     }
 
     private void showJutsuInfo(Object[] objects) {
@@ -201,6 +206,7 @@ public class DojoBattlePvpFragment extends Fragment implements SectionFragment {
     private void showWarningDialog(@StringRes int resid) {
         WarningDialogFragment dialog = WarningDialogFragment.newInstance(resid);
         dialog.openDialog(getParentFragmentManager());
+        SoundUtil.play(getContext(), R.raw.sound_pop);
     }
 
     private void showBattleResult(@StringRes int title, SpannableStringBuilder description) {

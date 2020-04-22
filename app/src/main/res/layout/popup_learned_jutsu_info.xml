@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="jutsu"
+            type="com.gutotech.narutogame.data.model.Jutsu" />
+
+        <variable
+            name="jutsuInfo"
+            type="com.gutotech.narutogame.data.model.JutsuInfo" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_popup"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{jutsuInfo.name}"
+                android:textColor="#26b1f9"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/combat_values"
+                android:textColor="@android:color/holo_orange_dark"
+                android:textSize="12sp" />
+
+            <View
+                android:id="@+id/divider3"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="3dp"
+                android:background="@android:color/darker_gray" />
+
+            <TextView
+                android:id="@+id/effectsTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/effects_on_your_character"
+                android:textColor="@android:color/white"
+                android:textSize="12sp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/atkNinGenTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/layout_icones_atk_magico"
+                android:drawableLeft="@drawable/layout_icones_atk_magico"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical"
+                android:text="@{@string/label_atk_nin_gen(jutsu.atk)}"
+                android:textColor="@android:color/white"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/atkTaiBukTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/layout_icones_atk_fisico"
+                android:drawableLeft="@drawable/layout_icones_atk_fisico"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical"
+                android:text="@{@string/label_atk_tai_buk(jutsu.atk)}"
+                android:textColor="@android:color/white"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/defTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/layout_icones_shield"
+                android:drawableLeft="@drawable/layout_icones_shield"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical"
+                android:text="@{@string/label_base_defense(jutsu.baseDefense)}"
+                android:textColor="@android:color/white"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/accTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/layout_icones_precisao"
+                android:drawableLeft="@drawable/layout_icones_precisao"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical"
+                android:text="@{@string/label_accuracy(jutsu.accuracy)}"
+                android:textColor="@android:color/white"
+                android:textSize="12sp" />
+
+            <View
+                android:id="@+id/divider5"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="3dp"
+                android:background="@android:color/darker_gray" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="3dp"
+                    android:layout_marginRight="3dp"
+                    android:text="@string/label_consumes_in_combat"
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:drawableStart="@drawable/layout_icones_p_chakra"
+                    android:drawableLeft="@drawable/layout_icones_p_chakra"
+                    android:gravity="center_vertical"
+                    android:text="@{String.valueOf(jutsu.consumesChakra)}"
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/layout_icones_p_stamina"
+                    android:drawableLeft="@drawable/layout_icones_p_stamina"
+                    android:gravity="center_vertical"
+                    android:text="@{String.valueOf(jutsu.consumesStamina)}"
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/divider7"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="3dp"
+                android:background="@android:color/darker_gray" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/textView49"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_required_seal"
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ProgressBar
+                    android:id="@+id/requiredSealProgressBar"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:background="@drawable/layout_barra_exp_barra_vazia_151"
+                    android:progressDrawable="@drawable/progressbar_exp_340"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView49"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/requiredSealTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:text="@string/progress_description_of"
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/requiredSealProgressBar"
+                    app:layout_constraintStart_toStartOf="@+id/requiredSealProgressBar"
+                    app:layout_constraintTop_toTopOf="@+id/requiredSealProgressBar" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</layout>

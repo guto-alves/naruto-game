@@ -15,6 +15,7 @@ import com.gutotech.narutogame.data.model.Classe;
 import com.gutotech.narutogame.data.model.Jutsu;
 import com.gutotech.narutogame.data.model.JutsuInfo;
 import com.gutotech.narutogame.databinding.PopupJutsuInfoBinding;
+import com.gutotech.narutogame.utils.SoundUtil;
 import com.gutotech.narutogame.utils.SpannableStringBuilderCustom;
 
 public class JutsuInfoPopupWindow extends PopupWindow {
@@ -108,5 +109,11 @@ public class JutsuInfoPopupWindow extends PopupWindow {
 
     void setBattleLog(BattleLog battleLog) {
         setJutsu(battleLog.getJutsu(), battleLog.getChanceOfSuccess());
+    }
+
+    @Override
+    public void showAsDropDown(View anchor) {
+        super.showAsDropDown(anchor);
+        SoundUtil.play(mContext, R.raw.sound_pop);
     }
 }

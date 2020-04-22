@@ -20,6 +20,7 @@ import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.WarningDialogFragment;
 import com.gutotech.narutogame.ui.adapter.LotteryItemsAdapter;
 import com.gutotech.narutogame.utils.FragmentUtils;
+import com.gutotech.narutogame.utils.SoundUtil;
 
 import java.security.SecureRandom;
 import java.util.concurrent.ExecutorService;
@@ -60,6 +61,7 @@ public class NinjaLuckyFragment extends Fragment implements SectionFragment {
     private void showWarningDialog(@StringRes int resid) {
         WarningDialogFragment dialog = WarningDialogFragment.newInstance(resid);
         dialog.openDialog(getParentFragmentManager());
+        SoundUtil.play(getContext(), R.raw.sound_pop);
     }
 
     private void startAnimation() {

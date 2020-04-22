@@ -1,12 +1,13 @@
 package com.gutotech.narutogame.ui.playing.currentvillage;
 
+import android.app.Application;
 import android.os.CountDownTimer;
-import android.os.SystemClock;
 
+import androidx.annotation.NonNull;
 import androidx.databinding.ObservableField;
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
 import com.gutotech.narutogame.data.firebase.FirebaseFunctionsUtils;
 import com.gutotech.narutogame.data.model.CharOn;
@@ -17,13 +18,14 @@ import com.gutotech.narutogame.data.model.Reward;
 import com.gutotech.narutogame.data.model.Score;
 import com.gutotech.narutogame.data.model.TimeMission;
 import com.gutotech.narutogame.data.repository.MissionRepository;
+import com.gutotech.narutogame.utils.NotificationsUtils;
 import com.gutotech.narutogame.utils.SingleLiveEvent;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class MissionsWaitingViewModel extends ViewModel {
+public class MissionsWaitingViewModel extends AndroidViewModel {
     public final ObservableField<String> countDown = new ObservableField<>("--:--:--");
 
     private TimeMission mTimeMission;
@@ -36,7 +38,8 @@ public class MissionsWaitingViewModel extends ViewModel {
 
     private Character mCharacter;
 
-    public MissionsWaitingViewModel() {
+    public MissionsWaitingViewModel(@NonNull Application application) {
+        super(application);
         mCharacter = CharOn.character;
 
         mMissionRepository = MissionRepository.getInstance();
@@ -83,6 +86,7 @@ public class MissionsWaitingViewModel extends ViewModel {
     }
 
     void onCancelMissionButtonPressed() {
+        NotificationsUtils.cancelAlarm(getApplication());
         mMissionRepository.finishTimeMission();
         CharOn.character.setMission(false);
     }

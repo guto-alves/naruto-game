@@ -11,11 +11,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.databinding.FragmentMissionsWaitingBinding;
 import com.gutotech.narutogame.ui.QuestionDialogFragment;
 import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.utils.FragmentUtils;
+import com.gutotech.narutogame.utils.SoundUtil;
 
 public class MissionsWaitingFragment extends Fragment implements SectionFragment,
         QuestionDialogFragment.QuestionDialogListener {
@@ -43,6 +46,10 @@ public class MissionsWaitingFragment extends Fragment implements SectionFragment
             mBinding.rewardExpTextView.setText(String.valueOf(rewards.get(0)));
             mBinding.rewardRyousTextView.setText(getString(R.string.ry, rewards.get(1)));
             mBinding.missionCompletedLayout.setVisibility(View.VISIBLE);
+
+            YoYo.with(Techniques.RubberBand)
+                    .duration(1200)
+                    .playOn(mBinding.missionCompletedLayout);
         });
 
         mBinding.cancelButton.setOnClickListener(v -> showQuestionDialog());
@@ -56,15 +63,12 @@ public class MissionsWaitingFragment extends Fragment implements SectionFragment
         QuestionDialogFragment questionDialog = QuestionDialogFragment.newInstance(
                 this, R.string.question_cancel_mission);
         questionDialog.openDialog(getParentFragmentManager());
+        SoundUtil.play(requireContext(), R.raw.sound_pop);
     }
 
     @Override
     public void onPositiveClick() {
         mViewModel.onCancelMissionButtonPressed();
-    }
-
-    @Override
-    public void onCancelClick() {
     }
 
     @Override

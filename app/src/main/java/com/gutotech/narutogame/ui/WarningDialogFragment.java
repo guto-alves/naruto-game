@@ -29,6 +29,12 @@ public class WarningDialogFragment extends DialogFragment {
 
     private WarningDialogListener mListener;
 
+    public static WarningDialogFragment show(@StringRes int warningId, FragmentManager manager) {
+        WarningDialogFragment dialog = newInstance(null, warningId);
+        dialog.openDialog(manager);
+        return dialog;
+    }
+
     public static WarningDialogFragment newInstance(String warning) {
         Bundle bundle = new Bundle();
         bundle.putString(EXTRA_WARNING, warning);

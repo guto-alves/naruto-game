@@ -8,6 +8,7 @@ import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.model.Character;
 import com.gutotech.narutogame.data.model.Member;
 import com.gutotech.narutogame.data.model.Team;
+import com.gutotech.narutogame.data.repository.ChatRepository;
 import com.gutotech.narutogame.data.repository.TeamRepository;
 import com.gutotech.narutogame.ui.adapter.TeamMembersAdapter;
 import com.gutotech.narutogame.ui.adapter.TeamRequestersAdapter;
@@ -64,8 +65,11 @@ public class TeamDetailsViewModel extends ViewModel implements
     }
 
     private void deleteTeam() {
-        mTeamRepository.remove(mTeam.getValue().getName());
-        mTeamRepository.removeMember(CharOn.character.getId(), mTeam.getValue().getName());
+        String teamName = mTeam.getValue().getName();
+
+        mTeamRepository.remove(teamName);
+        mTeamRepository.removeMember(CharOn.character.getId(), teamName);
+        ChatRepository.getInstance().deleteMessages("Team-" + teamName);
         CharOn.character.setTeam("");
     }
 

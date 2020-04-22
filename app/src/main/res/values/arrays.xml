@@ -1,37 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string-array name="sexos_array1">
-        <item>Male</item>
-        <item>Female</item>
-    </string-array>
-
-    <string-array name="sexos_array2">
-        <item>Female</item>
-        <item>Male</item>
-    </string-array>
-
-    <string-array name="chat_channel_list">
-        <item>@string/village</item>
-        <item>World</item>
-    </string-array>
-
     <string-array name="ticket_categories_list">
         <item>Bug</item>
         <item>VIP</item>
         <item>Doubts</item>
         <item>Suggestions</item>
         <item>Others</item>
-    </string-array>
-
-    <string-array name="attribute_percent_list">
-        <item>10</item>
-        <item>20</item>
-        <item>30</item>
-        <item>40</item>
-        <item>50</item>
-        <item>70</item>
-        <item>100</item>
     </string-array>
 
     <string-array name="villages_list">

@@ -1,6 +1,6 @@
 package com.gutotech.narutogame.data.model;
 
-public class Arma extends ShopItem {
+public class Weapon extends ShopItem {
     private int atakOuDef;
     private int consomeChakra;
     private int consomeStamina;
@@ -12,7 +12,7 @@ public class Arma extends ShopItem {
     private Tipo tipo;
     private Alcance alcance;
 
-    public Arma() {
+    public Weapon() {
     }
 
 //    // para armas de longo alcance

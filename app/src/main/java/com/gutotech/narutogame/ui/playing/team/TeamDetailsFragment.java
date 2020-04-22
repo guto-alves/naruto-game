@@ -28,6 +28,7 @@ import com.gutotech.narutogame.ui.adapter.TeamMembersAdapter;
 import com.gutotech.narutogame.ui.adapter.TeamRequestersAdapter;
 import com.gutotech.narutogame.utils.FragmentUtils;
 import com.gutotech.narutogame.data.firebase.StorageUtils;
+import com.gutotech.narutogame.utils.SoundUtil;
 
 import es.dmoral.toasty.Toasty;
 
@@ -100,6 +101,7 @@ public class TeamDetailsFragment extends Fragment implements SectionFragment,
             QuestionDialogFragment questionDialogFragment = QuestionDialogFragment.newInstance(
                     this, R.string.question_leave_the_team);
             questionDialogFragment.openDialog(getParentFragmentManager());
+            SoundUtil.play(requireContext(), R.raw.sound_pop);
         });
 
         binding.changeImageButton.setOnClickListener(v -> {
@@ -118,10 +120,6 @@ public class TeamDetailsFragment extends Fragment implements SectionFragment,
     @Override
     public void onPositiveClick() {
         mViewModel.leaveTeam(CharOn.character.getId());
-    }
-
-    @Override
-    public void onCancelClick() {
     }
 
     @Override

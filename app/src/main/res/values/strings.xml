@@ -976,7 +976,7 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="to_preceed">to proceed</string>
     <string name="waiting_your_move">Waiting your Move</string>
     <string name="empate">DRAW!</string>
-    <string name="drawn_description">Because they were both very tired, the match ended in a draw!\n\nGo to</string>
+    <string name="drawn_description">"Because they were both very tired, the match ended in a draw!\n\nGo to "</string>
     <string name="combat_won_description">Nicely Done! You have won the battle!\nYour reward is RY$
         %d and %d experience points\n\nGo to back</string>
     <string name="error_updating_name">Error updating name</string>
@@ -2189,8 +2189,8 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="last_answered_by">Last Answered by</string>
     <string name="answer_added">Answer added!</string>
     <string name="training_points">TRAINING POINTS</string>
-    <string name="to_distribute_in_their_attributes">to distribute in their attributes.</string>
-    <string name="you_still_have">You still have</string>
+    <string name="to_distribute_in_their_attributes">" to distribute in their attributes."</string>
+    <string name="you_still_have">"You still have "</string>
     <string name="total_free_points">%d Free Points</string>
     <string name="buffs_and_debuffs"><![CDATA[Buffs & Debuffs]]></string>
     <string name="jutsu_description">Jutsu / Description</string>
@@ -2200,10 +2200,10 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="be_chuunin">• Be Chuunin</string>
     <string name="your_class_can_t_be_taijutsu_or_bukijutsu">• Your class can\'t be Taijutsu or Bukijutsu</string>
     <string name="fuuton_description">High velocity techniques. This release has huge advantage against Raiton (Thunder), but has huge weakness against Katon (Fire).</string>
-    <string name="raiton_description">Fast moving and high impact techniques. This release has huge advantage against Doton (Earth), but has huge weakness agains Fuuton (Wind).</string>
+    <string name="raiton_description">Fast moving and high impact techniques. This release has huge advantage against Doton (Earth), but has huge weakness against Fuuton (Wind).</string>
     <string name="doton_description">High defensive and crushing techniques. This release has huge advantage against Suiton (Water), but has huge weakness against Raiton (Thunder).</string>
     <string name="suiton_description">Multipurpose techniques. This release has huge advantage against Katon (Fire), but has huge weakness against Doton (Earth).</string>
-    <string name="learn_element_question">Are you sure do you want to learn this element?</string>
+    <string name="learn_element_question">Are you sure do you want to learn the &lt;b>%s&lt;/b> element?</string>
     <string name="elements">Elements</string>
     <string name="about_elements">ABOUT ELEMENTS</string>
     <string name="elements_desc">Elements are present in all ninjas, and detemines what jutsus they can use.</string>
@@ -2211,7 +2211,11 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="label_required_seal">Required Seal:</string>
     <string name="progress_description_of">%d of %d</string>
     <string name="how_the_jutsu_training_works">HOW THE JUTSU TRAINING WORKS</string>
-    <string name="how_the_jutsu_training_works_des">Após cada batalha PVP, todos os jutsus que foram usados ganham 1 ponto de habilidade. Para poder treinar (upar de level) um jutsu são requeridos, no mínino, 10 pontos de habilidade. Ou seja, você precisa usar ele 10 vezes. Como cada Jutsu possui 3 nívels, para alcançar a força máxima de um Jutsu você precisaria usar ele em 30 batalhas PVP.</string>
+    <string name="how_the_jutsu_training_works_des">After each PVP battle, your character gains 1 point
+        of skill (if you lose by inactivity you will not earn the point).\nTo be able to train
+        (leveling up) a jutsu requires at least 5 skill points, that is, you need to fight 5 PVP
+        battles.\nAs each Jutsu has 3 levels, to reach maximum strength of a Jutsu you need to have
+        at least 15 points.</string>
     <string name="enhancements">Enhancements</string>
     <string name="maintenance_status">The game is currently undergoing maintenance in order to update
         the version of the game.\nWe apologize for any inconvenience caused.\nWe currently plan to
@@ -2360,9 +2364,21 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="notifications">Notifications</string>
     <string name="save">Save</string>
     <string name="sound_fx">Sound FX</string>
-    <string name="plus">+ %d</string>
-    <string name="percent">%d %%</string>
+    <string name="plus" translatable="false">+%d</string>
+    <string name="percent" translatable="false">%d %%</string>
     <string name="upgrade">Upgrade</string>
-
+    <string name="tsuru_kame" translatable="false">Tsuru-Kame</string>
+    <string name="tsuru_kame_des">A look-like turtle shell, this shield has a huge defensive power,
+        and also can throw bombs and senbons.</string>
+    <string name="congrats_learned_new_element">CONGRATS, YOU\'VE LEARNED HOW TO MANIPULATE A NEW ELEMENT!</string>
+    <string name="learned_new_element_desc">Go to <annotation link="link">Elemental Jutsus</annotation> and check what you can learn!</string>
+    <string name="unlearned">Unlearned</string>
+    <string name="unlearning_warning">Unlearning this element will make you lose all abilities and
+        jutsus from itself.\nAlso you will need 3000 Ryous.\nProceed?</string>
+    <string name="unlearned_element_title">YOU HAVE UNLEARNED AN ELEMENT!</string>
+    <string name="unlearned_element_description">Also have unlearned any related jutsu!</string>
+    <string name="no_elements_selected">No elements selected!</string>
+    <string name="mission_finished">Mission Complete</string>
+    <string name="mission_finished_description">%s completed the mission!</string>
 
 </resources>

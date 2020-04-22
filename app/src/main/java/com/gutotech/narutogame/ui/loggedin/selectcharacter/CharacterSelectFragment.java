@@ -24,6 +24,7 @@ import com.gutotech.narutogame.ui.adapter.CharacterSelectAdapter;
 import com.gutotech.narutogame.ui.loggedin.newcharacteer.CharacterCreateFragment;
 import com.gutotech.narutogame.ui.playing.PlayingActivity;
 import com.gutotech.narutogame.utils.FragmentUtils;
+import com.gutotech.narutogame.utils.SoundUtil;
 
 import es.dmoral.toasty.Toasty;
 
@@ -101,12 +102,14 @@ public class CharacterSelectFragment extends Fragment implements SectionFragment
     @Override
     public void onSuccess() {
         startActivity(new Intent(getActivity(), PlayingActivity.class));
+        SoundUtil.play(getContext(), R.raw.sound_btn02);
         getActivity().finish();
     }
 
     @Override
     public void onFailure(@StringRes int resId) {
         Toasty.info(getContext(), resId, Toast.LENGTH_SHORT).show();
+        SoundUtil.play(getContext(), R.raw.sound_btn02);
     }
 
     @Override

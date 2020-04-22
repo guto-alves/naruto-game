@@ -4,7 +4,6 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -118,8 +117,8 @@ public class ItemShopAdapter extends RecyclerView.Adapter<ItemShopAdapter.ViewHo
             });
 
             holder.requerImageView.setOnClickListener(v -> {
-                DialogFragment dialog = RequirementDialogFragment.getInstance(itemShop.getRequirements());
-                dialog.show(mFragmentManager, "RequirementDialogFragment");
+                RequirementDialogFragment dialog = RequirementDialogFragment.getInstance(itemShop.getRequirements());
+                dialog.openDialog(mFragmentManager, mContext);
             });
 
             holder.buyButton.setOnClickListener(v -> {

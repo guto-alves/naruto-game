@@ -9,6 +9,7 @@ import com.gutotech.narutogame.data.model.Character;
 import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.repository.CharacterRepository;
 import com.gutotech.narutogame.ui.adapter.DistributedPointsAdapter;
+import com.gutotech.narutogame.utils.SingleLiveEvent;
 
 import java.util.List;
 
@@ -19,6 +20,8 @@ public class AcademyTrainingViewModel extends ViewModel
 
     private MutableLiveData<Integer> mFreePoints = new MutableLiveData<>();
     private MutableLiveData<List<Integer>> mDistributedPoints = new MutableLiveData<>();
+
+    private SingleLiveEvent<Void> mPlaySound = new SingleLiveEvent<>();
 
     public AcademyTrainingViewModel() {
         mCharacter = CharOn.character;
@@ -33,6 +36,7 @@ public class AcademyTrainingViewModel extends ViewModel
         mCharacter.getExtrasInformation().incrementDistributedPoints(quantitySelected);
         CharacterRepository.getInstance().save(mCharacter);
         updateUI();
+        mPlaySound.call();
     }
 
     @Override
@@ -44,6 +48,7 @@ public class AcademyTrainingViewModel extends ViewModel
         mCharacter.validateJutsus();
         CharacterRepository.getInstance().save(mCharacter);
         updateUI();
+        mPlaySound.call();
     }
 
     private void updateUI() {
@@ -57,5 +62,9 @@ public class AcademyTrainingViewModel extends ViewModel
 
     LiveData<List<Integer>> getDistributedPoints() {
         return mDistributedPoints;
+    }
+
+    LiveData<Void> getPlaySound() {
+        return mPlaySound;
     }
 }

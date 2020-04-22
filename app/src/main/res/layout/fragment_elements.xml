@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="com.gutotech.narutogame.data.model.Element" />
+
+        <variable
+            name="viewModel"
+            type="com.gutotech.narutogame.ui.playing.character.ElementsViewModel" />
+    </data>
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.playing.character.ElementsFragment">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <include
+                android:id="@+id/sectionMsgLayout"
+                layout="@layout/section_msg" />
+
+            <include
+                android:id="@+id/actionMsgLayout"
+                layout="@layout/section_msg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:visibility="gone" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout5"
+                android:layout_width="320dp"
+                android:layout_height="280dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/msgLayout">
+
+                <ImageView
+                    android:id="@+id/bgElementsImageView"
+                    android:layout_width="300dp"
+                    android:layout_height="250dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:scaleType="center"
+                    android:src="@drawable/bg_elements"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.493"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageButton
+                    android:id="@+id/katonImageButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="40dp"
+                    android:layout_marginRight="40dp"
+                    android:background="@{viewModel.elementSelected == Element.KATON ? @drawable/bg_element_katon : @drawable/bg_element_disabled}"
+                    android:onClick="@{(v) -> viewModel.onElementClicked(v, Element.KATON)}"
+                    android:src="@drawable/layout_element_1w"
+                    app:layout_constraintEnd_toEndOf="@+id/bgElementsImageView"
+                    app:layout_constraintStart_toStartOf="@+id/bgElementsImageView"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageButton
+                    android:id="@+id/fuutonImageButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="82dp"
+                    android:layout_marginEnd="28dp"
+                    android:layout_marginRight="28dp"
+                    android:background="@{viewModel.elementSelected == Element.FUUTON ? @drawable/bg_element_fuuton : @drawable/bg_element_disabled}"
+                    android:onClick="@{(v) -> viewModel.onElementClicked(v, Element.FUUTON)}"
+                    android:src="@drawable/layout_elementos_2w"
+                    app:layout_constraintEnd_toEndOf="@+id/bgElementsImageView"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageButton
+                    android:id="@+id/raitonImageButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="69dp"
+                    android:layout_marginRight="69dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@{viewModel.elementSelected == Element.RAITON ? @drawable/bg_element_raiton : @drawable/bg_element_disabled}"
+                    android:onClick="@{(v) -> viewModel.onElementClicked(v, Element.RAITON)}"
+                    android:src="@drawable/layout_elementos_3w"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/bgElementsImageView" />
+
+                <ImageButton
+                    android:id="@+id/dotonImageButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="31dp"
+                    android:layout_marginLeft="31dp"
+                    android:layout_marginBottom="9dp"
+                    android:background="@{viewModel.elementSelected == Element.DOTON ? @drawable/bg_element_doton : @drawable/bg_element_disabled}"
+                    android:onClick="@{(v) -> viewModel.onElementClicked(v, Element.DOTON)}"
+                    android:src="@drawable/layout_elementos_4w"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/bgElementsImageView" />
+
+                <ImageButton
+                    android:id="@+id/suitionImageButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="42dp"
+                    android:layout_marginRight="42dp"
+                    android:background="@{viewModel.elementSelected == Element.SUITON ? @drawable/bg_element_suiton : @drawable/bg_element_disabled}"
+                    android:onClick="@{(v) -> viewModel.onElementClicked(v, Element.SUITON)}"
+                    android:src="@drawable/layout_elementos_5w"
+                    app:layout_constraintBottom_toTopOf="@+id/dotonImageButton"
+                    app:layout_constraintEnd_toEndOf="@+id/dotonImageButton"
+                    app:layout_constraintTop_toTopOf="@+id/bgElementsImageView" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <Button
+                android:id="@+id/learnButton"
+                style="@style/ButtonTheme"
+                android:layout_gravity="center"
+                android:layout_marginTop="32dp"
+                android:text="@string/learn"
+                android:visibility="@{viewModel.learnButtonVisible ? View.VISIBLE : View.GONE}" />
+
+            <Button
+                android:id="@+id/unlearnedButton"
+                style="@style/ButtonTheme"
+                android:layout_gravity="center"
+                android:layout_marginTop="32dp"
+                android:text="@string/unlearned"
+                android:visibility="@{viewModel.unlearningButtonVisible ? View.VISIBLE : View.GONE}" />
+
+        </LinearLayout>
+    </ScrollView>
+</layout>

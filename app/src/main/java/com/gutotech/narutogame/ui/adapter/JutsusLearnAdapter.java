@@ -4,7 +4,6 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -32,7 +31,7 @@ public class JutsusLearnAdapter extends RecyclerView.Adapter<JutsusLearnAdapter.
         void onTrainClick(Jutsu jutsu);
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         private ImageView jutsuImageView;
         private TextView nameTextView;
         private TextView descriptionTextView;
@@ -42,7 +41,6 @@ public class JutsusLearnAdapter extends RecyclerView.Adapter<JutsusLearnAdapter.
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-
             jutsuImageView = itemView.findViewById(R.id.jutsuImageView);
             nameTextView = itemView.findViewById(R.id.nameTextView);
             descriptionTextView = itemView.findViewById(R.id.descriptionTextView);
@@ -88,14 +86,16 @@ public class JutsusLearnAdapter extends RecyclerView.Adapter<JutsusLearnAdapter.
 
             if (validateRequirements(jutsuInfo.requirements, folded)) {
                 holder.trainButton.setEnabled(true);
+                holder.trainButton.setAlpha(1.0f);
             } else {
                 holder.trainButton.setEnabled(false);
+                holder.trainButton.setAlpha(0.5f);
             }
 
             holder.requerImageView.setOnClickListener(v -> {
-                DialogFragment dialog = RequirementDialogFragment.getInstance(
+                RequirementDialogFragment dialog = RequirementDialogFragment.getInstance(
                         jutsuInfo.requirements, folded);
-                dialog.show(mFragmentManager, "RequirementDialogFragment");
+                dialog.openDialog(mFragmentManager, mContext);
             });
 
             holder.trainButton.setOnClickListener(v -> mOnTrainClickListener.onTrainClick(jutsu));

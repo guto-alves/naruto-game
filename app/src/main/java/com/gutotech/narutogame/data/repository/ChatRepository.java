@@ -35,6 +35,14 @@ public class ChatRepository {
         messageRef.child("chats").child(channel).child(key).setValue(message);
     }
 
+    public void deleteMessages(String channel) {
+        DatabaseReference channelRef = FirebaseConfig.getDatabase()
+                .child("chats")
+                .child(channel);
+
+        channelRef.removeValue();
+    }
+
     private DatabaseReference mMessagesRef;
     private ChildEventListener mMessagesEventListener;
 

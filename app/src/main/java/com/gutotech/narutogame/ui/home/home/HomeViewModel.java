@@ -10,11 +10,13 @@ import com.gutotech.narutogame.data.model.Character;
 import com.gutotech.narutogame.data.model.News;
 import com.gutotech.narutogame.data.model.NinjaStatistics;
 import com.gutotech.narutogame.data.repository.AuthRepository;
+import com.gutotech.narutogame.data.repository.GameStatusRepository;
 import com.gutotech.narutogame.data.repository.NewsRepository;
 import com.gutotech.narutogame.data.repository.NinjaStatisticsRepository;
 import com.gutotech.narutogame.data.repository.PlayerRepository;
 import com.gutotech.narutogame.data.repository.KagesRepository;
 import com.gutotech.narutogame.ui.ResultListener;
+import com.gutotech.narutogame.utils.SingleLiveEvent;
 
 import java.util.List;
 
@@ -26,6 +28,8 @@ public class HomeViewModel extends ViewModel {
     private PlayerRepository mPlayerRepository;
 
     private ResultListener mAuthListener;
+
+    private SingleLiveEvent<Void> mGameStatus = new SingleLiveEvent<>();
 
     public HomeViewModel() {
         mAuthRepository = AuthRepository.getInstance();
@@ -44,6 +48,10 @@ public class HomeViewModel extends ViewModel {
         return KagesRepository.getInstance().getKages();
     }
 
+    LiveData<Void> getGameStatus() {
+        return mGameStatus;
+    }
+
     void setAuthListener(ResultListener authListener) {
         mAuthListener = authListener;
     }
@@ -51,26 +59,33 @@ public class HomeViewModel extends ViewModel {
     public void onPlayButtonPressed() {
         mAuthListener.onStarted();
 
-        if (validateFields()) {
-            mAuthRepository.signIn(email, password, new AuthRepository.Completable() {
-                @Override
-                public void onComplete() {
-                    mPlayerRepository.setSignedIn(true, successful -> {
-                        if (successful) {
-                            mAuthListener.onSuccess();
-                        } else {
-                            mAuthRepository.signOut();
-                            mAuthListener.onFailure(R.string.error_multiple_logins);
+        GameStatusRepository.getInstance().getStatus(status -> {
+            if (status.equals(GameStatusRepository.VERSION_NAME)) {
+                if (validateFields()) {
+                    mAuthRepository.signIn(email, password, new AuthRepository.Completable() {
+                        @Override
+                        public void onComplete() {
+                            mPlayerRepository.setSignedIn(true, successful -> {
+                                if (successful) {
+                                    mAuthListener.onSuccess();
+                                } else {
+                                    mAuthRepository.signOut();
+                                    mAuthListener.onFailure(R.string.error_multiple_logins);
+                                }
+                            });
+                        }
+
+                        @Override
+                        public void onError(int resId) {
+                            mAuthListener.onFailure(resId);
                         }
                     });
                 }
-
-                @Override
-                public void onError(int resId) {
-                    mAuthListener.onFailure(resId);
-                }
-            });
-        }
+            } else {
+                mAuthListener.onFailure(0);
+                mGameStatus.call();
+            }
+        });
     }
 
     private boolean validateFields() {

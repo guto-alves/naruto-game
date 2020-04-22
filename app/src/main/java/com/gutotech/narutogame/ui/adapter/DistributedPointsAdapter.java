@@ -98,16 +98,18 @@ public class DistributedPointsAdapter extends RecyclerView.Adapter<DistributedPo
             holder.redistributeQuantitySpinner.setAdapter(mRedistributePointsAdapter);
 
             if (mFreePoints > 0) {
-                holder.trainButton.setEnabled(true);
-                holder.quantitySpinner.setVisibility(View.VISIBLE);
                 holder.trainButton.setOnClickListener(v ->
                         mListener.onTrainButtonClick(position,
                                 (Integer) holder.quantitySpinner.getSelectedItem())
                 );
+                holder.trainButton.setEnabled(true);
+                holder.trainButton.setAlpha(1f);
+                holder.quantitySpinner.setVisibility(View.VISIBLE);
             } else {
-                holder.trainButton.setEnabled(false);
-                holder.quantitySpinner.setVisibility(View.GONE);
                 holder.trainButton.setOnClickListener(null);
+                holder.trainButton.setEnabled(false);
+                holder.trainButton.setAlpha(0.7f);
+                holder.quantitySpinner.setVisibility(View.GONE);
             }
 
             if (mRedistributePoints > 0 && points > 0) {

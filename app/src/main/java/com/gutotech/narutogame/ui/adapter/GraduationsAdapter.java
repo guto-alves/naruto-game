@@ -77,14 +77,16 @@ public class GraduationsAdapter extends RecyclerView.Adapter<GraduationsAdapter.
         holder.descriptionTextView.setText(GraduationUtils.getDescription(graduationId));
 
         holder.requerImageView.setOnClickListener(v -> {
-            DialogFragment dialog = RequirementDialogFragment.getInstance(graduation.requirements);
-            dialog.show(mFragmentManager, "RequirementDialogFragment");
+            RequirementDialogFragment dialog = RequirementDialogFragment.getInstance(graduation.requirements);
+            dialog.openDialog(mFragmentManager, mContext);
         });
 
         if (validateRequirements(graduation.requirements)) {
             holder.graduateButton.setEnabled(true);
+            holder.graduateButton.setAlpha(1.0f);
         } else {
             holder.graduateButton.setEnabled(false);
+            holder.graduateButton.setAlpha(0.7f);
         }
 
         if (graduationId <= CharOn.character.getGraduationId()) {

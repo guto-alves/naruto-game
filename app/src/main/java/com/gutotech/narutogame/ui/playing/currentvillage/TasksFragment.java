@@ -13,11 +13,13 @@ import android.view.ViewGroup;
 
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.databinding.FragmentTasksBinding;
+import com.gutotech.narutogame.ui.ProgressDialogFragment;
 import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.adapter.TasksAdapter;
 import com.gutotech.narutogame.utils.FragmentUtils;
 
 public class TasksFragment extends Fragment implements SectionFragment {
+    private ProgressDialogFragment mProgressDialog;
 
     public TasksFragment() {
     }
@@ -37,10 +39,19 @@ public class TasksFragment extends Fragment implements SectionFragment {
 
         viewModel.getTasks().observe(getViewLifecycleOwner(), adapter::setTasks);
 
+        mProgressDialog = new ProgressDialogFragment();
+
+        viewModel.getShowProgressBarEvent().observe(getViewLifecycleOwner(), show -> {
+            if (show) {
+                mProgressDialog.show(getParentFragmentManager(), "ProgressDialogFragment");
+            } else {
+                mProgressDialog.dismiss();
+            }
+        });
+
         FragmentUtils.setSectionTitle(getActivity(), R.string.section_initial_tasks);
         return binding.getRoot();
     }
-
 
     @Override
     public int getDescription() {

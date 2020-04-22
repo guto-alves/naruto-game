@@ -23,8 +23,6 @@ public class SettingsDialogFragment extends DialogFragment {
         void onSaveClick();
     }
 
-    private Map<String, Boolean> mSettings = new HashMap<>();
-
     public static SettingsDialogFragment getInstance(SettingsDialogListener listener) {
         Bundle args = new Bundle();
         args.putSerializable("listener", listener);
@@ -32,6 +30,9 @@ public class SettingsDialogFragment extends DialogFragment {
         dialog.setArguments(args);
         return dialog;
     }
+
+    private Map<String, Boolean> mSettings = new HashMap<>();
+    private boolean mHasChanged;
 
     @Nullable
     @Override
@@ -49,19 +50,24 @@ public class SettingsDialogFragment extends DialogFragment {
         soundFxCheckBox.setChecked(mSettings.get(SettingsUtils.SOUND_KEY));
         notificationsCheckBox.setChecked(mSettings.get(SettingsUtils.NOTIFICATIONS_KEY));
 
-        bgMusicCheckBox.setOnClickListener(v ->
-                mSettings.put(SettingsUtils.BG_MUSIC_KEY, bgMusicCheckBox.isChecked())
-        );
-        soundFxCheckBox.setOnClickListener(v ->
-                mSettings.put(SettingsUtils.SOUND_KEY, soundFxCheckBox.isChecked())
-        );
-        notificationsCheckBox.setOnClickListener(v ->
-                mSettings.put(SettingsUtils.NOTIFICATIONS_KEY, notificationsCheckBox.isChecked())
-        );
+        bgMusicCheckBox.setOnClickListener(v -> {
+            mSettings.put(SettingsUtils.BG_MUSIC_KEY, bgMusicCheckBox.isChecked());
+            mHasChanged = true;
+        });
+        soundFxCheckBox.setOnClickListener(v -> {
+            mSettings.put(SettingsUtils.SOUND_KEY, soundFxCheckBox.isChecked());
+            mHasChanged = true;
+        });
+        notificationsCheckBox.setOnClickListener(v -> {
+            mSettings.put(SettingsUtils.NOTIFICATIONS_KEY, notificationsCheckBox.isChecked());
+            mHasChanged = true;
+        });
 
         view.findViewById(R.id.saveButton)
                 .setOnClickListener(v -> {
-                    saveSettings();
+                    if (mHasChanged) {
+                        saveSettings();
+                    }
                     ((SettingsDialogListener) getArguments().getSerializable("listener"))
                             .onSaveClick();
                     dismiss();
@@ -71,12 +77,18 @@ public class SettingsDialogFragment extends DialogFragment {
     }
 
     private void getSettings() {
-        mSettings.put(SettingsUtils.BG_MUSIC_KEY,
-                SettingsUtils.get(getContext(), SettingsUtils.BG_MUSIC_KEY));
-        mSettings.put(SettingsUtils.SOUND_KEY,
-                SettingsUtils.get(getContext(), SettingsUtils.SOUND_KEY));
-        mSettings.put(SettingsUtils.NOTIFICATIONS_KEY,
-                SettingsUtils.get(getContext(), SettingsUtils.NOTIFICATIONS_KEY));
+        mSettings.put(
+                SettingsUtils.BG_MUSIC_KEY,
+                SettingsUtils.get(getContext(), SettingsUtils.BG_MUSIC_KEY)
+        );
+        mSettings.put(
+                SettingsUtils.SOUND_KEY,
+                SettingsUtils.get(getContext(), SettingsUtils.SOUND_KEY)
+        );
+        mSettings.put(
+                SettingsUtils.NOTIFICATIONS_KEY,
+                SettingsUtils.get(getContext(), SettingsUtils.NOTIFICATIONS_KEY)
+        );
     }
 
     private void saveSettings() {

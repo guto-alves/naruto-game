@@ -14,6 +14,7 @@ import androidx.databinding.DataBindingUtil;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.Ramen;
 import com.gutotech.narutogame.databinding.PopupRamenInfoBinding;
+import com.gutotech.narutogame.utils.SoundUtil;
 
 public class RamenInfoPopupWindow extends PopupWindow {
     private PopupRamenInfoBinding mBinding;
@@ -32,6 +33,7 @@ public class RamenInfoPopupWindow extends PopupWindow {
     public void showAsDropDown(View anchor) {
         PopupWindowCompat.showAsDropDown(this, anchor, 0, 0,
                 Gravity.TOP | Gravity.START);
+        SoundUtil.play(anchor.getContext(), R.raw.sound_pop);
     }
 
     public void setRamen(Ramen ramen) {

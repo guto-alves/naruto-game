@@ -1,7 +1,10 @@
 package com.gutotech.narutogame.ui.playing.battles;
 
+import android.app.Application;
+
+import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.ViewModel;
 
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.firebase.FirebaseFunctionsUtils;
@@ -10,11 +13,12 @@ import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.model.Fighters;
 import com.gutotech.narutogame.data.model.Formulas;
 import com.gutotech.narutogame.data.model.Npc;
-import com.gutotech.narutogame.data.repository.BattleRepository;
+import com.gutotech.narutogame.data.repository.BattlesRepository;
 import com.gutotech.narutogame.data.repository.CharacterRepository;
 import com.gutotech.narutogame.utils.SingleLiveEvent;
+import com.gutotech.narutogame.utils.SoundUtil;
 
-public class DojoNpcFightersViewModel extends ViewModel {
+public class DojoNpcFightersViewModel extends AndroidViewModel {
     static final int MAX_DAILY_COMBAT = 10;
 
     private Fighters mFighters = new Fighters();
@@ -23,6 +27,10 @@ public class DojoNpcFightersViewModel extends ViewModel {
     private SingleLiveEvent<Integer> mShowStatusEvent = new SingleLiveEvent<>();
     private SingleLiveEvent<Npc> mShowFightersEvent = new SingleLiveEvent<>();
     private SingleLiveEvent<Boolean> mProgressDialogEvent = new SingleLiveEvent<>();
+
+    public DojoNpcFightersViewModel(@NonNull Application application) {
+        super(application);
+    }
 
     void init() {
         if (CharOn.character.getNpcDailyCombat() < MAX_DAILY_COMBAT) {
@@ -53,14 +61,17 @@ public class DojoNpcFightersViewModel extends ViewModel {
     public synchronized void onAcceptBattleButtonPressed() {
         mProgressDialogEvent.setValue(true);
 
+
+        SoundUtil.play(getApplication(), R.raw.knife);
+
         FirebaseFunctionsUtils.getServerTime(currentTimestamp -> {
             Battle battle = new Battle(
-                    BattleRepository.getInstance().generateId("DOJO-NPC"),
+                    BattlesRepository.getInstance().generateId("DOJO-NPC"),
                     mFighters.getPlayer(),
                     mFighters.getOpponent(),
                     currentTimestamp);
 
-            BattleRepository.getInstance().save(battle);
+            BattlesRepository.getInstance().save(battle);
 
             mProgressDialogEvent.setValue(false);
 

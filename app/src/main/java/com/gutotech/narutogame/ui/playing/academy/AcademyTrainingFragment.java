@@ -15,12 +15,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.databinding.FragmentAcademyTrainningBinding;
 import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.adapter.DistributedPointsAdapter;
 import com.gutotech.narutogame.ui.playing.user.FormulasFragment;
 import com.gutotech.narutogame.utils.FragmentUtils;
+import com.gutotech.narutogame.utils.SoundUtil;
 import com.gutotech.narutogame.utils.SpannableStringBuilderCustom;
 
 public class AcademyTrainingFragment extends Fragment implements SectionFragment {
@@ -39,7 +42,7 @@ public class AcademyTrainingFragment extends Fragment implements SectionFragment
         mBinding.msgLayout.titleTextView.setText(R.string.attribute_training_title);
         SpannableStringBuilderCustom builder = new SpannableStringBuilderCustom(getContext());
         builder.append(R.string.attribute_training_description);
-        builder.append(" ");
+        builder.append();
         builder.append(R.string.game_formulas,
                 new ClickableSpan() {
                     @Override
@@ -59,9 +62,7 @@ public class AcademyTrainingFragment extends Fragment implements SectionFragment
             } else {
                 SpannableStringBuilderCustom stringBuilder = new SpannableStringBuilderCustom(getContext());
                 stringBuilder.append(R.string.you_still_have);
-                stringBuilder.append(" ");
                 stringBuilder.append(getString(R.string.total_free_points, freePoints), R.color.colorGreen);
-                stringBuilder.append(" ");
                 stringBuilder.append(R.string.to_distribute_in_their_attributes);
                 mBinding.trainingPointsLayout.descriptionTextView.setText(stringBuilder.getString());
                 mBinding.trainingPointsLayout.msgConstraintLayout.setVisibility(View.VISIBLE);
@@ -69,6 +70,10 @@ public class AcademyTrainingFragment extends Fragment implements SectionFragment
                 mBinding.scrollView.post(() ->
                         mBinding.scrollView.smoothScrollTo(0, mBinding.trainingPointsLayout.getRoot().getTop())
                 );
+
+                YoYo.with(Techniques.Bounce)
+                        .duration(1200)
+                        .playOn(mBinding.trainingPointsLayout.msgConstraintLayout);
             }
         });
 
@@ -78,6 +83,10 @@ public class AcademyTrainingFragment extends Fragment implements SectionFragment
 
         viewModel.getDistributedPoints().observe(
                 getViewLifecycleOwner(), adapter::setDistributedPoints
+        );
+
+        viewModel.getPlaySound().observe(getViewLifecycleOwner(), aVoid ->
+                SoundUtil.play(getContext(), R.raw.aim)
         );
 
         FragmentUtils.setSectionTitle(getActivity(), R.string.section_attribute_training);

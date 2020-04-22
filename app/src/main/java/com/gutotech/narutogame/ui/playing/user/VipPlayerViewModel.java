@@ -81,7 +81,6 @@ public class VipPlayerViewModel extends ViewModel {
         }
 
         mShowWarningDialogEvent.setValue(R.string.dont_have_enough_ryous);
-
         return false;
     }
 
@@ -93,18 +92,22 @@ public class VipPlayerViewModel extends ViewModel {
     public void onBuyChangeNameClick() {
         name.set(name.get().trim());
 
-        if (!TextUtils.isEmpty(name.get())) {
-            if (makePayment(PRICE_TO_CHANGE_NAME, mCharacter.getRyous())) {
-                CharacterRepository.getInstance().checkByRepeatedNick(name.get(), result -> {
-                    if (result) {
-                        mCharacter.setNick(name.get());
-                        CharacterRepository.getInstance().save(mCharacter);
-                        mShowSuccessMessageEvent.setValue(R.string.change_name_of_the_character);
-                    } else {
-                        mShowWarningDialogEvent.setValue(R.string.name_already_taken);
-                    }
-                });
-            }
+        if (TextUtils.isEmpty(name.get())) {
+            return;
+        }
+
+        if (makePayment(PRICE_TO_CHANGE_NAME, mCharacter.getRyous())) {
+            CharacterRepository.getInstance().checkByRepeatedNick(name.get(), result -> {
+                if (result) {
+                    mCharacter.setNick(name.get());
+                    CharacterRepository.getInstance().save(mCharacter);
+                    mShowSuccessMessageEvent.setValue(R.string.change_name_of_the_character);
+                    name.set("");
+                } else {
+                    CharOn.character.addRyous(PRICE_TO_CHANGE_NAME);
+                    mShowWarningDialogEvent.setValue(R.string.name_already_taken);
+                }
+            });
         }
     }
 
@@ -198,6 +201,9 @@ public class VipPlayerViewModel extends ViewModel {
         }
     }
 
+    public Character getCharacter() {
+        return mCharacter;
+    }
 
     List<Ninja> getNinjas() {
         return mNinjas;

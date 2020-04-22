@@ -17,6 +17,7 @@ import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.WarningDialogFragment;
 import com.gutotech.narutogame.ui.adapter.ItemShopAdapter;
 import com.gutotech.narutogame.utils.FragmentUtils;
+import com.gutotech.narutogame.utils.SoundUtil;
 
 public class NinjaShopFragment extends Fragment implements SectionFragment {
 
@@ -41,6 +42,7 @@ public class NinjaShopFragment extends Fragment implements SectionFragment {
         viewModel.getShowWarningDialogEvent().observe(getViewLifecycleOwner(), resid -> {
             WarningDialogFragment warningDialog = WarningDialogFragment.newInstance(resid);
             warningDialog.openDialog(getParentFragmentManager());
+            SoundUtil.play(getContext(), R.raw.get_item02);
         });
 
         FragmentUtils.setSectionTitle(getActivity(), R.string.section_ninja_shop);

@@ -14,14 +14,14 @@
     <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
         android:fillViewport="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/layout_pagina_repeat">
+            android:background="@drawable/layout_pagina_repeat"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -81,10 +81,10 @@
 
                         <TextView
                             android:id="@+id/titleTextView"
-                            stringRes="@{character.title}"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
+                            android:text='@{character.titleIndex == 0 ? "" : context.getString(character.titles.get(character.titleIndex - 1))}'
                             android:textColor="#937b4d"
                             android:textSize="10sp"
                             app:layout_constraintEnd_toEndOf="parent"

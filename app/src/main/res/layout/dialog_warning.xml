@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="320dp"
     android:layout_height="wrap_content"
-    android:background="@drawable/layout_bg_site2"
+    android:background="@drawable/bg_dialog"
     android:orientation="vertical"
     android:padding="3dp">
 
@@ -34,7 +34,7 @@
         android:id="@+id/divider"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:layout_marginBottom="8dp"
         android:background="@android:color/darker_gray" />
 
