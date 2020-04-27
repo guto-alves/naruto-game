@@ -448,11 +448,11 @@
     <string name="bunshin_kaiten_kakato_otoshi_ii">Bunshin Kaiten Kakato Otoshi II</string>
     <string name="bunshin_kaiten_kakato_otoshi_ii_desc">Bunshins auxiliam na velocidade dos ataques</string>
     <string name="hiken_tsukikage">Hiken Tsukikage</string>
-    <string name="hiken_tsukikage_desc">Corre para o oponente com grande velocidade antes de pular e atacá-los com um golpe de espada vertical, deixando um rastro de p?s-imagem no processo.</string>
+    <string name="hiken_tsukikage_desc">Corre para o oponente com grande velocidade antes de pular e atacá-los com um golpe de espada vertical, deixando um rastro de pós-imagem no processo.</string>
     <string name="rariatto">Rariatto</string>
     <string name="rariatto_desc">O usuário avan?a no oponente, acertando ele com um Lariat, que pode ser revestido em chakra. Um golpe bem sucedido pode arremessar o inimigo longe e explodir seu peitoral. O ataque é apenas para frente, mas muito rápido e forte, facilmente derrotando o oponente.</string>
     <string name="konoha_shoufuu">Konoha Shoufuu</string>
-    <string name="konoha_shoufuu_desc">Desfere um chute de baixo para cima no braço do inimigo, com o objetivo de desarm?-lo ou cancelar selos de mão.</string>
+    <string name="konoha_shoufuu_desc">Desfere um chute de baixo para cima no braço do inimigo, com o objetivo de desarmá-lo ou cancelar selos de mão.</string>
     <string name="taihou_sentou">Taihou Sentou</string>
     <string name="taihou_sentou_desc">Concentrando chakra na mão o usuário da um golpe no chão ou no inimigo liberando todo o chakra possível no golpe.</string>
     <string name="raiken">Raiken</string>
@@ -466,9 +466,9 @@
     <string name="sensei_raiga_bomu">Sensei Raiga Bomu</string>
     <string name="sensei_raiga_bomu_desc">O usuário agarra seu oponente e o levanta no ar. Em seguida, usando sua força extrema, ele o esmaga a cabeça do oponente no chão, criando uma explosão.</string>
     <string name="kongouriki">Kongouriki</string>
-    <string name="kongouriki_desc">O ninja endurece seus braços e tamb?m aumenta o alcance deles, podendo dar fortíssimos e mortais socos mesmo longe do oponente, podendo esmag?-lo sem problemas.</string>
+    <string name="kongouriki_desc">O ninja endurece seus braços e também aumenta o alcance deles, podendo dar fortíssimos e mortais socos mesmo longe do oponente, podendo esmagá-lo sem problemas.</string>
     <string name="daburu_rariatto">Daburu Rariatto</string>
-    <string name="daburu_rariatto_desc">Dois usuários ambos desempenham o Lariat atrás e na frente do oponente, criando um efeito de tesoura. Ambos os usuários devem usar exatamente a mesma quantidade de força ou o alvo simplesmente ir? dobrar. Quando feito com sucesso, a força da t?cnica vai decapitar o alvo e fazer sua cabeça voar vários metros no ar.</string>
+    <string name="daburu_rariatto_desc">Dois usuários ambos desempenham o Lariat atrás e na frente do oponente, criando um efeito de tesoura. Ambos os usuários devem usar exatamente a mesma quantidade de força ou o alvo simplesmente irá dobrar. Quando feito com sucesso, a força da técnica vai decapitar o alvo e fazer sua cabeça voar vários metros no ar.</string>
     <string name="jigokuzuki">Jigokuzuki</string>
     <string name="jigokuzuki_desc">O usuário concentra uma quantidade considerável de chakra em apenas as pontas dos dedos de uma única mão e em seguida, executa um movimento de empurrão, que, juntos, lhe permite perfurar um alvo.</string>
     <string name="konoha_neppuu">Konoha Neppuu</string>
@@ -476,13 +476,13 @@
     <string name="konoha_dai_senpuu">Konoha Dai Senpuu</string>
     <string name="konoha_dai_senpuu_desc">Evolução do Konoha Senpuu, sendo mais rápido, que joga o inimigo para o alto com diversos chutes.</string>
     <string name="soldier_pill_i">Pílula do Soldado I</string>
-    <string name="soldier_pill_i_desc">A Pílula do Soldado, garante imensos poderes fisicos, permite que ninjas lutem por 3 dias e 3 noites, sem parar, sem se alimentar ou dormir. Pode causar grande exaustão afastando um ninja de seus servi?os por dias.</string>
+    <string name="soldier_pill_i_desc">A Pílula do Soldado, garante imensos poderes fisicos, permite que ninjas lutem por 3 dias e 3 noites, sem parar, sem se alimentar ou dormir. Pode causar grande exaustão afastando um ninja de seus serviços por dias.</string>
     <string name="seinshun_burupapua">Seinshun Burupapua</string>
-    <string name="seinshun_burupapua_desc">Joga seu oponente ao alto com um chute, depois disso pula e fica junto ao oponente golpeando consecutivamente, então acerta um chute no abd?men arreme?ando-o ao chão, tamanha velocidade do golpe, forma um relâmpago azulado e destrói a área onde o oponente atingir.</string>
+    <string name="seinshun_burupapua_desc">Joga seu oponente ao alto com um chute, depois disso pula e fica junto ao oponente golpeando consecutivamente, então acerta um chute no abdômen arremessando-o ao chão, tamanha velocidade do golpe, forma um relâmpago azulado e destrói a área onde o oponente atingir.</string>
     <string name="soldier_pill_ii">Pílula do Soldado II</string>
-    <string name="soldier_pill_ii_desc">A Pílula do Soldado, garante imensos poderes fisicos, permite que ninjas lutem por 3 dias e 3 noites, sem parar, sem se alimentar ou dormir. Pode causar grande exaustão afastando um ninja de seus servi?os por dias.</string>
+    <string name="soldier_pill_ii_desc">A Pílula do Soldado, garante imensos poderes fisicos, permite que ninjas lutem por 3 dias e 3 noites, sem parar, sem se alimentar ou dormir. Pode causar grande exaustão afastando um ninja de seus serviços por dias.</string>
     <string name="shichikenbu">Shichikenbu</string>
-    <string name="shichikenbu_desc">O usuário luta com diversas espadas, como se estivesse dan?ando, em perfeita sincronia com cada ataque utilizando as espadas.</string>
+    <string name="shichikenbu_desc">O usuário luta com diversas espadas, como se estivesse dançando, em perfeita sincronia com cada ataque utilizando as espadas.</string>
     <string name="yonhon_nukite">Yonhon Nukite</string>
     <string name="yonhon_nukite_desc">Um golpe perfurante com 4 dedos, forte o suficiente para romper as defesas robustas com relativa facilidade.</string>
     <string name="chouharite">Chouharite</string>
@@ -496,9 +496,9 @@
     <string name="myu_senpuu">Myu Senpuu</string>
     <string name="myu_senpuu_desc">Chute fortissimo capaz de quebrar ossos</string>
     <string name="sensei_shichikenbu">Sensei Shichikenbu</string>
-    <string name="sensei_shichikenbu_desc">O usuário luta com diversas espadas, como se estivesse dan?ando, em perfeita sincronia com cada ataque utilizando as espadas.</string>
+    <string name="sensei_shichikenbu_desc">O usuário luta com diversas espadas, como se estivesse dançando, em perfeita sincronia com cada ataque utilizando as espadas.</string>
     <string name="ippon_nukite">Ippon Nukite</string>
-    <string name="ippon_nukite_desc">Um ataque de um dedo que a concentração de chakra é tão grande que se estende muito além do dedo em um ponto solitário. Ele ? capaz de cortar e perfurar tudo.</string>
+    <string name="ippon_nukite_desc">Um ataque de um dedo que a concentração de chakra é tão grande que se estende muito além do dedo em um ponto solitário. Ele é capaz de cortar e perfurar tudo.</string>
     <string name="sensei_myu_senpuu">Sensei Myu Senpuu</string>
     <string name="sensei_myu_senpuu_desc">Chute fortissimo capaz de quebrar ossos</string>
 
@@ -517,7 +517,7 @@
     <string name="shikomishindan">Shikomishindan</string>
     <string name="shikomishindan_desc">Usando um lançador de senbons, o ninja dispara agulhas venenosas no inimigo.</string>
     <string name="genei_tajuu_shuriken">Gen-ei Tajuu Shuriken</string>
-    <string name="genei_tajuu_shuriken_desc">O ninja dispara diversas shurikens, e mais shurikens escondidas nas sombras delas, que se mostram ao chegar pr?ximo do inimigo, pegando ele de surpresa.</string>
+    <string name="genei_tajuu_shuriken_desc">O ninja dispara diversas shurikens, e mais shurikens escondidas nas sombras delas, que se mostram ao chegar próximo do inimigo, pegando ele de surpresa.</string>
     <string name="hijutsu_ishibari_i">Hijutsu Ishibari I</string>
     <string name="hijutsu_ishibari_i_desc">O ninja joga kunais no braço do inimigo, amolecendo seu braço e podendo controlá-lo.</string>
     <string name="hijutsu_ishibari_ii">Hijutsu Ishibari II</string>
@@ -549,11 +549,11 @@
     <string name="sakura_fubuki_no_jutsu">Sakura Fubuki no Jutsu</string>
     <string name="sakura_fubuki_no_jutsu_desc">O ninja prepara diversas kunais com saquinhos explosivos, usados geralmente para provocar uma avalanche.</string>
     <string name="kugutsu_no_jutsu_gishu_senbon">Kugutsu no Jutsu Gishu Senbon</string>
-    <string name="kugutsu_no_jutsu_gishu_senbon_desc">Usando sua marionete, o ninja dispara o braço dela com diversos pinos, que s?o abertos e disparam diversas agulhas.</string>
+    <string name="kugutsu_no_jutsu_gishu_senbon_desc">Usando sua marionete, o ninja dispara o braço dela com diversos pinos, que são abertos e disparam diversas agulhas.</string>
     <string name="kugutsu_sakura_no_mai">Kugutsu Sakura no Mai</string>
     <string name="kugutsu_sakura_no_mai_desc">O ninja usa sua marionete para disparar centas de milhares de kunais, que podem ser controladas por suas linhas de chakra.</string>
     <string name="setsuna">Setsuna</string>
-    <string name="setsuna_desc">O ninja passa atrav?s do inimigo rapidamente, e ao guardar sua espada, diversos cortes aparecem no inimigo.</string>
+    <string name="setsuna_desc">O ninja passa através do inimigo rapidamente, e ao guardar sua espada, diversos cortes aparecem no inimigo.</string>
     <string name="senmoufuu">Senmoufuu</string>
     <string name="senmoufuu_desc">O ninja move sua espada rapidamente, criando uma rajada de vento capaz de derrubar árvores.</string>
     <string name="takigakureryuu_mizukiri_no_yaiba">Takigakure-Ryuu Mizukiri no Yaiba</string>
@@ -569,7 +569,7 @@
     <string name="kamaitachi_no_jutsu">Kamaitachi no Jutsu</string>
     <string name="kamaitachi_no_jutsu_desc">O ninja usa um leque gigante para provocar um tufão cortante ao redor do inimigo.</string>
     <string name="kakeami">Kakeami</string>
-    <string name="kakeami_desc">O ninja usa um leque gigante para criar uma rede de vento que corta o inimigo em peda?os.</string>
+    <string name="kakeami_desc">O ninja usa um leque gigante para criar uma rede de vento que corta o inimigo em pedaços.</string>
     <string name="kumoryuu_uragiri">Kumo-Ryuu Uragiri</string>
     <string name="kumoryuu_uragiri_desc">O ninja finge que vai atacar com a espada na frente, mas vira ela e corta atrás.</string>
     <string name="suishou_tou">Suishou Tou</string>
@@ -585,7 +585,7 @@
     <string name="kurohigi_kiki_ippatsu">Kurohigi Kiki Ippatsu</string>
     <string name="kurohigi_kiki_ippatsu_desc">O ninja usa suas marionetes para aprisionar e perfurar o inimigo.</string>
     <string name="kurohigi_kiki_nihatsu">Kurohigi Kiki Nihatsu</string>
-    <string name="kurohigi_kiki_nihatsu_desc">O ninja usa sua marionete e suas linhas de chakra para ca?ar, puxar e aprisionar o inimigo no seu interior.</string>
+    <string name="kurohigi_kiki_nihatsu_desc">O ninja usa sua marionete e suas linhas de chakra para caçar, puxar e aprisionar o inimigo no seu interior.</string>
     <string name="ikazuchi_no_kiba">Ikazuchi no Kiba</string>
     <string name="ikazuchi_no_kiba_desc">O ninja levanta suas duas espadas e cria um trovão, disparando no inimigo.</string>
     <string name="reijingu_sandaa">Reijingu Sandaa</string>
@@ -601,15 +601,15 @@
     <string name="akahigi_kaenhoushaki">Akahigi Kaenhoushaki</string>
     <string name="akahigi_kaenhoushaki_desc">O ninja usa sua marionete para disparar um intenso lança-chamas.</string>
     <string name="dokukiri_jigoku_baribari_hyaku_renpatsu">Dokukiri Jigoku Baribari Hyaku Renpatsu</string>
-    <string name="dokukiri_jigoku_baribari_hyaku_renpatsu_desc">O ninja usa sua marionete para soltar uma gigantesca nuvem de fuma?a venenosa.</string>
+    <string name="dokukiri_jigoku_baribari_hyaku_renpatsu_desc">O ninja usa sua marionete para soltar uma gigantesca nuvem de fumaça venenosa.</string>
     <string name="kongou_rouheki">Kongou Rouheki</string>
-    <string name="kongou_rouheki_desc">O ninja usa seus bast?es para aprisionar o inimigo e esmag?-lo.</string>
+    <string name="kongou_rouheki_desc">O ninja usa seus bastões para aprisionar o inimigo e esmagá-lo.</string>
     <string name="souninshuu">Souninshuu</string>
     <string name="souninshuu_desc">O ninja invoca diversas armas e as arremessa no inimigo sem parar.</string>
     <string name="shuriken_shinkuujin">Shuriken Shinkuujin</string>
     <string name="shuriken_shinkuujin_desc">O ninja estende a lâmina criando uma camada de vácuo ao redor de sua shuriken.</string>
     <string name="kibaku_fuda_no_jutsu">Kibaku Fuda no Jutsu</string>
-    <string name="kibaku_fuda_no_jutsu_desc">O ninja envolve os p?s do inimigo com tarjas explosivas, danificando seus p?s gravemente.</string>
+    <string name="kibaku_fuda_no_jutsu_desc">O ninja envolve os pés do inimigo com tarjas explosivas, danificando seus pés gravemente.</string>
     <string name="gunbai_kaze_aekousha">Gunbai Kaze Aekousha</string>
     <string name="gunbai_kaze_aekousha_desc">O ninja usa sua Gunbai para disparar uma rajada de vento muito forte.</string>
     <string name="sensei_akahigi_kaenhoushaki">Sensei Akahigi Kaenhoushaki</string>
@@ -619,7 +619,7 @@
     <string name="ookakeami">Ookakeami</string>
     <string name="ookakeami_desc">O ninja usa seu leque gigante para disparar diversas lâminas feitas de vento para cortar o inimigo por todos os lados.</string>
     <string name="chou_biburaato_raitontou">Chou Biburaato Raitontou</string>
-    <string name="chou_biburaato_raitontou_desc">O ninja joga suas sete espadas para o céu, distraindo o inimigo, e então pega uma por uma e ataca rapidamente o inimigo, sem mostrar qual espada ir? usar.</string>
+    <string name="chou_biburaato_raitontou_desc">O ninja joga suas sete espadas para o céu, distraindo o inimigo, e então pega uma por uma e ataca rapidamente o inimigo, sem mostrar qual espada irá usar.</string>
     <string name="kunai_shinkuujin">Kunai Shinkuujin</string>
     <string name="kunai_shinkuujin_desc">O ninja estende a lâmina criando uma camada de vácuo ao redor de sua kunai.</string>
     <string name="iaigiri">Iaigiri</string>
@@ -643,18 +643,18 @@
     <string name="kaihou">Kaihou</string>
     <string name="kaihou_desc">O ninja transforma sua espada em um martelo gigante usado para esmagar qualquer coisa.</string>
     <string name="choutou_ninpou_jigumo_nui">Choutou Ninpou Jigumo Nui</string>
-    <string name="choutou_ninpou_jigumo_nui_desc">O ninja coloca linhas próximas ao chão sem o inimigo ver, prendendo seus p?s e amputando-os.</string>
+    <string name="choutou_ninpou_jigumo_nui_desc">O ninja coloca linhas próximas ao chão sem o inimigo ver, prendendo seus pés e amputando-os.</string>
     <string name="chakurahiru_wanizame">Chakurahiru Wanizame</string>
-    <string name="chakurahiru_wanizame_desc">O ninja transforma a textura da sua espada em pele de tubar?o, cortando a pele do inimigo e sugando seu chakra.</string>
+    <string name="chakurahiru_wanizame_desc">O ninja transforma a textura da sua espada em pele de tubarão, cortando a pele do inimigo e sugando seu chakra.</string>
     <string name="sensei_chou_biburaato_raitontou">Sensei Chou Biburaato Raitontou</string>
-    <string name="sensei_chou_biburaato_raitontou_desc">O ninja joga suas sete espadas para o céu, distraindo o inimigo, e então pega uma por uma e ataca rapidamente o inimigo, sem mostrar qual espada ir? usar.</string>
+    <string name="sensei_chou_biburaato_raitontou_desc">O ninja joga suas sete espadas para o céu, distraindo o inimigo, e então pega uma por uma e ataca rapidamente o inimigo, sem mostrar qual espada irá usar.</string>
     <string name="bakuhatsuteki_iaikai">Bakuhatsuteki Iaikai</string>
     <string name="bakuhatsuteki_iaikai_desc">O ninja atravessa o inimigo com sua espada, e ao guardar ela na bainha, o inimigo explode em sangue.</string>
     <string name="sensei_kaihou">Sensei Kaihou</string>
     <string name="sensei_kaihou_desc">O ninja transforma sua espada em um martelo gigante usado para esmagar qualquer coisa.</string>
 
     <string name="henge_no_jutsu">Henge no Jutsu</string>
-    <string name="henge_no_jutsu_desc">Jutsu de cópia, o usuário utiliza esse jutsu para copiar qualquer coisa (pessoas, objetos etc..) e assim utilizar desse método para atacar o oponente que fica distra?do.</string>
+    <string name="henge_no_jutsu_desc">Jutsu de cópia, o usuário utiliza esse jutsu para copiar qualquer coisa (pessoas, objetos etc..) e assim utilizar desse método para atacar o oponente que fica distraído.</string>
     <string name="bunshin_no_jutsu_i">Bunshin no Jutsu I</string>
     <string name="bunshin_no_jutsu_i_desc">Cria um clone usado para distrair o oponente.</string>
     <string name="konoha_tzu">Konoha Tzu</string>
@@ -680,9 +680,9 @@
     <string name="kuro_tatsumaki">Kuro Tatsumaki</string>
     <string name="kuro_tatsumaki_desc">Cria diversos tornados negros que cortam o oponente e o arremessam.</string>
     <string name="meisai_gakure_no_jutsu_i">Meisai Gakure no Jutsu I</string>
-    <string name="meisai_gakure_no_jutsu_i_desc">Ap?s os selos necessários, o ninja pode garantir invisibilidade quase que completa</string>
+    <string name="meisai_gakure_no_jutsu_i_desc">Após os selos necessários, o ninja pode garantir invisibilidade quase que completa</string>
     <string name="meisai_gakure_no_jutsu_ii">Meisai Gakure no Jutsu II</string>
-    <string name="meisai_gakure_no_jutsu_ii_desc">Ap?s os selos necessários, o ninja pode garantir invisibilidade quase que completa</string>
+    <string name="meisai_gakure_no_jutsu_ii_desc">Após os selos necessários, o ninja pode garantir invisibilidade quase que completa</string>
     <string name="tajuu_taki_rasengan">Tajuu Taki Rasengan</string>
     <string name="tajuu_taki_rasengan_desc">Usando seu Tajuu Kage Bunshin no Jutsu, o ninja cria vários Kage Bunshin no Jutsu. Então cada Kage Bunshin no Jutsu cria nas suas mão um Rasengan e partem pra cima do inimigo atacando cada um com seu Rasengan.</string>
     <string name="bunshin_bakuretsu">Bunshin Bakuretsu</string>
@@ -706,17 +706,17 @@
     <string name="sensei_mikazuki_no_mai">Sensei Mikazuki no Mai</string>
     <string name="sensei_mikazuki_no_mai_desc">O ninja move sua espada lentamente, criando vários clones e atacando o inimigo.</string>
     <string name="ranji_shigumi_no_jutsu">Ranji Shigumi no Jutsu</string>
-    <string name="ranji_shigumi_no_jutsu_desc">O ninja faz os selos necessários para fazer com que o cabelo cres?a e capture o inimigo em grande velocidade. Se conseguir envolve-lo no jutsu, faz o cabelo endurecer e formar espinhos para matar o oponente.</string>
+    <string name="ranji_shigumi_no_jutsu_desc">O ninja faz os selos necessários para fazer com que o cabelo cresça e capture o inimigo em grande velocidade. Se conseguir envolve-lo no jutsu, faz o cabelo endurecer e formar espinhos para matar o oponente.</string>
     <string name="tajuu_kage_bunshin_no_jutsu_i">Tajuu Kage Bunshin no Jutsu I</string>
     <string name="tajuu_kage_bunshin_no_jutsu_i_desc">O ninja cria centenas de milhares de clones das sombras.</string>
     <string name="kakuan_nitten_suishu">Kakuan Nitten Suishu</string>
-    <string name="kakuan_nitten_suishu_desc">Lan?a seu chakra no inimigo e vai absorvendo aos poucos o chakra do inimigo.</string>
+    <string name="kakuan_nitten_suishu_desc">Lança seu chakra no inimigo e vai absorvendo aos poucos o chakra do inimigo.</string>
     <string name="tajuu_kage_bunshin_no_jutsu_ii">Tajuu Kage Bunshin no Jutsu II</string>
     <string name="tajuu_kage_bunshin_no_jutsu_ii_desc">O ninja cria centenas de milhares de clones das sombras.</string>
     <string name="chou_oodama_rasengan">Chou Oodama Rasengan</string>
     <string name="chou_oodama_rasengan_desc">Salta e cria um gigantesco rasengan com as mãos, aproximadamente 10x maior que um normal.</string>
     <string name="minirasenshuriken">Mini-Rasenshuriken</string>
-    <string name="minirasenshuriken_desc">O ninja cria um pequeno Rasenshuriken na ponta de seu dedo e arremessa no alvo, porém seu poder destrutivo ? imenso.</string>
+    <string name="minirasenshuriken_desc">O ninja cria um pequeno Rasenshuriken na ponta de seu dedo e arremessa no alvo, porém seu poder destrutivo é imenso.</string>
     <string name="ninpou_gyoraishin">Ninpou • Gyoraishin</string>
     <string name="ninpou_gyoraishin_desc">O shinobi joga um bom número de lâminas no ar e, após todas fincarem no chão, utiliza o próprio chakra presente no metal para fazer com que elas afundem.</string>
     <string name="sensei_chou_oodama_rasengan">Sensei Chou Oodama Rasengan</string>
@@ -1247,7 +1247,7 @@
     <string name="requires_wins_npc">Ter %d Vitória NPC</string>
     <string name="requires_wins_pvp">Ter %d Vitórias PVP</string>
     <string name="requires_you_need_to_be_level">Você precisa estar no Level %d ou superior</string>
-    <string name="button_graduated">Graduated</string>
+    <string name="button_graduated">Graduado</string>
     <string name="requires_grade">Requer graduação: %s</string>
     <string name="description_duration_reward_level">Descrição / Duração / Recompensa / Level</string>
     <string name="you_are_here">Você está aqui</string>
@@ -2113,8 +2113,7 @@
     <string name="raikage">Raikage</string>
     <string name="amekage">Amekage</string>
     <string name="otokage">Otokage</string>
-    <string name="dojo_pvp_warnings">As Batalhas Dojo PVP dão experiência e Ryous até o nível 15,
-        depois disso as batalhas darão apenas 50 pontos de treino para os vencedores.\n\nSomente Ninjas
+    <string name="dojo_pvp_warnings">As Batalhas Dojo PVP dão experiência e Ryous até o nível 15.\n\nSomente Ninjas
         com a graduação %s podem duelar no Dojo PVP</string>
     <string name="email_verification_sent">Dentro de alguns instantes você receberá um e-mail com o
         link de confirmação do seu cadastro.</string>

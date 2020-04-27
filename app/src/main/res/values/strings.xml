@@ -2156,8 +2156,7 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="raikage">Raikage</string>
     <string name="amekage">Amekage</string>
     <string name="otokage">Otokage</string>
-    <string name="dojo_pvp_warnings">Dojo PVP Battles give experience and Ryous up to level 15,
-        after which the battles will only give 50 training points to the winners.\n\nOnly Ninjas with
+    <string name="dojo_pvp_warnings">Dojo PVP Battles give experience and Ryous up to level 15.\n\nOnly Ninjas with
         the %s rank can duel in the PVP Dojo</string>
     <string name="label_last_seen">Last Seen:</string>
     <string name="rank_position">%dº</string>
