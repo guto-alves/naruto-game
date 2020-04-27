@@ -14,6 +14,10 @@ import java.util.Map;
 public class Jutsu extends BaseObservable implements Serializable {
     public enum Type {ATK, DEF, BUFF, DEBUFF, WEAPON}
 
+    public static final String SLOT_1 = "slot1";
+    public static final String SLOT_2 = "slot2";
+    public static final String SLOT_3 = "slot3";
+
     private String name; // refers to JutsuInfo Enum
     private Classe classe;
     private int atk;

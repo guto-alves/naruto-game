@@ -13,8 +13,10 @@ import android.view.ViewGroup;
 
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.CharOn;
+import com.gutotech.narutogame.data.model.Jutsu;
 import com.gutotech.narutogame.databinding.FragmentCharacterJutsusBinding;
 import com.gutotech.narutogame.ui.SectionFragment;
+import com.gutotech.narutogame.ui.WarningDialogFragment;
 import com.gutotech.narutogame.ui.adapter.LearnedJutsusAdapter;
 import com.gutotech.narutogame.utils.FragmentUtils;
 import com.gutotech.narutogame.utils.SoundUtil;
@@ -40,12 +42,16 @@ public class CharacterJutsusFragment extends Fragment implements SectionFragment
         viewModel.getJutsuSelected().observe(getViewLifecycleOwner(), jutsu -> {
             binding.setJutsu(jutsu);
 
-            if (CharOn.character.getSkillPoints() >= 5) {
-                binding.enhancementImageView1.setOnClickListener(v -> {
+            binding.enhancementImageView1.setOnClickListener(v -> {
+                if (CharOn.character.getSkillPoints() >= 5 ||
+                        jutsu.getEnhancements().containsKey(Jutsu.SLOT_1)) {
                     EnhanceJutsuDialogFragment dialog = EnhanceJutsuDialogFragment.getInstance(
                             jutsu, enhancement -> {
-                                CharOn.character.removeSkillPoints();
-                                jutsu.activate(enhancement, "slot1");
+                                if (!jutsu.getEnhancements().containsKey(Jutsu.SLOT_1)) {
+                                    CharOn.character.removeSkillPoints();
+                                }
+
+                                jutsu.activate(enhancement, Jutsu.SLOT_1);
                                 int index = CharOn.character.getJutsus().indexOf(jutsu);
                                 CharOn.character.getJutsus().set(index, jutsu);
                                 binding.setJutsu(jutsu);
@@ -53,12 +59,20 @@ public class CharacterJutsusFragment extends Fragment implements SectionFragment
                             });
                     dialog.show(getParentFragmentManager(), "EnhanceJutsuDialogFragment");
                     SoundUtil.play(getContext(), R.raw.sound_pop);
-                });
-                binding.enhancementImageView2.setOnClickListener(v -> {
+                } else {
+                    showWarningDialog();
+                }
+            });
+            binding.enhancementImageView2.setOnClickListener(v -> {
+                if (CharOn.character.getSkillPoints() >= 5 ||
+                        jutsu.getEnhancements().containsKey(Jutsu.SLOT_2)) {
                     EnhanceJutsuDialogFragment dialog = EnhanceJutsuDialogFragment.getInstance(
                             jutsu, enhancement -> {
-                                CharOn.character.removeSkillPoints();
-                                jutsu.activate(enhancement, "slot2");
+                                if (!jutsu.getEnhancements().containsKey(Jutsu.SLOT_2)) {
+                                    CharOn.character.removeSkillPoints();
+                                }
+
+                                jutsu.activate(enhancement, Jutsu.SLOT_2);
                                 int index = CharOn.character.getJutsus().indexOf(jutsu);
                                 CharOn.character.getJutsus().set(index, jutsu);
                                 binding.setJutsu(jutsu);
@@ -66,12 +80,20 @@ public class CharacterJutsusFragment extends Fragment implements SectionFragment
                             });
                     dialog.show(getParentFragmentManager(), "EnhanceJutsuDialogFragment");
                     SoundUtil.play(getContext(), R.raw.sound_pop);
-                });
-                binding.enhancementImageView3.setOnClickListener(v -> {
+                } else {
+                    showWarningDialog();
+                }
+            });
+            binding.enhancementImageView3.setOnClickListener(v -> {
+                if (CharOn.character.getSkillPoints() >= 5 ||
+                        jutsu.getEnhancements().containsKey(Jutsu.SLOT_3)) {
                     EnhanceJutsuDialogFragment dialog = EnhanceJutsuDialogFragment.getInstance(
                             jutsu, enhancement -> {
-                                CharOn.character.removeSkillPoints();
-                                jutsu.activate(enhancement, "slot3");
+                                if (!jutsu.getEnhancements().containsKey(Jutsu.SLOT_3)) {
+                                    CharOn.character.removeSkillPoints();
+                                }
+
+                                jutsu.activate(enhancement, Jutsu.SLOT_3);
                                 int index = CharOn.character.getJutsus().indexOf(jutsu);
                                 CharOn.character.getJutsus().set(index, jutsu);
                                 binding.setJutsu(jutsu);
@@ -79,12 +101,10 @@ public class CharacterJutsusFragment extends Fragment implements SectionFragment
                             });
                     dialog.show(getParentFragmentManager(), "EnhanceJutsuDialogFragment");
                     SoundUtil.play(getContext(), R.raw.sound_pop);
-                });
-            } else {
-                binding.enhancementImageView1.setOnClickListener(null);
-                binding.enhancementImageView2.setOnClickListener(null);
-                binding.enhancementImageView3.setOnClickListener(null);
-            }
+                } else {
+                    showWarningDialog();
+                }
+            });
 
             binding.scrollView.post(() ->
                     binding.scrollView.smoothScrollTo(0, binding.scrollView.getBottom() + 1000)
@@ -93,6 +113,12 @@ public class CharacterJutsusFragment extends Fragment implements SectionFragment
 
         FragmentUtils.setSectionTitle(getActivity(), R.string.section_jutsu_training);
         return binding.getRoot();
+    }
+
+    private void showWarningDialog() {
+        WarningDialogFragment.newInstance(R.string.you_dont_have_enough_skill_points)
+                .openDialog(getParentFragmentManager());
+        SoundUtil.play(getContext(), R.raw.sound_pop);
     }
 
     @Override

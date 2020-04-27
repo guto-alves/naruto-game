@@ -284,7 +284,7 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="label_wins_map_pvp">PVP Map Wins:</string>
     <string name="label_derrotas_dojo_pvp">PVP Dojo Losses:</string>
     <string name="attribute_training_description">Your character starts by earning 5 attribute
-        points on each level until level 5, after level 5 he starts to earn 2 points per level.
+        points on each level until level 5, after level 5 he starts to earn 3 points per level.
         The more you train, better will be your results in battles, in dojo NPC even with your
         enemies.\nThe Attribute Training is key to have a good character, so, never forget to
         training it!\n\nTo find out more details about each Attribute and help you distribute your
@@ -2379,5 +2379,6 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="no_elements_selected">No elements selected!</string>
     <string name="mission_finished">Mission Complete</string>
     <string name="mission_finished_description">%s completed the mission!</string>
+    <string name="you_dont_have_enough_skill_points">You don\'t have enough Skill Points.\nYou must have at least 5 Points.</string>
 
 </resources>

@@ -196,7 +196,7 @@
     <string name="label_wins_map_pvp">Vitórias Mapa PVP:</string>
     <string name="label_derrotas_dojo_pvp">Derrotas Dojo PVP:</string>
     <string name="attribute_training_description">Seu personagem começa ganhando 5 pontos de
-        atributos a cada level até o level 5, após o level 5 ele ganha 2 pontos. Quanto mais pontos
+        atributos a cada level até o level 5, após o level 5 ele ganha 3 pontos. Quanto mais pontos
         distribuídos você tiver, melhor serão seus resultados em luta no dojo e
         contra seus inimigos. O treinamento de atributos é a chave de ter um bom personagem,
         portanto, jamais deixe de treina-lo!\n\nPara saber maiores detalhes sobre cada Atributo e te
@@ -2332,5 +2332,6 @@
     <string name="no_elements_selected">Nenhum elemento selecionado!</string>
     <string name="mission_finished">Missão Completa</string>
     <string name="mission_finished_description">%s completou a missão!</string>
+    <string name="you_dont_have_enough_skill_points">Você não tem Pontos de Habilidade suficientes.\nÉ necessário ter pelo menos 5 Pontos.</string>
 
 </resources>
