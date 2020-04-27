@@ -49,8 +49,10 @@ exports.formBattle = functions.database.ref('/dojo-random-wait')
 			 	if (players[charIds[i]].playerId === players[charIds[j]].playerId) {
 			 		continue;
 			 	}
-
-				if(players[charIds[i]].level === players[charIds[j]].level){
+				
+				var lvlDiff = Math.abs(players[charIds[i]].level - players[charIds[j]].level);
+				
+				if(lvlDiff <= 1){
 					var battle = {
 						attackStart: Date.now(),
 						currentPlayer: 1,
