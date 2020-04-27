@@ -149,7 +149,7 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
                     buildMenu();
                     if (mCharacter.isDojoWaitQueue()) {
                         setCurrentSection(BATTLES_GROUP, 0);
-                    } else if (TextUtils.isEmpty(mCharacter.battleId)) {
+                    } else {
                         setCurrentSection(CHARACTER_GROUP, 0);
                     }
                 } else if (propertyId == BR.titles) {

@@ -27,7 +27,7 @@ public class DojoPvpBattlesFragment extends Fragment {
                 R.layout.fragment_dojo_pvp_battles, container, false);
 
         binding.dojoPvpWarningTextView.setText(getString(R.string.dojo_pvp_warnings,
-                getString(GraduationUtils.getName(CharOn.character.getGraduationId())))
+                getString(GraduationUtils.getName(1)))
         );
 
         if (CharOn.character.getGraduationId() == 1) {
@@ -38,4 +38,5 @@ public class DojoPvpBattlesFragment extends Fragment {
 
         return binding.getRoot();
     }
+
 }
