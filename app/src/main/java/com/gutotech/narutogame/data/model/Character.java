@@ -117,7 +117,7 @@ public class Character extends BaseObservable implements Serializable {
         if (getLevel() <= 5) {
             getAttributes().setTotalFreePoints(getAttributes().getTotalFreePoints() + 5);
         } else {
-            getAttributes().setTotalFreePoints(getAttributes().getTotalFreePoints() + 2);
+            getAttributes().setTotalFreePoints(getAttributes().getTotalFreePoints() + 3);
         }
 
         updateFormulas();
