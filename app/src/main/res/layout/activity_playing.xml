@@ -392,8 +392,7 @@
                                     android:background="@android:color/white"
                                     android:ems="10"
                                     android:imeOptions="actionSend"
-                                    android:inputType="textCapCharacters|textCapSentences"
-                                    android:maxLength="25"
+                                    android:maxLength="80"
                                     android:text="@={viewModel.message}" />
                             </LinearLayout>
 

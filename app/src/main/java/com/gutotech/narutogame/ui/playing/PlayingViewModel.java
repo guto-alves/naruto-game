@@ -490,7 +490,7 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
     }
 
     public void onSendMessageButtonPressed() {
-        if (!TextUtils.isEmpty(message.get())) {
+        if (!TextUtils.isEmpty(message.get().trim())) {
             ChatRepository.getInstance().sendMessage(
                     new Message(mCharacter.getNick(), message.get()), mChannel);
             message.set("");
