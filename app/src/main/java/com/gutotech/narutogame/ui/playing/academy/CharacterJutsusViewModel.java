@@ -28,6 +28,10 @@ public class CharacterJutsusViewModel extends ViewModel
         onClassButtonPressed(mCharacter.getClasse());
     }
 
+    void updateJutsus() {
+        onClassButtonPressed(mClassSelected.getValue());
+    }
+
     public void onClassButtonPressed(Object classeObject) {
         Classe classe = (Classe) classeObject;
 

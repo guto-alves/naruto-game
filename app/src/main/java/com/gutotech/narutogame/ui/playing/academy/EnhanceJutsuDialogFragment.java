@@ -11,9 +11,11 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.DialogFragment;
 
 import com.gutotech.narutogame.R;
+import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.model.Classe;
 import com.gutotech.narutogame.data.model.Enhancement;
 import com.gutotech.narutogame.data.model.Jutsu;
+import com.gutotech.narutogame.data.repository.JutsuRepository;
 import com.gutotech.narutogame.databinding.DialogEnhanceJutsuBinding;
 import com.gutotech.narutogame.ui.adapter.EnhancementsAdapter;
 import com.gutotech.narutogame.utils.SoundUtil;
@@ -25,20 +27,28 @@ import java.util.List;
 public class EnhanceJutsuDialogFragment extends DialogFragment {
 
     public interface EnhancementDialogListener extends Serializable {
-        void onUpgradeClick(Enhancement enhancement);
+        void onJutsuUpgraded();
     }
 
-    public static EnhanceJutsuDialogFragment getInstance(Jutsu jutsu, EnhancementDialogListener listener) {
+    private static final String EXTRA_SLOT = "slot";
+    private static final String EXTRA_JUTSU = "jutsu";
+    private static final String EXTRA_LISTENER = "listener";
+
+    public static EnhanceJutsuDialogFragment getInstance(Jutsu jutsu, String slot,
+                                                         EnhancementDialogListener listener) {
         Bundle args = new Bundle();
-        args.putSerializable("jutsu", jutsu);
-        args.putSerializable("listener", listener);
+        args.putSerializable(EXTRA_JUTSU, jutsu);
+        args.putSerializable(EXTRA_LISTENER, listener);
+        args.putString(EXTRA_SLOT, slot);
 
         EnhanceJutsuDialogFragment dialog = new EnhanceJutsuDialogFragment();
         dialog.setArguments(args);
         return dialog;
     }
 
+    private Jutsu mJutsu;
     private Enhancement mEnhancementSelected;
+    private String mSlot;
 
     @Nullable
     @Override
@@ -47,8 +57,14 @@ public class EnhanceJutsuDialogFragment extends DialogFragment {
         DialogEnhanceJutsuBinding binding = DataBindingUtil.inflate(inflater,
                 R.layout.dialog_enhance_jutsu, container, false);
 
-        Jutsu jutsu = (Jutsu) getArguments().getSerializable("jutsu");
-        binding.setJutsu(jutsu);
+        if (getArguments() == null) {
+            dismiss();
+            return binding.getRoot();
+        }
+
+        mSlot = getArguments().getString(EXTRA_SLOT);
+        mJutsu = (Jutsu) getArguments().getSerializable(EXTRA_JUTSU);
+        binding.setJutsu(mJutsu);
 
         binding.enhancementsRecyclerView.setHasFixedSize(true);
         EnhancementsAdapter adapter = new EnhancementsAdapter(getContext(), enhancement -> {
@@ -58,9 +74,9 @@ public class EnhanceJutsuDialogFragment extends DialogFragment {
         binding.enhancementsRecyclerView.setAdapter(adapter);
 
         List<Enhancement> enhancements = new ArrayList<>();
-        if (jutsu.isBuffOrDebuff()) {
-            if (jutsu.getJutsuInfo().type == Jutsu.Type.BUFF) {
-                if (jutsu.getClasse() == Classe.NIN || jutsu.getClasse() == Classe.GEN) {
+        if (mJutsu.isBuffOrDebuff()) {
+            if (mJutsu.getJutsuInfo().type == Jutsu.Type.BUFF) {
+                if (mJutsu.getClasse() == Classe.NIN || mJutsu.getClasse() == Classe.GEN) {
                     enhancements.add(new Enhancement(R.drawable.layout_enhancement_kunai_energia_up,
                             2, 0, 0, 0, 0));
                 } else {
@@ -73,7 +89,7 @@ public class EnhanceJutsuDialogFragment extends DialogFragment {
                 enhancements.add(new Enhancement(R.drawable.layout_enhancement_acc_up,
                         0, 0, 2, 0, 0));
             } else { // DEBUFF
-                if (jutsu.getClasse() == Classe.NIN || jutsu.getClasse() == Classe.GEN) {
+                if (mJutsu.getClasse() == Classe.NIN || mJutsu.getClasse() == Classe.GEN) {
                     enhancements.add(new Enhancement(R.drawable.layout_enhancement_kunai_energia_up,
                             -2, 0, 0, 0, 0));
                 } else {
@@ -88,7 +104,8 @@ public class EnhanceJutsuDialogFragment extends DialogFragment {
             }
         } else {
             binding.defTableRow.setVisibility(View.GONE);
-            if (jutsu.getClasse() == Classe.NIN || jutsu.getClasse() == Classe.GEN) {
+
+            if (mJutsu.getClasse() == Classe.NIN || mJutsu.getClasse() == Classe.GEN) {
                 binding.atkTaiBukTableRow.setVisibility(View.GONE);
                 enhancements.add(
                         new Enhancement(R.drawable.layout_enhancements_nin_gen_up,
@@ -116,17 +133,30 @@ public class EnhanceJutsuDialogFragment extends DialogFragment {
         binding.setEnhancement(mEnhancementSelected);
 
         binding.upgradeButton.setOnClickListener(v -> {
-            if (mEnhancementSelected == null) {
-                mEnhancementSelected = adapter.getEnhancements().get(0);
-            }
+            upgrade();
 
             SoundUtil.play(getContext(), R.raw.aim);
-            ((EnhancementDialogListener) getArguments().getSerializable("listener"))
-                    .onUpgradeClick(mEnhancementSelected);
+
+            EnhancementDialogListener listener =
+                    (EnhancementDialogListener) getArguments().getSerializable(EXTRA_LISTENER);
+            if (listener != null) {
+                listener.onJutsuUpgraded();
+            }
 
             dismiss();
         });
 
         return binding.getRoot();
+    }
+
+    private void upgrade() {
+        if (!mJutsu.getEnhancements().containsKey(mSlot)) {
+            CharOn.character.removeSkillPoints();
+        }
+
+        mJutsu.activate(mEnhancementSelected, mSlot);
+        int index = CharOn.character.getJutsus().indexOf(mJutsu);
+        CharOn.character.getJutsus().set(index, mJutsu);
+        JutsuRepository.getInstance().sort(CharOn.character.getJutsus());
     }
 }

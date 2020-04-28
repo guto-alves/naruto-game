@@ -22,6 +22,7 @@ import com.gutotech.narutogame.utils.FragmentUtils;
 import com.gutotech.narutogame.utils.SoundUtil;
 
 public class CharacterJutsusFragment extends Fragment implements SectionFragment {
+    private CharacterJutsusViewModel mViewModel;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -30,81 +31,21 @@ public class CharacterJutsusFragment extends Fragment implements SectionFragment
                 R.layout.fragment_character_jutsus, container, false);
         binding.setLifecycleOwner(this);
 
-        CharacterJutsusViewModel viewModel = new ViewModelProvider(this)
+        mViewModel = new ViewModelProvider(this)
                 .get(CharacterJutsusViewModel.class);
-        binding.setViewModel(viewModel);
+        binding.setViewModel(mViewModel);
 
-        LearnedJutsusAdapter adapter = new LearnedJutsusAdapter(getContext(), viewModel);
+        LearnedJutsusAdapter adapter = new LearnedJutsusAdapter(getContext(), mViewModel);
         binding.jutsusRecyclerView.setHasFixedSize(true);
         binding.jutsusRecyclerView.setAdapter(adapter);
-        viewModel.getJutsusFiltered().observe(getViewLifecycleOwner(), adapter::setJutsusList);
+        mViewModel.getJutsusFiltered().observe(getViewLifecycleOwner(), adapter::setJutsusList);
 
-        viewModel.getJutsuSelected().observe(getViewLifecycleOwner(), jutsu -> {
+        mViewModel.getJutsuSelected().observe(getViewLifecycleOwner(), jutsu -> {
             binding.setJutsu(jutsu);
 
-            binding.enhancementImageView1.setOnClickListener(v -> {
-                if (CharOn.character.getSkillPoints() >= 5 ||
-                        jutsu.getEnhancements().containsKey(Jutsu.SLOT_1)) {
-                    EnhanceJutsuDialogFragment dialog = EnhanceJutsuDialogFragment.getInstance(
-                            jutsu, enhancement -> {
-                                if (!jutsu.getEnhancements().containsKey(Jutsu.SLOT_1)) {
-                                    CharOn.character.removeSkillPoints();
-                                }
-
-                                jutsu.activate(enhancement, Jutsu.SLOT_1);
-                                int index = CharOn.character.getJutsus().indexOf(jutsu);
-                                CharOn.character.getJutsus().set(index, jutsu);
-                                binding.setJutsu(jutsu);
-                                adapter.notifyDataSetChanged();
-                            });
-                    dialog.show(getParentFragmentManager(), "EnhanceJutsuDialogFragment");
-                    SoundUtil.play(getContext(), R.raw.sound_pop);
-                } else {
-                    showWarningDialog();
-                }
-            });
-            binding.enhancementImageView2.setOnClickListener(v -> {
-                if (CharOn.character.getSkillPoints() >= 5 ||
-                        jutsu.getEnhancements().containsKey(Jutsu.SLOT_2)) {
-                    EnhanceJutsuDialogFragment dialog = EnhanceJutsuDialogFragment.getInstance(
-                            jutsu, enhancement -> {
-                                if (!jutsu.getEnhancements().containsKey(Jutsu.SLOT_2)) {
-                                    CharOn.character.removeSkillPoints();
-                                }
-
-                                jutsu.activate(enhancement, Jutsu.SLOT_2);
-                                int index = CharOn.character.getJutsus().indexOf(jutsu);
-                                CharOn.character.getJutsus().set(index, jutsu);
-                                binding.setJutsu(jutsu);
-                                adapter.notifyDataSetChanged();
-                            });
-                    dialog.show(getParentFragmentManager(), "EnhanceJutsuDialogFragment");
-                    SoundUtil.play(getContext(), R.raw.sound_pop);
-                } else {
-                    showWarningDialog();
-                }
-            });
-            binding.enhancementImageView3.setOnClickListener(v -> {
-                if (CharOn.character.getSkillPoints() >= 5 ||
-                        jutsu.getEnhancements().containsKey(Jutsu.SLOT_3)) {
-                    EnhanceJutsuDialogFragment dialog = EnhanceJutsuDialogFragment.getInstance(
-                            jutsu, enhancement -> {
-                                if (!jutsu.getEnhancements().containsKey(Jutsu.SLOT_3)) {
-                                    CharOn.character.removeSkillPoints();
-                                }
-
-                                jutsu.activate(enhancement, Jutsu.SLOT_3);
-                                int index = CharOn.character.getJutsus().indexOf(jutsu);
-                                CharOn.character.getJutsus().set(index, jutsu);
-                                binding.setJutsu(jutsu);
-                                adapter.notifyDataSetChanged();
-                            });
-                    dialog.show(getParentFragmentManager(), "EnhanceJutsuDialogFragment");
-                    SoundUtil.play(getContext(), R.raw.sound_pop);
-                } else {
-                    showWarningDialog();
-                }
-            });
+            binding.enhancementImageView1.setOnClickListener(v -> onSlotClick(jutsu, Jutsu.SLOT_1));
+            binding.enhancementImageView2.setOnClickListener(v -> onSlotClick(jutsu, Jutsu.SLOT_2));
+            binding.enhancementImageView3.setOnClickListener(v -> onSlotClick(jutsu, Jutsu.SLOT_3));
 
             binding.scrollView.post(() ->
                     binding.scrollView.smoothScrollTo(0, binding.scrollView.getBottom() + 1000)
@@ -115,10 +56,17 @@ public class CharacterJutsusFragment extends Fragment implements SectionFragment
         return binding.getRoot();
     }
 
-    private void showWarningDialog() {
-        WarningDialogFragment.newInstance(R.string.you_dont_have_enough_skill_points)
-                .openDialog(getParentFragmentManager());
-        SoundUtil.play(getContext(), R.raw.sound_pop);
+    private void onSlotClick(Jutsu jutsu, String slot) {
+        if (CharOn.character.getSkillPoints() >= 5 || jutsu.getEnhancements().containsKey(slot)) {
+            EnhanceJutsuDialogFragment dialog = EnhanceJutsuDialogFragment.getInstance(
+                    jutsu, slot, mViewModel::updateJutsus);
+            dialog.show(getParentFragmentManager(), "EnhanceJutsuDialogFragment");
+            SoundUtil.play(getContext(), R.raw.sound_pop);
+        } else {
+            WarningDialogFragment.newInstance(R.string.you_dont_have_enough_skill_points)
+                    .openDialog(getParentFragmentManager());
+            SoundUtil.play(getContext(), R.raw.sound_pop);
+        }
     }
 
     @Override
