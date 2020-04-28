@@ -126,7 +126,7 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="email" translatable="false">Email</string>
     <string name="password">Password</string>
     <string name="confirm_password">Confirm Password</string>
-    <string name="signup">Sign up</string>
+    <string name="signup">Sign Up</string>
     <string name="accont_created_successfuly">ACCOUNT CREATED SUCCESSFULLY</string>
     <string name="email_verification_sent">You will receive an email soon</string>
     <string name="new_invalid_password">The given password is invalid. [Password should be at least 6 characters]</string>
@@ -972,11 +972,11 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="pay_ry">Pay RY$ %d</string>
     <string name="end_of_the_battle">END OF THE BATTLE!</string>
     <string name="lost_by_inactivity">You have lost the fight by inactivity\n</string>
-    <string name="click_here">Click Here</string>
+    <string name="click_here">\nClick Here</string>
     <string name="to_preceed">to proceed</string>
     <string name="waiting_your_move">Waiting your Move</string>
     <string name="empate">DRAW!</string>
-    <string name="drawn_description">"Because they were both very tired, the match ended in a draw!\n\nGo to "</string>
+    <string name="drawn_description">Because they were both very tired, the match ended in a draw!\n\nGo to</string>
     <string name="combat_won_description">Nicely Done! You have won the battle!\nYour reward is RY$
         %d and %d experience points\n\nGo to back</string>
     <string name="error_updating_name">Error updating name</string>
@@ -2380,5 +2380,6 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="mission_finished">Mission Complete</string>
     <string name="mission_finished_description">%s completed the mission!</string>
     <string name="you_dont_have_enough_skill_points">You don\'t have enough Skill Points.\nYou must have at least 5 Points.</string>
+    <string name="label_seal_requirement">Seal requirement:</string>
 
 </resources>

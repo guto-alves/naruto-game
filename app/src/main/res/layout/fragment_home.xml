@@ -92,6 +92,15 @@
                     android:layout_marginTop="8dp"
                     android:text="@string/forgot_password"
                     android:textColor="@android:color/holo_blue_light" />
+
+                <TextView
+                    android:id="@+id/createAccountTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/create_an_account"
+                    android:textColor="@android:color/holo_blue_light" />
             </LinearLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout

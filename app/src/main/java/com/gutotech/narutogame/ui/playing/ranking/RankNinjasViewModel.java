@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel;
 import com.gutotech.narutogame.data.model.Character;
 import com.gutotech.narutogame.data.model.Village;
 import com.gutotech.narutogame.data.repository.RankNinjasRepository;
+import com.gutotech.narutogame.utils.SingleLiveEvent;
 
 import java.util.List;
 
@@ -20,18 +21,20 @@ public class RankNinjasViewModel extends ViewModel {
 
     private MutableLiveData<List<Character>> mNinjas = new MutableLiveData<>();
 
+    private SingleLiveEvent<Void> mProgressBarEvent = new SingleLiveEvent<>();
+
     public RankNinjasViewModel() {
         mVillages = Village.values();
         filter();
     }
 
-    LiveData<List<Character>> getNinjas() {
-        return mNinjas;
-    }
-
     private void filter() {
+        mProgressBarEvent.call();
         RankNinjasRepository.getInstance().filter(
-                mVillageSelected, nick.get(), mOnline, mNinjas::setValue
+                mVillageSelected, nick.get(), mOnline, ninjas -> {
+                    mNinjas.postValue(ninjas);
+                    mProgressBarEvent.call();
+                }
         );
     }
 
@@ -49,5 +52,13 @@ public class RankNinjasViewModel extends ViewModel {
 
     public void onFilterClick() {
         filter();
+    }
+
+    LiveData<List<Character>> getNinjas() {
+        return mNinjas;
+    }
+
+    LiveData<Void> getProgressBarEvent() {
+        return mProgressBarEvent;
     }
 }

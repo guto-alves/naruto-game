@@ -55,6 +55,7 @@ public class ElementalJutsusFragment extends Fragment implements SectionFragment
                     }
                 }, new ForegroundColorSpan(ContextCompat.getColor(getContext(), R.color.colorGreen))
         );
+        stringBuilder.append(".");
         mBinding.linkTrainingJutsuTextView.setText(stringBuilder.getString());
         mBinding.linkTrainingJutsuTextView.setMovementMethod(LinkMovementMethod.getInstance());
 

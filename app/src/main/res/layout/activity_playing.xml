@@ -105,8 +105,8 @@
                                 android:text='@{viewModel.character.titleIndex == 0 ? "" : context.getString(viewModel.character.titles.get(viewModel.character.titleIndex - 1))}'
                                 android:textColor="#937B4D"
                                 android:textSize="10sp"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="@+id/nickTextView"
+                                app:layout_constraintStart_toStartOf="@+id/nickTextView"
                                 app:layout_constraintTop_toBottomOf="@+id/nickTextView" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
                     </LinearLayout>
@@ -392,6 +392,7 @@
                                     android:background="@android:color/white"
                                     android:ems="10"
                                     android:imeOptions="actionSend"
+                                    android:inputType="textShortMessage"
                                     android:maxLength="80"
                                     android:text="@={viewModel.message}" />
                             </LinearLayout>

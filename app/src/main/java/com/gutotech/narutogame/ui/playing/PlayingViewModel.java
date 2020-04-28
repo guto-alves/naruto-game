@@ -69,6 +69,7 @@ import com.gutotech.narutogame.ui.playing.user.VipPlayerFragment;
 import com.gutotech.narutogame.utils.SettingsUtils;
 import com.gutotech.narutogame.utils.SingleLiveEvent;
 import com.gutotech.narutogame.utils.BgMusicUtils;
+import com.gutotech.narutogame.utils.SoundUtil;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -109,7 +110,9 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
         mCharacter.addOnPropertyChangedCallback(new Observable.OnPropertyChangedCallback() {
             @Override
             public void onPropertyChanged(Observable sender, int propertyId) {
-                if (propertyId == BR.fidelityReward) {
+                if (propertyId == BR.level) {
+                    SoundUtil.play(getApplication(), R.raw.yon);
+                } else if (propertyId == BR.fidelityReward) {
                     mFidelityAnimationEvent.setValue(CharOn.character.isFidelityReward());
                 } else if (propertyId == BR.mission) {
                     CharacterRepository.getInstance().save(mCharacter);

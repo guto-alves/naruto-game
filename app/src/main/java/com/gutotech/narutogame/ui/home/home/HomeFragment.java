@@ -21,15 +21,15 @@ import com.gutotech.narutogame.databinding.FragmentHomeBinding;
 import com.gutotech.narutogame.ui.MaintenanceActivity;
 import com.gutotech.narutogame.ui.ProgressDialogFragment;
 import com.gutotech.narutogame.ui.SectionFragment;
-import com.gutotech.narutogame.ui.SplashActivity;
 import com.gutotech.narutogame.ui.adapter.KagesSliderAdapter;
 import com.gutotech.narutogame.ui.adapter.NinjaStatisticsAdapter;
 import com.gutotech.narutogame.ui.adapter.NewsAdapter;
 import com.gutotech.narutogame.ui.ResultListener;
 import com.gutotech.narutogame.ui.home.readnews.ReadNewsFragment;
+import com.gutotech.narutogame.ui.home.signup.SignUpFragment;
 import com.gutotech.narutogame.ui.loggedin.LoggedInActivity;
 import com.gutotech.narutogame.utils.FragmentUtils;
-import com.gutotech.narutogame.ui.home.recuperarsenha.RecuperarSenhaFragment;
+import com.gutotech.narutogame.ui.home.passwordrecovery.PasswordRecoveryFragment;
 import com.gutotech.narutogame.utils.SoundUtil;
 import com.smarteist.autoimageslider.IndicatorAnimations;
 import com.smarteist.autoimageslider.SliderAnimations;
@@ -52,25 +52,28 @@ public class HomeFragment extends Fragment implements ResultListener, SectionFra
 
         if (AuthRepository.getInstance().isSignedIn()) {
             binding.loginLinearLayout.setVisibility(View.GONE);
+        } else {
+            binding.passwordEditText.setOnEditorActionListener((v, actionId, event) -> {
+                viewModel.onPlayButtonPressed();
+                return true;
+            });
+
+            binding.forgotPasswordTextView.setOnClickListener(v ->
+                    FragmentUtils.goTo(getActivity(), new PasswordRecoveryFragment())
+            );
+
+            binding.createAccountTextView.setOnClickListener(v ->
+                    FragmentUtils.goTo(getActivity(), new SignUpFragment())
+            );
         }
 
-        binding.passwordEditText.setOnEditorActionListener((v, actionId, event) -> {
-            viewModel.onPlayButtonPressed();
-            return true;
-        });
-
-        binding.forgotPasswordTextView.setOnClickListener(v ->
-                FragmentUtils.goTo(getActivity(), new RecuperarSenhaFragment())
-        );
-
-        viewModel.getGameStatus().observe(getViewLifecycleOwner(), aVoid -> {
-            startActivity(new Intent(getActivity(), MaintenanceActivity.class));
-        });
+        viewModel.getGameStatus().observe(getViewLifecycleOwner(), aVoid ->
+                startActivity(new Intent(getActivity(), MaintenanceActivity.class)));
 
         binding.newsRecyclerView.setHasFixedSize(true);
         binding.newsRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(),
                 LinearLayout.HORIZONTAL));
-        NewsAdapter newsAdapter = new NewsAdapter(getActivity(), newsClickListener);
+        NewsAdapter newsAdapter = new NewsAdapter(getActivity(), mNewsClickListener);
         binding.newsRecyclerView.setAdapter(newsAdapter);
         viewModel.getNews().observe(getViewLifecycleOwner(),
                 news -> {
@@ -105,7 +108,7 @@ public class HomeFragment extends Fragment implements ResultListener, SectionFra
         return binding.getRoot();
     }
 
-    private final NewsAdapter.NewsClickListener newsClickListener = news -> {
+    private final NewsAdapter.NewsClickListener mNewsClickListener = news -> {
         Bundle args = new Bundle();
         args.putSerializable("news", news);
         ReadNewsFragment readNewsFragment = new ReadNewsFragment();

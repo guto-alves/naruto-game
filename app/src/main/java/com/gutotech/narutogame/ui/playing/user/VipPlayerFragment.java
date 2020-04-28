@@ -17,6 +17,7 @@ import com.gutotech.narutogame.databinding.FragmentVipPlayerBinding;
 import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.WarningDialogFragment;
 import com.gutotech.narutogame.utils.FragmentUtils;
+import com.gutotech.narutogame.utils.SoundUtil;
 import com.gutotech.narutogame.utils.SpannableStringBuilderCustom;
 import com.gutotech.narutogame.data.firebase.StorageUtils;
 
@@ -63,6 +64,8 @@ public class VipPlayerFragment extends Fragment implements SectionFragment {
             binding.actionResultLayout.msgConstraintLayout.setVisibility(View.VISIBLE);
 
             binding.scrollView.post(() -> binding.scrollView.smoothScrollTo(0, 0));
+
+            SoundUtil.play(getContext(), R.raw.get_item02);
         });
 
         viewModel.getShowWarningDialogEvent().observe(getViewLifecycleOwner(), resid -> {

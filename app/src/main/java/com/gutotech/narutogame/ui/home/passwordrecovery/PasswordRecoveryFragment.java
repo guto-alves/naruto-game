@@ -1,4 +1,4 @@
-package com.gutotech.narutogame.ui.home.recuperarsenha;
+package com.gutotech.narutogame.ui.home.passwordrecovery;
 
 import android.os.Bundle;
 
@@ -21,13 +21,13 @@ import com.gutotech.narutogame.utils.FragmentUtils;
 
 import es.dmoral.toasty.Toasty;
 
-public class RecuperarSenhaFragment extends Fragment implements ResultListener, SectionFragment {
+public class PasswordRecoveryFragment extends Fragment implements ResultListener, SectionFragment {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        RecuperarSenhaViewModel viewModel = new ViewModelProvider(this)
-                .get(RecuperarSenhaViewModel.class);
+        PasswordRecoveryViewModel viewModel = new ViewModelProvider(this)
+                .get(PasswordRecoveryViewModel.class);
 
         FragmentRecuperarSenhaBinding binding = DataBindingUtil.inflate(inflater,
                 R.layout.fragment_recuperar_senha, container, false);

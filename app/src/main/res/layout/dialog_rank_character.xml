@@ -87,8 +87,8 @@
                             android:text='@{character.titleIndex == 0 ? "" : context.getString(character.titles.get(character.titleIndex - 1))}'
                             android:textColor="#937b4d"
                             android:textSize="10sp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="@+id/nickTextView"
+                            app:layout_constraintStart_toStartOf="@+id/nickTextView"
                             app:layout_constraintTop_toBottomOf="@+id/nickTextView" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>

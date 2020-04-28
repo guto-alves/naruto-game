@@ -43,13 +43,15 @@ public class MissionsWaitingFragment extends Fragment implements SectionFragment
         mViewModel.getShowMissionCompletedMsg().observe(getViewLifecycleOwner(), rewards -> {
             mBinding.msgConstraintLayout.setVisibility(View.GONE);
             mBinding.cancelButton.setVisibility(View.GONE);
-            mBinding.rewardExpTextView.setText(String.valueOf(rewards.get(0)));
-            mBinding.rewardRyousTextView.setText(getString(R.string.ry, rewards.get(1)));
+            mBinding.rewardExpTextView.setText(String.valueOf(rewards.get(1)));
+            mBinding.rewardRyousTextView.setText(getString(R.string.ry, rewards.get(0)));
             mBinding.missionCompletedLayout.setVisibility(View.VISIBLE);
 
             YoYo.with(Techniques.RubberBand)
                     .duration(1200)
                     .playOn(mBinding.missionCompletedLayout);
+
+            SoundUtil.play(getContext(), R.raw.get_item02);
         });
 
         mBinding.cancelButton.setOnClickListener(v -> showQuestionDialog());

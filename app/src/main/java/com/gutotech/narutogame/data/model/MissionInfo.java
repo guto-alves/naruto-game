@@ -15,21 +15,6 @@ public enum MissionInfo {
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
-                    return 800;
-                }
-
-                @Override
-                public void receive() {
-                    CharOn.character.incrementExp(value());
-                }
-
-                @Override
-                public CharSequence toString(Context context) {
-                    return context.getString(R.string.label_experience_points, value());
-                }
-            }, new Reward() {
-                @Override
-                public int value() {
                     return 25;
                 }
 
@@ -41,6 +26,21 @@ public enum MissionInfo {
                 @Override
                 public CharSequence toString(Context context) {
                     return context.getString(R.string.ry, value());
+                }
+            }, new Reward() {
+                @Override
+                public int value() {
+                    return 800;
+                }
+
+                @Override
+                public void receive() {
+                    CharOn.character.incrementExp(value());
+                }
+
+                @Override
+                public CharSequence toString(Context context) {
+                    return context.getString(R.string.label_experience_points, value());
                 }
             }),
             Collections.singletonList(new Requirement() {
@@ -64,21 +64,6 @@ public enum MissionInfo {
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
-                    return 800;
-                }
-
-                @Override
-                public void receive() {
-                    CharOn.character.incrementExp(value());
-                }
-
-                @Override
-                public CharSequence toString(Context context) {
-                    return context.getString(R.string.label_experience_points, value());
-                }
-            }, new Reward() {
-                @Override
-                public int value() {
                     return 25;
                 }
 
@@ -90,6 +75,21 @@ public enum MissionInfo {
                 @Override
                 public CharSequence toString(Context context) {
                     return context.getString(R.string.ry, value());
+                }
+            }, new Reward() {
+                @Override
+                public int value() {
+                    return 800;
+                }
+
+                @Override
+                public void receive() {
+                    CharOn.character.incrementExp(value());
+                }
+
+                @Override
+                public CharSequence toString(Context context) {
+                    return context.getString(R.string.label_experience_points, value());
                 }
             }),
             Collections.singletonList(new Requirement() {
@@ -113,21 +113,6 @@ public enum MissionInfo {
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
-                    return 1000;
-                }
-
-                @Override
-                public void receive() {
-                    CharOn.character.incrementExp(value());
-                }
-
-                @Override
-                public CharSequence toString(Context context) {
-                    return context.getString(R.string.label_experience_points, value());
-                }
-            }, new Reward() {
-                @Override
-                public int value() {
                     return 25;
                 }
 
@@ -139,6 +124,21 @@ public enum MissionInfo {
                 @Override
                 public CharSequence toString(Context context) {
                     return context.getString(R.string.ry, value());
+                }
+            }, new Reward() {
+                @Override
+                public int value() {
+                    return 1000;
+                }
+
+                @Override
+                public void receive() {
+                    CharOn.character.incrementExp(value());
+                }
+
+                @Override
+                public CharSequence toString(Context context) {
+                    return context.getString(R.string.label_experience_points, value());
                 }
             }),
             Collections.singletonList(new Requirement() {
@@ -162,21 +162,6 @@ public enum MissionInfo {
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
-                    return 1000;
-                }
-
-                @Override
-                public void receive() {
-                    CharOn.character.incrementExp(value());
-                }
-
-                @Override
-                public CharSequence toString(Context context) {
-                    return context.getString(R.string.label_experience_points, value());
-                }
-            }, new Reward() {
-                @Override
-                public int value() {
                     return 25;
                 }
 
@@ -188,6 +173,21 @@ public enum MissionInfo {
                 @Override
                 public CharSequence toString(Context context) {
                     return context.getString(R.string.ry, value());
+                }
+            }, new Reward() {
+                @Override
+                public int value() {
+                    return 1000;
+                }
+
+                @Override
+                public void receive() {
+                    CharOn.character.incrementExp(value());
+                }
+
+                @Override
+                public CharSequence toString(Context context) {
+                    return context.getString(R.string.label_experience_points, value());
                 }
             }),
             Collections.singletonList(new Requirement() {
@@ -211,21 +211,6 @@ public enum MissionInfo {
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
-                    return 1200;
-                }
-
-                @Override
-                public void receive() {
-                    CharOn.character.incrementExp(value());
-                }
-
-                @Override
-                public CharSequence toString(Context context) {
-                    return context.getString(R.string.label_experience_points, value());
-                }
-            }, new Reward() {
-                @Override
-                public int value() {
                     return 25;
                 }
 
@@ -237,6 +222,21 @@ public enum MissionInfo {
                 @Override
                 public CharSequence toString(Context context) {
                     return context.getString(R.string.ry, value());
+                }
+            }, new Reward() {
+                @Override
+                public int value() {
+                    return 1200;
+                }
+
+                @Override
+                public void receive() {
+                    CharOn.character.incrementExp(value());
+                }
+
+                @Override
+                public CharSequence toString(Context context) {
+                    return context.getString(R.string.label_experience_points, value());
                 }
             }),
             Collections.singletonList(new Requirement() {
@@ -260,21 +260,6 @@ public enum MissionInfo {
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
-                    return 1200;
-                }
-
-                @Override
-                public void receive() {
-                    CharOn.character.incrementExp(value());
-                }
-
-                @Override
-                public CharSequence toString(Context context) {
-                    return context.getString(R.string.label_experience_points, value());
-                }
-            }, new Reward() {
-                @Override
-                public int value() {
                     return 25;
                 }
 
@@ -286,6 +271,21 @@ public enum MissionInfo {
                 @Override
                 public CharSequence toString(Context context) {
                     return context.getString(R.string.ry, value());
+                }
+            }, new Reward() {
+                @Override
+                public int value() {
+                    return 1200;
+                }
+
+                @Override
+                public void receive() {
+                    CharOn.character.incrementExp(value());
+                }
+
+                @Override
+                public CharSequence toString(Context context) {
+                    return context.getString(R.string.label_experience_points, value());
                 }
             }),
             Collections.singletonList(new Requirement() {
@@ -309,21 +309,6 @@ public enum MissionInfo {
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
-                    return 1400;
-                }
-
-                @Override
-                public void receive() {
-                    CharOn.character.incrementExp(value());
-                }
-
-                @Override
-                public CharSequence toString(Context context) {
-                    return context.getString(R.string.label_experience_points, value());
-                }
-            }, new Reward() {
-                @Override
-                public int value() {
                     return 25;
                 }
 
@@ -335,6 +320,21 @@ public enum MissionInfo {
                 @Override
                 public CharSequence toString(Context context) {
                     return context.getString(R.string.ry, value());
+                }
+            }, new Reward() {
+                @Override
+                public int value() {
+                    return 1400;
+                }
+
+                @Override
+                public void receive() {
+                    CharOn.character.incrementExp(value());
+                }
+
+                @Override
+                public CharSequence toString(Context context) {
+                    return context.getString(R.string.label_experience_points, value());
                 }
             }),
             Collections.singletonList(new Requirement() {
@@ -358,21 +358,6 @@ public enum MissionInfo {
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
-                    return 1600;
-                }
-
-                @Override
-                public void receive() {
-                    CharOn.character.incrementExp(value());
-                }
-
-                @Override
-                public CharSequence toString(Context context) {
-                    return context.getString(R.string.label_experience_points, value());
-                }
-            }, new Reward() {
-                @Override
-                public int value() {
                     return 25;
                 }
 
@@ -384,6 +369,21 @@ public enum MissionInfo {
                 @Override
                 public CharSequence toString(Context context) {
                     return context.getString(R.string.ry, value());
+                }
+            }, new Reward() {
+                @Override
+                public int value() {
+                    return 1600;
+                }
+
+                @Override
+                public void receive() {
+                    CharOn.character.incrementExp(value());
+                }
+
+                @Override
+                public CharSequence toString(Context context) {
+                    return context.getString(R.string.label_experience_points, value());
                 }
             }),
             Arrays.asList(new Requirement() {
@@ -407,21 +407,6 @@ public enum MissionInfo {
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
-                    return 1600;
-                }
-
-                @Override
-                public void receive() {
-                    CharOn.character.incrementExp(value());
-                }
-
-                @Override
-                public CharSequence toString(Context context) {
-                    return context.getString(R.string.label_experience_points, value());
-                }
-            }, new Reward() {
-                @Override
-                public int value() {
                     return 25;
                 }
 
@@ -433,6 +418,21 @@ public enum MissionInfo {
                 @Override
                 public CharSequence toString(Context context) {
                     return context.getString(R.string.ry, value());
+                }
+            }, new Reward() {
+                @Override
+                public int value() {
+                    return 1600;
+                }
+
+                @Override
+                public void receive() {
+                    CharOn.character.incrementExp(value());
+                }
+
+                @Override
+                public CharSequence toString(Context context) {
+                    return context.getString(R.string.label_experience_points, value());
                 }
             }),
             Arrays.asList(new Requirement() {
@@ -456,21 +456,6 @@ public enum MissionInfo {
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
-                    return 1600;
-                }
-
-                @Override
-                public void receive() {
-                    CharOn.character.incrementExp(value());
-                }
-
-                @Override
-                public CharSequence toString(Context context) {
-                    return context.getString(R.string.label_experience_points, value());
-                }
-            }, new Reward() {
-                @Override
-                public int value() {
                     return 25;
                 }
 
@@ -482,6 +467,21 @@ public enum MissionInfo {
                 @Override
                 public CharSequence toString(Context context) {
                     return context.getString(R.string.ry, value());
+                }
+            }, new Reward() {
+                @Override
+                public int value() {
+                    return 1600;
+                }
+
+                @Override
+                public void receive() {
+                    CharOn.character.incrementExp(value());
+                }
+
+                @Override
+                public CharSequence toString(Context context) {
+                    return context.getString(R.string.label_experience_points, value());
                 }
             }),
             Collections.singletonList(new Requirement() {

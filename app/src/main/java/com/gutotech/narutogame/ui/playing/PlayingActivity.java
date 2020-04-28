@@ -28,6 +28,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
@@ -124,7 +125,7 @@ public class PlayingActivity extends AppCompatActivity {
 
         mViewModel.getFidelityAnimationEvent().observe(this, running -> {
             if (running) {
-                mRope = YoYo.with(Techniques.Pulse)
+                mRope = YoYo.with(Techniques.RubberBand)
                         .duration(1200)
                         .repeat(YoYo.INFINITE)
                         .playOn(navHeaderBinding.hasFidelityRewardImageButton);

@@ -31,8 +31,7 @@ public class CharacterJutsusFragment extends Fragment implements SectionFragment
                 R.layout.fragment_character_jutsus, container, false);
         binding.setLifecycleOwner(this);
 
-        mViewModel = new ViewModelProvider(this)
-                .get(CharacterJutsusViewModel.class);
+        mViewModel = new ViewModelProvider(this).get(CharacterJutsusViewModel.class);
         binding.setViewModel(mViewModel);
 
         LearnedJutsusAdapter adapter = new LearnedJutsusAdapter(getContext(), mViewModel);

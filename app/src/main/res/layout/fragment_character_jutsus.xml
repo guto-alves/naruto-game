@@ -285,6 +285,7 @@
                     android:layout_height="wrap_content"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/jutsuImageLinearLayout"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/layout_pergaminho" />
@@ -334,6 +335,8 @@
                     android:background="@drawable/layout_bg_habilidades"
                     android:gravity="center"
                     app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/imageView48"
+                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 

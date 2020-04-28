@@ -32,7 +32,7 @@ public class RamenInfoPopupWindow extends PopupWindow {
     @Override
     public void showAsDropDown(View anchor) {
         PopupWindowCompat.showAsDropDown(this, anchor, 0, 0,
-                Gravity.TOP | Gravity.START);
+                Gravity.TOP | Gravity.END);
         SoundUtil.play(anchor.getContext(), R.raw.sound_pop);
     }
 

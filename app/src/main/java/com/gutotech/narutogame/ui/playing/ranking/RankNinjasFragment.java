@@ -39,6 +39,15 @@ public class RankNinjasFragment extends Fragment implements SectionFragment {
 
         viewModel.getNinjas().observe(getViewLifecycleOwner(), adapter::setNinjas);
 
+        viewModel.getProgressBarEvent().observe(getViewLifecycleOwner(), aVoid -> {
+            int visibility = binding.progressBar.getVisibility();
+            if (visibility == View.VISIBLE) {
+                binding.progressBar.setVisibility(View.GONE);
+            } else {
+                binding.progressBar.setVisibility(View.VISIBLE);
+            }
+        });
+
         FragmentUtils.setSectionTitle(getActivity(), R.string.section_ninjas_ranking);
 
         return binding.getRoot();

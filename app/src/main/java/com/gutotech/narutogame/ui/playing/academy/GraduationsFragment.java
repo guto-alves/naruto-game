@@ -16,6 +16,7 @@ import com.gutotech.narutogame.databinding.FragmentGradesBinding;
 import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.adapter.GraduationsAdapter;
 import com.gutotech.narutogame.utils.FragmentUtils;
+import com.gutotech.narutogame.utils.SoundUtil;
 
 public class GraduationsFragment extends Fragment implements SectionFragment {
 
@@ -33,9 +34,10 @@ public class GraduationsFragment extends Fragment implements SectionFragment {
                 getParentFragmentManager(), viewModel);
         binding.graduationsRecyclerView.setAdapter(adapter);
 
-        viewModel.getUpdateGraduationsEvent().observe(getViewLifecycleOwner(), aVoid ->
-                adapter.notifyDataSetChanged()
-        );
+        viewModel.getUpdateGraduationsEvent().observe(getViewLifecycleOwner(), aVoid -> {
+            adapter.notifyDataSetChanged();
+            SoundUtil.play(getContext(), R.raw.yon);
+        });
 
         FragmentUtils.setSectionTitle(getActivity(), R.string.section_graduations);
 

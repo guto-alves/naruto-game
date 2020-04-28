@@ -588,13 +588,13 @@ public class DojoBattlePvpViewModel extends AndroidViewModel
         } else {
             mBattle.setPlayersInBattle(playersInBattle);
             saveBattle();
-            mBattleLog.setFighter1Id(mFighters.getPlayer().getId());
-            mBattleLog.setFighter2Id(mFighters.getOpponent().getId());
-            mBattleLog.setBattleLogs(mBattleLogs.getValue());
-            FirebaseFunctionsUtils.getServerTime(currentTimestamp -> {
-                mBattleLog.setFinalTime(currentTimestamp);
-                BattleLogsRepository.getInstance().save(mBattleLog);
-            });
+//            mBattleLog.setFighter1Id(mFighters.getPlayer().getId());
+//            mBattleLog.setFighter2Id(mFighters.getOpponent().getId());
+//            mBattleLog.setBattleLogs(mBattleLogs.getValue());
+//            FirebaseFunctionsUtils.getServerTime(currentTimestamp -> {
+//                mBattleLog.setFinalTime(currentTimestamp);
+//                BattleLogsRepository.getInstance().save(mBattleLog);
+//            });
         }
 
         CharOn.character.setItemsEnabled(true);

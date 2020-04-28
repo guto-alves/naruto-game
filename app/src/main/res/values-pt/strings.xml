@@ -916,11 +916,11 @@
     <string name="pay_ry">Pagar RY$ %d</string>
     <string name="end_of_the_battle">COMBATE ENCERRADO!</string>
     <string name="lost_by_inactivity">Por ficar muito tempo sem efetuar nenhuma ação, você perdeu o combate!\n</string>
-    <string name="click_here">Clique aqui</string>
+    <string name="click_here">\nClique aqui</string>
     <string name="to_preceed">para continuar</string>
     <string name="waiting_your_move">Aguardando a sua ação</string>
     <string name="empate">EMPATE!</string>
-    <string name="drawn_description">"Por ambos estarem muito cansados, o combate terminou em empate!\n\nIr para o "</string>
+    <string name="drawn_description">Por ambos estarem muito cansados, o combate terminou em empate!\n\nIr para o</string>
     <string name="combat_won_description">Parabéns! Você venceu o combate!\nComo recompensa você
         estará recebendo RY$ %d e %d pontos de experiência\n\nVoltar ao</string>
     <string name="error_updating_name">Erro ao atualizar nome</string>
@@ -2333,5 +2333,6 @@
     <string name="mission_finished">Missão Completa</string>
     <string name="mission_finished_description">%s completou a missão!</string>
     <string name="you_dont_have_enough_skill_points">Você não tem Pontos de Habilidade suficientes.\nÉ necessário ter pelo menos 5 Pontos.</string>
+    <string name="label_seal_requirement">Requerimento de Selo:</string>
 
 </resources>

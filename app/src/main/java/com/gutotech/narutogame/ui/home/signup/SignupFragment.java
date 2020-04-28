@@ -21,13 +21,13 @@ import com.gutotech.narutogame.data.firebase.StorageUtils;
 
 import es.dmoral.toasty.Toasty;
 
-public class SignupFragment extends Fragment implements ResultListener, SectionFragment {
+public class SignUpFragment extends Fragment implements ResultListener, SectionFragment {
     private FragmentSignupBinding mBinding;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        SignupViewModel viewModel = new ViewModelProvider(this).get(SignupViewModel.class);
+        SignUpViewModel viewModel = new ViewModelProvider(this).get(SignUpViewModel.class);
 
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_signup,
                 container, false);

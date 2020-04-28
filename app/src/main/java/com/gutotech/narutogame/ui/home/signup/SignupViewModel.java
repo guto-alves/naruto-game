@@ -12,14 +12,14 @@ import com.gutotech.narutogame.data.repository.AuthRepository;
 import com.gutotech.narutogame.data.repository.PlayerRepository;
 import com.gutotech.narutogame.ui.ResultListener;
 
-public class SignupViewModel extends ViewModel {
+public class SignUpViewModel extends ViewModel {
     public String confirmPassword;
     private MutableLiveData<Player> mPlayer;
 
     private AuthRepository mAuthRepository;
     private ResultListener mAuthListener;
 
-    public SignupViewModel() {
+    public SignUpViewModel() {
         mPlayer = new MutableLiveData<>(new Player());
         mAuthRepository = AuthRepository.getInstance();
     }

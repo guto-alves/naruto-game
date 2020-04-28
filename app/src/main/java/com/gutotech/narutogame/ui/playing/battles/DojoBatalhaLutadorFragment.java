@@ -102,6 +102,7 @@ public class DojoBatalhaLutadorFragment extends Fragment implements SectionFragm
             mViewModel.showWonEvent.observe(getViewLifecycleOwner(), rewards -> {
                 SpannableStringBuilderCustom description = new SpannableStringBuilderCustom(getContext());
                 description.append(getString(R.string.combat_won_description, rewards[0], rewards[1]));
+                description.append();
                 description.append(R.string.dojo,
                         new ForegroundColorSpan(Color.BLUE),
                         new ClickableSpan() {
@@ -119,6 +120,7 @@ public class DojoBatalhaLutadorFragment extends Fragment implements SectionFragm
             mViewModel.showLostEvent.observe(getViewLifecycleOwner(), aVoid -> {
                 SpannableStringBuilderCustom description = new SpannableStringBuilderCustom(getContext());
                 description.append(R.string.you_have_lost_the_battle);
+                description.append();
                 description.append(R.string.hospital,
                         new ForegroundColorSpan(Color.BLUE),
                         new ClickableSpan() {
@@ -136,6 +138,7 @@ public class DojoBatalhaLutadorFragment extends Fragment implements SectionFragm
             mViewModel.showDrawnEvent.observe(getViewLifecycleOwner(), aVoid -> {
                 SpannableStringBuilderCustom description = new SpannableStringBuilderCustom(getContext());
                 description.append(R.string.drawn_description);
+                description.append();
                 description.append(R.string.hospital,
                         new ForegroundColorSpan(Color.BLUE),
                         new ClickableSpan() {
@@ -161,7 +164,7 @@ public class DojoBatalhaLutadorFragment extends Fragment implements SectionFragm
                                 CharOn.character.setHospital(true);
                             }
                         });
-                description.append(" ");
+                description.append();
                 description.append(getString(R.string.to_preceed));
 
                 showBattleResult(R.string.too_bad, description.getString());

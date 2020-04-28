@@ -94,13 +94,15 @@
                                 android:paddingEnd="3dp"
                                 android:paddingRight="3dp"
                                 android:text="@{String.valueOf(jutsu.level)}"
-                                android:textColor="@android:color/white" />
+                                android:textColor="@android:color/white"
+                                android:textStyle="bold" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="+1"
-                                android:textColor="@color/colorGreen" />
+                                android:textColor="@color/colorGreen"
+                                android:textStyle="bold" />
                         </LinearLayout>
                     </TableRow>
 
@@ -134,13 +136,15 @@
                                 android:paddingEnd="3dp"
                                 android:paddingRight="3dp"
                                 android:text="@{String.valueOf(jutsu.atk)}"
-                                android:textColor="@android:color/white" />
+                                android:textColor="@android:color/white"
+                                android:textStyle="bold" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@{enhancement.atk &lt; 0 ? String.valueOf(enhancement.atk) : @string/plus(enhancement.atk)}"
-                                android:textColor="@color/colorGreen" />
+                                android:textColor="@color/colorGreen"
+                                android:textStyle="bold" />
 
                         </LinearLayout>
                     </TableRow>
@@ -175,13 +179,15 @@
                                 android:paddingEnd="3dp"
                                 android:paddingRight="3dp"
                                 android:text="@{String.valueOf(jutsu.atk)}"
-                                android:textColor="@android:color/white" />
+                                android:textColor="@android:color/white"
+                                android:textStyle="bold" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@{enhancement.atk &lt; 0 ? String.valueOf(enhancement.atk) : @string/plus(enhancement.atk)}"
-                                android:textColor="@color/colorGreen" />
+                                android:textColor="@color/colorGreen"
+                                android:textStyle="bold" />
 
                         </LinearLayout>
                     </TableRow>
@@ -216,13 +222,15 @@
                                 android:paddingEnd="3dp"
                                 android:paddingRight="3dp"
                                 android:text="@{String.valueOf(jutsu.baseDefense)}"
-                                android:textColor="@android:color/white" />
+                                android:textColor="@android:color/white"
+                                android:textStyle="bold" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@{enhancement.defense &lt; 0 ? String.valueOf(enhancement.defense) : @string/plus(enhancement.defense)}"
-                                android:textColor="@color/colorGreen" />
+                                android:textColor="@color/colorGreen"
+                                android:textStyle="bold" />
 
                         </LinearLayout>
                     </TableRow>
@@ -241,7 +249,7 @@
                             android:drawableLeft="@drawable/layout_icones_conhe"
                             android:drawablePadding="3dp"
                             android:gravity="center_vertical"
-                            android:text="@string/label_accuracy2"
+                            android:text="@string/label_seal_requirement"
                             android:textColor="@android:color/white" />
 
                         <LinearLayout
@@ -256,13 +264,15 @@
                                 android:paddingEnd="3dp"
                                 android:paddingRight="3dp"
                                 android:text="@{String.valueOf(jutsu.accuracy)}"
-                                android:textColor="@android:color/white" />
+                                android:textColor="@android:color/white"
+                                android:textStyle="bold" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text='@{enhancement.accuracy &lt; 0 ? String.valueOf(enhancement.accuracy) : @string/plus(enhancement.accuracy)}'
-                                android:textColor="@color/colorGreen" />
+                                android:textColor="@color/colorGreen"
+                                android:textStyle="bold" />
 
                         </LinearLayout>
                     </TableRow>
@@ -296,13 +306,15 @@
                                 android:paddingEnd="3dp"
                                 android:paddingRight="3dp"
                                 android:text="@{String.valueOf(jutsu.consumesChakra)}"
-                                android:textColor="@android:color/white" />
+                                android:textColor="@android:color/white"
+                                android:textStyle="bold" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text='@{enhancement.percentOfChakra &lt; 0 ? enhancement.percentOfChakra + "%" : "+" + enhancement.percentOfChakra + "%"}'
-                                android:textColor="@color/colorGreen" />
+                                android:textColor="@color/colorGreen"
+                                android:textStyle="bold" />
 
                         </LinearLayout>
                     </TableRow>
@@ -336,13 +348,15 @@
                                 android:paddingEnd="3dp"
                                 android:paddingRight="3dp"
                                 android:text="@{String.valueOf(jutsu.consumesStamina)}"
-                                android:textColor="@android:color/white" />
+                                android:textColor="@android:color/white"
+                                android:textStyle="bold" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text='@{enhancement.percentOfStamina &lt; 0 ? String.valueOf(enhancement.percentOfStamina) + "%" : "+" + enhancement.percentOfStamina + "%"}'
-                                android:textColor="@color/colorGreen" />
+                                android:textColor="@color/colorGreen"
+                                android:textStyle="bold" />
 
                         </LinearLayout>
                     </TableRow>
@@ -379,7 +393,7 @@
             <Button
                 android:id="@+id/upgradeButton"
                 style="@style/ButtonTheme"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="32dp"
                 android:text="@string/upgrade"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

@@ -4,7 +4,6 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -15,6 +14,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.model.Graduation;
@@ -80,6 +81,11 @@ public class GraduationsAdapter extends RecyclerView.Adapter<GraduationsAdapter.
             RequirementDialogFragment dialog = RequirementDialogFragment.getInstance(graduation.requirements);
             dialog.openDialog(mFragmentManager, mContext);
         });
+
+        YoYo.with(Techniques.Bounce)
+                .duration(1200)
+                .repeat(YoYo.INFINITE)
+                .playOn(holder.requerImageView);
 
         if (validateRequirements(graduation.requirements)) {
             holder.graduateButton.setEnabled(true);

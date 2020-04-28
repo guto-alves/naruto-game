@@ -1,4 +1,4 @@
-package com.gutotech.narutogame.ui.home.recuperarsenha;
+package com.gutotech.narutogame.ui.home.passwordrecovery;
 
 import androidx.databinding.ObservableField;
 import androidx.lifecycle.ViewModel;
@@ -6,13 +6,13 @@ import androidx.lifecycle.ViewModel;
 import com.gutotech.narutogame.data.repository.AuthRepository;
 import com.gutotech.narutogame.ui.ResultListener;
 
-public class RecuperarSenhaViewModel extends ViewModel {
+public class PasswordRecoveryViewModel extends ViewModel {
     public final ObservableField<String> emailAddress = new ObservableField<>("");
 
     private AuthRepository mAuthRepository;
     private ResultListener mAuthListener;
 
-    public RecuperarSenhaViewModel() {
+    public PasswordRecoveryViewModel() {
         mAuthRepository = AuthRepository.getInstance();
     }
 
