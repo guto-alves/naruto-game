@@ -163,9 +163,9 @@ public class Character extends BaseObservable implements Serializable {
         Iterator<Jutsu> iterator = jutsus.iterator();
 
         while (iterator.hasNext()) {
-            boolean flag = false;
+            Jutsu jutsu = iterator.next();
 
-            List<Requirement> requirements = iterator.next().getJutsuInfo().requirements;
+            List<Requirement> requirements = jutsu.getJutsuInfo().requirements;
 
             if (requirements == null) {
                 continue;
@@ -173,19 +173,21 @@ public class Character extends BaseObservable implements Serializable {
 
             for (Requirement requirement : requirements) {
                 if (!requirement.check()) {
-                    flag = true;
+                    int pointsSpent = jutsu.getEnhancements().keySet().size() * 5;
+                    incrementSkillPoint(pointsSpent);
+                    iterator.remove();
                     break;
                 }
-            }
-
-            if (flag) {
-                iterator.remove();
             }
         }
     }
 
     public void incrementSkillPoint() {
-        setSkillPoints(getSkillPoints() + 1);
+        incrementSkillPoint(1);
+    }
+
+    private void incrementSkillPoint(int quantity) {
+        setSkillPoints(getSkillPoints() + quantity);
     }
 
     public void removeSkillPoints() {
