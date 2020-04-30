@@ -4,6 +4,7 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -55,7 +56,7 @@ public class ItemShopAdapter extends RecyclerView.Adapter<ItemShopAdapter.ViewHo
     }
 
     private Context mContext;
-    private List<ShopItem> mItemsList;
+    private List<ShopItem> mShopItems;
     private FragmentManager mFragmentManager;
     private OnBuyClickListener mOnBuyButtonListener;
     private RamenInfoPopupWindow mRamenInfoPopupWindow;
@@ -78,8 +79,8 @@ public class ItemShopAdapter extends RecyclerView.Adapter<ItemShopAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int i) {
-        if (mItemsList != null) {
-            final ShopItem itemShop = mItemsList.get(i);
+        if (mShopItems != null) {
+            ShopItem itemShop = mShopItems.get(i);
 
             if (itemShop instanceof Ramen) {
                 StorageUtils.downloadRamen(mContext, holder.itemImageView, itemShop.getImage());
@@ -87,9 +88,20 @@ public class ItemShopAdapter extends RecyclerView.Adapter<ItemShopAdapter.ViewHo
                 StorageUtils.downloadScroll(mContext, holder.itemImageView, itemShop.getImage());
             }
 
+            holder.itemImageView.setOnClickListener(v -> {
+                if (itemShop instanceof Ramen) {
+                    showRamenInfo((Ramen) itemShop, holder.itemImageView);
+                }
+            });
+
             holder.nameTextView.setText(itemShop.getName());
             holder.descriptionTextView.setText(itemShop.getDescription());
             holder.valueTextView.setText(mContext.getString(R.string.ry, itemShop.getValue()));
+
+            holder.requerImageView.setOnClickListener(v ->
+                    RequirementDialogFragment.getInstance(itemShop.getRequirements())
+                            .openDialog(mFragmentManager, mContext)
+            );
 
             if (validateRequirements(itemShop.getRequirements())) {
                 holder.buyButton.setEnabled(true);
@@ -98,11 +110,7 @@ public class ItemShopAdapter extends RecyclerView.Adapter<ItemShopAdapter.ViewHo
             }
 
             holder.quantityEditText.setOnKeyListener((v, keyCode, event) -> {
-                int quantity = 1;
-
-                if (!holder.quantityEditText.getText().toString().isEmpty()) {
-                    quantity = Integer.parseInt(holder.quantityEditText.getText().toString());
-                }
+                int quantity = getInput(holder.quantityEditText);
 
                 int newValue = itemShop.getValue() * quantity;
 
@@ -110,34 +118,17 @@ public class ItemShopAdapter extends RecyclerView.Adapter<ItemShopAdapter.ViewHo
                 return false;
             });
 
-            holder.itemImageView.setOnClickListener(v -> {
-                if (itemShop instanceof Ramen) {
-                    showRamenInfo((Ramen) itemShop, holder.itemImageView);
-                }
-            });
-
-            holder.requerImageView.setOnClickListener(v -> {
-                RequirementDialogFragment dialog = RequirementDialogFragment.getInstance(itemShop.getRequirements());
-                dialog.openDialog(mFragmentManager, mContext);
-            });
-
-            holder.buyButton.setOnClickListener(v -> {
-                int quantity = 1;
-
-                if (!holder.quantityEditText.getText().toString().isEmpty()) {
-                    quantity = Integer.parseInt(holder.quantityEditText.getText().toString());
-                }
-
-                mOnBuyButtonListener.onBuyButtonClick(itemShop, quantity);
-            });
+            holder.buyButton.setOnClickListener(v ->
+                    mOnBuyButtonListener.onBuyButtonClick(itemShop, getInput(holder.quantityEditText))
+            );
 
             if (i % 2 == 0) {
                 holder.bgLayout.setBackgroundColor(
-                        mContext.getResources().getColor(R.color.colorItem1)
+                        ContextCompat.getColor(mContext, R.color.colorItem1)
                 );
             } else {
                 holder.bgLayout.setBackgroundColor(
-                        mContext.getResources().getColor(R.color.colorItem2)
+                        ContextCompat.getColor(mContext, R.color.colorItem2)
                 );
             }
         }
@@ -145,15 +136,19 @@ public class ItemShopAdapter extends RecyclerView.Adapter<ItemShopAdapter.ViewHo
 
     @Override
     public int getItemCount() {
-        return mItemsList != null ? mItemsList.size() : 0;
+        return mShopItems != null ? mShopItems.size() : 0;
     }
 
     public void setItemsList(List<ShopItem> items) {
-        mItemsList = items;
+        mShopItems = items;
         notifyDataSetChanged();
     }
 
     private boolean validateRequirements(List<Requirement> requirements) {
+        if (requirements == null) {
+            return true;
+        }
+
         for (Requirement requirement : requirements) {
             if (!requirement.check()) {
                 return false;
@@ -166,6 +161,19 @@ public class ItemShopAdapter extends RecyclerView.Adapter<ItemShopAdapter.ViewHo
     private void showRamenInfo(Ramen ramen, View anchor) {
         mRamenInfoPopupWindow.setRamen(ramen);
         mRamenInfoPopupWindow.showAsDropDown(anchor);
+    }
+
+    private int getInput(EditText editText) {
+        int quantity = 1;
+
+        String input = editText.getText().toString().trim()
+                .replaceAll("[^\\d]", "");
+
+        if (!input.isEmpty()) {
+            quantity = Math.abs(Integer.parseInt(input));
+        }
+
+        return quantity;
     }
 
 }

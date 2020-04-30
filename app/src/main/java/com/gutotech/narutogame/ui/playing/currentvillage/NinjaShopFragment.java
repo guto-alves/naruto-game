@@ -33,7 +33,6 @@ public class NinjaShopFragment extends Fragment implements SectionFragment {
 
         ItemShopAdapter adapter = new ItemShopAdapter(getActivity(),
                 getParentFragmentManager(), viewModel);
-
         binding.shopItemsRecyclerView.setHasFixedSize(true);
         binding.shopItemsRecyclerView.setAdapter(adapter);
 

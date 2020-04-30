@@ -41,13 +41,12 @@ public class NinjaShopViewModel extends ViewModel implements
     }
 
     @Override
-    public void onBuyButtonClick(ShopItem item, int quantity) {
+    public synchronized void onBuyButtonClick(ShopItem item, int quantity) {
         int price = item.getValue() * quantity;
 
         if (CharOn.character.getRyous() >= price) {
             CharOn.character.subRyous(price);
 
-            item.setRequirements(null);
             CharOn.character.getBag().addScroll((Scroll) item, quantity);
 
             CharacterRepository.getInstance().save(CharOn.character);
@@ -274,7 +273,7 @@ public class NinjaShopViewModel extends ViewModel implements
         return mShopItems;
     }
 
-    public LiveData<Integer> getShowWarningDialogEvent() {
+    LiveData<Integer> getShowWarningDialogEvent() {
         return mShowWarningDialogEvent;
     }
 }
