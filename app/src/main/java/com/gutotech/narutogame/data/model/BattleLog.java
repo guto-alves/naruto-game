@@ -1,55 +1,55 @@
 package com.gutotech.narutogame.data.model;
 
 public class BattleLog {
-    public enum Type {USES, RECEIVES, BUFF_DEBUFF_WEAPON, MISSED, END}
+    public enum Action {USES, RECEIVES, BUFF_DEBUFF_WEAPON, MISSED, END}
 
-    public Type type;
+    public Action action;
 
     private String nick;
 
-    private Integer action;
+    private Integer value;
     private Jutsu jutsu;
     private int chanceOfSuccess;
 
     public BattleLog() {
     }
 
-    public BattleLog(Type type) {
-        this.type = type;
-    }
-
-    public BattleLog(String nick, Type type) {
-        this.type = type;
-        this.nick = nick;
-    }
-
-    public BattleLog(String nick, Type type, Integer action) {
-        this.type = type;
-        this.nick = nick;
+    public BattleLog(Action action) {
         this.action = action;
     }
 
-    public BattleLog(String nick, Type type, Integer action, Jutsu jutsu) {
-        this.type = type;
-        this.nick = nick;
+    public BattleLog(String nick, Action action) {
         this.action = action;
+        this.nick = nick;
+    }
+
+    public BattleLog(String nick, Action action, Integer value) {
+        this.action = action;
+        this.nick = nick;
+        this.value = value;
+    }
+
+    public BattleLog(String nick, Action action, Integer value, Jutsu jutsu) {
+        this.action = action;
+        this.nick = nick;
+        this.value = value;
         this.jutsu = jutsu;
     }
 
-    public BattleLog(String nick, Type type, Integer action, Jutsu jutsu, int chanceOfSuccess) {
-        this.type = type;
-        this.nick = nick;
+    public BattleLog(String nick, Action action, Integer value, Jutsu jutsu, int chanceOfSuccess) {
         this.action = action;
+        this.nick = nick;
+        this.value = value;
         this.jutsu = jutsu;
         this.chanceOfSuccess = chanceOfSuccess;
     }
 
-    public Type getType() {
-        return type;
+    public Action getAction() {
+        return action;
     }
 
-    public void setType(Type type) {
-        this.type = type;
+    public void setAction(Action action) {
+        this.action = action;
     }
 
     public String getNick() {
@@ -60,12 +60,12 @@ public class BattleLog {
         this.nick = nick;
     }
 
-    public Integer getAction() {
-        return action;
+    public Integer getValue() {
+        return value;
     }
 
-    public void setAction(Integer action) {
-        this.action = action;
+    public void setValue(Integer value) {
+        this.value = value;
     }
 
     public Jutsu getJutsu() {

@@ -64,7 +64,7 @@ public class CharacterJutsusFragment extends Fragment implements SectionFragment
         } else {
             WarningDialogFragment.newInstance(R.string.you_dont_have_enough_skill_points)
                     .openDialog(getParentFragmentManager());
-            SoundUtil.play(getContext(), R.raw.sound_pop);
+            SoundUtil.play(getContext(), R.raw.attention2);
         }
     }
 

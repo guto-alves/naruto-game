@@ -62,7 +62,7 @@
                         android:layout_marginEnd="5dp"
                         android:layout_marginRight="5dp"
                         android:text="//"
-                        android:textColor="@android:color/holo_orange_dark"
+                        android:textColor="@color/colorOrange"
                         android:textSize="16sp" />
 
                     <TextView

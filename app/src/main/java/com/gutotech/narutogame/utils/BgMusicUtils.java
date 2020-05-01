@@ -8,7 +8,6 @@ import androidx.annotation.RawRes;
 import com.gutotech.narutogame.R;
 
 import java.security.SecureRandom;
-import java.util.Calendar;
 
 public class BgMusicUtils {
     public enum MusicType {NORMAL, BATTLE}

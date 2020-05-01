@@ -103,10 +103,12 @@
                         android:textStyle="bold" />
 
                     <EditText
+                        android:id="@+id/nameEditText"
                         style="@style/EditTextTheme"
                         android:layout_width="120dp"
                         android:layout_height="wrap_content"
-                        android:inputType="textCapSentences|textCapCharacters"
+                        android:imeOptions="actionSearch"
+                        android:inputType="textFilter"
                         android:text="@={viewModel.nick}" />
                 </LinearLayout>
 

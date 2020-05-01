@@ -18,14 +18,14 @@ import java.util.Collections;
 import java.util.EnumSet;
 import java.util.List;
 
-public class KagesRepository {
-    private static KagesRepository sInstance = new KagesRepository();
+public class KageRepository {
+    private static final KageRepository sInstance = new KageRepository();
 
-    public static KagesRepository getInstance() {
+    public static KageRepository getInstance() {
         return sInstance;
     }
 
-    private KagesRepository() {
+    private KageRepository() {
     }
 
     public LiveData<List<Character>> getKages() {
@@ -45,7 +45,7 @@ public class KagesRepository {
         return data;
     }
 
-    private void getKage(Village village, Callback<Character> callback) {
+    public void getKage(Village village, Callback<Character> callback) {
         DatabaseReference charactersRef = FirebaseConfig.getDatabase()
                 .child("characters");
 

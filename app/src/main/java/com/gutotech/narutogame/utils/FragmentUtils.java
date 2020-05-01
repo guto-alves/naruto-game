@@ -39,6 +39,6 @@ public class FragmentUtils {
         transaction.remove(current);
         transaction.commit();
         fragmentManager.popBackStack();
-        goTo(activity, fragment);
+        goTo(activity, fragment, false);
     }
 }

@@ -46,7 +46,7 @@
 
                 <ImageView
                     android:id="@+id/imageView21"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:scaleType="fitXY"
                     android:src="@drawable/layout_msg_topo"
@@ -62,7 +62,8 @@
                     android:scaleType="fitXY"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.88" />
 
                 <ImageView
                     android:id="@+id/imageView23"
@@ -77,12 +78,13 @@
 
                 <ImageView
                     android:id="@+id/imageView22"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:scaleType="fitXY"
                     android:src="@drawable/layout_msg_rodape1"
                     app:layout_constraintBottom_toBottomOf="@+id/imageView23"
                     app:layout_constraintEnd_toEndOf="@+id/imageView23"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/imageView23" />
 
                 <LinearLayout
@@ -145,7 +147,7 @@
                             android:layout_marginLeft="8dp"
                             android:text="@string/npc_daily_combat"
                             android:textColor="@android:color/white"
-                            android:textSize="10sp"
+                            android:textSize="12sp"
                             app:layout_constraintBottom_toBottomOf="@+id/npcDailyCombatProgressBar"
                             app:layout_constraintStart_toStartOf="@+id/npcDailyCombatProgressBar"
                             app:layout_constraintTop_toTopOf="@+id/npcDailyCombatProgressBar" />

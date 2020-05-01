@@ -102,7 +102,6 @@ public class LearnJutsuInfoPopupWindow extends PopupWindow {
     public void showAsDropDown(View anchor) {
         PopupWindowCompat.showAsDropDown(this, anchor, 0, 0,
                 Gravity.TOP | Gravity.END);
-
         SoundUtil.play(mContext, R.raw.sound_pop);
     }
 }

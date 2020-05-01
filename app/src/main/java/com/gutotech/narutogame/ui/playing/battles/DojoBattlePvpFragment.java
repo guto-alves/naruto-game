@@ -39,7 +39,6 @@ import com.gutotech.narutogame.utils.SpannableStringBuilderCustom;
 
 public class DojoBattlePvpFragment extends Fragment implements SectionFragment {
     private FragmentDojoBattlePvpBinding mBinding;
-
     private DojoBattlePvpViewModel mViewModel;
 
     public DojoBattlePvpFragment() {
@@ -99,7 +98,7 @@ public class DojoBattlePvpFragment extends Fragment implements SectionFragment {
             SpannableStringBuilderCustom description = new SpannableStringBuilderCustom(getContext());
             description.append(getString(R.string.combat_won_description, rewards[0], rewards[1]));
             description.append();
-            description.append(CharOn.character.battleId.contains("MAP-PVP") ?
+            description.append(CharOn.character.getBattleId().contains("MAP-PVP") ?
                             R.string.village_map : R.string.dojo,
                     new ForegroundColorSpan(Color.BLUE),
                     new ClickableSpan() {
@@ -107,7 +106,7 @@ public class DojoBattlePvpFragment extends Fragment implements SectionFragment {
                         public void onClick(@NonNull View widget) {
                             mViewModel.exit();
 
-                            if (CharOn.character.battleId.contains("MAP-PVP")) {
+                            if (CharOn.character.getBattleId().contains("MAP-PVP")) {
                                 FragmentUtils.goTo(getActivity(), new VillageMapFragment());
                             } else {
                                 FragmentUtils.goTo(getActivity(), new DojoFragment());
@@ -177,6 +176,9 @@ public class DojoBattlePvpFragment extends Fragment implements SectionFragment {
     }
 
     private void showStatus(View view, Formulas formulas) {
+        if (formulas == null) {
+            return;
+        }
         PopupWindow popupWindow = new PopupWindow(getContext());
 
         PopupAttributesStatusBinding binding = DataBindingUtil.inflate(getLayoutInflater(),
@@ -206,7 +208,7 @@ public class DojoBattlePvpFragment extends Fragment implements SectionFragment {
     private void showWarningDialog(@StringRes int resid) {
         WarningDialogFragment dialog = WarningDialogFragment.newInstance(resid);
         dialog.openDialog(getParentFragmentManager());
-        SoundUtil.play(getContext(), R.raw.sound_pop);
+        SoundUtil.play(getContext(), R.raw.attention2);
     }
 
     private void showBattleResult(@StringRes int title, SpannableStringBuilder description) {

@@ -5,6 +5,6 @@
         android:centerColor="#C24300"
         android:endColor="#C04200"
         android:startColor="#C04200"
-        android:type="linear" />
+        android:action="linear" />
     <corners android:radius="8dp" />
 </shape>

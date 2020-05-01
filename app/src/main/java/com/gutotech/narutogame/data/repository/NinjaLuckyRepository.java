@@ -10,7 +10,7 @@ import com.gutotech.narutogame.data.firebase.FirebaseConfig;
 import com.gutotech.narutogame.data.model.NinjaLucky;
 
 public class NinjaLuckyRepository {
-    private static NinjaLuckyRepository sInstance = new NinjaLuckyRepository();
+    private static final NinjaLuckyRepository sInstance = new NinjaLuckyRepository();
 
     private NinjaLuckyRepository() {
     }

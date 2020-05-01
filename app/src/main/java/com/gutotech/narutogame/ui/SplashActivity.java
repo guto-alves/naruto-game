@@ -40,7 +40,6 @@ public class SplashActivity extends AppCompatActivity {
                 AuthRepository.getInstance().signOut();
                 startActivity(new Intent(SplashActivity.this, HomeActivity.class));
             }
-
             finish();
         });
 

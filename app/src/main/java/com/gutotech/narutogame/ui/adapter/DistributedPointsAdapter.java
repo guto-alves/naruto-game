@@ -92,8 +92,8 @@ public class DistributedPointsAdapter extends RecyclerView.Adapter<DistributedPo
             holder.nameTextView.setText(attribute.name);
             holder.iconImageView.setImageResource(attribute.icon);
             holder.totalTextView.setText(String.valueOf(points));
-            holder.totalProgressBar.setMax(mMax);
-            holder.totalProgressBar.setProgress(points);
+            holder.totalProgressBar.setMax(0);
+            holder.totalProgressBar.setProgress(0);
             holder.totalProgressBar.setMax(mMax);
             holder.totalProgressBar.setProgress(points);
             holder.quantitySpinner.setAdapter(mTrainPointsAdapter);

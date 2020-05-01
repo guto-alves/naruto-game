@@ -24,7 +24,7 @@ import com.gutotech.narutogame.data.model.BattleLog;
 import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.model.Formulas;
 import com.gutotech.narutogame.data.model.Jutsu;
-import com.gutotech.narutogame.data.repository.BattlesRepository;
+import com.gutotech.narutogame.data.repository.BattleRepository;
 import com.gutotech.narutogame.databinding.FragmentDojoBatalhaLutadorBinding;
 import com.gutotech.narutogame.databinding.PopupAttributesStatusBinding;
 import com.gutotech.narutogame.ui.SectionFragment;
@@ -51,7 +51,7 @@ public class DojoBatalhaLutadorFragment extends Fragment implements SectionFragm
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_dojo_batalha_lutador,
                 container, false);
 
-        BattlesRepository.getInstance().get(CharOn.character.battleId, battle -> {
+        BattleRepository.getInstance().get(CharOn.character.getBattleId(), battle -> {
             mViewModel = new ViewModelProvider(this,
                     new DojoBatalhaLutadorViewModelFactory(battle))
                     .get(DojoBatalhaLutadorViewModel.class);
@@ -214,6 +214,7 @@ public class DojoBatalhaLutadorFragment extends Fragment implements SectionFragm
     private void showWarningDialog(@StringRes int resid) {
         WarningDialogFragment dialog = WarningDialogFragment.newInstance(resid);
         dialog.openDialog(getParentFragmentManager());
+        SoundUtil.play(getContext(), R.raw.attention2);
     }
 
     @Override

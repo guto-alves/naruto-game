@@ -67,7 +67,7 @@ public class HomeFragment extends Fragment implements ResultListener, SectionFra
             );
         }
 
-        viewModel.getGameStatus().observe(getViewLifecycleOwner(), aVoid ->
+        viewModel.getStartMaintenanceActivityEvent().observe(getViewLifecycleOwner(), aVoid ->
                 startActivity(new Intent(getActivity(), MaintenanceActivity.class)));
 
         binding.newsRecyclerView.setHasFixedSize(true);
@@ -138,6 +138,8 @@ public class HomeFragment extends Fragment implements ResultListener, SectionFra
         if (resId != 0) {
             Toasty.error(getActivity(), resId, Toast.LENGTH_SHORT).show();
         }
+
+        SoundUtil.play(getContext(), R.raw.attention2);
     }
 
     @Override

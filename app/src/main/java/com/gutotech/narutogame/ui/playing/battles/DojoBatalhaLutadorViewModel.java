@@ -20,7 +20,7 @@ import com.gutotech.narutogame.data.model.Jutsu;
 import com.gutotech.narutogame.data.model.JutsuInfo;
 import com.gutotech.narutogame.data.model.Npc;
 import com.gutotech.narutogame.data.model.Score;
-import com.gutotech.narutogame.data.repository.BattlesRepository;
+import com.gutotech.narutogame.data.repository.BattleRepository;
 import com.gutotech.narutogame.data.repository.CharacterRepository;
 import com.gutotech.narutogame.ui.adapter.JutsusAdapter;
 import com.gutotech.narutogame.utils.SingleLiveEvent;
@@ -39,7 +39,7 @@ public class DojoBatalhaLutadorViewModel extends ViewModel
 
     private CountDownTimer mCountDownTimer;
 
-    private BattlesRepository mBattlesRepository;
+    private BattleRepository mBattleRepository;
 
     private Battle mBattle;
 
@@ -65,9 +65,11 @@ public class DojoBatalhaLutadorViewModel extends ViewModel
     SingleLiveEvent<Void> showDrawnEvent = new SingleLiveEvent<>();
     SingleLiveEvent<Void> showInactivatedEvent = new SingleLiveEvent<>();
 
-    public DojoBatalhaLutadorViewModel(Battle battle) {
+    DojoBatalhaLutadorViewModel(Battle battle) {
         mBattle = battle;
-        mBattlesRepository = BattlesRepository.getInstance();
+        mBattleRepository = BattleRepository.getInstance();
+
+        CharOn.character.setItemsEnabled(false);
 
         player = mBattle.getPlayer1();
         npc = new Npc(mBattle.getPlayer2());
@@ -90,7 +92,6 @@ public class DojoBatalhaLutadorViewModel extends ViewModel
             showBattleResult();
         }
     }
-
 
     private void startTimer(long millisInFuture) {
         mCountDownTimer = new CountDownTimer(millisInFuture, 1000) {
@@ -175,7 +176,7 @@ public class DojoBatalhaLutadorViewModel extends ViewModel
             playerFormulas.subChakra(jutsu.getConsumesChakra());
             playerFormulas.subStamina(jutsu.getConsumesStamina());
 
-            addLog(new BattleLog(player.getNick(), BattleLog.Type.BUFF_DEBUFF_WEAPON,
+            addLog(new BattleLog(player.getNick(), BattleLog.Action.BUFF_DEBUFF_WEAPON,
                     playerJutsuInfo.name, jutsu));
         } else {
             showWarningDialogEvent.setValue(R.string.jutsu_is_not_yet_available);
@@ -319,23 +320,23 @@ public class DojoBatalhaLutadorViewModel extends ViewModel
         npcFormulas.subStamina(oppJutsu.getConsumesStamina());
 
         // Creates battle log
-        addLog(new BattleLog(player.getNick(), BattleLog.Type.USES, myJutsuInfo.name, myJutsu,
+        addLog(new BattleLog(player.getNick(), BattleLog.Action.USES, myJutsuInfo.name, myJutsu,
                 calculateChanceOfSuccess(myJutsu.getAccuracy(), playerFormulas.getAccuracy())));
         if (myMissed) {
-            addLog(new BattleLog(player.getNick(), BattleLog.Type.MISSED));
+            addLog(new BattleLog(player.getNick(), BattleLog.Action.MISSED));
         } else {
             if (myJutsuInfo.type == Jutsu.Type.ATK) {
-                addLog(new BattleLog(npc.getCharacter().getNick(), BattleLog.Type.RECEIVES, myDamage));
+                addLog(new BattleLog(npc.getCharacter().getNick(), BattleLog.Action.RECEIVES, myDamage));
             }
         }
 
-        addLog(new BattleLog(npc.getCharacter().getNick(), BattleLog.Type.USES, oppJutsuInfo.name,
+        addLog(new BattleLog(npc.getCharacter().getNick(), BattleLog.Action.USES, oppJutsuInfo.name,
                 oppJutsu, 100));
         if (oppJutsuInfo.type == Jutsu.Type.ATK) {
-            addLog(new BattleLog(player.getNick(), BattleLog.Type.RECEIVES, oppDamage));
+            addLog(new BattleLog(player.getNick(), BattleLog.Action.RECEIVES, oppDamage));
         }
 
-        addLog(new BattleLog(BattleLog.Type.END));
+        addLog(new BattleLog(BattleLog.Action.END));
     }
 
     private int calculateChanceOfSuccess(int jutsuAccuracy, int currentAccuracy) {
@@ -393,12 +394,16 @@ public class DojoBatalhaLutadorViewModel extends ViewModel
 
 
     private void updateFightStatus() {
-        if ((npcFormulas.getCurrentHealth() < 10 || npcFormulas.getCurrentChakra() < 10 || npcFormulas.getCurrentStamina() < 10)
-                && (playerFormulas.getCurrentHealth() < 10 || playerFormulas.getCurrentChakra() < 10 || playerFormulas.getCurrentStamina() < 10)) {
+        if ((npcFormulas.getCurrentHealth() < 10 || npcFormulas.getCurrentChakra() < 10 ||
+                npcFormulas.getCurrentStamina() < 10) &&
+                (playerFormulas.getCurrentHealth() < 10 || playerFormulas.getCurrentChakra() < 10 ||
+                        playerFormulas.getCurrentStamina() < 10)) {
             mBattle.setStatus(Battle.Status.DRAWN);
-        } else if (npcFormulas.getCurrentHealth() < 10 || npcFormulas.getCurrentChakra() < 10 || npcFormulas.getCurrentStamina() < 10) {
+        } else if (npcFormulas.getCurrentHealth() < 10 || npcFormulas.getCurrentChakra() < 10 ||
+                npcFormulas.getCurrentStamina() < 10) {
             mBattle.setStatus(Battle.Status.PLAYER1_WON);
-        } else if (playerFormulas.getCurrentHealth() < 10 || playerFormulas.getCurrentChakra() < 10 || playerFormulas.getCurrentStamina() < 10) {
+        } else if (playerFormulas.getCurrentHealth() < 10 || playerFormulas.getCurrentChakra() < 10 ||
+                playerFormulas.getCurrentStamina() < 10) {
             mBattle.setStatus(Battle.Status.PLAYER2_WON);
         } else {
             mBattle.setStatus(Battle.Status.CONTINUE);
@@ -451,15 +456,16 @@ public class DojoBatalhaLutadorViewModel extends ViewModel
             CharOn.character.decrementScore(Score.DER_DOJO_NPC);
         }
 
-        mBattlesRepository.delete(mBattle.getId());
+        mBattleRepository.delete(mBattle.getId());
 
+        CharOn.character.setBattleId("");
+        CharOn.character.setItemsEnabled(true);
         CharOn.character.setBattle(false);
-        CharOn.character.battleId = "";
         CharacterRepository.getInstance().save(CharOn.character);
     }
 
     private void saveBattle() {
-        mBattlesRepository.save(mBattle);
+        mBattleRepository.save(mBattle);
     }
 
 

@@ -16,14 +16,12 @@ import com.gutotech.narutogame.data.firebase.FirebaseConfig;
 import com.gutotech.narutogame.data.model.Player;
 
 public class PlayerRepository {
-    private static PlayerRepository sInstance;
+    private static final PlayerRepository sInstance = new PlayerRepository();
 
     private PlayerRepository() {
     }
 
     public static PlayerRepository getInstance() {
-        if (sInstance == null)
-            sInstance = new PlayerRepository();
         return sInstance;
     }
 

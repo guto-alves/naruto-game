@@ -12,10 +12,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.CharOn;
+import com.gutotech.narutogame.data.model.ElementalJutsu;
+import com.gutotech.narutogame.data.model.GraduationUtils;
 import com.gutotech.narutogame.data.model.JutsuInfo;
 import com.gutotech.narutogame.data.model.Requirement;
 import com.gutotech.narutogame.ui.playing.RequirementDialogFragment;
@@ -23,7 +26,9 @@ import com.gutotech.narutogame.ui.playing.academy.LearnJutsuInfoPopupWindow;
 import com.gutotech.narutogame.data.firebase.StorageUtils;
 import com.gutotech.narutogame.data.model.Jutsu;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class JutsusLearnAdapter extends RecyclerView.Adapter<JutsusLearnAdapter.ViewHolder> {
 
@@ -38,6 +43,8 @@ public class JutsusLearnAdapter extends RecyclerView.Adapter<JutsusLearnAdapter.
         private ImageView requerImageView;
         private Button trainButton;
         private ConstraintLayout constraintLayout;
+        private LinearLayout sectionLinearLayout;
+        private TextView sectionTextView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -47,6 +54,8 @@ public class JutsusLearnAdapter extends RecyclerView.Adapter<JutsusLearnAdapter.
             requerImageView = itemView.findViewById(R.id.requerImageView);
             trainButton = itemView.findViewById(R.id.trainButton);
             constraintLayout = itemView.findViewById(R.id.constraintLayout);
+            sectionLinearLayout = itemView.findViewById(R.id.sectionLinearLayout);
+            sectionTextView = itemView.findViewById(R.id.sectionTextView);
         }
     }
 
@@ -54,6 +63,8 @@ public class JutsusLearnAdapter extends RecyclerView.Adapter<JutsusLearnAdapter.
     private List<Jutsu> mJutsusList;
     private FragmentManager mFragmentManager;
     private OnTrainClickListener mOnTrainClickListener;
+    private Set<String> mSections = new HashSet<>();
+    private int mGraduationRequirementIndex;
 
     public JutsusLearnAdapter(Context context, FragmentManager fragmentManager,
                               OnTrainClickListener trainClickListener) {
@@ -100,8 +111,17 @@ public class JutsusLearnAdapter extends RecyclerView.Adapter<JutsusLearnAdapter.
 
             holder.trainButton.setOnClickListener(v -> mOnTrainClickListener.onTrainClick(jutsu));
 
+            if (mSections.contains(jutsu.getName())) {
+                holder.sectionLinearLayout.setVisibility(View.VISIBLE);
+                holder.sectionTextView.setText(mContext.getString(GraduationUtils.getName(
+                        jutsu.getJutsuInfo().requirements.get(mGraduationRequirementIndex).getValue()
+                )).toUpperCase());
+            } else {
+                holder.sectionLinearLayout.setVisibility(View.GONE);
+            }
+
             if (jutsuInfo.toString().contains("SENSEI")) {
-                holder.constraintLayout.setBackgroundResource(android.R.color.holo_orange_dark);
+                holder.constraintLayout.setBackgroundResource(R.color.colorSensei);
             } else if (i % 2 == 0) {
                 holder.constraintLayout.setBackgroundResource(R.color.colorItem1);
             } else {
@@ -117,7 +137,29 @@ public class JutsusLearnAdapter extends RecyclerView.Adapter<JutsusLearnAdapter.
 
     public void setJutsusList(List<Jutsu> jutsus) {
         mJutsusList = jutsus;
+        updateFirstJutsusOfEachGraduation();
         notifyDataSetChanged();
+    }
+
+    private void updateFirstJutsusOfEachGraduation() {
+        mSections.clear();
+        int len = mJutsusList.size();
+        if (len == 0) {
+            return;
+        }
+        int c = -1;
+        mGraduationRequirementIndex = mJutsusList.get(0) instanceof ElementalJutsu ? 1 : 0;
+
+        for (int i = 0; i < len; i++) {
+            Jutsu jutsu = mJutsusList.get(i);
+            int graduationId = jutsu.getJutsuInfo().requirements
+                    .get(mGraduationRequirementIndex).getValue();
+
+            if (c != graduationId) {
+                mSections.add(jutsu.getName());
+                c = graduationId;
+            }
+        }
     }
 
     private boolean validateRequirements(List<Requirement> requirements, boolean folded) {

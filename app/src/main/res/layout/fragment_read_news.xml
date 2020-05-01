@@ -90,18 +90,13 @@
 
             </LinearLayout>
 
-            <EditText
-                android:id="@+id/messageEditText"
+            <TextView
+                android:id="@+id/messageTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:ems="10"
-                android:enabled="false"
-                android:gravity="start|top"
-                android:inputType="textMultiLine"
-                android:singleLine="false"
                 android:text="@{viewModel.news.message}"
                 android:textColor="@android:color/white"
+                android:textIsSelectable="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView3" />
@@ -114,7 +109,7 @@
                 android:background="@android:color/darker_gray"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/messageEditText" />
+                app:layout_constraintTop_toBottomOf="@+id/messageTextView" />
 
             <TextView
                 android:id="@+id/textView66"

@@ -17,6 +17,7 @@ import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.WarningDialogFragment;
 import com.gutotech.narutogame.ui.adapter.TeamsParticipateAdapter;
 import com.gutotech.narutogame.utils.FragmentUtils;
+import com.gutotech.narutogame.utils.SoundUtil;
 
 public class TeamParticipateFragment extends Fragment implements SectionFragment {
 
@@ -43,6 +44,7 @@ public class TeamParticipateFragment extends Fragment implements SectionFragment
         viewModel.getShowWarningDialogEvent().observe(getViewLifecycleOwner(), resid -> {
             WarningDialogFragment warningDialogFragment = WarningDialogFragment.newInstance(resid);
             warningDialogFragment.openDialog(getParentFragmentManager());
+            SoundUtil.play(getContext(), R.raw.sound_pop);
         });
 
         FragmentUtils.setSectionTitle(getActivity(), R.string.section_join_a_team);

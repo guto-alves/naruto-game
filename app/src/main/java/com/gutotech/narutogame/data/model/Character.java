@@ -42,7 +42,7 @@ public class Character extends BaseObservable implements Serializable {
     private CombatOverview combatOverview;
     private int npcDailyCombat;
     private boolean battle;
-    public String battleId;
+    private String battleId;
     private boolean dojoWaitQueue;
     private boolean hospital;
 

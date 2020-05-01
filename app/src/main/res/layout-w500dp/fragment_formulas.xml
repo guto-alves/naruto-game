@@ -28,7 +28,7 @@
 
             <ImageView
                 android:id="@+id/imageView49"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
                 android:scaleType="fitXY"
@@ -1836,7 +1836,7 @@
 
             <ImageView
                 android:id="@+id/imageView57"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:scaleType="fitXY"

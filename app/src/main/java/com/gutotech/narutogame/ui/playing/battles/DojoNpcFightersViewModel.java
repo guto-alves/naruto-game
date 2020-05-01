@@ -13,7 +13,7 @@ import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.model.Fighters;
 import com.gutotech.narutogame.data.model.Formulas;
 import com.gutotech.narutogame.data.model.Npc;
-import com.gutotech.narutogame.data.repository.BattlesRepository;
+import com.gutotech.narutogame.data.repository.BattleRepository;
 import com.gutotech.narutogame.data.repository.CharacterRepository;
 import com.gutotech.narutogame.utils.SingleLiveEvent;
 import com.gutotech.narutogame.utils.SoundUtil;
@@ -61,21 +61,20 @@ public class DojoNpcFightersViewModel extends AndroidViewModel {
     public synchronized void onAcceptBattleButtonPressed() {
         mProgressDialogEvent.setValue(true);
 
-
         SoundUtil.play(getApplication(), R.raw.knife);
 
         FirebaseFunctionsUtils.getServerTime(currentTimestamp -> {
             Battle battle = new Battle(
-                    BattlesRepository.getInstance().generateId("DOJO-NPC"),
+                    BattleRepository.getInstance().generateId("DOJO-NPC"),
                     mFighters.getPlayer(),
                     mFighters.getOpponent(),
                     currentTimestamp);
 
-            BattlesRepository.getInstance().save(battle);
+            BattleRepository.getInstance().save(battle);
 
             mProgressDialogEvent.setValue(false);
 
-            CharOn.character.battleId = battle.getId();
+            CharOn.character.setBattleId(battle.getId());
             CharOn.character.setBattle(true);
         });
     }

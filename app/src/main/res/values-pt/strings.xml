@@ -450,7 +450,7 @@
     <string name="hiken_tsukikage">Hiken Tsukikage</string>
     <string name="hiken_tsukikage_desc">Corre para o oponente com grande velocidade antes de pular e atacá-los com um golpe de espada vertical, deixando um rastro de pós-imagem no processo.</string>
     <string name="rariatto">Rariatto</string>
-    <string name="rariatto_desc">O usuário avan?a no oponente, acertando ele com um Lariat, que pode ser revestido em chakra. Um golpe bem sucedido pode arremessar o inimigo longe e explodir seu peitoral. O ataque é apenas para frente, mas muito rápido e forte, facilmente derrotando o oponente.</string>
+    <string name="rariatto_desc">O usuário avança no oponente, acertando ele com um Lariat, que pode ser revestido em chakra. Um golpe bem sucedido pode arremessar o inimigo longe e explodir seu peitoral. O ataque é apenas para frente, mas muito rápido e forte, facilmente derrotando o oponente.</string>
     <string name="konoha_shoufuu">Konoha Shoufuu</string>
     <string name="konoha_shoufuu_desc">Desfere um chute de baixo para cima no braço do inimigo, com o objetivo de desarmá-lo ou cancelar selos de mão.</string>
     <string name="taihou_sentou">Taihou Sentou</string>
@@ -2321,9 +2321,12 @@
     <string name="save">Salvar</string>
     <string name="sound_fx">Efeitos Sonoros</string>
     <string name="upgrade">Equipar</string>
-    <string name="tsuru_kame_des">Tsuru-Kame é um escudo muito resistente com aparência de um casco de tartaruga. Além da defesa, ele possui um sistema de armas internas, capaz de atirar bombas e senbons.</string>
+    <string name="tsuru_kame_des">Tsuru-Kame é um escudo muito resistente com aparência de um casco
+        de tartaruga. Além da defesa, ele possui um sistema de armas internas, capaz de atirar bombas
+        e senbons.</string>
     <string name="congrats_learned_new_element">Parabéns, você aprendeu um novo Elemento!</string>
-    <string name="learned_new_element_desc">Vá ate as <annotation link="link">Jutsus Elementais</annotation> e veja os novos jutsus que te esperam!</string>
+    <string name="learned_new_element_desc">Vá ate as <annotation link="link">Jutsus Elementais</annotation>
+        e veja os novos jutsus que te esperam!</string>
     <string name="unlearned">Desaprender</string>
     <string name="unlearning_warning">Desaprender esse elemento fara você perder todas as habilidades
         e jutsus do mesmo.\nTambém serão necessários 3000 ryous.\nQuer continuar?</string>
@@ -2332,7 +2335,13 @@
     <string name="no_elements_selected">Nenhum elemento selecionado!</string>
     <string name="mission_finished">Missão Completa</string>
     <string name="mission_finished_description">%s completou a missão!</string>
-    <string name="you_dont_have_enough_skill_points">Você não tem Pontos de Habilidade suficientes.\nÉ necessário ter pelo menos 5 Pontos.</string>
+    <string name="you_dont_have_enough_skill_points">Você não tem Pontos de Habilidade suficientes.\nÉ
+        necessário ter pelo menos 5 Pontos.</string>
     <string name="label_seal_requirement">Requerimento de Selo:</string>
+    <string name="hall_of_fame_description">As memórias dos grandes ninjas do Naruto Game estão
+        guardadas aqui, para que possam sempre ser lembrados como heróis de suas temporadas.</string>
+    <string name="hall_of_fame_of_naruto_game">HALL DA FAMA DO NARUTO GAME MOBILE</string>
+    <string name="kage_defeated_alert">%s %s foi derrotado(a) por %s</string>
+    <string name="lucky_ninja_alert">O Ninja Sortudo %s ganhou %s</string>
 
 </resources>

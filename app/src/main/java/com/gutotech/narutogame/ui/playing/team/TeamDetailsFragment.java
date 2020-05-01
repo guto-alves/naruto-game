@@ -101,7 +101,7 @@ public class TeamDetailsFragment extends Fragment implements SectionFragment,
             QuestionDialogFragment questionDialogFragment = QuestionDialogFragment.newInstance(
                     this, R.string.question_leave_the_team);
             questionDialogFragment.openDialog(getParentFragmentManager());
-            SoundUtil.play(requireContext(), R.raw.sound_pop);
+            SoundUtil.play(requireContext(), R.raw.attention2);
         });
 
         binding.changeImageButton.setOnClickListener(v -> {

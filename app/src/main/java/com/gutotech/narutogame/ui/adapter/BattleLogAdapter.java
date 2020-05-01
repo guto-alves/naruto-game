@@ -63,12 +63,12 @@ public class BattleLogAdapter extends RecyclerView.Adapter<BattleLogAdapter.View
 
             SpannableStringBuilderCustom logBuilder = new SpannableStringBuilderCustom(mContext);
 
-            if (battleLog.getType() == BattleLog.Type.USES) {
+            if (battleLog.getAction() == BattleLog.Action.USES) {
                 logBuilder.append(battleLog.getNick());
                 logBuilder.append();
                 logBuilder.append(R.string.uses, R.color.colorLogBlue);
                 logBuilder.append();
-                logBuilder.append(battleLog.getAction());
+                logBuilder.append(battleLog.getValue());
                 logBuilder.setSpan(new ClickableSpan() {
                     @Override
                     public void onClick(@NonNull View widget) {
@@ -76,19 +76,19 @@ public class BattleLogAdapter extends RecyclerView.Adapter<BattleLogAdapter.View
                     }
                 });
                 logBuilder.setForegroundColor(R.color.colorLogAction);
-            } else if (battleLog.getType() == BattleLog.Type.RECEIVES) {
+            } else if (battleLog.getAction() == BattleLog.Action.RECEIVES) {
                 logBuilder.append(battleLog.getNick());
                 logBuilder.append();
                 logBuilder.append(R.string.receives, R.color.colorLogBlue);
                 logBuilder.append();
-                logBuilder.append(mContext.getString(R.string.of_damage, battleLog.getAction()));
+                logBuilder.append(mContext.getString(R.string.of_damage, battleLog.getValue()));
                 logBuilder.setSpan(new ForegroundColorSpan(Color.RED));
-            } else if (battleLog.getType() == BattleLog.Type.BUFF_DEBUFF_WEAPON) {
+            } else if (battleLog.getAction() == BattleLog.Action.BUFF_DEBUFF_WEAPON) {
                 logBuilder.append(battleLog.getNick());
                 logBuilder.append();
                 logBuilder.append(R.string.uses, R.color.colorLogPurple);
                 logBuilder.append();
-                logBuilder.append(battleLog.getAction());
+                logBuilder.append(battleLog.getValue());
                 logBuilder.setSpan(new ClickableSpan() {
                     @Override
                     public void onClick(@NonNull View widget) {
@@ -96,7 +96,7 @@ public class BattleLogAdapter extends RecyclerView.Adapter<BattleLogAdapter.View
                     }
                 });
                 logBuilder.setForegroundColor(R.color.colorLogPurple);
-            } else if (battleLog.getType() == BattleLog.Type.MISSED) {
+            } else if (battleLog.getAction() == BattleLog.Action.MISSED) {
                 logBuilder.append(battleLog.getNick());
                 logBuilder.append();
                 logBuilder.append(mContext.getString(R.string.missed));

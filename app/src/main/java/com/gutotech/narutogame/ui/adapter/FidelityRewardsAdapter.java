@@ -15,6 +15,7 @@ import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.model.Reward;
 import com.gutotech.narutogame.data.firebase.StorageUtils;
+import com.gutotech.narutogame.utils.SoundUtil;
 
 import java.util.List;
 
@@ -71,8 +72,10 @@ public class FidelityRewardsAdapter extends RecyclerView.Adapter<FidelityRewards
 
             if (position == daysOfFidelity && CharOn.character.hasFidelityReward()) {
                 holder.receiveButton.setText(R.string.receive);
-                holder.receiveButton.setOnClickListener(v ->
-                        mOnReceiveClickListener.onReceiveClick(reward));
+                holder.receiveButton.setOnClickListener(v -> {
+                    mOnReceiveClickListener.onReceiveClick(reward);
+                    SoundUtil.play(mContext, R.raw.get_item01);
+                });
             } else {
                 holder.receiveButton.setOnClickListener(null);
 

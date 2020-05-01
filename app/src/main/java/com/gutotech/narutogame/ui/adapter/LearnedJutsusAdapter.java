@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,11 +15,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.firebase.StorageUtils;
+import com.gutotech.narutogame.data.model.ElementalJutsu;
+import com.gutotech.narutogame.data.model.GraduationUtils;
 import com.gutotech.narutogame.data.model.Jutsu;
 import com.gutotech.narutogame.data.model.JutsuInfo;
 import com.gutotech.narutogame.ui.playing.academy.LearnedJutsuInfoPopupWindow;
 
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class LearnedJutsusAdapter extends RecyclerView.Adapter<LearnedJutsusAdapter.ViewHolder> {
 
@@ -34,6 +41,8 @@ public class LearnedJutsusAdapter extends RecyclerView.Adapter<LearnedJutsusAdap
         private TextView descriptionTextView;
         private CheckBox visibleCheckBox;
         private ConstraintLayout constraintLayout;
+        private LinearLayout sectionLinearLayout;
+        private TextView sectionTextView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -42,13 +51,16 @@ public class LearnedJutsusAdapter extends RecyclerView.Adapter<LearnedJutsusAdap
             descriptionTextView = itemView.findViewById(R.id.descriptionTextView);
             visibleCheckBox = itemView.findViewById(R.id.visibleCheckBox);
             constraintLayout = itemView.findViewById(R.id.constraintLayout);
+            sectionLinearLayout = itemView.findViewById(R.id.sectionLinearLayout);
+            sectionTextView = itemView.findViewById(R.id.sectionTextView);
         }
     }
 
     private Context mContext;
     private List<Jutsu> mJutsusList;
-    private LearnedJutsusListener mLearnedJutsusListener;
+    private Map<String, Integer> mSections = new HashMap<>();
     private LearnedJutsuInfoPopupWindow mPopupWindow;
+    private LearnedJutsusListener mLearnedJutsusListener;
 
     public LearnedJutsusAdapter(Context context, LearnedJutsusListener learnedJutsusListener) {
         mContext = context;
@@ -88,6 +100,15 @@ public class LearnedJutsusAdapter extends RecyclerView.Adapter<LearnedJutsusAdap
 
             holder.itemView.setOnClickListener(v -> mLearnedJutsusListener.onJutsuSelected(jutsu));
 
+            if (mSections.containsKey(jutsu.getName())) {
+                holder.sectionLinearLayout.setVisibility(View.VISIBLE);
+                holder.sectionTextView.setText(mContext.getString(GraduationUtils.getName(
+                        jutsu.getJutsuInfo().requirements.get(mSections.get(jutsu.getName())).getValue()
+                )).toUpperCase());
+            } else {
+                holder.sectionLinearLayout.setVisibility(View.GONE);
+            }
+
             if (i % 2 == 0) {
                 holder.constraintLayout.setBackgroundResource(R.color.colorItem1);
             } else {
@@ -103,7 +124,31 @@ public class LearnedJutsusAdapter extends RecyclerView.Adapter<LearnedJutsusAdap
 
     public void setJutsusList(List<Jutsu> jutsus) {
         mJutsusList = jutsus;
+        updateFirstJutsusOfEachGraduation();
         notifyDataSetChanged();
+    }
+
+    private void updateFirstJutsusOfEachGraduation() {
+        mSections.clear();
+        int len = mJutsusList.size();
+        if (len == 0) {
+            return;
+        }
+        int c = -1;
+
+
+        for (int i = 0; i < len; i++) {
+            Jutsu jutsu = mJutsusList.get(i);
+
+            int graduationRequirementIndex = jutsu instanceof ElementalJutsu ? 1 : 0;
+
+            int graduationId = jutsu.getJutsuInfo().requirements.get(graduationRequirementIndex).getValue();
+
+            if (c != graduationId) {
+                mSections.put(jutsu.getName(), graduationRequirementIndex);
+                c = graduationId;
+            }
+        }
     }
 
     private void showJutsuInfo(View anchor, Jutsu jutsu, JutsuInfo jutsuInfo) {

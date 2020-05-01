@@ -29,7 +29,7 @@ public class CharacterSelectViewModel extends ViewModel {
 
     private SingleLiveEvent<Integer> mShowErrorDialogEvent = new SingleLiveEvent<>();
 
-    public void onPlayButtonPressed(Character character) {
+    public synchronized void onPlayButtonPressed(Character character) {
         if (character != null) {
             TeamRepository.getInstance().removeMyTeamChangeListener();
             CharOn.character = character;

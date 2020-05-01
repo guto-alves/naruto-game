@@ -14,15 +14,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ChatRepository {
-    private static ChatRepository sInstance;
+    private static final ChatRepository sInstance = new ChatRepository();
 
     private ChatRepository() {
     }
 
     public static ChatRepository getInstance() {
-        if (sInstance == null) {
-            sInstance = new ChatRepository();
-        }
         return sInstance;
     }
 

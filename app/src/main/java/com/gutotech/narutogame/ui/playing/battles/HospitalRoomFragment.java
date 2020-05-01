@@ -34,34 +34,38 @@ public class HospitalRoomFragment extends Fragment implements SectionFragment,
 
         CharOn.character.setMapId(CharOn.character.getVillage().ordinal());
 
-        if (CharOn.character.getFormulas().isFull()) {
-            CharOn.character.setHospital(false);
-        } else {
-            mPayment = 20 * CharOn.character.getLevel();
+        mPayment = 20 * CharOn.character.getLevel();
 
-            TextView textView = view.findViewById(R.id.descriptionTextView);
-            textView.setText(getString(R.string.pay_specialist_description, mPayment));
+        TextView textView = view.findViewById(R.id.descriptionTextView);
+        textView.setText(getString(R.string.pay_specialist_description, mPayment));
 
-            Button payButton = view.findViewById(R.id.payButton);
-            payButton.setText(getString(R.string.pay_ry, mPayment));
-            payButton.setOnClickListener(view1 -> {
-                if (CharOn.character.getRyous() >= mPayment) {
-                    WarningDialogFragment warningDialog = WarningDialogFragment.newInstance(
-                            this, R.string.paid_hospital);
-                    warningDialog.openDialog(getParentFragmentManager());
-                } else {
-                    WarningDialogFragment warningDialog = WarningDialogFragment.newInstance(
-                            R.string.dont_enough_money_for_treatment);
-                    warningDialog.openDialog(getParentFragmentManager());
-                }
-
+        Button payButton = view.findViewById(R.id.payButton);
+        payButton.setText(getString(R.string.pay_ry, mPayment));
+        payButton.setOnClickListener(view1 -> {
+            if (CharOn.character.getRyous() >= mPayment) {
+                WarningDialogFragment warningDialog = WarningDialogFragment.newInstance(
+                        this, R.string.paid_hospital);
+                warningDialog.openDialog(getParentFragmentManager());
                 SoundUtil.play(getContext(), R.raw.sound_pop);
-            });
-        }
+            } else {
+                WarningDialogFragment warningDialog = WarningDialogFragment.newInstance(
+                        R.string.dont_enough_money_for_treatment);
+                warningDialog.openDialog(getParentFragmentManager());
+                SoundUtil.play(getContext(), R.raw.attention2);
+            }
+        });
 
         FragmentUtils.setSectionTitle(getActivity(), R.string.section_hospital_room);
 
         return view;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (CharOn.character.getFormulas().isFull()) {
+            CharOn.character.setHospital(false);
+        }
     }
 
     @Override

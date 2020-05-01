@@ -40,6 +40,7 @@ public class LoggedInActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         Configuration configuration = getResources().getConfiguration();
         configuration.fontScale = 1f; // 0.85 small size, 1 normal size, 1,15 big etc
         DisplayMetrics metrics = new DisplayMetrics();
@@ -47,6 +48,7 @@ public class LoggedInActivity extends AppCompatActivity {
         metrics.scaledDensity = configuration.fontScale * metrics.density;
         configuration.densityDpi = (int) getResources().getDisplayMetrics().xdpi;
         getBaseContext().getResources().updateConfiguration(configuration, metrics);
+
         setContentView(R.layout.activity_logged_in);
 
         Toolbar toolbar = findViewById(R.id.toolbar);

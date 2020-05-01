@@ -2,6 +2,7 @@ package com.gutotech.narutogame.utils;
 
 import android.content.Context;
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -17,7 +18,7 @@ import com.gutotech.narutogame.data.firebase.StorageUtils;
 import com.gutotech.narutogame.data.model.GraduationUtils;
 import com.gutotech.narutogame.data.model.Village;
 
-public class BindingUtil {
+public class BindingAdapters {
 
     @BindingAdapter("jutsu_image")
     public static void setJutsuImage(ImageView imageView, String path) {
@@ -79,5 +80,10 @@ public class BindingUtil {
     @BindingAdapter("profileForMsg")
     public static void setProfileForMsg(ImageView imageView, Integer i) {
         StorageUtils.downloadProfileForMsg(imageView.getContext(), imageView);
+    }
+
+    @BindingAdapter("visibleGone")
+    public static void showHide(View view, Boolean show) {
+        view.setVisibility(show ? View.VISIBLE : View.GONE);
     }
 }

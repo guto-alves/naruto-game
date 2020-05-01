@@ -21,15 +21,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NewsRepository {
-    private static NewsRepository sInstance;
+    private static final NewsRepository sInstance = new NewsRepository();
 
     private NewsRepository() {
     }
 
     public static NewsRepository getInstance() {
-        if (sInstance == null) {
-            sInstance = new NewsRepository();
-        }
         return sInstance;
     }
 

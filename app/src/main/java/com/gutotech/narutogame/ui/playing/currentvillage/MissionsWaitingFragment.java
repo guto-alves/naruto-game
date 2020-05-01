@@ -51,7 +51,7 @@ public class MissionsWaitingFragment extends Fragment implements SectionFragment
                     .duration(1200)
                     .playOn(mBinding.missionCompletedLayout);
 
-            SoundUtil.play(getContext(), R.raw.get_item02);
+            SoundUtil.play(getContext(), R.raw.yon);
         });
 
         mBinding.cancelButton.setOnClickListener(v -> showQuestionDialog());

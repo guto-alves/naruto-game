@@ -20,15 +20,12 @@ import java.util.Collections;
 import java.util.List;
 
 public class NinjaStatisticsRepository {
-    private static NinjaStatisticsRepository sInstance;
+    private static final NinjaStatisticsRepository sInstance = new NinjaStatisticsRepository();
 
     private NinjaStatisticsRepository() {
     }
 
     public static NinjaStatisticsRepository getInstance() {
-        if (sInstance == null) {
-            sInstance = new NinjaStatisticsRepository();
-        }
         return sInstance;
     }
 

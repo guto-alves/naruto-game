@@ -30,8 +30,12 @@ public class RankNinjasFragment extends Fragment implements SectionFragment {
 
         RankNinjasViewModel viewModel = new ViewModelProvider(this)
                 .get(RankNinjasViewModel.class);
-
         binding.setViewModel(viewModel);
+
+        binding.nameEditText.setOnEditorActionListener((v, actionId, event) -> {
+            viewModel.onFilterClick();
+            return true;
+        });
 
         binding.rankNinjasRecyclerView.setHasFixedSize(true);
         RankingNinjasAdapter adapter = new RankingNinjasAdapter(getContext());

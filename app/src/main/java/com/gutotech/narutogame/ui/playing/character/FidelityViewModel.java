@@ -17,7 +17,8 @@ import com.gutotech.narutogame.utils.SingleLiveEvent;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FidelityViewModel extends ViewModel implements FidelityRewardsAdapter.OnReceiveClickListener {
+public class FidelityViewModel extends ViewModel
+        implements FidelityRewardsAdapter.OnReceiveClickListener {
     private MutableLiveData<List<Reward>> mRewards;
 
     private SingleLiveEvent<Void> mUpdateFidelityRewards = new SingleLiveEvent<>();

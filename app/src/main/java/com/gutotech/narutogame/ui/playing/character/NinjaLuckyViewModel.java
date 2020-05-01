@@ -16,6 +16,7 @@ import com.gutotech.narutogame.data.model.Scroll;
 import com.gutotech.narutogame.data.model.Village;
 import com.gutotech.narutogame.data.repository.Callback;
 import com.gutotech.narutogame.data.repository.CharacterRepository;
+import com.gutotech.narutogame.data.repository.GlobalAlertRepository;
 import com.gutotech.narutogame.data.repository.NinjaLuckyRepository;
 import com.gutotech.narutogame.utils.SingleLiveEvent;
 
@@ -24,7 +25,9 @@ import java.lang.annotation.RetentionPolicy;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class NinjaLuckyViewModel extends ViewModel {
     @Retention(RetentionPolicy.SOURCE)
@@ -35,27 +38,27 @@ public class NinjaLuckyViewModel extends ViewModel {
     public static final int RYOUS_DAILY = 500;
     public static final int RYOUS_WEEKLY = 1500;
 
-    private int mTotalItems;
-    private int[] mIntervals;
+    private final int TOTAL_ITEMS;
+    private int mSumOfChances;
+
+    private NinjaLucky mNinjaLucky;
+    private final NinjaLuckyRepository mNinjaLuckyRepository;
+
+    private int mDayOfWeek;
 
     private MutableLiveData<Integer> mPlayModeSelected;
 
     private MutableLiveData<List<LotteryItem>> mLotteryItems;
     private LotteryItem mLotteryItemReceived;
 
+    private MutableLiveData<List<Boolean>> mDaysOfWeek = new MutableLiveData<>();
+
     private SingleLiveEvent<Void> mStartAnimationEvent = new SingleLiveEvent<>();
     private SingleLiveEvent<Integer> mShowPremiumEvent = new SingleLiveEvent<>();
     private SingleLiveEvent<Integer> mShowWarningDialogEvent = new SingleLiveEvent<>();
 
-    private MutableLiveData<List<Boolean>> mDaysOfWeek = new MutableLiveData<>();
-
-    private NinjaLucky mNinjaLucky;
-
-    private final NinjaLuckyRepository mNinjaLuckyRepository = NinjaLuckyRepository.getInstance();
-
-    private int mDayOfWeek;
-
     public NinjaLuckyViewModel() {
+        mNinjaLuckyRepository = NinjaLuckyRepository.getInstance();
         mNinjaLuckyRepository.get(CharOn.character.getId(), ninjaLucky -> {
             mNinjaLucky = ninjaLucky;
             mDaysOfWeek.postValue(mNinjaLucky.getDaysOfWeek());
@@ -65,11 +68,7 @@ public class NinjaLuckyViewModel extends ViewModel {
 
         mLotteryItems = new MutableLiveData<>(buildItems());
 
-        mTotalItems = mLotteryItems.getValue().size();
-
-        mIntervals = new int[mTotalItems];
-
-        calculateIntervals();
+        TOTAL_ITEMS = mLotteryItems.getValue().size();
     }
 
     public void onPlayModeSelected(@PlayMode int mode) {
@@ -134,6 +133,16 @@ public class NinjaLuckyViewModel extends ViewModel {
         mLotteryItemReceived.getPremium().receive();
         CharacterRepository.getInstance().save(CharOn.character);
 
+        if (mLotteryItemReceived.getImage().equals("1") || mLotteryItemReceived.getImage().equals("7") ||
+                mLotteryItemReceived.getImage().equals("9") || mLotteryItemReceived.getImage().equals("15") ||
+                mLotteryItemReceived.getImage().equals("16") || mLotteryItemReceived.getImage().equals("20")) {
+            Map<String, String> messageMap = new HashMap<>();
+            messageMap.put("player", CharOn.character.getNick());
+            messageMap.put("premium", String.valueOf(mLotteryItemReceived.getDescription()));
+            messageMap.put("type", "ninja_lucky");
+            GlobalAlertRepository.getInstance().showAlert(messageMap);
+        }
+
         if (mPlayModeSelected.getValue() == RYOUS_WEEKLY) {
             mNinjaLucky.deselectAllDaysPlayed();
         } else {
@@ -150,29 +159,27 @@ public class NinjaLuckyViewModel extends ViewModel {
         mShowPremiumEvent.setValue(mLotteryItemReceived.getDescription());
     }
 
-    private void calculateIntervals() {
-        mIntervals[0] = mLotteryItems.getValue().get(0).getChancesOfWin();
-
-        for (int i = 1; i < mTotalItems; i++) {
-            mIntervals[i] = mIntervals[i - 1] + mLotteryItems.getValue().get(i).getChancesOfWin();
-        }
-    }
-
     private LotteryItem generateItem() {
-        int n = new SecureRandom().nextInt(mIntervals[mTotalItems - 1]) + 1;
+        int n = new SecureRandom().nextInt(mSumOfChances) + 1;
 
         int generatedItemIndex = 0;
 
-        if (n > mIntervals[0]) {
-            for (int i = 1; i < mTotalItems; i++) {
-                if (n > mIntervals[i - 1] && n <= mIntervals[i]) {
+        List<LotteryItem> lotteryItems = mLotteryItems.getValue();
+
+        int currentChances = 1; // chances of winning the first item
+
+        if (n > currentChances) {
+            for (int i = 1; i < TOTAL_ITEMS; i++) {
+                if (n > currentChances &&
+                        n <= currentChances + lotteryItems.get(i).getChancesOfWin()) {
                     generatedItemIndex = i;
                     break;
                 }
+                currentChances += lotteryItems.get(i).getChancesOfWin();
             }
         }
 
-        return mLotteryItems.getValue().get(generatedItemIndex);
+        return lotteryItems.get(generatedItemIndex);
     }
 
     private List<LotteryItem> buildItems() {
@@ -199,12 +206,15 @@ public class NinjaLuckyViewModel extends ViewModel {
                 () -> CharOn.character.incrementExp(2000)));
 
         if (CharOn.character.getNumberOfDaysPlayed() >= 7) {
+            mSumOfChances = 671;
             mLotteryItems.add(new LotteryItem("13", R.string.exppoints2500, 30,
                     () -> CharOn.character.incrementExp(2500)));
             mLotteryItems.add(new LotteryItem("14", R.string.exppoints3000, 20,
                     () -> CharOn.character.incrementExp(3000)));
             mLotteryItems.add(new LotteryItem("15", R.string.exppoints15000, 1,
                     () -> CharOn.character.incrementExp(15000)));
+        } else {
+            mSumOfChances = 620;
         }
 
         mLotteryItems.add(new LotteryItem("16", R.string.ninja_snack_1x, 1,

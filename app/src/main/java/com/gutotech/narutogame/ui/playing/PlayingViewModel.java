@@ -24,9 +24,10 @@ import com.gutotech.narutogame.data.model.Message;
 import com.gutotech.narutogame.data.model.Ramen;
 import com.gutotech.narutogame.data.model.Scroll;
 import com.gutotech.narutogame.data.repository.AuthRepository;
-import com.gutotech.narutogame.data.repository.BattlesRepository;
+import com.gutotech.narutogame.data.repository.BattleRepository;
 import com.gutotech.narutogame.data.repository.CharacterRepository;
 import com.gutotech.narutogame.data.repository.ChatRepository;
+import com.gutotech.narutogame.data.repository.GlobalAlertRepository;
 import com.gutotech.narutogame.data.repository.MapRepository;
 import com.gutotech.narutogame.data.repository.PlayerRepository;
 import com.gutotech.narutogame.data.repository.TeamRepository;
@@ -75,6 +76,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 public class PlayingViewModel extends AndroidViewModel implements ExpandableListView.OnChildClickListener {
     private final static int USER_GROUP = 0;
@@ -94,13 +96,11 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
 
     private SingleLiveEvent<Boolean> mFidelityAnimationEvent = new SingleLiveEvent<>();
 
-    LiveData<Boolean> getFidelityAnimationEvent() {
-        return mFidelityAnimationEvent;
-    }
+    private GlobalAlertRepository mGlobalAlertRepository = GlobalAlertRepository.getInstance();
+    private SingleLiveEvent<Map<String, String>> mShowAlerterEvent = new SingleLiveEvent<>();
 
     public PlayingViewModel(@NonNull Application application) {
         super(application);
-
         mCharacter = CharOn.character;
         mTitles = new MutableLiveData<>(mCharacter.getTitles());
         mChannel = String.valueOf(mCharacter.getVillage().ordinal());
@@ -108,10 +108,11 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
         mFidelityAnimationEvent.setValue(CharOn.character.isFidelityReward());
 
         mCharacter.addOnPropertyChangedCallback(new Observable.OnPropertyChangedCallback() {
+
             @Override
             public void onPropertyChanged(Observable sender, int propertyId) {
                 if (propertyId == BR.level) {
-                    SoundUtil.play(getApplication(), R.raw.yon);
+                    SoundUtil.play(getApplication(), R.raw.levelup);
                 } else if (propertyId == BR.fidelityReward) {
                     mFidelityAnimationEvent.setValue(CharOn.character.isFidelityReward());
                 } else if (propertyId == BR.mission) {
@@ -123,7 +124,6 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
                         setCurrentSection(CHARACTER_GROUP, 0);
                     }
                 } else if (propertyId == BR.battle) {
-                    CharacterRepository.getInstance().save(mCharacter);
                     buildMenu();
                     if (mCharacter.isBattle()) {
                         if (mBgMusicEnabled) {
@@ -198,6 +198,15 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
         return mCharacter;
     }
 
+    LiveData<Boolean> getFidelityAnimationEvent() {
+        return mFidelityAnimationEvent;
+    }
+
+    LiveData<Map<String, String>> getShowAlerterEvent() {
+        return mShowAlerterEvent;
+    }
+
+
     // Bag
     private MutableLiveData<List<Ramen>> mRamens = new MutableLiveData<>();
     private MutableLiveData<List<Scroll>> mScrolls = new MutableLiveData<>();
@@ -244,6 +253,10 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
             if (ramens.size() == 0) {
                 ramens = null;
             }
+        }
+
+        if (mCharacter.isMap()) {
+            MapRepository.getInstance().move(mCharacter.getMapId());
         }
 
         CharacterRepository.getInstance().save(mCharacter);
@@ -397,7 +410,7 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
         if (mCharacter.isHospital()) {
             sections4.add(new HospitalRoomFragment());
         } else if (mCharacter.isBattle()) {
-            if (mCharacter.battleId.contains("DOJO-NPC")) {
+            if (mCharacter.getBattleId().contains("DOJO-NPC")) {
                 sections4.add(new DojoBatalhaLutadorFragment());
             } else {
                 sections4.add(new DojoBattlePvpFragment());
@@ -606,7 +619,7 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
                     mCharacter.setDaysOfFidelity(0);
                 }
 
-                BattlesRepository.getInstance().clearDuelsCount();
+                MapRepository.getInstance().clearDuelsCount();
                 mCharacter.setFidelityReward(true);
                 mCharacter.setTotalDailyMissions(0);
                 mCharacter.setNpcDailyCombat(0);
@@ -651,6 +664,7 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
         mCharacter.setOnline(true);
         CharacterRepository.getInstance().save(mCharacter);
         TeamRepository.getInstance().registerMyTeamChangeListener();
+        mGlobalAlertRepository.addListener(mShowAlerterEvent::postValue);
     }
 
     void stop() {
@@ -665,6 +679,7 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
         });
 
         TeamRepository.getInstance().removeMyTeamChangeListener();
+        mGlobalAlertRepository.removeListener();
     }
 
     void destroy() {

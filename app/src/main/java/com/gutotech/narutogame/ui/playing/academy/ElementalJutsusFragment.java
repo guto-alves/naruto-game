@@ -63,7 +63,6 @@ public class ElementalJutsusFragment extends Fragment implements SectionFragment
         JutsusLearnAdapter adapter = new JutsusLearnAdapter(getActivity(),
                 getParentFragmentManager(), viewModel);
         mBinding.jutsusRecyclerView.setAdapter(adapter);
-
         viewModel.getJutsus().observe(getViewLifecycleOwner(), adapter::setJutsusList);
 
         viewModel.getShowCongratulationsEvent().observe(getViewLifecycleOwner(), resId -> {

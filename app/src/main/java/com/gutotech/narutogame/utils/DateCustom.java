@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class DateCustom {
+public abstract class DateCustom {
 
     public static int getDayOfWeek(long timestamp) {
         Calendar calendar = Calendar.getInstance();

@@ -18,6 +18,7 @@ import com.gutotech.narutogame.ui.ProgressDialogFragment;
 import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.WarningDialogFragment;
 import com.gutotech.narutogame.utils.FragmentUtils;
+import com.gutotech.narutogame.utils.SoundUtil;
 
 public class TeamCreateFragment extends Fragment implements SectionFragment {
     private ProgressDialogFragment mProgressDialog = new ProgressDialogFragment();
@@ -53,6 +54,7 @@ public class TeamCreateFragment extends Fragment implements SectionFragment {
     private void showDialog(@StringRes int resid) {
         WarningDialogFragment dialog = WarningDialogFragment.newInstance(resid);
         dialog.openDialog(getParentFragmentManager());
+        SoundUtil.play(getContext(), R.raw.sound_pop);
     }
 
     @Override

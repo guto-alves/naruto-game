@@ -17,7 +17,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class CharacterRepository {
-    private static CharacterRepository sInstance = new CharacterRepository();
+    private static final CharacterRepository sInstance = new CharacterRepository();
 
     private CharacterRepository() {
     }

@@ -20,7 +20,7 @@ public class DojoRandomWaitViewModel extends ViewModel {
             mDojoRandomWaitRepository.removeId();
 
             CharOn.character.setDojoWaitQueue(false);
-            CharOn.character.battleId = battleId;
+            CharOn.character.setBattleId(battleId);
             CharOn.character.setBattle(true);
         });
     }

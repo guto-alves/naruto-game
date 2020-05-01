@@ -23,10 +23,12 @@ import com.gutotech.narutogame.ui.adapter.VillageMapAdapter;
 import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.ui.playing.PlayingActivity;
 import com.gutotech.narutogame.utils.FragmentUtils;
+import com.gutotech.narutogame.utils.SoundUtil;
 
 public class VillageMapFragment extends Fragment implements SectionFragment {
-    private float mScaleFactor = 1.0f;
+    private static float mScaleFactor = 1.0f;
 
+    private VillageMapViewModel mViewModel;
     private ProgressDialogFragment mProgressDialog = new ProgressDialogFragment();
 
     private VillageMapAdapter mVillageMapAdapter;
@@ -39,29 +41,26 @@ public class VillageMapFragment extends Fragment implements SectionFragment {
 
         Village village = Village.values()[CharOn.character.getMapId()];
 
+        mViewModel = new ViewModelProvider(this, new VillageMapViewModelFactory(village))
+                .get(VillageMapViewModel.class);
+
+        binding.setViewModel(mViewModel);
+
+        mVillageMapAdapter = new VillageMapAdapter(getActivity(), village.placeEntries, mViewModel);
+
         binding.villageMapRecyclerView.setBackgroundResource(village.mapResId);
-
-        VillageMapViewModel viewModel = new ViewModelProvider(this,
-                new VillageMapViewModelFactory(village)).get(VillageMapViewModel.class);
-
-        binding.setViewModel(viewModel);
-
-        mVillageMapAdapter = new VillageMapAdapter(
-                getActivity(), village.placeEntries, viewModel
-        );
-
+        binding.villageMapRecyclerView.setScaleX(mScaleFactor);
+        binding.villageMapRecyclerView.setScaleY(mScaleFactor);
         binding.villageMapRecyclerView.setHasFixedSize(true);
         binding.villageMapRecyclerView.setAdapter(mVillageMapAdapter);
 
-        viewModel.getCharactersOnTheMap().observe(getViewLifecycleOwner(), mVillageMapAdapter::setMap);
+        mViewModel.getShowWarningDialogEvent().observe(getViewLifecycleOwner(), this::showDialog);
 
-        viewModel.getShowWarningDialogEvent().observe(getViewLifecycleOwner(), this::showDialog);
-
-        viewModel.getShowProgressDialogEvent().observe(getViewLifecycleOwner(), aVoid ->
+        mViewModel.getShowProgressDialogEvent().observe(getViewLifecycleOwner(), aVoid ->
                 mProgressDialog.show(getParentFragmentManager(), "ProgressDialogFragment")
         );
 
-        viewModel.getDismissProgressDialogEvent().observe(getViewLifecycleOwner(), aVoid -> {
+        mViewModel.getDismissProgressDialogEvent().observe(getViewLifecycleOwner(), aVoid -> {
             if (mProgressDialog.isVisible()) {
                 mProgressDialog.dismiss();
             }
@@ -91,11 +90,19 @@ public class VillageMapFragment extends Fragment implements SectionFragment {
         builder.setMessage(messageId);
         builder.setPositiveButton("OK", null);
         builder.create().show();
+        SoundUtil.play(getActivity(), R.raw.attention2);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mViewModel.getCharactersOnTheMap().observe(getViewLifecycleOwner(), mVillageMapAdapter::setMap);
     }
 
     @Override
     public void onStop() {
         super.onStop();
+        mViewModel.stop();
         mVillageMapAdapter.dismissPopupWindow();
         if (mProgressDialog.isVisible()) {
             mProgressDialog.dismiss();

@@ -28,7 +28,6 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
@@ -45,9 +44,11 @@ import com.gutotech.narutogame.ui.adapter.ExpandableLoggedinAdapter;
 import com.gutotech.narutogame.ui.home.HomeActivity;
 import com.gutotech.narutogame.utils.FragmentUtils;
 import com.gutotech.narutogame.utils.SoundUtil;
+import com.tapadoo.alerter.Alerter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class PlayingActivity extends AppCompatActivity {
     private ActivityPlayingBinding mBinding;
@@ -134,8 +135,53 @@ public class PlayingActivity extends AppCompatActivity {
             }
         });
 
+        mViewModel.getShowAlerterEvent().observe(this, messageMap -> {
+            mAlerts.add(messageMap);
+            if (!Alerter.isShowing()) {
+                showAlert(messageMap);
+            }
+        });
+
         setUpChat();
         setUpBag();
+    }
+
+    private List<Map<String, String>> mAlerts = new ArrayList<>();
+
+    private void showAlert(Map<String, String> messageMap) {
+        String message = "";
+        String type = messageMap.get("type");
+
+        if (type == null) {
+            return;
+        }
+
+        if (type.equals("warning")) {
+            message = messageMap.get("warning");
+        } else if (type.equals("kage_defeated")) {
+            message = getString(R.string.kage_defeated_alert,
+                    getString(Integer.parseInt(messageMap.get("kageTitle"))),
+                    messageMap.get("kageName"),
+                    messageMap.get("player"));
+        } else if (type.equals("ninja_lucky")) {
+            message = getString(R.string.lucky_ninja_alert,
+                    messageMap.get("player"),
+                    getString(Integer.parseInt(messageMap.get("premium"))));
+        }
+
+        Alerter.create(PlayingActivity.this)
+                .setTitle(message)
+                .setBackgroundColorRes(R.color.colorGold)
+                .enableSwipeToDismiss()
+                .setDuration(4000)
+                .setOnHideListener(() -> {
+                    mAlerts.remove(messageMap);
+                    if (mAlerts.size() > 0) {
+                        showAlert(mAlerts.get(0));
+                    }
+                })
+                .hideIcon()
+                .show();
     }
 
     public void showGameRoutines(View view) {

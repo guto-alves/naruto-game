@@ -147,7 +147,7 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="comment">Comment</string>
 
     <!-- Section RECOVER PASSWORD-->
-    <string name="if_you_do_not_remember_your_password">If you do not remember your password, type
+    <string name="if_you_do_not_remember_your_password">If you do not remember your password, action
         your email account below and click \"send\". In a few minutes you will receive your new password</string>
     <string name="section_i_forgot_my_password">"I FORGOT MY PASSWORD "</string>
     <string name="password_was_sent">THE PASSWORD WAS SENT SUCCESSFULLY</string>
@@ -2263,7 +2263,7 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="katon_bushin_katai">Katon Bushin Katai</string>
     <string name="katon_bushin_katai_desc">The user creates up to 3 clones, made of fire.</string>
     <string name="katon_kaizen_no_jutsu">Katon Kaizen no Jutsu</string>
-    <string name="katon_kaizen_no_jutsu_desc">This jutsu causes the release shinobi mouth a type of star fire, which may reach gigantic proportions.</string>
+    <string name="katon_kaizen_no_jutsu_desc">This jutsu causes the release shinobi mouth a action of star fire, which may reach gigantic proportions.</string>
     <string name="katon_endan_no_jutsu">Katon Endan no Jutsu</string>
     <string name="katon_endan_no_jutsu_desc">The nija inspires some ar, and mix it with chakra based on fire, to spit an fire ball.</string>
     <string name="katon_ryuuka_no_jutsu">Katon Ryuuka no Jutsu</string>
@@ -2381,5 +2381,9 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="mission_finished_description">%s completed the mission!</string>
     <string name="you_dont_have_enough_skill_points">You don\'t have enough Skill Points.\nYou must have at least 5 Points.</string>
     <string name="label_seal_requirement">Seal requirement:</string>
+    <string name="hall_of_fame_description">The memories of legendary ninjas are here. They can be remembered as greater Ninjas on their respective Rounds.</string>
+    <string name="hall_of_fame_of_naruto_game">HALL OF FAME OF NARUTO GAME</string>
+    <string name="kage_defeated_alert">%s %s was defeated by %s</string>
+    <string name="lucky_ninja_alert">Lucky Ninja %s won %s</string>
 
 </resources>

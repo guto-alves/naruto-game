@@ -40,7 +40,7 @@ public class UserDataViewModel extends ViewModel {
     }
 
     private boolean validatePlayer() {
-        if (TextUtils.isEmpty(mPlayer.getName())) {
+        if (TextUtils.isEmpty(mPlayer.getName().trim())) {
             mResultListener.onFailure(R.string.name_field_requered);
             return false;
         }

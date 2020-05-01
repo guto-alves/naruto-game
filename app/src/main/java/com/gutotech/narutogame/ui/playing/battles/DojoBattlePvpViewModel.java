@@ -14,24 +14,29 @@ import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.firebase.FirebaseFunctionsUtils;
 import com.gutotech.narutogame.data.model.Battle;
 import com.gutotech.narutogame.data.model.BattleLog;
-import com.gutotech.narutogame.data.model.BattleLogs;
 import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.model.Classe;
+import com.gutotech.narutogame.data.model.Element;
+import com.gutotech.narutogame.data.model.ElementalJutsu;
 import com.gutotech.narutogame.data.model.Fighters;
 import com.gutotech.narutogame.data.model.Formulas;
 import com.gutotech.narutogame.data.model.Jutsu;
 import com.gutotech.narutogame.data.model.JutsuInfo;
 import com.gutotech.narutogame.data.model.Score;
-import com.gutotech.narutogame.data.repository.BattleLogsRepository;
-import com.gutotech.narutogame.data.repository.BattlesRepository;
+import com.gutotech.narutogame.data.repository.BattleRepository;
+import com.gutotech.narutogame.data.repository.GlobalAlertRepository;
+import com.gutotech.narutogame.data.repository.KageRepository;
+import com.gutotech.narutogame.data.repository.MapRepository;
 import com.gutotech.narutogame.ui.adapter.JutsusAdapter;
 import com.gutotech.narutogame.utils.SingleLiveEvent;
 import com.gutotech.narutogame.utils.SoundUtil;
 
 import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 public class DojoBattlePvpViewModel extends AndroidViewModel
@@ -45,7 +50,7 @@ public class DojoBattlePvpViewModel extends AndroidViewModel
     public final ObservableField<String> countDown = new ObservableField<>("--:--");
     private CountDownTimer mCountDownTimer;
 
-    private BattlesRepository mBattlesRepository;
+    private BattleRepository mBattleRepository;
 
     private Battle mBattle;
     private Fighters mFighters;
@@ -61,10 +66,8 @@ public class DojoBattlePvpViewModel extends AndroidViewModel
     private MutableLiveData<List<Jutsu>> mOppBuffsDebuffsStatus = new MutableLiveData<>();
     private MutableLiveData<List<BattleLog>> mBattleLogs = new MutableLiveData<>(new ArrayList<>());
 
-    private BattleLogs mBattleLog;
-
-    private SingleLiveEvent<Object[]> showJutsuInfoPopupEvent = new SingleLiveEvent<>();
-    private SingleLiveEvent<Integer> showWarningDialogEvent = new SingleLiveEvent<>();
+    private SingleLiveEvent<Object[]> mShowJutsuInfoPopupEvent = new SingleLiveEvent<>();
+    private SingleLiveEvent<Integer> mShowWarningDialogEvent = new SingleLiveEvent<>();
     private SingleLiveEvent<Integer[]> mShowWonEvent = new SingleLiveEvent<>();
     private SingleLiveEvent<Void> mShowLostEvent = new SingleLiveEvent<>();
     private SingleLiveEvent<Void> mShowDrawnEvent = new SingleLiveEvent<>();
@@ -72,32 +75,23 @@ public class DojoBattlePvpViewModel extends AndroidViewModel
 
     public DojoBattlePvpViewModel(@NonNull Application application) {
         super(application);
+        mBattle = new Battle();
+        mFighters = new Fighters();
+        mBattleRepository = BattleRepository.getInstance();
+        CharOn.character.setItemsEnabled(false);
+        mJutsuTypeSelected = Jutsu.Type.ATK;
 
         if (CharOn.character.isMap()) {
             CharOn.character.setMap(false);
+            MapRepository.getInstance().exit(CharOn.character.getMapId(), CharOn.character.getId());
         }
 
-        CharOn.character.setItemsEnabled(false);
-
-        mBattle = new Battle();
-        mBattle.setId(CharOn.character.battleId);
-
-        mFighters = new Fighters();
-
-        mBattlesRepository = BattlesRepository.getInstance();
-
-        mJutsuTypeSelected = Jutsu.Type.ATK;
-
-        observeBattle();
-
-        mBattleLog = new BattleLogs();
-        FirebaseFunctionsUtils.getServerTime(currentTimestamp ->
-                mBattleLog.setInitialTime(currentTimestamp)
-        );
+        addBattleListener();
     }
 
-    private void observeBattle() {
-        mBattlesRepository.observeBattle(mBattle.getId(), battle -> {
+    private void addBattleListener() {
+        mBattle.setId(CharOn.character.getBattleId());
+        mBattleRepository.addBattleListener(mBattle.getId(), battle -> {
             mBattle.setStatus(battle.getStatus());
             mBattle.setPlayer1(battle.getPlayer1());
             mBattle.setPlayer2(battle.getPlayer2());
@@ -111,8 +105,24 @@ public class DojoBattlePvpViewModel extends AndroidViewModel
             updateFighters();
 
             if (mBattle.getStatus() == Battle.Status.CONTINUE) {
-                if (battle.getCurrentPlayer() == myTurn && battle.getAttackStart() != mBattle.getAttackStart()) {
+                if (battle.getCurrentPlayer() == myTurn &&
+                        battle.getAttackStart() != mBattle.getAttackStart()) {
                     SoundUtil.play(getApplication(), R.raw.battle);
+                    if (mBuffDebuffPending != null) {
+                        if (mBuffDebuffPending.getJutsuInfo().type == Jutsu.Type.BUFF) {
+                            List<Jutsu> buffsAndDebuffs = mPlayerBuffsDebuffsStatus.getValue();
+                            buffsAndDebuffs.remove(mBuffDebuffPending);
+                            mPlayerBuffsDebuffsStatus.setValue(buffsAndDebuffs);
+                            removeBuffDebuff(mPlayerFormulas, mBuffDebuffPending);
+                        } else if (mBuffDebuffPending.getJutsuInfo().type == Jutsu.Type.DEBUFF) {
+                            List<Jutsu> buffsAndDebuffs = mOppBuffsDebuffsStatus.getValue();
+                            buffsAndDebuffs.remove(mBuffDebuffPending);
+                            mOppBuffsDebuffsStatus.setValue(buffsAndDebuffs);
+                            removeBuffDebuff(mOppFormulas, mBuffDebuffPending);
+                        }
+                        mBuffDebuffPending = null;
+                        saveBattle();
+                    }
                 }
 
                 if (battle.getAttackStart() != mBattle.getAttackStart()) {
@@ -157,6 +167,7 @@ public class DojoBattlePvpViewModel extends AndroidViewModel
         mBattleLogs.setValue(mBattle.getBattleLogs());
     }
 
+
     private void startTimer(long millisInFuture) {
         stopTimer();
         mCountDownTimer = new CountDownTimer(millisInFuture, 1000) {
@@ -182,6 +193,7 @@ public class DojoBattlePvpViewModel extends AndroidViewModel
                     mPlayerFormulas.setCurrentHealth(0);
                 } else {
                     mBattle.setStatus(myTurn == 1 ? Battle.Status.PLAYER1_WON : Battle.Status.PLAYER2_WON);
+                    mOppFormulas.setCurrentHealth(0);
                 }
 
                 saveBattle();
@@ -196,7 +208,12 @@ public class DojoBattlePvpViewModel extends AndroidViewModel
         }
     }
 
+
     public void filterJutsus(Jutsu.Type filteredType) {
+        if (mAllJutsus == null) {
+            return;
+        }
+
         mJutsuTypeSelected = filteredType;
 
         List<Jutsu> filteredJutsus = new ArrayList<>();
@@ -216,13 +233,21 @@ public class DojoBattlePvpViewModel extends AndroidViewModel
         mJutsus.setValue(filteredJutsus);
     }
 
+    private Jutsu mBuffDebuffPending;
+
     private void updateRemainingIntervals() {
-        for (int i = 0; i < mAllJutsus.size(); i++) {
+        int len = mAllJutsus.size();
+
+        for (int i = 0; i < len; i++) {
             Jutsu jutsu = mAllJutsus.get(i);
 
             if (jutsu.getRemainingIntervals() > 0) {
                 if (jutsu.getRemainingIntervals() - 1 == 0) {
-                    if (jutsu.getJutsuInfo().type == Jutsu.Type.BUFF) {
+                    Jutsu.Type type = jutsu.getJutsuInfo().type;
+
+                    if ((type == Jutsu.Type.BUFF || type == Jutsu.Type.DEBUFF) && myTurn == 1) {
+                        mBuffDebuffPending = jutsu;
+                    } else if (jutsu.getJutsuInfo().type == Jutsu.Type.BUFF) {
                         List<Jutsu> buffsAndDebuffs = mPlayerBuffsDebuffsStatus.getValue();
                         buffsAndDebuffs.remove(jutsu);
                         mPlayerBuffsDebuffsStatus.setValue(buffsAndDebuffs);
@@ -280,18 +305,18 @@ public class DojoBattlePvpViewModel extends AndroidViewModel
     @Override
     public void onJutsuClick(Jutsu jutsu) {
         if (mBattle.getCurrentPlayer() != myTurn || awaitingShiftChange) {
-            showWarningDialogEvent.setValue(R.string.it_is_not_your_turn_to_attack);
+            mShowWarningDialogEvent.setValue(R.string.it_is_not_your_turn_to_attack);
             return;
         }
 
         if (jutsu.getRemainingIntervals() != 0) {
-            showWarningDialogEvent.setValue(R.string.jutsu_is_not_yet_available);
+            mShowWarningDialogEvent.setValue(R.string.jutsu_is_not_yet_available);
             return;
         }
 
         if (jutsu.getConsumesChakra() > mPlayerFormulas.getCurrentChakra() ||
                 jutsu.getConsumesStamina() > mPlayerFormulas.getCurrentStamina()) {
-            showWarningDialogEvent.setValue(R.string.dont_have_chakra_to_use_this_jutsu);
+            mShowWarningDialogEvent.setValue(R.string.dont_have_chakra_to_use_this_jutsu);
             return;
         }
 
@@ -350,11 +375,11 @@ public class DojoBattlePvpViewModel extends AndroidViewModel
             mPlayerFormulas.subChakra(jutsu.getConsumesChakra());
             mPlayerFormulas.subStamina(jutsu.getConsumesStamina());
 
-            addLog(new BattleLog(mFighters.getPlayer().getNick(), BattleLog.Type.BUFF_DEBUFF_WEAPON,
+            addLog(new BattleLog(mFighters.getPlayer().getNick(), BattleLog.Action.BUFF_DEBUFF_WEAPON,
                     playerJutsuInfo.name, jutsu)
             );
         } else {
-            showWarningDialogEvent.setValue(R.string.jutsu_is_not_yet_available);
+            mShowWarningDialogEvent.setValue(R.string.jutsu_is_not_yet_available);
             return;
         }
 
@@ -378,7 +403,7 @@ public class DojoBattlePvpViewModel extends AndroidViewModel
         objects[0] = calculateChanceOfSuccess(jutsu.getAccuracy(), mPlayerFormulas.getAccuracy());
         objects[1] = jutsu;
         objects[2] = anchor;
-        showJutsuInfoPopupEvent.setValue(objects);
+        mShowJutsuInfoPopupEvent.setValue(objects);
     }
 
 
@@ -392,6 +417,23 @@ public class DojoBattlePvpViewModel extends AndroidViewModel
 
         int myDamage = calculateDamage(myJutsu, myJutsuInfo, mPlayerFormulas, mOppFormulas);
         int oppDamage = calculateDamage(oppJutsu, oppJutsuInfo, mOppFormulas, mPlayerFormulas);
+
+        if (myJutsu instanceof ElementalJutsu && oppJutsu instanceof ElementalJutsu) {
+            Element playerElement = mFighters.getPlayer().getElement();
+            Element oppElement = mFighters.getOpponent().getElement();
+            int diff = Math.abs(playerElement.ordinal() - oppElement.ordinal());
+            if (diff == 1) {
+                if (playerElement.ordinal() < oppElement.ordinal()) {
+                    myDamage = (int) (myDamage * 1.25);
+                } else {
+                    oppDamage = (int) (oppDamage * 1.25);
+                }
+            } else if (diff == 4 && playerElement.ordinal() > oppElement.ordinal()) {
+                myDamage = (int) (myDamage * 1.25);
+            } else {
+                oppDamage = (int) (oppDamage * 1.25);
+            }
+        }
 
         if (!myMissed && !oppMissed) {
             if (myDamage > 0 && oppDamage > 0) {
@@ -420,23 +462,23 @@ public class DojoBattlePvpViewModel extends AndroidViewModel
         mOppFormulas.subStamina(oppJutsu.getConsumesStamina());
 
         // Creates battle log
-        addLog(new BattleLog(mFighters.getPlayer().getNick(), BattleLog.Type.USES, myJutsuInfo.name, myJutsu,
+        addLog(new BattleLog(mFighters.getPlayer().getNick(), BattleLog.Action.USES, myJutsuInfo.name, myJutsu,
                 calculateChanceOfSuccess(myJutsu.getAccuracy(), mPlayerFormulas.getAccuracy())));
         if (myMissed) {
-            addLog(new BattleLog(mFighters.getPlayer().getNick(), BattleLog.Type.MISSED));
+            addLog(new BattleLog(mFighters.getPlayer().getNick(), BattleLog.Action.MISSED));
         } else if (myJutsuInfo.type == Jutsu.Type.ATK) {
-            addLog(new BattleLog(mFighters.getOpponent().getNick(), BattleLog.Type.RECEIVES, myDamage));
+            addLog(new BattleLog(mFighters.getOpponent().getNick(), BattleLog.Action.RECEIVES, myDamage));
         }
 
-        addLog(new BattleLog(mFighters.getOpponent().getNick(), BattleLog.Type.USES, oppJutsuInfo.name,
+        addLog(new BattleLog(mFighters.getOpponent().getNick(), BattleLog.Action.USES, oppJutsuInfo.name,
                 oppJutsu, calculateChanceOfSuccess(oppJutsu.getAccuracy(), mOppFormulas.getAccuracy())));
         if (oppMissed) {
-            addLog(new BattleLog(mFighters.getOpponent().getNick(), BattleLog.Type.MISSED));
+            addLog(new BattleLog(mFighters.getOpponent().getNick(), BattleLog.Action.MISSED));
         } else if (oppJutsuInfo.type == Jutsu.Type.ATK) {
-            addLog(new BattleLog(mFighters.getPlayer().getNick(), BattleLog.Type.RECEIVES, oppDamage));
+            addLog(new BattleLog(mFighters.getPlayer().getNick(), BattleLog.Action.RECEIVES, oppDamage));
         }
 
-        addLog(new BattleLog(BattleLog.Type.END));
+        addLog(new BattleLog(BattleLog.Action.END));
     }
 
     private int calculateChanceOfSuccess(int jutsuAccuracy, int currentAccuracy) {
@@ -513,7 +555,7 @@ public class DojoBattlePvpViewModel extends AndroidViewModel
             int earnedRyous = 0;
             int earnedExp = 0;
 
-            if (CharOn.character.battleId.contains("MAP-PVP")) {
+            if (CharOn.character.getBattleId().contains("MAP-PVP")) {
                 earnedRyous = 16 * mFighters.getPlayer().getLevel() + 250;
                 earnedExp = 16 * mFighters.getPlayer().getLevel() + 150;
             } else if (CharOn.character.getGraduationId() == 1) { // Dojo PVP
@@ -534,12 +576,14 @@ public class DojoBattlePvpViewModel extends AndroidViewModel
         } else {
             mShowLostEvent.call();
         }
+
+        MapRepository.getInstance().removeBattleRequest(CharOn.character.getId());
     }
 
-    void exit() {
+    synchronized void exit() {
         if ((mBattle.getStatus() == Battle.Status.PLAYER1_WON && myTurn == 1) ||
                 (mBattle.getStatus() == Battle.Status.PLAYER2_WON && myTurn == 2)) {
-            if (CharOn.character.battleId.contains("MAP-PVP")) {
+            if (CharOn.character.getBattleId().contains("MAP-PVP")) {
                 CharOn.character.incrementScore(Score.VIT_MAPA_PVP);
                 CharOn.character.addRyous(16 * mFighters.getPlayer().getLevel() + 250);
                 CharOn.character.incrementExp(16 * mFighters.getPlayer().getLevel() + 150);
@@ -555,6 +599,16 @@ public class DojoBattlePvpViewModel extends AndroidViewModel
                     CharOn.character.incrementExp(Math.max(300 - 20 * CharOn.character.getLevel(), 0));
                 }
             }
+            KageRepository.getInstance().getKage(mFighters.getOpponent().getVillage(), kage -> {
+                if (kage.getNick().equals(mFighters.getOpponent().getNick())) {
+                    Map<String, String> map = new HashMap<>();
+                    map.put("kageTitle", String.valueOf(kage.getVillage().kageName));
+                    map.put("kageName", kage.getNick());
+                    map.put("player", CharOn.character.getNick());
+                    map.put("type", "kage_defeated");
+                    GlobalAlertRepository.getInstance().showAlert(map);
+                }
+            });
         } else {
             CharOn.character.getFormulas().setCurrentHealth(mPlayerFormulas.getCurrentHealth());
             CharOn.character.getFormulas().setCurrentChakra(mPlayerFormulas.getCurrentChakra());
@@ -563,7 +617,7 @@ public class DojoBattlePvpViewModel extends AndroidViewModel
             if (mBattle.getStatus() == Battle.Status.DRAWN) {
                 CharOn.character.getCombatOverview().setDrawsPvp(
                         CharOn.character.getCombatOverview().getDrawsPvp() + 1);
-            } else if (CharOn.character.battleId.contains("MAP-PVP")) {
+            } else if (CharOn.character.getBattleId().contains("MAP-PVP")) {
                 CharOn.character.decrementScore(Score.DER_MAPA_PVP);
                 CharOn.character.getCombatOverview().setLossesMapPvp(
                         CharOn.character.getCombatOverview().getLossesMapPvp() + 1);
@@ -579,30 +633,15 @@ public class DojoBattlePvpViewModel extends AndroidViewModel
             CharOn.character.incrementSkillPoint();
         }
 
-        mBattlesRepository.removeBattleListener();
-
-        int playersInBattle = mBattle.getPlayersInBattle() - 1;
-
-        if (playersInBattle == 0) {
-            mBattlesRepository.delete(mBattle.getId());
-        } else {
-            mBattle.setPlayersInBattle(playersInBattle);
-            saveBattle();
-//            mBattleLog.setFighter1Id(mFighters.getPlayer().getId());
-//            mBattleLog.setFighter2Id(mFighters.getOpponent().getId());
-//            mBattleLog.setBattleLogs(mBattleLogs.getValue());
-//            FirebaseFunctionsUtils.getServerTime(currentTimestamp -> {
-//                mBattleLog.setFinalTime(currentTimestamp);
-//                BattleLogsRepository.getInstance().save(mBattleLog);
-//            });
-        }
+        mBattleRepository.removeBattleListener();
+        mBattleRepository.exit(mBattle.getId());
 
         CharOn.character.setItemsEnabled(true);
         CharOn.character.setBattle(false);
     }
 
     private void saveBattle() {
-        mBattlesRepository.save(mBattle);
+        mBattleRepository.save(mBattle);
     }
 
 
@@ -643,11 +682,11 @@ public class DojoBattlePvpViewModel extends AndroidViewModel
     }
 
     LiveData<Object[]> getShowJutsuInfoPopupEvent() {
-        return showJutsuInfoPopupEvent;
+        return mShowJutsuInfoPopupEvent;
     }
 
     LiveData<Integer> getShowWarningDialogEvent() {
-        return showWarningDialogEvent;
+        return mShowWarningDialogEvent;
     }
 
     LiveData<Integer[]> getShowWonEvent() {

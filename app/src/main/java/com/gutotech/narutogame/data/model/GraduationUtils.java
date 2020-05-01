@@ -151,13 +151,10 @@ public class GraduationUtils {
 
     @StringRes
     public static int getName(int graduationId) {
-        if (CharOn.character == null){
+        if (CharOn.character == null) {
             return 0;
         }
-
-        Village village = CharOn.character.getVillage();
-
-        return getName(graduationId, village);
+        return getName(graduationId, CharOn.character.getVillage());
     }
 
     @StringRes

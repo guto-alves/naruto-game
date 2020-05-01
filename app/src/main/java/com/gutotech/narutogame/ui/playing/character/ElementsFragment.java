@@ -142,6 +142,7 @@ public class ElementsFragment extends Fragment implements SectionFragment {
     private final QuestionDialogFragment.QuestionDialogListener mUnlearnQuestionDialogListener = () -> {
         if (CharOn.character.getRyous() < 3000) {
             WarningDialogFragment.show(R.string.warning_dont_have_enough_ryous, getParentFragmentManager());
+            SoundUtil.play(getContext(), R.raw.attention2);
             return;
         }
 

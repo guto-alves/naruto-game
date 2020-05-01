@@ -71,6 +71,7 @@ public class VipPlayerFragment extends Fragment implements SectionFragment {
         viewModel.getShowWarningDialogEvent().observe(getViewLifecycleOwner(), resid -> {
             WarningDialogFragment dialog = WarningDialogFragment.newInstance(resid);
             dialog.openDialog(getParentFragmentManager());
+            SoundUtil.play(getContext(), R.raw.attention2);
         });
 
         FragmentUtils.setSectionTitle(getActivity(), R.string.section_vip_player);

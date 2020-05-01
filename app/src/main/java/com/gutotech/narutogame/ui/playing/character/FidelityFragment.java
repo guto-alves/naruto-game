@@ -31,7 +31,8 @@ public class FidelityFragment extends Fragment implements SectionFragment {
         binding.sectionMessage.titleTextView.setText(R.string.fidelity_rewards);
         binding.sectionMessage.descriptionTextView.setText(R.string.fidelity_rewards_description);
 
-        FidelityViewModel viewModel = new ViewModelProvider(this).get(FidelityViewModel.class);
+        FidelityViewModel viewModel = new ViewModelProvider(this)
+                .get(FidelityViewModel.class);
 
         FidelityRewardsAdapter adapter = new FidelityRewardsAdapter(getActivity(), viewModel);
         binding.fidelityRewardsRecyclerView.setAdapter(adapter);

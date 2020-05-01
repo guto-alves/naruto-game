@@ -8,7 +8,7 @@ exports.getTime = functions.https.onCall((data, context) => {
 	return Date.now();
 });
 
-const MAX_MESSAGES = 300;
+const MAX_MESSAGES = 200;
 
 exports.limitNumberOfMessages = functions.database.ref('/chats/{villageId}')
 	.onWrite(async (change) => {
@@ -33,6 +33,9 @@ exports.limitNumberOfMessages = functions.database.ref('/chats/{villageId}')
 	
 exports.formBattle = functions.database.ref('/dojo-random-wait')
 	.onWrite(async (change) => {
+		if(!change.after.exists()){
+			return null;
+		}
 		const snapshot = change.after;
 		const players = snapshot.val();
 
@@ -49,9 +52,9 @@ exports.formBattle = functions.database.ref('/dojo-random-wait')
 			 	if (players[charIds[i]].playerId === players[charIds[j]].playerId) {
 			 		continue;
 			 	}
-				
+
 				var lvlDiff = Math.abs(players[charIds[i]].level - players[charIds[j]].level);
-				
+
 				if(lvlDiff <= 1){
 					var battle = {
 						attackStart: Date.now(),
@@ -59,11 +62,11 @@ exports.formBattle = functions.database.ref('/dojo-random-wait')
 						id: "test",
 						player1: players[charIds[i]],
 						player2: players[charIds[j]],	 
-						playerCount: 2,
+						playersInBattle: 2,
 						status: "CONTINUE"
 					}
 
-					battle.id = 'DOJO-PVP' + battle.player1.nick + '-' +  battle.player2.nick;
+					battle.id = 'DOJO-PVP-' + battle.player1.nick + '-' +  battle.player2.nick;
 
 					//battle.id = admin.database().ref('/battles/').push();
 
@@ -81,7 +84,7 @@ exports.formBattle = functions.database.ref('/dojo-random-wait')
 
 					snapshot.ref.child(battle.player1.id).set(null);
 					snapshot.ref.child(battle.player2.id).set(null);
-					
+
 					j = count;
 					i = count;
 				}

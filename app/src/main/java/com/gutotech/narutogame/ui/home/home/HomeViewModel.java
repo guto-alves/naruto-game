@@ -14,7 +14,7 @@ import com.gutotech.narutogame.data.repository.GameStatusRepository;
 import com.gutotech.narutogame.data.repository.NewsRepository;
 import com.gutotech.narutogame.data.repository.NinjaStatisticsRepository;
 import com.gutotech.narutogame.data.repository.PlayerRepository;
-import com.gutotech.narutogame.data.repository.KagesRepository;
+import com.gutotech.narutogame.data.repository.KageRepository;
 import com.gutotech.narutogame.ui.ResultListener;
 import com.gutotech.narutogame.utils.SingleLiveEvent;
 
@@ -29,7 +29,7 @@ public class HomeViewModel extends ViewModel {
 
     private ResultListener mAuthListener;
 
-    private SingleLiveEvent<Void> mGameStatus = new SingleLiveEvent<>();
+    private SingleLiveEvent<Void> mStartMaintenanceActivityEvent = new SingleLiveEvent<>();
 
     public HomeViewModel() {
         mAuthRepository = AuthRepository.getInstance();
@@ -45,11 +45,11 @@ public class HomeViewModel extends ViewModel {
     }
 
     LiveData<List<Character>> getKages() {
-        return KagesRepository.getInstance().getKages();
+        return KageRepository.getInstance().getKages();
     }
 
-    LiveData<Void> getGameStatus() {
-        return mGameStatus;
+    LiveData<Void> getStartMaintenanceActivityEvent() {
+        return mStartMaintenanceActivityEvent;
     }
 
     void setAuthListener(ResultListener authListener) {
@@ -83,7 +83,7 @@ public class HomeViewModel extends ViewModel {
                 }
             } else {
                 mAuthListener.onFailure(0);
-                mGameStatus.call();
+                mStartMaintenanceActivityEvent.call();
             }
         });
     }

@@ -9,7 +9,8 @@ import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.Character;
 import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.model.Village;
-import com.gutotech.narutogame.data.repository.BattlesRepository;
+import com.gutotech.narutogame.data.repository.BattleRepository;
+import com.gutotech.narutogame.data.repository.CharacterRepository;
 import com.gutotech.narutogame.data.repository.MapRepository;
 import com.gutotech.narutogame.ui.adapter.VillageMapAdapter;
 import com.gutotech.narutogame.utils.SingleLiveEvent;
@@ -26,7 +27,7 @@ public class VillageMapViewModel extends ViewModel implements VillageMapAdapter.
     private Village mVillage;
 
     private MapRepository mMapRepository;
-    private BattlesRepository mBattlesRepository;
+    private BattleRepository mBattleRepository;
 
     private Map<String, Integer> mDuelCounter = new HashMap<>();
 
@@ -37,7 +38,7 @@ public class VillageMapViewModel extends ViewModel implements VillageMapAdapter.
     VillageMapViewModel(Village village) {
         mVillage = village;
         mMapRepository = MapRepository.getInstance();
-        mBattlesRepository = BattlesRepository.getInstance();
+        mBattleRepository = BattleRepository.getInstance();
 
         if (!CharOn.character.isMap()) {
             CharOn.character.setMap(true);
@@ -47,19 +48,27 @@ public class VillageMapViewModel extends ViewModel implements VillageMapAdapter.
             CharOn.character.setMapPosition(new SecureRandom().nextInt(MAP_SIZE));
         }
 
-        mBattlesRepository.getDuelCounter(CharOn.character.getId(),
+        mMapRepository.getDuelCounters(CharOn.character.getId(),
                 duelCounter -> mDuelCounter = duelCounter
         );
 
-        mMapRepository.enter(mVillage.ordinal());
+        mMapRepository.move(mVillage.ordinal());
 
-        mBattlesRepository.addOnBattleRequestChangeListener(CharOn.character.getId(),
-                mVillage.ordinal(), battleId -> {
-                    mMapRepository.exit(mVillage.ordinal(), CharOn.character.getId());
-                    mDismissProgressDialogEvent.call();
-                    CharOn.character.battleId = battleId;
-                    CharOn.character.setBattle(true);
+        mMapRepository.addBattleRequestListener(CharOn.character.getId(),
+                battleId -> {
+                    if (battleId == mBattleIdGenerated) {
+                        return;
+                    }
+                    goToBattle(battleId);
                 });
+    }
+
+    private void goToBattle(String battleId) {
+        mMapRepository.exit(mVillage.ordinal(), CharOn.character.getId());
+        mDismissProgressDialogEvent.call();
+        CharOn.character.setBattleId(battleId);
+        CharacterRepository.getInstance().save(CharOn.character);
+        CharOn.character.setBattle(true);
     }
 
     @Override
@@ -71,18 +80,14 @@ public class VillageMapViewModel extends ViewModel implements VillageMapAdapter.
                 mMapRepository.exit(mVillage.ordinal(), CharOn.character.getId());
                 CharOn.character.setMap(false);
             } else {
-                mMapRepository.enter(mVillage.ordinal());
+                mMapRepository.move(mVillage.ordinal());
             }
         } else {
             mShowWarningDialogEvent.setValue(R.string.this_place_is_far_away);
         }
     }
 
-    private int getOrDefault(String key) {
-        Integer value;
-        return (((value = mDuelCounter.get(key)) != null) || mDuelCounter.containsKey(key))
-                ? value : 0;
-    }
+    private String mBattleIdGenerated;
 
     @Override
     public synchronized void onBattleClick(Character opponent) {
@@ -102,30 +107,35 @@ public class VillageMapViewModel extends ViewModel implements VillageMapAdapter.
             return;
         }
 
-        if (getOrDefault(opponent.getId()) > 10) {
+        if (getOrDefault(opponent.getId()) > 5) {
             mShowWarningDialogEvent.setValue(R.string.limit_battles_for_today);
             return;
         }
 
         mShowProgressDialogEvent.call();
 
-        String battleId = mBattlesRepository.generateId("MAP-PVP");
+        mBattleIdGenerated = mBattleRepository.generateId("MAP-PVP");
 
-        mBattlesRepository.requestBattle(battleId, CharOn.character.getId(),
-                opponent.getId(), mVillage.ordinal(),
-                result -> {
+        mMapRepository.requestBattle(mBattleIdGenerated, CharOn.character.getId(), opponent.getId(),
+                requestResult -> {
                     mDismissProgressDialogEvent.call();
 
-                    if (result) {
+                    if (requestResult) {
                         mMapRepository.exit(mVillage.ordinal(), CharOn.character.getId());
                         mMapRepository.exit(mVillage.ordinal(), opponent.getId());
-                        mBattlesRepository.create(battleId, CharOn.character, opponent);
-                        mBattlesRepository.incrementDuelCount(CharOn.character.getId(), opponent.getId());
-                        mBattlesRepository.incrementDuelCount(opponent.getId(), CharOn.character.getId());
+                        mBattleRepository.create(mBattleIdGenerated, CharOn.character, opponent);
+                        goToBattle(mBattleIdGenerated);
+                        mMapRepository.incrementDuelCount(CharOn.character.getId(), opponent.getId());
                     } else {
                         mShowWarningDialogEvent.setValue(R.string.player_unavailable_to_fight);
                     }
                 });
+    }
+
+    private int getOrDefault(String key) {
+        Integer value;
+        return (((value = mDuelCounter.get(key)) != null) || mDuelCounter.containsKey(key))
+                ? value : 0;
     }
 
     private boolean isMovementValid(int newPosition) {
@@ -149,7 +159,7 @@ public class VillageMapViewModel extends ViewModel implements VillageMapAdapter.
         return mVillage.placeEntries.contains(position);
     }
 
-    public void stop() {
+    void stop() {
         mMapRepository.close();
     }
 

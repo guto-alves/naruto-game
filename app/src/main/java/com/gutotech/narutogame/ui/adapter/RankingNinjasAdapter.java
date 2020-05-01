@@ -39,8 +39,8 @@ public class RankingNinjasAdapter extends RecyclerView.Adapter<RankingNinjasAdap
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View itemView = LayoutInflater.from(mContext).inflate(R.layout.adapter_ninja_item,
-                viewGroup, false);
+        View itemView = LayoutInflater.from(viewGroup.getContext()).inflate(
+                R.layout.adapter_ninja_item, viewGroup, false);
         return new MyViewHolder(itemView);
     }
 

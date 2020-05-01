@@ -11,22 +11,34 @@ import java.util.List;
 
 public enum JutsuInfo {
     DEFESA_MAO("defesa_2_mao.jpg", R.string.simple_block, R.string.simple_block_des,
-            Jutsu.Type.DEF,
-            null),
+            Jutsu.Type.DEF, null),
     DEFESA_ACROBATICA("defesa_acrobatica.jpg", R.string.simple_dodge, R.string.simple_dodge_des,
-            Jutsu.Type.DEF,
-            null),
+            Jutsu.Type.DEF, null),
     SOCO("soco.jpg", R.string.punch, R.string.punch_des,
-            Jutsu.Type.ATK,
-            null),
+            Jutsu.Type.ATK, null),
     CHUTE("chute.jpg", R.string.kick, R.string.kick_des,
-            Jutsu.Type.ATK,
-            null),
+            Jutsu.Type.ATK, null),
 
     // TAIJUTSUS
     DYNAMIC_KICK("chute_dinamico.jpg", R.string.dynamic_kick, R.string.dynamic_kick_des,
             Jutsu.Type.ATK,
             Arrays.asList(
+                    new Requirement() {
+                        public int getValue() {
+                            return 0;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getGraduationId() >= getValue();
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_grade,
+                                    context.getString(GraduationUtils.getName(getValue())));
+                        }
+                    },
                     new Requirement() {
 
                         @Override
@@ -1651,7 +1663,7 @@ public enum JutsuInfo {
             Arrays.asList(
                     new Requirement() {
                         public int getValue() {
-                            return 1;
+                            return 3;
                         }
 
                         @Override
@@ -3039,7 +3051,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
+                            return 34;
                         }
 
                         @Override
@@ -3058,7 +3070,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 5;
+                            return 45;
                         }
 
                         @Override
@@ -3096,7 +3108,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
+                            return 34;
                         }
 
                         @Override
@@ -3115,7 +3127,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 5;
+                            return 45;
                         }
 
                         @Override
@@ -3153,7 +3165,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
+                            return 34;
                         }
 
                         @Override
@@ -3172,7 +3184,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 5;
+                            return 45;
                         }
 
                         @Override
@@ -4068,6 +4080,22 @@ public enum JutsuInfo {
     SOUFUUSHASAN_NO_TACHI("soufuushasan-no-tachi.jpg", R.string.soufuushasan_no_tachi, R.string.soufuushasan_no_tachi_desc,
             Jutsu.Type.ATK,
             Arrays.asList(
+                    new Requirement() {
+                        public int getValue() {
+                            return 0;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getGraduationId() >= getValue();
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_grade,
+                                    context.getString(GraduationUtils.getName(getValue())));
+                        }
+                    },
                     new Requirement() {
 
                         @Override
@@ -8109,6 +8137,22 @@ public enum JutsuInfo {
             Jutsu.Type.ATK,
             Arrays.asList(
                     new Requirement() {
+                        public int getValue() {
+                            return 0;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getGraduationId() >= getValue();
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_grade,
+                                    context.getString(GraduationUtils.getName(getValue())));
+                        }
+                    },
+                    new Requirement() {
 
                         @Override
                         public Object value() {
@@ -10380,6 +10424,22 @@ public enum JutsuInfo {
     KISHIBARI_NO_JUTSU("Kishibari_no_Jutsu.jpg", R.string.kishibari_no_jutsu, R.string.kishibari_no_jutsu_desc,
             Jutsu.Type.ATK,
             Arrays.asList(
+                    new Requirement() {
+                        public int getValue() {
+                            return 0;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getGraduationId() >= getValue();
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_grade,
+                                    context.getString(GraduationUtils.getName(getValue())));
+                        }
+                    },
                     new Requirement() {
 
                         @Override

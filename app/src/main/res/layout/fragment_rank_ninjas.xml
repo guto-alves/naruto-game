@@ -13,12 +13,13 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true">
+        android:fillViewport="true"
+        tools:context=".ui.playing.ranking.RankNinjasFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:context=".ui.playing.ranking.RankNinjasFragment">
+            android:paddingBottom="16dp">
 
             <ImageView
                 android:id="@+id/imageView39"
@@ -103,10 +104,12 @@
                         android:textStyle="bold" />
 
                     <EditText
+                        android:id="@+id/nameEditText"
                         style="@style/EditTextTheme"
                         android:layout_width="120dp"
                         android:layout_height="wrap_content"
-                        android:inputType="textCapSentences|textCapCharacters"
+                        android:imeOptions="actionSearch"
+                        android:inputType="textFilter"
                         android:text="@={viewModel.nick}" />
                 </LinearLayout>
 

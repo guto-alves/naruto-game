@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SupportRepository {
-    private static SupportRepository sInstance = new SupportRepository();
+    private static final SupportRepository sInstance = new SupportRepository();
 
     private SupportRepository() {
     }

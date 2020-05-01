@@ -64,7 +64,7 @@ public class JutsuRepository {
             if (classe == Classe.TAI) {
                 // Student
                 jutsus.add(new Jutsu(JutsuInfo.DYNAMIC_KICK.toString(), Classe.TAI,
-                        16, 0, 6, 3, 18, 2));
+                        16, 0, 7, 3, 18, 2));
 
                 // Genin
                 jutsus.add(new Jutsu(JutsuInfo.DYNAMIC_ENTRY.toString(), Classe.TAI,
@@ -187,7 +187,7 @@ public class JutsuRepository {
                 // Sannin
                 jutsus.add(new Jutsu(JutsuInfo.KONGOURIKI.toString(), Classe.TAI,
                         160, 0, 35, 31, 184));
-                jutsus.add(new Jutsu(JutsuInfo.PANCHI.toString(), Classe.TAI,
+                jutsus.add(new Jutsu(JutsuInfo.M_PANCHI.toString(), Classe.TAI,
                         160, 0, 35, 31, 184));
                 jutsus.add(new Jutsu(JutsuInfo.DABURU_RARIATTO.toString(), Classe.TAI,
                         181, 0, 35, 52, 208));
@@ -228,7 +228,7 @@ public class JutsuRepository {
 
             } else if (classe == Classe.BUK) {
                 jutsus.add(new Jutsu(JutsuInfo.SOUFUUSHASAN_NO_TACHI.toString(), Classe.BUK,
-                        16, 0, 6, 3, 18, 2));
+                        16, 0, 7, 3, 18, 2));
 
                 jutsus.add(new Jutsu(JutsuInfo.SOUSHURIKEN_NO_JUTSU.toString(), Classe.BUK,
                         20, 0, 7, 2, 22, 2));
@@ -390,7 +390,7 @@ public class JutsuRepository {
 
             } else if (classe == Classe.NIN) {
                 jutsus.add(new Jutsu(JutsuInfo.HENGE_NO_JUTSU.toString(), Classe.NIN,
-                        16, 0, 6, 18, 6, 2));
+                        16, 0, 7, 18, 6, 2));
 
                 // Genin
                 jutsus.add(new Jutsu(JutsuInfo.KONOHA_TZU.toString(), Classe.NIN,
@@ -492,7 +492,7 @@ public class JutsuRepository {
 
             } else { // mClasseSelected == GEN
                 jutsus.add(new Jutsu(JutsuInfo.KISHIBARI_NO_JUTSU.toString(), Classe.GEN,
-                        16, 0, 6, 18, 6, 2));
+                        16, 0, 7, 18, 6, 2));
 
                 jutsus.add(new Jutsu(JutsuInfo.KASUMI_JUUHA_NO_JUTSU.toString(), Classe.GEN,
                         20, 0, 7, 22, 2, 2));

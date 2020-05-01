@@ -11,6 +11,8 @@
     <color name="colorItem1">#423727</color>
     <color name="colorItem2">#271C15</color>
 
+    <color name="colorSensei">#C25200</color>
+    <color name="colorOrange">#ff7d1c</color>
     <color name="colorYellow">#E3EDA4</color>
 
     <color name="colorBgDialog">#E1000000</color>
@@ -22,6 +24,7 @@
     <color name="colorLogPurple">#8D2258</color>
 
     <color name="colorYellowLight">#FFD273</color>
+    <color name="colorGold">#FFD700</color>
 
     <color name="colorTeamRatingbar">#FCE187</color>
 
