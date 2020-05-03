@@ -228,6 +228,8 @@
                 android:id="@+id/textView25"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
                 android:text="@string/value"
                 android:textColor="@android:color/white"
                 android:textSize="12sp"
@@ -263,11 +265,11 @@
                 tools:listitem="@layout/adapter_shop_item" />
 
             <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline9"
+                android:id="@+id/guideline11"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.75" />
+                app:layout_constraintGuide_percent="0.40" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline10"
@@ -277,11 +279,11 @@
                 app:layout_constraintGuide_percent="0.5" />
 
             <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline11"
+                android:id="@+id/guideline9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.36" />
+                app:layout_constraintGuide_percent="0.755" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

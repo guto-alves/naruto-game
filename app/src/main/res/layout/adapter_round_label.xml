@@ -2,15 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:layout_margin="3dp"
     android:orientation="horizontal">
 
     <Button
         android:id="@+id/roundTextView"
-        style="@style/Widget.AppCompat.Button.Borderless.Colored"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/ButtonTheme"
+        android:background="@drawable/bg_button"
         android:text="Round 23"
         android:textColor="@android:color/white"
-        android:textSize="12sp"
         android:textStyle="bold" />
 </LinearLayout>

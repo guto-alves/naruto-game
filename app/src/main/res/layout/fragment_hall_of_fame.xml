@@ -111,14 +111,16 @@
                         android:gravity="center|start"
                         android:text="@string/hall_of_fame_description"
                         android:textColor="#D1D8F1"
-                        android:textSize="10sp" />
+                        android:textSize="12sp" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/roundsRecyclerView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
                         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                         app:spanCount="2"
+                        tools:itemCount="3"
                         tools:listitem="@layout/adapter_round_label" />
 
                 </LinearLayout>

@@ -42,6 +42,10 @@ public class NinjaShopViewModel extends ViewModel implements
 
     @Override
     public synchronized void onBuyButtonClick(ShopItem item, int quantity) {
+        if (quantity == 0) {
+            return;
+        }
+
         int price = item.getValue() * quantity;
 
         if (CharOn.character.getRyous() >= price) {

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/bgLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -73,12 +74,13 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:imeOptions="actionDone"
         android:text="RY$ 45"
-        android:textColor="@color/colorGreen"
+        android:textColor="#FFEB3B"
         android:textSize="12sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/quantityEditText"
         app:layout_constraintEnd_toStartOf="@+id/quantityEditText"
+        app:layout_constraintStart_toStartOf="@+id/guideline28"
         app:layout_constraintTop_toTopOf="@+id/quantityEditText" />
 
     <EditText
@@ -86,15 +88,14 @@
         style="@style/EditTextTheme"
         android:layout_width="30dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
         android:layout_marginBottom="3dp"
         android:gravity="center"
+        android:imeOptions="actionDone"
         android:inputType="numberSigned"
         android:maxLength="2"
         android:text="1"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/buyButton"
+        app:layout_constraintEnd_toStartOf="@+id/guideline29"
         app:layout_constraintTop_toTopOf="@+id/buyButton" />
 
     <Button
@@ -105,5 +106,19 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline28"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.4136253" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline29"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.68" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

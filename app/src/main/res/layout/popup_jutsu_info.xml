@@ -33,7 +33,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@{jutsuInfo.name}"
+                    android:text='@{jutsu.level == 0 ? context.getString(jutsuInfo.name) : context.getString(jutsuInfo.name) + " - Lvl " + jutsu.level}'
                     android:textColor="@android:color/holo_orange_light"
                     android:textSize="12sp" />
 

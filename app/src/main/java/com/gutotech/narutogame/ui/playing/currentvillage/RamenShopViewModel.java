@@ -13,14 +13,18 @@ import com.gutotech.narutogame.utils.SingleLiveEvent;
 
 public class RamenShopViewModel extends ViewModel
         implements ItemShopAdapter.OnBuyClickListener {
-    private SingleLiveEvent<Integer> showWarningEvent = new SingleLiveEvent<>();
+    private SingleLiveEvent<Integer> mShowWarningEvent = new SingleLiveEvent<>();
 
     LiveData<Integer> getShowWarningEvent() {
-        return showWarningEvent;
+        return mShowWarningEvent;
     }
 
     @Override
     public void onBuyButtonClick(ShopItem item, int quantity) {
+        if (quantity == 0) {
+            return;
+        }
+
         int price = item.getValue() * quantity;
 
         if (CharOn.character.getRyous() >= price) {
@@ -30,9 +34,9 @@ public class RamenShopViewModel extends ViewModel
 
             CharacterRepository.getInstance().save(CharOn.character);
 
-            showWarningEvent.setValue(R.string.warning_items_purchased);
+            mShowWarningEvent.setValue(R.string.warning_items_purchased);
         } else {
-            showWarningEvent.setValue(R.string.warning_dont_have_enough_ryous);
+            mShowWarningEvent.setValue(R.string.warning_dont_have_enough_ryous);
         }
     }
 }

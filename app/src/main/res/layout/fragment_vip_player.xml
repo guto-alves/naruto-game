@@ -137,8 +137,9 @@
                     android:layout_marginRight="16dp"
                     android:layout_marginBottom="9dp"
                     android:text="@{@string/ry(viewModel.PRICE_TO_CHANGE_NAME)}"
-                    android:textColor="@color/colorGreen"
+                    android:textColor="#FFEB3B"
                     android:textSize="12sp"
+                    android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/button1" />
 
@@ -231,8 +232,9 @@
                     android:layout_marginRight="16dp"
                     android:layout_marginBottom="8dp"
                     android:text="@{@string/ry(viewModel.PRICE_TO_CHANGE_CHARACTER)}"
-                    android:textColor="@color/colorGreen"
+                    android:textColor="#FFEB3B"
                     android:textSize="12sp"
+                    android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/button2" />
 
@@ -323,8 +325,9 @@
                     android:layout_marginRight="16dp"
                     android:layout_marginBottom="8dp"
                     android:text="@{@string/ry(viewModel.PRICE_TO_CHANGE_CLASS)}"
-                    android:textColor="@color/colorGreen"
+                    android:textColor="#FFEB3B"
                     android:textSize="12sp"
+                    android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/button3" />
 
@@ -416,8 +419,9 @@
                     android:layout_marginRight="16dp"
                     android:layout_marginBottom="8dp"
                     android:text="@{@string/ry(viewModel.PRICE_TO_CHANGE_VILLAGE)}"
-                    android:textColor="@color/colorGreen"
+                    android:textColor="#FFEB3B"
                     android:textSize="12sp"
+                    android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/button4" />
 
@@ -494,8 +498,9 @@
                     android:layout_marginRight="16dp"
                     android:layout_marginBottom="8dp"
                     android:text="@{@string/ry(viewModel.PRICE_TO_REDISTRIBUTE_5_POINTS)}"
-                    android:textColor="@color/colorGreen"
+                    android:textColor="#FFEB3B"
                     android:textSize="12sp"
+                    android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/button5" />
 
@@ -572,8 +577,9 @@
                     android:layout_marginRight="16dp"
                     android:layout_marginBottom="8dp"
                     android:text="@{@string/ry(viewModel.PRICE_TO_REDISTRIBUTE_10_POINTS)}"
-                    android:textColor="@color/colorGreen"
+                    android:textColor="#FFEB3B"
                     android:textSize="12sp"
+                    android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/button6" />
 
@@ -650,8 +656,9 @@
                     android:layout_marginRight="16dp"
                     android:layout_marginBottom="8dp"
                     android:text="@{@string/ry(viewModel.PRICE_TO_REDISTRIBUTE_15_POINTS)}"
-                    android:textColor="@color/colorGreen"
+                    android:textColor="#FFEB3B"
                     android:textSize="12sp"
+                    android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/button7" />
 
@@ -728,8 +735,9 @@
                     android:layout_marginRight="16dp"
                     android:layout_marginBottom="8dp"
                     android:text="@{@string/ry(viewModel.PRICE_TO_REDISTRIBUTE_POINTS)}"
-                    android:textColor="@color/colorGreen"
+                    android:textColor="#FFEB3B"
                     android:textSize="12sp"
+                    android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/button8" />
 

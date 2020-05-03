@@ -101,7 +101,6 @@
                         android:layout_marginBottom="5dp"
                         android:text="@string/hall_of_fame_of_naruto_game"
                         android:textColor="#ffd273"
-                        android:textSize="12sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -111,14 +110,16 @@
                         android:gravity="center|start"
                         android:text="@string/hall_of_fame_description"
                         android:textColor="#D1D8F1"
-                        android:textSize="10sp" />
+                        android:textSize="12sp" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/roundsRecyclerView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
                         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                        app:spanCount="3"
+                        app:spanCount="5"
+                        tools:itemCount="9"
                         tools:listitem="@layout/adapter_round_label" />
 
                 </LinearLayout>
