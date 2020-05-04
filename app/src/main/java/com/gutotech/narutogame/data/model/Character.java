@@ -171,8 +171,10 @@ public class Character extends BaseObservable implements Serializable {
                 continue;
             }
 
+            boolean folded = jutsu.getClasse() != getClasse();
+
             for (Requirement requirement : requirements) {
-                if (!requirement.check()) {
+                if (!requirement.check(folded)) {
                     int pointsSpent = jutsu.getEnhancements().keySet().size() * 5;
                     incrementSkillPoint(pointsSpent);
                     iterator.remove();
@@ -280,12 +282,14 @@ public class Character extends BaseObservable implements Serializable {
         notifyPropertyChanged(BR.ryous);
     }
 
+    @Bindable
     public Classe getClasse() {
         return classe;
     }
 
     public void setClasse(Classe classe) {
         this.classe = classe;
+        notifyPropertyChanged(BR.classe);
     }
 
     public Attributes getAttributes() {

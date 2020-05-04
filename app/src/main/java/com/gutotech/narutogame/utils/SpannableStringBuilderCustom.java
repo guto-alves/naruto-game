@@ -51,6 +51,13 @@ public class SpannableStringBuilderCustom {
         }
     }
 
+    public void append(String string, CharacterStyle... styles) {
+        append(string);
+        for (CharacterStyle style : styles) {
+            setSpan(style);
+        }
+    }
+
     public void setSpan(CharacterStyle span) {
         mStringBuilder.setSpan(span, index, mStringBuilder.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
     }

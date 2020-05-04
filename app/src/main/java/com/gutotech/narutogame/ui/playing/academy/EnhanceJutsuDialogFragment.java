@@ -30,16 +30,16 @@ public class EnhanceJutsuDialogFragment extends DialogFragment {
         void onJutsuUpgraded();
     }
 
-    private static final String EXTRA_SLOT = "slot";
     private static final String EXTRA_JUTSU = "jutsu";
+    private static final String EXTRA_SLOT = "slot";
     private static final String EXTRA_LISTENER = "listener";
 
     public static EnhanceJutsuDialogFragment getInstance(Jutsu jutsu, String slot,
                                                          EnhancementDialogListener listener) {
         Bundle args = new Bundle();
         args.putSerializable(EXTRA_JUTSU, jutsu);
-        args.putSerializable(EXTRA_LISTENER, listener);
         args.putString(EXTRA_SLOT, slot);
+        args.putSerializable(EXTRA_LISTENER, listener);
 
         EnhanceJutsuDialogFragment dialog = new EnhanceJutsuDialogFragment();
         dialog.setArguments(args);

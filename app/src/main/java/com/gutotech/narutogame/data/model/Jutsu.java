@@ -1,6 +1,9 @@
 package com.gutotech.narutogame.data.model;
 
+import android.content.Context;
+
 import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 import androidx.databinding.library.baseAdapters.BR;
@@ -95,8 +98,14 @@ public class Jutsu extends BaseObservable implements Serializable {
     }
 
     public boolean isBuffOrDebuff(JutsuInfo jutsuInfo) {
-        return jutsuInfo.type == Jutsu.Type.BUFF
-                || jutsuInfo.type == Jutsu.Type.DEBUFF;
+        return jutsuInfo.type == Jutsu.Type.BUFF || jutsuInfo.type == Jutsu.Type.DEBUFF;
+    }
+
+    @Exclude
+    public static String getName(Jutsu jutsu, @StringRes int resid, Context context) {
+        return jutsu.getLevel() == 0 ?
+                context.getString(resid) :
+                context.getString(resid) + " - Lvl " + jutsu.getLevel();
     }
 
     @Override

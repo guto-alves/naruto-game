@@ -11,9 +11,11 @@ import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.model.Character;
 import com.gutotech.narutogame.data.model.Classe;
+import com.gutotech.narutogame.data.model.Jutsu;
 import com.gutotech.narutogame.data.model.Ninja;
 import com.gutotech.narutogame.data.model.Village;
 import com.gutotech.narutogame.data.repository.CharacterRepository;
+import com.gutotech.narutogame.data.repository.JutsuRepository;
 import com.gutotech.narutogame.data.repository.NinjaStatisticsRepository;
 import com.gutotech.narutogame.utils.SingleLiveEvent;
 
@@ -134,7 +136,12 @@ public class VipPlayerViewModel extends ViewModel {
             mCharacter.getAttributes().changeBasePoints(newClass);
             mCharacter.updateFormulas();
             mCharacter.full();
+
+            List<Jutsu> basicJutsus = JutsuRepository.getInstance().getBasicJutsus(newClass);
+            mCharacter.getJutsus().removeAll(basicJutsus);
+            mCharacter.getJutsus().addAll(basicJutsus);
             mCharacter.validateJutsus();
+            JutsuRepository.getInstance().sort(mCharacter.getJutsus());
 
             mShowSuccessMessageEvent.setValue(R.string.class_change);
         }
@@ -191,7 +198,8 @@ public class VipPlayerViewModel extends ViewModel {
         if (makePayment(PRICE_TO_REDISTRIBUTE_POINTS, mCharacter.getRyous())) {
             int totalDistributedPoints = mCharacter.getExtrasInformation().getDistributedPoints();
             mCharacter.getExtrasInformation().setDistributedPoints(0);
-            mCharacter.getAttributes().setTotalFreePoints(totalDistributedPoints);
+            mCharacter.getAttributes().setTotalFreePoints(
+                    mCharacter.getAttributes().getTotalFreePoints() + totalDistributedPoints);
             Collections.fill(mCharacter.getAttributes().getDistributedPoints(), 0);
             mCharacter.updateFormulas();
             mCharacter.getFormulas().validateCeil();

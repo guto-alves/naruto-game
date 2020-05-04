@@ -14,6 +14,10 @@ public enum Classe {
         this.name = name;
     }
 
+    public String getName() {
+        return name;
+    }
+
     @NonNull
     @Override
     public String toString() {

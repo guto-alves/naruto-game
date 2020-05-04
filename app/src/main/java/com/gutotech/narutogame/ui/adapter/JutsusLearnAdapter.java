@@ -65,12 +65,14 @@ public class JutsusLearnAdapter extends RecyclerView.Adapter<JutsusLearnAdapter.
     private OnTrainClickListener mOnTrainClickListener;
     private Set<String> mSections = new HashSet<>();
     private int mGraduationRequirementIndex;
+    private LearnJutsuInfoPopupWindow mJutsuInfoPopupWindow;
 
     public JutsusLearnAdapter(Context context, FragmentManager fragmentManager,
                               OnTrainClickListener trainClickListener) {
         mContext = context;
         mFragmentManager = fragmentManager;
         mOnTrainClickListener = trainClickListener;
+        mJutsuInfoPopupWindow = new LearnJutsuInfoPopupWindow(mContext);
     }
 
     @NonNull
@@ -143,10 +145,12 @@ public class JutsusLearnAdapter extends RecyclerView.Adapter<JutsusLearnAdapter.
 
     private void updateFirstJutsusOfEachGraduation() {
         mSections.clear();
+
         int len = mJutsusList.size();
         if (len == 0) {
             return;
         }
+
         int c = -1;
         mGraduationRequirementIndex = mJutsusList.get(0) instanceof ElementalJutsu ? 1 : 0;
 
@@ -172,8 +176,7 @@ public class JutsusLearnAdapter extends RecyclerView.Adapter<JutsusLearnAdapter.
     }
 
     private void showJutsuInfo(View anchor, Jutsu jutsu, JutsuInfo jutsuInfo) {
-        LearnJutsuInfoPopupWindow popupWindow = new LearnJutsuInfoPopupWindow(mContext);
-        popupWindow.setJutsu(jutsu, jutsuInfo);
-        popupWindow.showAsDropDown(anchor);
+        mJutsuInfoPopupWindow.setJutsu(jutsu, jutsuInfo);
+        mJutsuInfoPopupWindow.showAsDropDown(anchor);
     }
 }

@@ -1,13 +1,10 @@
 package com.gutotech.narutogame.data.repository;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.MutableData;
-import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
 import com.gutotech.narutogame.data.firebase.FirebaseConfig;
 
@@ -27,30 +24,11 @@ public class GlobalAlertRepository {
     public void showAlert(Map<String, String> messageMap) {
         FirebaseConfig.getDatabase()
                 .child("global-alert")
-                .runTransaction(new Transaction.Handler() {
-                    @NonNull
-                    @Override
-                    public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
-                        Map<String, String> map = (HashMap<String, String>) mutableData.getValue();
-
-                        if (map == null) {
-                            return Transaction.success(mutableData);
-                        }
-
-                        mutableData.setValue(messageMap);
-                        return Transaction.success(mutableData);
-                    }
-
-                    @Override
-                    public void onComplete(@Nullable DatabaseError databaseError, boolean b,
-                                           @Nullable DataSnapshot dataSnapshot) {
-                    }
-                });
+                .setValue(messageMap);
     }
 
     private DatabaseReference mGlobalAlertReference;
     private ValueEventListener mGlobalAlertEventListener;
-
     private long mInitialTime;
 
     public void addListener(Callback<Map<String, String>> callback) {

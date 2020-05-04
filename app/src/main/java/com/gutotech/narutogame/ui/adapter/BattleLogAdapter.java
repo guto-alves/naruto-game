@@ -11,10 +11,12 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.BattleLog;
+import com.gutotech.narutogame.data.model.Jutsu;
 import com.gutotech.narutogame.utils.SpannableStringBuilderCustom;
 
 import java.util.List;
@@ -63,44 +65,41 @@ public class BattleLogAdapter extends RecyclerView.Adapter<BattleLogAdapter.View
 
             SpannableStringBuilderCustom logBuilder = new SpannableStringBuilderCustom(mContext);
 
+            ClickableSpan clickableSpan = new ClickableSpan() {
+
+                @Override
+                public void onClick(@NonNull View widget) {
+                    mOnJutsuInfoClickListener.onJutsuClick(widget, battleLog);
+                }
+            };
+
             if (battleLog.getAction() == BattleLog.Action.USES) {
                 logBuilder.append(battleLog.getNick());
                 logBuilder.append();
                 logBuilder.append(R.string.uses, R.color.colorLogBlue);
                 logBuilder.append();
-                logBuilder.append(battleLog.getValue());
-                logBuilder.setSpan(new ClickableSpan() {
-                    @Override
-                    public void onClick(@NonNull View widget) {
-                        mOnJutsuInfoClickListener.onJutsuClick(widget, battleLog);
-                    }
-                });
-                logBuilder.setForegroundColor(R.color.colorLogAction);
+                logBuilder.append(Jutsu.getName(battleLog.getJutsu(), battleLog.getValue(), mContext),
+                        clickableSpan,
+                        new ForegroundColorSpan(ContextCompat.getColor(mContext, R.color.colorLogAction)));
             } else if (battleLog.getAction() == BattleLog.Action.RECEIVES) {
                 logBuilder.append(battleLog.getNick());
                 logBuilder.append();
                 logBuilder.append(R.string.receives, R.color.colorLogBlue);
                 logBuilder.append();
-                logBuilder.append(mContext.getString(R.string.of_damage, battleLog.getValue()));
-                logBuilder.setSpan(new ForegroundColorSpan(Color.RED));
+                logBuilder.append(mContext.getString(R.string.of_damage, battleLog.getValue()),
+                        new ForegroundColorSpan(Color.RED));
             } else if (battleLog.getAction() == BattleLog.Action.BUFF_DEBUFF_WEAPON) {
                 logBuilder.append(battleLog.getNick());
                 logBuilder.append();
                 logBuilder.append(R.string.uses, R.color.colorLogPurple);
                 logBuilder.append();
-                logBuilder.append(battleLog.getValue());
-                logBuilder.setSpan(new ClickableSpan() {
-                    @Override
-                    public void onClick(@NonNull View widget) {
-                        mOnJutsuInfoClickListener.onJutsuClick(widget, battleLog);
-                    }
-                });
-                logBuilder.setForegroundColor(R.color.colorLogPurple);
+                logBuilder.append(Jutsu.getName(battleLog.getJutsu(), battleLog.getValue(), mContext),
+                        clickableSpan,
+                        new ForegroundColorSpan(ContextCompat.getColor(mContext, R.color.colorLogPurple)));
             } else if (battleLog.getAction() == BattleLog.Action.MISSED) {
                 logBuilder.append(battleLog.getNick());
                 logBuilder.append();
-                logBuilder.append(mContext.getString(R.string.missed));
-                logBuilder.setForegroundColor(android.R.color.holo_orange_dark);
+                logBuilder.append(R.string.missed, android.R.color.holo_orange_dark);
             } else {
                 holder.divider.setVisibility(View.VISIBLE);
                 holder.textView.setVisibility(View.GONE);

@@ -46,27 +46,37 @@
                 android:textColor="@android:color/white" />
 
             <TextView
-                android:id="@+id/atkOrDefTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawableStart="@drawable/layout_icones_atk_fisico"
-                android:drawableLeft="@drawable/layout_icones_atk_magico"
-                android:drawablePadding="3dp"
-                android:gravity="center_vertical"
-                android:text="@string/label_attack_tai_buk"
-                android:textColor="@android:color/white" />
-
-            <TextView
-                android:id="@+id/atkTextView2"
+                android:id="@+id/atkNinGenTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/layout_icones_atk_magico"
                 android:drawableLeft="@drawable/layout_icones_atk_magico"
-                android:drawablePadding="3dp"
+                android:drawablePadding="5dp"
                 android:gravity="center_vertical"
-                android:text="@string/label_attack_nin_gen"
-                android:textColor="@android:color/white"
-                android:visibility="gone" />
+                android:text="@{@string/label_atk_nin_gen(jutsu.atk)}"
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:id="@+id/atkTaiBukTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/layout_icones_atk_fisico"
+                android:drawableLeft="@drawable/layout_icones_atk_fisico"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical"
+                android:text="@{@string/label_atk_tai_buk(jutsu.atk)}"
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:id="@+id/defTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/layout_icones_shield"
+                android:drawableLeft="@drawable/layout_icones_shield"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical"
+                android:text="@{@string/label_base_defense(jutsu.baseDefense)}"
+                android:textColor="@android:color/white" />
 
             <TextView
                 android:id="@+id/accTextView"
@@ -74,7 +84,7 @@
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/layout_icones_precisao"
                 android:drawableLeft="@drawable/layout_icones_precisao"
-                android:drawablePadding="3dp"
+                android:drawablePadding="5dp"
                 android:gravity="center_vertical"
                 android:text="@{@string/label_accuracy(jutsu.accuracy)}"
                 android:textColor="@android:color/white" />

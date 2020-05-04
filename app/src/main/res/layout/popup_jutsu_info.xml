@@ -3,6 +3,8 @@
 
     <data>
 
+        <import type="com.gutotech.narutogame.data.model.Jutsu" />
+
         <variable
             name="jutsu"
             type="com.gutotech.narutogame.data.model.Jutsu" />
@@ -33,7 +35,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text='@{jutsu.level == 0 ? context.getString(jutsuInfo.name) : context.getString(jutsuInfo.name) + " - Lvl " + jutsu.level}'
+                    android:text="@{Jutsu.getName(jutsu, jutsuInfo.name, context)}"
                     android:textColor="@android:color/holo_orange_light"
                     android:textSize="12sp" />
 
@@ -79,26 +81,40 @@
                 android:visibility="gone" />
 
             <TextView
-                android:id="@+id/atkOrDefTextView"
+                android:id="@+id/atkNinGenTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/layout_icones_atk_magico"
+                android:drawableLeft="@drawable/layout_icones_atk_magico"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical"
+                android:text="@{@string/label_atk_nin_gen(jutsu.atk)}"
+                android:textColor="@android:color/white"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/atkTaiBukTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/layout_icones_atk_fisico"
                 android:drawableLeft="@drawable/layout_icones_atk_fisico"
                 android:drawablePadding="5dp"
                 android:gravity="center_vertical"
+                android:text="@{@string/label_atk_tai_buk(jutsu.atk)}"
                 android:textColor="@android:color/white"
                 android:textSize="12sp" />
 
             <TextView
-                android:id="@+id/atkOrDefTextView2"
+                android:id="@+id/defTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/layout_icones_atk_magico"
-                android:drawableLeft="@drawable/layout_icones_atk_magico"
+                android:drawableStart="@drawable/layout_icones_shield"
+                android:drawableLeft="@drawable/layout_icones_shield"
                 android:drawablePadding="5dp"
+                android:gravity="center_vertical"
+                android:text="@{@string/label_base_defense(jutsu.baseDefense)}"
                 android:textColor="@android:color/white"
-                android:textSize="12sp"
-                android:visibility="gone" />
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/accTextView"

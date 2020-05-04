@@ -59,6 +59,10 @@ public class LearnedJutsuInfoPopupWindow extends PopupWindow {
 
         if (jutsuInfo.type == Jutsu.Type.ATK) {
             mBinding.accTextView.setVisibility(View.GONE);
+        }
+
+        if (jutsuInfo.type == Jutsu.Type.ATK || jutsuInfo.type == Jutsu.Type.BUFF) {
+            mBinding.accTextView.setVisibility(View.GONE);
 
             if (jutsu.getClasse() == Classe.NIN || jutsu.getClasse() == Classe.GEN) {
                 mBinding.atkTaiBukTextView.setVisibility(View.GONE);
@@ -87,7 +91,7 @@ public class LearnedJutsuInfoPopupWindow extends PopupWindow {
                     CharOn.character.getFormulas().getAccuracy(), jutsu.getAccuracy())
             );
 
-            mBinding.requiredSealProgressBar.setMax(jutsu.getAccuracy());
+            mBinding.requiredSealProgressBar.setMax(jutsu.getAccuracy() > 0 ? jutsu.getAccuracy() : 1);
             mBinding.requiredSealProgressBar.setProgress(CharOn.character.getFormulas().getAccuracy());
         }
     }

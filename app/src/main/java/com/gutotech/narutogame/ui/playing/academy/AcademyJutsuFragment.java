@@ -39,8 +39,8 @@ public class AcademyJutsuFragment extends Fragment implements SectionFragment {
         AcademyJutsuViewModel viewModel = new ViewModelProvider(this)
                 .get(AcademyJutsuViewModel.class);
 
-        mBinding = DataBindingUtil.inflate(inflater,
-                R.layout.fragment_academy_jutsu, container, false);
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_academy_jutsu,
+                container, false);
         mBinding.setLifecycleOwner(this);
         mBinding.setViewModel(viewModel);
 
@@ -101,6 +101,7 @@ public class AcademyJutsuFragment extends Fragment implements SectionFragment {
                 animation.setRepeatCount(3);
                 mBinding.trainingResultLayout.startAnimation(animation);
             });
+            SoundUtil.play(getContext(), R.raw.attention2);
         });
 
         FragmentUtils.setSectionTitle(getActivity(), R.string.section_learned_jutsus);

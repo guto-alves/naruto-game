@@ -13,7 +13,6 @@ import androidx.lifecycle.ViewModelProvider;
 import android.text.SpannableStringBuilder;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
-import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,12 +65,12 @@ public class DojoBattlePvpFragment extends Fragment implements SectionFragment {
         mBinding.myBuffsDebuffsStatusRecyclerView.setHasFixedSize(true);
         BuffsDebuffStatusAdapter adapter = new BuffsDebuffStatusAdapter(getContext());
         mBinding.myBuffsDebuffsStatusRecyclerView.setAdapter(adapter);
-        mViewModel.getmPlayerBuffsDebuffsStatus().observe(getViewLifecycleOwner(), adapter::setBuffsDebuffsList);
+        mViewModel.getPlayerBuffsDebuffsStatus().observe(getViewLifecycleOwner(), adapter::setBuffsDebuffsList);
 
         mBinding.oppBuffsDebuffsStatusRecyclerView.setHasFixedSize(true);
         BuffsDebuffStatusAdapter adapter2 = new BuffsDebuffStatusAdapter(getContext());
         mBinding.oppBuffsDebuffsStatusRecyclerView.setAdapter(adapter2);
-        mViewModel.getmOppBuffsDebuffsStatus().observe(getViewLifecycleOwner(), adapter2::setBuffsDebuffsList);
+        mViewModel.getOppBuffsDebuffsStatus().observe(getViewLifecycleOwner(), adapter2::setBuffsDebuffsList);
 
         mBinding.battleLogRecyclerView.setHasFixedSize(true);
         BattleLogAdapter logAdapter = new BattleLogAdapter(getActivity(), this::showJutsuInfo);
@@ -100,7 +99,6 @@ public class DojoBattlePvpFragment extends Fragment implements SectionFragment {
             description.append();
             description.append(CharOn.character.getBattleId().contains("MAP-PVP") ?
                             R.string.village_map : R.string.dojo,
-                    new ForegroundColorSpan(Color.BLUE),
                     new ClickableSpan() {
                         @Override
                         public void onClick(@NonNull View widget) {
@@ -123,7 +121,6 @@ public class DojoBattlePvpFragment extends Fragment implements SectionFragment {
             description.append(R.string.you_have_lost_the_battle);
             description.append();
             description.append(R.string.hospital,
-                    new ForegroundColorSpan(Color.BLUE),
                     new ClickableSpan() {
                         @Override
                         public void onClick(@NonNull View widget) {
@@ -141,7 +138,6 @@ public class DojoBattlePvpFragment extends Fragment implements SectionFragment {
             description.append(R.string.drawn_description);
             description.append();
             description.append(R.string.hospital,
-                    new ForegroundColorSpan(Color.BLUE),
                     new ClickableSpan() {
                         @Override
                         public void onClick(@NonNull View widget) {
@@ -157,7 +153,6 @@ public class DojoBattlePvpFragment extends Fragment implements SectionFragment {
             SpannableStringBuilderCustom description = new SpannableStringBuilderCustom(getContext());
             description.append(R.string.lost_by_inactivity);
             description.append(R.string.click_here,
-                    new ForegroundColorSpan(Color.BLUE),
                     new ClickableSpan() {
                         @Override
                         public void onClick(@NonNull View widget) {

@@ -22,10 +22,8 @@ import com.gutotech.narutogame.data.model.JutsuInfo;
 import com.gutotech.narutogame.ui.playing.academy.LearnedJutsuInfoPopupWindow;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 public class LearnedJutsusAdapter extends RecyclerView.Adapter<LearnedJutsusAdapter.ViewHolder> {
 
@@ -65,7 +63,7 @@ public class LearnedJutsusAdapter extends RecyclerView.Adapter<LearnedJutsusAdap
     public LearnedJutsusAdapter(Context context, LearnedJutsusListener learnedJutsusListener) {
         mContext = context;
         mLearnedJutsusListener = learnedJutsusListener;
-        mPopupWindow = new LearnedJutsuInfoPopupWindow(context);
+        mPopupWindow = new LearnedJutsuInfoPopupWindow(mContext);
     }
 
     @NonNull
@@ -79,7 +77,7 @@ public class LearnedJutsusAdapter extends RecyclerView.Adapter<LearnedJutsusAdap
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int i) {
         if (mJutsusList != null) {
-            final Jutsu jutsu = mJutsusList.get(i);
+            Jutsu jutsu = mJutsusList.get(i);
             JutsuInfo jutsuInfo = jutsu.getJutsuInfo();
 
             holder.visibleCheckBox.setChecked(jutsu.isVisible());
@@ -98,16 +96,16 @@ public class LearnedJutsusAdapter extends RecyclerView.Adapter<LearnedJutsusAdap
             holder.nameTextView.setText(name);
             holder.descriptionTextView.setText(jutsuInfo.description);
 
-            holder.itemView.setOnClickListener(v -> mLearnedJutsusListener.onJutsuSelected(jutsu));
-
             if (mSections.containsKey(jutsu.getName())) {
                 holder.sectionLinearLayout.setVisibility(View.VISIBLE);
                 holder.sectionTextView.setText(mContext.getString(GraduationUtils.getName(
-                        jutsu.getJutsuInfo().requirements.get(mSections.get(jutsu.getName())).getValue()
-                )).toUpperCase());
+                        jutsu.getJutsuInfo().requirements.get(mSections.get(jutsu.getName()))
+                                .getValue())).toUpperCase());
             } else {
                 holder.sectionLinearLayout.setVisibility(View.GONE);
             }
+
+            holder.constraintLayout.setOnClickListener(v -> mLearnedJutsusListener.onJutsuSelected(jutsu));
 
             if (i % 2 == 0) {
                 holder.constraintLayout.setBackgroundResource(R.color.colorItem1);
@@ -130,12 +128,13 @@ public class LearnedJutsusAdapter extends RecyclerView.Adapter<LearnedJutsusAdap
 
     private void updateFirstJutsusOfEachGraduation() {
         mSections.clear();
+
         int len = mJutsusList.size();
         if (len == 0) {
             return;
         }
-        int c = -1;
 
+        int c = -1;
 
         for (int i = 0; i < len; i++) {
             Jutsu jutsu = mJutsusList.get(i);

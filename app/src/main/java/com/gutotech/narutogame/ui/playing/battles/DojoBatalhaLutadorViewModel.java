@@ -162,12 +162,12 @@ public class DojoBatalhaLutadorViewModel extends ViewModel
             }
         } else if (!buffOrDebuffUsed(playerJutsuInfo.type)) {
             if (playerJutsuInfo.type == Jutsu.Type.BUFF) {
-                addBuffOrDebuff(playerFormulas, jutsu);
+                addBuffOrDebuff(playerFormulas, jutsu, playerJutsuInfo.type);
                 List<Jutsu> buffsAndDebuffs = mBattle.getBuffsDebuffsUsed1();
                 buffsAndDebuffs.add(jutsu);
                 myBuffsDebuffsStatus.setValue(buffsAndDebuffs);
             } else if (playerJutsuInfo.type == Jutsu.Type.DEBUFF) {
-                addBuffOrDebuff(npcFormulas, jutsu);
+                addBuffOrDebuff(npcFormulas, jutsu, playerJutsuInfo.type);
                 List<Jutsu> buffsAndDebuffs = mBattle.getBuffsDebuffsUsed2();
                 buffsAndDebuffs.add(jutsu);
                 oppBuffsDebuffsStatus.setValue(buffsAndDebuffs);
@@ -246,40 +246,55 @@ public class DojoBatalhaLutadorViewModel extends ViewModel
     }
 
     private void updateRemainingIntervals() {
-        for (int i = 0; i < mAllJutsus.size(); i++) {
+        int len = mAllJutsus.size();
+        for (int i = 0; i < len; i++) {
             Jutsu jutsu = mAllJutsus.get(i);
 
             if (jutsu.getRemainingIntervals() > 0) {
                 jutsu.setRemainingIntervals(jutsu.getRemainingIntervals() - 1);
 
                 if (jutsu.getRemainingIntervals() == 0) {
-                    if (jutsu.getJutsuInfo().type == Jutsu.Type.BUFF) {
+                    Jutsu.Type type = jutsu.getJutsuInfo().type;
+                    if (type == Jutsu.Type.BUFF) {
                         List<Jutsu> buffsAndDebuffs = myBuffsDebuffsStatus.getValue();
                         buffsAndDebuffs.remove(jutsu);
                         myBuffsDebuffsStatus.setValue(buffsAndDebuffs);
-                        removeBuffDebuff(playerFormulas, jutsu);
-                    } else if (jutsu.getJutsuInfo().type == Jutsu.Type.DEBUFF) {
+                        removeBuffDebuff(playerFormulas, jutsu, type);
+                    } else if (type == Jutsu.Type.DEBUFF) {
                         List<Jutsu> buffsAndDebuffs = oppBuffsDebuffsStatus.getValue();
                         buffsAndDebuffs.remove(jutsu);
                         oppBuffsDebuffsStatus.setValue(buffsAndDebuffs);
-                        removeBuffDebuff(npcFormulas, jutsu);
+                        removeBuffDebuff(npcFormulas, jutsu, type);
                     }
                 }
             }
         }
     }
 
-    private void addBuffOrDebuff(Formulas formulas, Jutsu buffOrDebuff) {
-        formulas.setAtkTaiBuki(formulas.getAtkTaiBuki() + buffOrDebuff.getAtk());
-        formulas.setAtkNinGen(formulas.getAtkNinGen() + buffOrDebuff.getAtk());
+    private void addBuffOrDebuff(Formulas formulas, Jutsu buffOrDebuff, Jutsu.Type type) {
+        if (type == Jutsu.Type.BUFF) {
+            if (buffOrDebuff.getClasse() == Classe.NIN || buffOrDebuff.getClasse() == Classe.GEN) {
+                formulas.setAtkNinGen(formulas.getAtkNinGen() + buffOrDebuff.getAtk());
+            } else {
+                formulas.setAtkTaiBuki(formulas.getAtkTaiBuki() + buffOrDebuff.getAtk());
+            }
+        }
         formulas.setDefTaiBuki(formulas.getDefTaiBuki() + buffOrDebuff.getBaseDefense());
         formulas.setDefNinGen(formulas.getDefNinGen() + buffOrDebuff.getBaseDefense());
         formulas.setAccuracy(formulas.getAccuracy() + buffOrDebuff.getAccuracy());
     }
 
-    private void removeBuffDebuff(Formulas formulas, Jutsu buffOrDebuff) {
-        formulas.setAtkTaiBuki(formulas.getAtkTaiBuki() - buffOrDebuff.getAtk());
-        formulas.setAtkNinGen(formulas.getAtkNinGen() - buffOrDebuff.getAtk());
+    private void removeBuffDebuff(Formulas formulas, Jutsu buffOrDebuff, Jutsu.Type type) {
+        if (type == Jutsu.Type.BUFF) {
+            if (buffOrDebuff.getClasse() == Classe.NIN || buffOrDebuff.getClasse() == Classe.GEN) {
+                formulas.setAtkNinGen(formulas.getAtkNinGen() - buffOrDebuff.getAtk());
+            } else {
+                formulas.setAtkTaiBuki(formulas.getAtkTaiBuki() - buffOrDebuff.getAtk());
+            }
+        } else {
+            formulas.setAtkTaiBuki(formulas.getAtkTaiBuki() - buffOrDebuff.getAtk());
+            formulas.setAtkNinGen(formulas.getAtkNinGen() - buffOrDebuff.getAtk());
+        }
         formulas.setDefTaiBuki(formulas.getDefTaiBuki() - buffOrDebuff.getBaseDefense());
         formulas.setDefNinGen(formulas.getDefNinGen() - buffOrDebuff.getBaseDefense());
         formulas.setAccuracy(formulas.getAccuracy() - buffOrDebuff.getAccuracy());

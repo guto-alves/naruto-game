@@ -8,6 +8,7 @@ import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.model.Character;
 import com.gutotech.narutogame.data.model.Classe;
 import com.gutotech.narutogame.data.model.Jutsu;
+import com.gutotech.narutogame.data.model.JutsuInfo;
 import com.gutotech.narutogame.ui.adapter.LearnedJutsusAdapter;
 
 import java.util.ArrayList;
@@ -29,7 +30,26 @@ public class CharacterJutsusViewModel extends ViewModel
     }
 
     void updateJutsus() {
-        onClassButtonPressed(mClassSelected.getValue());
+        mJutsusFilteredBuffer.clear();
+
+        int len = mCharacter.getJutsus().size();
+
+        for (int i = 0; i < len; i++) {
+            Jutsu jutsu = mCharacter.getJutsus().get(i);
+            JutsuInfo jutsuInfo = jutsu.getJutsuInfo();
+
+            if (jutsuInfo.requirements == null) {
+                continue;
+            }
+
+            if (mClassSelected.getValue() == null && jutsu.isBuffOrDebuff(jutsuInfo)) {
+                mJutsusFilteredBuffer.add(jutsu);
+            } else if (jutsu.getClasse() == mClassSelected.getValue() && !jutsu.isBuffOrDebuff(jutsuInfo)) {
+                mJutsusFilteredBuffer.add(jutsu);
+            }
+        }
+
+        mJutsusFiltered.postValue(mJutsusFilteredBuffer);
     }
 
     public void onClassButtonPressed(Object classeObject) {
@@ -40,22 +60,7 @@ public class CharacterJutsusViewModel extends ViewModel
         }
 
         mClassSelected.setValue(classe);
-
-        mJutsusFilteredBuffer.clear();
-
-        for (Jutsu jutsu : mCharacter.getJutsus()) {
-            if (jutsu.getAccuracy() == 0) {
-                continue;
-            }
-
-            if (classe == null && jutsu.isBuffOrDebuff()) {
-                mJutsusFilteredBuffer.add(jutsu);
-            } else if (jutsu.getClasse() == classe && !jutsu.isBuffOrDebuff()) {
-                mJutsusFilteredBuffer.add(jutsu);
-            }
-        }
-
-        mJutsusFiltered.postValue(mJutsusFilteredBuffer);
+        updateJutsus();
     }
 
     @Override

@@ -13,7 +13,6 @@ import androidx.lifecycle.ViewModelProvider;
 import android.text.SpannableStringBuilder;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
-import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,7 +38,6 @@ import com.gutotech.narutogame.utils.SpannableStringBuilderCustom;
 
 public class DojoBatalhaLutadorFragment extends Fragment implements SectionFragment {
     private FragmentDojoBatalhaLutadorBinding mBinding;
-
     private DojoBatalhaLutadorViewModel mViewModel;
 
     public DojoBatalhaLutadorFragment() {
@@ -104,7 +102,6 @@ public class DojoBatalhaLutadorFragment extends Fragment implements SectionFragm
                 description.append(getString(R.string.combat_won_description, rewards[0], rewards[1]));
                 description.append();
                 description.append(R.string.dojo,
-                        new ForegroundColorSpan(Color.BLUE),
                         new ClickableSpan() {
                             @Override
                             public void onClick(@NonNull View widget) {
@@ -112,7 +109,6 @@ public class DojoBatalhaLutadorFragment extends Fragment implements SectionFragm
                                 FragmentUtils.goTo(getActivity(), new DojoFragment());
                             }
                         });
-
                 showBattleResult(R.string.end_of_the_battle, description.getString());
                 SoundUtil.play(getContext(), R.raw.win);
             });
@@ -122,7 +118,6 @@ public class DojoBatalhaLutadorFragment extends Fragment implements SectionFragm
                 description.append(R.string.you_have_lost_the_battle);
                 description.append();
                 description.append(R.string.hospital,
-                        new ForegroundColorSpan(Color.BLUE),
                         new ClickableSpan() {
                             @Override
                             public void onClick(@NonNull View widget) {
@@ -130,7 +125,6 @@ public class DojoBatalhaLutadorFragment extends Fragment implements SectionFragm
                                 CharOn.character.setHospital(true);
                             }
                         });
-
                 showBattleResult(R.string.too_bad, description.getString());
                 SoundUtil.play(getContext(), R.raw.lose);
             });
@@ -140,7 +134,6 @@ public class DojoBatalhaLutadorFragment extends Fragment implements SectionFragm
                 description.append(R.string.drawn_description);
                 description.append();
                 description.append(R.string.hospital,
-                        new ForegroundColorSpan(Color.BLUE),
                         new ClickableSpan() {
                             @Override
                             public void onClick(@NonNull View widget) {
@@ -148,7 +141,6 @@ public class DojoBatalhaLutadorFragment extends Fragment implements SectionFragm
                                 CharOn.character.setHospital(true);
                             }
                         });
-
                 showBattleResult(R.string.empate, description.getString());
             });
 
@@ -156,7 +148,6 @@ public class DojoBatalhaLutadorFragment extends Fragment implements SectionFragm
                 SpannableStringBuilderCustom description = new SpannableStringBuilderCustom(getContext());
                 description.append(R.string.lost_by_inactivity);
                 description.append(R.string.click_here,
-                        new ForegroundColorSpan(Color.BLUE),
                         new ClickableSpan() {
                             @Override
                             public void onClick(@NonNull View widget) {
@@ -166,7 +157,6 @@ public class DojoBatalhaLutadorFragment extends Fragment implements SectionFragm
                         });
                 description.append();
                 description.append(getString(R.string.to_preceed));
-
                 showBattleResult(R.string.too_bad, description.getString());
                 SoundUtil.play(getContext(), R.raw.lose);
             });

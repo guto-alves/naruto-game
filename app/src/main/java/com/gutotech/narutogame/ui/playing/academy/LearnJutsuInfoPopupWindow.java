@@ -40,26 +40,34 @@ public class LearnJutsuInfoPopupWindow extends PopupWindow {
         mBinding.setJutsu(jutsu);
         mBinding.setJutsuInfo(jutsuInfo);
 
-        if (jutsuInfo.type == Jutsu.Type.DEF) {
-            mBinding.atkOrDefTextView.setText(mContext.getString(
-                    R.string.label_base_defense, jutsu.getBaseDefense()));
+        mBinding.effectsTextView.setVisibility(View.GONE);
+        mBinding.atkNinGenTextView.setVisibility(View.VISIBLE);
+        mBinding.atkTaiBukTextView.setVisibility(View.VISIBLE);
+        mBinding.defTextView.setVisibility(View.VISIBLE);
+        mBinding.accTextView.setVisibility(View.VISIBLE);
 
-            mBinding.atkOrDefTextView.setCompoundDrawablesWithIntrinsicBounds(
-                    R.drawable.layout_icones_shield, 0, 0, 0);
-        } else if (jutsuInfo.type == Jutsu.Type.ATK) {
-            int drawable;
+        if (jutsu.getBaseDefense() == 0) {
+            mBinding.defTextView.setVisibility(View.GONE);
+        }
 
-            if (jutsu.getClasse() == Classe.TAI || jutsu.getClasse() == Classe.BUK) {
-                drawable = (R.drawable.layout_icones_atk_fisico);
-                mBinding.atkOrDefTextView.setText(mContext.getString(R.string.label_atk_tai_buk, jutsu.getAtk()));
+        if (jutsu.getAtk() == 0) {
+            mBinding.atkNinGenTextView.setVisibility(View.GONE);
+            mBinding.atkTaiBukTextView.setVisibility(View.GONE);
+        }
+
+        if (jutsuInfo.type == Jutsu.Type.ATK) {
+            mBinding.accTextView.setVisibility(View.GONE);
+        }
+
+        if (jutsuInfo.type == Jutsu.Type.ATK || jutsuInfo.type == Jutsu.Type.BUFF) {
+            if (jutsu.getClasse() == Classe.NIN || jutsu.getClasse() == Classe.GEN) {
+                mBinding.atkTaiBukTextView.setVisibility(View.GONE);
             } else {
-                drawable = (R.drawable.layout_icones_atk_magico);
-                mBinding.atkOrDefTextView.setText(mContext.getString(R.string.label_atk_nin_gen, jutsu.getAtk()));
+                mBinding.atkNinGenTextView.setVisibility(View.GONE);
             }
+        }
 
-            mBinding.atkOrDefTextView.setCompoundDrawablesWithIntrinsicBounds(
-                    drawable, 0, 0, 0);
-        } else {
+        if (jutsu.isBuffOrDebuff(jutsuInfo)) {
             mBinding.effectsTextView.setVisibility(View.VISIBLE);
             mBinding.accTextView.setVisibility(View.VISIBLE);
 
@@ -67,33 +75,6 @@ public class LearnJutsuInfoPopupWindow extends PopupWindow {
                 mBinding.effectsTextView.setText(R.string.effects_on_your_character);
             } else {
                 mBinding.effectsTextView.setText(R.string.effects_on_your_enemy);
-            }
-
-            if (jutsu.getBaseDefense() != 0) {
-                mBinding.atkOrDefTextView.setText(mContext.getString(
-                        R.string.label_base_defense, jutsu.getBaseDefense()));
-
-                mBinding.atkOrDefTextView.setCompoundDrawablesWithIntrinsicBounds(
-                        R.drawable.layout_icones_shield, 0, 0, 0);
-            } else {
-                if (jutsuInfo.type == Jutsu.Type.BUFF) {
-                    int drawable;
-
-                    if (jutsu.getClasse() == Classe.TAI || jutsu.getClasse() == Classe.BUK) {
-                        drawable = (R.drawable.layout_icones_atk_fisico);
-                        mBinding.atkOrDefTextView.setText(mContext.getString(R.string.label_atk_tai_buk, jutsu.getAtk()));
-                    } else {
-                        drawable = (R.drawable.layout_icones_atk_magico);
-                        mBinding.atkOrDefTextView.setText(mContext.getString(R.string.label_atk_nin_gen, jutsu.getAtk()));
-                    }
-
-                    mBinding.atkOrDefTextView.setCompoundDrawablesWithIntrinsicBounds(
-                            drawable, 0, 0, 0);
-                } else {
-                    mBinding.atkOrDefTextView2.setVisibility(View.VISIBLE);
-                    mBinding.atkOrDefTextView.setText(mContext.getString(R.string.label_atk_tai_buk, jutsu.getAtk()));
-                    mBinding.atkOrDefTextView2.setText(mContext.getString(R.string.label_atk_nin_gen, jutsu.getAtk()));
-                }
             }
         }
     }

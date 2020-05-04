@@ -143,6 +143,7 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
                         setCurrentSection(CHARACTER_GROUP, 0);
                     }
                 } else if (propertyId == BR.map) {
+                    CharacterRepository.getInstance().save(CharOn.character);
                     buildMenu();
                     if (!mCharacter.isMap() && !mCharacter.isBattle()) {
                         setCurrentSection(CHARACTER_GROUP, 0);
