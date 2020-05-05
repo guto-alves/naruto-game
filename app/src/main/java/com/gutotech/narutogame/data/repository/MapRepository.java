@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Map;
 
 public class MapRepository {
-    private static MapRepository sInstance = new MapRepository();
+    private static final MapRepository sInstance = new MapRepository();
 
     private MapRepository() {
     }
@@ -100,8 +100,7 @@ public class MapRepository {
     // Map battle requests
     private boolean mRequestResult;
 
-    public synchronized void requestBattle(String battleId, String playerId, String oppId,
-                                           Callback<Boolean> callback) {
+    public synchronized void requestBattle(String playerId, String oppId, Callback<Boolean> callback) {
         DatabaseReference requestsReference = FirebaseConfig.getDatabase()
                 .child("map-battle-requests");
 
@@ -109,7 +108,7 @@ public class MapRepository {
             @NonNull
             @Override
             public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
-                HashMap<String, String> requests = (HashMap<String, String>) mutableData.getValue();
+                HashMap<String, Boolean> requests = (HashMap<String, Boolean>) mutableData.getValue();
 
                 if (requests == null) {
                     return Transaction.success(mutableData);
@@ -117,8 +116,8 @@ public class MapRepository {
 
                 if (requests.containsKey("playerId") && !requests.containsKey(playerId) &&
                         !requests.containsKey(oppId)) {
-                    requests.put(playerId, battleId);
-                    requests.put(oppId, battleId);
+                    requests.put(playerId, true);
+                    requests.put(oppId, true);
                     mutableData.setValue(requests);
                     mRequestResult = true;
                 } else {
@@ -144,6 +143,17 @@ public class MapRepository {
         battleReference.removeValue();
     }
 
+    // Listeners
+    public void saveBattleRequestForListeners(String battleId, String playerId, String oppId) {
+        DatabaseReference databaseReference = FirebaseConfig.getDatabase()
+                .child("map-battle-requests-listeners");
+
+        Map<String, Object> map = new HashMap<>();
+        map.put(playerId, battleId);
+        map.put(oppId, battleId);
+        databaseReference.updateChildren(map);
+    }
+
     private DatabaseReference mBattleRequestsReference;
     private ValueEventListener mBattleRequestsEventListener;
 
@@ -151,7 +161,7 @@ public class MapRepository {
         removeBattleRequestsListener();
 
         mBattleRequestsReference = FirebaseConfig.getDatabase()
-                .child("map-battle-requests")
+                .child("map-battle-requests-listeners")
                 .child(playerId);
 
         mBattleRequestsEventListener = mBattleRequestsReference.addValueEventListener(new ValueEventListener() {
@@ -163,6 +173,8 @@ public class MapRepository {
                     if (battleId == null) {
                         return;
                     }
+
+                    dataSnapshot.getRef().setValue(null);
 
                     callback.call(battleId);
                 }

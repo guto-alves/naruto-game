@@ -54,13 +54,7 @@ public class VillageMapViewModel extends ViewModel implements VillageMapAdapter.
 
         mMapRepository.move(mVillage.ordinal());
 
-        mMapRepository.addBattleRequestListener(CharOn.character.getId(),
-                battleId -> {
-                    if (battleId == mBattleIdGenerated) {
-                        return;
-                    }
-                    goToBattle(battleId);
-                });
+        mMapRepository.addBattleRequestListener(CharOn.character.getId(), this::goToBattle);
     }
 
     private void goToBattle(String battleId) {
@@ -87,8 +81,6 @@ public class VillageMapViewModel extends ViewModel implements VillageMapAdapter.
         }
     }
 
-    private String mBattleIdGenerated;
-
     @Override
     public synchronized void onBattleClick(Character opponent) {
         if (opponent.getPlayerId().equals(CharOn.character.getPlayerId())) {
@@ -114,17 +106,20 @@ public class VillageMapViewModel extends ViewModel implements VillageMapAdapter.
 
         mShowProgressDialogEvent.call();
 
-        mBattleIdGenerated = mBattleRepository.generateId("MAP-PVP");
-
-        mMapRepository.requestBattle(mBattleIdGenerated, CharOn.character.getId(), opponent.getId(),
+        mMapRepository.requestBattle(CharOn.character.getId(), opponent.getId(),
                 requestResult -> {
                     mDismissProgressDialogEvent.call();
 
                     if (requestResult) {
                         mMapRepository.exit(mVillage.ordinal(), CharOn.character.getId());
                         mMapRepository.exit(mVillage.ordinal(), opponent.getId());
-                        mBattleRepository.create(mBattleIdGenerated, CharOn.character, opponent);
-                        goToBattle(mBattleIdGenerated);
+
+                        String battleId = mBattleRepository.generateId("MAP-PVP");
+
+                        mBattleRepository.create(battleId, CharOn.character, opponent);
+                        mMapRepository.saveBattleRequestForListeners(battleId,
+                                CharOn.character.getId(), opponent.getId());
+
                         mMapRepository.incrementDuelCount(CharOn.character.getId(), opponent.getId());
                     } else {
                         mShowWarningDialogEvent.setValue(R.string.player_unavailable_to_fight);
