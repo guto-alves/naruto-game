@@ -39,8 +39,6 @@ public class DojoNPCFightersFragment extends Fragment {
         binding.npcDailyCombatTextView.setText(getString(R.string.npc_daily_combat,
                 CharOn.character.getNpcDailyCombat()));
 
-        viewModel.init();
-
         binding.fightersLinearLayout.setVisibility(View.GONE);
 
         viewModel.getShowProgressBar().observe(getViewLifecycleOwner(), aVoid ->
@@ -68,6 +66,8 @@ public class DojoNPCFightersFragment extends Fragment {
             }
         });
 
+        viewModel.init();
+
         YoYo.with(Techniques.RubberBand)
                 .duration(2000)
                 .repeat(YoYo.INFINITE)
@@ -75,4 +75,5 @@ public class DojoNPCFightersFragment extends Fragment {
 
         return binding.getRoot();
     }
+
 }

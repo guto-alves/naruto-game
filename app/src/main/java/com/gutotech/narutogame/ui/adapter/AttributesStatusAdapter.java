@@ -55,7 +55,7 @@ public class AttributesStatusAdapter extends
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
         Attribute attribute = mAttributes[i];
-        Integer total = mTotalPointsForEachAttribute.get(i);
+        int total = mTotalPointsForEachAttribute.get(i);
 
         myViewHolder.nameTextView.setText(attribute.name);
         myViewHolder.iconImageView.setImageResource(attribute.icon);

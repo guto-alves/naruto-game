@@ -33,6 +33,7 @@ import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.CharOn;
+import com.gutotech.narutogame.data.network.NetworkUtils;
 import com.gutotech.narutogame.data.repository.AuthRepository;
 import com.gutotech.narutogame.databinding.ActivityPlayingBinding;
 import com.gutotech.narutogame.databinding.DialogGameRoutinesBinding;
@@ -55,6 +56,8 @@ public class PlayingActivity extends AppCompatActivity {
     private PlayingViewModel mViewModel;
     private YoYo.YoYoString mRope;
     private boolean mInitialization = true;
+    private List<Map<String, String>> mAlerts = new ArrayList<>();
+    private WarningDialogFragment mConnectionWarningDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,7 +123,7 @@ public class PlayingActivity extends AppCompatActivity {
         });
 
         mViewModel.getShowWarningDialogEvent().observe(this, resid -> {
-            WarningDialogFragment dialog = WarningDialogFragment.newInstance(resid);
+            WarningDialogFragment dialog = WarningDialogFragment.newInstance(this, resid);
             dialog.openDialog(getSupportFragmentManager());
         });
 
@@ -142,11 +145,27 @@ public class PlayingActivity extends AppCompatActivity {
             }
         });
 
+        mConnectionWarningDialog = WarningDialogFragment.newInstance(
+                this, R.string.communication_error, R.string.failed_to_connect_description,
+                R.string.ok, () -> {
+                    if (!NetworkUtils.CONNECTED) {
+                        mConnectionWarningDialog.show(getSupportFragmentManager());
+                    }
+                });
+
+        mViewModel.getShowConnectionWarning().observe(this, connected -> {
+            if (connected) {
+                if (mConnectionWarningDialog.isVisible()) {
+                    mConnectionWarningDialog.dismiss();
+                }
+            } else {
+                mConnectionWarningDialog.show(getSupportFragmentManager());
+            }
+        });
+
         setUpChat();
         setUpBag();
     }
-
-    private List<Map<String, String>> mAlerts = new ArrayList<>();
 
     private void showAlert(Map<String, String> messageMap) {
         String message = "";
@@ -156,17 +175,21 @@ public class PlayingActivity extends AppCompatActivity {
             return;
         }
 
-        if (type.equals("warning")) {
-            message = messageMap.get("warning");
-        } else if (type.equals("kage_defeated")) {
-            message = getString(R.string.kage_defeated_alert,
-                    getString(Integer.parseInt(messageMap.get("kageTitle"))),
-                    messageMap.get("kageName"),
-                    messageMap.get("player"));
-        } else if (type.equals("ninja_lucky")) {
-            message = getString(R.string.lucky_ninja_alert,
-                    messageMap.get("player"),
-                    getString(Integer.parseInt(messageMap.get("premium"))));
+        switch (type) {
+            case "warning":
+                message = messageMap.get("warning");
+                break;
+            case "kage_defeated":
+                message = getString(R.string.kage_defeated_alert,
+                        getString(Integer.parseInt(messageMap.get("kageTitle"))),
+                        messageMap.get("kageName"),
+                        messageMap.get("player"));
+                break;
+            case "ninja_lucky":
+                message = getString(R.string.lucky_ninja_alert,
+                        messageMap.get("player"),
+                        getString(Integer.parseInt(messageMap.get("premium"))));
+                break;
         }
 
         Alerter.create(PlayingActivity.this)
@@ -198,9 +221,7 @@ public class PlayingActivity extends AppCompatActivity {
     }
 
     public void onSettingsClick(View view) {
-        DialogFragment dialog = SettingsDialogFragment.getInstance(() ->
-                mViewModel.checkForSettingsChanged()
-        );
+        DialogFragment dialog = SettingsDialogFragment.getInstance(mViewModel::checkForSettingsChanged);
         dialog.show(getSupportFragmentManager(), "SettingsDialogFragment");
         SoundUtil.play(getApplicationContext(), R.raw.sound_pop);
     }

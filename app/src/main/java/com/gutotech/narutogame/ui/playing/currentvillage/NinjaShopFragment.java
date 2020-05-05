@@ -39,7 +39,8 @@ public class NinjaShopFragment extends Fragment implements SectionFragment {
         viewModel.getShopItems().observe(getViewLifecycleOwner(), adapter::setItemsList);
 
         viewModel.getShowWarningDialogEvent().observe(getViewLifecycleOwner(), resid -> {
-            WarningDialogFragment warningDialog = WarningDialogFragment.newInstance(resid);
+            WarningDialogFragment warningDialog = WarningDialogFragment.newInstance(
+                    getContext(), resid);
             warningDialog.openDialog(getParentFragmentManager());
             SoundUtil.play(getContext(), R.raw.get_item02);
         });

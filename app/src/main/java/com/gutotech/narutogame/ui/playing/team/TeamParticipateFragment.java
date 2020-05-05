@@ -42,7 +42,8 @@ public class TeamParticipateFragment extends Fragment implements SectionFragment
         viewModel.getTeams().observe(getViewLifecycleOwner(), adapter::setTeams);
 
         viewModel.getShowWarningDialogEvent().observe(getViewLifecycleOwner(), resid -> {
-            WarningDialogFragment warningDialogFragment = WarningDialogFragment.newInstance(resid);
+            WarningDialogFragment warningDialogFragment = WarningDialogFragment.newInstance(
+                    getContext(), resid);
             warningDialogFragment.openDialog(getParentFragmentManager());
             SoundUtil.play(getContext(), R.raw.sound_pop);
         });

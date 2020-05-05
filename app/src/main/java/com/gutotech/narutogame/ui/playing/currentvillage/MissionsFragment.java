@@ -39,7 +39,7 @@ public class MissionsFragment extends Fragment implements SectionFragment {
 
         viewModel.getShowWarningDialogEvent().observe(getViewLifecycleOwner(), aVoid -> {
             WarningDialogFragment warningDialog = WarningDialogFragment.newInstance(
-                    R.string.reached_the_limit_of_daily_time_missions);
+                    getContext(), R.string.reached_the_limit_of_daily_time_missions);
             warningDialog.openDialog(getParentFragmentManager());
         });
 

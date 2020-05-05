@@ -2343,5 +2343,10 @@
     <string name="hall_of_fame_of_naruto_game">HALL DA FAMA DO NARUTO GAME MOBILE</string>
     <string name="kage_defeated_alert">%s %s foi derrotado(a) por %s</string>
     <string name="lucky_ninja_alert">O Ninja Sortudo %s ganhou %s</string>
+    <string name="communication_error_description">Falha na comunicação com o servidor. Tente novamente com uma conexão melhor</string>
+    <string name="communication_error">Erro de comunicação</string>
+    <string name="failed_to_connect">Falha ao Conectar</string>
+    <string name="failed_to_connect_description">Não é possível conectar ao servidor.\nVerifique sua rede.</string>
+    <string name="ok">Ok</string>
 
 </resources>

@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -13,56 +12,76 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.gutotech.narutogame.R;
 
+import java.io.Serializable;
+
 public class WarningDialogFragment extends DialogFragment {
 
-    public interface WarningDialogListener {
+    public interface WarningDialogListener extends Serializable {
         void onCloseClick();
     }
 
-    private static final String EXTRA_WARNING = "warning";
-    private static final String DIALOG_TAG = "WarningDialog";
+    private static final String TAG = "WarningDialogFragment";
+    private static final String EXTRA_TITLE = "title";
+    private static final String EXTRA_MESSAGE = "message";
+    private static final String EXTRA_BUTTON_TEXT = "button_text";
+    private static final String EXTRA_LISTENER = "listener";
 
-    private WarningDialogListener mListener;
-
-    public static WarningDialogFragment show(@StringRes int warningId, FragmentManager manager) {
-        WarningDialogFragment dialog = newInstance(null, warningId);
-        dialog.openDialog(manager);
-        return dialog;
+    public static WarningDialogFragment newInstance(Context context, String message) {
+        return newInstance(context.getString(R.string.warning), message,
+                context.getString(R.string.close), true, null);
     }
 
-    public static WarningDialogFragment newInstance(String warning) {
+    public static WarningDialogFragment newInstance(Context context, @StringRes int messageId) {
+        return newInstance(context.getString(R.string.warning), context.getString(messageId),
+                context.getString(R.string.close), true, null);
+    }
+
+    public static WarningDialogFragment newInstance(Context context, @StringRes int messageId,
+                                                    WarningDialogListener listener) {
+        return newInstance(context.getString(R.string.warning), context.getString(messageId),
+                context.getString(R.string.close), false, listener);
+    }
+
+    public static WarningDialogFragment newInstance(Context context, @StringRes int messageId,
+                                                    boolean cancelable, WarningDialogListener listener) {
+        return newInstance(context.getString(R.string.warning), context.getString(messageId),
+                context.getString(R.string.close), cancelable, listener);
+    }
+
+    public static WarningDialogFragment newInstance(Context context, @StringRes int titleId,
+                                                    @StringRes int messageId, @StringRes int buttonTextId,
+                                                    WarningDialogListener listener) {
+        return newInstance(context.getString(titleId), context.getString(messageId),
+                context.getString(buttonTextId), false, listener);
+    }
+
+    public static WarningDialogFragment newInstance(String warningTitle, String warningMessage,
+                                                    String buttonText, boolean cancelable,
+                                                    WarningDialogListener listener) {
         Bundle bundle = new Bundle();
-        bundle.putString(EXTRA_WARNING, warning);
+        bundle.putString(EXTRA_TITLE, warningTitle);
+        bundle.putString(EXTRA_MESSAGE, warningMessage);
+        bundle.putString(EXTRA_BUTTON_TEXT, buttonText);
+        bundle.putSerializable(EXTRA_LISTENER, listener);
 
         WarningDialogFragment warningDialog = new WarningDialogFragment();
         warningDialog.setArguments(bundle);
-        warningDialog.setCancelable(false);
-        return warningDialog;
-    }
-
-    public static WarningDialogFragment newInstance(@StringRes int warningId) {
-        return newInstance(null, warningId);
-    }
-
-    public static WarningDialogFragment newInstance(Fragment targetFragment, @StringRes int warningId) {
-        Bundle bundle = new Bundle();
-        bundle.putInt(EXTRA_WARNING, warningId);
-
-        WarningDialogFragment warningDialog = new WarningDialogFragment();
-        warningDialog.setArguments(bundle);
-        warningDialog.setTargetFragment(targetFragment, 1);
+        warningDialog.setCancelable(cancelable);
         return warningDialog;
     }
 
     public void openDialog(FragmentManager fragmentManager) {
-        if (fragmentManager.findFragmentByTag(DIALOG_TAG) == null) {
-            show(fragmentManager, DIALOG_TAG);
+        if (fragmentManager.findFragmentByTag(TAG) == null) {
+            show(fragmentManager, TAG);
         }
+    }
+
+    public void show(FragmentManager fragmentManager) {
+        show(fragmentManager, TAG);
     }
 
     @NonNull
@@ -73,35 +92,26 @@ public class WarningDialogFragment extends DialogFragment {
         View view = requireActivity().getLayoutInflater().inflate(R.layout.dialog_warning, null);
         builder.setView(view);
 
-        TextView textView = view.findViewById(R.id.warningTextView);
+        Bundle args = getArguments();
 
-        String warning = getArguments().getString(EXTRA_WARNING);
+        TextView titleTextView = view.findViewById(R.id.titleTextView);
+        titleTextView.setText(getArguments().getString(EXTRA_TITLE));
 
-        if (TextUtils.isEmpty(warning)) {
-            textView.setText(getArguments().getInt(EXTRA_WARNING));
-        } else {
-            textView.setText(warning);
-        }
+        TextView messageTextView = view.findViewById(R.id.messageTextView);
+        messageTextView.setText(getArguments().getString(EXTRA_MESSAGE));
 
         Button closeButton = view.findViewById(R.id.closeButton);
+        closeButton.setText(args.getString(EXTRA_BUTTON_TEXT));
         closeButton.setOnClickListener(v -> {
-            if (mListener != null) {
-                mListener.onCloseClick();
-            }
-
             dismiss();
+
+            WarningDialogListener listener = (WarningDialogListener)
+                    args.getSerializable(EXTRA_LISTENER);
+            if (listener != null) {
+                listener.onCloseClick();
+            }
         });
 
         return builder.create();
-    }
-
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-
-        try {
-            mListener = (WarningDialogListener) getTargetFragment();
-        } catch (ClassCastException ignored) {
-        }
     }
 }

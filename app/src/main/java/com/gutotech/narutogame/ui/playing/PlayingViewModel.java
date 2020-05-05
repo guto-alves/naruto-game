@@ -23,8 +23,8 @@ import com.gutotech.narutogame.data.model.MenuGroup;
 import com.gutotech.narutogame.data.model.Message;
 import com.gutotech.narutogame.data.model.Ramen;
 import com.gutotech.narutogame.data.model.Scroll;
+import com.gutotech.narutogame.data.network.NetworkUtils;
 import com.gutotech.narutogame.data.repository.AuthRepository;
-import com.gutotech.narutogame.data.repository.BattleRepository;
 import com.gutotech.narutogame.data.repository.CharacterRepository;
 import com.gutotech.narutogame.data.repository.ChatRepository;
 import com.gutotech.narutogame.data.repository.GlobalAlertRepository;
@@ -91,6 +91,7 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
     private MutableLiveData<SectionFragment> mCurrentSection = new MutableLiveData<>();
 
     private Character mCharacter;
+    private CharacterRepository mCharacterRepository;
 
     private MutableLiveData<List<Integer>> mTitles;
 
@@ -99,9 +100,12 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
     private GlobalAlertRepository mGlobalAlertRepository = GlobalAlertRepository.getInstance();
     private SingleLiveEvent<Map<String, String>> mShowAlerterEvent = new SingleLiveEvent<>();
 
+    private MutableLiveData<Boolean> mShowConnectionWarning = new MutableLiveData<>();
+
     public PlayingViewModel(@NonNull Application application) {
         super(application);
         mCharacter = CharOn.character;
+        mCharacterRepository = CharacterRepository.getInstance();
         mTitles = new MutableLiveData<>(mCharacter.getTitles());
         mChannel = String.valueOf(mCharacter.getVillage().ordinal());
 
@@ -116,7 +120,7 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
                 } else if (propertyId == BR.fidelityReward) {
                     mFidelityAnimationEvent.setValue(CharOn.character.isFidelityReward());
                 } else if (propertyId == BR.mission) {
-                    CharacterRepository.getInstance().save(mCharacter);
+                    mCharacterRepository.save(mCharacter);
                     buildMenu();
                     if (mCharacter.isMission()) {
                         setCurrentSection(CURRENT_VILLAGE_GROUP, 0);
@@ -124,6 +128,7 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
                         setCurrentSection(CHARACTER_GROUP, 0);
                     }
                 } else if (propertyId == BR.battle) {
+                    mCharacterRepository.save(mCharacter);
                     buildMenu();
                     if (mCharacter.isBattle()) {
                         if (mBgMusicEnabled) {
@@ -136,6 +141,7 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
                         }
                     }
                 } else if (propertyId == BR.hospital) {
+                    mCharacterRepository.save(mCharacter);
                     buildMenu();
                     if (mCharacter.isHospital()) {
                         setCurrentSection(BATTLES_GROUP, 0);
@@ -143,13 +149,13 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
                         setCurrentSection(CHARACTER_GROUP, 0);
                     }
                 } else if (propertyId == BR.map) {
-                    CharacterRepository.getInstance().save(CharOn.character);
+                    mCharacterRepository.save(CharOn.character);
                     buildMenu();
                     if (!mCharacter.isMap() && !mCharacter.isBattle()) {
                         setCurrentSection(CHARACTER_GROUP, 0);
                     }
                 } else if (propertyId == BR.dojoWaitQueue) {
-                    CharacterRepository.getInstance().save(mCharacter);
+                    mCharacterRepository.save(mCharacter);
                     buildMenu();
                     if (mCharacter.isDojoWaitQueue()) {
                         setCurrentSection(BATTLES_GROUP, 0);
@@ -172,9 +178,6 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
             }
         });
 
-        buildMenu();
-        setCurrentSection(CHARACTER_GROUP, 0);
-
         FirebaseFunctionsUtils.getServerTime(currentTimestamp -> {
             if (mCharacter.getLastSeenInMillis() == 0) {
                 mCharacter.setLastSeenInMillis(currentTimestamp);
@@ -193,6 +196,11 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
 
             startGameRoutines();
         });
+
+        buildMenu();
+        setCurrentSection(CHARACTER_GROUP, 0);
+
+        NetworkUtils.getInstance().addListener(mShowConnectionWarning::setValue);
     }
 
     public Character getCharacter() {
@@ -207,6 +215,9 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
         return mShowAlerterEvent;
     }
 
+    LiveData<Boolean> getShowConnectionWarning() {
+        return mShowConnectionWarning;
+    }
 
     // Bag
     private MutableLiveData<List<Ramen>> mRamens = new MutableLiveData<>();
@@ -260,7 +271,7 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
             MapRepository.getInstance().move(mCharacter.getMapId());
         }
 
-        CharacterRepository.getInstance().save(mCharacter);
+        mCharacterRepository.save(mCharacter);
         mRamens.setValue(ramens);
     };
 
@@ -301,7 +312,7 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
         }
 
         mCharacter.setMapId(scroll.getVillage().ordinal());
-        CharacterRepository.getInstance().save(mCharacter);
+        mCharacterRepository.save(mCharacter);
         setCurrentSection(new VillageMapFragment());
     };
 
@@ -663,7 +674,7 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
         }
 
         mCharacter.setOnline(true);
-        CharacterRepository.getInstance().save(mCharacter);
+        mCharacterRepository.save(mCharacter);
         TeamRepository.getInstance().registerMyTeamChangeListener();
         mGlobalAlertRepository.addListener(mShowAlerterEvent::postValue);
     }
@@ -673,11 +684,9 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
             mBgMusicUtils.pause();
         }
 
-        FirebaseFunctionsUtils.getServerTime(currentTimestamp -> {
-            mCharacter.setOnline(false);
-            mCharacter.setLastSeenInMillis(currentTimestamp);
-            CharacterRepository.getInstance().save(mCharacter);
-        });
+        mCharacter.setOnline(false);
+        mCharacterRepository.save(mCharacter);
+        mCharacterRepository.setLastSeen(mCharacter.getId());
 
         TeamRepository.getInstance().removeMyTeamChangeListener();
         mGlobalAlertRepository.removeListener();

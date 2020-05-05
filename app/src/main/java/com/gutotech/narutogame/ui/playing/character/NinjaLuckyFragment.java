@@ -59,7 +59,7 @@ public class NinjaLuckyFragment extends Fragment implements SectionFragment {
     }
 
     private void showWarningDialog(@StringRes int resid) {
-        WarningDialogFragment dialog = WarningDialogFragment.newInstance(resid);
+        WarningDialogFragment dialog = WarningDialogFragment.newInstance(getContext(), resid);
         dialog.openDialog(getParentFragmentManager());
         SoundUtil.play(getContext(), R.raw.sound_pop);
     }

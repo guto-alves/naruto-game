@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModel;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.model.MenuGroup;
+import com.gutotech.narutogame.data.network.NetworkUtils;
 import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.home.halloffame.HallOfFameFragment;
 import com.gutotech.narutogame.ui.home.home.HomeFragment;
@@ -28,28 +29,23 @@ public class LoggedInViewModel extends ViewModel implements ExpandableListView.O
     static final int MAIN_GROUP = 2;
 
     private MutableLiveData<List<MenuGroup>> mGroups;
-    private MutableLiveData<SectionFragment> currentSection = new MutableLiveData<>();
+    private MutableLiveData<SectionFragment> mCurrentSection = new MutableLiveData<>();
+
+    private MutableLiveData<Boolean> mShowConnectionWarning = new MutableLiveData<>();
 
     public LoggedInViewModel() {
         CharOn.character = null;
         mGroups = new MutableLiveData<>(buildMenu());
         goToSelectCharacter();
-    }
-
-    LiveData<SectionFragment> getCurrentSection() {
-        return currentSection;
-    }
-
-    LiveData<List<MenuGroup>> getMenuGroups() {
-        return mGroups;
+        NetworkUtils.getInstance().addListener(mShowConnectionWarning::setValue);
     }
 
     private void goToSelectCharacter() {
-        currentSection.setValue(mGroups.getValue().get(CHARACTER_GROUP).sections.get(0));
+        mCurrentSection.setValue(mGroups.getValue().get(CHARACTER_GROUP).sections.get(0));
     }
 
     void goToHome() {
-        currentSection.setValue(mGroups.getValue().get(MAIN_GROUP).sections.get(0));
+        mCurrentSection.setValue(mGroups.getValue().get(MAIN_GROUP).sections.get(0));
     }
 
     private List<MenuGroup> buildMenu() {
@@ -77,7 +73,19 @@ public class LoggedInViewModel extends ViewModel implements ExpandableListView.O
     @Override
     public boolean onChildClick(ExpandableListView parent, View v, int groupPosition,
                                 int childPosition, long id) {
-        currentSection.setValue(mGroups.getValue().get(groupPosition).sections.get(childPosition));
+        mCurrentSection.setValue(mGroups.getValue().get(groupPosition).sections.get(childPosition));
         return true;
+    }
+
+    LiveData<SectionFragment> getCurrentSection() {
+        return mCurrentSection;
+    }
+
+    LiveData<List<MenuGroup>> getMenuGroups() {
+        return mGroups;
+    }
+
+    LiveData<Boolean> getShowConnectionWarning() {
+        return mShowConnectionWarning;
     }
 }

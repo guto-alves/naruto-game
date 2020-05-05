@@ -157,7 +157,8 @@ public class SupportNewFragment extends Fragment {
                 message.append(getString(messageId)).append("\n");
             }
 
-            WarningDialogFragment warningDialog = WarningDialogFragment.newInstance(message.toString());
+            WarningDialogFragment warningDialog = WarningDialogFragment.newInstance(
+                    getContext(), message.toString());
             warningDialog.openDialog(getParentFragmentManager());
         });
 

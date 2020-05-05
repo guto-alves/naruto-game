@@ -23,10 +23,12 @@ import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.google.android.material.navigation.NavigationView;
 import com.gutotech.narutogame.R;
+import com.gutotech.narutogame.data.network.NetworkUtils;
 import com.gutotech.narutogame.data.repository.AuthRepository;
 import com.gutotech.narutogame.data.repository.GameStatusRepository;
 import com.gutotech.narutogame.data.repository.PlayerRepository;
 import com.gutotech.narutogame.ui.MaintenanceActivity;
+import com.gutotech.narutogame.ui.WarningDialogFragment;
 import com.gutotech.narutogame.ui.adapter.ExpandableAdapter;
 import com.gutotech.narutogame.utils.FragmentUtils;
 import com.gutotech.narutogame.utils.SettingsUtils;
@@ -36,6 +38,7 @@ import com.gutotech.narutogame.utils.SoundUtil;
 public class LoggedInActivity extends AppCompatActivity {
     private DrawerLayout mDrawer;
     private boolean mInitialization = true;
+    private WarningDialogFragment mConnectionWarningDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,6 +105,24 @@ public class LoggedInActivity extends AppCompatActivity {
                 R.string.navigation_drawer_close);
         mDrawer.addDrawerListener(toggle);
         toggle.syncState();
+
+        mConnectionWarningDialog = WarningDialogFragment.newInstance(
+                this, R.string.communication_error, R.string.failed_to_connect_description,
+                R.string.ok, () -> {
+                    if (!NetworkUtils.CONNECTED) {
+                        mConnectionWarningDialog.show(getSupportFragmentManager());
+                    }
+                });
+
+        viewModel.getShowConnectionWarning().observe(this, connected -> {
+            if (connected) {
+                if (mConnectionWarningDialog.isVisible()) {
+                    mConnectionWarningDialog.dismiss();
+                }
+            } else {
+                mConnectionWarningDialog.show(getSupportFragmentManager());
+            }
+        });
     }
 
     private void closeDrawer() {

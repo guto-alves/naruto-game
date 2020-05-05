@@ -6,7 +6,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Handler;
 
+import com.gutotech.narutogame.R;
+import com.gutotech.narutogame.data.network.NetworkUtils;
 import com.gutotech.narutogame.data.repository.AuthRepository;
 import com.gutotech.narutogame.data.repository.GameStatusRepository;
 import com.gutotech.narutogame.ui.home.HomeActivity;
@@ -14,6 +17,7 @@ import com.gutotech.narutogame.ui.loggedin.LoggedInActivity;
 import com.gutotech.narutogame.utils.NotificationsUtils;
 
 public class SplashActivity extends AppCompatActivity {
+    private WarningDialogFragment mConnectionWarningDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,24 +30,46 @@ public class SplashActivity extends AppCompatActivity {
             e.printStackTrace();
             System.exit(1);
         }
+
+        mConnectionWarningDialog = WarningDialogFragment.newInstance(
+                this, R.string.communication_error, R.string.failed_to_connect_description,
+                R.string.ok, () -> {
+                    if (!NetworkUtils.CONNECTED) {
+                        mConnectionWarningDialog.show(getSupportFragmentManager());
+                    }
+                });
+
+        NetworkUtils.getInstance().addListener(null);
+
+        NotificationsUtils.createNotificationChannel(this);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
 
-        GameStatusRepository.getInstance().getStatus(status -> {
-            if (status.equals(GameStatusRepository.VERSION_NAME)
-                    && AuthRepository.getInstance().isSignedIn()) {
-                startActivity(new Intent(SplashActivity.this, LoggedInActivity.class));
-            } else {
-                AuthRepository.getInstance().signOut();
-                startActivity(new Intent(SplashActivity.this, HomeActivity.class));
-            }
-            finish();
-        });
-
-        NotificationsUtils.createNotificationChannel(this);
+        Handler handler = new Handler();
+        handler.postDelayed(() -> {
+            NetworkUtils.getInstance().addListener(connected -> {
+                if (connected) {
+                    if (mConnectionWarningDialog.isVisible()) {
+                        mConnectionWarningDialog.dismiss();
+                    }
+                    GameStatusRepository.getInstance().getStatus(status -> {
+                        if (status.equals(GameStatusRepository.VERSION_NAME) &&
+                                AuthRepository.getInstance().isSignedIn()) {
+                            startActivity(new Intent(SplashActivity.this, LoggedInActivity.class));
+                        } else {
+                            AuthRepository.getInstance().signOut();
+                            startActivity(new Intent(SplashActivity.this, HomeActivity.class));
+                        }
+                        finish();
+                    });
+                } else {
+                    mConnectionWarningDialog.show(getSupportFragmentManager());
+                }
+            });
+        }, 2000);
     }
 
 }

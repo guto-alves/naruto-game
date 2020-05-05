@@ -2385,5 +2385,10 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="hall_of_fame_of_naruto_game">HALL OF FAME OF NARUTO GAME</string>
     <string name="kage_defeated_alert">%s %s was defeated by %s</string>
     <string name="lucky_ninja_alert">Lucky Ninja %s won %s</string>
+    <string name="communication_error_description">Failed to communicate with the server. Please try again with a better connection</string>
+    <string name="communication_error">Communication error</string>
+    <string name="failed_to_connect">Failed to Connect</string>
+    <string name="failed_to_connect_description">Cannot connect to server.\nPlease check your network.</string>
+    <string name="ok">Ok</string>
 
 </resources>
