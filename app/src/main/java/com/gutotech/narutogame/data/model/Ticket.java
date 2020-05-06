@@ -22,6 +22,7 @@ public class Ticket extends BaseObservable implements Serializable {
     }
 
     private String id;
+    private String charId;
     private String email;
     private int category;
     private String title;
@@ -73,6 +74,14 @@ public class Ticket extends BaseObservable implements Serializable {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getCharId() {
+        return charId;
+    }
+
+    public void setCharId(String charId) {
+        this.charId = charId;
     }
 
     @Bindable

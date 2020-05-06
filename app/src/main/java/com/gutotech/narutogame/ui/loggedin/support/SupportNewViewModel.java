@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.gutotech.narutogame.R;
+import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.model.Ticket;
 import com.gutotech.narutogame.data.repository.AuthRepository;
 import com.gutotech.narutogame.data.repository.SupportRepository;
@@ -39,6 +40,9 @@ public class SupportNewViewModel extends ViewModel {
 
     public void onCreateClick() {
         if (validateFields()) {
+            if (CharOn.character != null) {
+                mTicket.setCharId(CharOn.character.getId());
+            }
             mTicket.setTitle(title.get());
             mTicket.setDescription(description.get());
             mTicket.setDateCreation(DateCustom.getDate());
