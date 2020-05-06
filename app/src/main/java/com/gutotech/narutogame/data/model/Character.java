@@ -8,6 +8,7 @@ import androidx.databinding.library.baseAdapters.BR;
 
 import com.google.firebase.database.Exclude;
 import com.gutotech.narutogame.R;
+import com.gutotech.narutogame.data.repository.JutsuRepository;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -33,6 +34,7 @@ public class Character extends BaseObservable implements Serializable {
     private String team;
     private Attributes attributes;
     private List<Jutsu> jutsus;
+    private List<ElementalJutsu> elementalJutsus;
     private int skillPoints;
     private Element element;
     private Bag bag;
@@ -147,6 +149,15 @@ public class Character extends BaseObservable implements Serializable {
     }
 
     @Exclude
+    public List<Jutsu> getAllJutsus() {
+        List<Jutsu> allJutsus = new ArrayList<>();
+        allJutsus.addAll(getJutsus());
+        allJutsus.addAll(getElementalJutsus());
+        JutsuRepository.getInstance().sort(allJutsus);
+        return allJutsus;
+    }
+
+    @Exclude
     public List<Jutsu> getVisibleJutsus() {
         List<Jutsu> visibleJutsus = new ArrayList<>();
 
@@ -156,10 +167,23 @@ public class Character extends BaseObservable implements Serializable {
             }
         }
 
+        for (Jutsu jutsu : getElementalJutsus()) {
+            if (jutsu.isVisible()) {
+                visibleJutsus.add(jutsu);
+            }
+        }
+
+        JutsuRepository.getInstance().sort(visibleJutsus);
+
         return visibleJutsus;
     }
 
     public void validateJutsus() {
+        validateJutsus(getJutsus());
+        validateElementalJutsus(getElementalJutsus());
+    }
+
+    private void validateJutsus(List<Jutsu> jutsus) {
         Iterator<Jutsu> iterator = jutsus.iterator();
 
         while (iterator.hasNext()) {
@@ -181,6 +205,36 @@ public class Character extends BaseObservable implements Serializable {
                     break;
                 }
             }
+        }
+    }
+
+    private void validateElementalJutsus(List<ElementalJutsu> jutsus) {
+        Iterator<ElementalJutsu> iterator = jutsus.iterator();
+
+        while (iterator.hasNext()) {
+            Jutsu jutsu = iterator.next();
+            jutsu.setClasse(getClasse());
+
+            List<Requirement> requirements = jutsu.getJutsuInfo().requirements;
+
+            for (Requirement requirement : requirements) {
+                if (!requirement.check()) {
+                    int pointsSpent = jutsu.getEnhancements().keySet().size() * 5;
+                    incrementSkillPoint(pointsSpent);
+                    iterator.remove();
+                    break;
+                }
+            }
+        }
+    }
+
+    public void setJutsu(Jutsu jutsu) {
+        if (jutsu instanceof ElementalJutsu) {
+            int index = getElementalJutsus().indexOf(jutsu);
+            getElementalJutsus().set(index, (ElementalJutsu) jutsu);
+        } else {
+            int index = getJutsus().indexOf(jutsu);
+            getJutsus().set(index, jutsu);
         }
     }
 
@@ -457,6 +511,17 @@ public class Character extends BaseObservable implements Serializable {
 
     public void setJutsus(List<Jutsu> jutsus) {
         this.jutsus = jutsus;
+    }
+
+    public List<ElementalJutsu> getElementalJutsus() {
+        if (elementalJutsus == null) {
+            elementalJutsus = new ArrayList<>();
+        }
+        return elementalJutsus;
+    }
+
+    public void setElementalJutsus(List<ElementalJutsu> elementalJutsus) {
+        this.elementalJutsus = elementalJutsus;
     }
 
     @Bindable

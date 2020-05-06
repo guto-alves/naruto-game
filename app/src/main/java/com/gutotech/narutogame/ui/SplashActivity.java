@@ -69,7 +69,7 @@ public class SplashActivity extends AppCompatActivity {
                     mConnectionWarningDialog.show(getSupportFragmentManager());
                 }
             });
-        }, 2000);
+        }, 2500);
     }
 
 }

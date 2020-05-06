@@ -56,8 +56,7 @@ public class VipPlayerViewModel extends ViewModel {
 
         mNinjas = new ArrayList<>(Arrays.asList(Ninja.values()));
         mClasses = new ArrayList<>(Arrays.asList(Classe.values()));
-        mVillages = new ArrayList<>();
-        mVillages.addAll(EnumSet.range(Village.FOLHA, Village.CHUVA));
+        mVillages = new ArrayList<>(EnumSet.range(Village.FOLHA, Village.CHUVA));
 
         mNinjas.remove(mCharacter.getNinja().ordinal());
         mClasses.remove(mCharacter.getClasse().ordinal());
@@ -135,7 +134,7 @@ public class VipPlayerViewModel extends ViewModel {
             mCharacter.setClasse(newClass);
             mCharacter.getAttributes().changeBasePoints(newClass);
             mCharacter.updateFormulas();
-            mCharacter.full();
+            mCharacter.getFormulas().validateCeil();
 
             List<Jutsu> basicJutsus = JutsuRepository.getInstance().getBasicJutsus(newClass);
             mCharacter.getJutsus().removeAll(basicJutsus);

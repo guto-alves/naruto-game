@@ -9,7 +9,6 @@ import androidx.databinding.ObservableField;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Transformations;
 
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.firebase.FirebaseFunctionsUtils;
@@ -63,6 +62,7 @@ public class DojoBattlePvpViewModel extends AndroidViewModel
     private MutableLiveData<List<Jutsu>> mJutsus = new MutableLiveData<>(new ArrayList<>());
     private Jutsu.Type mJutsuTypeSelected;
 
+    private Jutsu mBuffDebuffPending;
     private MutableLiveData<List<Jutsu>> mPlayerBuffsDebuffsStatus = new MutableLiveData<>();
     private MutableLiveData<List<Jutsu>> mOppBuffsDebuffsStatus = new MutableLiveData<>();
     private MutableLiveData<List<BattleLog>> mBattleLogs = new MutableLiveData<>(new ArrayList<>());
@@ -110,17 +110,8 @@ public class DojoBattlePvpViewModel extends AndroidViewModel
                         battle.getAttackStart() != mBattle.getAttackStart()) {
                     SoundUtil.play(getApplication(), R.raw.battle);
                     if (mBuffDebuffPending != null) {
-                        if (mBuffDebuffPending.getJutsuInfo().type == Jutsu.Type.BUFF) {
-                            List<Jutsu> buffsAndDebuffs = mPlayerBuffsDebuffsStatus.getValue();
-                            buffsAndDebuffs.remove(mBuffDebuffPending);
-                            mPlayerBuffsDebuffsStatus.setValue(buffsAndDebuffs);
-                            removeBuffDebuff(mPlayerFormulas, mBuffDebuffPending, mBuffDebuffPending.getJutsuInfo().type);
-                        } else if (mBuffDebuffPending.getJutsuInfo().type == Jutsu.Type.DEBUFF) {
-                            List<Jutsu> buffsAndDebuffs = mOppBuffsDebuffsStatus.getValue();
-                            buffsAndDebuffs.remove(mBuffDebuffPending);
-                            mOppBuffsDebuffsStatus.setValue(buffsAndDebuffs);
-                            removeBuffDebuff(mOppFormulas, mBuffDebuffPending, mBuffDebuffPending.getJutsuInfo().type);
-                        }
+                        removeBuffOrDebuffFromStatus(mBuffDebuffPending,
+                                mBuffDebuffPending.getJutsuInfo().type);
                         mBuffDebuffPending = null;
                         saveBattle();
                     }
@@ -167,7 +158,6 @@ public class DojoBattlePvpViewModel extends AndroidViewModel
 
         mBattleLogs.setValue(mBattle.getBattleLogs());
     }
-
 
     private void startTimer(long millisInFuture) {
         stopTimer();
@@ -219,7 +209,10 @@ public class DojoBattlePvpViewModel extends AndroidViewModel
 
         List<Jutsu> filteredJutsus = new ArrayList<>();
 
-        for (Jutsu jutsu : mAllJutsus) {
+        int len = mAllJutsus.size();
+
+        for (int i = 0; i < len; i++) {
+            Jutsu jutsu = mAllJutsus.get(i);
             JutsuInfo jutsuInfo = jutsu.getJutsuInfo();
 
             if (filteredType == Jutsu.Type.ATK &&
@@ -233,8 +226,6 @@ public class DojoBattlePvpViewModel extends AndroidViewModel
 
         mJutsus.setValue(filteredJutsus);
     }
-
-    private Jutsu mBuffDebuffPending;
 
     private void updateRemainingIntervals() {
         int len = mAllJutsus.size();
@@ -251,23 +242,30 @@ public class DojoBattlePvpViewModel extends AndroidViewModel
 
                     if ((type == Jutsu.Type.BUFF || type == Jutsu.Type.DEBUFF) && myTurn == 1) {
                         mBuffDebuffPending = jutsu;
-                    } else if (jutsu.getJutsuInfo().type == Jutsu.Type.BUFF) {
-                        List<Jutsu> buffsAndDebuffs = mPlayerBuffsDebuffsStatus.getValue();
-                        buffsAndDebuffs.remove(jutsu);
-                        mPlayerBuffsDebuffsStatus.setValue(buffsAndDebuffs);
-                        removeBuffDebuff(mPlayerFormulas, jutsu, type);
-                    } else if (jutsu.getJutsuInfo().type == Jutsu.Type.DEBUFF) {
-                        List<Jutsu> buffsAndDebuffs = mOppBuffsDebuffsStatus.getValue();
-                        buffsAndDebuffs.remove(jutsu);
-                        mOppBuffsDebuffsStatus.setValue(buffsAndDebuffs);
-                        removeBuffDebuff(mOppFormulas, jutsu, type);
+                    } else {
+                        removeBuffOrDebuffFromStatus(jutsu, type);
                     }
                 }
             }
         }
     }
 
-    private boolean buffOrDebuffUsed(Jutsu.Type type) {
+
+    private void removeBuffOrDebuffFromStatus(Jutsu jutsu, Jutsu.Type type) {
+        if (type == Jutsu.Type.BUFF) {
+            List<Jutsu> buffsAndDebuffs = mPlayerBuffsDebuffsStatus.getValue();
+            buffsAndDebuffs.remove(jutsu);
+            mPlayerBuffsDebuffsStatus.setValue(buffsAndDebuffs);
+            removeBuffDebuff(mPlayerFormulas, jutsu, type);
+        } else if (type == Jutsu.Type.DEBUFF) {
+            List<Jutsu> buffsAndDebuffs = mOppBuffsDebuffsStatus.getValue();
+            buffsAndDebuffs.remove(jutsu);
+            mOppBuffsDebuffsStatus.setValue(buffsAndDebuffs);
+            removeBuffDebuff(mOppFormulas, jutsu, type);
+        }
+    }
+
+    private boolean checkForBuffOrDebuffUsed(Jutsu.Type type) {
         if (type == Jutsu.Type.BUFF) {
             for (Jutsu jutsu : mPlayerBuffsDebuffsStatus.getValue()) {
                 if (jutsu.getJutsuInfo().type == Jutsu.Type.BUFF) {
@@ -317,7 +315,7 @@ public class DojoBattlePvpViewModel extends AndroidViewModel
     private boolean mAwaitingShiftChange = false;
 
     @Override
-    public void onJutsuClick(Jutsu jutsu) {
+    public synchronized void onJutsuClick(Jutsu jutsu) {
         if (mBattle.getCurrentPlayer() != myTurn || mAwaitingShiftChange) {
             mShowWarningDialogEvent.setValue(R.string.it_is_not_your_turn_to_attack);
             return;
@@ -334,32 +332,28 @@ public class DojoBattlePvpViewModel extends AndroidViewModel
             return;
         }
 
-        JutsuInfo playerJutsuInfo = jutsu.getJutsuInfo();
+        JutsuInfo jutsuInfo = jutsu.getJutsuInfo();
 
-        if (playerJutsuInfo.type == Jutsu.Type.ATK || playerJutsuInfo.type == Jutsu.Type.DEF) {
+        if (jutsuInfo.type == Jutsu.Type.ATK || jutsuInfo.type == Jutsu.Type.DEF) {
             mAwaitingShiftChange = true;
 
             if (myTurn == 2) {
-                executeAttacks(jutsu, playerJutsuInfo, mBattle.getJutsuBuffer(),
+                executeAttacks(jutsu, jutsuInfo, mBattle.getJutsuBuffer(),
                         mBattle.getJutsuBuffer().getJutsuInfo());
-                updateFightStatus();
+                updateBattleStatus();
             } else {
                 mBattle.setJutsuBuffer(jutsu);
             }
 
             if (mBattle.getStatus() == Battle.Status.CONTINUE) {
                 updateRemainingIntervals();
-                FirebaseFunctionsUtils.getServerTime(currentTimestamp -> {
-                    mBattle.setCurrentPlayer(mBattle.getCurrentPlayer() % 2 + 1);
-                    mBattle.setAttackStart(currentTimestamp);
-                    saveBattle();
-                    startTimer(TIME_TO_ATTACK);
-                    mAwaitingShiftChange = false;
-                });
+                mBattle.setCurrentPlayer(mBattle.getCurrentPlayer() % 2 + 1);
+                mBattleRepository.save(mBattle, true);
+                mAwaitingShiftChange = false;
             }
-        } else if (!buffOrDebuffUsed(playerJutsuInfo.type)) {
-            if (playerJutsuInfo.type == Jutsu.Type.BUFF) {
-                addBuffOrDebuff(mPlayerFormulas, jutsu, playerJutsuInfo.type);
+        } else if (!checkForBuffOrDebuffUsed(jutsuInfo.type)) {
+            if (jutsuInfo.type == Jutsu.Type.BUFF) {
+                addBuffOrDebuff(mPlayerFormulas, jutsu, jutsuInfo.type);
 
                 List<Jutsu> buffsAndDebuffs;
 
@@ -371,8 +365,8 @@ public class DojoBattlePvpViewModel extends AndroidViewModel
 
                 buffsAndDebuffs.add(jutsu);
                 mPlayerBuffsDebuffsStatus.setValue(buffsAndDebuffs);
-            } else if (playerJutsuInfo.type == Jutsu.Type.DEBUFF) {
-                addBuffOrDebuff(mOppFormulas, jutsu, playerJutsuInfo.type);
+            } else if (jutsuInfo.type == Jutsu.Type.DEBUFF) {
+                addBuffOrDebuff(mOppFormulas, jutsu, jutsuInfo.type);
 
                 List<Jutsu> buffsAndDebuffs;
 
@@ -390,7 +384,7 @@ public class DojoBattlePvpViewModel extends AndroidViewModel
             mPlayerFormulas.subStamina(jutsu.getConsumesStamina());
 
             addLog(new BattleLog(mFighters.getPlayer().getNick(), BattleLog.Action.BUFF_DEBUFF_WEAPON,
-                    playerJutsuInfo.name, jutsu)
+                    jutsuInfo.name, jutsu)
             );
         } else {
             mShowWarningDialogEvent.setValue(R.string.jutsu_is_not_yet_available);
@@ -399,13 +393,13 @@ public class DojoBattlePvpViewModel extends AndroidViewModel
 
         if (mBattle.getStatus() == Battle.Status.CONTINUE) {
             int jutsuIndex = mAllJutsus.indexOf(jutsu);
-            if (playerJutsuInfo.type == Jutsu.Type.BUFF || playerJutsuInfo.type == Jutsu.Type.DEBUFF) {
+            if (jutsuInfo.type == Jutsu.Type.BUFF || jutsuInfo.type == Jutsu.Type.DEBUFF) {
                 jutsu.setRemainingIntervals(jutsu.getUsageInterval());
             } else {
                 jutsu.setRemainingIntervals(jutsu.getUsageInterval() - 1);
             }
             mAllJutsus.set(jutsuIndex, jutsu);
-            mFighters.getPlayer().setJutsus(mAllJutsus);
+            mFighters.getPlayer().setJutsu(jutsu);
         }
 
         saveBattle();
@@ -544,7 +538,7 @@ public class DojoBattlePvpViewModel extends AndroidViewModel
     }
 
 
-    private void updateFightStatus() {
+    private void updateBattleStatus() {
         if ((mOppFormulas.getCurrentHealth() < 10 || mOppFormulas.getCurrentChakra() < 10 ||
                 mOppFormulas.getCurrentStamina() < 10) &&
                 (mPlayerFormulas.getCurrentHealth() < 10 || mPlayerFormulas.getCurrentChakra() < 10
@@ -655,7 +649,7 @@ public class DojoBattlePvpViewModel extends AndroidViewModel
     }
 
     private void saveBattle() {
-        mBattleRepository.save(mBattle);
+        mBattleRepository.save(mBattle, false);
     }
 
 

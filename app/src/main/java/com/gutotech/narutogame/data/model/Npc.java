@@ -42,13 +42,14 @@ public class Npc implements Serializable {
     }
 
     public Jutsu attack() {
-        final int TOTAL_JUTSUS = mCharacter.getJutsus().size();
+        final int TOTAL_JUTSUS = mCharacter.getAllJutsus().size();
 
         Jutsu jutsu;
 
         do {
-            jutsu = mCharacter.getJutsus().get(random.nextInt(TOTAL_JUTSUS));
-        } while (jutsu.getJutsuInfo().type != Jutsu.Type.ATK && jutsu.getJutsuInfo().type != Jutsu.Type.DEF);
+            jutsu = mCharacter.getAllJutsus().get(random.nextInt(TOTAL_JUTSUS));
+        } while (jutsu.getJutsuInfo().type != Jutsu.Type.ATK &&
+                jutsu.getJutsuInfo().type != Jutsu.Type.DEF);
 
         return jutsu;
     }

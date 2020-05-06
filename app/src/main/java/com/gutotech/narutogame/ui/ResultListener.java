@@ -3,7 +3,8 @@ package com.gutotech.narutogame.ui;
 import androidx.annotation.StringRes;
 
 public interface ResultListener {
-    default void onStarted(){}
+    default void onStarted() {
+    }
 
     void onSuccess();
 

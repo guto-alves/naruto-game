@@ -23,42 +23,48 @@ import com.gutotech.narutogame.utils.SoundUtil;
 
 public class CharacterJutsusFragment extends Fragment implements SectionFragment {
     private CharacterJutsusViewModel mViewModel;
+    private FragmentCharacterJutsusBinding mBinding;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        FragmentCharacterJutsusBinding binding = DataBindingUtil.inflate(inflater,
+        mBinding = DataBindingUtil.inflate(inflater,
                 R.layout.fragment_character_jutsus, container, false);
-        binding.setLifecycleOwner(this);
+        mBinding.setLifecycleOwner(this);
 
         mViewModel = new ViewModelProvider(this).get(CharacterJutsusViewModel.class);
-        binding.setViewModel(mViewModel);
+        mBinding.setViewModel(mViewModel);
 
         LearnedJutsusAdapter adapter = new LearnedJutsusAdapter(getContext(), mViewModel);
-        binding.jutsusRecyclerView.setHasFixedSize(true);
-        binding.jutsusRecyclerView.setAdapter(adapter);
+        mBinding.jutsusRecyclerView.setHasFixedSize(true);
+        mBinding.jutsusRecyclerView.setAdapter(adapter);
         mViewModel.getJutsusFiltered().observe(getViewLifecycleOwner(), adapter::setJutsusList);
 
         mViewModel.getJutsuSelected().observe(getViewLifecycleOwner(), jutsu -> {
-            binding.setJutsu(jutsu);
+            mBinding.setJutsu(jutsu);
 
-            binding.enhancementImageView1.setOnClickListener(v -> onSlotClick(jutsu, Jutsu.SLOT_1));
-            binding.enhancementImageView2.setOnClickListener(v -> onSlotClick(jutsu, Jutsu.SLOT_2));
-            binding.enhancementImageView3.setOnClickListener(v -> onSlotClick(jutsu, Jutsu.SLOT_3));
+            mBinding.enhancementImageView1.setOnClickListener(v -> onSlotClick(jutsu, Jutsu.SLOT_1));
+            mBinding.enhancementImageView2.setOnClickListener(v -> onSlotClick(jutsu, Jutsu.SLOT_2));
+            mBinding.enhancementImageView3.setOnClickListener(v -> onSlotClick(jutsu, Jutsu.SLOT_3));
 
-            binding.scrollView.post(() ->
-                    binding.scrollView.smoothScrollTo(0, binding.scrollView.getBottom() + 1000)
+            mBinding.scrollView.post(() ->
+                    mBinding.scrollView.smoothScrollTo(0, mBinding.scrollView.getBottom() + 1000)
             );
         });
 
         FragmentUtils.setSectionTitle(getActivity(), R.string.section_jutsu_training);
-        return binding.getRoot();
+        return mBinding.getRoot();
     }
 
     private void onSlotClick(Jutsu jutsu, String slot) {
         if (CharOn.character.getSkillPoints() >= 5 || jutsu.getEnhancements().containsKey(slot)) {
             EnhanceJutsuDialogFragment dialog = EnhanceJutsuDialogFragment.getInstance(
-                    jutsu, slot, mViewModel::updateJutsus);
+                    jutsu, slot, () -> {
+                        mViewModel.updateJutsus();
+                        mBinding.scrollView.post(() ->
+                                mBinding.scrollView.smoothScrollTo(0, mBinding.scrollView.getBottom() + 1000)
+                        );
+                    });
             dialog.show(getParentFragmentManager(), "EnhanceJutsuDialogFragment");
             SoundUtil.play(getContext(), R.raw.sound_pop);
         } else {

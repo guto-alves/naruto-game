@@ -67,7 +67,7 @@ public class VillageMapViewModel extends ViewModel implements VillageMapAdapter.
 
     @Override
     public void onDoubleClick(int newPosition) {
-        if (isMovementValid(newPosition)) {
+        if (isMovementValid(CharOn.character.getMapPosition(), newPosition)) {
             CharOn.character.setMapPosition(newPosition);
 
             if (isPlaceEntry(newPosition) && mVillage == CharOn.character.getVillage()) {
@@ -133,9 +133,7 @@ public class VillageMapViewModel extends ViewModel implements VillageMapAdapter.
                 ? value : 0;
     }
 
-    private boolean isMovementValid(int newPosition) {
-        int currentPosition = CharOn.character.getMapPosition();
-
+    private boolean isMovementValid(int currentPosition, int newPosition) {
         Point currentPoint = indexToPoint(currentPosition);
         Point newPoint = indexToPoint(newPosition);
 

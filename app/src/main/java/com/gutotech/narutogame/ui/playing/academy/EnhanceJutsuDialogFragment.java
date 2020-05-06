@@ -15,7 +15,6 @@ import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.model.Classe;
 import com.gutotech.narutogame.data.model.Enhancement;
 import com.gutotech.narutogame.data.model.Jutsu;
-import com.gutotech.narutogame.data.repository.JutsuRepository;
 import com.gutotech.narutogame.databinding.DialogEnhanceJutsuBinding;
 import com.gutotech.narutogame.ui.adapter.EnhancementsAdapter;
 import com.gutotech.narutogame.utils.SoundUtil;
@@ -155,8 +154,6 @@ public class EnhanceJutsuDialogFragment extends DialogFragment {
         }
 
         mJutsu.activate(mEnhancementSelected, mSlot);
-        int index = CharOn.character.getJutsus().indexOf(mJutsu);
-        CharOn.character.getJutsus().set(index, mJutsu);
-        JutsuRepository.getInstance().sort(CharOn.character.getJutsus());
+        CharOn.character.setJutsu(mJutsu);
     }
 }

@@ -8,6 +8,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ServerValue;
 import com.google.firebase.database.ValueEventListener;
 import com.gutotech.narutogame.data.firebase.FirebaseConfig;
 import com.gutotech.narutogame.data.model.Character;
@@ -110,6 +111,14 @@ public class CharacterRepository {
         });
 
         return data;
+    }
+
+    public void setLastSeen(String charid) {
+        FirebaseConfig.getDatabase()
+                .child("characters")
+                .child(charid)
+                .child("lastSeenInMillis")
+                .setValue(ServerValue.TIMESTAMP);
     }
 
     private void sortByLevel(List<Character> characterList) {

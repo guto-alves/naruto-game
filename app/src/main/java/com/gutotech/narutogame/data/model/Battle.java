@@ -4,8 +4,12 @@ import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 import androidx.databinding.library.baseAdapters.BR;
 
+import com.google.firebase.database.Exclude;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Battle extends BaseObservable {
     public enum Status {
@@ -27,14 +31,13 @@ public class Battle extends BaseObservable {
     public Battle() {
     }
 
-    public Battle(String id, Character player1, Character player2, long attackStart) {
+    public Battle(String id, Character player1, Character player2) {
         this.id = id;
         this.player1 = player1;
         this.player2 = player2;
-        this.attackStart = attackStart;
-        status = Status.CONTINUE;
         currentPlayer = 1;
         playersInBattle = 2;
+        status = Status.CONTINUE;
     }
 
     public String getId() {
@@ -138,6 +141,24 @@ public class Battle extends BaseObservable {
 
     public void setBattleLogs(List<BattleLog> battleLogs) {
         this.battleLogs = battleLogs;
+    }
+
+    @Exclude
+    public Map<String, Object> toMap() {
+        Map<String, Object> result = new HashMap<>();
+        result.put("status", status);
+        result.put("id", id);
+        result.put("player1", player1);
+        result.put("player2", player2);
+        result.put("currentPlayer", currentPlayer);
+        result.put("attackStart", attackStart);
+        result.put("playersInBattle", playersInBattle);
+        result.put("jutsuBuffer", jutsuBuffer);
+        result.put("buffsDebuffsUsed1", buffsDebuffsUsed1);
+        result.put("buffsDebuffsUsed2", buffsDebuffsUsed2);
+        result.put("battleLogs", battleLogs);
+
+        return result;
     }
 
 }

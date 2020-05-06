@@ -7,12 +7,12 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
 import com.gutotech.narutogame.R;
-import com.gutotech.narutogame.data.firebase.FirebaseFunctionsUtils;
 import com.gutotech.narutogame.data.model.Battle;
 import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.model.Fighters;
 import com.gutotech.narutogame.data.model.Formulas;
 import com.gutotech.narutogame.data.model.Npc;
+import com.gutotech.narutogame.data.network.NetworkUtils;
 import com.gutotech.narutogame.data.repository.BattleRepository;
 import com.gutotech.narutogame.data.repository.CharacterRepository;
 import com.gutotech.narutogame.utils.SingleLiveEvent;
@@ -63,22 +63,16 @@ public class DojoNpcFightersViewModel extends AndroidViewModel {
 
         SoundUtil.play(getApplication(), R.raw.knife);
 
-        FirebaseFunctionsUtils.getServerTime(currentTimestamp -> {
-            Battle battle = new Battle(
-                    BattleRepository.getInstance().generateId("DOJO-NPC"),
-                    mFighters.getPlayer(),
-                    mFighters.getOpponent(),
-                    currentTimestamp);
+        String battleId = BattleRepository.getInstance().generateId("DOJO-NPC");
 
-            BattleRepository.getInstance().save(battle);
+        BattleRepository.getInstance().create(battleId, mFighters.getPlayer(),
+                mFighters.getOpponent());
 
-            mProgressDialogEvent.setValue(false);
+        mProgressDialogEvent.setValue(false);
 
-            CharOn.character.setBattleId(battle.getId());
-            CharOn.character.setBattle(true);
-        });
+        CharOn.character.setBattleId(battleId);
+        CharOn.character.setBattle(true);
     }
-
 
     public Fighters getFighters() {
         return mFighters;

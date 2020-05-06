@@ -1,10 +1,13 @@
 package com.gutotech.narutogame.data.repository;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -69,16 +72,18 @@ public class MapRepository {
                 for (DataSnapshot snap : dataSnapshot.getChildren()) {
                     Character newCharacter = snap.getValue(Character.class);
 
-                    if (map.get(newCharacter.getMapPosition()) != null) {
-                        map.get(newCharacter.getMapPosition()).add(newCharacter);
+                    List<Character> characters = map.get(newCharacter.getMapPosition());
+
+                    if (characters != null) {
+                        characters.add(newCharacter);
                     } else {
-                        List<Character> characterList = new ArrayList<>();
-                        characterList.add(newCharacter);
-                        map.put(newCharacter.getMapPosition(), characterList);
+                        characters = new ArrayList<>();
+                        characters.add(newCharacter);
+                        map.put(newCharacter.getMapPosition(), characters);
                     }
                 }
 
-                data.postValue(map);
+                data.setValue(map);
             }
 
             @Override

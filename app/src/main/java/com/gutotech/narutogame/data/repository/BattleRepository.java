@@ -7,13 +7,15 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.MutableData;
+import com.google.firebase.database.ServerValue;
 import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
 
 import com.gutotech.narutogame.data.firebase.FirebaseConfig;
-import com.gutotech.narutogame.data.firebase.FirebaseFunctionsUtils;
 import com.gutotech.narutogame.data.model.Battle;
 import com.gutotech.narutogame.data.model.Character;
+
+import java.util.Map;
 
 public class BattleRepository {
     private static final BattleRepository ourInstance = new BattleRepository();
@@ -30,10 +32,29 @@ public class BattleRepository {
     }
 
     public void create(String battleId, Character player, Character opponent) {
-        FirebaseFunctionsUtils.getServerTime(currentTimestamp -> {
-            Battle battle = new Battle(battleId, player, opponent, currentTimestamp);
-            save(battle);
-        });
+        Battle battle = new Battle(battleId, player, opponent);
+        save(battle, true);
+    }
+
+
+    public void save(Battle battle, boolean updateAttackStart) {
+        Map<String, Object> map = battle.toMap();
+
+        if (updateAttackStart) {
+            map.put("attackStart", ServerValue.TIMESTAMP);
+            updateChildren(map);
+        } else {
+            map.remove("attackStart");
+            updateChildren(map);
+        }
+    }
+
+    private void updateChildren(Map<String, Object> battleMap) {
+        DatabaseReference battleReference = FirebaseConfig.getDatabase()
+                .child("battles")
+                .child((String) battleMap.get("id"));
+
+        battleReference.updateChildren(battleMap);
     }
 
     public void save(Battle battle) {
@@ -53,18 +74,18 @@ public class BattleRepository {
             @NonNull
             @Override
             public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
-                Battle battle1 = mutableData.getValue(Battle.class);
+                Battle battle = mutableData.getValue(Battle.class);
 
-                if (battle1 == null) {
+                if (battle == null) {
                     return Transaction.success(mutableData);
                 }
 
-                int playersInBattle = battle1.getPlayersInBattle() - 1;
+                int playersInBattle = battle.getPlayersInBattle() - 1;
                 if (playersInBattle == 0) {
                     mutableData.setValue(null);
                 } else {
-                    battle1.setPlayersInBattle(playersInBattle);
-                    mutableData.setValue(battle1);
+                    battle.setPlayersInBattle(playersInBattle);
+                    mutableData.setValue(battle);
                 }
 
                 return Transaction.success(mutableData);

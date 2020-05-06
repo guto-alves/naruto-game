@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.model.Element;
+import com.gutotech.narutogame.data.model.ElementalJutsu;
 import com.gutotech.narutogame.data.model.Formulas;
 import com.gutotech.narutogame.data.model.Jutsu;
 import com.gutotech.narutogame.data.repository.CharacterRepository;
@@ -53,8 +54,7 @@ public class ElementalJutsusViewModel extends ViewModel
                 formulas.subChakra(jutsu.getConsumesChakra() * 2);
                 formulas.subStamina(jutsu.getConsumesStamina() * 2);
 
-                CharOn.character.getJutsus().add(jutsu);
-                mJutsuRepository.sort(CharOn.character.getJutsus());
+                CharOn.character.getElementalJutsus().add((ElementalJutsu) jutsu);
                 CharacterRepository.getInstance().save(CharOn.character);
 
                 mShowCongratulationsEvent.setValue(jutsu.getJutsuInfo().name);

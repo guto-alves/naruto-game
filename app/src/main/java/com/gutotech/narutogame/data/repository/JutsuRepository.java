@@ -925,7 +925,7 @@ public class JutsuRepository {
             }
         }
 
-        removeRepeatedJutsus(jutsus, CharOn.character.getJutsus());
+        removeRepeatedJutsus(jutsus, new ArrayList<>(CharOn.character.getElementalJutsus()));
 
         callback.call(jutsus);
     }
