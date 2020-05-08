@@ -477,7 +477,7 @@
                 android:id="@+id/adView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="32dp"
                 app:adSize="FULL_BANNER"
                 app:adUnitId="ca-app-pub-3940256099942544/6300978111"
                 app:layout_constraintEnd_toEndOf="parent"
