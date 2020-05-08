@@ -250,6 +250,14 @@ public class Character extends BaseObservable implements Serializable {
         setSkillPoints(getSkillPoints() - 5);
     }
 
+    @Exclude
+    public int getClassPoints() {
+        return getClasse() == Classe.NIN ? getAttributes().getNinjutsu() :
+                getClasse() == Classe.GEN ? getAttributes().getGenjutsu() :
+                getClasse() == Classe.TAI ? getAttributes().getTaijutsu() :
+                getClasse() == Classe.BUK ? getAttributes().getBukijutsu() : 0;
+    }
+
     @Override
     public boolean equals(@Nullable Object obj) {
         if (!(obj instanceof Character)) {

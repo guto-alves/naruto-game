@@ -18501,7 +18501,7 @@ public enum JutsuInfo {
                     },
                     new Requirement() {
                         public int getValue() {
-                            return 4;
+                            return 5;
                         }
 
                         @Override
@@ -18762,7 +18762,1917 @@ public enum JutsuInfo {
                                     value(folded), CharOn.character.getClasse().name);
                         }
                     }
+            )),
+
+    HYOUTON_HYOUROU_NO_JUTSU("hyourou-jutsu.jpg", R.string.hyouton_hyourou_no_jutsu, R.string.hyouton_hyourou_no_jutsu_desc,
+            Jutsu.Type.ATK,
+            Arrays.asList(
+                    new Requirement() {
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getElement() == Element.SUITON;
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.label_element, Element.SUITON.name);
+                        }
+                    },
+                    new Requirement() {
+                        public int getValue() {
+                            return 4;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getGraduationId() >= getValue();
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_grade,
+                                    context.getString(GraduationUtils.getName(getValue())));
+                        }
+                    },
+                    new Requirement() {
+
+                        @Override
+                        public Object value() {
+                            return 26;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getAttributes().getIntelligence() >= value(folded);
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_points,
+                                    value(folded), context.getString(Attribute.INTE.name)
+                            );
+                        }
+                    },
+                    new Requirement() {
+
+                        @Override
+                        public Object value() {
+                            return 35;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            int points = CharOn.character.getClasse() == Classe.NIN ||
+                                    CharOn.character.getClasse() == Classe.GEN ?
+                                    CharOn.character.getClassPoints() :
+                                    CharOn.character.getAttributes().getNinjutsu();
+                            return points >= value(folded);
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_points,
+                                    value(folded),
+                                    CharOn.character.getClasse() == Classe.NIN ||
+                                            CharOn.character.getClasse() == Classe.GEN ?
+                                            CharOn.character.getClasse().name : Classe.NIN.name);
+                        }
+                    }
+            )),
+    HYOUTON_HISSATSU_HYOUSOU("hissatsu-hyousou.jpg", R.string.hyouton_hissatsu_hyousou, R.string.hyouton_hissatsu_hyousou_desc,
+            Jutsu.Type.ATK,
+            Arrays.asList(
+                    new Requirement() {
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getElement() == Element.SUITON;
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.label_element, Element.SUITON.name);
+                        }
+                    },
+                    new Requirement() {
+                        public int getValue() {
+                            return 4;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getGraduationId() >= getValue();
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_grade,
+                                    context.getString(GraduationUtils.getName(getValue())));
+                        }
+                    },
+                    new Requirement() {
+
+                        @Override
+                        public Object value() {
+                            return 29;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getAttributes().getIntelligence() >= value(folded);
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_points,
+                                    value(folded), context.getString(Attribute.INTE.name)
+                            );
+                        }
+                    },
+                    new Requirement() {
+
+                        @Override
+                        public Object value() {
+                            return 39;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            int points = CharOn.character.getClasse() == Classe.NIN ||
+                                    CharOn.character.getClasse() == Classe.GEN ?
+                                    CharOn.character.getClassPoints() :
+                                    CharOn.character.getAttributes().getNinjutsu();
+                            return points >= value(folded);
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_points,
+                                    value(folded),
+                                    CharOn.character.getClasse() == Classe.NIN ||
+                                            CharOn.character.getClasse() == Classe.GEN ?
+                                            CharOn.character.getClasse().name : Classe.NIN.name);
+                        }
+                    }
+            )),
+    HYOUTON_HARYUU_MOUKO("haryuu-mouko.jpg", R.string.hyouton_haryuu_mouko, R.string.hyouton_haryuu_mouko_desc,
+            Jutsu.Type.ATK,
+            Arrays.asList(
+                    new Requirement() {
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getElement() == Element.SUITON;
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.label_element, Element.SUITON.name);
+                        }
+                    },
+                    new Requirement() {
+                        public int getValue() {
+                            return 5;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getGraduationId() >= getValue();
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_grade,
+                                    context.getString(GraduationUtils.getName(getValue())));
+                        }
+                    },
+                    new Requirement() {
+
+                        @Override
+                        public Object value() {
+                            return 34;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getAttributes().getIntelligence() >= value(folded);
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_points,
+                                    value(folded), context.getString(Attribute.INTE.name)
+                            );
+                        }
+                    },
+                    new Requirement() {
+
+                        @Override
+                        public Object value() {
+                            return 45;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            int points = CharOn.character.getClasse() == Classe.NIN ||
+                                    CharOn.character.getClasse() == Classe.GEN ?
+                                    CharOn.character.getClassPoints() :
+                                    CharOn.character.getAttributes().getNinjutsu();
+                            return points >= value(folded);
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_points,
+                                    value(folded),
+                                    CharOn.character.getClasse() == Classe.NIN ||
+                                            CharOn.character.getClasse() == Classe.GEN ?
+                                            CharOn.character.getClasse().name : Classe.NIN.name);
+                        }
+                    }
+            )),
+    HYOUTON_KOKURYUU_BOUFUUSETSU("kokuryuu.jpg", R.string.hyouton_kokuryuu_boufuusetsu, R.string.hyouton_kokuryuu_boufuusetsu_desc,
+            Jutsu.Type.ATK,
+            Arrays.asList(
+                    new Requirement() {
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getElement() == Element.SUITON;
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.label_element, Element.SUITON.name);
+                        }
+                    },
+                    new Requirement() {
+                        public int getValue() {
+                            return 5;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getGraduationId() >= getValue();
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_grade,
+                                    context.getString(GraduationUtils.getName(getValue())));
+                        }
+                    },
+                    new Requirement() {
+
+                        @Override
+                        public Object value() {
+                            return 37;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getAttributes().getIntelligence() >= value(folded);
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_points,
+                                    value(folded), context.getString(Attribute.INTE.name)
+                            );
+                        }
+                    },
+                    new Requirement() {
+
+                        @Override
+                        public Object value() {
+                            return 49;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            int points = CharOn.character.getClasse() == Classe.NIN ||
+                                    CharOn.character.getClasse() == Classe.GEN ?
+                                    CharOn.character.getClassPoints() :
+                                    CharOn.character.getAttributes().getNinjutsu();
+                            return points >= value(folded);
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_points,
+                                    value(folded),
+                                    CharOn.character.getClasse() == Classe.NIN ||
+                                            CharOn.character.getClasse() == Classe.GEN ?
+                                            CharOn.character.getClasse().name : Classe.NIN.name);
+                        }
+                    }
+            )),
+    HYOUTON_MAKYOU_HYOUSHOU("makyou.jpg", R.string.hyouton_makyou_hyoushou, R.string.hyouton_makyou_hyoushou_desc,
+            Jutsu.Type.ATK,
+            Arrays.asList(
+                    new Requirement() {
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getElement() == Element.SUITON;
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.label_element, Element.SUITON.name);
+                        }
+                    },
+                    new Requirement() {
+                        public int getValue() {
+                            return 6;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getGraduationId() >= getValue();
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_grade,
+                                    context.getString(GraduationUtils.getName(getValue())));
+                        }
+                    },
+                    new Requirement() {
+
+                        @Override
+                        public Object value() {
+                            return 41;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getAttributes().getIntelligence() >= value(folded);
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_points,
+                                    value(folded), context.getString(Attribute.INTE.name)
+                            );
+                        }
+                    },
+                    new Requirement() {
+
+                        @Override
+                        public Object value() {
+                            return 55;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            int points = CharOn.character.getClasse() == Classe.NIN ||
+                                    CharOn.character.getClasse() == Classe.GEN ?
+                                    CharOn.character.getClassPoints() :
+                                    CharOn.character.getAttributes().getNinjutsu();
+                            return points >= value(folded);
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_points,
+                                    value(folded),
+                                    CharOn.character.getClasse() == Classe.NIN ||
+                                            CharOn.character.getClasse() == Classe.GEN ?
+                                            CharOn.character.getClasse().name : Classe.NIN.name);
+                        }
+                    }
+            )),
+
+    //----------------------------------
+    FUTTON_FUKIDEMONO_TASHOU("fukidemono.jpg", R.string.futton_fukidemono_tashou, R.string.futton_fukidemono_tashou_desc,
+            Jutsu.Type.ATK,
+            Arrays.asList(
+                    new Requirement() {
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getElement() == Element.FUUTON;
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.label_element, Element.FUUTON.name);
+                        }
+                    },
+                    new Requirement() {
+                        public int getValue() {
+                            return 4;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getGraduationId() >= getValue();
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_grade,
+                                    context.getString(GraduationUtils.getName(getValue())));
+                        }
+                    },
+                    new Requirement() {
+
+                        @Override
+                        public Object value() {
+                            return 26;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getAttributes().getIntelligence() >= value(folded);
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_points,
+                                    value(folded), context.getString(Attribute.INTE.name)
+                            );
+                        }
+                    },
+                    new Requirement() {
+
+                        @Override
+                        public Object value() {
+                            return 35;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            int points = CharOn.character.getClasse() == Classe.NIN ||
+                                    CharOn.character.getClasse() == Classe.GEN ?
+                                    CharOn.character.getClassPoints() :
+                                    CharOn.character.getAttributes().getNinjutsu();
+                            return points >= value(folded);
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_points,
+                                    value(folded),
+                                    CharOn.character.getClasse() == Classe.NIN ||
+                                            CharOn.character.getClasse() == Classe.GEN ?
+                                            CharOn.character.getClasse().name : Classe.NIN.name);
+                        }
+                    }
+            )),
+    FUTTON_TASHOU_KOUTETSU("tashou-koutetsu.jpg", R.string.futton_tashou_koutetsu, R.string.futton_tashou_koutetsu_desc,
+            Jutsu.Type.ATK,
+            Arrays.asList(
+                    new Requirement() {
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getElement() == Element.FUUTON;
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.label_element, Element.FUUTON.name);
+                        }
+                    },
+                    new Requirement() {
+                        public int getValue() {
+                            return 4;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getGraduationId() >= getValue();
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_grade,
+                                    context.getString(GraduationUtils.getName(getValue())));
+                        }
+                    },
+                    new Requirement() {
+
+                        @Override
+                        public Object value() {
+                            return 29;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getAttributes().getIntelligence() >= value(folded);
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_points,
+                                    value(folded), context.getString(Attribute.INTE.name)
+                            );
+                        }
+                    },
+                    new Requirement() {
+
+                        @Override
+                        public Object value() {
+                            return 39;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            int points = CharOn.character.getClasse() == Classe.NIN ||
+                                    CharOn.character.getClasse() == Classe.GEN ?
+                                    CharOn.character.getClassPoints() :
+                                    CharOn.character.getAttributes().getNinjutsu();
+                            return points >= value(folded);
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_points,
+                                    value(folded),
+                                    CharOn.character.getClasse() == Classe.NIN ||
+                                            CharOn.character.getClasse() == Classe.GEN ?
+                                            CharOn.character.getClasse().name : Classe.NIN.name);
+                        }
+                    }
+            )),
+    FUTTON_JOUKI_KIKKU("jouki-kikku.jpg", R.string.futton_jouki_kikku, R.string.futton_jouki_kikku_desc,
+            Jutsu.Type.ATK,
+            Arrays.asList(
+                    new Requirement() {
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getElement() == Element.FUUTON;
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.label_element, Element.FUUTON.name);
+                        }
+                    },
+                    new Requirement() {
+                        public int getValue() {
+                            return 5;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getGraduationId() >= getValue();
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_grade,
+                                    context.getString(GraduationUtils.getName(getValue())));
+                        }
+                    },
+                    new Requirement() {
+
+                        @Override
+                        public Object value() {
+                            return 34;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getAttributes().getIntelligence() >= value(folded);
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_points,
+                                    value(folded), context.getString(Attribute.INTE.name)
+                            );
+                        }
+                    },
+                    new Requirement() {
+
+                        @Override
+                        public Object value() {
+                            return 45;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            int points = CharOn.character.getClasse() == Classe.NIN ||
+                                    CharOn.character.getClasse() == Classe.GEN ?
+                                    CharOn.character.getClassPoints() :
+                                    CharOn.character.getAttributes().getNinjutsu();
+                            return points >= value(folded);
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_points,
+                                    value(folded),
+                                    CharOn.character.getClasse() == Classe.NIN ||
+                                            CharOn.character.getClasse() == Classe.GEN ?
+                                            CharOn.character.getClasse().name : Classe.NIN.name);
+                        }
+                    }
+            )),
+    FUTTON_KOUMU_NO_JUTSU("koumu-jutsu.jpg", R.string.futton_koumu_no_jutsu, R.string.futton_koumu_no_jutsu_desc,
+            Jutsu.Type.ATK,
+            Arrays.asList(
+                    new Requirement() {
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getElement() == Element.FUUTON;
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.label_element, Element.FUUTON.name);
+                        }
+                    },
+                    new Requirement() {
+                        public int getValue() {
+                            return 5;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getGraduationId() >= getValue();
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_grade,
+                                    context.getString(GraduationUtils.getName(getValue())));
+                        }
+                    },
+                    new Requirement() {
+
+                        @Override
+                        public Object value() {
+                            return 37;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getAttributes().getIntelligence() >= value(folded);
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_points,
+                                    value(folded), context.getString(Attribute.INTE.name)
+                            );
+                        }
+                    },
+                    new Requirement() {
+
+                        @Override
+                        public Object value() {
+                            return 49;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            int points = CharOn.character.getClasse() == Classe.NIN ||
+                                    CharOn.character.getClasse() == Classe.GEN ?
+                                    CharOn.character.getClassPoints() :
+                                    CharOn.character.getAttributes().getNinjutsu();
+                            return points >= value(folded);
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_points,
+                                    value(folded),
+                                    CharOn.character.getClasse() == Classe.NIN ||
+                                            CharOn.character.getClasse() == Classe.GEN ?
+                                            CharOn.character.getClasse().name : Classe.NIN.name);
+                        }
+                    }
+            )),
+    FUTTON_HAGESHII_FUTTOU("hageshii-futtou.jpg", R.string.futton_hageshii_futtou, R.string.futton_hageshii_futtou_desc,
+            Jutsu.Type.ATK,
+            Arrays.asList(
+                    new Requirement() {
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getElement() == Element.FUUTON;
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.label_element, Element.FUUTON.name);
+                        }
+                    },
+                    new Requirement() {
+                        public int getValue() {
+                            return 6;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getGraduationId() >= getValue();
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_grade,
+                                    context.getString(GraduationUtils.getName(getValue())));
+                        }
+                    },
+                    new Requirement() {
+
+                        @Override
+                        public Object value() {
+                            return 41;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getAttributes().getIntelligence() >= value(folded);
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_points,
+                                    value(folded), context.getString(Attribute.INTE.name)
+                            );
+                        }
+                    },
+                    new Requirement() {
+
+                        @Override
+                        public Object value() {
+                            return 55;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            int points = CharOn.character.getClasse() == Classe.NIN ||
+                                    CharOn.character.getClasse() == Classe.GEN ?
+                                    CharOn.character.getClassPoints() :
+                                    CharOn.character.getAttributes().getNinjutsu();
+                            return points >= value(folded);
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_points,
+                                    value(folded),
+                                    CharOn.character.getClasse() == Classe.NIN ||
+                                            CharOn.character.getClasse() == Classe.GEN ?
+                                            CharOn.character.getClasse().name : Classe.NIN.name);
+                        }
+                    }
+            )),
+
+    //----------------------------------
+    ENTON_KOKUEN_NO_TATE("kokuen-tate.jpg", R.string.enton_kokuen_no_tate, R.string.enton_kokuen_no_tate_desc,
+            Jutsu.Type.ATK,
+            Arrays.asList(
+                    new Requirement() {
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getElement() == Element.KATON;
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.label_element, Element.KATON.name);
+                        }
+                    },
+                    new Requirement() {
+                        public int getValue() {
+                            return 4;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getGraduationId() >= getValue();
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_grade,
+                                    context.getString(GraduationUtils.getName(getValue())));
+                        }
+                    },
+                    new Requirement() {
+
+                        @Override
+                        public Object value() {
+                            return 26;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getAttributes().getIntelligence() >= value(folded);
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_points,
+                                    value(folded), context.getString(Attribute.INTE.name)
+                            );
+                        }
+                    },
+                    new Requirement() {
+
+                        @Override
+                        public Object value() {
+                            return 35;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            int points = CharOn.character.getClasse() == Classe.NIN ||
+                                    CharOn.character.getClasse() == Classe.GEN ?
+                                    CharOn.character.getClassPoints() :
+                                    CharOn.character.getAttributes().getNinjutsu();
+                            return points >= value(folded);
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_points,
+                                    value(folded),
+                                    CharOn.character.getClasse() == Classe.NIN ||
+                                            CharOn.character.getClasse() == Classe.GEN ?
+                                            CharOn.character.getClasse().name : Classe.NIN.name);
+                        }
+                    }
+            )),
+    ENTON_KURO_HISAKI_NO_JUTSU("kuro-hisaki-jutsu.jpg", R.string.enton_kuro_hisaki_no_jutsu, R.string.enton_kuro_hisaki_no_jutsu_desc,
+            Jutsu.Type.ATK,
+            Arrays.asList(
+                    new Requirement() {
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getElement() == Element.KATON;
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.label_element, Element.KATON.name);
+                        }
+                    },
+                    new Requirement() {
+                        public int getValue() {
+                            return 4;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getGraduationId() >= getValue();
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_grade,
+                                    context.getString(GraduationUtils.getName(getValue())));
+                        }
+                    },
+                    new Requirement() {
+
+                        @Override
+                        public Object value() {
+                            return 29;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getAttributes().getIntelligence() >= value(folded);
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_points,
+                                    value(folded), context.getString(Attribute.INTE.name)
+                            );
+                        }
+                    },
+                    new Requirement() {
+
+                        @Override
+                        public Object value() {
+                            return 39;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            int points = CharOn.character.getClasse() == Classe.NIN ||
+                                    CharOn.character.getClasse() == Classe.GEN ?
+                                    CharOn.character.getClassPoints() :
+                                    CharOn.character.getAttributes().getNinjutsu();
+                            return points >= value(folded);
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_points,
+                                    value(folded),
+                                    CharOn.character.getClasse() == Classe.NIN ||
+                                            CharOn.character.getClasse() == Classe.GEN ?
+                                            CharOn.character.getClasse().name : Classe.NIN.name);
+                        }
+                    }
+            )),
+    ENTON_KAGUTSUCHI("kagutsuchi.jpg", R.string.enton_kagutsuchi, R.string.enton_kagutsuchi_desc,
+            Jutsu.Type.ATK,
+            Arrays.asList(
+                    new Requirement() {
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getElement() == Element.KATON;
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.label_element, Element.KATON.name);
+                        }
+                    },
+                    new Requirement() {
+                        public int getValue() {
+                            return 5;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getGraduationId() >= getValue();
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_grade,
+                                    context.getString(GraduationUtils.getName(getValue())));
+                        }
+                    },
+                    new Requirement() {
+
+                        @Override
+                        public Object value() {
+                            return 34;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getAttributes().getIntelligence() >= value(folded);
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_points,
+                                    value(folded), context.getString(Attribute.INTE.name)
+                            );
+                        }
+                    },
+                    new Requirement() {
+
+                        @Override
+                        public Object value() {
+                            return 45;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            int points = CharOn.character.getClasse() == Classe.NIN ||
+                                    CharOn.character.getClasse() == Classe.GEN ?
+                                    CharOn.character.getClassPoints() :
+                                    CharOn.character.getAttributes().getNinjutsu();
+                            return points >= value(folded);
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_points,
+                                    value(folded),
+                                    CharOn.character.getClasse() == Classe.NIN ||
+                                            CharOn.character.getClasse() == Classe.GEN ?
+                                            CharOn.character.getClasse().name : Classe.NIN.name);
+                        }
+                    }
+            )),
+    ENTON_KURO_MAGATAMA("kuro-magatama.jpg", R.string.enton_kuro_magatama, R.string.enton_kuro_magatama_desc,
+            Jutsu.Type.ATK,
+            Arrays.asList(
+                    new Requirement() {
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getElement() == Element.KATON;
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.label_element, Element.KATON.name);
+                        }
+                    },
+                    new Requirement() {
+                        public int getValue() {
+                            return 5;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getGraduationId() >= getValue();
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_grade,
+                                    context.getString(GraduationUtils.getName(getValue())));
+                        }
+                    },
+                    new Requirement() {
+
+                        @Override
+                        public Object value() {
+                            return 37;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getAttributes().getIntelligence() >= value(folded);
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_points,
+                                    value(folded), context.getString(Attribute.INTE.name)
+                            );
+                        }
+                    },
+                    new Requirement() {
+
+                        @Override
+                        public Object value() {
+                            return 49;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            int points = CharOn.character.getClasse() == Classe.NIN ||
+                                    CharOn.character.getClasse() == Classe.GEN ?
+                                    CharOn.character.getClassPoints() :
+                                    CharOn.character.getAttributes().getNinjutsu();
+                            return points >= value(folded);
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_points,
+                                    value(folded),
+                                    CharOn.character.getClasse() == Classe.NIN ||
+                                            CharOn.character.getClasse() == Classe.GEN ?
+                                            CharOn.character.getClasse().name : Classe.NIN.name);
+                        }
+                    }
+            )),
+    ENTON_KOURIN_SHIPPUU_SHIKKOKU_NO_YA_ZEROSHIKI("kourin-shippuu.jpg", R.string.enton_kourin_shippuu_shikkoku_no_ya_zeroshiki, R.string.enton_kourin_shippuu_shikkoku_no_ya_zeroshiki_desc,
+            Jutsu.Type.ATK,
+            Arrays.asList(
+                    new Requirement() {
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getElement() == Element.KATON;
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.label_element, Element.KATON.name);
+                        }
+                    },
+                    new Requirement() {
+                        public int getValue() {
+                            return 6;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getGraduationId() >= getValue();
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_grade,
+                                    context.getString(GraduationUtils.getName(getValue())));
+                        }
+                    },
+                    new Requirement() {
+
+                        @Override
+                        public Object value() {
+                            return 41;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getAttributes().getIntelligence() >= value(folded);
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_points,
+                                    value(folded), context.getString(Attribute.INTE.name)
+                            );
+                        }
+                    },
+                    new Requirement() {
+
+                        @Override
+                        public Object value() {
+                            return 55;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            int points = CharOn.character.getClasse() == Classe.NIN ||
+                                    CharOn.character.getClasse() == Classe.GEN ?
+                                    CharOn.character.getClassPoints() :
+                                    CharOn.character.getAttributes().getNinjutsu();
+                            return points >= value(folded);
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_points,
+                                    value(folded),
+                                    CharOn.character.getClasse() == Classe.NIN ||
+                                            CharOn.character.getClasse() == Classe.GEN ?
+                                            CharOn.character.getClasse().name : Classe.NIN.name);
+                        }
+                    }
+            )),
+
+    //----------------------------------
+    RANTON_KUROI_KAMINARI("kuroi-kaminari.jpg", R.string.ranton_kuroi_kaminari, R.string.ranton_kuroi_kaminari_desc,
+            Jutsu.Type.ATK,
+            Arrays.asList(
+                    new Requirement() {
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getElement() == Element.RAITON;
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.label_element, Element.RAITON.name);
+                        }
+                    },
+                    new Requirement() {
+                        public int getValue() {
+                            return 4;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getGraduationId() >= getValue();
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_grade,
+                                    context.getString(GraduationUtils.getName(getValue())));
+                        }
+                    },
+                    new Requirement() {
+
+                        @Override
+                        public Object value() {
+                            return 26;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getAttributes().getIntelligence() >= value(folded);
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_points,
+                                    value(folded), context.getString(Attribute.INTE.name)
+                            );
+                        }
+                    },
+                    new Requirement() {
+
+                        @Override
+                        public Object value() {
+                            return 35;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            int points = CharOn.character.getClasse() == Classe.NIN ||
+                                    CharOn.character.getClasse() == Classe.GEN ?
+                                    CharOn.character.getClassPoints() :
+                                    CharOn.character.getAttributes().getNinjutsu();
+                            return points >= value(folded);
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_points,
+                                    value(folded),
+                                    CharOn.character.getClasse() == Classe.NIN ||
+                                            CharOn.character.getClasse() == Classe.GEN ?
+                                            CharOn.character.getClasse().name : Classe.NIN.name);
+                        }
+                    }
+            )),
+    RANTON_KUROPANSA("kuropansa.jpg", R.string.ranton_kuropansa, R.string.ranton_kuropansa_desc,
+            Jutsu.Type.ATK,
+            Arrays.asList(
+                    new Requirement() {
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getElement() == Element.RAITON;
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.label_element, Element.RAITON.name);
+                        }
+                    },
+                    new Requirement() {
+                        public int getValue() {
+                            return 4;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getGraduationId() >= getValue();
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_grade,
+                                    context.getString(GraduationUtils.getName(getValue())));
+                        }
+                    },
+                    new Requirement() {
+
+                        @Override
+                        public Object value() {
+                            return 26;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getAttributes().getIntelligence() >= value(folded);
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_points,
+                                    value(folded), context.getString(Attribute.INTE.name)
+                            );
+                        }
+                    },
+                    new Requirement() {
+
+                        @Override
+                        public Object value() {
+                            return 35;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            int points = CharOn.character.getClasse() == Classe.NIN ||
+                                    CharOn.character.getClasse() == Classe.GEN ?
+                                    CharOn.character.getClassPoints() :
+                                    CharOn.character.getAttributes().getNinjutsu();
+                            return points >= value(folded);
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_points,
+                                    value(folded),
+                                    CharOn.character.getClasse() == Classe.NIN ||
+                                            CharOn.character.getClasse() == Classe.GEN ?
+                                            CharOn.character.getClasse().name : Classe.NIN.name);
+                        }
+                    }
+            )),
+    RANTON_RAIUNKOUHA("raiunkouha.jpg", R.string.ranton_raiunkouha, R.string.ranton_raiunkouha_desc,
+            Jutsu.Type.ATK,
+            Arrays.asList(
+                    new Requirement() {
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getElement() == Element.RAITON;
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.label_element, Element.RAITON.name);
+                        }
+                    },
+                    new Requirement() {
+                        public int getValue() {
+                            return 5;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getGraduationId() >= getValue();
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_grade,
+                                    context.getString(GraduationUtils.getName(getValue())));
+                        }
+                    },
+                    new Requirement() {
+
+                        @Override
+                        public Object value() {
+                            return 34;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getAttributes().getIntelligence() >= value(folded);
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_points,
+                                    value(folded), context.getString(Attribute.INTE.name)
+                            );
+                        }
+                    },
+                    new Requirement() {
+
+                        @Override
+                        public Object value() {
+                            return 45;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            int points = CharOn.character.getClasse() == Classe.NIN ||
+                                    CharOn.character.getClasse() == Classe.GEN ?
+                                    CharOn.character.getClassPoints() :
+                                    CharOn.character.getAttributes().getNinjutsu();
+                            return points >= value(folded);
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_points,
+                                    value(folded),
+                                    CharOn.character.getClasse() == Classe.NIN ||
+                                            CharOn.character.getClasse() == Classe.GEN ?
+                                            CharOn.character.getClasse().name : Classe.NIN.name);
+                        }
+                    }
+            )),
+    RANTON_RANKIRYUU("rankiryuu.jpg", R.string.ranton_rankiryuu, R.string.ranton_rankiryuu_desc,
+            Jutsu.Type.ATK,
+            Arrays.asList(
+                    new Requirement() {
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getElement() == Element.RAITON;
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.label_element, Element.RAITON.name);
+                        }
+                    },
+                    new Requirement() {
+                        public int getValue() {
+                            return 5;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getGraduationId() >= getValue();
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_grade,
+                                    context.getString(GraduationUtils.getName(getValue())));
+                        }
+                    },
+                    new Requirement() {
+
+                        @Override
+                        public Object value() {
+                            return 37;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getAttributes().getIntelligence() >= value(folded);
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_points,
+                                    value(folded), context.getString(Attribute.INTE.name)
+                            );
+                        }
+                    },
+                    new Requirement() {
+
+                        @Override
+                        public Object value() {
+                            return 49;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            int points = CharOn.character.getClasse() == Classe.NIN ||
+                                    CharOn.character.getClasse() == Classe.GEN ?
+                                    CharOn.character.getClassPoints() :
+                                    CharOn.character.getAttributes().getNinjutsu();
+                            return points >= value(folded);
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_points,
+                                    value(folded),
+                                    CharOn.character.getClasse() == Classe.NIN ||
+                                            CharOn.character.getClasse() == Classe.GEN ?
+                                            CharOn.character.getClasse().name : Classe.NIN.name);
+                        }
+                    }
+            )),
+    RANTON_REIZAA_SAAKASU("reizaa-saakasu.jpg", R.string.ranton_reizaa_saakasu, R.string.ranton_reizaa_saakasu_desc,
+            Jutsu.Type.ATK,
+            Arrays.asList(
+                    new Requirement() {
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getElement() == Element.RAITON;
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.label_element, Element.RAITON.name);
+                        }
+                    },
+                    new Requirement() {
+                        public int getValue() {
+                            return 6;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getGraduationId() >= getValue();
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_grade,
+                                    context.getString(GraduationUtils.getName(getValue())));
+                        }
+                    },
+                    new Requirement() {
+
+                        @Override
+                        public Object value() {
+                            return 41;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getAttributes().getIntelligence() >= value(folded);
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_points,
+                                    value(folded), context.getString(Attribute.INTE.name)
+                            );
+                        }
+                    },
+                    new Requirement() {
+
+                        @Override
+                        public Object value() {
+                            return 55;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            int points = CharOn.character.getClasse() == Classe.NIN ||
+                                    CharOn.character.getClasse() == Classe.GEN ?
+                                    CharOn.character.getClassPoints() :
+                                    CharOn.character.getAttributes().getNinjutsu();
+                            return points >= value(folded);
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_points,
+                                    value(folded),
+                                    CharOn.character.getClasse() == Classe.NIN ||
+                                            CharOn.character.getClasse() == Classe.GEN ?
+                                            CharOn.character.getClasse().name : Classe.NIN.name);
+                        }
+                    }
+            )),
+
+    //----------------------------------
+    MOKUTON_DAIJURIN_NO_JUTSU("daijurin-jutsu.jpg", R.string.mokuton_daijurin_no_jutsu, R.string.mokuton_daijurin_no_jutsu_desc,
+            Jutsu.Type.ATK,
+            Arrays.asList(
+                    new Requirement() {
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getElement() == Element.DOTON;
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.label_element, Element.DOTON.name);
+                        }
+                    },
+                    new Requirement() {
+                        public int getValue() {
+                            return 4;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getGraduationId() >= getValue();
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_grade,
+                                    context.getString(GraduationUtils.getName(getValue())));
+                        }
+                    },
+                    new Requirement() {
+
+                        @Override
+                        public Object value() {
+                            return 26;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getAttributes().getIntelligence() >= value(folded);
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_points,
+                                    value(folded), context.getString(Attribute.INTE.name)
+                            );
+                        }
+                    },
+                    new Requirement() {
+
+                        @Override
+                        public Object value() {
+                            return 35;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            int points = CharOn.character.getClasse() == Classe.NIN ||
+                                    CharOn.character.getClasse() == Classe.GEN ?
+                                    CharOn.character.getClassPoints() :
+                                    CharOn.character.getAttributes().getNinjutsu();
+                            return points >= value(folded);
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_points,
+                                    value(folded),
+                                    CharOn.character.getClasse() == Classe.NIN ||
+                                            CharOn.character.getClasse() == Classe.GEN ?
+                                            CharOn.character.getClasse().name : Classe.NIN.name);
+                        }
+                    }
+            )),
+    MOKUTON_MOKUJOUHEKI("mokujouheki.jpg", R.string.mokuton_mokujouheki, R.string.mokuton_mokujouheki_desc,
+            Jutsu.Type.ATK,
+            Arrays.asList(
+                    new Requirement() {
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getElement() == Element.DOTON;
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.label_element, Element.DOTON.name);
+                        }
+                    },
+                    new Requirement() {
+                        public int getValue() {
+                            return 4;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getGraduationId() >= getValue();
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_grade,
+                                    context.getString(GraduationUtils.getName(getValue())));
+                        }
+                    },
+                    new Requirement() {
+
+                        @Override
+                        public Object value() {
+                            return 29;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getAttributes().getIntelligence() >= value(folded);
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_points,
+                                    value(folded), context.getString(Attribute.INTE.name)
+                            );
+                        }
+                    },
+                    new Requirement() {
+
+                        @Override
+                        public Object value() {
+                            return 39;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            int points = CharOn.character.getClasse() == Classe.NIN ||
+                                    CharOn.character.getClasse() == Classe.GEN ?
+                                    CharOn.character.getClassPoints() :
+                                    CharOn.character.getAttributes().getNinjutsu();
+                            return points >= value(folded);
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_points,
+                                    value(folded),
+                                    CharOn.character.getClasse() == Classe.NIN ||
+                                            CharOn.character.getClasse() == Classe.GEN ?
+                                            CharOn.character.getClasse().name : Classe.NIN.name);
+                        }
+                    }
+            )),
+    MOKUTON_JUBAKU_EISOU("jubaku-eisou.jpg", R.string.mokuton_jubaku_eisou, R.string.mokuton_jubaku_eisou_desc,
+            Jutsu.Type.ATK,
+            Arrays.asList(
+                    new Requirement() {
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getElement() == Element.DOTON;
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.label_element, Element.DOTON.name);
+                        }
+                    },
+                    new Requirement() {
+                        public int getValue() {
+                            return 5;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getGraduationId() >= getValue();
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_grade,
+                                    context.getString(GraduationUtils.getName(getValue())));
+                        }
+                    },
+                    new Requirement() {
+
+                        @Override
+                        public Object value() {
+                            return 34;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getAttributes().getIntelligence() >= value(folded);
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_points,
+                                    value(folded), context.getString(Attribute.INTE.name)
+                            );
+                        }
+                    },
+                    new Requirement() {
+
+                        @Override
+                        public Object value() {
+                            return 45;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            int points = CharOn.character.getClasse() == Classe.NIN ||
+                                    CharOn.character.getClasse() == Classe.GEN ?
+                                    CharOn.character.getClassPoints() :
+                                    CharOn.character.getAttributes().getNinjutsu();
+                            return points >= value(folded);
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_points,
+                                    value(folded),
+                                    CharOn.character.getClasse() == Classe.NIN ||
+                                            CharOn.character.getClasse() == Classe.GEN ?
+                                            CharOn.character.getClasse().name : Classe.NIN.name);
+                        }
+                    }
+            )),
+    MOKUTON_MOKUJIN_NO_JUTSU("mokujin.jpg", R.string.mokuton_mokujin_no_jutsu, R.string.mokuton_mokujin_no_jutsu_desc,
+            Jutsu.Type.ATK,
+            Arrays.asList(
+                    new Requirement() {
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getElement() == Element.DOTON;
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.label_element, Element.DOTON.name);
+                        }
+                    },
+                    new Requirement() {
+                        public int getValue() {
+                            return 5;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getGraduationId() >= getValue();
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_grade,
+                                    context.getString(GraduationUtils.getName(getValue())));
+                        }
+                    },
+                    new Requirement() {
+
+                        @Override
+                        public Object value() {
+                            return 37;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getAttributes().getIntelligence() >= value(folded);
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_points,
+                                    value(folded), context.getString(Attribute.INTE.name)
+                            );
+                        }
+                    },
+                    new Requirement() {
+
+                        @Override
+                        public Object value() {
+                            return 49;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            int points = CharOn.character.getClasse() == Classe.NIN ||
+                                    CharOn.character.getClasse() == Classe.GEN ?
+                                    CharOn.character.getClassPoints() :
+                                    CharOn.character.getAttributes().getNinjutsu();
+                            return points >= value(folded);
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_points,
+                                    value(folded),
+                                    CharOn.character.getClasse() == Classe.NIN ||
+                                            CharOn.character.getClasse() == Classe.GEN ?
+                                            CharOn.character.getClasse().name : Classe.NIN.name);
+                        }
+                    }
+            )),
+    MOKUTON_SHIN_SUUSENJU("suusenju.jpg", R.string.mokuton_shin_suusenju, R.string.mokuton_shin_suusenju_desc,
+            Jutsu.Type.ATK,
+            Arrays.asList(
+                    new Requirement() {
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getElement() == Element.DOTON;
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.label_element, Element.DOTON.name);
+                        }
+                    },
+                    new Requirement() {
+                        public int getValue() {
+                            return 6;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getGraduationId() >= getValue();
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_grade,
+                                    context.getString(GraduationUtils.getName(getValue())));
+                        }
+                    },
+                    new Requirement() {
+
+                        @Override
+                        public Object value() {
+                            return 41;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            return CharOn.character.getAttributes().getIntelligence() >= value(folded);
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_points,
+                                    value(folded), context.getString(Attribute.INTE.name)
+                            );
+                        }
+                    },
+                    new Requirement() {
+
+                        @Override
+                        public Object value() {
+                            return 55;
+                        }
+
+                        @Override
+                        public boolean check(boolean folded) {
+                            int points = CharOn.character.getClasse() == Classe.NIN ||
+                                    CharOn.character.getClasse() == Classe.GEN ?
+                                    CharOn.character.getClassPoints() :
+                                    CharOn.character.getAttributes().getNinjutsu();
+                            return points >= value(folded);
+                        }
+
+                        @Override
+                        public String toString(Context context, boolean folded) {
+                            return context.getString(R.string.requires_points,
+                                    value(folded),
+                                    CharOn.character.getClasse() == Classe.NIN ||
+                                            CharOn.character.getClasse() == Classe.GEN ?
+                                            CharOn.character.getClasse().name : Classe.NIN.name);
+                        }
+                    }
             ));
+
 
     public final String image;
 

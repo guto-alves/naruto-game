@@ -905,6 +905,61 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="sensei_genjutsu_no_kiri">Sensei Genjutsu no Kiri</string>
     <string name="sensei_genjutsu_no_kiri_desc">With this technique, the user creates a large mist around him to hide, like the Kirigakure no Jutsu, only much larger, and with the difference that people who get into this mist begin to hallucinate.</string>
 
+    <string name="hyouton_hyourou_no_jutsu">Hyouton • Hyourou no Jutsu</string>
+    <string name="hyouton_hyourou_no_jutsu_desc">The user can then trap their opponent within the ice by controlling its movements and completely surrounding them in the ice.</string>
+    <string name="hyouton_hissatsu_hyousou">Hyouton • Hissatsu Hyousou</string>
+    <string name="hyouton_hissatsu_hyousou_desc">The user unleashes giant spikes made of ice if they are endangered.</string>
+    <string name="hyouton_haryuu_mouko">Hyouton • Haryuu Mouko</string>
+    <string name="hyouton_haryuu_mouko_desc">This technique allows the user to manipulate preexisting ice and form it into a giant tiger, thus requiring a nearby source of ice in order to use this technique.</string>
+    <string name="hyouton_kokuryuu_boufuusetsu">Hyouton • Kokuryuu Boufuusetsu</string>
+    <string name="hyouton_kokuryuu_boufuusetsu_desc">After forming the needed hand seal Dotō will thrust his arm to send out a black ether-like dragon to strike his opponent.</string>
+    <string name="hyouton_makyou_hyoushou">Hyouton • Makyou Hyoushou</string>
+    <string name="hyouton_makyou_hyoushou_desc">The user creates several mirrors made &#8203;&#8203;of ice, and can jump from one mirror to the other at an amazing speed and can attack from within them.</string>
+
+    <string name="enton_kokuen_no_tate">Enton • Kokuen no Tate</string>
+    <string name="enton_kokuen_no_tate_desc">The flames surround the user with a shield of black fire. In addition to the damage it can inflict, this has the psychological effect of causing melee enemies to hesitate to attack him.</string>
+    <string name="enton_kuro_hisaki_no_jutsu">Enton • Kuro Hisaki no Jutsu</string>
+    <string name="enton_kuro_hisaki_no_jutsu_desc">The user creates several black flames around his attacks, which can hardly be extinguished when touch the enemy.</string>
+    <string name="enton_kagutsuchi">Enton • Kagutsuchi</string>
+    <string name="enton_kagutsuchi_desc">The user creates black flames with it he can create a barrier that not only shields him, but also burns and pierces any opponent that touches the flames.</string>
+    <string name="enton_kuro_magatama">Enton • Kuro Magatama</string>
+    <string name="enton_kuro_magatama_desc">Utilising the orb of black flames, the user is able to rapidly produce a number of magatama projectiles, which are composed entirely of the flames. Upon impact, victims of this technique are forcefully thrown off of their feet and quickly incinerated by the intense flames.</string>
+    <string name="enton_kourin_shippuu_shikkoku_no_ya_zeroshiki">Enton • Kourin Shippuu Shikkoku no Ya Zeroshiki</string>
+    <string name="enton_kourin_shippuu_shikkoku_no_ya_zeroshiki_desc">The user creates a Rasengan wind mixing with black flames and creates a huge Enton shuriken able to burn anything it touches.</string>
+
+    <string name="futton_fukidemono_tashou">Futton • Fukidemono Tashou</string>
+    <string name="futton_fukidemono_tashou_desc">Throws a small burst of steam that can burn the view of the enemy.</string>
+    <string name="futton_tashou_koutetsu">Futton • Tashou Koutetsu</string>
+    <string name="futton_tashou_koutetsu_desc">Creates an heat armor that melts everything that is close to the user.</string>
+    <string name="futton_jouki_kikku">Futton • Jouki Kikku</string>
+    <string name="futton_jouki_kikku_desc">A powerful Unleashes similar to flying kick Dynamic Kick, but with a powerful corrosive power.</string>
+    <string name="futton_koumu_no_jutsu">Futton • Koumu no Jutsu</string>
+    <string name="futton_koumu_no_jutsu_desc">Creates a cloud which the user  releases from his mouth. This cloud has extremely corrosive properties.</string>
+    <string name="futton_hageshii_futtou">Futton • Hageshii Futtou</string>
+    <string name="futton_hageshii_futtou_desc">Creates a dense mist that instantly corrodes any substance instead it focuses.</string>
+
+    <string name="mokuton_daijurin_no_jutsu">Mokuton • Daijurin no Jutsu</string>
+    <string name="mokuton_daijurin_no_jutsu_desc">A technique that changes one\'s own arm into big trees. Using chakra, the tissues are transformed into trees at the cellular level. Then, by activating the trees, stimulating them to grow rapidly, they lengthen at high speed and fork into many branches.</string>
+    <string name="mokuton_mokujouheki">Mokuton • Mokujouheki</string>
+    <string name="mokuton_mokujouheki_desc">Creates a massive wooden shell, used to block any attack or hide and counterattack the enemy.</string>
+    <string name="mokuton_jubaku_eisou">Mokuton • Jubaku Eisou</string>
+    <string name="mokuton_jubaku_eisou_desc">This technique lets the user summon a tree around their opponent to bind them. This technique is relatively powerful and holds opponents much more gracefully, with less of a strain on the user, because the user sinks them into the ground. Afterwards, the user can enclose the opponent so that their body implodes.</string>
+    <string name="mokuton_mokujin_no_jutsu">Mokuton • Mokujin no Jutsu</string>
+    <string name="mokuton_mokujin_no_jutsu_desc">The user creates a giant wooden golem with a dragon around, used to attack and suppress the chakra opponent.</string>
+    <string name="mokuton_shin_suusenju">Mokuton • Shin Suusenju</string>
+    <string name="mokuton_shin_suusenju_desc">You create a buddha with titanic proportions with a thousand hands on his back. It has immense strength and due to its size it is virtually impossible to hit the user.</string>
+
+    <string name="ranton_kuroi_kaminari">Ranton • Kuroi Kaminari</string>
+    <string name="ranton_kuroi_kaminari_desc">The user is surrounded by black lightning that are fired at the enemy in a deadly way.</string>
+    <string name="ranton_kuropansa">Ranton • Kuropansa</string>
+    <string name="ranton_kuropansa_desc">After generating black lightning from their body which takes the form of a panther, the user can manipulate it to affect multiple victims at once by electrocuting them.</string>
+    <string name="ranton_raiunkouha">Ranton • Raiunkouha</string>
+    <string name="ranton_raiunkouha_desc">The user generates a thick ring of thunderclouds and electricity around him, creating an offensive and defensive ward.</string>
+    <string name="ranton_rankiryuu">Ranton • Rankiryuu</string>
+    <string name="ranton_rankiryuu_desc">The user produces a massive thunder cloud capable of infinitely absorbing chakra to grow in size, strength and ferocity.</string>
+    <string name="ranton_reizaa_saakasu">Ranton • Reizaa Saakasu</string>
+    <string name="ranton_reizaa_saakasu_desc">Launches a lot of lightning from his hands, which can be controlled with the user\'s will, being practically homing attacks.</string>
+
     <string name="requires_points">Requires %d %s point(s)</string>
 
     <string name="about_the_ninja_jutsus_des">Learn new Jutsus to fight in duels and the best level for that scope the requirements of each jutsu.</string>

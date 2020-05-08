@@ -601,328 +601,222 @@ public class JutsuRepository {
     public void filterJutsus(Element element, Callback<List<Jutsu>> callback) {
         List<Jutsu> jutsus = new ArrayList<>();
 
-        final Classe PLAYER_CLASSE = CharOn.character.getClasse();
+        Classe classe = CharOn.character.getClasse() == Classe.NIN ||
+                CharOn.character.getClasse() == Classe.GEN ?
+                CharOn.character.getClasse() : Classe.NIN;
 
         if (element == Element.SUITON) {
-            if (PLAYER_CLASSE == Classe.NIN || PLAYER_CLASSE == Classe.GEN) {
-                // CHUUNIN
-                jutsus.add(new ElementalJutsu(JutsuInfo.SUITON_HAHONRYU.toString(), PLAYER_CLASSE,
-                        61, 0, 25, 70, 18, Element.SUITON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.SUITON_MIZU_KAMIKIRI.toString(), PLAYER_CLASSE,
-                        69, 0, 25, 79, 20, Element.SUITON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.SUITON_DAIBAKUFU_NO_JUTSU.toString(), PLAYER_CLASSE,
-                        75, 0, 25, 87, 22, Element.SUITON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.SUITON_HARAN_BANSHOU.toString(), PLAYER_CLASSE,
-                        83, 0, 25, 96, 24, Element.SUITON));
-                // JOUNIN
-                jutsus.add(new ElementalJutsu(JutsuInfo.SUITON_SUIJINHEKI.toString(), PLAYER_CLASSE,
-                        104, 0, 30, 120, 30, Element.SUITON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.SUITON_KIRIGAKURE_NO_JUTSU.toString(), PLAYER_CLASSE,
-                        116, 6, 30, 133, 33, Element.SUITON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.SUITON_MIZURAPPA.toString(), PLAYER_CLASSE,
-                        124, 0, 30, 142, 35, Element.SUITON));
-                // ANBU
-                jutsus.add(new ElementalJutsu(JutsuInfo.SUITON_SUIRYUUBEN.toString(), PLAYER_CLASSE,
-                        144, 0, 35, 166, 42, Element.SUITON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.SUITON_BAKUSUI_SHOUHA.toString(), PLAYER_CLASSE,
-                        155, 0, 35, 179, 45, Element.SUITON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.SUITON_SUIRYUUDAN_NO_JUTSU.toString(), PLAYER_CLASSE,
-                        165, 0, 35, 191, 48, Element.SUITON));
-                // LEAF SANNIN
-                jutsus.add(new ElementalJutsu(JutsuInfo.SUITON_SUIHOUKE.toString(), PLAYER_CLASSE,
-                        183, 0, 40, 212, 53, Element.SUITON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.SUITON_GOSHOKUZAME.toString(), PLAYER_CLASSE,
-                        195, 0, 40, 225, 56, Element.SUITON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.SUITON_SUIJINCHUU.toString(), PLAYER_CLASSE,
-                        205, 0, 40, 237, 59, Element.SUITON));
-            } else { // PLAYER_CLASSE == TAI OR BUK
-                // CHUUNIN
-                jutsus.add(new ElementalJutsu(JutsuInfo.SUITON_HAHONRYU.toString(), PLAYER_CLASSE,
-                        61, 0, 25, 18, 70, Element.SUITON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.SUITON_MIZU_KAMIKIRI.toString(), PLAYER_CLASSE,
-                        69, 0, 25, 20, 79, Element.SUITON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.SUITON_DAIBAKUFU_NO_JUTSU.toString(), PLAYER_CLASSE,
-                        75, 0, 25, 22, 87, Element.SUITON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.SUITON_HARAN_BANSHOU.toString(), PLAYER_CLASSE,
-                        83, 0, 25, 24, 96, Element.SUITON));
-                // JOUNIN
-                jutsus.add(new ElementalJutsu(JutsuInfo.SUITON_SUIJINHEKI.toString(), PLAYER_CLASSE,
-                        104, 0, 30, 30, 120, Element.SUITON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.SUITON_KIRIGAKURE_NO_JUTSU.toString(), PLAYER_CLASSE,
-                        116, 6, 30, 33, 133, Element.SUITON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.SUITON_MIZURAPPA.toString(), PLAYER_CLASSE,
-                        124, 0, 30, 35, 142, Element.SUITON));
-                // ANBU
-                jutsus.add(new ElementalJutsu(JutsuInfo.SUITON_SUIRYUUBEN.toString(), PLAYER_CLASSE,
-                        144, 0, 35, 42, 166, Element.SUITON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.SUITON_BAKUSUI_SHOUHA.toString(), PLAYER_CLASSE,
-                        155, 0, 35, 45, 179, Element.SUITON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.SUITON_SUIRYUUDAN_NO_JUTSU.toString(), PLAYER_CLASSE,
-                        165, 0, 35, 48, 191, Element.SUITON));
-                // LEAF SANNIN
-                jutsus.add(new ElementalJutsu(JutsuInfo.SUITON_SUIHOUKE.toString(), PLAYER_CLASSE,
-                        183, 0, 40, 53, 212, Element.SUITON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.SUITON_GOSHOKUZAME.toString(), PLAYER_CLASSE,
-                        195, 0, 40, 56, 225, Element.SUITON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.SUITON_SUIJINCHUU.toString(), PLAYER_CLASSE,
-                        205, 0, 40, 59, 237, Element.SUITON));
-            }
+            // CHUUNIN
+            jutsus.add(new ElementalJutsu(JutsuInfo.SUITON_HAHONRYU.toString(), classe,
+                    61, 0, 25, 70, 18, Element.SUITON));
+            jutsus.add(new ElementalJutsu(JutsuInfo.SUITON_MIZU_KAMIKIRI.toString(), classe,
+                    69, 0, 25, 79, 20, Element.SUITON));
+            jutsus.add(new ElementalJutsu(JutsuInfo.SUITON_DAIBAKUFU_NO_JUTSU.toString(), classe,
+                    75, 0, 25, 87, 22, Element.SUITON));
+            jutsus.add(new ElementalJutsu(JutsuInfo.SUITON_HARAN_BANSHOU.toString(), classe,
+                    83, 0, 25, 96, 24, Element.SUITON));
+            // JOUNIN
+            jutsus.add(new ElementalJutsu(JutsuInfo.SUITON_SUIJINHEKI.toString(), classe,
+                    104, 0, 30, 120, 30, Element.SUITON));
+            jutsus.add(new ElementalJutsu(JutsuInfo.SUITON_KIRIGAKURE_NO_JUTSU.toString(), classe,
+                    116, 6, 30, 133, 33, Element.SUITON));
+            jutsus.add(new ElementalJutsu(JutsuInfo.SUITON_MIZURAPPA.toString(), classe,
+                    124, 0, 30, 142, 35, Element.SUITON));
+            // ANBU
+            jutsus.add(new ElementalJutsu(JutsuInfo.HYOUTON_HYOUROU_NO_JUTSU.toString(), classe,
+                    138, 0, 35, 159, 40, Element.SUITON));
+            jutsus.add(new ElementalJutsu(JutsuInfo.SUITON_SUIRYUUBEN.toString(), classe,
+                    144, 0, 35, 166, 42, Element.SUITON));
+            jutsus.add(new ElementalJutsu(JutsuInfo.SUITON_BAKUSUI_SHOUHA.toString(), classe,
+                    155, 0, 35, 179, 45, Element.SUITON));
+            jutsus.add(new ElementalJutsu(JutsuInfo.HYOUTON_HISSATSU_HYOUSOU.toString(), classe,
+                    155, 0, 35, 179, 45, Element.SUITON));
+            jutsus.add(new ElementalJutsu(JutsuInfo.SUITON_SUIRYUUDAN_NO_JUTSU.toString(), classe,
+                    165, 0, 35, 191, 48, Element.SUITON));
+            // LEAF SANNIN
+            jutsus.add(new ElementalJutsu(JutsuInfo.HYOUTON_HARYUU_MOUKO.toString(), classe,
+                    181, 0, 40, 208, 52, Element.SUITON));
+            jutsus.add(new ElementalJutsu(JutsuInfo.SUITON_SUIHOUKE.toString(), classe,
+                    183, 0, 40, 212, 53, Element.SUITON));
+            jutsus.add(new ElementalJutsu(JutsuInfo.SUITON_GOSHOKUZAME.toString(), classe,
+                    195, 0, 40, 225, 56, Element.SUITON));
+            jutsus.add(new ElementalJutsu(JutsuInfo.HYOUTON_KOKURYUU_BOUFUUSETSU.toString(), classe,
+                    195, 0, 40, 225, 56, Element.SUITON));
+            jutsus.add(new ElementalJutsu(JutsuInfo.SUITON_SUIJINCHUU.toString(), classe,
+                    205, 0, 40, 237, 59, Element.SUITON));
+            // HERO
+            jutsus.add(new ElementalJutsu(JutsuInfo.HYOUTON_MAKYOU_HYOUSHOU.toString(), classe,
+                    220, 0, 40, 254, 63, Element.SUITON));
+
         } else if (element == Element.KATON) {
-            if (PLAYER_CLASSE == Classe.NIN || PLAYER_CLASSE == Classe.GEN) {
-                // CHUUNIN
-                jutsus.add(new ElementalJutsu(JutsuInfo.KATON_HOUSENKA_NO_JUTSU.toString(), PLAYER_CLASSE,
-                        61, 0, 25, 70, 18, Element.KATON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.KATON_KASUMI_ENBU_NO_JUTSU.toString(), PLAYER_CLASSE,
-                        69, 0, 25, 79, 20, Element.KATON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.KATON_GOUKAKYUU_CHAKRA_NO_JUTSU.toString(), PLAYER_CLASSE,
-                        75, 0, 25, 87, 22, Element.KATON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.KATON_BUSHIN_KATAI.toString(), PLAYER_CLASSE,
-                        83, 0, 25, 96, 24, Element.KATON));
-                // JOUNIN
-                jutsus.add(new ElementalJutsu(JutsuInfo.KATON_KAIZEN_NO_JUTSU.toString(), PLAYER_CLASSE,
-                        104, 0, 30, 120, 30, Element.KATON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.KATON_ENDAN_NO_JUTSU.toString(), PLAYER_CLASSE,
-                        116, 6, 30, 133, 33, Element.KATON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.KATON_RYUUKA_NO_JUTSU.toString(), PLAYER_CLASSE,
-                        124, 0, 30, 142, 35, Element.KATON));
-                // ANBU
-                jutsus.add(new ElementalJutsu(JutsuInfo.KATON_RYUUEN_HOUKA_NO_JUTSU.toString(), PLAYER_CLASSE,
-                        144, 0, 35, 166, 42, Element.KATON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.KATON_HIBASHIRI.toString(), PLAYER_CLASSE,
-                        155, 0, 35, 179, 45, Element.KATON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.KATON_NINPOU_HIBASHIRI.toString(), PLAYER_CLASSE,
-                        165, 0, 35, 191, 48, Element.KATON));
-                // LEAF SANNIN
-                jutsus.add(new ElementalJutsu(JutsuInfo.KATON_SOUENSHOU.toString(), PLAYER_CLASSE,
-                        183, 0, 40, 212, 53, Element.KATON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.KATON_GOUKA_MEKKYAKU.toString(), PLAYER_CLASSE,
-                        195, 0, 40, 225, 56, Element.KATON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.KATON_KAKOKUU.toString(), PLAYER_CLASSE,
-                        205, 0, 40, 237, 59, Element.KATON));
-            } else { // PLAYER_CLASSE == TAI OR BUK
-                // CHUUNIN
-                jutsus.add(new ElementalJutsu(JutsuInfo.KATON_HOUSENKA_NO_JUTSU.toString(), PLAYER_CLASSE,
-                        61, 0, 25, 18, 70, Element.KATON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.KATON_KASUMI_ENBU_NO_JUTSU.toString(), PLAYER_CLASSE,
-                        69, 0, 25, 20, 79, Element.KATON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.KATON_GOUKAKYUU_CHAKRA_NO_JUTSU.toString(), PLAYER_CLASSE,
-                        75, 0, 25, 22, 87, Element.KATON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.KATON_BUSHIN_KATAI.toString(), PLAYER_CLASSE,
-                        83, 0, 25, 24, 96, Element.KATON));
-                // JOUNIN
-                jutsus.add(new ElementalJutsu(JutsuInfo.KATON_KAIZEN_NO_JUTSU.toString(), PLAYER_CLASSE,
-                        104, 0, 30, 30, 120, Element.KATON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.KATON_ENDAN_NO_JUTSU.toString(), PLAYER_CLASSE,
-                        116, 6, 30, 33, 133, Element.KATON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.KATON_RYUUKA_NO_JUTSU.toString(), PLAYER_CLASSE,
-                        124, 0, 30, 35, 142, Element.KATON));
-                // ANBU
-                jutsus.add(new ElementalJutsu(JutsuInfo.KATON_RYUUEN_HOUKA_NO_JUTSU.toString(), PLAYER_CLASSE,
-                        144, 0, 35, 42, 166, Element.KATON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.KATON_HIBASHIRI.toString(), PLAYER_CLASSE,
-                        155, 0, 35, 45, 179, Element.KATON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.KATON_NINPOU_HIBASHIRI.toString(), PLAYER_CLASSE,
-                        165, 0, 35, 48, 191, Element.KATON));
-                // LEAF SANNIN
-                jutsus.add(new ElementalJutsu(JutsuInfo.KATON_SOUENSHOU.toString(), PLAYER_CLASSE,
-                        183, 0, 40, 53, 212, Element.KATON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.KATON_GOUKA_MEKKYAKU.toString(), PLAYER_CLASSE,
-                        195, 0, 40, 56, 225, Element.KATON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.KATON_KAKOKUU.toString(), PLAYER_CLASSE,
-                        205, 0, 40, 59, 237, Element.KATON));
-            }
+            // CHUUNIN
+            jutsus.add(new ElementalJutsu(JutsuInfo.KATON_HOUSENKA_NO_JUTSU.toString(), classe,
+                    61, 0, 25, 70, 18, Element.KATON));
+            jutsus.add(new ElementalJutsu(JutsuInfo.KATON_KASUMI_ENBU_NO_JUTSU.toString(), classe,
+                    69, 0, 25, 79, 20, Element.KATON));
+            jutsus.add(new ElementalJutsu(JutsuInfo.KATON_GOUKAKYUU_CHAKRA_NO_JUTSU.toString(), classe,
+                    75, 0, 25, 87, 22, Element.KATON));
+            jutsus.add(new ElementalJutsu(JutsuInfo.KATON_BUSHIN_KATAI.toString(), classe,
+                    83, 0, 25, 96, 24, Element.KATON));
+            // JOUNIN
+            jutsus.add(new ElementalJutsu(JutsuInfo.KATON_KAIZEN_NO_JUTSU.toString(), classe,
+                    104, 0, 30, 120, 30, Element.KATON));
+            jutsus.add(new ElementalJutsu(JutsuInfo.KATON_ENDAN_NO_JUTSU.toString(), classe,
+                    116, 6, 30, 133, 33, Element.KATON));
+            jutsus.add(new ElementalJutsu(JutsuInfo.KATON_RYUUKA_NO_JUTSU.toString(), classe,
+                    124, 0, 30, 142, 35, Element.KATON));
+            // ANBU
+            jutsus.add(new ElementalJutsu(JutsuInfo.ENTON_KOKUEN_NO_TATE.toString(), classe,
+                    138, 0, 35, 159, 40, Element.KATON));
+            jutsus.add(new ElementalJutsu(JutsuInfo.KATON_RYUUEN_HOUKA_NO_JUTSU.toString(), classe,
+                    144, 0, 35, 166, 42, Element.KATON));
+            jutsus.add(new ElementalJutsu(JutsuInfo.KATON_HIBASHIRI.toString(), classe,
+                    155, 0, 35, 179, 45, Element.KATON));
+            jutsus.add(new ElementalJutsu(JutsuInfo.ENTON_KURO_HISAKI_NO_JUTSU.toString(), classe,
+                    155, 0, 35, 179, 45, Element.KATON));
+            jutsus.add(new ElementalJutsu(JutsuInfo.KATON_NINPOU_HIBASHIRI.toString(), classe,
+                    165, 0, 35, 191, 48, Element.KATON));
+            // LEAF SANNIN
+            jutsus.add(new ElementalJutsu(JutsuInfo.ENTON_KAGUTSUCHI.toString(), classe,
+                    181, 0, 40, 208, 52, Element.KATON));
+            jutsus.add(new ElementalJutsu(JutsuInfo.KATON_SOUENSHOU.toString(), classe,
+                    183, 0, 40, 212, 53, Element.KATON));
+            jutsus.add(new ElementalJutsu(JutsuInfo.KATON_GOUKA_MEKKYAKU.toString(), classe,
+                    195, 0, 40, 225, 56, Element.KATON));
+            jutsus.add(new ElementalJutsu(JutsuInfo.ENTON_KURO_MAGATAMA.toString(), classe,
+                    195, 0, 40, 225, 56, Element.KATON));
+            jutsus.add(new ElementalJutsu(JutsuInfo.KATON_KAKOKUU.toString(), classe,
+                    205, 0, 40, 237, 59, Element.KATON));
+            // HERO
+            jutsus.add(new ElementalJutsu(JutsuInfo.ENTON_KOURIN_SHIPPUU_SHIKKOKU_NO_YA_ZEROSHIKI.toString(), classe,
+                    220, 0, 40, 254, 63, Element.KATON));
+
         } else if (element == Element.FUUTON) {
-            if (PLAYER_CLASSE == Classe.NIN || PLAYER_CLASSE == Classe.GEN) {
-                // CHUUNIN
-                jutsus.add(new ElementalJutsu(JutsuInfo.FUUTON_DAITOPPA.toString(), PLAYER_CLASSE,
-                        61, 0, 25, 70, 18, Element.FUUTON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.FUUTON_KAZE_SHURIKEN.toString(), PLAYER_CLASSE,
-                        69, 0, 25, 79, 20, Element.FUUTON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.FUUTON_SUIRAN_REPPU.toString(), PLAYER_CLASSE,
-                        75, 0, 25, 87, 22, Element.FUUTON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.FUUTON_KAZE_KIRI.toString(), PLAYER_CLASSE,
-                        83, 0, 25, 96, 24, Element.FUUTON));
-                // JOUNIN
-                jutsus.add(new ElementalJutsu(JutsuInfo.FUUTON_ATSUGA.toString(), PLAYER_CLASSE,
-                        104, 0, 30, 120, 30, Element.FUUTON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.FUUTON_JUUHA_SHOU.toString(), PLAYER_CLASSE,
-                        116, 6, 30, 133, 33, Element.FUUTON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.FUUTON_ZANKUUHA.toString(), PLAYER_CLASSE,
-                        124, 0, 30, 142, 35, Element.FUUTON));
-                // ANBU
-                jutsus.add(new ElementalJutsu(JutsuInfo.FUUTON_ZANKYOKUHAANA.toString(), PLAYER_CLASSE,
-                        144, 0, 35, 166, 42, Element.FUUTON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.FUUTON_REPPUSHOU.toString(), PLAYER_CLASSE,
-                        155, 0, 35, 179, 45, Element.FUUTON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.FUUTON_KAZE_SHUNSHIN_NO_JUTSU.toString(), PLAYER_CLASSE,
-                        165, 0, 35, 191, 48, Element.FUUTON));
-                // LEAF SANNIN
-                jutsus.add(new ElementalJutsu(JutsuInfo.FUUTON_KAZE_NO_YAIBA.toString(), PLAYER_CLASSE,
-                        183, 0, 40, 212, 53, Element.FUUTON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.FUUTON_KAMI_OROSHI.toString(), PLAYER_CLASSE,
-                        195, 0, 40, 225, 56, Element.FUUTON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.FUUTON_RASENSHURIKEN.toString(), PLAYER_CLASSE,
-                        205, 0, 40, 237, 59, Element.FUUTON));
-            } else { // PLAYER_CLASSE == TAI OR BUK
-                // CHUUNIN
-                jutsus.add(new ElementalJutsu(JutsuInfo.FUUTON_DAITOPPA.toString(), PLAYER_CLASSE,
-                        61, 0, 25, 18, 70, Element.FUUTON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.FUUTON_KAZE_SHURIKEN.toString(), PLAYER_CLASSE,
-                        69, 0, 25, 20, 79, Element.FUUTON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.FUUTON_SUIRAN_REPPU.toString(), PLAYER_CLASSE,
-                        75, 0, 25, 22, 87, Element.FUUTON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.FUUTON_KAZE_KIRI.toString(), PLAYER_CLASSE,
-                        83, 0, 25, 24, 96, Element.FUUTON));
-                // JOUNIN
-                jutsus.add(new ElementalJutsu(JutsuInfo.FUUTON_ATSUGA.toString(), PLAYER_CLASSE,
-                        104, 0, 30, 30, 120, Element.FUUTON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.FUUTON_JUUHA_SHOU.toString(), PLAYER_CLASSE,
-                        116, 6, 30, 33, 133, Element.FUUTON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.FUUTON_ZANKUUHA.toString(), PLAYER_CLASSE,
-                        124, 0, 30, 35, 142, Element.FUUTON));
-                // ANBU
-                jutsus.add(new ElementalJutsu(JutsuInfo.FUUTON_ZANKYOKUHAANA.toString(), PLAYER_CLASSE,
-                        144, 0, 35, 42, 166, Element.FUUTON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.FUUTON_REPPUSHOU.toString(), PLAYER_CLASSE,
-                        155, 0, 35, 45, 179, Element.FUUTON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.FUUTON_KAZE_SHUNSHIN_NO_JUTSU.toString(), PLAYER_CLASSE,
-                        165, 0, 35, 48, 191, Element.FUUTON));
-                // LEAF SANNIN
-                jutsus.add(new ElementalJutsu(JutsuInfo.FUUTON_KAZE_NO_YAIBA.toString(), PLAYER_CLASSE,
-                        183, 0, 40, 53, 212, Element.FUUTON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.FUUTON_KAMI_OROSHI.toString(), PLAYER_CLASSE,
-                        195, 0, 40, 56, 225, Element.FUUTON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.FUUTON_RASENSHURIKEN.toString(), PLAYER_CLASSE,
-                        205, 0, 40, 59, 237, Element.FUUTON));
-            }
+            // CHUUNIN
+            jutsus.add(new ElementalJutsu(JutsuInfo.FUUTON_DAITOPPA.toString(), classe,
+                    61, 0, 25, 70, 18, Element.FUUTON));
+            jutsus.add(new ElementalJutsu(JutsuInfo.FUUTON_KAZE_SHURIKEN.toString(), classe,
+                    69, 0, 25, 79, 20, Element.FUUTON));
+            jutsus.add(new ElementalJutsu(JutsuInfo.FUUTON_SUIRAN_REPPU.toString(), classe,
+                    75, 0, 25, 87, 22, Element.FUUTON));
+            jutsus.add(new ElementalJutsu(JutsuInfo.FUUTON_KAZE_KIRI.toString(), classe,
+                    83, 0, 25, 96, 24, Element.FUUTON));
+            // JOUNIN
+            jutsus.add(new ElementalJutsu(JutsuInfo.FUUTON_ATSUGA.toString(), classe,
+                    104, 0, 30, 120, 30, Element.FUUTON));
+            jutsus.add(new ElementalJutsu(JutsuInfo.FUUTON_JUUHA_SHOU.toString(), classe,
+                    116, 6, 30, 133, 33, Element.FUUTON));
+            jutsus.add(new ElementalJutsu(JutsuInfo.FUUTON_ZANKUUHA.toString(), classe,
+                    124, 0, 30, 142, 35, Element.FUUTON));
+            // ANBU
+            jutsus.add(new ElementalJutsu(JutsuInfo.FUTTON_FUKIDEMONO_TASHOU.toString(), classe,
+                    138, 0, 35, 159, 40, Element.FUUTON));
+            jutsus.add(new ElementalJutsu(JutsuInfo.FUUTON_ZANKYOKUHAANA.toString(), classe,
+                    144, 0, 35, 166, 42, Element.FUUTON));
+            jutsus.add(new ElementalJutsu(JutsuInfo.FUUTON_REPPUSHOU.toString(), classe,
+                    155, 0, 35, 179, 45, Element.FUUTON));
+            jutsus.add(new ElementalJutsu(JutsuInfo.FUTTON_TASHOU_KOUTETSU.toString(), classe,
+                    155, 0, 35, 179, 45, Element.FUUTON));
+            jutsus.add(new ElementalJutsu(JutsuInfo.FUUTON_KAZE_SHUNSHIN_NO_JUTSU.toString(), classe,
+                    165, 0, 35, 191, 48, Element.FUUTON));
+            // LEAF SANNIN
+            jutsus.add(new ElementalJutsu(JutsuInfo.FUTTON_JOUKI_KIKKU.toString(), classe,
+                    181, 0, 40, 208, 52, Element.FUUTON));
+            jutsus.add(new ElementalJutsu(JutsuInfo.FUUTON_KAZE_NO_YAIBA.toString(), classe,
+                    183, 0, 40, 212, 53, Element.FUUTON));
+            jutsus.add(new ElementalJutsu(JutsuInfo.FUUTON_KAMI_OROSHI.toString(), classe,
+                    195, 0, 40, 225, 56, Element.FUUTON));
+            jutsus.add(new ElementalJutsu(JutsuInfo.FUTTON_KOUMU_NO_JUTSU.toString(), classe,
+                    195, 0, 40, 225, 56, Element.FUUTON));
+            jutsus.add(new ElementalJutsu(JutsuInfo.FUUTON_RASENSHURIKEN.toString(), classe,
+                    205, 0, 40, 237, 59, Element.FUUTON));
+            // HERO
+            jutsus.add(new ElementalJutsu(JutsuInfo.FUTTON_HAGESHII_FUTTOU.toString(), classe,
+                    220, 0, 40, 254, 63, Element.FUUTON));
         } else if (element == Element.DOTON) {
-            if (PLAYER_CLASSE == Classe.NIN || PLAYER_CLASSE == Classe.GEN) {
-                // CHUUNIN
-                jutsus.add(new ElementalJutsu(JutsuInfo.DOTON_DOCHUU_EIGYO_NO_JUTSU.toString(), PLAYER_CLASSE,
-                        61, 0, 25, 70, 18, Element.DOTON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.DOTON_DOROKU_GAESHI.toString(), PLAYER_CLASSE,
-                        69, 0, 25, 79, 20, Element.DOTON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.DOTON_DORYUUHEKI.toString(), PLAYER_CLASSE,
-                        75, 0, 25, 87, 22, Element.DOTON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.DOTON_DORYOU_DANGO.toString(), PLAYER_CLASSE,
-                        83, 0, 25, 96, 24, Element.DOTON));
-                // JOUNIN
-                jutsus.add(new ElementalJutsu(JutsuInfo.DOTON_DORYUU_JOUHEKI.toString(), PLAYER_CLASSE,
-                        104, 0, 30, 120, 30, Element.DOTON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.DOTON_ARI_JIGOKU.toString(), PLAYER_CLASSE,
-                        116, 6, 30, 133, 33, Element.DOTON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.KATON_RYUUKA_NO_JUTSU.toString(), PLAYER_CLASSE,
-                        124, 0, 30, 142, 35, Element.DOTON));
-                // ANBU
-                jutsus.add(new ElementalJutsu(JutsuInfo.KATON_RYUUEN_HOUKA_NO_JUTSU.toString(), PLAYER_CLASSE,
-                        144, 0, 35, 166, 42, Element.DOTON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.KATON_HIBASHIRI.toString(), PLAYER_CLASSE,
-                        155, 0, 35, 179, 45, Element.DOTON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.KATON_NINPOU_HIBASHIRI.toString(), PLAYER_CLASSE,
-                        165, 0, 35, 191, 48, Element.DOTON));
-                // LEAF SANNIN
-                jutsus.add(new ElementalJutsu(JutsuInfo.KATON_SOUENSHOU.toString(), PLAYER_CLASSE,
-                        183, 0, 40, 212, 53, Element.DOTON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.KATON_GOUKA_MEKKYAKU.toString(), PLAYER_CLASSE,
-                        195, 0, 40, 225, 56, Element.DOTON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.KATON_KAKOKUU.toString(), PLAYER_CLASSE,
-                        205, 0, 40, 237, 59, Element.DOTON));
-            } else { // PLAYER_CLASSE == TAI OR BUK
-                // CHUUNIN
-                jutsus.add(new ElementalJutsu(JutsuInfo.DOTON_DOCHUU_EIGYO_NO_JUTSU.toString(), PLAYER_CLASSE,
-                        61, 0, 25, 18, 70, Element.DOTON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.DOTON_DOROKU_GAESHI.toString(), PLAYER_CLASSE,
-                        69, 0, 25, 20, 79, Element.DOTON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.DOTON_DORYUUHEKI.toString(), PLAYER_CLASSE,
-                        75, 0, 25, 22, 87, Element.DOTON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.DOTON_DORYOU_DANGO.toString(), PLAYER_CLASSE,
-                        83, 0, 25, 24, 96, Element.DOTON));
-                // JOUNIN
-                jutsus.add(new ElementalJutsu(JutsuInfo.DOTON_DORYUU_JOUHEKI.toString(), PLAYER_CLASSE,
-                        104, 0, 30, 30, 120, Element.DOTON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.DOTON_ARI_JIGOKU.toString(), PLAYER_CLASSE,
-                        116, 6, 30, 33, 133, Element.DOTON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.DOTON_KEKKAI_DOROU_DOUMU.toString(), PLAYER_CLASSE,
-                        124, 0, 30, 35, 142, Element.DOTON));
-                // ANBU
-                jutsus.add(new ElementalJutsu(JutsuInfo.DOTON_KOUKA_NO_JUTSU.toString(), PLAYER_CLASSE,
-                        144, 0, 35, 42, 166, Element.DOTON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.DOTON_RETSUDO_TENSHOU.toString(), PLAYER_CLASSE,
-                        155, 0, 35, 45, 179, Element.DOTON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.DOTON_OTOSHI_BUTA.toString(), PLAYER_CLASSE,
-                        165, 0, 35, 48, 191, Element.DOTON));
-                // LEAF SANNIN
-                jutsus.add(new ElementalJutsu(JutsuInfo.DOTON_EX_REPPUKEN_NO_JUTSU.toString(), PLAYER_CLASSE,
-                        183, 0, 40, 53, 212, Element.DOTON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.DOTON_DORO_HOUSHI.toString(), PLAYER_CLASSE,
-                        195, 0, 40, 56, 225, Element.DOTON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.DOTON_TSUCHI_KAIROU.toString(), PLAYER_CLASSE,
-                        205, 0, 40, 59, 237, Element.DOTON));
-            }
+            // CHUUNIN
+            jutsus.add(new ElementalJutsu(JutsuInfo.DOTON_DOCHUU_EIGYO_NO_JUTSU.toString(), classe,
+                    61, 0, 25, 70, 18, Element.DOTON));
+            jutsus.add(new ElementalJutsu(JutsuInfo.DOTON_DOROKU_GAESHI.toString(), classe,
+                    69, 0, 25, 79, 20, Element.DOTON));
+            jutsus.add(new ElementalJutsu(JutsuInfo.DOTON_DORYUUHEKI.toString(), classe,
+                    75, 0, 25, 87, 22, Element.DOTON));
+            jutsus.add(new ElementalJutsu(JutsuInfo.DOTON_DORYOU_DANGO.toString(), classe,
+                    83, 0, 25, 96, 24, Element.DOTON));
+            // JOUNIN
+            jutsus.add(new ElementalJutsu(JutsuInfo.DOTON_DORYUU_JOUHEKI.toString(), classe,
+                    104, 0, 30, 120, 30, Element.DOTON));
+            jutsus.add(new ElementalJutsu(JutsuInfo.DOTON_ARI_JIGOKU.toString(), classe,
+                    116, 6, 30, 133, 33, Element.DOTON));
+            jutsus.add(new ElementalJutsu(JutsuInfo.DOTON_KEKKAI_DOROU_DOUMU.toString(), classe,
+                    124, 0, 30, 142, 35, Element.DOTON));
+            // ANBU
+            jutsus.add(new ElementalJutsu(JutsuInfo.MOKUTON_DAIJURIN_NO_JUTSU.toString(), classe,
+                    138, 0, 35, 159, 40, Element.DOTON));
+            jutsus.add(new ElementalJutsu(JutsuInfo.DOTON_KOUKA_NO_JUTSU.toString(), classe,
+                    144, 0, 35, 166, 42, Element.DOTON));
+            jutsus.add(new ElementalJutsu(JutsuInfo.DOTON_RETSUDO_TENSHOU.toString(), classe,
+                    155, 0, 35, 179, 45, Element.DOTON));
+            jutsus.add(new ElementalJutsu(JutsuInfo.MOKUTON_MOKUJOUHEKI.toString(), classe,
+                    155, 0, 35, 179, 45, Element.DOTON));
+            jutsus.add(new ElementalJutsu(JutsuInfo.DOTON_OTOSHI_BUTA.toString(), classe,
+                    165, 0, 35, 191, 48, Element.DOTON));
+            // LEAF SANNIN
+            jutsus.add(new ElementalJutsu(JutsuInfo.MOKUTON_JUBAKU_EISOU.toString(), classe,
+                    181, 0, 40, 208, 52, Element.DOTON));
+            jutsus.add(new ElementalJutsu(JutsuInfo.DOTON_EX_REPPUKEN_NO_JUTSU.toString(), classe,
+                    183, 0, 40, 212, 53, Element.DOTON));
+            jutsus.add(new ElementalJutsu(JutsuInfo.DOTON_DORO_HOUSHI.toString(), classe,
+                    195, 0, 40, 225, 56, Element.DOTON));
+            jutsus.add(new ElementalJutsu(JutsuInfo.MOKUTON_MOKUJIN_NO_JUTSU.toString(), classe,
+                    195, 0, 40, 225, 56, Element.DOTON));
+            jutsus.add(new ElementalJutsu(JutsuInfo.DOTON_TSUCHI_KAIROU.toString(), classe,
+                    205, 0, 40, 237, 59, Element.DOTON));
+            // HERO
+            jutsus.add(new ElementalJutsu(JutsuInfo.MOKUTON_SHIN_SUUSENJU.toString(), classe,
+                    220, 0, 40, 254, 63, Element.DOTON));
         } else if (element == Element.RAITON) {
-            if (PLAYER_CLASSE == Classe.NIN || PLAYER_CLASSE == Classe.GEN) {
-                // CHUUNIN
-                jutsus.add(new ElementalJutsu(JutsuInfo.RAITON_ODORI_RAKURAI_NO_JUTSU.toString(), PLAYER_CLASSE,
-                        61, 0, 25, 70, 18, Element.RAITON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.RAITON_RAIKYUU.toString(), PLAYER_CLASSE,
-                        69, 0, 25, 79, 20, Element.RAITON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.RAITON_CHIDORI.toString(), PLAYER_CLASSE,
-                        75, 0, 25, 87, 22, Element.RAITON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.RAITON_RAIDEN.toString(), PLAYER_CLASSE,
-                        83, 0, 25, 96, 24, Element.RAITON));
-                // JOUNIN
-                jutsus.add(new ElementalJutsu(JutsuInfo.RAITON_CHIDORI_NAGASHI.toString(), PLAYER_CLASSE,
-                        104, 0, 30, 120, 30, Element.RAITON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.RAITON_MESHIRAI_NO_JUTSU.toString(), PLAYER_CLASSE,
-                        116, 6, 30, 133, 33, Element.RAITON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.RAITON_HABATEKU_CHIDORI.toString(), PLAYER_CLASSE,
-                        124, 0, 30, 142, 35, Element.RAITON));
-                // ANBU
-                jutsus.add(new ElementalJutsu(JutsuInfo.RAITON_CHIDORI_KOUKEN.toString(), PLAYER_CLASSE,
-                        144, 0, 35, 166, 42, Element.RAITON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.RAITON_RAIGEKI_NO_YOROI.toString(), PLAYER_CLASSE,
-                        155, 0, 35, 179, 45, Element.RAITON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.RAITON_CHIDORI_EISOU.toString(), PLAYER_CLASSE,
-                        165, 0, 35, 191, 48, Element.RAITON));
-                // LEAF SANNIN
-                jutsus.add(new ElementalJutsu(JutsuInfo.RAITON_SENBON_CHIDORI.toString(), PLAYER_CLASSE,
-                        183, 0, 40, 212, 53, Element.RAITON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.RAITON_KIRIN.toString(), PLAYER_CLASSE,
-                        195, 0, 40, 225, 56, Element.RAITON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.RAITON_LIMELIGHT.toString(), PLAYER_CLASSE,
-                        205, 0, 40, 237, 59, Element.RAITON));
-            } else { // PLAYER_CLASSE == TAI OR BUK
-                // CHUUNIN
-                jutsus.add(new ElementalJutsu(JutsuInfo.RAITON_ODORI_RAKURAI_NO_JUTSU.toString(), PLAYER_CLASSE,
-                        61, 0, 25, 18, 70, Element.RAITON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.RAITON_RAIKYUU.toString(), PLAYER_CLASSE,
-                        69, 0, 25, 20, 79, Element.RAITON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.RAITON_CHIDORI.toString(), PLAYER_CLASSE,
-                        75, 0, 25, 22, 87, Element.RAITON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.RAITON_RAIDEN.toString(), PLAYER_CLASSE,
-                        83, 0, 25, 24, 96, Element.RAITON));
-                // JOUNIN
-                jutsus.add(new ElementalJutsu(JutsuInfo.RAITON_CHIDORI_NAGASHI.toString(), PLAYER_CLASSE,
-                        104, 0, 30, 30, 120, Element.RAITON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.RAITON_MESHIRAI_NO_JUTSU.toString(), PLAYER_CLASSE,
-                        116, 6, 30, 33, 133, Element.RAITON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.RAITON_HABATEKU_CHIDORI.toString(), PLAYER_CLASSE,
-                        124, 0, 30, 35, 142, Element.RAITON));
-                // ANBU
-                jutsus.add(new ElementalJutsu(JutsuInfo.RAITON_CHIDORI_KOUKEN.toString(), PLAYER_CLASSE,
-                        144, 0, 35, 42, 166, Element.RAITON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.RAITON_RAIGEKI_NO_YOROI.toString(), PLAYER_CLASSE,
-                        155, 0, 35, 45, 179, Element.RAITON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.RAITON_CHIDORI_EISOU.toString(), PLAYER_CLASSE,
-                        165, 0, 35, 48, 191, Element.RAITON));
-                // LEAF SANNIN
-                jutsus.add(new ElementalJutsu(JutsuInfo.RAITON_SENBON_CHIDORI.toString(), PLAYER_CLASSE,
-                        183, 0, 40, 53, 212, Element.RAITON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.RAITON_KIRIN.toString(), PLAYER_CLASSE,
-                        195, 0, 40, 56, 225, Element.RAITON));
-                jutsus.add(new ElementalJutsu(JutsuInfo.RAITON_LIMELIGHT.toString(), PLAYER_CLASSE,
-                        205, 0, 40, 59, 237, Element.RAITON));
-            }
+            // CHUUNIN
+            jutsus.add(new ElementalJutsu(JutsuInfo.RAITON_ODORI_RAKURAI_NO_JUTSU.toString(), classe,
+                    61, 0, 25, 70, 18, Element.RAITON));
+            jutsus.add(new ElementalJutsu(JutsuInfo.RAITON_RAIKYUU.toString(), classe,
+                    69, 0, 25, 79, 20, Element.RAITON));
+            jutsus.add(new ElementalJutsu(JutsuInfo.RAITON_CHIDORI.toString(), classe,
+                    75, 0, 25, 87, 22, Element.RAITON));
+            jutsus.add(new ElementalJutsu(JutsuInfo.RAITON_RAIDEN.toString(), classe,
+                    83, 0, 25, 96, 24, Element.RAITON));
+            // JOUNIN
+            jutsus.add(new ElementalJutsu(JutsuInfo.RAITON_CHIDORI_NAGASHI.toString(), classe,
+                    104, 0, 30, 120, 30, Element.RAITON));
+            jutsus.add(new ElementalJutsu(JutsuInfo.RAITON_MESHIRAI_NO_JUTSU.toString(), classe,
+                    116, 6, 30, 133, 33, Element.RAITON));
+            jutsus.add(new ElementalJutsu(JutsuInfo.RAITON_HABATEKU_CHIDORI.toString(), classe,
+                    124, 0, 30, 142, 35, Element.RAITON));
+            // ANBU
+            jutsus.add(new ElementalJutsu(JutsuInfo.RANTON_KUROI_KAMINARI.toString(), classe,
+                    138, 0, 35, 159, 40, Element.RAITON));
+            jutsus.add(new ElementalJutsu(JutsuInfo.RAITON_CHIDORI_KOUKEN.toString(), classe,
+                    144, 0, 35, 166, 42, Element.RAITON));
+            jutsus.add(new ElementalJutsu(JutsuInfo.RAITON_RAIGEKI_NO_YOROI.toString(), classe,
+                    155, 0, 35, 179, 45, Element.RAITON));
+            jutsus.add(new ElementalJutsu(JutsuInfo.RANTON_KUROPANSA.toString(), classe,
+                    155, 0, 35, 179, 45, Element.RAITON));
+            jutsus.add(new ElementalJutsu(JutsuInfo.RAITON_CHIDORI_EISOU.toString(), classe,
+                    165, 0, 35, 191, 48, Element.RAITON));
+            // LEAF SANNIN
+            jutsus.add(new ElementalJutsu(JutsuInfo.RANTON_RAIUNKOUHA.toString(), classe,
+                    181, 0, 40, 208, 52, Element.RAITON));
+            jutsus.add(new ElementalJutsu(JutsuInfo.RAITON_SENBON_CHIDORI.toString(), classe,
+                    183, 0, 40, 212, 53, Element.RAITON));
+            jutsus.add(new ElementalJutsu(JutsuInfo.RAITON_KIRIN.toString(), classe,
+                    195, 0, 40, 225, 56, Element.RAITON));
+            jutsus.add(new ElementalJutsu(JutsuInfo.RANTON_RANKIRYUU.toString(), classe,
+                    195, 0, 40, 225, 56, Element.RAITON));
+            jutsus.add(new ElementalJutsu(JutsuInfo.RAITON_LIMELIGHT.toString(), classe,
+                    205, 0, 40, 237, 59, Element.RAITON));
+            // HERO
+            jutsus.add(new ElementalJutsu(JutsuInfo.RANTON_REIZAA_SAAKASU.toString(), classe,
+                    220, 0, 40, 254, 63, Element.RAITON));
         }
 
         removeRepeatedJutsus(jutsus, new ArrayList<>(CharOn.character.getElementalJutsus()));
