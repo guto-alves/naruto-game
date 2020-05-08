@@ -2390,5 +2390,6 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="failed_to_connect">Failed to Connect</string>
     <string name="failed_to_connect_description">Cannot connect to server.\nPlease check your network.</string>
     <string name="ok">Ok</string>
+    <string name="watch_video_to_leave_the_hospital">Watch video to leave the hospital</string>
 
 </resources>

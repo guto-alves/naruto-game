@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.gms.ads.AdRequest;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.databinding.FragmentRamemShopBinding;
 import com.gutotech.narutogame.ui.SectionFragment;
@@ -42,6 +43,10 @@ public class RamenShopFragment extends Fragment implements SectionFragment {
         viewModel.getShowWarningEvent().observe(getViewLifecycleOwner(), this::showWarningDialog);
 
         FragmentUtils.setSectionTitle(getActivity(), R.string.section_ramen_shop);
+
+        AdRequest adRequest = new AdRequest.Builder().build();
+        binding.adView.loadAd(adRequest);
+
         return binding.getRoot();
     }
 

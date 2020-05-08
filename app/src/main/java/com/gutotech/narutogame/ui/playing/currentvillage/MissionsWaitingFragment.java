@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
+import com.google.android.gms.ads.AdRequest;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.databinding.FragmentMissionsWaitingBinding;
 import com.gutotech.narutogame.ui.QuestionDialogFragment;
@@ -57,6 +58,9 @@ public class MissionsWaitingFragment extends Fragment implements SectionFragment
         mBinding.cancelButton.setOnClickListener(v -> showQuestionDialog());
 
         FragmentUtils.setSectionTitle(getActivity(), R.string.section_mission_status);
+
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mBinding.adView.loadAd(adRequest);
 
         return mBinding.getRoot();
     }

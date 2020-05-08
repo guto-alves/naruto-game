@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.google.android.gms.ads.AdRequest;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.databinding.FragmentNinjaLuckyBinding;
 import com.gutotech.narutogame.ui.SectionFragment;
@@ -54,6 +55,9 @@ public class NinjaLuckyFragment extends Fragment implements SectionFragment {
         mViewModel.getShowWarningDialogEvent().observe(getViewLifecycleOwner(), this::showWarningDialog);
 
         FragmentUtils.setSectionTitle(getActivity(), R.string.section_ninja_lucky);
+
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mBinding.adView.loadAd(adRequest);
 
         return mBinding.getRoot();
     }

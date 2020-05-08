@@ -39,8 +39,8 @@ public class ElementalJutsusFragment extends Fragment implements SectionFragment
         ElementalJutsusViewModel viewModel = new ViewModelProvider(this)
                 .get(ElementalJutsusViewModel.class);
 
-        mBinding = DataBindingUtil.inflate(inflater,
-                R.layout.fragment_elementals_jutsus, container, false);
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_elementals_jutsus,
+                container, false);
 
         mBinding.setLifecycleOwner(this);
         mBinding.setViewModel(viewModel);

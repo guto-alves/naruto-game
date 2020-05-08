@@ -22,6 +22,7 @@ import android.view.animation.AnimationUtils;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
+import com.google.android.gms.ads.AdRequest;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.databinding.FragmentAcademyJutsuBinding;
 import com.gutotech.narutogame.ui.SectionFragment;
@@ -103,6 +104,9 @@ public class AcademyJutsuFragment extends Fragment implements SectionFragment {
             });
             SoundUtil.play(getContext(), R.raw.attention2);
         });
+
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mBinding.adView.loadAd(adRequest);
 
         FragmentUtils.setSectionTitle(getActivity(), R.string.section_learned_jutsus);
         return mBinding.getRoot();

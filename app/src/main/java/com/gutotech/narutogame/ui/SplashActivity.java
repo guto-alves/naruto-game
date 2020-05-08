@@ -8,6 +8,7 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
 
+import com.google.android.gms.ads.MobileAds;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.network.NetworkUtils;
 import com.gutotech.narutogame.data.repository.AuthRepository;
@@ -30,6 +31,8 @@ public class SplashActivity extends AppCompatActivity {
             e.printStackTrace();
             System.exit(1);
         }
+
+        MobileAds.initialize(this, "ca-app-pub-3940256099942544~3347511713");
 
         mConnectionWarningDialog = WarningDialogFragment.newInstance(
                 this, R.string.communication_error, R.string.failed_to_connect_description,
@@ -69,7 +72,7 @@ public class SplashActivity extends AppCompatActivity {
                     mConnectionWarningDialog.show(getSupportFragmentManager());
                 }
             });
-        }, 2500);
+        }, 3000);
     }
 
 }

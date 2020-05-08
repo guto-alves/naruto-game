@@ -149,6 +149,23 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="51dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/msgContraintLayout">
+
+                <com.google.android.gms.ads.AdView
+                    android:id="@+id/adView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:adSize="BANNER"
+                    app:adUnitId="ca-app-pub-3940256099942544/6300978111" />
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/linearLayout17"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -157,7 +174,7 @@
                 android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/msgContraintLayout">
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
                 <Button
                     style="@style/ButtonTheme"

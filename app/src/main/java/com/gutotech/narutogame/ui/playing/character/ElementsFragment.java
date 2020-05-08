@@ -47,8 +47,7 @@ public class ElementsFragment extends Fragment implements SectionFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        mBinding = DataBindingUtil.inflate(inflater,
-                R.layout.fragment_elements, container, false);
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_elements, container, false);
         mBinding.setLifecycleOwner(this);
 
         mViewModel = new ViewModelProvider(this).get(ElementsViewModel.class);

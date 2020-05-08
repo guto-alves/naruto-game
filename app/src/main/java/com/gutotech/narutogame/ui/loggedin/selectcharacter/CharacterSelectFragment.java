@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.Character;
 import com.gutotech.narutogame.databinding.FragmentPersonagemSelecionarBinding;
@@ -77,6 +78,9 @@ public class CharacterSelectFragment extends Fragment implements SectionFragment
         });
 
         FragmentUtils.setSectionTitle(getActivity(), R.string.section_select_your_character);
+
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mBinding.adView.loadAd(adRequest);
 
         return mBinding.getRoot();
     }

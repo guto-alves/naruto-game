@@ -2,15 +2,21 @@ package com.gutotech.narutogame.ui.playing.battles;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.rewarded.RewardItem;
+import com.google.android.gms.ads.rewarded.RewardedAd;
+import com.google.android.gms.ads.rewarded.RewardedAdCallback;
+import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
 import com.gutotech.narutogame.R;
+import com.gutotech.narutogame.databinding.FragmentHospitalRoomBinding;
 import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.WarningDialogFragment;
 import com.gutotech.narutogame.data.model.CharOn;
@@ -18,28 +24,30 @@ import com.gutotech.narutogame.utils.FragmentUtils;
 import com.gutotech.narutogame.data.firebase.StorageUtils;
 import com.gutotech.narutogame.utils.SoundUtil;
 
+import es.dmoral.toasty.Toasty;
+
 public class HospitalRoomFragment extends Fragment implements SectionFragment {
+    private RewardedAd mRewardedAd;
 
     public HospitalRoomFragment() {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_hospital_room, container, false);
+        FragmentHospitalRoomBinding binding = DataBindingUtil.inflate(inflater,
+                R.layout.fragment_hospital_room, container, false);
 
-        StorageUtils.downloadProfileForMsg(getContext(), view.findViewById(R.id.profileImageView));
+        StorageUtils.downloadProfileForMsg(getContext(), binding.profileImageView);
 
         CharOn.character.setMapId(CharOn.character.getVillage().ordinal());
 
         int payment = 20 * CharOn.character.getLevel();
 
-        TextView textView = view.findViewById(R.id.descriptionTextView);
-        textView.setText(getString(R.string.pay_specialist_description, payment));
+        binding.descriptionTextView.setText(getString(R.string.pay_specialist_description, payment));
 
-        Button payButton = view.findViewById(R.id.payButton);
-        payButton.setText(getString(R.string.pay_ry, payment));
-        payButton.setOnClickListener(view1 -> {
+        binding.payButton.setText(getString(R.string.pay_ry, payment));
+        binding.payButton.setOnClickListener(view1 -> {
             if (CharOn.character.getRyous() >= payment) {
                 WarningDialogFragment warningDialog = WarningDialogFragment.newInstance(
                         getContext(), R.string.paid_hospital, false,
@@ -60,7 +68,53 @@ public class HospitalRoomFragment extends Fragment implements SectionFragment {
 
         FragmentUtils.setSectionTitle(getActivity(), R.string.section_hospital_room);
 
-        return view;
+        mRewardedAd = createAndLoadRewardedAd();
+
+        binding.watchVideoButton.setOnClickListener(v -> {
+            if (mRewardedAd.isLoaded()) {
+                RewardedAdCallback adCallback = new RewardedAdCallback() {
+                    @Override
+                    public void onRewardedAdOpened() {
+                    }
+
+                    @Override
+                    public void onRewardedAdClosed() {
+                        mRewardedAd = createAndLoadRewardedAd();
+                    }
+
+                    @Override
+                    public void onUserEarnedReward(@NonNull RewardItem reward) {
+                        CharOn.character.full();
+                        CharOn.character.setHospital(false);
+                    }
+
+                    @Override
+                    public void onRewardedAdFailedToShow(int errorCode) {
+                    }
+                };
+                mRewardedAd.show(getActivity(), adCallback);
+            } else {
+                Toasty.warning(getContext(), "The rewarded ad wasn't loaded yet.").show();
+            }
+        });
+
+        return binding.getRoot();
+    }
+
+    private RewardedAd createAndLoadRewardedAd() {
+        RewardedAd rewardedAd = new RewardedAd(getContext(),
+                "ca-app-pub-3940256099942544/5224354917");
+        RewardedAdLoadCallback adLoadCallback = new RewardedAdLoadCallback() {
+            @Override
+            public void onRewardedAdLoaded() {
+            }
+
+            @Override
+            public void onRewardedAdFailedToLoad(int errorCode) {
+            }
+        };
+        rewardedAd.loadAd(new AdRequest.Builder().build(), adLoadCallback);
+        return rewardedAd;
     }
 
     @Override

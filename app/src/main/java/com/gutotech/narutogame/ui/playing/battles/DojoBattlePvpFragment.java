@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.PopupWindow;
 
+import com.google.android.gms.ads.AdRequest;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.BattleLog;
 import com.gutotech.narutogame.data.model.CharOn;
@@ -165,6 +166,12 @@ public class DojoBattlePvpFragment extends Fragment implements SectionFragment {
             showBattleResult(R.string.too_bad, description.getString());
             SoundUtil.play(getContext(), R.raw.lose);
         });
+
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mBinding.adView.loadAd(adRequest);
+
+        AdRequest adRequest1 = new AdRequest.Builder().build();
+        mBinding.adView1.loadAd(adRequest1);
 
         FragmentUtils.setSectionTitle(getActivity(), R.string.section_dojo);
         return mBinding.getRoot();

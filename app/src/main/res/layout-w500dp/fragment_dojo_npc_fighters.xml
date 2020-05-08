@@ -29,7 +29,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginBottom="20dp"
                 android:background="#1D140F">
@@ -148,6 +148,7 @@
                             android:text="@string/npc_daily_combat"
                             android:textColor="@android:color/white"
                             android:textSize="12sp"
+                            android:textStyle="bold"
                             app:layout_constraintBottom_toBottomOf="@+id/npcDailyCombatProgressBar"
                             app:layout_constraintStart_toStartOf="@+id/npcDailyCombatProgressBar"
                             app:layout_constraintTop_toTopOf="@+id/npcDailyCombatProgressBar" />

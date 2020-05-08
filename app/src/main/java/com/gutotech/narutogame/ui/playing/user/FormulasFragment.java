@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.gms.ads.AdRequest;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.model.Classe;
@@ -39,6 +40,9 @@ public class FormulasFragment extends Fragment implements SectionFragment {
         }
 
         FragmentUtils.setSectionTitle(getActivity(), R.string.section_formulas);
+
+        AdRequest adRequest = new AdRequest.Builder().build();
+        binding.adView.loadAd(adRequest);
 
         return binding.getRoot();
     }

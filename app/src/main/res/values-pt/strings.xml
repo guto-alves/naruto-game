@@ -2348,5 +2348,6 @@
     <string name="failed_to_connect">Falha ao Conectar</string>
     <string name="failed_to_connect_description">Não é possível conectar ao servidor.\nVerifique sua rede.</string>
     <string name="ok">Ok</string>
+    <string name="watch_video_to_leave_the_hospital">Assistir vídeo para sair do hospital</string>
 
 </resources>
