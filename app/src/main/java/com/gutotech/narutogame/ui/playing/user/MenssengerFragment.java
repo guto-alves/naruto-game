@@ -12,7 +12,7 @@ import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.utils.FragmentUtils;
 
-public class MensagensFragment extends Fragment implements SectionFragment {
+public class MenssengerFragment extends Fragment implements SectionFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

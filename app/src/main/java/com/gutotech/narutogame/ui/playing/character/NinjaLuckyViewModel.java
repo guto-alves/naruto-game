@@ -243,52 +243,52 @@ public class NinjaLuckyViewModel extends ViewModel {
 
         mLotteryItems.add(new LotteryItem("29", R.string.tai1, 30,
                 () -> {
-                    CharOn.character.getAttributes().earn(Attribute.TAI.id);
+                    CharOn.character.getAttributes().earn(Attribute.TAI.ordinal());
                     CharOn.character.updateFormulas();
                 }));
         mLotteryItems.add(new LotteryItem("30", R.string.nin1, 30,
                 () -> {
-                    CharOn.character.getAttributes().earn(Attribute.NIN.id);
+                    CharOn.character.getAttributes().earn(Attribute.NIN.ordinal());
                     CharOn.character.updateFormulas();
                 }));
         mLotteryItems.add(new LotteryItem("31", R.string.gen1, 30,
                 () -> {
-                    CharOn.character.getAttributes().earn(Attribute.GEN.id);
+                    CharOn.character.getAttributes().earn(Attribute.GEN.ordinal());
                     CharOn.character.updateFormulas();
                 }));
         mLotteryItems.add(new LotteryItem("20388", R.string.buki1, 30,
                 () -> {
-                    CharOn.character.getAttributes().earn(Attribute.BUK.id);
+                    CharOn.character.getAttributes().earn(Attribute.BUK.ordinal());
                     CharOn.character.updateFormulas();
                 }));
         mLotteryItems.add(new LotteryItem("32", R.string.agility1, 30,
                 () -> {
-                    CharOn.character.getAttributes().earn(Attribute.AGI.id);
+                    CharOn.character.getAttributes().earn(Attribute.AGI.ordinal());
                     CharOn.character.updateFormulas();
                 }));
         mLotteryItems.add(new LotteryItem("33", R.string.seal1, 30,
                 () -> {
-                    CharOn.character.getAttributes().earn(Attribute.SEAL.id);
+                    CharOn.character.getAttributes().earn(Attribute.SEAL.ordinal());
                     CharOn.character.updateFormulas();
                 }));
         mLotteryItems.add(new LotteryItem("34", R.string.strenght1, 30,
                 () -> {
-                    CharOn.character.getAttributes().earn(Attribute.FOR.id);
+                    CharOn.character.getAttributes().earn(Attribute.STR.ordinal());
                     CharOn.character.updateFormulas();
                 }));
         mLotteryItems.add(new LotteryItem("35", R.string.inte1, 30,
                 () -> {
-                    CharOn.character.getAttributes().earn(Attribute.INTE.id);
+                    CharOn.character.getAttributes().earn(Attribute.INTE.ordinal());
                     CharOn.character.updateFormulas();
                 }));
         mLotteryItems.add(new LotteryItem("36", R.string.res1, 30,
                 () -> {
-                    CharOn.character.getAttributes().earn(Attribute.RES.id);
+                    CharOn.character.getAttributes().earn(Attribute.RES.ordinal());
                     CharOn.character.updateFormulas();
                 }));
         mLotteryItems.add(new LotteryItem("20392", R.string.energy1, 30,
                 () -> {
-                    CharOn.character.getAttributes().earn(Attribute.ENER.id);
+                    CharOn.character.getAttributes().earn(Attribute.ENER.ordinal());
                     CharOn.character.updateFormulas();
                 }));
 

@@ -54,7 +54,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -112,7 +112,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -245,7 +245,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -302,7 +302,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -359,7 +359,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -416,7 +416,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -549,7 +549,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -608,7 +608,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -665,7 +665,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -722,7 +722,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -779,7 +779,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -912,7 +912,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -969,7 +969,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -1026,7 +1026,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -1083,7 +1083,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -1140,7 +1140,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -1198,7 +1198,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -1255,7 +1255,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -1312,7 +1312,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -1369,7 +1369,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -1426,7 +1426,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -1483,7 +1483,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -1540,7 +1540,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -1597,7 +1597,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -1730,7 +1730,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -1787,7 +1787,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -1844,7 +1844,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -1901,7 +1901,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -1958,7 +1958,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -2015,7 +2015,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -2072,7 +2072,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -2129,7 +2129,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -2187,7 +2187,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -2244,7 +2244,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -2301,7 +2301,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -2358,7 +2358,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -2415,7 +2415,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -2548,7 +2548,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -2605,7 +2605,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -2662,7 +2662,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -2719,7 +2719,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -2776,7 +2776,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -2833,7 +2833,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -2890,7 +2890,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -2947,7 +2947,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -3004,7 +3004,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -3062,7 +3062,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -3119,7 +3119,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -3176,7 +3176,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -3233,7 +3233,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -3290,7 +3290,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -3347,7 +3347,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -3442,7 +3442,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -3537,7 +3537,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -3594,7 +3594,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -3651,7 +3651,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -3708,7 +3708,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -3765,7 +3765,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -3822,7 +3822,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -3879,7 +3879,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -3936,7 +3936,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -3994,7 +3994,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -4051,7 +4051,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -4111,7 +4111,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -4169,7 +4169,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -4302,7 +4302,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -4359,7 +4359,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -4416,7 +4416,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -4473,7 +4473,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -4606,7 +4606,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -4664,7 +4664,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -4721,7 +4721,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -4778,7 +4778,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -4835,7 +4835,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -4968,7 +4968,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -5025,7 +5025,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -5082,7 +5082,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -5139,7 +5139,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -5196,7 +5196,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -5254,7 +5254,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -5311,7 +5311,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -5368,7 +5368,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -5425,7 +5425,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -5482,7 +5482,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -5539,7 +5539,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -5596,7 +5596,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -5653,7 +5653,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -5786,7 +5786,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -5843,7 +5843,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -5900,7 +5900,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -5957,7 +5957,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -6014,7 +6014,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -6071,7 +6071,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -6128,7 +6128,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -6185,7 +6185,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -6243,7 +6243,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -6300,7 +6300,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -6357,7 +6357,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -6414,7 +6414,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -6471,7 +6471,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -6604,7 +6604,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -6661,7 +6661,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -6718,7 +6718,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -6775,7 +6775,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -6832,7 +6832,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -6889,7 +6889,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -6946,7 +6946,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -7003,7 +7003,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -7060,7 +7060,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -7118,7 +7118,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -7175,7 +7175,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -7232,7 +7232,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -7289,7 +7289,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -7346,7 +7346,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -7403,7 +7403,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -7460,7 +7460,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -7593,7 +7593,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -7650,7 +7650,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -7707,7 +7707,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -7764,7 +7764,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -7821,7 +7821,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -7878,7 +7878,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -7935,7 +7935,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -7992,7 +7992,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -8050,7 +8050,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -8107,7 +8107,7 @@ public enum JutsuInfo {
                         @Override
                         public String toString(Context context, boolean folded) {
                             return context.getString(R.string.requires_points,
-                                    value(folded), context.getString(Attribute.FOR.name)
+                                    value(folded), context.getString(Attribute.STR.name)
                             );
                         }
                     },
@@ -12764,7 +12764,7 @@ public enum JutsuInfo {
                             if (classe == Classe.NIN || classe == Classe.GEN) {
                                 attributeName = context.getString(Attribute.INTE.name);
                             } else {
-                                attributeName = context.getString(Attribute.FOR.name);
+                                attributeName = context.getString(Attribute.STR.name);
                             }
 
                             return context.getString(
@@ -12857,7 +12857,7 @@ public enum JutsuInfo {
                             if (classe == Classe.NIN || classe == Classe.GEN) {
                                 attributeName = context.getString(Attribute.INTE.name);
                             } else {
-                                attributeName = context.getString(Attribute.FOR.name);
+                                attributeName = context.getString(Attribute.STR.name);
                             }
 
                             return context.getString(
@@ -12950,7 +12950,7 @@ public enum JutsuInfo {
                             if (classe == Classe.NIN || classe == Classe.GEN) {
                                 attributeName = context.getString(Attribute.INTE.name);
                             } else {
-                                attributeName = context.getString(Attribute.FOR.name);
+                                attributeName = context.getString(Attribute.STR.name);
                             }
 
                             return context.getString(
@@ -13043,7 +13043,7 @@ public enum JutsuInfo {
                             if (classe == Classe.NIN || classe == Classe.GEN) {
                                 attributeName = context.getString(Attribute.INTE.name);
                             } else {
-                                attributeName = context.getString(Attribute.FOR.name);
+                                attributeName = context.getString(Attribute.STR.name);
                             }
 
                             return context.getString(
@@ -13136,7 +13136,7 @@ public enum JutsuInfo {
                             if (classe == Classe.NIN || classe == Classe.GEN) {
                                 attributeName = context.getString(Attribute.INTE.name);
                             } else {
-                                attributeName = context.getString(Attribute.FOR.name);
+                                attributeName = context.getString(Attribute.STR.name);
                             }
 
                             return context.getString(
@@ -13229,7 +13229,7 @@ public enum JutsuInfo {
                             if (classe == Classe.NIN || classe == Classe.GEN) {
                                 attributeName = context.getString(Attribute.INTE.name);
                             } else {
-                                attributeName = context.getString(Attribute.FOR.name);
+                                attributeName = context.getString(Attribute.STR.name);
                             }
 
                             return context.getString(
@@ -13322,7 +13322,7 @@ public enum JutsuInfo {
                             if (classe == Classe.NIN || classe == Classe.GEN) {
                                 attributeName = context.getString(Attribute.INTE.name);
                             } else {
-                                attributeName = context.getString(Attribute.FOR.name);
+                                attributeName = context.getString(Attribute.STR.name);
                             }
 
                             return context.getString(
@@ -13415,7 +13415,7 @@ public enum JutsuInfo {
                             if (classe == Classe.NIN || classe == Classe.GEN) {
                                 attributeName = context.getString(Attribute.INTE.name);
                             } else {
-                                attributeName = context.getString(Attribute.FOR.name);
+                                attributeName = context.getString(Attribute.STR.name);
                             }
 
                             return context.getString(
@@ -13508,7 +13508,7 @@ public enum JutsuInfo {
                             if (classe == Classe.NIN || classe == Classe.GEN) {
                                 attributeName = context.getString(Attribute.INTE.name);
                             } else {
-                                attributeName = context.getString(Attribute.FOR.name);
+                                attributeName = context.getString(Attribute.STR.name);
                             }
 
                             return context.getString(
@@ -13601,7 +13601,7 @@ public enum JutsuInfo {
                             if (classe == Classe.NIN || classe == Classe.GEN) {
                                 attributeName = context.getString(Attribute.INTE.name);
                             } else {
-                                attributeName = context.getString(Attribute.FOR.name);
+                                attributeName = context.getString(Attribute.STR.name);
                             }
 
                             return context.getString(
@@ -13694,7 +13694,7 @@ public enum JutsuInfo {
                             if (classe == Classe.NIN || classe == Classe.GEN) {
                                 attributeName = context.getString(Attribute.INTE.name);
                             } else {
-                                attributeName = context.getString(Attribute.FOR.name);
+                                attributeName = context.getString(Attribute.STR.name);
                             }
 
                             return context.getString(
@@ -13787,7 +13787,7 @@ public enum JutsuInfo {
                             if (classe == Classe.NIN || classe == Classe.GEN) {
                                 attributeName = context.getString(Attribute.INTE.name);
                             } else {
-                                attributeName = context.getString(Attribute.FOR.name);
+                                attributeName = context.getString(Attribute.STR.name);
                             }
 
                             return context.getString(
@@ -13880,7 +13880,7 @@ public enum JutsuInfo {
                             if (classe == Classe.NIN || classe == Classe.GEN) {
                                 attributeName = context.getString(Attribute.INTE.name);
                             } else {
-                                attributeName = context.getString(Attribute.FOR.name);
+                                attributeName = context.getString(Attribute.STR.name);
                             }
 
                             return context.getString(
@@ -13975,7 +13975,7 @@ public enum JutsuInfo {
                             if (classe == Classe.NIN || classe == Classe.GEN) {
                                 attributeName = context.getString(Attribute.INTE.name);
                             } else {
-                                attributeName = context.getString(Attribute.FOR.name);
+                                attributeName = context.getString(Attribute.STR.name);
                             }
 
                             return context.getString(
@@ -14068,7 +14068,7 @@ public enum JutsuInfo {
                             if (classe == Classe.NIN || classe == Classe.GEN) {
                                 attributeName = context.getString(Attribute.INTE.name);
                             } else {
-                                attributeName = context.getString(Attribute.FOR.name);
+                                attributeName = context.getString(Attribute.STR.name);
                             }
 
                             return context.getString(
@@ -14161,7 +14161,7 @@ public enum JutsuInfo {
                             if (classe == Classe.NIN || classe == Classe.GEN) {
                                 attributeName = context.getString(Attribute.INTE.name);
                             } else {
-                                attributeName = context.getString(Attribute.FOR.name);
+                                attributeName = context.getString(Attribute.STR.name);
                             }
 
                             return context.getString(
@@ -14254,7 +14254,7 @@ public enum JutsuInfo {
                             if (classe == Classe.NIN || classe == Classe.GEN) {
                                 attributeName = context.getString(Attribute.INTE.name);
                             } else {
-                                attributeName = context.getString(Attribute.FOR.name);
+                                attributeName = context.getString(Attribute.STR.name);
                             }
 
                             return context.getString(
@@ -14347,7 +14347,7 @@ public enum JutsuInfo {
                             if (classe == Classe.NIN || classe == Classe.GEN) {
                                 attributeName = context.getString(Attribute.INTE.name);
                             } else {
-                                attributeName = context.getString(Attribute.FOR.name);
+                                attributeName = context.getString(Attribute.STR.name);
                             }
 
                             return context.getString(
@@ -14440,7 +14440,7 @@ public enum JutsuInfo {
                             if (classe == Classe.NIN || classe == Classe.GEN) {
                                 attributeName = context.getString(Attribute.INTE.name);
                             } else {
-                                attributeName = context.getString(Attribute.FOR.name);
+                                attributeName = context.getString(Attribute.STR.name);
                             }
 
                             return context.getString(
@@ -14533,7 +14533,7 @@ public enum JutsuInfo {
                             if (classe == Classe.NIN || classe == Classe.GEN) {
                                 attributeName = context.getString(Attribute.INTE.name);
                             } else {
-                                attributeName = context.getString(Attribute.FOR.name);
+                                attributeName = context.getString(Attribute.STR.name);
                             }
 
                             return context.getString(
@@ -14626,7 +14626,7 @@ public enum JutsuInfo {
                             if (classe == Classe.NIN || classe == Classe.GEN) {
                                 attributeName = context.getString(Attribute.INTE.name);
                             } else {
-                                attributeName = context.getString(Attribute.FOR.name);
+                                attributeName = context.getString(Attribute.STR.name);
                             }
 
                             return context.getString(
@@ -14719,7 +14719,7 @@ public enum JutsuInfo {
                             if (classe == Classe.NIN || classe == Classe.GEN) {
                                 attributeName = context.getString(Attribute.INTE.name);
                             } else {
-                                attributeName = context.getString(Attribute.FOR.name);
+                                attributeName = context.getString(Attribute.STR.name);
                             }
 
                             return context.getString(
@@ -14812,7 +14812,7 @@ public enum JutsuInfo {
                             if (classe == Classe.NIN || classe == Classe.GEN) {
                                 attributeName = context.getString(Attribute.INTE.name);
                             } else {
-                                attributeName = context.getString(Attribute.FOR.name);
+                                attributeName = context.getString(Attribute.STR.name);
                             }
 
                             return context.getString(
@@ -14905,7 +14905,7 @@ public enum JutsuInfo {
                             if (classe == Classe.NIN || classe == Classe.GEN) {
                                 attributeName = context.getString(Attribute.INTE.name);
                             } else {
-                                attributeName = context.getString(Attribute.FOR.name);
+                                attributeName = context.getString(Attribute.STR.name);
                             }
 
                             return context.getString(
@@ -14998,7 +14998,7 @@ public enum JutsuInfo {
                             if (classe == Classe.NIN || classe == Classe.GEN) {
                                 attributeName = context.getString(Attribute.INTE.name);
                             } else {
-                                attributeName = context.getString(Attribute.FOR.name);
+                                attributeName = context.getString(Attribute.STR.name);
                             }
 
                             return context.getString(
@@ -15091,7 +15091,7 @@ public enum JutsuInfo {
                             if (classe == Classe.NIN || classe == Classe.GEN) {
                                 attributeName = context.getString(Attribute.INTE.name);
                             } else {
-                                attributeName = context.getString(Attribute.FOR.name);
+                                attributeName = context.getString(Attribute.STR.name);
                             }
 
                             return context.getString(
@@ -15186,7 +15186,7 @@ public enum JutsuInfo {
                             if (classe == Classe.NIN || classe == Classe.GEN) {
                                 attributeName = context.getString(Attribute.INTE.name);
                             } else {
-                                attributeName = context.getString(Attribute.FOR.name);
+                                attributeName = context.getString(Attribute.STR.name);
                             }
 
                             return context.getString(
@@ -15279,7 +15279,7 @@ public enum JutsuInfo {
                             if (classe == Classe.NIN || classe == Classe.GEN) {
                                 attributeName = context.getString(Attribute.INTE.name);
                             } else {
-                                attributeName = context.getString(Attribute.FOR.name);
+                                attributeName = context.getString(Attribute.STR.name);
                             }
 
                             return context.getString(
@@ -15372,7 +15372,7 @@ public enum JutsuInfo {
                             if (classe == Classe.NIN || classe == Classe.GEN) {
                                 attributeName = context.getString(Attribute.INTE.name);
                             } else {
-                                attributeName = context.getString(Attribute.FOR.name);
+                                attributeName = context.getString(Attribute.STR.name);
                             }
 
                             return context.getString(
@@ -15465,7 +15465,7 @@ public enum JutsuInfo {
                             if (classe == Classe.NIN || classe == Classe.GEN) {
                                 attributeName = context.getString(Attribute.INTE.name);
                             } else {
-                                attributeName = context.getString(Attribute.FOR.name);
+                                attributeName = context.getString(Attribute.STR.name);
                             }
 
                             return context.getString(
@@ -15558,7 +15558,7 @@ public enum JutsuInfo {
                             if (classe == Classe.NIN || classe == Classe.GEN) {
                                 attributeName = context.getString(Attribute.INTE.name);
                             } else {
-                                attributeName = context.getString(Attribute.FOR.name);
+                                attributeName = context.getString(Attribute.STR.name);
                             }
 
                             return context.getString(
@@ -15651,7 +15651,7 @@ public enum JutsuInfo {
                             if (classe == Classe.NIN || classe == Classe.GEN) {
                                 attributeName = context.getString(Attribute.INTE.name);
                             } else {
-                                attributeName = context.getString(Attribute.FOR.name);
+                                attributeName = context.getString(Attribute.STR.name);
                             }
 
                             return context.getString(
@@ -15744,7 +15744,7 @@ public enum JutsuInfo {
                             if (classe == Classe.NIN || classe == Classe.GEN) {
                                 attributeName = context.getString(Attribute.INTE.name);
                             } else {
-                                attributeName = context.getString(Attribute.FOR.name);
+                                attributeName = context.getString(Attribute.STR.name);
                             }
 
                             return context.getString(
@@ -15837,7 +15837,7 @@ public enum JutsuInfo {
                             if (classe == Classe.NIN || classe == Classe.GEN) {
                                 attributeName = context.getString(Attribute.INTE.name);
                             } else {
-                                attributeName = context.getString(Attribute.FOR.name);
+                                attributeName = context.getString(Attribute.STR.name);
                             }
 
                             return context.getString(
@@ -15930,7 +15930,7 @@ public enum JutsuInfo {
                             if (classe == Classe.NIN || classe == Classe.GEN) {
                                 attributeName = context.getString(Attribute.INTE.name);
                             } else {
-                                attributeName = context.getString(Attribute.FOR.name);
+                                attributeName = context.getString(Attribute.STR.name);
                             }
 
                             return context.getString(
@@ -16023,7 +16023,7 @@ public enum JutsuInfo {
                             if (classe == Classe.NIN || classe == Classe.GEN) {
                                 attributeName = context.getString(Attribute.INTE.name);
                             } else {
-                                attributeName = context.getString(Attribute.FOR.name);
+                                attributeName = context.getString(Attribute.STR.name);
                             }
 
                             return context.getString(
@@ -16116,7 +16116,7 @@ public enum JutsuInfo {
                             if (classe == Classe.NIN || classe == Classe.GEN) {
                                 attributeName = context.getString(Attribute.INTE.name);
                             } else {
-                                attributeName = context.getString(Attribute.FOR.name);
+                                attributeName = context.getString(Attribute.STR.name);
                             }
 
                             return context.getString(
@@ -16209,7 +16209,7 @@ public enum JutsuInfo {
                             if (classe == Classe.NIN || classe == Classe.GEN) {
                                 attributeName = context.getString(Attribute.INTE.name);
                             } else {
-                                attributeName = context.getString(Attribute.FOR.name);
+                                attributeName = context.getString(Attribute.STR.name);
                             }
 
                             return context.getString(
@@ -16302,7 +16302,7 @@ public enum JutsuInfo {
                             if (classe == Classe.NIN || classe == Classe.GEN) {
                                 attributeName = context.getString(Attribute.INTE.name);
                             } else {
-                                attributeName = context.getString(Attribute.FOR.name);
+                                attributeName = context.getString(Attribute.STR.name);
                             }
 
                             return context.getString(
@@ -16397,7 +16397,7 @@ public enum JutsuInfo {
                             if (classe == Classe.NIN || classe == Classe.GEN) {
                                 attributeName = context.getString(Attribute.INTE.name);
                             } else {
-                                attributeName = context.getString(Attribute.FOR.name);
+                                attributeName = context.getString(Attribute.STR.name);
                             }
 
                             return context.getString(
@@ -16490,7 +16490,7 @@ public enum JutsuInfo {
                             if (classe == Classe.NIN || classe == Classe.GEN) {
                                 attributeName = context.getString(Attribute.INTE.name);
                             } else {
-                                attributeName = context.getString(Attribute.FOR.name);
+                                attributeName = context.getString(Attribute.STR.name);
                             }
 
                             return context.getString(
@@ -16583,7 +16583,7 @@ public enum JutsuInfo {
                             if (classe == Classe.NIN || classe == Classe.GEN) {
                                 attributeName = context.getString(Attribute.INTE.name);
                             } else {
-                                attributeName = context.getString(Attribute.FOR.name);
+                                attributeName = context.getString(Attribute.STR.name);
                             }
 
                             return context.getString(
@@ -16676,7 +16676,7 @@ public enum JutsuInfo {
                             if (classe == Classe.NIN || classe == Classe.GEN) {
                                 attributeName = context.getString(Attribute.INTE.name);
                             } else {
-                                attributeName = context.getString(Attribute.FOR.name);
+                                attributeName = context.getString(Attribute.STR.name);
                             }
 
                             return context.getString(
@@ -16769,7 +16769,7 @@ public enum JutsuInfo {
                             if (classe == Classe.NIN || classe == Classe.GEN) {
                                 attributeName = context.getString(Attribute.INTE.name);
                             } else {
-                                attributeName = context.getString(Attribute.FOR.name);
+                                attributeName = context.getString(Attribute.STR.name);
                             }
 
                             return context.getString(
@@ -16862,7 +16862,7 @@ public enum JutsuInfo {
                             if (classe == Classe.NIN || classe == Classe.GEN) {
                                 attributeName = context.getString(Attribute.INTE.name);
                             } else {
-                                attributeName = context.getString(Attribute.FOR.name);
+                                attributeName = context.getString(Attribute.STR.name);
                             }
 
                             return context.getString(
@@ -16955,7 +16955,7 @@ public enum JutsuInfo {
                             if (classe == Classe.NIN || classe == Classe.GEN) {
                                 attributeName = context.getString(Attribute.INTE.name);
                             } else {
-                                attributeName = context.getString(Attribute.FOR.name);
+                                attributeName = context.getString(Attribute.STR.name);
                             }
 
                             return context.getString(
@@ -17048,7 +17048,7 @@ public enum JutsuInfo {
                             if (classe == Classe.NIN || classe == Classe.GEN) {
                                 attributeName = context.getString(Attribute.INTE.name);
                             } else {
-                                attributeName = context.getString(Attribute.FOR.name);
+                                attributeName = context.getString(Attribute.STR.name);
                             }
 
                             return context.getString(
@@ -17141,7 +17141,7 @@ public enum JutsuInfo {
                             if (classe == Classe.NIN || classe == Classe.GEN) {
                                 attributeName = context.getString(Attribute.INTE.name);
                             } else {
-                                attributeName = context.getString(Attribute.FOR.name);
+                                attributeName = context.getString(Attribute.STR.name);
                             }
 
                             return context.getString(
@@ -17234,7 +17234,7 @@ public enum JutsuInfo {
                             if (classe == Classe.NIN || classe == Classe.GEN) {
                                 attributeName = context.getString(Attribute.INTE.name);
                             } else {
-                                attributeName = context.getString(Attribute.FOR.name);
+                                attributeName = context.getString(Attribute.STR.name);
                             }
 
                             return context.getString(
@@ -17327,7 +17327,7 @@ public enum JutsuInfo {
                             if (classe == Classe.NIN || classe == Classe.GEN) {
                                 attributeName = context.getString(Attribute.INTE.name);
                             } else {
-                                attributeName = context.getString(Attribute.FOR.name);
+                                attributeName = context.getString(Attribute.STR.name);
                             }
 
                             return context.getString(
@@ -17420,7 +17420,7 @@ public enum JutsuInfo {
                             if (classe == Classe.NIN || classe == Classe.GEN) {
                                 attributeName = context.getString(Attribute.INTE.name);
                             } else {
-                                attributeName = context.getString(Attribute.FOR.name);
+                                attributeName = context.getString(Attribute.STR.name);
                             }
 
                             return context.getString(
@@ -17513,7 +17513,7 @@ public enum JutsuInfo {
                             if (classe == Classe.NIN || classe == Classe.GEN) {
                                 attributeName = context.getString(Attribute.INTE.name);
                             } else {
-                                attributeName = context.getString(Attribute.FOR.name);
+                                attributeName = context.getString(Attribute.STR.name);
                             }
 
                             return context.getString(
@@ -17608,7 +17608,7 @@ public enum JutsuInfo {
                             if (classe == Classe.NIN || classe == Classe.GEN) {
                                 attributeName = context.getString(Attribute.INTE.name);
                             } else {
-                                attributeName = context.getString(Attribute.FOR.name);
+                                attributeName = context.getString(Attribute.STR.name);
                             }
 
                             return context.getString(
@@ -17701,7 +17701,7 @@ public enum JutsuInfo {
                             if (classe == Classe.NIN || classe == Classe.GEN) {
                                 attributeName = context.getString(Attribute.INTE.name);
                             } else {
-                                attributeName = context.getString(Attribute.FOR.name);
+                                attributeName = context.getString(Attribute.STR.name);
                             }
 
                             return context.getString(
@@ -17794,7 +17794,7 @@ public enum JutsuInfo {
                             if (classe == Classe.NIN || classe == Classe.GEN) {
                                 attributeName = context.getString(Attribute.INTE.name);
                             } else {
-                                attributeName = context.getString(Attribute.FOR.name);
+                                attributeName = context.getString(Attribute.STR.name);
                             }
 
                             return context.getString(
@@ -17887,7 +17887,7 @@ public enum JutsuInfo {
                             if (classe == Classe.NIN || classe == Classe.GEN) {
                                 attributeName = context.getString(Attribute.INTE.name);
                             } else {
-                                attributeName = context.getString(Attribute.FOR.name);
+                                attributeName = context.getString(Attribute.STR.name);
                             }
 
                             return context.getString(
@@ -17980,7 +17980,7 @@ public enum JutsuInfo {
                             if (classe == Classe.NIN || classe == Classe.GEN) {
                                 attributeName = context.getString(Attribute.INTE.name);
                             } else {
-                                attributeName = context.getString(Attribute.FOR.name);
+                                attributeName = context.getString(Attribute.STR.name);
                             }
 
                             return context.getString(
@@ -18073,7 +18073,7 @@ public enum JutsuInfo {
                             if (classe == Classe.NIN || classe == Classe.GEN) {
                                 attributeName = context.getString(Attribute.INTE.name);
                             } else {
-                                attributeName = context.getString(Attribute.FOR.name);
+                                attributeName = context.getString(Attribute.STR.name);
                             }
 
                             return context.getString(
@@ -18166,7 +18166,7 @@ public enum JutsuInfo {
                             if (classe == Classe.NIN || classe == Classe.GEN) {
                                 attributeName = context.getString(Attribute.INTE.name);
                             } else {
-                                attributeName = context.getString(Attribute.FOR.name);
+                                attributeName = context.getString(Attribute.STR.name);
                             }
 
                             return context.getString(
@@ -18259,7 +18259,7 @@ public enum JutsuInfo {
                             if (classe == Classe.NIN || classe == Classe.GEN) {
                                 attributeName = context.getString(Attribute.INTE.name);
                             } else {
-                                attributeName = context.getString(Attribute.FOR.name);
+                                attributeName = context.getString(Attribute.STR.name);
                             }
 
                             return context.getString(
@@ -18352,7 +18352,7 @@ public enum JutsuInfo {
                             if (classe == Classe.NIN || classe == Classe.GEN) {
                                 attributeName = context.getString(Attribute.INTE.name);
                             } else {
-                                attributeName = context.getString(Attribute.FOR.name);
+                                attributeName = context.getString(Attribute.STR.name);
                             }
 
                             return context.getString(
@@ -18445,7 +18445,7 @@ public enum JutsuInfo {
                             if (classe == Classe.NIN || classe == Classe.GEN) {
                                 attributeName = context.getString(Attribute.INTE.name);
                             } else {
-                                attributeName = context.getString(Attribute.FOR.name);
+                                attributeName = context.getString(Attribute.STR.name);
                             }
 
                             return context.getString(
@@ -18538,7 +18538,7 @@ public enum JutsuInfo {
                             if (classe == Classe.NIN || classe == Classe.GEN) {
                                 attributeName = context.getString(Attribute.INTE.name);
                             } else {
-                                attributeName = context.getString(Attribute.FOR.name);
+                                attributeName = context.getString(Attribute.STR.name);
                             }
 
                             return context.getString(
@@ -18631,7 +18631,7 @@ public enum JutsuInfo {
                             if (classe == Classe.NIN || classe == Classe.GEN) {
                                 attributeName = context.getString(Attribute.INTE.name);
                             } else {
-                                attributeName = context.getString(Attribute.FOR.name);
+                                attributeName = context.getString(Attribute.STR.name);
                             }
 
                             return context.getString(
@@ -18724,7 +18724,7 @@ public enum JutsuInfo {
                             if (classe == Classe.NIN || classe == Classe.GEN) {
                                 attributeName = context.getString(Attribute.INTE.name);
                             } else {
-                                attributeName = context.getString(Attribute.FOR.name);
+                                attributeName = context.getString(Attribute.STR.name);
                             }
 
                             return context.getString(

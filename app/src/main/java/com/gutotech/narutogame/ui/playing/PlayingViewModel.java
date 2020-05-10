@@ -65,7 +65,7 @@ import com.gutotech.narutogame.ui.playing.team.TeamCreateFragment;
 import com.gutotech.narutogame.ui.playing.team.TeamDetailsFragment;
 import com.gutotech.narutogame.ui.playing.team.TeamParticipateFragment;
 import com.gutotech.narutogame.ui.playing.user.FormulasFragment;
-import com.gutotech.narutogame.ui.playing.user.MensagensFragment;
+import com.gutotech.narutogame.ui.playing.user.MenssengerFragment;
 import com.gutotech.narutogame.ui.playing.user.VipPlayerFragment;
 import com.gutotech.narutogame.utils.SettingsUtils;
 import com.gutotech.narutogame.utils.SingleLiveEvent;
@@ -370,7 +370,7 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
     private void buildMenu() {
         List<SectionFragment> sections0 = new ArrayList<>();
         sections0.add(new UserDataFragment());
-        sections0.add(new MensagensFragment());
+        sections0.add(new MenssengerFragment());
         sections0.add(new VipPlayerFragment());
         sections0.add(new FormulasFragment());
         sections0.add(new PasswordChangeFragment());
@@ -483,8 +483,8 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
 
 
     // Chat
-    public ObservableBoolean chatOpened = new ObservableBoolean(false);
-    public ObservableField<String> message = new ObservableField<>();
+    public final ObservableBoolean chatOpened = new ObservableBoolean(false);
+    public final ObservableField<String> message = new ObservableField<>();
     private ChatRepository mChatRepository = ChatRepository.getInstance();
     private String mChannel;
     private MutableLiveData<List<Message>> mMessages = new MutableLiveData<>();
@@ -518,7 +518,8 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
     }
 
     public void onSendMessageButtonPressed() {
-        if (!TextUtils.isEmpty(message.get().trim())) {
+        message.set(message.get().trim());
+        if (!TextUtils.isEmpty(message.get())) {
             ChatRepository.getInstance().sendMessage(
                     new Message(mCharacter.getNick(), message.get()), mChannel);
             message.set("");
@@ -540,6 +541,7 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
     LiveData<Void> getUpdateChannelsEvent() {
         return mUpdateChannelsEvent;
     }
+
 
     // Game Routines
     public final ObservableField<String> healing = new ObservableField<>("--:--:--");
