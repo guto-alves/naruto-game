@@ -51,6 +51,7 @@ public class Character extends BaseObservable implements Serializable {
     private ResumeOfMissions resumeOfMissions;
     private int totalDailyMissions;
     private boolean mission;
+    private boolean specialMission;
 
     private int mapPosition;
     private boolean map;
@@ -254,8 +255,8 @@ public class Character extends BaseObservable implements Serializable {
     public int getClassPoints() {
         return getClasse() == Classe.NIN ? getAttributes().getNinjutsu() :
                 getClasse() == Classe.GEN ? getAttributes().getGenjutsu() :
-                getClasse() == Classe.TAI ? getAttributes().getTaijutsu() :
-                getClasse() == Classe.BUK ? getAttributes().getBukijutsu() : 0;
+                        getClasse() == Classe.TAI ? getAttributes().getTaijutsu() :
+                                getClasse() == Classe.BUK ? getAttributes().getBukijutsu() : 0;
     }
 
     @Override
@@ -576,6 +577,16 @@ public class Character extends BaseObservable implements Serializable {
     public void setMission(boolean mission) {
         this.mission = mission;
         notifyPropertyChanged(BR.mission);
+    }
+
+    @Bindable
+    public boolean isSpecialMission() {
+        return specialMission;
+    }
+
+    public void setSpecialMission(boolean specialMission) {
+        this.specialMission = specialMission;
+        notifyPropertyChanged(BR.specialMission);
     }
 
     @Bindable

@@ -9,13 +9,14 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.Mission;
 import com.gutotech.narutogame.data.model.MissionInfo;
 import com.gutotech.narutogame.data.model.Requirement;
-import com.gutotech.narutogame.data.model.TimeMission;
+import com.gutotech.narutogame.data.model.SpecialMission;
 
 import java.util.List;
 
@@ -28,19 +29,21 @@ public class MissionsAdapter extends RecyclerView.Adapter<MissionsAdapter.MyView
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         private TextView titleTextView;
         private TextView descriptionTextView;
-        private TextView rewardsTextView;
+        private TextView durationTextView;
         private TextView requirementsTextView;
+        private TextView rewardsTextView;
         private Button acceptButton;
-        private ConstraintLayout bgLayout;
+        private ConstraintLayout constraintLayout;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             titleTextView = itemView.findViewById(R.id.titleTextView);
             descriptionTextView = itemView.findViewById(R.id.descriptionTextView);
-            rewardsTextView = itemView.findViewById(R.id.rewardsTextView);
+            durationTextView = itemView.findViewById(R.id.durationTextView);
             requirementsTextView = itemView.findViewById(R.id.requirementsTextView);
+            rewardsTextView = itemView.findViewById(R.id.rewardsTextView);
             acceptButton = itemView.findViewById(R.id.acceptButton);
-            bgLayout = itemView.findViewById(R.id.bgLayout);
+            constraintLayout = itemView.findViewById(R.id.constraintLayout);
         }
     }
 
@@ -64,9 +67,9 @@ public class MissionsAdapter extends RecyclerView.Adapter<MissionsAdapter.MyView
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, final int i) {
         if (mMissions != null) {
-            final TimeMission missions = (TimeMission) mMissions.get(i);
+            final Mission mission = mMissions.get(i);
 
-            MissionInfo info = missions.missionInfo();
+            MissionInfo info = mission.missionInfo();
 
             holder.titleTextView.setText(info.title);
             holder.descriptionTextView.setText(info.description);
@@ -75,16 +78,26 @@ public class MissionsAdapter extends RecyclerView.Adapter<MissionsAdapter.MyView
 
             if (validateRequirements(info.requirements)) {
                 holder.acceptButton.setEnabled(true);
-                holder.acceptButton.setOnClickListener(v -> mOnAcceptClickListener.onAcceptClick(missions));
+                holder.acceptButton.setOnClickListener(v ->
+                        mOnAcceptClickListener.onAcceptClick(mission));
             } else {
                 holder.acceptButton.setEnabled(false);
                 holder.acceptButton.setOnClickListener(null);
             }
 
-            if (i % 2 == 0) {
-                holder.bgLayout.setBackgroundColor(mContext.getResources().getColor(R.color.colorItem1));
+            if (mission instanceof SpecialMission) {
+                SpecialMission specialMission = (SpecialMission) mission;
+                holder.durationTextView.setText("Defeat: " + specialMission.getDefeat() + " enemy ninjas.");
             } else {
-                holder.bgLayout.setBackgroundColor(mContext.getResources().getColor(R.color.colorItem2));
+                holder.durationTextView.setText("00:30:00");
+            }
+
+            if (i % 2 == 0) {
+                holder.constraintLayout.setBackgroundColor(
+                        ContextCompat.getColor(mContext, R.color.colorItem1));
+            } else {
+                holder.constraintLayout.setBackgroundColor(
+                        ContextCompat.getColor(mContext, R.color.colorItem2));
             }
         }
     }

@@ -61,7 +61,7 @@ public class TasksViewModel extends AndroidViewModel implements TasksAdapter.OnA
         FirebaseFunctionsUtils.getServerTime(currentTimestamp -> {
             TimeMission timeMission = (TimeMission) task;
             timeMission.setInitialTimestamp(currentTimestamp);
-            MissionRepository.getInstance().acceptTimeMission(timeMission);
+            MissionRepository.getInstance().acceptMission(timeMission, Mission.Type.TIME);
             NotificationsUtils.setAlarm(getApplication(),
                     currentTimestamp + timeMission.getDurationMillis());
             CharOn.character.setMission(true);

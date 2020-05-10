@@ -27,6 +27,7 @@ import com.gutotech.narutogame.data.repository.BattleRepository;
 import com.gutotech.narutogame.data.repository.GlobalAlertRepository;
 import com.gutotech.narutogame.data.repository.KageRepository;
 import com.gutotech.narutogame.data.repository.MapRepository;
+import com.gutotech.narutogame.data.repository.MissionRepository;
 import com.gutotech.narutogame.ui.adapter.JutsusAdapter;
 import com.gutotech.narutogame.utils.SingleLiveEvent;
 import com.gutotech.narutogame.utils.SoundUtil;
@@ -597,6 +598,9 @@ public class DojoBattlePvpViewModel extends AndroidViewModel
                 CharOn.character.incrementExp(16 * mFighters.getPlayer().getLevel() + 150);
                 CharOn.character.getCombatOverview().setWinsMapPvp(
                         CharOn.character.getCombatOverview().getWinsMapPvp() + 1);
+                if (CharOn.character.isSpecialMission()) {
+                    MissionRepository.getInstance().increaseDefeated();
+                }
             } else {
                 CharOn.character.incrementScore(Score.VIT_DOJO_PVP);
                 CharOn.character.getCombatOverview().setWinsDojoPvp(

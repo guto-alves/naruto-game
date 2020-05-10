@@ -13,13 +13,16 @@ import android.view.ViewGroup;
 
 import com.google.android.gms.ads.AdRequest;
 import com.gutotech.narutogame.R;
+import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.databinding.FragmentMissionsBinding;
+import com.gutotech.narutogame.ui.ProgressDialogFragment;
 import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.WarningDialogFragment;
 import com.gutotech.narutogame.ui.adapter.MissionsAdapter;
 import com.gutotech.narutogame.utils.FragmentUtils;
 
 public class MissionsFragment extends Fragment implements SectionFragment {
+    private ProgressDialogFragment mProgressDialog;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -44,6 +47,19 @@ public class MissionsFragment extends Fragment implements SectionFragment {
             warningDialog.openDialog(getParentFragmentManager());
         });
 
+        if (CharOn.character.isSpecialMission()) {
+            binding.specialTypeButton.setVisibility(View.INVISIBLE);
+        }
+
+        mProgressDialog = new ProgressDialogFragment();
+
+        viewModel.getShowProgressBarEvent().observe(getViewLifecycleOwner(), show -> {
+            if (show) {
+                mProgressDialog.show(getParentFragmentManager(), "ProgressDialogFragment");
+            } else {
+                mProgressDialog.dismiss();
+            }
+        });
         FragmentUtils.setSectionTitle(getActivity(), R.string.section_missions);
 
         AdRequest adRequest = new AdRequest.Builder().build();

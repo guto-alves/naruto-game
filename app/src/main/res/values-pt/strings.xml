@@ -2401,5 +2401,52 @@
     <string name="failed_to_connect_description">Não é possível conectar ao servidor.\nVerifique sua rede.</string>
     <string name="ok">Ok</string>
     <string name="watch_video_to_leave_the_hospital">Assistir vídeo para sair do hospital</string>
+    <string name="defeating_enemy_ninjas">Derrotar ninjas inimigos</string>
+    <string name="label_n_from_n_times">%d de %d vezes</string>
+    <string name="mission372">Primeira Invasão!</string>
+    <string name="mission372_des">Elimine 5 ninjas inimigos durante invasões a uma ou mais vilas inimigas.</string>
+    <string name="mission373">Ataque é a melhor Defesa</string>
+    <string name="mission373_des">Ataque sem dúvidas é a melhor defesa. Vá agora mesmo para uma de
+        nossas vilas inimigas e derrote 10 ninjas!</string>
+    <string name="mission374">A melhor defesa é o Ataque I</string>
+    <string name="mission374_des">Essa missão deverá ser realizada durante as invasões nas vilas Inimigas.</string>
+    <string name="mission375">A melhor defesa é o Ataque II</string>
+    <string name="mission375_des">Essa missão deverá ser realizada durante as invasões nas vilas Inimigas.</string>
+    <string name="mission376">A melhor defesa é o Ataque III</string>
+    <string name="mission376_des">Essa missão deverá ser realizada durante as invasões nas vilas Inimigas.</string>
+    <string name="mission377">A melhor defesa é o Ataque IV</string>
+    <string name="mission377_des">Essa missão deverá ser realizada durante as invasões nas vilas Inimigas.</string>
+    <string name="mission378">Investida Frontal I</string>
+    <string name="mission378_des">Essa missão deverá ser realizada durante as invasões nas vilas Inimigas.</string>
+    <string name="mission379">Investida Frontal II</string>
+    <string name="mission379_des">Essa missão deverá ser realizada durante as invasões nas vilas Inimigas.</string>
+    <string name="mission380">Investida Frontal III</string>
+    <string name="mission380_des">Essa missão deverá ser realizada durante as invasões nas vilas Inimigas.</string>
+    <string name="mission381">Investida Frontal IV</string>
+    <string name="mission381_des">Essa missão deverá ser realizada durante as invasões nas vilas Inimigas.</string>
+    <string name="mission382">Invasão à Vila Inimiga I</string>
+    <string name="mission382_des">Realize está missão durante invasões a uma ou mais vilas inimigas.</string>
+    <string name="mission383">Invasão à Vila Inimiga II</string>
+    <string name="mission383_des">Elimine 20 ninjas inimigos durante invasões a uma ou mais vilas inimigas.</string>
+    <string name="mission384">Cerco na vila Inimiga I</string>
+    <string name="mission384_des">Essa missão deverá ser realizada durante as invasões nas vilas Inimigas.</string>
+    <string name="mission385">Cerco na vila Inimiga II</string>
+    <string name="mission385_des">Essa missão deverá ser realizada durante as invasões nas vilas Inimigas.</string>
+    <string name="mission386">Cerco na vila Inimiga III</string>
+    <string name="mission386_des">Essa missão deverá ser realizada durante as invasões nas vilas Inimigas.</string>
+    <string name="mission387">Cerco na vila Inimiga IV</string>
+    <string name="mission387_des">Essa missão deverá ser realizada durante as invasões nas vilas Inimigas.</string>
+    <string name="mission388">Ataque Planejado I</string>
+    <string name="mission388_des">Essa missão deverá ser realizada durante as invasões nas vilas Inimigas.</string>
+    <string name="mission389">Ataque Planejado II</string>
+    <string name="mission389_des">Essa missão deverá ser realizada durante as invasões nas vilas Inimigas.</string>
+    <string name="mission390">Ataque Planejado III</string>
+    <string name="mission390_des">Essa missão deverá ser realizada durante as invasões nas vilas Inimigas.</string>
+    <string name="mission391">Ataque Planejado IV</string>
+    <string name="mission391_des">Essa missão deverá ser realizada durante as invasões nas vilas Inimigas.</string>
+    <string name="mission392">Defendendo sua Vila!</string>
+    <string name="mission392_des">Durante um ataque a alguma vila inimiga, derrote a quantidade exigida de inimigos.</string>
+
+    <string name="special_mission_status">Status da Missão Especial</string>
 
 </resources>

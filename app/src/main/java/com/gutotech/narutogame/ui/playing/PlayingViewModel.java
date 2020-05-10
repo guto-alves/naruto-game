@@ -57,6 +57,7 @@ import com.gutotech.narutogame.ui.playing.currentvillage.MissionsFragment;
 import com.gutotech.narutogame.ui.playing.currentvillage.MissionsWaitingFragment;
 import com.gutotech.narutogame.ui.playing.currentvillage.NinjaShopFragment;
 import com.gutotech.narutogame.ui.playing.currentvillage.RamenShopFragment;
+import com.gutotech.narutogame.ui.playing.currentvillage.SpecialMissionsStatusFragment;
 import com.gutotech.narutogame.ui.playing.currentvillage.TasksFragment;
 import com.gutotech.narutogame.ui.playing.currentvillage.VillageMapFragment;
 import com.gutotech.narutogame.ui.playing.ranking.RankEquipesFragment;
@@ -123,6 +124,16 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
                     mCharacterRepository.save(mCharacter);
                     buildMenu();
                     if (mCharacter.isMission()) {
+                        setCurrentSection(CURRENT_VILLAGE_GROUP, 0);
+                    } else {
+                        setCurrentSection(CHARACTER_GROUP, 0);
+                    }
+                } else if (propertyId == BR.specialMission) {
+                    mCharacterRepository.save(mCharacter);
+                    buildMenu();
+                    if (mCharacter.isSpecialMission() && mCharacter.isMission()) {
+                        setCurrentSection(CURRENT_VILLAGE_GROUP, 1);
+                    } else if (mCharacter.isSpecialMission() && !mCharacter.isMission()) {
                         setCurrentSection(CURRENT_VILLAGE_GROUP, 0);
                     } else {
                         setCurrentSection(CHARACTER_GROUP, 0);
@@ -405,7 +416,12 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
         } else if (!mCharacter.isHospital() && !mCharacter.isBattle() && !mCharacter.isDojoWaitQueue()) {
             if (mCharacter.isMission()) {
                 sections3.add(new MissionsWaitingFragment());
-            } else {
+            }
+            if (mCharacter.isSpecialMission()) {
+                sections3.add(new SpecialMissionsStatusFragment());
+            }
+
+            if (!mCharacter.isMission()) {
                 if (mCharacter.getGraduationId() == 0) {
                     sections3.add(new TasksFragment());
                 } else {

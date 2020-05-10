@@ -65,6 +65,7 @@
                         android:text="@string/time" />
 
                     <Button
+                        android:id="@+id/specialTypeButton"
                         style="@style/ButtonTheme"
                         android:background="@{viewModel.typeSelected == Type.SPECIAL? @drawable/bg_button_orange: @drawable/bg_button}"
                         android:onClick="@{() -> viewModel.onTypeSelected(Type.SPECIAL)}"
