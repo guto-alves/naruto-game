@@ -59,8 +59,7 @@ public class MissionsWaitingFragment extends Fragment implements SectionFragment
 
         FragmentUtils.setSectionTitle(getActivity(), R.string.section_mission_status);
 
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mBinding.adView.loadAd(adRequest);
+        mBinding.adView.loadAd(new AdRequest.Builder().build());
 
         return mBinding.getRoot();
     }

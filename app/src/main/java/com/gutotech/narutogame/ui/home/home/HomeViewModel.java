@@ -2,6 +2,7 @@ package com.gutotech.narutogame.ui.home.home;
 
 import android.text.TextUtils;
 
+import androidx.databinding.ObservableField;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -21,8 +22,8 @@ import com.gutotech.narutogame.utils.SingleLiveEvent;
 import java.util.List;
 
 public class HomeViewModel extends ViewModel {
-    public String email;
-    public String password;
+    public final ObservableField<String> email = new ObservableField<>("");
+    public final ObservableField<String> password = new ObservableField<>("");
 
     private AuthRepository mAuthRepository;
     private PlayerRepository mPlayerRepository;
@@ -34,6 +35,60 @@ public class HomeViewModel extends ViewModel {
     public HomeViewModel() {
         mAuthRepository = AuthRepository.getInstance();
         mPlayerRepository = PlayerRepository.getInstance();
+    }
+
+    public void onPlayButtonPressed() {
+        if (validateFields()) {
+            mAuthListener.onStarted();
+            mAuthRepository.signIn(email.get(), password.get(),
+                    new AuthRepository.Completable() {
+                        @Override
+                        public void onComplete() {
+                            mPlayerRepository.setSignedIn(true, successful -> {
+                                if (successful) {
+                                    GameStatusRepository.getInstance().getStatus(status -> {
+                                        if (status.equals(GameStatusRepository.VERSION_NAME)) {
+                                            mAuthListener.onSuccess();
+                                        } else {
+                                            mAuthRepository.signOut();
+                                            mAuthListener.onFailure(0);
+                                            mStartMaintenanceActivityEvent.call();
+                                        }
+                                    });
+                                } else {
+                                    mAuthRepository.signOut();
+                                    mAuthListener.onFailure(R.string.error_multiple_logins);
+                                }
+                            });
+                        }
+
+                        @Override
+                        public void onError(int resId) {
+                            mAuthListener.onFailure(resId);
+                        }
+                    });
+        }
+    }
+
+    private boolean validateFields() {
+        boolean valid = true;
+
+        email.set(email.get().trim());
+        password.set(password.get().trim());
+
+        if (TextUtils.isEmpty(email.get())) {
+            mAuthListener.onFailure(R.string.email_field_requered);
+            valid = false;
+        } else if (TextUtils.isEmpty(password.get())) {
+            mAuthListener.onFailure(R.string.password_field_requered);
+            valid = false;
+        }
+
+        return valid;
+    }
+
+    void setAuthListener(ResultListener authListener) {
+        mAuthListener = authListener;
     }
 
     public LiveData<List<News>> getNews() {
@@ -50,55 +105,5 @@ public class HomeViewModel extends ViewModel {
 
     LiveData<Void> getStartMaintenanceActivityEvent() {
         return mStartMaintenanceActivityEvent;
-    }
-
-    void setAuthListener(ResultListener authListener) {
-        mAuthListener = authListener;
-    }
-
-    public void onPlayButtonPressed() {
-        mAuthListener.onStarted();
-
-        GameStatusRepository.getInstance().getStatus(status -> {
-            if (status.equals(GameStatusRepository.VERSION_NAME)) {
-                if (validateFields()) {
-                    mAuthRepository.signIn(email, password, new AuthRepository.Completable() {
-                        @Override
-                        public void onComplete() {
-                            mPlayerRepository.setSignedIn(true, successful -> {
-                                if (successful) {
-                                    mAuthListener.onSuccess();
-                                } else {
-                                    mAuthRepository.signOut();
-                                    mAuthListener.onFailure(R.string.error_multiple_logins);
-                                }
-                            });
-                        }
-
-                        @Override
-                        public void onError(int resId) {
-                            mAuthListener.onFailure(resId);
-                        }
-                    });
-                }
-            } else {
-                mAuthListener.onFailure(0);
-                mStartMaintenanceActivityEvent.call();
-            }
-        });
-    }
-
-    private boolean validateFields() {
-        boolean valid = true;
-
-        if (TextUtils.isEmpty(email)) {
-            mAuthListener.onFailure(R.string.email_field_requered);
-            valid = false;
-        } else if (TextUtils.isEmpty(password)) {
-            mAuthListener.onFailure(R.string.password_field_requered);
-            valid = false;
-        }
-
-        return valid;
     }
 }

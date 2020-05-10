@@ -28,7 +28,8 @@
             android:id="@+id/messageTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/white"
+            android:textIsSelectable="true" />
 
         <View
             android:id="@+id/divider10"

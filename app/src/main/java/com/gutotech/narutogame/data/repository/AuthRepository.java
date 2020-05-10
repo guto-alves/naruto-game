@@ -56,8 +56,6 @@ public class AuthRepository {
 
     public void signIn(String email, String password, final Completable emitter) {
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
-            int resId;
-
             if (task.isSuccessful()) {
                 if (getCurrentUser().isEmailVerified()) {
                     emitter.onComplete();
@@ -66,6 +64,8 @@ public class AuthRepository {
                     signOut();
                 }
             } else {
+                int resId;
+
                 try {
                     throw task.getException();
                 } catch (FirebaseAuthInvalidUserException e) {

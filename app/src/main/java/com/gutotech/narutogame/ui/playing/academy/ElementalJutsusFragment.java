@@ -20,6 +20,7 @@ import android.view.ViewGroup;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
+import com.google.android.gms.ads.AdRequest;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.databinding.FragmentElementalsJutsusBinding;
 import com.gutotech.narutogame.ui.SectionFragment;
@@ -105,6 +106,9 @@ public class ElementalJutsusFragment extends Fragment implements SectionFragment
         });
 
         FragmentUtils.setSectionTitle(getActivity(), R.string.section_elemental_jutsus);
+
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mBinding.adView.loadAd(adRequest);
 
         return mBinding.getRoot();
     }

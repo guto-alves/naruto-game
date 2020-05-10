@@ -13,7 +13,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.repository.AuthRepository;
@@ -45,7 +44,6 @@ public class HomeFragment extends Fragment implements ResultListener, SectionFra
 
         FragmentHomeBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home,
                 container, false);
-
         binding.setViewModel(viewModel);
 
         viewModel.setAuthListener(this);
@@ -58,13 +56,15 @@ public class HomeFragment extends Fragment implements ResultListener, SectionFra
                 return true;
             });
 
-            binding.forgotPasswordTextView.setOnClickListener(v ->
-                    FragmentUtils.goTo(getActivity(), new PasswordRecoveryFragment())
-            );
+            binding.forgotPasswordTextView.setOnClickListener(v -> {
+                SoundUtil.play(getContext(), R.raw.sound_btn06);
+                FragmentUtils.goTo(getActivity(), new PasswordRecoveryFragment());
+            });
 
-            binding.createAccountTextView.setOnClickListener(v ->
-                    FragmentUtils.goTo(getActivity(), new SignUpFragment())
-            );
+            binding.createAccountTextView.setOnClickListener(v -> {
+                SoundUtil.play(getContext(), R.raw.sound_btn06);
+                FragmentUtils.goTo(getActivity(), new SignUpFragment());
+            });
         }
 
         viewModel.getStartMaintenanceActivityEvent().observe(getViewLifecycleOwner(), aVoid ->
@@ -116,7 +116,7 @@ public class HomeFragment extends Fragment implements ResultListener, SectionFra
         FragmentUtils.goTo(getActivity(), readNewsFragment);
     };
 
-    private ProgressDialogFragment mProgressDialog = new ProgressDialogFragment();
+    private final ProgressDialogFragment mProgressDialog = new ProgressDialogFragment();
 
     @Override
     public void onStarted() {
@@ -128,7 +128,7 @@ public class HomeFragment extends Fragment implements ResultListener, SectionFra
         mProgressDialog.dismiss();
         startActivity(new Intent(getActivity(), LoggedInActivity.class));
         getActivity().finish();
-        SoundUtil.play(getContext(), R.raw.sound_btn02);
+        SoundUtil.play(getContext(), R.raw.sound_btn03);
     }
 
     @Override
@@ -136,7 +136,7 @@ public class HomeFragment extends Fragment implements ResultListener, SectionFra
         mProgressDialog.dismiss();
 
         if (resId != 0) {
-            Toasty.error(getActivity(), resId, Toast.LENGTH_SHORT).show();
+            Toasty.error(getActivity(), resId).show();
         }
 
         SoundUtil.play(getContext(), R.raw.attention2);

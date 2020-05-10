@@ -393,7 +393,7 @@
                                     android:ems="10"
                                     android:imeOptions="actionSend"
                                     android:inputType="textShortMessage"
-                                    android:maxLength="80"
+                                    android:maxLength="60"
                                     android:text="@={viewModel.message}" />
                             </LinearLayout>
 

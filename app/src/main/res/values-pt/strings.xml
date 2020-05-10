@@ -269,7 +269,7 @@
     <string name="remove_character_while_logged_in">Você não pode remover esse personagem estando
         logado nele!</string>
     <string name="close">Fechar</string>
-    <string name="sender">%s:</string>
+    <string name="sender">%s:%s</string>
     <string name="top_of_chat_content_description">Topo do chat</string>
     <string name="warning_already_played_today">• Você já jogou no sorte ninja hoje!</string>
     <string name="credits_daily">1\nCrédito</string>
@@ -1005,7 +1005,7 @@
     <string name="as_a_reward_you_will_receiver">Como recompensa você receberá:</string>
     <string name="mission_completely">MISSÃO CONCLUÍDA COM SUCESSO!</string>
     <string name="experience_points">Pontos de Experiência</string>
-    <string name="question_cancel_mission">Você que realmente cancelar essa missão ? Todo o seu
+    <string name="question_cancel_mission">Você que realmente cancelar essa missão? Todo o seu
         tempo gasto até agora será perdido.</string>
     <string name="label_experience_points">%d Pontos de Experiência</string>
     <string name="count_down_default">Conclusão da missão em: —:—:—</string>
@@ -2394,7 +2394,7 @@
         guardadas aqui, para que possam sempre ser lembrados como heróis de suas temporadas.</string>
     <string name="hall_of_fame_of_naruto_game">HALL DA FAMA DO NARUTO GAME MOBILE</string>
     <string name="kage_defeated_alert">%s %s foi derrotado(a) por %s</string>
-    <string name="lucky_ninja_alert">O Ninja Sortudo %s ganhou %s</string>
+    <string name="lucky_ninja_alert">O Ninja Sortudo %s ganhou %s!</string>
     <string name="communication_error_description">Falha na comunicação com o servidor. Tente novamente com uma conexão melhor</string>
     <string name="communication_error">Erro de comunicação</string>
     <string name="failed_to_connect">Falha ao Conectar</string>

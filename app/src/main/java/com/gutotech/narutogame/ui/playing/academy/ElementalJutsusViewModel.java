@@ -37,6 +37,9 @@ public class ElementalJutsusViewModel extends ViewModel
     }
 
     public void onElementButtonPressed(Element element) {
+        if (element == mElementSelected.getValue()) {
+            return;
+        }
         mElementSelected.setValue(element);
         filterJutsus();
     }

@@ -4,6 +4,7 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -84,6 +85,7 @@ public class GraduationsAdapter extends RecyclerView.Adapter<GraduationsAdapter.
 
         YoYo.with(Techniques.Bounce)
                 .duration(1200)
+                .delay(500)
                 .repeat(YoYo.INFINITE)
                 .playOn(holder.requerImageView);
 
@@ -108,9 +110,9 @@ public class GraduationsAdapter extends RecyclerView.Adapter<GraduationsAdapter.
         );
 
         if (i % 2 == 0) {
-            holder.bgConstraint.setBackgroundColor(mContext.getResources().getColor(R.color.colorItem1));
+            holder.bgConstraint.setBackgroundColor(ContextCompat.getColor(mContext, R.color.colorItem1));
         } else {
-            holder.bgConstraint.setBackgroundColor(mContext.getResources().getColor(R.color.colorItem2));
+            holder.bgConstraint.setBackgroundColor(ContextCompat.getColor(mContext, R.color.colorItem2));
         }
     }
 

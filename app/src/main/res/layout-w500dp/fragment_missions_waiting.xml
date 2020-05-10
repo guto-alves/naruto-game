@@ -54,7 +54,7 @@
                 <ImageView
                     android:id="@+id/profileImageView"
                     profileForMsg="@{1}"
-                    android:layout_width="120dp"
+                    android:layout_width="150dp"
                     android:layout_height="0dp"
                     android:scaleType="fitXY"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -145,7 +145,7 @@
 
                 <ImageView
                     android:id="@+id/imageView212"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:scaleType="fitXY"
                     android:src="@drawable/layout_msg_topo"
@@ -156,13 +156,13 @@
                 <ImageView
                     android:id="@+id/profileImageView2"
                     profileForMsg="@{1}"
-                    android:layout_width="130dp"
+                    android:layout_width="150dp"
                     android:layout_height="0dp"
-                    android:layout_marginTop="8dp"
                     android:scaleType="fitXY"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.88" />
 
                 <ImageView
                     android:id="@+id/imageView232"
@@ -177,7 +177,7 @@
 
                 <ImageView
                     android:id="@+id/imageView222"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:scaleType="fitXY"
                     android:src="@drawable/layout_msg_rodape1"
@@ -268,7 +268,7 @@
             <LinearLayout
                 android:id="@+id/linearLayout"
                 android:layout_width="wrap_content"
-                android:layout_height="51dp"
+                android:layout_height="61dp"
                 android:layout_marginTop="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -278,7 +278,7 @@
                     android:id="@+id/adView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:adSize="BANNER"
+                    app:adSize="FULL_BANNER"
                     app:adUnitId="ca-app-pub-3940256099942544/6300978111" />
 
             </LinearLayout>

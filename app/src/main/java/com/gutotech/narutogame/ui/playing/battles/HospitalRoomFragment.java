@@ -10,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.rewarded.RewardItem;
 import com.google.android.gms.ads.rewarded.RewardedAd;
@@ -97,6 +99,12 @@ public class HospitalRoomFragment extends Fragment implements SectionFragment {
                 Toasty.warning(getContext(), "The rewarded ad wasn't loaded yet.").show();
             }
         });
+
+        YoYo.with(Techniques.Tada)
+                .duration(1200)
+                .delay(500)
+                .repeat(YoYo.INFINITE)
+                .playOn(binding.watchVideoButton);
 
         return binding.getRoot();
     }

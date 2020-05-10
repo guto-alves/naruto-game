@@ -24,8 +24,6 @@ import com.gutotech.narutogame.utils.FragmentUtils;
 import com.gutotech.narutogame.utils.SoundUtil;
 
 import java.security.SecureRandom;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 public class NinjaLuckyFragment extends Fragment implements SectionFragment {
     private NinjaLuckyViewModel mViewModel;
@@ -56,8 +54,7 @@ public class NinjaLuckyFragment extends Fragment implements SectionFragment {
 
         FragmentUtils.setSectionTitle(getActivity(), R.string.section_ninja_lucky);
 
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mBinding.adView.loadAd(adRequest);
+        mBinding.adView.loadAd(new AdRequest.Builder().build());
 
         return mBinding.getRoot();
     }
@@ -65,18 +62,18 @@ public class NinjaLuckyFragment extends Fragment implements SectionFragment {
     private void showWarningDialog(@StringRes int resid) {
         WarningDialogFragment dialog = WarningDialogFragment.newInstance(getContext(), resid);
         dialog.openDialog(getParentFragmentManager());
-        SoundUtil.play(getContext(), R.raw.sound_pop);
+        SoundUtil.play(getContext(), R.raw.attention2);
     }
 
     private void startAnimation() {
-        ExecutorService executorService = Executors.newCachedThreadPool();
-        new AnimationTask(mBinding.slot1ImageView).executeOnExecutor(executorService);
-        new AnimationTask(mBinding.slot2ImageView).executeOnExecutor(executorService);
-        new AnimationTask(mBinding.slot3ImageView).executeOnExecutor(executorService);
-        new AnimationTask(mBinding.slot4ImageView).executeOnExecutor(executorService);
+        mAnimationEndCount = 0;
+        new AnimationTask(mBinding.slot1ImageView).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+        new AnimationTask(mBinding.slot2ImageView).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+        new AnimationTask(mBinding.slot3ImageView).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+        new AnimationTask(mBinding.slot4ImageView).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
 
-    private int animationEndCount;
+    private int mAnimationEndCount;
 
     public class AnimationTask extends AsyncTask<Void, Integer, Void> {
         private final SecureRandom random = new SecureRandom();
@@ -90,21 +87,26 @@ public class NinjaLuckyFragment extends Fragment implements SectionFragment {
         }
 
         @Override
-        protected void onPreExecute() {
-            animationEndCount = 0;
-        }
-
-        @Override
         protected Void doInBackground(Void... voids) {
             int n = random.nextInt(22) + 1;
 
-            int totalScroll = INITIAL_SCROLL + 115 * n;
+            int finalScroll = INITIAL_SCROLL + 115 * n;
 
-            for (int i = INITIAL_SCROLL + 1; i < totalScroll; i++) {
+            int totalScrolls = Math.abs(Math.abs(finalScroll) - Math.abs(INITIAL_SCROLL));
+            int currentScroll = 0;
+            int millis = 1;
+
+            for (int i = INITIAL_SCROLL + 1; i < finalScroll; i++) {
                 publishProgress(i);
 
+                currentScroll = (currentScroll + 1) % (totalScrolls / 4);
+
+                if (currentScroll == 0) {
+                    millis++;
+                }
+
                 try {
-                    Thread.sleep(3);
+                    Thread.sleep(millis);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                     Thread.currentThread().interrupt();
@@ -121,7 +123,7 @@ public class NinjaLuckyFragment extends Fragment implements SectionFragment {
 
         @Override
         protected void onPostExecute(Void aVoid) {
-            if (++animationEndCount == 4) {
+            if (++mAnimationEndCount == 4) {
                 mViewModel.onAnimationEnd();
             }
         }

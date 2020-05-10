@@ -24,9 +24,8 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         try {
-            GameStatusRepository.setGameVersion(
-                    getPackageManager().getPackageInfo(getPackageName(), 0).versionName
-            );
+            GameStatusRepository.VERSION_NAME =
+                    getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
             System.exit(1);
@@ -72,7 +71,7 @@ public class SplashActivity extends AppCompatActivity {
                     mConnectionWarningDialog.show(getSupportFragmentManager());
                 }
             });
-        }, 3000);
+        }, 4000);
     }
 
 }

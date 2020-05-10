@@ -1,27 +1,30 @@
 package com.gutotech.narutogame.ui.adapter;
 
 import androidx.annotation.NonNull;
-import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.style.StyleSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.Message;
-import com.gutotech.narutogame.databinding.AdapterChatMessageBinding;
+import com.gutotech.narutogame.utils.SpannableStringBuilderCustom;
 
 import java.util.List;
+
+import static android.graphics.Typeface.BOLD;
 
 public class ChatMessagesAdapter extends RecyclerView.Adapter<ChatMessagesAdapter.ViewHolder> {
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        AdapterChatMessageBinding binding;
+        private TextView messageTextView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            binding = DataBindingUtil.bind(itemView);
+            messageTextView = itemView.findViewById(R.id.messageTextView);
         }
     }
 
@@ -30,17 +33,20 @@ public class ChatMessagesAdapter extends RecyclerView.Adapter<ChatMessagesAdapte
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        AdapterChatMessageBinding binding = DataBindingUtil.inflate(
-                LayoutInflater.from(viewGroup.getContext()),
-                R.layout.adapter_chat_message, viewGroup, false
-        );
-        return new ViewHolder(binding.getRoot());
+        View itemView = LayoutInflater.from(viewGroup.getContext()).inflate(
+                R.layout.adapter_chat_message, viewGroup, false);
+        return new ViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int i) {
         if (mMessageList != null) {
-            holder.binding.setMessage(mMessageList.get(i));
+            Message message = mMessageList.get(i);
+            SpannableStringBuilderCustom stringBuilder = new SpannableStringBuilderCustom(
+                    holder.messageTextView.getContext());
+            stringBuilder.append(message.getSender() + ": ", new StyleSpan(BOLD));
+            stringBuilder.append(message.getMessage());
+            holder.messageTextView.setText(stringBuilder.getString());
         }
     }
 

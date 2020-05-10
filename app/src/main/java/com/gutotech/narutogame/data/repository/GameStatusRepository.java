@@ -12,15 +12,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class GameStatusRepository {
-    public static String VERSION_NAME = "1.0";
+    public static String VERSION_NAME = "2.1";
 
     private static final GameStatusRepository sInstance = new GameStatusRepository();
 
     private GameStatusRepository() {
-    }
-
-    public static void setGameVersion(String versionName) {
-        VERSION_NAME = versionName;
     }
 
     public static GameStatusRepository getInstance() {

@@ -22,6 +22,7 @@ import android.view.ViewGroup;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
+import com.google.android.gms.ads.AdRequest;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.model.Classe;
@@ -76,10 +77,8 @@ public class ElementsFragment extends Fragment implements SectionFragment {
             }
 
             QuestionDialogFragment dialog = QuestionDialogFragment.newInstance(
-                    Html.fromHtml(getString(
-                            R.string.learn_element_question,
-                            mViewModel.getElementSelected().getValue().name
-                    )).toString(),
+                    getString(R.string.learn_element_question,
+                            mViewModel.getElementSelected().getValue().name),
                     mLearnQuestionDialogListener
             );
             dialog.openDialog(getParentFragmentManager());
@@ -95,6 +94,9 @@ public class ElementsFragment extends Fragment implements SectionFragment {
         });
 
         FragmentUtils.setSectionTitle(getActivity(), R.string.section_elements);
+
+        mBinding.adView.loadAd(new AdRequest.Builder().build());
+
         return mBinding.getRoot();
     }
 
