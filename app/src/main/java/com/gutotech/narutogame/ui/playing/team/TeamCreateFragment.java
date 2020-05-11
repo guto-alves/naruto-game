@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.gms.ads.AdRequest;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.databinding.FragmentTeamCreateBinding;
 import com.gutotech.narutogame.ui.ProgressDialogFragment;
@@ -48,13 +49,16 @@ public class TeamCreateFragment extends Fragment implements SectionFragment {
         );
 
         FragmentUtils.setSectionTitle(getActivity(), R.string.section_create_a_team);
+
+        binding.adView.loadAd(new AdRequest.Builder().build());
+
         return binding.getRoot();
     }
 
     private void showDialog(@StringRes int resid) {
         WarningDialogFragment dialog = WarningDialogFragment.newInstance(getContext(), resid);
         dialog.openDialog(getParentFragmentManager());
-        SoundUtil.play(getContext(), R.raw.sound_pop);
+        SoundUtil.play(getContext(), R.raw.attention2);
     }
 
     @Override
