@@ -16,13 +16,17 @@ import android.view.ViewGroup;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.gutotech.narutogame.R;
+import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.databinding.FragmentPersonagemCriarBinding;
 import com.gutotech.narutogame.ui.ProgressDialogFragment;
 import com.gutotech.narutogame.ui.ResultListener;
 import com.gutotech.narutogame.ui.SectionFragment;
+import com.gutotech.narutogame.ui.WarningDialogFragment;
 import com.gutotech.narutogame.ui.adapter.ChooseNinjaAdapter;
 import com.gutotech.narutogame.ui.loggedin.selectcharacter.CharacterSelectFragment;
+import com.gutotech.narutogame.ui.playing.character.CharacterStatusFragment;
 import com.gutotech.narutogame.utils.FragmentUtils;
+import com.gutotech.narutogame.utils.SoundUtil;
 
 public class CharacterCreateFragment extends Fragment implements SectionFragment, ResultListener {
 
@@ -38,6 +42,14 @@ public class CharacterCreateFragment extends Fragment implements SectionFragment
 
         binding.setViewModel(viewModel);
 
+        ChooseNinjaAdapter ninjasAdapter = new ChooseNinjaAdapter(viewModel);
+        binding.ninjasRecyclerView.setAdapter(ninjasAdapter);
+
+        viewModel.getCurrentNinjasGroupList().observe(getViewLifecycleOwner(),
+                ninjasAdapter::setNinjasId);
+
+        FragmentUtils.setSectionTitle(getActivity(), R.string.section_create_character);
+
         YoYo.with(Techniques.Pulse)
                 .duration(1200)
                 .repeat(YoYo.INFINITE)
@@ -48,13 +60,17 @@ public class CharacterCreateFragment extends Fragment implements SectionFragment
                 .repeat(YoYo.INFINITE)
                 .playOn(binding.backImageButton);
 
-        ChooseNinjaAdapter ninjasAdapter = new ChooseNinjaAdapter(viewModel);
-        binding.ninjasRecyclerView.setAdapter(ninjasAdapter);
-
-        viewModel.getCurrentNinjasGroupList().observe(getViewLifecycleOwner(),
-                ninjasAdapter::setNinjasId);
-
-        FragmentUtils.setSectionTitle(getActivity(), R.string.section_create_character);
+        viewModel.getImpossibleToCreateEvent().observe(getViewLifecycleOwner(), aVoid -> {
+            WarningDialogFragment.newInstance(getContext(), R.string.problem,
+                    R.string.max_limit_of_character_warning, () -> {
+                        if (CharOn.character != null) {
+                            FragmentUtils.goTo(getActivity(), new CharacterStatusFragment());
+                        } else {
+                            FragmentUtils.goTo(getActivity(), new CharacterSelectFragment());
+                        }
+                    }).openDialog(getParentFragmentManager());
+            SoundUtil.play(getContext(), R.raw.attention2);
+        });
 
         return binding.getRoot();
     }
@@ -67,7 +83,7 @@ public class CharacterCreateFragment extends Fragment implements SectionFragment
         alert.show();
     }
 
-    private ProgressDialogFragment mProgressDialog = new ProgressDialogFragment();
+    private final ProgressDialogFragment mProgressDialog = new ProgressDialogFragment();
 
     @Override
     public void onStarted() {
@@ -87,6 +103,7 @@ public class CharacterCreateFragment extends Fragment implements SectionFragment
             mProgressDialog.dismiss();
         }
         showAlert(R.string.warning, resId);
+        SoundUtil.play(getContext(), R.raw.attention2);
     }
 
     @Override

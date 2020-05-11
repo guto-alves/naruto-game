@@ -13,6 +13,7 @@ import com.gutotech.narutogame.data.repository.AuthRepository;
 import com.gutotech.narutogame.data.repository.CharacterRepository;
 import com.gutotech.narutogame.data.repository.NinjaLuckyRepository;
 import com.gutotech.narutogame.data.repository.NinjaStatisticsRepository;
+import com.gutotech.narutogame.data.repository.PlayerRepository;
 import com.gutotech.narutogame.data.repository.TeamRepository;
 import com.gutotech.narutogame.ui.ResultListener;
 import com.gutotech.narutogame.utils.SingleLiveEvent;
@@ -65,6 +66,7 @@ public class CharacterSelectViewModel extends ViewModel {
         mCharRepository.delete(character.getId());
         NinjaLuckyRepository.getInstance().delete(character.getId());
         NinjaStatisticsRepository.getInstance().remove(character.getNinja().getId());
+        PlayerRepository.getInstance().setTotalCharacters(false);
     }
 
 

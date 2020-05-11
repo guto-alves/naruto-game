@@ -20,8 +20,10 @@ import com.gutotech.narutogame.data.repository.CharacterRepository;
 import com.gutotech.narutogame.data.repository.JutsuRepository;
 import com.gutotech.narutogame.data.repository.NinjaLuckyRepository;
 import com.gutotech.narutogame.data.repository.NinjaStatisticsRepository;
+import com.gutotech.narutogame.data.repository.PlayerRepository;
 import com.gutotech.narutogame.ui.ResultListener;
 import com.gutotech.narutogame.ui.adapter.ChooseNinjaAdapter;
+import com.gutotech.narutogame.utils.SingleLiveEvent;
 
 import java.util.Arrays;
 import java.util.List;
@@ -42,11 +44,19 @@ public class CharacterCreateViewModel extends ViewModel
 
     private ResultListener mListener;
 
+    private SingleLiveEvent<Void> mImpossibleToCreateEvent = new SingleLiveEvent<>();
+
     public CharacterCreateViewModel() {
         mCharacterRepository = CharacterRepository.getInstance();
 
         mChar = new Character(AuthRepository.getInstance().getUid());
         mChar.setJutsus(JutsuRepository.getInstance().getBasicJutsus(Classe.TAI));
+
+        PlayerRepository.getInstance().getTotalCharacters(totalCharacters -> {
+            if (totalCharacters >= 6) {
+                mImpossibleToCreateEvent.call();
+            }
+        });
 
         mAllNinjasList = Arrays.asList(Ninja.values());
         loadCurrentGroup();
@@ -89,6 +99,7 @@ public class CharacterCreateViewModel extends ViewModel
                     NinjaLuckyRepository.getInstance().save(mChar.getId(), ninjaLucky);
 
                     NinjaStatisticsRepository.getInstance().add(mChar.getNinja());
+                    PlayerRepository.getInstance().setTotalCharacters(true);
 
                     mListener.onSuccess();
                 } else {
@@ -145,5 +156,9 @@ public class CharacterCreateViewModel extends ViewModel
 
     LiveData<List<Ninja>> getCurrentNinjasGroupList() {
         return mCurrentNinjasGroupList;
+    }
+
+    LiveData<Void> getImpossibleToCreateEvent() {
+        return mImpossibleToCreateEvent;
     }
 }

@@ -2448,5 +2448,6 @@
     <string name="mission392_des">Durante um ataque a alguma vila inimiga, derrote a quantidade exigida de inimigos.</string>
 
     <string name="special_mission_status">Status da Missão Especial</string>
+    <string name="max_limit_of_character_warning">Você já chegou no limite de personagens!</string>
 
 </resources>

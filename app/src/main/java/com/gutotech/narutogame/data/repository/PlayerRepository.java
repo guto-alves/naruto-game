@@ -1,6 +1,5 @@
 package com.gutotech.narutogame.data.repository;
 
-import android.telecom.Call;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
@@ -118,6 +117,58 @@ public class PlayerRepository {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
+    }
+
+    public void getTotalCharacters(Callback<Integer> callback) {
+        DatabaseReference reference = FirebaseConfig.getDatabase()
+                .child("players")
+                .child(AuthRepository.getInstance().getUid())
+                .child("totalCharacters");
+
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    callback.call(dataSnapshot.getValue(Integer.class));
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
+    }
+
+    public void setTotalCharacters(boolean increment) {
+        DatabaseReference reference = FirebaseConfig.getDatabase()
+                .child("players")
+                .child(AuthRepository.getInstance().getUid())
+                .child("totalCharacters");
+
+        reference.runTransaction(new Transaction.Handler() {
+            @NonNull
+            @Override
+            public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
+                Integer total = mutableData.getValue(Integer.class);
+
+                if (total == null) {
+                    return Transaction.success(mutableData);
+                }
+
+                if (increment) {
+                    mutableData.setValue(total + 1);
+                } else {
+                    mutableData.setValue(total - 1);
+                }
+
+                return Transaction.success(mutableData);
+            }
+
+            @Override
+            public void onComplete(@Nullable DatabaseError databaseError, boolean b,
+                                   @Nullable DataSnapshot dataSnapshot) {
             }
         });
     }

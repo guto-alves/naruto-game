@@ -31,7 +31,6 @@ import es.dmoral.toasty.Toasty;
 
 public class CharacterSelectFragment extends Fragment implements SectionFragment, ResultListener,
         CharacterSelectAdapter.CharacterSelecetedListener {
-
     private FragmentPersonagemSelecionarBinding mBinding;
 
     @Override
@@ -79,8 +78,7 @@ public class CharacterSelectFragment extends Fragment implements SectionFragment
 
         FragmentUtils.setSectionTitle(getActivity(), R.string.section_select_your_character);
 
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mBinding.adView.loadAd(adRequest);
+        mBinding.adView.loadAd(new AdRequest.Builder().build());
 
         return mBinding.getRoot();
     }

@@ -16,6 +16,7 @@ public class Player extends BaseObservable {
     private String neighborhood;
     private String city;
     private boolean signedIn;
+    private int totalCharacters;
 
     public Player() {
     }
@@ -120,5 +121,13 @@ public class Player extends BaseObservable {
 
     public void setSignedIn(boolean signedIn) {
         this.signedIn = signedIn;
+    }
+
+    public int getTotalCharacters() {
+        return totalCharacters;
+    }
+
+    public void setTotalCharacters(int totalCharacters) {
+        this.totalCharacters = totalCharacters;
     }
 }

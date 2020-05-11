@@ -40,6 +40,13 @@ public class WarningDialogFragment extends DialogFragment {
                 context.getString(R.string.close), true, null);
     }
 
+    public static WarningDialogFragment newInstance(Context context, @StringRes int titleId,
+                                                    @StringRes int messageId,
+                                                    WarningDialogListener listener) {
+        return newInstance(context.getString(titleId), context.getString(messageId),
+                context.getString(R.string.close), false, listener);
+    }
+
     public static WarningDialogFragment newInstance(Context context, @StringRes int messageId,
                                                     WarningDialogListener listener) {
         return newInstance(context.getString(R.string.warning), context.getString(messageId),
