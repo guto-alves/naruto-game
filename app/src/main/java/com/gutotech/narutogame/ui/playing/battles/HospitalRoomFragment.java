@@ -96,14 +96,12 @@ public class HospitalRoomFragment extends Fragment implements SectionFragment {
                 };
                 mRewardedAd.show(getActivity(), adCallback);
             } else {
-                Toasty.warning(getContext(), "The rewarded ad wasn't loaded yet.").show();
+                Toasty.warning(getContext(), R.string.rewarded_ad_wasnt_loaded_yet_warning).show();
             }
         });
 
-        YoYo.with(Techniques.Tada)
-                .duration(1200)
-                .delay(500)
-                .repeat(YoYo.INFINITE)
+        YoYo.with(Techniques.BounceInLeft)
+                .duration(2000)
                 .playOn(binding.watchVideoButton);
 
         return binding.getRoot();

@@ -90,7 +90,7 @@ public class CharacterRepository {
                 .orderByChild("playerId")
                 .equalTo(playerId);
 
-        charactersQuery.addValueEventListener(new ValueEventListener() {
+        charactersQuery.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 List<Character> characterList = new ArrayList<>();

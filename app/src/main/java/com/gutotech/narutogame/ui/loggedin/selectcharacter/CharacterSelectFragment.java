@@ -66,14 +66,16 @@ public class CharacterSelectFragment extends Fragment implements SectionFragment
             builder.setPositiveButton("OK", onClickListener);
             builder.create();
             builder.show();
+            SoundUtil.play(getContext(), R.raw.sound_pop);
         });
 
         viewModel.getShowErrorDialogEvent().observe(getViewLifecycleOwner(), resId -> {
-            AlertDialog.Builder builder1 = new AlertDialog.Builder(getContext());
-            builder1.setTitle(R.string.warning);
-            builder1.setMessage(resId);
-            builder1.setPositiveButton(R.string.close, null);
-            builder1.create().show();
+            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+            builder.setTitle(R.string.warning);
+            builder.setMessage(resId);
+            builder.setPositiveButton(R.string.close, null);
+            builder.create().show();
+            SoundUtil.play(getContext(), R.raw.attention2);
         });
 
         FragmentUtils.setSectionTitle(getActivity(), R.string.section_select_your_character);
@@ -111,7 +113,7 @@ public class CharacterSelectFragment extends Fragment implements SectionFragment
     @Override
     public void onFailure(@StringRes int resId) {
         Toasty.info(getContext(), resId, Toast.LENGTH_SHORT).show();
-        SoundUtil.play(getContext(), R.raw.sound_btn02);
+        SoundUtil.play(getContext(), R.raw.attention2);
     }
 
     @Override

@@ -46,7 +46,7 @@
                 android:id="@+id/tableLayout2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="24dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout">
@@ -59,7 +59,7 @@
                     <Button
                         style="@style/ButtonTheme"
                         android:layout_marginEnd="16dp"
-                        android:layout_marginRight="8dp"
+                        android:layout_marginRight="16dp"
                         android:background="@{viewModel.typeSelected == Type.TIME? @drawable/bg_button_orange: @drawable/bg_button}"
                         android:onClick="@{() -> viewModel.onTypeSelected(Type.TIME)}"
                         android:text="@string/time" />
@@ -76,11 +76,12 @@
                 <TableRow
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="32dp"
+                    android:layout_marginTop="16dp"
                     android:gravity="center">
 
                     <Button
                         style="@style/ButtonTheme"
+                        android:layout_marginEnd="16dp"
                         android:layout_marginRight="16dp"
                         android:background="@{viewModel.rankSelected == Rank.RANK_D? @drawable/bg_button_orange: @drawable/bg_button}"
                         android:onClick="@{() -> viewModel.onRankSelected(Rank.RANK_D)}"
@@ -88,6 +89,7 @@
 
                     <Button
                         style="@style/ButtonTheme"
+                        android:layout_marginEnd="16dp"
                         android:layout_marginRight="16dp"
                         android:background="@{viewModel.rankSelected == Rank.RANK_C? @drawable/bg_button_orange: @drawable/bg_button}"
                         android:onClick="@{() -> viewModel.onRankSelected(Rank.RANK_C)}"
@@ -110,6 +112,7 @@
 
                     <Button
                         style="@style/ButtonTheme"
+                        android:layout_marginStart="16dp"
                         android:layout_marginLeft="16dp"
                         android:background="@{viewModel.rankSelected == Rank.RANK_A? @drawable/bg_button_orange: @drawable/bg_button}"
                         android:onClick="@{() -> viewModel.onRankSelected(Rank.RANK_A)}"

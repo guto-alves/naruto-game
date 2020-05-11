@@ -165,11 +165,8 @@ public class DojoBatalhaLutadorFragment extends Fragment implements SectionFragm
 
         FragmentUtils.setSectionTitle(getActivity(), R.string.dojo_challenge);
 
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mBinding.adView.loadAd(adRequest);
-
-        AdRequest adRequest1 = new AdRequest.Builder().build();
-        mBinding.adView1.loadAd(adRequest1);
+        mBinding.adView.loadAd(new AdRequest.Builder().build());
+        mBinding.adView1.loadAd(new AdRequest.Builder().build());
 
         return mBinding.getRoot();
     }

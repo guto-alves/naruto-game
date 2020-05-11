@@ -92,8 +92,7 @@ public class AcademyTrainingFragment extends Fragment implements SectionFragment
 
         FragmentUtils.setSectionTitle(getActivity(), R.string.section_attribute_training);
 
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mBinding.adView.loadAd(adRequest);
+        mBinding.adView.loadAd(new AdRequest.Builder().build());
 
         return mBinding.getRoot();
     }

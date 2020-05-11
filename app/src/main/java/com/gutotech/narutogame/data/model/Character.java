@@ -50,12 +50,12 @@ public class Character extends BaseObservable implements Serializable {
 
     private ResumeOfMissions resumeOfMissions;
     private int totalDailyMissions;
-    private boolean mission;
+    private boolean timeMission;
     private boolean specialMission;
 
-    private int mapPosition;
     private boolean map;
     private int mapId;
+    private int mapPosition;
 
     private int daysOfFidelity;
     private boolean fidelityReward;
@@ -570,13 +570,13 @@ public class Character extends BaseObservable implements Serializable {
     }
 
     @Bindable
-    public boolean isMission() {
-        return mission;
+    public boolean isTimeMission() {
+        return timeMission;
     }
 
-    public void setMission(boolean mission) {
-        this.mission = mission;
-        notifyPropertyChanged(BR.mission);
+    public void setTimeMission(boolean timeMission) {
+        this.timeMission = timeMission;
+        notifyPropertyChanged(BR.timeMission);
     }
 
     @Bindable

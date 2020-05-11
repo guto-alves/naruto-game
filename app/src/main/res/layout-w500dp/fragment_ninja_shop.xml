@@ -45,7 +45,7 @@
 
                 <ImageView
                     android:id="@+id/imageView212"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:scaleType="fitXY"
                     android:src="@drawable/layout_msg_topo"
@@ -76,7 +76,7 @@
 
                 <ImageView
                     android:id="@+id/imageView222"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:scaleType="fitXY"
                     android:src="@drawable/layout_msg_rodape1"
@@ -90,6 +90,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:orientation="vertical"
+                    android:padding="3dp"
                     app:layout_constraintBottom_toTopOf="@+id/imageView222"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/imagemMsg2"
@@ -111,8 +112,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
                         android:gravity="center|start"
-                        android:paddingEnd="3dp"
-                        android:paddingRight="3dp"
                         android:text="@string/limit_ranged_weapons_description"
                         android:textColor="#D1D8F1"
                         android:textSize="12sp" />
@@ -126,6 +125,8 @@
                             style="?android:attr/progressBarStyleHorizontal"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:layout_marginEnd="32dp"
+                            android:layout_marginRight="32dp"
                             android:background="@drawable/layout_barra_exp_barra_vazia_340"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"

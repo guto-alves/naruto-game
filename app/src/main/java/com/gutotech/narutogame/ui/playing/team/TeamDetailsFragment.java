@@ -115,8 +115,7 @@ public class TeamDetailsFragment extends Fragment implements SectionFragment,
 
         FragmentUtils.setSectionTitle(getActivity(), R.string.section_team);
 
-        AdRequest adRequest = new AdRequest.Builder().build();
-        binding.adView.loadAd(adRequest);
+        binding.adView.loadAd(new AdRequest.Builder().build());
 
         return binding.getRoot();
     }

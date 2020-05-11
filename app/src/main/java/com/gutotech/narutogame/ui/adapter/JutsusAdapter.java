@@ -91,6 +91,7 @@ public class JutsusAdapter extends RecyclerView.Adapter<JutsusAdapter.ViewHolder
                                 Animation animation = AnimationUtils.loadAnimation(mContext, R.anim.fade_out);
                                 animation.setAnimationListener(mAnimationListener);
                                 holder.itemView.startAnimation(animation);
+                                mAnimationRunning = true;
                                 mOnJutsuClickListener.onJutsuClick(jutsu);
                                 SoundUtil.play(mContext, R.raw.sound_btn);
                                 return super.onSingleTapUp(e);
@@ -128,7 +129,6 @@ public class JutsusAdapter extends RecyclerView.Adapter<JutsusAdapter.ViewHolder
     private final Animation.AnimationListener mAnimationListener = new Animation.AnimationListener() {
         @Override
         public void onAnimationStart(Animation animation) {
-            mAnimationRunning = true;
         }
 
         @Override

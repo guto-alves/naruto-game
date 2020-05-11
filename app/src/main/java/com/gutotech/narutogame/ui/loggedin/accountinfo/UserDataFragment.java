@@ -18,6 +18,7 @@ import com.gutotech.narutogame.ui.ResultListener;
 import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.utils.FragmentUtils;
 import com.gutotech.narutogame.data.firebase.StorageUtils;
+import com.gutotech.narutogame.utils.SoundUtil;
 
 import es.dmoral.toasty.Toasty;
 
@@ -70,5 +71,6 @@ public class UserDataFragment extends Fragment implements SectionFragment, Resul
     @Override
     public void onFailure(int resId) {
         Toasty.warning(getContext(), resId, Toasty.LENGTH_SHORT).show();
+        SoundUtil.play(getContext(), R.raw.attention2);
     }
 }

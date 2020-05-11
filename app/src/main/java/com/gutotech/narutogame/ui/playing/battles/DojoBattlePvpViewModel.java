@@ -564,7 +564,7 @@ public class DojoBattlePvpViewModel extends AndroidViewModel
             int earnedRyous = 0;
             int earnedExp = 0;
 
-            if (CharOn.character.getBattleId().contains("MAP-PVP")) {
+            if (CharOn.character.getBattleId().contains(Battle.MAP_PVP)) {
                 earnedRyous = 16 * mFighters.getPlayer().getLevel() + 250;
                 earnedExp = 16 * mFighters.getPlayer().getLevel() + 150;
             } else if (CharOn.character.getGraduationId() == 1) { // Dojo PVP
@@ -592,7 +592,7 @@ public class DojoBattlePvpViewModel extends AndroidViewModel
     synchronized void exit() {
         if ((mBattle.getStatus() == Battle.Status.PLAYER1_WON && myTurn == 1) ||
                 (mBattle.getStatus() == Battle.Status.PLAYER2_WON && myTurn == 2)) {
-            if (CharOn.character.getBattleId().contains("MAP-PVP")) {
+            if (CharOn.character.getBattleId().contains(Battle.MAP_PVP)) {
                 CharOn.character.incrementScore(Score.VIT_MAPA_PVP);
                 CharOn.character.addRyous(16 * mFighters.getPlayer().getLevel() + 250);
                 CharOn.character.incrementExp(16 * mFighters.getPlayer().getLevel() + 150);
@@ -629,7 +629,7 @@ public class DojoBattlePvpViewModel extends AndroidViewModel
             if (mBattle.getStatus() == Battle.Status.DRAWN) {
                 CharOn.character.getCombatOverview().setDrawsPvp(
                         CharOn.character.getCombatOverview().getDrawsPvp() + 1);
-            } else if (CharOn.character.getBattleId().contains("MAP-PVP")) {
+            } else if (CharOn.character.getBattleId().contains(Battle.MAP_PVP)) {
                 CharOn.character.decrementScore(Score.DER_MAPA_PVP);
                 CharOn.character.getCombatOverview().setLossesMapPvp(
                         CharOn.character.getCombatOverview().getLossesMapPvp() + 1);

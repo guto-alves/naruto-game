@@ -33,6 +33,7 @@ import com.gutotech.narutogame.ui.WarningDialogFragment;
 import com.gutotech.narutogame.utils.DateCustom;
 import com.gutotech.narutogame.utils.FragmentUtils;
 import com.gutotech.narutogame.data.firebase.StorageUtils;
+import com.gutotech.narutogame.utils.SoundUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -160,6 +161,7 @@ public class SupportNewFragment extends Fragment {
             WarningDialogFragment warningDialog = WarningDialogFragment.newInstance(
                     getContext(), message.toString());
             warningDialog.openDialog(getParentFragmentManager());
+            SoundUtil.play(getContext(), R.raw.attention2);
         });
 
         mViewModel.getTicketCreatedEvent().observe(getViewLifecycleOwner(), aVoid -> {
@@ -248,5 +250,6 @@ public class SupportNewFragment extends Fragment {
         builder.setPositiveButton("Ok", null);
         builder.create();
         builder.show();
+        SoundUtil.play(getContext(), R.raw.attention2);
     }
 }

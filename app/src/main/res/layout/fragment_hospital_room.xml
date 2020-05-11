@@ -124,14 +124,18 @@
                 </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <Button
-                android:id="@+id/watchVideoButton"
-                style="@style/ButtonTheme"
-                android:layout_gravity="center"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:background="@drawable/bg_green_button"
-                android:text="@string/watch_video_to_leave_the_hospital" />
+                android:gravity="center">
 
+                <Button
+                    android:id="@+id/watchVideoButton"
+                    style="@style/ButtonTheme"
+                    android:background="@drawable/bg_green_button"
+                    android:text="@string/watch_video_to_leave_the_hospital" />
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </layout>

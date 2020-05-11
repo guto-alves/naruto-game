@@ -2493,5 +2493,6 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="mission392_des">During a raid on some village enemy, defeat the required amount of enemies.</string>
     <string name="special_mission_status">Special Mission Status</string>
     <string name="max_limit_of_character_warning">You\'ve reached the max limit of characters!</string>
+    <string name="rewarded_ad_wasnt_loaded_yet_warning">The rewarded ad wasn\'t loaded yet.</string>
 
 </resources>

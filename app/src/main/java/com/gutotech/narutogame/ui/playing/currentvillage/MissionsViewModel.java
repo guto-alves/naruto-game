@@ -76,7 +76,7 @@ public class MissionsViewModel extends AndroidViewModel
                 MissionRepository.getInstance().acceptMission(timeMission, Mission.Type.TIME);
                 NotificationsUtils.setAlarm(getApplication(),
                         currentTimestamp + timeMission.getDurationMillis());
-                CharOn.character.setMission(true);
+                CharOn.character.setTimeMission(true);
                 mShowProgressBarEvent.setValue(false);
             });
         } else {

@@ -86,7 +86,7 @@ public class MissionsWaitingViewModel extends AndroidViewModel {
     void onCancelMissionButtonPressed() {
         NotificationsUtils.cancelAlarm(getApplication());
         mMissionRepository.finishMission(Mission.Type.TIME);
-        CharOn.character.setMission(false);
+        CharOn.character.setTimeMission(false);
     }
 
     public void onFinishButtonPressed() {
@@ -127,7 +127,7 @@ public class MissionsWaitingViewModel extends AndroidViewModel {
         }
 
         mMissionRepository.finishMission(Mission.Type.TIME);
-        mCharacter.setMission(false);
+        mCharacter.setTimeMission(false);
     }
 
 

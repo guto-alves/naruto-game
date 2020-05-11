@@ -17,6 +17,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.firebase.FirebaseFunctionsUtils;
+import com.gutotech.narutogame.data.model.Battle;
 import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.model.Character;
 import com.gutotech.narutogame.data.model.MenuGroup;
@@ -120,10 +121,10 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
                     SoundUtil.play(getApplication(), R.raw.levelup);
                 } else if (propertyId == BR.fidelityReward) {
                     mFidelityAnimationEvent.setValue(CharOn.character.isFidelityReward());
-                } else if (propertyId == BR.mission) {
+                } else if (propertyId == BR.timeMission) {
                     mCharacterRepository.save(mCharacter);
                     buildMenu();
-                    if (mCharacter.isMission()) {
+                    if (mCharacter.isTimeMission()) {
                         setCurrentSection(CURRENT_VILLAGE_GROUP, 0);
                     } else {
                         setCurrentSection(CHARACTER_GROUP, 0);
@@ -131,9 +132,9 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
                 } else if (propertyId == BR.specialMission) {
                     mCharacterRepository.save(mCharacter);
                     buildMenu();
-                    if (mCharacter.isSpecialMission() && mCharacter.isMission()) {
+                    if (mCharacter.isSpecialMission() && mCharacter.isTimeMission()) {
                         setCurrentSection(CURRENT_VILLAGE_GROUP, 1);
-                    } else if (mCharacter.isSpecialMission() && !mCharacter.isMission()) {
+                    } else if (mCharacter.isSpecialMission() && !mCharacter.isTimeMission()) {
                         setCurrentSection(CURRENT_VILLAGE_GROUP, 0);
                     } else {
                         setCurrentSection(CHARACTER_GROUP, 0);
@@ -295,7 +296,7 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
 
         Scroll scroll = (Scroll) itemClicked;
 
-        if (mCharacter.isMission() || mCharacter.isDojoWaitQueue() || mCharacter.isHospital() ||
+        if (mCharacter.isTimeMission() || mCharacter.isDojoWaitQueue() || mCharacter.isHospital() ||
                 mCharacter.getGraduationId() == 0 || mCharacter.getMapId() == scroll.getVillage().ordinal()) {
             return;
         }
@@ -361,7 +362,7 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
     }
 
     public void goToFidelity() {
-        if (!mCharacter.isMission() && !mCharacter.isBattle() && !mCharacter.isHospital() &&
+        if (!mCharacter.isTimeMission() && !mCharacter.isBattle() && !mCharacter.isHospital() &&
                 !mCharacter.isMap()) {
             setCurrentSection(CHARACTER_GROUP, 3);
         } else {
@@ -393,7 +394,7 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
 
         List<SectionFragment> sections1 = new ArrayList<>();
         sections1.add(new CharacterStatusFragment());
-        if (!mCharacter.isMission() && !mCharacter.isBattle() && !mCharacter.isHospital() &&
+        if (!mCharacter.isTimeMission() && !mCharacter.isBattle() && !mCharacter.isHospital() &&
                 !mCharacter.isMap()) {
             sections1.add(new NinjaLuckyFragment());
             sections1.add(new ElementsFragment());
@@ -401,7 +402,7 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
         sections1.add(new FidelityFragment());
 
         List<SectionFragment> sections2 = new ArrayList<>();
-        if (!mCharacter.isMission() && !mCharacter.isBattle() && !mCharacter.isHospital()
+        if (!mCharacter.isTimeMission() && !mCharacter.isBattle() && !mCharacter.isHospital()
                 && !mCharacter.isMap() && !mCharacter.isDojoWaitQueue()) {
             sections2.add(new GraduationsFragment());
             sections2.add(new AcademyTrainingFragment());
@@ -414,14 +415,14 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
         if (mCharacter.isMap()) {
             sections3.add(new VillageMapFragment());
         } else if (!mCharacter.isHospital() && !mCharacter.isBattle() && !mCharacter.isDojoWaitQueue()) {
-            if (mCharacter.isMission()) {
+            if (mCharacter.isTimeMission()) {
                 sections3.add(new MissionsWaitingFragment());
             }
             if (mCharacter.isSpecialMission()) {
                 sections3.add(new SpecialMissionsStatusFragment());
             }
 
-            if (!mCharacter.isMission()) {
+            if (!mCharacter.isTimeMission()) {
                 if (mCharacter.getGraduationId() == 0) {
                     sections3.add(new TasksFragment());
                 } else {
@@ -438,20 +439,20 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
         if (mCharacter.isHospital()) {
             sections4.add(new HospitalRoomFragment());
         } else if (mCharacter.isBattle()) {
-            if (mCharacter.getBattleId().contains("DOJO-NPC")) {
+            if (mCharacter.getBattleId().contains(Battle.DOJO_NPC)) {
                 sections4.add(new DojoBatalhaLutadorFragment());
             } else {
                 sections4.add(new DojoBattlePvpFragment());
             }
         } else if (mCharacter.isDojoWaitQueue()) {
             sections4.add(new DojoRandomWaitFragment());
-        } else if (!mCharacter.isMission() && !mCharacter.isMap()) {
+        } else if (!mCharacter.isTimeMission() && !mCharacter.isMap()) {
             sections4.add(new DojoFragment());
             sections4.add(new LogBatalhaFragment());
         }
 
         List<SectionFragment> sections5 = new ArrayList<>();
-        if (!mCharacter.isMission() && !mCharacter.isBattle() && !mCharacter.isHospital() &&
+        if (!mCharacter.isTimeMission() && !mCharacter.isBattle() && !mCharacter.isHospital() &&
                 !mCharacter.isMap() && !mCharacter.isDojoWaitQueue() &&
                 mCharacter.getGraduationId() > 0) {
             if (TextUtils.isEmpty(mCharacter.getTeam())) {
@@ -500,7 +501,7 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
 
     // Chat
     public final ObservableBoolean chatOpened = new ObservableBoolean(false);
-    public final ObservableField<String> message = new ObservableField<>();
+    public final ObservableField<String> message = new ObservableField<>("");
     private ChatRepository mChatRepository = ChatRepository.getInstance();
     private String mChannel;
     private MutableLiveData<List<Message>> mMessages = new MutableLiveData<>();

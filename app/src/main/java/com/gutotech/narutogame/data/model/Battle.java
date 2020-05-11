@@ -12,6 +12,10 @@ import java.util.List;
 import java.util.Map;
 
 public class Battle extends BaseObservable {
+    public static final String DOJO_NPC = "DOJO-NPC";
+    public static final String DOJO_PVP = "DOJO-PVP";
+    public static final String MAP_PVP = "MAP-PVP";
+
     public enum Status {
         CONTINUE, PLAYER1_WON, PLAYER2_WON, PLAYER1_INACTIVATED, PLAYER2_INACTIVATED, DRAWN
     }

@@ -85,7 +85,7 @@ public class GraduationsAdapter extends RecyclerView.Adapter<GraduationsAdapter.
 
         YoYo.with(Techniques.Bounce)
                 .duration(1200)
-                .delay(500)
+                .delay(1000)
                 .repeat(YoYo.INFINITE)
                 .playOn(holder.requerImageView);
 

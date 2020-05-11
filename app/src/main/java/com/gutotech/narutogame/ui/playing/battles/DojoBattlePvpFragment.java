@@ -20,6 +20,7 @@ import android.widget.PopupWindow;
 
 import com.google.android.gms.ads.AdRequest;
 import com.gutotech.narutogame.R;
+import com.gutotech.narutogame.data.model.Battle;
 import com.gutotech.narutogame.data.model.BattleLog;
 import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.model.Formulas;
@@ -98,14 +99,14 @@ public class DojoBattlePvpFragment extends Fragment implements SectionFragment {
             SpannableStringBuilderCustom description = new SpannableStringBuilderCustom(getContext());
             description.append(getString(R.string.combat_won_description, rewards[0], rewards[1]));
             description.append();
-            description.append(CharOn.character.getBattleId().contains("MAP-PVP") ?
+            description.append(CharOn.character.getBattleId().contains(Battle.MAP_PVP) ?
                             R.string.village_map : R.string.dojo,
                     new ClickableSpan() {
                         @Override
                         public void onClick(@NonNull View widget) {
                             mViewModel.exit();
 
-                            if (CharOn.character.getBattleId().contains("MAP-PVP")) {
+                            if (CharOn.character.getBattleId().contains(Battle.MAP_PVP)) {
                                 FragmentUtils.goTo(getActivity(), new VillageMapFragment());
                             } else {
                                 FragmentUtils.goTo(getActivity(), new DojoFragment());
@@ -167,13 +168,11 @@ public class DojoBattlePvpFragment extends Fragment implements SectionFragment {
             SoundUtil.play(getContext(), R.raw.lose);
         });
 
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mBinding.adView.loadAd(adRequest);
-
-        AdRequest adRequest1 = new AdRequest.Builder().build();
-        mBinding.adView1.loadAd(adRequest1);
-
         FragmentUtils.setSectionTitle(getActivity(), R.string.section_dojo);
+
+        mBinding.adView.loadAd(new AdRequest.Builder().build());
+        mBinding.adView1.loadAd(new AdRequest.Builder().build());
+
         return mBinding.getRoot();
     }
 

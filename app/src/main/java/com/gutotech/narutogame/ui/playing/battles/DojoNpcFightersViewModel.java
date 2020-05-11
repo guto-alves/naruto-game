@@ -36,9 +36,9 @@ public class DojoNpcFightersViewModel extends AndroidViewModel {
         if (CharOn.character.getNpcDailyCombat() < MAX_DAILY_COMBAT) {
             Formulas formulas = CharOn.character.getFormulas();
 
-            if ((double) formulas.getCurrentHealth() / formulas.getHealth() >= 0.5 &&
-                    (double) formulas.getCurrentChakra() / formulas.getChakra() >= 0.5 &&
-                    (double) formulas.getCurrentStamina() / formulas.getStamina() >= 0.5) {
+            if ((double) formulas.getCurrentHealth() / formulas.getHealth() >= 0.6 &&
+                    (double) formulas.getCurrentChakra() / formulas.getChakra() >= 0.6 &&
+                    (double) formulas.getCurrentStamina() / formulas.getStamina() >= 0.6) {
                 mShowProgressBarEvent.call();
                 generateNpc();
             } else {
