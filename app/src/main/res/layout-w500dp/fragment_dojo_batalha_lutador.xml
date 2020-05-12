@@ -38,7 +38,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:adSize="FULL_BANNER"
-                    app:adUnitId="ca-app-pub-3940256099942544/6300978111" />
+                    app:adUnitId="@string/admob_banner_ad" />
             </LinearLayout>
 
             <include
@@ -663,7 +663,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 app:adSize="FULL_BANNER"
-                app:adUnitId="ca-app-pub-3940256099942544/6300978111"
+                app:adUnitId="@string/admob_banner_ad"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />

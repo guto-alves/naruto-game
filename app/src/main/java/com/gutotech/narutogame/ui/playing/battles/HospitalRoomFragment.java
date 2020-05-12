@@ -109,7 +109,7 @@ public class HospitalRoomFragment extends Fragment implements SectionFragment {
 
     private RewardedAd createAndLoadRewardedAd() {
         RewardedAd rewardedAd = new RewardedAd(getContext(),
-                "ca-app-pub-3940256099942544/5224354917");
+                getString(R.string.admob_rewarded_ad));
         RewardedAdLoadCallback adLoadCallback = new RewardedAdLoadCallback() {
             @Override
             public void onRewardedAdLoaded() {

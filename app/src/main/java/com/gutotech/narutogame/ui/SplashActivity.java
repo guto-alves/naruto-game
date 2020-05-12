@@ -31,7 +31,7 @@ public class SplashActivity extends AppCompatActivity {
             System.exit(1);
         }
 
-        MobileAds.initialize(this, "ca-app-pub-3940256099942544~3347511713");
+        MobileAds.initialize(this, getString(R.string.admob_app_id));
 
         mConnectionWarningDialog = WarningDialogFragment.newInstance(
                 this, R.string.communication_error, R.string.failed_to_connect_description,

@@ -76,6 +76,7 @@ public class LoggedInActivity extends AppCompatActivity {
         expandableListView.setAdapter(adapter);
         expandableListView.setOnChildClickListener(viewModel);
         expandableListView.expandGroup(LoggedInViewModel.CHARACTER_GROUP);
+        expandableListView.expandGroup(LoggedInViewModel.MAIN_GROUP);
 
         viewModel.getMenuGroups().observe(this, adapter::setMenuGroups);
 
