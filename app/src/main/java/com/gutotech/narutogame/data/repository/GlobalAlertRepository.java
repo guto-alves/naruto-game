@@ -10,6 +10,7 @@ import com.gutotech.narutogame.data.firebase.FirebaseConfig;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 public class GlobalAlertRepository {
     private static final GlobalAlertRepository sInstance = new GlobalAlertRepository();
@@ -22,6 +23,7 @@ public class GlobalAlertRepository {
     }
 
     public void showAlert(Map<String, String> messageMap) {
+        messageMap.put("uuid", UUID.randomUUID().toString());
         FirebaseConfig.getDatabase()
                 .child("global-alert")
                 .setValue(messageMap);
