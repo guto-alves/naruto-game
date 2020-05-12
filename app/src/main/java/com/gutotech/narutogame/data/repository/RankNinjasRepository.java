@@ -37,7 +37,7 @@ public class RankNinjasRepository {
                 }
             }
 
-            sortByLevel(characterList);
+            CharacterRepository.getInstance().sortByScore(characterList);
 
             callback.call(characterList);
         });
@@ -75,13 +75,4 @@ public class RankNinjasRepository {
         });
     }
 
-    private void sortByLevel(List<Character> characterList) {
-        Collections.sort(characterList, (char1, char2) -> {
-            if (char1.getScore() == char2.getScore()) {
-                return 0;
-            }
-
-            return char1.getScore() > char2.getScore() ? -1 : 1;
-        });
-    }
 }

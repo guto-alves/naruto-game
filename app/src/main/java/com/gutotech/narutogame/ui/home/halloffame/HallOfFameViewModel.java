@@ -18,12 +18,13 @@ public class HallOfFameViewModel extends ViewModel implements RoundsAdapter.Roun
 
     public HallOfFameViewModel() {
         mHallOfFameRepository = HallOfFameRepository.getInstance();
+        onRoundClick("Round Beta");
         mHallOfFameRepository.getRounds(mRounds::postValue);
     }
 
     @Override
     public void onRoundClick(String round) {
-        mHallOfFameRepository.get(round, mKages::postValue);
+        mHallOfFameRepository.get(round, mKages::setValue);
     }
 
     LiveData<List<String>> getRounds() {

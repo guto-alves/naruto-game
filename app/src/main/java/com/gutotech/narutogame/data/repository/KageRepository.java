@@ -36,7 +36,7 @@ public class KageRepository {
             getKage(village, kage -> {
                 if (kage != null) {
                     kages.add(kage);
-                    sortByVillage(kages);
+                    CharacterRepository.getInstance().sortByVillage(kages);
                     data.postValue(kages);
                 }
             });
@@ -70,7 +70,7 @@ public class KageRepository {
                     }
 
                     if (characters.size() > 0) {
-                        sortByLevel(characters);
+                        CharacterRepository.getInstance().sortByScore(characters);
                         callback.call(characters.get(0));
                         return;
                     }
@@ -85,23 +85,5 @@ public class KageRepository {
         });
     }
 
-    private void sortByLevel(List<Character> characterList) {
-        Collections.sort(characterList, (char1, char2) -> {
-            if (char1.getLevel() == char2.getLevel()) {
-                return 0;
-            }
 
-            return char1.getLevel() > char2.getLevel() ? -1 : 1;
-        });
-    }
-
-    private void sortByVillage(List<Character> charactersList) {
-        Collections.sort(charactersList, (char1, char2) -> {
-            if (char1.getVillage().ordinal() == char2.getVillage().ordinal()) {
-                return 0;
-            }
-
-            return char1.getVillage().ordinal() > char2.getVillage().ordinal() ? 1 : -1;
-        });
-    }
 }

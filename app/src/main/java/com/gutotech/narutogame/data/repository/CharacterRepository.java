@@ -121,13 +121,33 @@ public class CharacterRepository {
                 .setValue(ServerValue.TIMESTAMP);
     }
 
-    private void sortByLevel(List<Character> characterList) {
+    public void sortByLevel(List<Character> characterList) {
         Collections.sort(characterList, (char1, char2) -> {
             if (char1.getLevel() == char2.getLevel()) {
                 return 0;
             }
 
             return char1.getLevel() > char2.getLevel() ? -1 : 1;
+        });
+    }
+
+    public void sortByScore(List<Character> characterList) {
+        Collections.sort(characterList, (char1, char2) -> {
+            if (char1.getScore() == char2.getScore()) {
+                return 0;
+            }
+
+            return char1.getScore() > char2.getScore() ? -1 : 1;
+        });
+    }
+
+    public void sortByVillage(List<Character> charactersList) {
+        Collections.sort(charactersList, (char1, char2) -> {
+            if (char1.getVillage().ordinal() == char2.getVillage().ordinal()) {
+                return 0;
+            }
+
+            return char1.getVillage().ordinal() > char2.getVillage().ordinal() ? 1 : -1;
         });
     }
 }
