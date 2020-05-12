@@ -958,7 +958,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
+                            return 15;
                         }
 
                         @Override
@@ -977,7 +977,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 5;
+                            return 20;
                         }
 
                         @Override
@@ -1586,7 +1586,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
+                            return 21;
                         }
 
                         @Override
@@ -1605,7 +1605,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 5;
+                            return 28;
                         }
 
                         @Override
@@ -2290,7 +2290,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
+                            return 27;
                         }
 
                         @Override
@@ -2309,7 +2309,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 5;
+                            return 36;
                         }
 
                         @Override
@@ -2347,7 +2347,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
+                            return 27;
                         }
 
                         @Override
@@ -2366,7 +2366,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 5;
+                            return 36;
                         }
 
                         @Override
@@ -2404,7 +2404,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
+                            return 29;
                         }
 
                         @Override
@@ -2423,7 +2423,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 5;
+                            return 38;
                         }
 
                         @Override
@@ -2537,7 +2537,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
+                            return 29;
                         }
 
                         @Override
@@ -2556,7 +2556,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 5;
+                            return 39;
                         }
 
                         @Override
@@ -2936,7 +2936,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
+                            return 32;
                         }
 
                         @Override
@@ -2955,7 +2955,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 5;
+                            return 42;
                         }
 
                         @Override
@@ -3222,7 +3222,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
+                            return 35;
                         }
 
                         @Override
@@ -3241,7 +3241,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 5;
+                            return 46;
                         }
 
                         @Override
@@ -3279,7 +3279,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
+                            return 35;
                         }
 
                         @Override
@@ -3298,7 +3298,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 5;
+                            return 46;
                         }
 
                         @Override
@@ -3336,7 +3336,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
+                            return 36;
                         }
 
                         @Override
@@ -3355,7 +3355,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 5;
+                            return 48;
                         }
 
                         @Override
@@ -3431,7 +3431,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
+                            return 36;
                         }
 
                         @Override
@@ -3450,7 +3450,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 5;
+                            return 48;
                         }
 
                         @Override
@@ -3811,7 +3811,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
+                            return 38;
                         }
 
                         @Override
@@ -3830,7 +3830,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 5;
+                            return 51;
                         }
 
                         @Override
@@ -3868,7 +3868,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
+                            return 39;
                         }
 
                         @Override
@@ -3887,7 +3887,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 5;
+                            return 52;
                         }
 
                         @Override
@@ -3925,7 +3925,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
+                            return 41;
                         }
 
                         @Override
@@ -3944,7 +3944,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 5;
+                            return 54;
                         }
 
                         @Override
@@ -5300,7 +5300,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
+                            return 13;
                         }
 
                         @Override
@@ -5319,7 +5319,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 5;
+                            return 17;
                         }
 
                         @Override
@@ -5414,7 +5414,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
+                            return 16;
                         }
 
                         @Override
@@ -5433,7 +5433,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 5;
+                            return 21;
                         }
 
                         @Override
@@ -5471,7 +5471,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
+                            return 19;
                         }
 
                         @Override
@@ -5490,7 +5490,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 5;
+                            return 25;
                         }
 
                         @Override
@@ -5528,7 +5528,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
+                            return 20;
                         }
 
                         @Override
@@ -5547,7 +5547,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 5;
+                            return 26;
                         }
 
                         @Override
@@ -5585,7 +5585,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
+                            return 20;
                         }
 
                         @Override
@@ -5604,7 +5604,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 5;
+                            return 26;
                         }
 
                         @Override
@@ -5642,7 +5642,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
+                            return 21;
                         }
 
                         @Override
@@ -5661,7 +5661,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 5;
+                            return 28;
                         }
 
                         @Override
@@ -5775,7 +5775,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
+                            return 22;
                         }
 
                         @Override
@@ -5794,7 +5794,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 5;
+                            return 29;
                         }
 
                         @Override
@@ -5832,7 +5832,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
+                            return 22;
                         }
 
                         @Override
@@ -5851,7 +5851,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 5;
+                            return 29;
                         }
 
                         @Override
@@ -5889,7 +5889,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
+                            return 23;
                         }
 
                         @Override
@@ -5908,7 +5908,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 5;
+                            return 30;
                         }
 
                         @Override
@@ -6232,7 +6232,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
+                            return 26;
                         }
 
                         @Override
@@ -6251,7 +6251,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 5;
+                            return 35;
                         }
 
                         @Override
@@ -6289,7 +6289,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
+                            return 26;
                         }
 
                         @Override
@@ -6308,7 +6308,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 5;
+                            return 35;
                         }
 
                         @Override
@@ -6346,7 +6346,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
+                            return 27;
                         }
 
                         @Override
@@ -6365,7 +6365,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 5;
+                            return 36;
                         }
 
                         @Override
@@ -6403,7 +6403,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
+                            return 27;
                         }
 
                         @Override
@@ -6422,7 +6422,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 5;
+                            return 36;
                         }
 
                         @Override
@@ -6460,7 +6460,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 4;
+                            return 29;
                         }
 
                         @Override
@@ -6479,7 +6479,7 @@ public enum JutsuInfo {
 
                         @Override
                         public Object value() {
-                            return 5;
+                            return 38;
                         }
 
                         @Override
