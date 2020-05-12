@@ -2,22 +2,37 @@ package com.gutotech.narutogame.ui.playing.battles;
 
 import androidx.lifecycle.ViewModel;
 
+import com.gutotech.narutogame.data.model.Battle;
 import com.gutotech.narutogame.data.model.CharOn;
-import com.gutotech.narutogame.data.repository.DojoRandomWaitRepository;
+import com.gutotech.narutogame.data.repository.BattleRepository;
+import com.gutotech.narutogame.data.repository.DojoWaitingRoomRepository;
 
 public class DojoRandomWaitViewModel extends ViewModel {
-    private DojoRandomWaitRepository mDojoRandomWaitRepository;
+    private final DojoWaitingRoomRepository mDojoWaitingRoomRepository;
+    private final BattleRepository mBattleRepository;
 
     public DojoRandomWaitViewModel() {
-        mDojoRandomWaitRepository = DojoRandomWaitRepository.getInstance();
+        mDojoWaitingRoomRepository = DojoWaitingRoomRepository.getInstance();
+        mBattleRepository = BattleRepository.getInstance();
     }
 
     void init() {
-        mDojoRandomWaitRepository.goToQueue();
+        mDojoWaitingRoomRepository.isWaitingRoom(isWaitingRoom -> {
+            if (!isWaitingRoom) {
+                mDojoWaitingRoomRepository.findOpponent(opponent -> {
+                    if (opponent != null) {
+                        String battleId = mBattleRepository.generateId(Battle.DOJO_PVP);
+                        mBattleRepository.create(battleId, opponent, CharOn.character);
+                        mDojoWaitingRoomRepository.saveBattleIdForListeners(battleId,
+                                opponent.getId(), CharOn.character.getId());
+                    }
+                });
+            }
+        });
 
-        mDojoRandomWaitRepository.observe(battleId -> {
-            mDojoRandomWaitRepository.removeObserver();
-            mDojoRandomWaitRepository.removeId();
+        mDojoWaitingRoomRepository.addListener(battleId -> {
+            mDojoWaitingRoomRepository.removeListener();
+            mDojoWaitingRoomRepository.removeBattleId();
 
             CharOn.character.setDojoWaitQueue(false);
             CharOn.character.setBattleId(battleId);
@@ -26,7 +41,8 @@ public class DojoRandomWaitViewModel extends ViewModel {
     }
 
     public void onCancelClick() {
-        mDojoRandomWaitRepository.exit();
+        mDojoWaitingRoomRepository.getOut();
+        mDojoWaitingRoomRepository.removeListener();
         CharOn.character.setDojoWaitQueue(false);
     }
 }
