@@ -94,6 +94,7 @@ public class DojoBatalhaLutadorViewModel extends ViewModel
     }
 
     private void startTimer(long millisInFuture) {
+        stopTimer();
         mCountDownTimer = new CountDownTimer(millisInFuture, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
@@ -110,6 +111,10 @@ public class DojoBatalhaLutadorViewModel extends ViewModel
             @Override
             public void onFinish() {
                 countDown.set("--:--");
+
+                if (mBattle.getStatus() != Battle.Status.CONTINUE) {
+                    return;
+                }
 
                 mBattle.setStatus(Battle.Status.PLAYER1_INACTIVATED);
                 mPlayerFormulas.setCurrentHealth(0);
@@ -156,7 +161,6 @@ public class DojoBatalhaLutadorViewModel extends ViewModel
                 FirebaseFunctionsUtils.getServerTime(currentTimestamp -> {
                     mBattle.setAttackStart(currentTimestamp);
                     saveBattle();
-                    stopTimer();
                     startTimer(TIME_TO_ATTACK);
                 });
             }
