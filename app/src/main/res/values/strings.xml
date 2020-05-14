@@ -9,7 +9,6 @@
     <string name="nav_header_desc" translatable="false">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="action_error">Error</string>
     <string name="hello_blank_fragment">Hello</string>
     <string name="section_title">Section title</string>
@@ -17,7 +16,6 @@
     <string name="type_your_account_email">Type your account email</string>
     <string name="hall_da_fama">Hall of Fame</string>
 
-    <!-- Textos -->
     <string name="news">News</string>
     <string name="title">Title</string>
 

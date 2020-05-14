@@ -17,7 +17,8 @@ import com.gutotech.narutogame.ui.home.HomeActivity;
 import com.gutotech.narutogame.ui.loggedin.LoggedInActivity;
 import com.gutotech.narutogame.utils.NotificationsUtils;
 
-public class SplashActivity extends AppCompatActivity {
+public class SplashActivity extends AppCompatActivity implements
+        WarningDialogFragment.WarningDialogListener {
     private WarningDialogFragment mConnectionWarningDialog;
 
     @Override
@@ -34,12 +35,9 @@ public class SplashActivity extends AppCompatActivity {
         MobileAds.initialize(this, getString(R.string.admob_app_id));
 
         mConnectionWarningDialog = WarningDialogFragment.newInstance(
-                this, R.string.communication_error, R.string.failed_to_connect_description,
-                R.string.ok, () -> {
-                    if (!NetworkUtils.CONNECTED) {
-                        mConnectionWarningDialog.show(getSupportFragmentManager());
-                    }
-                });
+                this, R.string.communication_error,
+                R.string.failed_to_connect_description,
+                R.string.ok, 11);
 
         NetworkUtils.getInstance().addListener(null);
 
@@ -74,4 +72,10 @@ public class SplashActivity extends AppCompatActivity {
         }, 4000);
     }
 
+    @Override
+    public void onCloseClick(int requestCode) {
+        if (!NetworkUtils.CONNECTED) {
+            mConnectionWarningDialog.show(getSupportFragmentManager());
+        }
+    }
 }

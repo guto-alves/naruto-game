@@ -75,13 +75,14 @@ public class SpecialMissionsStatusFragment extends Fragment implements SectionFr
     }
 
     private void showQuestionDialog() {
-        QuestionDialogFragment.newInstance(this, R.string.question_cancel_mission)
+        QuestionDialogFragment.newInstance(
+                getString(R.string.question_cancel_mission), this)
                 .openDialog(getParentFragmentManager());
         SoundUtil.play(requireContext(), R.raw.sound_pop);
     }
 
     @Override
-    public void onPositiveClick() {
+    public void onPositiveClick(int requestCode) {
         mViewModel.onCancelMissionButtonPressed();
     }
 

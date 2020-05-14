@@ -28,8 +28,13 @@ import com.gutotech.narutogame.utils.SoundUtil;
 
 import es.dmoral.toasty.Toasty;
 
-public class HospitalRoomFragment extends Fragment implements SectionFragment {
+public class HospitalRoomFragment extends Fragment implements SectionFragment,
+        WarningDialogFragment.WarningDialogListener {
     private RewardedAd mRewardedAd;
+
+    private static final int LEAVE_THE_HOSPITAL_REQUEST_CODE = 10;
+
+    private static int mPayment;
 
     public HospitalRoomFragment() {
     }
@@ -44,20 +49,16 @@ public class HospitalRoomFragment extends Fragment implements SectionFragment {
 
         CharOn.character.setMapId(CharOn.character.getVillage().ordinal());
 
-        int payment = 20 * CharOn.character.getLevel();
+        mPayment = 20 * CharOn.character.getLevel();
 
-        binding.descriptionTextView.setText(getString(R.string.pay_specialist_description, payment));
+        binding.descriptionTextView.setText(getString(R.string.pay_specialist_description, mPayment));
+        binding.payButton.setText(getString(R.string.pay_ry, mPayment));
 
-        binding.payButton.setText(getString(R.string.pay_ry, payment));
         binding.payButton.setOnClickListener(view1 -> {
-            if (CharOn.character.getRyous() >= payment) {
+            if (CharOn.character.getRyous() >= mPayment) {
                 WarningDialogFragment warningDialog = WarningDialogFragment.newInstance(
-                        getContext(), R.string.paid_hospital, false,
-                        () -> {
-                            CharOn.character.subRyous(payment);
-                            CharOn.character.full();
-                            CharOn.character.setHospital(false);
-                        });
+                        getContext(), R.string.paid_hospital, this,
+                        LEAVE_THE_HOSPITAL_REQUEST_CODE);
                 warningDialog.openDialog(getParentFragmentManager());
                 SoundUtil.play(getContext(), R.raw.sound_pop);
             } else {
@@ -124,6 +125,15 @@ public class HospitalRoomFragment extends Fragment implements SectionFragment {
     }
 
     @Override
+    public void onCloseClick(int requestCode) {
+        if (requestCode == LEAVE_THE_HOSPITAL_REQUEST_CODE) {
+            CharOn.character.subRyous(mPayment);
+            CharOn.character.full();
+            CharOn.character.setHospital(false);
+        }
+    }
+
+    @Override
     public void onStart() {
         super.onStart();
         if (CharOn.character.getFormulas().isFull()) {
@@ -135,4 +145,5 @@ public class HospitalRoomFragment extends Fragment implements SectionFragment {
     public int getDescription() {
         return R.string.hospital;
     }
+
 }

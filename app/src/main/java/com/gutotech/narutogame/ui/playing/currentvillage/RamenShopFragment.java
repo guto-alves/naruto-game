@@ -51,6 +51,7 @@ public class RamenShopFragment extends Fragment implements SectionFragment {
 
     private void showWarningDialog(@StringRes int resid) {
         WarningDialogFragment dialog = WarningDialogFragment.newInstance(getContext(), resid);
+        dialog.setCancelable(true);
         dialog.openDialog(getParentFragmentManager());
         SoundUtil.play(getContext(), R.raw.get_item02);
     }

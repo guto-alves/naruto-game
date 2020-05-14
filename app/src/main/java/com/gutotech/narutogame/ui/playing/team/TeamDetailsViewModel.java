@@ -24,8 +24,6 @@ public class TeamDetailsViewModel extends ViewModel implements
     private MutableLiveData<List<Member>> mMembers = new MutableLiveData<>();
     private MutableLiveData<List<Character>> mRequesters = new MutableLiveData<>();
 
-    private SingleLiveEvent<Void> mShowQuestionDialogEvent = new SingleLiveEvent<>();
-
     private TeamRepository mTeamRepository = TeamRepository.getInstance();
 
     private List<String> mAcceptedRequestersId = new ArrayList<>();
@@ -78,13 +76,8 @@ public class TeamDetailsViewModel extends ViewModel implements
         mTeamRepository.save(mTeam.getValue());
     }
 
-
     public void onSendMessage() {
 
-    }
-
-    public void onLeaveTeamClick() {
-        mShowQuestionDialogEvent.call();
     }
 
     public void onDeleteTeamClick() {
@@ -150,7 +143,4 @@ public class TeamDetailsViewModel extends ViewModel implements
         return mRequesters;
     }
 
-    LiveData<Void> getShowQuestionDialogEvent() {
-        return mShowQuestionDialogEvent;
-    }
 }

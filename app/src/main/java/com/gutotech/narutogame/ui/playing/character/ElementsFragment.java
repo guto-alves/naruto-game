@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.text.Annotation;
-import android.text.Html;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.SpannedString;
@@ -37,7 +36,11 @@ import com.gutotech.narutogame.utils.SoundUtil;
 
 import es.dmoral.toasty.Toasty;
 
-public class ElementsFragment extends Fragment implements SectionFragment {
+public class ElementsFragment extends Fragment implements SectionFragment,
+        QuestionDialogFragment.QuestionDialogListener {
+    private static final int LEARN_ELEMENT_REQUEST_CODE = 1;
+    private static final int UNLEAR_ELEMENT_REQUEST_CODE = 2;
+
     private ElementsViewModel mViewModel;
     private FragmentElementsBinding mBinding;
     private ElementInfoPopupWindow mElementInfoPopupWindow;
@@ -79,16 +82,15 @@ public class ElementsFragment extends Fragment implements SectionFragment {
             QuestionDialogFragment dialog = QuestionDialogFragment.newInstance(
                     getString(R.string.learn_element_question,
                             mViewModel.getElementSelected().getValue().name),
-                    mLearnQuestionDialogListener
-            );
+                    this, LEARN_ELEMENT_REQUEST_CODE);
             dialog.openDialog(getParentFragmentManager());
             SoundUtil.play(requireContext(), R.raw.sound_pop);
         });
 
         mBinding.unlearnedButton.setOnClickListener(v -> {
             QuestionDialogFragment dialog = QuestionDialogFragment.newInstance(
-                    R.string.unlearning_warning,
-                    mUnlearnQuestionDialogListener);
+                    getString(R.string.unlearning_warning),
+                    this, UNLEAR_ELEMENT_REQUEST_CODE);
             dialog.openDialog(getParentFragmentManager());
             SoundUtil.play(requireContext(), R.raw.sound_pop);
         });
@@ -100,7 +102,7 @@ public class ElementsFragment extends Fragment implements SectionFragment {
         return mBinding.getRoot();
     }
 
-    private final QuestionDialogFragment.QuestionDialogListener mLearnQuestionDialogListener = () -> {
+    private void learnElement() {
         mViewModel.learnElement();
 
         SpannedString titleText = (SpannedString) getText(R.string.learned_new_element_desc);
@@ -138,9 +140,9 @@ public class ElementsFragment extends Fragment implements SectionFragment {
         });
 
         SoundUtil.play(getContext(), R.raw.aim);
-    };
+    }
 
-    private final QuestionDialogFragment.QuestionDialogListener mUnlearnQuestionDialogListener = () -> {
+    private void unlearnElement() {
         if (CharOn.character.getRyous() < 3000) {
             WarningDialogFragment.newInstance(getContext(), R.string.warning_dont_have_enough_ryous)
                     .openDialog(getParentFragmentManager());
@@ -162,10 +164,20 @@ public class ElementsFragment extends Fragment implements SectionFragment {
                     .duration(1200)
                     .playOn(mBinding.actionMsgLayout.msgConstraintLayout);
         });
-    };
+    }
+
+    @Override
+    public void onPositiveClick(int requestCode) {
+        if (requestCode == LEARN_ELEMENT_REQUEST_CODE) {
+            learnElement();
+        } else {
+            unlearnElement();
+        }
+    }
 
     @Override
     public int getDescription() {
         return R.string.elements;
     }
+
 }

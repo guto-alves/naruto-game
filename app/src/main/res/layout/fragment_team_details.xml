@@ -217,7 +217,6 @@
                         <Button
                             android:id="@+id/leaveTeamButton"
                             style="@style/ButtonTheme"
-                            android:onClick="@{() -> viewModel.onLeaveTeamClick()}"
                             android:text="@string/button_leave_the_team"
                             android:textSize="12sp"
                             android:visibility="gone" />

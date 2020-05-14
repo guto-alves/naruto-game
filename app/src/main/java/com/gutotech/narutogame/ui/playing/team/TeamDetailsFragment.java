@@ -98,9 +98,9 @@ public class TeamDetailsFragment extends Fragment implements SectionFragment,
         mViewModel.getRequesters().observe(getViewLifecycleOwner(),
                 requestersAdapter::setRequesters);
 
-        mViewModel.getShowQuestionDialogEvent().observe(getViewLifecycleOwner(), aVoid -> {
+        binding.leaveTeamButton.setOnClickListener(v -> {
             QuestionDialogFragment questionDialogFragment = QuestionDialogFragment.newInstance(
-                    this, R.string.question_leave_the_team);
+                    getString(R.string.question_leave_the_team), this);
             questionDialogFragment.openDialog(getParentFragmentManager());
             SoundUtil.play(requireContext(), R.raw.attention2);
         });
@@ -121,7 +121,7 @@ public class TeamDetailsFragment extends Fragment implements SectionFragment,
     }
 
     @Override
-    public void onPositiveClick() {
+    public void onPositiveClick(int requestCode) {
         mViewModel.leaveTeam(CharOn.character.getId());
     }
 

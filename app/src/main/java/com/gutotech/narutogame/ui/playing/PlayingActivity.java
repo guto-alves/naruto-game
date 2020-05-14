@@ -51,13 +51,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class PlayingActivity extends AppCompatActivity {
+public class PlayingActivity extends AppCompatActivity implements
+        WarningDialogFragment.WarningDialogListener {
     private ActivityPlayingBinding mBinding;
     private PlayingViewModel mViewModel;
     private YoYo.YoYoString mRope;
     private boolean mInitialization = true;
     private List<Map<String, String>> mAlerts = new ArrayList<>();
     private WarningDialogFragment mConnectionWarningDialog;
+    private static final int CONNECTION_WARNING_REQUEST_CODE = 11;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -146,12 +148,9 @@ public class PlayingActivity extends AppCompatActivity {
         });
 
         mConnectionWarningDialog = WarningDialogFragment.newInstance(
-                this, R.string.communication_error, R.string.failed_to_connect_description,
-                R.string.ok, () -> {
-                    if (!NetworkUtils.CONNECTED) {
-                        mConnectionWarningDialog.show(getSupportFragmentManager());
-                    }
-                });
+                this,
+                R.string.communication_error, R.string.failed_to_connect_description,
+                R.string.ok, CONNECTION_WARNING_REQUEST_CODE);
 
         mViewModel.getShowConnectionWarning().observe(this, connected -> {
             if (connected) {
@@ -165,6 +164,15 @@ public class PlayingActivity extends AppCompatActivity {
 
         setUpChat();
         setUpBag();
+    }
+
+    @Override
+    public void onCloseClick(int requestCode) {
+        if (requestCode == CONNECTION_WARNING_REQUEST_CODE) {
+            if (!NetworkUtils.CONNECTED) {
+                mConnectionWarningDialog.show(getSupportFragmentManager());
+            }
+        }
     }
 
     private void showAlert(Map<String, String> messageMap) {
@@ -390,4 +398,5 @@ public class PlayingActivity extends AppCompatActivity {
         super.onDestroy();
         mViewModel.destroy();
     }
+
 }

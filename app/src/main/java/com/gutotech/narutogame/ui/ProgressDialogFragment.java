@@ -31,4 +31,9 @@ public class ProgressDialogFragment extends DialogFragment {
             show(fragmentManager, DIALOG_TAG);
         }
     }
+
+    public void show(FragmentManager fragmentManager) {
+        setCancelable(false);
+        show(fragmentManager, DIALOG_TAG);
+    }
 }

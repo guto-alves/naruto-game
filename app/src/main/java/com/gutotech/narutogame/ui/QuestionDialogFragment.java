@@ -10,75 +10,44 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.StringRes;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.gutotech.narutogame.R;
 
-import java.io.Serializable;
-
 public class QuestionDialogFragment extends DialogFragment {
 
-    public interface QuestionDialogListener extends Serializable {
-        void onPositiveClick();
+    public interface QuestionDialogListener {
+        void onPositiveClick(int requestCode);
 
-        default void onCancelClick() {
+        default void onNegativeClick(int requestCode) {
         }
     }
 
-    private static final String EXTRA_QUESTION = "question";
-    private static final String EXTRA_LISTENER = "listener";
     private static final String DIALOG_TAG = "QuestionDialogFragment";
+    private static final String EXTRA_QUESTION = "question";
+    private static final String EXTRA_REQUEST_CODE = "requestCode";
 
     private QuestionDialogListener mListener;
 
-    public static QuestionDialogFragment newInstance(@StringRes int questionId) {
-        return newInstance(null, questionId);
+    public static QuestionDialogFragment newInstance(String question) {
+        return newInstance(question, null, 0);
     }
 
-    public static QuestionDialogFragment newInstance(Fragment targetFragment, @StringRes int questionId) {
-        Bundle args = new Bundle();
-        args.putInt(EXTRA_QUESTION, questionId);
-
-        QuestionDialogFragment questionDialog = new QuestionDialogFragment();
-        questionDialog.setCancelable(false);
-        questionDialog.setArguments(args);
-        questionDialog.setTargetFragment(targetFragment, 1);
-        return questionDialog;
+    public static QuestionDialogFragment newInstance(String question, Fragment targetFragment) {
+        return newInstance(question, targetFragment, 0);
     }
 
-    public static QuestionDialogFragment newInstance(Fragment targetFragment, String question) {
+    public static QuestionDialogFragment newInstance(String question, Fragment targetFragment, int requestCode) {
         Bundle args = new Bundle();
         args.putString(EXTRA_QUESTION, question);
+        args.putInt(EXTRA_REQUEST_CODE, requestCode);
 
         QuestionDialogFragment questionDialog = new QuestionDialogFragment();
-        questionDialog.setCancelable(false);
         questionDialog.setArguments(args);
-        questionDialog.setTargetFragment(targetFragment, 1);
-        return questionDialog;
-    }
-
-    public static QuestionDialogFragment newInstance(@StringRes int questionId, QuestionDialogListener listener) {
-        Bundle args = new Bundle();
-        args.putInt(EXTRA_QUESTION, questionId);
-        args.putSerializable(EXTRA_LISTENER, listener);
-
-        QuestionDialogFragment questionDialog = new QuestionDialogFragment();
         questionDialog.setCancelable(false);
-        questionDialog.setArguments(args);
-        return questionDialog;
-    }
-
-    public static QuestionDialogFragment newInstance(String question, QuestionDialogListener listener) {
-        Bundle args = new Bundle();
-        args.putString(EXTRA_QUESTION, question);
-        args.putSerializable(EXTRA_LISTENER, listener);
-
-        QuestionDialogFragment questionDialog = new QuestionDialogFragment();
-        questionDialog.setCancelable(false);
-        questionDialog.setArguments(args);
+        questionDialog.setTargetFragment(targetFragment, 0);
         return questionDialog;
     }
 
@@ -88,6 +57,10 @@ public class QuestionDialogFragment extends DialogFragment {
         }
     }
 
+    public void show(FragmentManager fragmentManager) {
+        show(fragmentManager, DIALOG_TAG);
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -95,25 +68,14 @@ public class QuestionDialogFragment extends DialogFragment {
         View view = inflater.inflate(R.layout.dialog_question, container, false);
 
         TextView textView = view.findViewById(R.id.questionTextView);
+        textView.setText(getArguments().getString(EXTRA_QUESTION));
 
-        int resid = getArguments().getInt(EXTRA_QUESTION);
-
-        if (resid != 0) {
-            textView.setText(resid);
-        } else {
-            textView.setText(getArguments().getString(EXTRA_QUESTION));
-        }
+        int requestCode = getArguments().getInt(EXTRA_REQUEST_CODE);
 
         Button okButton = view.findViewById(R.id.okButton);
         okButton.setOnClickListener(v -> {
             if (mListener != null) {
-                mListener.onPositiveClick();
-            } else {
-                QuestionDialogListener listener = (QuestionDialogListener) getArguments()
-                        .getSerializable(EXTRA_LISTENER);
-                if (listener != null) {
-                    listener.onPositiveClick();
-                }
+                mListener.onPositiveClick(requestCode);
             }
 
             dismiss();
@@ -122,7 +84,7 @@ public class QuestionDialogFragment extends DialogFragment {
         Button cancelButton = view.findViewById(R.id.cancelButton);
         cancelButton.setOnClickListener(v -> {
             if (mListener != null) {
-                mListener.onCancelClick();
+                mListener.onNegativeClick(requestCode);
             }
 
             dismiss();
@@ -138,6 +100,11 @@ public class QuestionDialogFragment extends DialogFragment {
         try {
             mListener = (QuestionDialogListener) getTargetFragment();
         } catch (ClassCastException ignored) {
+            ignored.printStackTrace();
+            try {
+                mListener = (QuestionDialogListener) getActivity();
+            } catch (ClassCastException ignored1) {
+            }
         }
     }
 }

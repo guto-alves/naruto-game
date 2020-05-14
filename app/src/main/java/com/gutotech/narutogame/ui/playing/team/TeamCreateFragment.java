@@ -22,7 +22,7 @@ import com.gutotech.narutogame.utils.FragmentUtils;
 import com.gutotech.narutogame.utils.SoundUtil;
 
 public class TeamCreateFragment extends Fragment implements SectionFragment {
-    private ProgressDialogFragment mProgressDialog = new ProgressDialogFragment();
+    private ProgressDialogFragment mProgressDialog;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -40,13 +40,13 @@ public class TeamCreateFragment extends Fragment implements SectionFragment {
 
         viewModel.getShowWarningDialogEvent().observe(getViewLifecycleOwner(), this::showDialog);
 
+        mProgressDialog = new ProgressDialogFragment();
+
         viewModel.getShowProgressDialogEvent().observe(getViewLifecycleOwner(), aVoid ->
-                mProgressDialog.openDialog(getParentFragmentManager())
-        );
+                mProgressDialog.openDialog(getParentFragmentManager()));
 
         viewModel.getDismissProgressDialogEvent().observe(getViewLifecycleOwner(), aVoid ->
-                mProgressDialog.dismiss()
-        );
+                mProgressDialog.dismiss());
 
         FragmentUtils.setSectionTitle(getActivity(), R.string.section_create_a_team);
 

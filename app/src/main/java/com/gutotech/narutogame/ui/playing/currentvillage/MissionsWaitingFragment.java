@@ -66,13 +66,13 @@ public class MissionsWaitingFragment extends Fragment implements SectionFragment
 
     private void showQuestionDialog() {
         QuestionDialogFragment questionDialog = QuestionDialogFragment.newInstance(
-                this, R.string.question_cancel_mission);
+                getString(R.string.question_cancel_mission), this);
         questionDialog.openDialog(getParentFragmentManager());
-        SoundUtil.play(requireContext(), R.raw.sound_pop);
+        SoundUtil.play(getContext(), R.raw.attention2);
     }
 
     @Override
-    public void onPositiveClick() {
+    public void onPositiveClick(int requestCode) {
         mViewModel.onCancelMissionButtonPressed();
     }
 

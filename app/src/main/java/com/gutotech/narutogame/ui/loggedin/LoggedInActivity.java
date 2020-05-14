@@ -35,7 +35,8 @@ import com.gutotech.narutogame.utils.SettingsUtils;
 import com.gutotech.narutogame.utils.BgMusicUtils;
 import com.gutotech.narutogame.utils.SoundUtil;
 
-public class LoggedInActivity extends AppCompatActivity {
+public class LoggedInActivity extends AppCompatActivity
+        implements WarningDialogFragment.WarningDialogListener {
     private DrawerLayout mDrawer;
     private boolean mInitialization = true;
     private WarningDialogFragment mConnectionWarningDialog;
@@ -108,12 +109,9 @@ public class LoggedInActivity extends AppCompatActivity {
         toggle.syncState();
 
         mConnectionWarningDialog = WarningDialogFragment.newInstance(
-                this, R.string.communication_error, R.string.failed_to_connect_description,
-                R.string.ok, () -> {
-                    if (!NetworkUtils.CONNECTED) {
-                        mConnectionWarningDialog.show(getSupportFragmentManager());
-                    }
-                });
+                this, R.string.communication_error,
+                R.string.failed_to_connect_description,
+                R.string.ok, 11);
 
         viewModel.getShowConnectionWarning().observe(this, connected -> {
             if (connected) {
@@ -124,6 +122,13 @@ public class LoggedInActivity extends AppCompatActivity {
                 mConnectionWarningDialog.show(getSupportFragmentManager());
             }
         });
+    }
+
+    @Override
+    public void onCloseClick(int requestCode) {
+        if (!NetworkUtils.CONNECTED) {
+            mConnectionWarningDialog.show(getSupportFragmentManager());
+        }
     }
 
     private void closeDrawer() {
@@ -167,4 +172,5 @@ public class LoggedInActivity extends AppCompatActivity {
             mBgMusicUtils.release();
         }
     }
+
 }

@@ -18,6 +18,7 @@ import com.gutotech.narutogame.ui.ProgressDialogFragment;
 import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.ResultListener;
 import com.gutotech.narutogame.utils.FragmentUtils;
+import com.gutotech.narutogame.utils.SoundUtil;
 
 import es.dmoral.toasty.Toasty;
 
@@ -56,12 +57,14 @@ public class PasswordRecoveryFragment extends Fragment implements ResultListener
         builder.setMessage(R.string.password_sent_description);
         builder.create();
         builder.show();
+        SoundUtil.play(getContext(), R.raw.sound_pop);
     }
 
     @Override
     public void onFailure(int resId) {
         mProgressDialogFragment.dismiss();
         Toasty.error(getActivity(), resId, Toasty.LENGTH_SHORT).show();
+        SoundUtil.play(getContext(), R.raw.attention2);
     }
 
     @Override

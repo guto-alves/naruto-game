@@ -20,9 +20,10 @@ import com.gutotech.narutogame.ui.ResultListener;
 import com.gutotech.narutogame.ui.ProgressDialogFragment;
 import com.gutotech.narutogame.utils.FragmentUtils;
 import com.gutotech.narutogame.data.firebase.StorageUtils;
+import com.gutotech.narutogame.utils.SoundUtil;
 
 public class PasswordChangeFragment extends Fragment implements SectionFragment, ResultListener {
-    private FragmentPasswordChangeBinding binding;
+    private FragmentPasswordChangeBinding mBinding;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -31,17 +32,17 @@ public class PasswordChangeFragment extends Fragment implements SectionFragment,
                 .get(PasswordChangeViewModel.class);
         viewModel.setListener(this);
 
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_password_change,
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_password_change,
                 container, false);
-        binding.setViewModel(viewModel);
+        mBinding.setViewModel(viewModel);
 
-        StorageUtils.downloadProfileForMsg(getActivity(), binding.msgLayout.profileImageView);
-        binding.msgLayout.titleTextView.setText(R.string.be_advised);
-        binding.msgLayout.descriptionTextView.setText(R.string.be_advised_description);
+        StorageUtils.downloadProfileForMsg(getActivity(), mBinding.msgLayout.profileImageView);
+        mBinding.msgLayout.titleTextView.setText(R.string.be_advised);
+        mBinding.msgLayout.descriptionTextView.setText(R.string.be_advised_description);
 
         FragmentUtils.setSectionTitle(getActivity(), R.string.section_change_password);
 
-        return binding.getRoot();
+        return mBinding.getRoot();
     }
 
     private void showAlert(@StringRes int resId) {
@@ -62,10 +63,10 @@ public class PasswordChangeFragment extends Fragment implements SectionFragment,
 
     @Override
     public void onSuccess() {
-        StorageUtils.downloadProfileForMsg(getActivity(), binding.passwordChangedMsgLayout.profileImageView);
-        binding.passwordChangedMsgLayout.titleTextView.setText(R.string.congratulations);
-        binding.passwordChangedMsgLayout.descriptionTextView.setText(R.string.password_changed);
-        binding.passwordChangedMsgLayout.msgConstraintLayout.setVisibility(View.VISIBLE);
+        StorageUtils.downloadProfileForMsg(getActivity(), mBinding.passwordChangedMsgLayout.profileImageView);
+        mBinding.passwordChangedMsgLayout.titleTextView.setText(R.string.congratulations);
+        mBinding.passwordChangedMsgLayout.descriptionTextView.setText(R.string.password_changed);
+        mBinding.passwordChangedMsgLayout.msgConstraintLayout.setVisibility(View.VISIBLE);
         progressDialog.dismiss();
     }
 
@@ -73,6 +74,7 @@ public class PasswordChangeFragment extends Fragment implements SectionFragment,
     public void onFailure(int resId) {
         progressDialog.dismiss();
         showAlert(resId);
+        SoundUtil.play(getContext(), R.raw.attention2);
     }
 
     @Override

@@ -28,7 +28,8 @@ import com.gutotech.narutogame.ui.playing.character.CharacterStatusFragment;
 import com.gutotech.narutogame.utils.FragmentUtils;
 import com.gutotech.narutogame.utils.SoundUtil;
 
-public class CharacterCreateFragment extends Fragment implements SectionFragment, ResultListener {
+public class CharacterCreateFragment extends Fragment implements SectionFragment, ResultListener,
+        WarningDialogFragment.WarningDialogListener {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -62,17 +63,21 @@ public class CharacterCreateFragment extends Fragment implements SectionFragment
 
         viewModel.getImpossibleToCreateEvent().observe(getViewLifecycleOwner(), aVoid -> {
             WarningDialogFragment.newInstance(getContext(), R.string.problem,
-                    R.string.max_limit_of_character_warning, () -> {
-                        if (CharOn.character != null) {
-                            FragmentUtils.goTo(getActivity(), new CharacterStatusFragment());
-                        } else {
-                            FragmentUtils.goTo(getActivity(), new CharacterSelectFragment());
-                        }
-                    }).openDialog(getParentFragmentManager());
+                    R.string.max_limit_of_character_warning, this, 0)
+                    .openDialog(getParentFragmentManager());
             SoundUtil.play(getContext(), R.raw.attention2);
         });
 
         return binding.getRoot();
+    }
+
+    @Override
+    public void onCloseClick(int requestCode) {
+        if (CharOn.character != null) {
+            FragmentUtils.goTo(getActivity(), new CharacterStatusFragment());
+        } else {
+            FragmentUtils.goTo(getActivity(), new CharacterSelectFragment());
+        }
     }
 
     private void showAlert(@StringRes int titleId, @StringRes int messageId) {
@@ -110,4 +115,5 @@ public class CharacterCreateFragment extends Fragment implements SectionFragment
     public int getDescription() {
         return R.string.create_character;
     }
+
 }

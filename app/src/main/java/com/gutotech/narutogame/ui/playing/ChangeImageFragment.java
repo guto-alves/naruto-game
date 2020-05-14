@@ -46,19 +46,19 @@ public class ChangeImageFragment extends Fragment implements SectionFragment,
         return view;
     }
 
-    private String mProfilePath;
+    private static String mProfilePath;
 
     private final ProfilesAdapter.OnProfileClickListener mOnProfileClickListener = profilePath -> {
         mProfilePath = profilePath;
 
         QuestionDialogFragment questionDialog = QuestionDialogFragment.newInstance(
-                this, R.string.question_change_profile_image);
+                getString(R.string.question_change_profile_image), this);
         questionDialog.openDialog(getParentFragmentManager());
         SoundUtil.play(requireContext(), R.raw.sound_pop);
     };
 
     @Override
-    public void onPositiveClick() {
+    public void onPositiveClick(int requestCode) {
         CharOn.character.setProfilePath(mProfilePath);
 
         try {
@@ -68,9 +68,6 @@ public class ChangeImageFragment extends Fragment implements SectionFragment,
             scrollView.post(() -> scrollView.smoothScrollTo(0, 0));
         } catch (NullPointerException ignored) {
         }
-    }
-
-    public void onCancelClick() {
     }
 
     @Override

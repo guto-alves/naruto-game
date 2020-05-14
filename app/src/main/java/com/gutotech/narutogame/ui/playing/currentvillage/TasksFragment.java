@@ -44,7 +44,7 @@ public class TasksFragment extends Fragment implements SectionFragment {
 
         viewModel.getShowProgressBarEvent().observe(getViewLifecycleOwner(), show -> {
             if (show) {
-                mProgressDialog.show(getParentFragmentManager(), "ProgressDialogFragment");
+                mProgressDialog.show(getParentFragmentManager());
             } else {
                 mProgressDialog.dismiss();
             }
