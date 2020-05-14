@@ -4,13 +4,16 @@ import android.content.DialogInterface;
 import android.text.TextUtils;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.Character;
 import com.gutotech.narutogame.data.model.CharOn;
+import com.gutotech.narutogame.data.model.Mission;
 import com.gutotech.narutogame.data.repository.AuthRepository;
 import com.gutotech.narutogame.data.repository.CharacterRepository;
+import com.gutotech.narutogame.data.repository.MissionRepository;
 import com.gutotech.narutogame.data.repository.NinjaLuckyRepository;
 import com.gutotech.narutogame.data.repository.NinjaStatisticsRepository;
 import com.gutotech.narutogame.data.repository.PlayerRepository;
@@ -21,14 +24,19 @@ import com.gutotech.narutogame.utils.SingleLiveEvent;
 import java.util.List;
 
 public class CharacterSelectViewModel extends ViewModel {
-    private CharacterRepository mCharRepository = CharacterRepository.getInstance();
+    private CharacterRepository mCharRepository;
+    private MutableLiveData<List<Character>> mCharacters = new MutableLiveData<>();
 
     private ResultListener mListener;
 
     private SingleLiveEvent<DialogInterface.OnClickListener> mShowQuestionDialogEvent =
             new SingleLiveEvent<>();
-
     private SingleLiveEvent<Integer> mShowErrorDialogEvent = new SingleLiveEvent<>();
+
+    public CharacterSelectViewModel() {
+        mCharRepository = CharacterRepository.getInstance();
+        getCharacters();
+    }
 
     public synchronized void onPlayButtonPressed(Character character) {
         if (character != null) {
@@ -52,9 +60,7 @@ public class CharacterSelectViewModel extends ViewModel {
         }
 
         mShowQuestionDialogEvent.setValue((dialog, which) -> {
-            if (CharOn.character == null) {
-                deleteCharacterSelected(character);
-            } else if (character.equals(CharOn.character)) {
+            if (character.equals(CharOn.character)) {
                 mShowErrorDialogEvent.setValue(R.string.remove_character_while_logged_in);
             } else {
                 deleteCharacterSelected(character);
@@ -63,20 +69,28 @@ public class CharacterSelectViewModel extends ViewModel {
     }
 
     private void deleteCharacterSelected(Character character) {
-        mCharRepository.delete(character.getId());
+        mCharRepository.remove(character.getId());
+        getCharacters();
         NinjaLuckyRepository.getInstance().delete(character.getId());
         NinjaStatisticsRepository.getInstance().remove(character.getNinja().getId());
+        MissionRepository.getInstance().finishMission(Mission.Type.SPECIAL, character.getId());
+        MissionRepository.getInstance().finishMission(Mission.Type.TIME, character.getId());
         PlayerRepository.getInstance().setTotalCharacters(false);
     }
 
+    private void getCharacters() {
+        mCharRepository.getAllCharacters(AuthRepository.getInstance().getUid(),
+                mCharacters::setValue);
+    }
 
     public void setListener(ResultListener listener) {
         mListener = listener;
     }
 
     LiveData<List<Character>> getCharactersList() {
-        return mCharRepository.getMyCharacters(AuthRepository.getInstance().getUid());
+        return mCharacters;
     }
+
 
     LiveData<DialogInterface.OnClickListener> getShowQuestionDialogEvent() {
         return mShowQuestionDialogEvent;

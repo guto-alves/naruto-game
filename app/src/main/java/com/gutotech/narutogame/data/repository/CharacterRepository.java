@@ -35,7 +35,7 @@ public class CharacterRepository {
         characterRef.setValue(character);
     }
 
-    public void delete(String id) {
+    public void remove(String id) {
         DatabaseReference characterRef = FirebaseConfig.getDatabase()
                 .child("characters")
                 .child(id);
@@ -82,9 +82,7 @@ public class CharacterRepository {
         });
     }
 
-    public LiveData<List<Character>> getMyCharacters(String playerId) {
-        MutableLiveData<List<Character>> data = new MutableLiveData<>();
-
+    public void getAllCharacters(String playerId, Callback<List<Character>> callback) {
         Query charactersQuery = FirebaseConfig.getDatabase()
                 .child("characters")
                 .orderByChild("playerId")
@@ -102,15 +100,13 @@ public class CharacterRepository {
 
                 sortByLevel(characterList);
 
-                data.setValue(characterList);
+                callback.call(characterList);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
-
-        return data;
     }
 
     public void setLastSeen(String charid) {

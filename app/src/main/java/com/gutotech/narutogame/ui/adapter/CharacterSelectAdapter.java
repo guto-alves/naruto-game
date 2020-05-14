@@ -48,13 +48,6 @@ public class CharacterSelectAdapter extends RecyclerView.Adapter<CharacterSelect
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         if (mCharactersList != null) {
-
-            if (position == mCharacterSelectedPosition) {
-                holder.profileImageView.setAlpha(1f);
-            } else {
-                holder.profileImageView.setAlpha(0.5f);
-            }
-
             Character character = mCharactersList.get(position);
 
             StorageUtils.downloadSmallProfile(holder.profileImageView.getContext(),
@@ -65,6 +58,12 @@ public class CharacterSelectAdapter extends RecyclerView.Adapter<CharacterSelect
                 mCharacterSelectedPosition = position;
                 notifyDataSetChanged();
             });
+
+            if (position == mCharacterSelectedPosition) {
+                holder.profileImageView.setAlpha(1f);
+            } else {
+                holder.profileImageView.setAlpha(0.5f);
+            }
         }
     }
 
@@ -74,7 +73,8 @@ public class CharacterSelectAdapter extends RecyclerView.Adapter<CharacterSelect
     }
 
     public void setCharactersList(List<Character> charactersList) {
-        this.mCharactersList = charactersList;
+        mCharactersList = charactersList;
+        mCharacterSelectedPosition = 0;
         notifyDataSetChanged();
     }
 }

@@ -29,7 +29,7 @@ public class MissionRepository {
         DatabaseReference missionReference = FirebaseConfig.getDatabase()
                 .child("missions")
                 .child(CharOn.character.getId())
-                .child(mission instanceof TimeMission ? "time-mission" : "special-mission");
+                .child(type == Mission.Type.TIME ? "time-mission" : "special-mission");
 
         missionReference.setValue(mission);
     }
@@ -57,9 +57,13 @@ public class MissionRepository {
     }
 
     public void finishMission(Mission.Type type) {
+        finishMission(type, CharOn.character.getId());
+    }
+
+    public void finishMission(Mission.Type type, String charId) {
         DatabaseReference missionReference = FirebaseConfig.getDatabase()
                 .child("missions")
-                .child(CharOn.character.getId())
+                .child(charId)
                 .child(type == Mission.Type.TIME ? "time-mission" : "special-mission");
 
         missionReference.removeValue();
