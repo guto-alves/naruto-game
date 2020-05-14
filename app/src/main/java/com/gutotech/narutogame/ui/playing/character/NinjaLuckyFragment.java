@@ -78,7 +78,6 @@ public class NinjaLuckyFragment extends Fragment implements SectionFragment {
     public class AnimationTask extends AsyncTask<Void, Integer, Void> {
         private final SecureRandom random = new SecureRandom();
         final int INITIAL_SCROLL = -1333;
-        final int FINAL_SCROLL = 1333;
 
         private ImageView slotImageView;
 
@@ -99,7 +98,7 @@ public class NinjaLuckyFragment extends Fragment implements SectionFragment {
             for (int i = INITIAL_SCROLL + 1; i < finalScroll; i++) {
                 publishProgress(i);
 
-                currentScroll = (currentScroll + 1) % (totalScrolls / 4);
+                currentScroll = (currentScroll + 1) % (totalScrolls / 2);
 
                 if (currentScroll == 0) {
                     millis++;
