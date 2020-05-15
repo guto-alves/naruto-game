@@ -2497,5 +2497,6 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="max_limit_of_character_warning">You\'ve reached the max limit of characters!</string>
     <string name="rewarded_ad_wasnt_loaded_yet_warning">The rewarded ad wasn\'t loaded yet.</string>
     <string name="or">or</string>
+    <string name="batalha">Battle</string>
 
 </resources>

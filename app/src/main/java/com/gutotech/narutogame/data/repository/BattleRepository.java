@@ -13,6 +13,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import com.gutotech.narutogame.data.firebase.FirebaseConfig;
 import com.gutotech.narutogame.data.model.Battle;
+import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.model.Character;
 
 import java.util.Map;
@@ -83,6 +84,8 @@ public class BattleRepository {
                 int playersInBattle = battle.getPlayersInBattle() - 1;
                 if (playersInBattle == 0) {
                     mutableData.setValue(null);
+                    ChatRepository.getInstance().deleteMessages(
+                            "Battle-" + CharOn.character.getBattleId());
                 } else {
                     battle.setPlayersInBattle(playersInBattle);
                     mutableData.setValue(battle);

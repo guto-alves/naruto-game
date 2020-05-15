@@ -32,6 +32,7 @@ import android.widget.LinearLayout;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.gutotech.narutogame.R;
+import com.gutotech.narutogame.data.model.Battle;
 import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.network.NetworkUtils;
 import com.gutotech.narutogame.data.repository.AuthRepository;
@@ -324,6 +325,11 @@ public class PlayingActivity extends AppCompatActivity implements
         channels.add(getString(CharOn.character.getVillage().name));
         if (!TextUtils.isEmpty(CharOn.character.getTeam())) {
             channels.add(getString(R.string.team));
+        }
+        if (CharOn.character.isBattle() &&
+                (CharOn.character.getBattleId().contains(Battle.MAP_PVP) ||
+                        CharOn.character.getBattleId().contains(Battle.DOJO_PVP))) {
+            channels.add(getString(R.string.batalha));
         }
 
         ArrayAdapter<String> channelsAdapter = new ArrayAdapter<>(

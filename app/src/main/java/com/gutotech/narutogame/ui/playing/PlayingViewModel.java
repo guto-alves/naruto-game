@@ -142,6 +142,7 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
                 } else if (propertyId == BR.battle) {
                     mCharacterRepository.save(mCharacter);
                     buildMenu();
+                    mUpdateChannelsEvent.call();
                     if (mCharacter.isBattle()) {
                         if (mBgMusicEnabled) {
                             mBgMusicUtils.setMusicType(BgMusicUtils.MusicType.BATTLE);
@@ -526,8 +527,10 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
             mChannel = "World";
         } else if (position == 1) {
             mChannel = String.valueOf(mCharacter.getVillage().ordinal());
-        } else {
+        } else if (position == 2 && !TextUtils.isEmpty(mCharacter.getTeam())) {
             mChannel = "Team-" + mCharacter.getTeam();
+        } else {
+            mChannel = "Battle-" + mCharacter.getBattleId();
         }
 
         mMessages.setValue(null);

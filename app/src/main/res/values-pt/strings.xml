@@ -2452,5 +2452,6 @@
     <string name="max_limit_of_character_warning">Você já chegou no limite de personagens!</string>
     <string name="rewarded_ad_wasnt_loaded_yet_warning">O anúncio ainda não foi carregado.</string>
     <string name="or">ou</string>
+    <string name="batalha">Batalha</string>
 
 </resources>
