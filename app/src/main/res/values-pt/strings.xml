@@ -2114,7 +2114,8 @@
     <string name="amekage">Amekage</string>
     <string name="otokage">Otokage</string>
     <string name="dojo_pvp_warnings">As Batalhas Dojo PVP dão experiência e Ryous até o nível 15.\n\nSomente Ninjas
-        com a graduação %s podem duelar no Dojo PVP</string>
+        com a graduação %s ou superior podem duelar no Dojo PVP</string>
+    <string name="dojo_pvp_warnings1">As Batalhas Dojo PVP dão experiência e Ryous até o nível 15.</string>
     <string name="email_verification_sent">Dentro de alguns instantes você receberá um e-mail com o
         link de confirmação do seu cadastro.</string>
     <string name="label_last_seen">Visto por último:</string>

@@ -2214,6 +2214,7 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="otokage">Otokage</string>
     <string name="dojo_pvp_warnings">Dojo PVP Battles give experience and Ryous up to level 15.\n\nOnly Ninjas with
         the %s rank can duel in the PVP Dojo</string>
+    <string name="dojo_pvp_warnings1">Dojo PVP Battles give experience and Ryous up to level 15.</string>
     <string name="label_last_seen">Last Seen:</string>
     <string name="rank_position">%dº</string>
     <string name="date_and_time_format">%s at %s</string>

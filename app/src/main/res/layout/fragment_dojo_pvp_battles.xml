@@ -112,7 +112,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
-                        android:text="@string/dojo_pvp_warnings"
+                        android:text="@string/dojo_pvp_warnings1"
                         android:textColor="#ff7d1c"
                         android:textSize="10sp" />
 

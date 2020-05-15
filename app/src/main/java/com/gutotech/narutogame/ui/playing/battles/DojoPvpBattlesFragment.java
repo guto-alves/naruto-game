@@ -26,11 +26,11 @@ public class DojoPvpBattlesFragment extends Fragment {
         FragmentDojoPvpBattlesBinding binding = DataBindingUtil.inflate(inflater,
                 R.layout.fragment_dojo_pvp_battles, container, false);
 
-        binding.dojoPvpWarningTextView.setText(getString(R.string.dojo_pvp_warnings,
-                getString(GraduationUtils.getName(1)))
-        );
-
-        if (CharOn.character.getGraduationId() == 1) {
+        if (CharOn.character.getGraduationId() == 0) {
+            binding.dojoPvpWarningTextView.setText(getString(R.string.dojo_pvp_warnings,
+                    getString(GraduationUtils.getName(1))));
+        } else {
+            binding.dojoPvpWarningTextView.setText(R.string.dojo_pvp_warnings1);
             binding.goToTheQueueButton.setVisibility(View.VISIBLE);
             binding.goToTheQueueButton.setOnClickListener(v ->
                     CharOn.character.setDojoWaitQueue(true));
