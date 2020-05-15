@@ -110,7 +110,7 @@ public class LoggedInActivity extends AppCompatActivity
 
         mConnectionWarningDialog = WarningDialogFragment.newInstance(
                 this, R.string.communication_error,
-                R.string.failed_to_connect_description,
+                R.string.communication_error_description,
                 R.string.ok, 11);
 
         viewModel.getShowConnectionWarning().observe(this, connected -> {

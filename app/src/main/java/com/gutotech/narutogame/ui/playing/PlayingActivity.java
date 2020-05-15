@@ -149,8 +149,8 @@ public class PlayingActivity extends AppCompatActivity implements
         });
 
         mConnectionWarningDialog = WarningDialogFragment.newInstance(
-                this,
-                R.string.communication_error, R.string.failed_to_connect_description,
+                this, R.string.communication_error,
+                R.string.communication_error_description,
                 R.string.ok, CONNECTION_WARNING_REQUEST_CODE);
 
         mViewModel.getShowConnectionWarning().observe(this, connected -> {
