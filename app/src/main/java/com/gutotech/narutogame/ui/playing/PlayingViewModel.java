@@ -187,6 +187,8 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
                     } else if (!mCharacter.isBattle()) {
                         setCurrentSection(TEAM_GROUP, 0);
                     }
+                } else if (propertyId == BR.village) {
+                    mUpdateChannelsEvent.call();
                 }
             }
         });
