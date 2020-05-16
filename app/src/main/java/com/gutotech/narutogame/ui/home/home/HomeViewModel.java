@@ -50,6 +50,7 @@ public class HomeViewModel extends ViewModel {
                                         if (status.equals(GameStatusRepository.VERSION_NAME)) {
                                             mAuthListener.onSuccess();
                                         } else {
+                                            mPlayerRepository.setSignedIn(false, null);
                                             mAuthRepository.signOut();
                                             mAuthListener.onFailure(0);
                                             mStartMaintenanceActivityEvent.call();

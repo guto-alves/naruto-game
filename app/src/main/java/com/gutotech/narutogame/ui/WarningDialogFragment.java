@@ -132,7 +132,7 @@ public class WarningDialogFragment extends DialogFragment {
 
         try {
             int requestCode = getArguments().getInt(EXTRA_REQUEST_CODE);
-            if (requestCode < 10){
+            if (requestCode <= 10){
                 mListener = (WarningDialogListener) getTargetFragment();
             }else{
                 mListener = (WarningDialogListener) getActivity();
