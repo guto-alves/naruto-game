@@ -2173,7 +2173,7 @@
         precisa lutar 5 batalhas PVP.\nComo cada Jutsu possui 3 levels, para alcançar a força máxima
         de um Jutsu você precisa ter pelo menos 15 pontos.</string>
     <string name="enhancements">Aprimoramentos</string>
-    <string name="maintenance_status">Atualmente, o jogo está em manutenção para atualizar a versão
+    <string name="maintenance_status">O jogo está em manutenção no momento para atualizar a versão
         do jogo.\nPedimos desculpas por qualquer inconveniência causada.\nAtualmente, planejamos
         encerrar a manutenção em %s às %s. (O período de manutenção pode mudar sem aviso prévio.)</string>
     <string name="new_version_status">Nova versão (%s) está disponível.\nPor favor, vá para

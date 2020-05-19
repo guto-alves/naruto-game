@@ -80,6 +80,7 @@ public class MissionsViewModel extends AndroidViewModel
                 mShowProgressBarEvent.setValue(false);
             });
         } else {
+            mShowProgressBarEvent.setValue(false);
             mShowWarningDialogEvent.call();
         }
     }
