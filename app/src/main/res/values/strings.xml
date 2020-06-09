@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">Naruto Game</string>
-    <string name="admob_app_id" translatable="false">ca-app-pub-3940256099942544~3347511713</string>
+    <string name="admob_app_id" translatable="false">ca-app-pub-8386018159724610~2523878642</string>
     <string name="admob_banner_ad" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="admob_banner_ad1" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
     <string name="admob_rewarded_ad" translatable="false">ca-app-pub-3940256099942544/5224354917</string>
 
     <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
