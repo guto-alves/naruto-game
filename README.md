@@ -8,6 +8,10 @@
 
 In the game you will be a ninja and your mission is to develop your skills and chart your own ninja path to become Kage!
 
+## Download
+[Naruto Game.apk](https://drive.google.com/file/d/19tc7K3bVZjIlbCkjbom9TRebw26gEsb5/view?usp=sharing)
+
+
 ## Screenshots
 <a><img src="screenshots/create_character.jpg" height="400"/>
   <img src="screenshots/select_character.jpg" height="400"/>
