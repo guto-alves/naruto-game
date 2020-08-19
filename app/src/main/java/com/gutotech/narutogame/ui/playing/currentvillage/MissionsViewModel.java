@@ -28,11 +28,9 @@ import java.util.List;
 
 public class MissionsViewModel extends AndroidViewModel
         implements MissionsAdapter.OnAcceptClickListener {
+    private static final long TIME_BASE = 1800000; // 30 minutes
     public final ObservableField<Mission.Type> typeSelected = new ObservableField<>();
     public final ObservableField<Mission.Rank> rankSelected = new ObservableField<>();
-
-    private static final long TIME_BASE = 1800000; // 30 minutes
-
     private MutableLiveData<List<Mission>> mMissions = new MutableLiveData<>();
 
     private SingleLiveEvent<Void> mShowWarningDialogEvent = new SingleLiveEvent<>();
@@ -135,10 +133,6 @@ public class MissionsViewModel extends AndroidViewModel
                 missions.add(new SpecialMission(MissionInfo.MISSION391.name(), 40));
             } else if (rankSelected.get() == Mission.Rank.RANK_B) {
                 missions.add(new SpecialMission(MissionInfo.MISSION392.name(), 25));
-            } else if (rankSelected.get() == Mission.Rank.RANK_A) {
-
-            } else { // Rank S
-
             }
         }
 

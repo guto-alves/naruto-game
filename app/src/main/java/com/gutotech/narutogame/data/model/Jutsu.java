@@ -15,11 +15,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Jutsu extends BaseObservable implements Serializable {
-    public enum Type {ATK, DEF, BUFF, DEBUFF, WEAPON}
-
     public static final String SLOT_1 = "slot1";
     public static final String SLOT_2 = "slot2";
     public static final String SLOT_3 = "slot3";
+
+    public enum Type {ATK, DEF, BUFF, DEBUFF, WEAPON}
 
     private String name; // refers to JutsuInfo Enum
     private Classe classe;
@@ -56,6 +56,13 @@ public class Jutsu extends BaseObservable implements Serializable {
         this.usageInterval = usageInterval;
         this.inventory = 1;
         visible = true;
+    }
+
+    @Exclude
+    public static String getName(Jutsu jutsu, @StringRes int resid, Context context) {
+        return jutsu.getLevel() == 0 ?
+                context.getString(resid) :
+                context.getString(resid) + " - Lvl " + jutsu.getLevel();
     }
 
     public void activate(Enhancement enhancement, String slot) {
@@ -99,13 +106,6 @@ public class Jutsu extends BaseObservable implements Serializable {
 
     public boolean isBuffOrDebuff(JutsuInfo jutsuInfo) {
         return jutsuInfo.type == Jutsu.Type.BUFF || jutsuInfo.type == Jutsu.Type.DEBUFF;
-    }
-
-    @Exclude
-    public static String getName(Jutsu jutsu, @StringRes int resid, Context context) {
-        return jutsu.getLevel() == 0 ?
-                context.getString(resid) :
-                context.getString(resid) + " - Lvl " + jutsu.getLevel();
     }
 
     @Override

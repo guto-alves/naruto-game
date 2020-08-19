@@ -1,12 +1,11 @@
 package com.gutotech.narutogame.ui;
 
 import android.content.Intent;
-
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.ads.MobileAds;
 import com.gutotech.narutogame.R;
@@ -49,27 +48,25 @@ public class SplashActivity extends AppCompatActivity implements
         super.onStart();
 
         Handler handler = new Handler();
-        handler.postDelayed(() -> {
-            NetworkUtils.getInstance().addListener(connected -> {
-                if (connected) {
-                    if (mConnectionWarningDialog.isVisible()) {
-                        mConnectionWarningDialog.dismiss();
-                    }
-                    GameStatusRepository.getInstance().getStatus(status -> {
-                        if (status.equals(GameStatusRepository.VERSION_NAME) &&
-                                AuthRepository.getInstance().isSignedIn()) {
-                            startActivity(new Intent(SplashActivity.this, LoggedInActivity.class));
-                        } else {
-                            AuthRepository.getInstance().signOut();
-                            startActivity(new Intent(SplashActivity.this, HomeActivity.class));
-                        }
-                        finish();
-                    });
-                } else {
-                    mConnectionWarningDialog.show(getSupportFragmentManager());
+        handler.postDelayed(() -> NetworkUtils.getInstance().addListener(connected -> {
+            if (connected) {
+                if (mConnectionWarningDialog.isVisible()) {
+                    mConnectionWarningDialog.dismiss();
                 }
-            });
-        }, 4000);
+                GameStatusRepository.getInstance().getStatus(status -> {
+                    if (status.equals(GameStatusRepository.VERSION_NAME) &&
+                            AuthRepository.getInstance().isSignedIn()) {
+                        startActivity(new Intent(SplashActivity.this, LoggedInActivity.class));
+                    } else {
+                        AuthRepository.getInstance().signOut();
+                        startActivity(new Intent(SplashActivity.this, HomeActivity.class));
+                    }
+                    finish();
+                });
+            } else {
+                mConnectionWarningDialog.show(getSupportFragmentManager());
+            }
+        }), 4000);
     }
 
     @Override

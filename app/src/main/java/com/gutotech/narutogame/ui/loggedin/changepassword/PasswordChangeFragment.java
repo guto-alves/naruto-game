@@ -36,7 +36,7 @@ public class PasswordChangeFragment extends Fragment implements SectionFragment,
                 container, false);
         mBinding.setViewModel(viewModel);
 
-        StorageUtils.downloadProfileForMsg(getActivity(), mBinding.msgLayout.profileImageView);
+        StorageUtils.loadProfileForMsg(getActivity(), mBinding.msgLayout.profileImageView);
         mBinding.msgLayout.titleTextView.setText(R.string.be_advised);
         mBinding.msgLayout.descriptionTextView.setText(R.string.be_advised_description);
 
@@ -63,7 +63,7 @@ public class PasswordChangeFragment extends Fragment implements SectionFragment,
 
     @Override
     public void onSuccess() {
-        StorageUtils.downloadProfileForMsg(getActivity(), mBinding.passwordChangedMsgLayout.profileImageView);
+        StorageUtils.loadProfileForMsg(getActivity(), mBinding.passwordChangedMsgLayout.profileImageView);
         mBinding.passwordChangedMsgLayout.titleTextView.setText(R.string.congratulations);
         mBinding.passwordChangedMsgLayout.descriptionTextView.setText(R.string.password_changed);
         mBinding.passwordChangedMsgLayout.msgConstraintLayout.setVisibility(View.VISIBLE);

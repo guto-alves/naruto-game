@@ -30,6 +30,7 @@ public class NetworkUtils {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 CONNECTED = snapshot.getValue(Boolean.class);
+
                 if (callback != null) {
                     callback.call(CONNECTED);
                 }

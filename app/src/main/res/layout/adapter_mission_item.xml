@@ -72,7 +72,6 @@
             android:textSize="12sp" />
 
         <LinearLayout
-            android:id="@+id/linearLayout15"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/layout_bg_atributo_cla"

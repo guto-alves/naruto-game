@@ -461,7 +461,7 @@ public class DojoBatalhaLutadorViewModel extends ViewModel
 
             CharOn.character.addRyous(earnedRyous);
             CharOn.character.incrementExp(earnedExp);
-            CharOn.character.incrementScore(Score.VIT_DOJO_NPC);
+            CharOn.character.incrementScore(Score.WIN_DOJO_NPC);
         } else if (mBattle.getStatus() == Battle.Status.PLAYER2_WON) {
             CharOn.character.getCombatOverview().setLossesNpc(
                     CharOn.character.getCombatOverview().getLossesNpc() + 1);

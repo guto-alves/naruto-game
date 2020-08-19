@@ -56,7 +56,6 @@
             app:srcCompat="@drawable/layout_menu_deslogado" />
 
         <TextView
-            android:id="@+id/textView74"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"

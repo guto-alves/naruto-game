@@ -4,11 +4,11 @@ public abstract class Score {
     public static final int LEVEL = 1000;
     public static final int GRADUATION = 2000;
 
-    public static final int VIT_MAPA_PVP = 60;
-    public static final int VIT_DOJO_PVP = 30;
-    public static final int VIT_DOJO_NPC = 5;
+    public static final int WIN_MAP_PVP = 60;
+    public static final int WIN_DOJO_PVP = 30;
+    public static final int WIN_DOJO_NPC = 5;
 
-    public static final int DER_MAPA_PVP = 30;
+    public static final int DER_MAP_PVP = 30;
     public static final int DER_DOJO_PVP = 30;
     public static final int DER_DOJO_NPC = 15;
 

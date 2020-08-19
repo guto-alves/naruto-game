@@ -117,12 +117,12 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:drawableStart="@drawable/layout_icones_atk_magico"
-                            android:drawableLeft="@drawable/layout_icones_atk_magico"
                             android:drawablePadding="3dp"
                             android:gravity="center_vertical"
                             android:text="@string/label_attack_nin_gen"
-                            android:textColor="@android:color/white" />
+                            android:textColor="@android:color/white"
+                            app:drawableLeftCompat="@drawable/layout_icones_atk_magico"
+                            app:drawableStartCompat="@drawable/layout_icones_atk_magico" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -160,12 +160,12 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:drawableStart="@drawable/layout_icones_atk_fisico"
-                            android:drawableLeft="@drawable/layout_icones_atk_fisico"
                             android:drawablePadding="3dp"
                             android:gravity="center_vertical"
                             android:text="@string/label_attack_tai_buk"
-                            android:textColor="@android:color/white" />
+                            android:textColor="@android:color/white"
+                            app:drawableStartCompat="@drawable/layout_icones_atk_fisico"
+                            app:drawableLeftCompat="@drawable/layout_icones_atk_fisico" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -203,12 +203,12 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:drawableStart="@drawable/layout_icones_shield"
-                            android:drawableLeft="@drawable/layout_icones_defense"
                             android:drawablePadding="3dp"
                             android:gravity="center_vertical"
                             android:text="@string/label_base_defense1"
-                            android:textColor="@android:color/white" />
+                            android:textColor="@android:color/white"
+                            app:drawableLeftCompat="@drawable/layout_icones_defense"
+                            app:drawableStartCompat="@drawable/layout_icones_shield" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -245,12 +245,12 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:drawableStart="@drawable/layout_icones_conhe"
-                            android:drawableLeft="@drawable/layout_icones_conhe"
                             android:drawablePadding="3dp"
                             android:gravity="center_vertical"
                             android:text="@string/label_seal_requirement"
-                            android:textColor="@android:color/white" />
+                            android:textColor="@android:color/white"
+                            app:drawableStartCompat="@drawable/layout_icones_conhe"
+                            app:drawableLeftCompat="@drawable/layout_icones_conhe" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -287,12 +287,12 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:drawableStart="@drawable/layout_icones_p_chakra"
-                            android:drawableLeft="@drawable/layout_icones_p_chakra"
                             android:drawablePadding="3dp"
                             android:gravity="center_vertical"
                             android:text="@string/label_consumes"
-                            android:textColor="@android:color/white" />
+                            android:textColor="@android:color/white"
+                            app:drawableStartCompat="@drawable/layout_icones_p_chakra"
+                            app:drawableLeftCompat="@drawable/layout_icones_p_chakra" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -329,12 +329,12 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:drawableStart="@drawable/layout_icones_p_stamina"
-                            android:drawableLeft="@drawable/layout_icones_p_stamina"
                             android:drawablePadding="3dp"
                             android:gravity="center_vertical"
                             android:text="@string/label_consumes"
-                            android:textColor="@android:color/white" />
+                            android:textColor="@android:color/white"
+                            app:drawableStartCompat="@drawable/layout_icones_p_stamina"
+                            app:drawableLeftCompat="@drawable/layout_icones_p_stamina" />
 
                         <LinearLayout
                             android:layout_width="match_parent"

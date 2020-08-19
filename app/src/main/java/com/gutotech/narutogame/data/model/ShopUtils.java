@@ -5,7 +5,6 @@ import android.content.Context;
 import com.gutotech.narutogame.R;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -203,38 +202,4 @@ public class ShopUtils {
 
         return itemsList;
     }
-
-//    public static List<Item> getArmasLongoAlcance() {
-//        itemsList.clear();
-//        itemsList.add(new Arma("shuriken", "Shuriken",
-//                "Você arremessa uma shuriken em seu inimigo",
-//                7, 0, 2, 2, 1, 4, Arma.Tipo.TAI_BUK));
-//
-//        itemsList.add(new Arma("shuriken-chakra", "Shuriken de Chakra",
-//                "Você arremessa uma shuriken em seu inimigo",
-//                7, 0, 2, 2, 4, 1, Arma.Tipo.NIN_GEN));
-//        return itemsList;
-//    }
-//
-//    public List<Item> getArmasCurtoAlcance() {
-//        itemsList.clear();
-//
-//        itemsList.add(new Arma("nunchaku", "Nunchaku",
-//                "Consiste de dois bastões pequenos conectados em seus fins por uma corda ou corrente. Muito uitilizado para golpear a curta distância e aumentar o dano no oponente.",
-//                700, 1, 5, 21, 4, 22, Arma.Tipo.TAI_BUK));
-//
-//        itemsList.add(new Arma("pincel2", "Pincel Gigante",
-//                "Alguns Shinobis utilizam suas técnicas por meio de pinturas, como Kurama Yakumo que com sua Kekkei Genkai pode tornar suas pinturas praticamente reais.",
-//                1, 1, 5, 25, 25, 4, Arma.Tipo.NIN_GEN));
-//
-//        itemsList.add(new Arma("pincel", "Pincel",
-//                "Alguns Shinobis utilizam suas técnicas por meio de pinturas, como Kurama Yakumo que com sua Kekkei Genkai pode tornar suas pinturas praticamente reais.",
-//                700, 1, 5, 21, 22, 3, Arma.Tipo.NIN_GEN));
-//
-//        itemsList.add(new Arma("nunchaku2", "Nunchaku Energizado",
-//                "Consiste de dois bastões pequenos conectados em seus fins por uma corda ou corrente. Muito uitilizado para golpear a curta distância e aumentar o dano no oponente.",
-//                1, 1, 5, 25, 3, 25, Arma.Tipo.TAI_BUK));
-//
-//        return itemsList;
-//    }
 }

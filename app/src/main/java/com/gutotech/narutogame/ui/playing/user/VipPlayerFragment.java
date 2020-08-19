@@ -1,25 +1,28 @@
 package com.gutotech.narutogame.ui.playing.user;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-
 import com.gutotech.narutogame.R;
+import com.gutotech.narutogame.data.firebase.StorageUtils;
+import com.gutotech.narutogame.data.model.Classe;
+import com.gutotech.narutogame.data.model.Ninja;
 import com.gutotech.narutogame.databinding.FragmentVipPlayerBinding;
 import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.WarningDialogFragment;
 import com.gutotech.narutogame.utils.FragmentUtils;
 import com.gutotech.narutogame.utils.SoundUtil;
 import com.gutotech.narutogame.utils.SpannableStringBuilderCustom;
-import com.gutotech.narutogame.data.firebase.StorageUtils;
+
+import java.util.Objects;
 
 public class VipPlayerFragment extends Fragment implements SectionFragment {
 
@@ -34,15 +37,15 @@ public class VipPlayerFragment extends Fragment implements SectionFragment {
 
         binding.setViewModel(viewModel);
 
-        ArrayAdapter ninjasAdapter = new ArrayAdapter<>(getActivity(),
+        ArrayAdapter<Ninja> ninjasAdapter = new ArrayAdapter<>(Objects.requireNonNull(getActivity()),
                 android.R.layout.simple_spinner_item, viewModel.getNinjas());
         ninjasAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        ArrayAdapter classesAdapter = new ArrayAdapter<>(getActivity(),
+        ArrayAdapter<Classe> classesAdapter = new ArrayAdapter<>(getActivity(),
                 android.R.layout.simple_spinner_item, viewModel.getClasses());
         classesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        ArrayAdapter villagesAdapter = new ArrayAdapter<>(getActivity(),
+        ArrayAdapter<String> villagesAdapter = new ArrayAdapter<>(getActivity(),
                 android.R.layout.simple_spinner_item, viewModel.getVillages(getContext()));
         villagesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
@@ -58,7 +61,7 @@ public class VipPlayerFragment extends Fragment implements SectionFragment {
             builder.append();
             builder.append(resId, R.color.colorGreen);
 
-            StorageUtils.downloadProfileForMsg(getContext(), binding.actionResultLayout.profileImageView);
+            StorageUtils.loadProfileForMsg(getContext(), binding.actionResultLayout.profileImageView);
             binding.actionResultLayout.titleTextView.setText(R.string.successfully_done);
             binding.actionResultLayout.descriptionTextView.setText(builder.getString());
             binding.actionResultLayout.msgConstraintLayout.setVisibility(View.VISIBLE);

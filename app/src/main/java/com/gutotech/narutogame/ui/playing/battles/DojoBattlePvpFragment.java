@@ -214,7 +214,7 @@ public class DojoBattlePvpFragment extends Fragment implements SectionFragment {
 
     private void showBattleResult(@StringRes int title, SpannableStringBuilder description) {
         if (mBinding.battleResultLayout.msgConstraintLayout.getVisibility() == View.GONE) {
-            StorageUtils.downloadProfileForMsg(getActivity(), mBinding.battleResultLayout.profileImageView);
+            StorageUtils.loadProfileForMsg(getActivity(), mBinding.battleResultLayout.profileImageView);
             mBinding.battleResultLayout.titleTextView.setText(title);
             mBinding.battleResultLayout.descriptionTextView.setText(description);
             mBinding.battleResultLayout.msgConstraintLayout.setVisibility(View.VISIBLE);

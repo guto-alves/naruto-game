@@ -49,7 +49,7 @@ public class RankingNinjasAdapter extends RecyclerView.Adapter<RankingNinjasAdap
         if (mNinjas != null) {
             final Character character = mNinjas.get(i);
 
-            StorageUtils.downloadDojo(mContext, holder.characterImageView, character.getNinja().getId());
+            StorageUtils.loadDojo(mContext, holder.characterImageView, character.getNinja().getId());
 
             holder.positionTextView.setText(mContext.getString(R.string.rank_position, i + 1));
             holder.nickTextView.setText(character.getNick());

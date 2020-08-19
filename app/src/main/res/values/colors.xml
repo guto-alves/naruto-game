@@ -5,7 +5,6 @@
     <color name="colorAccent">#0D91A3</color>
 
     <color name="colorGreen">#09d96b</color>
-    <color name="colorSectionTitle">#F3E6C4</color>
     <color name="colorText">#D1D8F1</color>
 
     <color name="colorItem1">#423727</color>
@@ -25,8 +24,6 @@
 
     <color name="colorYellowLight">#FFD273</color>
     <color name="colorGold">#FFD700</color>
-
-    <color name="colorTeamRatingbar">#FCE187</color>
 
     <color name="colorItemTitle">#FFD274</color>
 

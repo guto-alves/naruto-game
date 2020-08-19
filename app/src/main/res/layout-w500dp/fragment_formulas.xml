@@ -379,7 +379,6 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:drawableStart="@drawable/layout_icones_forc"
-                    android:drawableLeft="@drawable/layout_icones_forc"
                     android:gravity="center_vertical"
                     android:text="/ 2"
                     android:textColor="@color/colorText"
@@ -387,7 +386,8 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/guideline3810"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:drawableLeftCompat="@drawable/layout_icones_forc" />
 
                 <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/guideline3710"
@@ -767,12 +767,12 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:drawableStart="@drawable/layout_icones_forc"
-                            android:drawableLeft="@drawable/layout_icones_forc"
                             android:drawablePadding="3dp"
                             android:gravity="center_vertical"
                             android:text=" + "
                             android:textColor="@color/colorText"
-                            android:textSize="12sp" />
+                            android:textSize="12sp"
+                            app:drawableLeftCompat="@drawable/layout_icones_forc" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -852,7 +852,8 @@
                             android:gravity="center"
                             android:text=" ) * 200 +"
                             android:textColor="@color/colorText"
-                            android:textSize="12sp" />
+                            android:textSize="12sp"
+                            tools:ignore="UseCompatTextViewDrawableXml" />
 
                     </LinearLayout>
 

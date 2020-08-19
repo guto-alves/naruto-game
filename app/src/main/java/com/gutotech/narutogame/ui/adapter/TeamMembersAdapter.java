@@ -74,7 +74,7 @@ public class TeamMembersAdapter extends RecyclerView.Adapter<TeamMembersAdapter.
             holder.removeMemberButton.setVisibility(View.INVISIBLE);
 
             TeamRepository.getInstance().getMemberChar(member.getMemberId(), character -> {
-                StorageUtils.downloadProfile(holder.profileImageView.getContext(),
+                StorageUtils.loadProfile(holder.profileImageView.getContext(),
                         holder.profileImageView, character.getProfilePath());
 
                 holder.nickTextView.setText(character.getNick());

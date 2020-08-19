@@ -58,9 +58,9 @@ public class BagItemsAdapter extends RecyclerView.Adapter<BagItemsAdapter.ViewHo
             ShopItem item = mItems.get(i);
 
             if (item instanceof Ramen) {
-                StorageUtils.downloadRamen(mContext, holder.itemImageView, item.getImage());
+                StorageUtils.loadRamen(mContext, holder.itemImageView, item.getImage());
             } else {
-                StorageUtils.downloadScroll(mContext, holder.itemImageView, item.getImage());
+                StorageUtils.loadScroll(mContext, holder.itemImageView, item.getImage());
             }
 
             holder.quantityTextView.setText(

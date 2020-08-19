@@ -37,7 +37,7 @@ public class SignUpFragment extends Fragment implements ResultListener, SectionF
 
         mBinding.msgLayout.titleTextView.setText(R.string.just_a_bit_now);
         mBinding.msgLayout.descriptionTextView.setText(R.string.fullfill_the_form_below);
-        StorageUtils.downloadProfileForMsg(getActivity(), mBinding.msgLayout.profileImageView);
+        StorageUtils.loadProfileForMsg(getActivity(), mBinding.msgLayout.profileImageView);
 
         FragmentUtils.setSectionTitle(getActivity(), R.string.section_create_account);
 
@@ -55,7 +55,7 @@ public class SignUpFragment extends Fragment implements ResultListener, SectionF
     public void onSuccess() {
         mBinding.formToSignupLinearLayout.setVisibility(View.GONE);
 
-        StorageUtils.downloadProfileForMsg(getActivity(), mBinding.accountCreatedMsgLayout.profileImageView);
+        StorageUtils.loadProfileForMsg(getActivity(), mBinding.accountCreatedMsgLayout.profileImageView);
         mBinding.accountCreatedMsgLayout.titleTextView.setText(R.string.accont_created_successfuly);
         mBinding.accountCreatedMsgLayout.descriptionTextView.setText(R.string.email_verification_sent);
         mBinding.accountCreatedMsgLayout.msgConstraintLayout.setVisibility(View.VISIBLE);

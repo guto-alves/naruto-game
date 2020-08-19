@@ -44,7 +44,6 @@
                     tools:listitem="@layout/expandable_list_child" />
 
                 <ImageView
-                    android:id="@+id/imageView13"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:scaleType="fitXY"

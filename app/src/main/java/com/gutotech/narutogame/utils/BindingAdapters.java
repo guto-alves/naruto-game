@@ -23,20 +23,20 @@ public class BindingAdapters {
     @BindingAdapter("jutsu_image")
     public static void setJutsuImage(ImageView imageView, String path) {
         if (!TextUtils.isEmpty(path)) {
-            StorageUtils.downloadJutsu(imageView, path);
+            StorageUtils.loadJutsu(imageView, path);
         }
     }
 
     @BindingAdapter("loadProfile")
     public static void setLoadProfile(ImageView imageView, String path) {
         if (!TextUtils.isEmpty(path)) {
-            StorageUtils.downloadProfile(imageView.getContext(), imageView, path);
+            StorageUtils.loadProfile(imageView.getContext(), imageView, path);
         }
     }
 
     @BindingAdapter("loadTopImage")
     public static void setLoadTopImage(ImageView imageView, int ninjaId) {
-        StorageUtils.downloadTopImage(imageView.getContext(), imageView, ninjaId);
+        StorageUtils.loadTopImage(imageView.getContext(), imageView, ninjaId);
     }
 
     @BindingAdapter("stringRes")
@@ -79,7 +79,7 @@ public class BindingAdapters {
 
     @BindingAdapter("profileForMsg")
     public static void setProfileForMsg(ImageView imageView, Integer i) {
-        StorageUtils.downloadProfileForMsg(imageView.getContext(), imageView);
+        StorageUtils.loadProfileForMsg(imageView.getContext(), imageView);
     }
 
     @BindingAdapter("visibleGone")

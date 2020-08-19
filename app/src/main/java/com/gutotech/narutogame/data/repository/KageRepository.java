@@ -14,18 +14,17 @@ import com.gutotech.narutogame.data.model.Character;
 import com.gutotech.narutogame.data.model.Village;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.EnumSet;
 import java.util.List;
 
 public class KageRepository {
     private static final KageRepository sInstance = new KageRepository();
 
-    public static KageRepository getInstance() {
-        return sInstance;
+    private KageRepository() {
     }
 
-    private KageRepository() {
+    public static KageRepository getInstance() {
+        return sInstance;
     }
 
     public LiveData<List<Character>> getKages() {

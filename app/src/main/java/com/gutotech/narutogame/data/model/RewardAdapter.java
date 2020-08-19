@@ -2,8 +2,6 @@ package com.gutotech.narutogame.data.model;
 
 import android.content.Context;
 
-import androidx.annotation.NonNull;
-
 public abstract class RewardAdapter implements Reward {
     @Override
     public int value() {

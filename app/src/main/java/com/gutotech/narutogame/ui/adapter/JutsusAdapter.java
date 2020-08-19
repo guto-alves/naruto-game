@@ -67,7 +67,7 @@ public class JutsusAdapter extends RecyclerView.Adapter<JutsusAdapter.ViewHolder
         if (mJutsusList != null) {
             Jutsu jutsu = mJutsusList.get(i);
 
-            StorageUtils.downloadJutsu(holder.jutsuImageView, JutsuInfo.valueOf(jutsu.getName()).image);
+            StorageUtils.loadJutsu(holder.jutsuImageView, JutsuInfo.valueOf(jutsu.getName()).image);
 
             if (jutsu.getRemainingIntervals() > 0) {
                 holder.jutsuImageView.setAlpha(0.5f);

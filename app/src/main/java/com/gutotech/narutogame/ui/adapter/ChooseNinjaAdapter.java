@@ -50,7 +50,7 @@ public class ChooseNinjaAdapter extends RecyclerView.Adapter<ChooseNinjaAdapter.
         if (mNinjasList != null) {
             Ninja ninja = mNinjasList.get(position);
 
-            StorageUtils.downloadSmallProfile(holder.ninjaImageView.getContext(),
+            StorageUtils.loadSmallProfile(holder.ninjaImageView.getContext(),
                     holder.ninjaImageView, ninja.getId());
 
             if (mPositionSelected == position) {

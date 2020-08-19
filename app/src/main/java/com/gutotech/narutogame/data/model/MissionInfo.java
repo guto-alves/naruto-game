@@ -386,7 +386,7 @@ public enum MissionInfo {
                     return context.getString(R.string.label_experience_points, value());
                 }
             }),
-            Arrays.asList(new Requirement() {
+            Collections.singletonList(new Requirement() {
                 @Override
                 public Object value() {
                     return 4;
@@ -435,7 +435,7 @@ public enum MissionInfo {
                     return context.getString(R.string.label_experience_points, value());
                 }
             }),
-            Arrays.asList(new Requirement() {
+            Collections.singletonList(new Requirement() {
                 @Override
                 public Object value() {
                     return 4;
@@ -24510,7 +24510,7 @@ public enum MissionInfo {
 
     // Special Missions
     MISSION372(R.string.mission372, R.string.mission372_des, R.string.mission372_des,
-            Arrays.asList(new Reward() {
+            Collections.singletonList(new Reward() {
                 @Override
                 public int value() {
                     return 500;
@@ -24561,7 +24561,7 @@ public enum MissionInfo {
                     }),
             Mission.Type.SPECIAL, Mission.Rank.RANK_D),
     MISSION373(R.string.mission373, R.string.mission373_des, R.string.mission373_des,
-            Arrays.asList(new Reward() {
+            Collections.singletonList(new Reward() {
                 @Override
                 public int value() {
                     return 540;
@@ -24612,7 +24612,7 @@ public enum MissionInfo {
                     }),
             Mission.Type.SPECIAL, Mission.Rank.RANK_D),
     MISSION374(R.string.mission374, R.string.mission374_des, R.string.mission374_des,
-            Arrays.asList(new Reward() {
+            Collections.singletonList(new Reward() {
                 @Override
                 public int value() {
                     return 540;
@@ -24663,7 +24663,7 @@ public enum MissionInfo {
                     }),
             Mission.Type.SPECIAL, Mission.Rank.RANK_D),
     MISSION375(R.string.mission375, R.string.mission375_des, R.string.mission375_des,
-            Arrays.asList(new Reward() {
+            Collections.singletonList(new Reward() {
                 @Override
                 public int value() {
                     return 540;
@@ -24714,7 +24714,7 @@ public enum MissionInfo {
                     }),
             Mission.Type.SPECIAL, Mission.Rank.RANK_D),
     MISSION376(R.string.mission376, R.string.mission376_des, R.string.mission376_des,
-            Arrays.asList(new Reward() {
+            Collections.singletonList(new Reward() {
                 @Override
                 public int value() {
                     return 540;
@@ -24765,7 +24765,7 @@ public enum MissionInfo {
                     }),
             Mission.Type.SPECIAL, Mission.Rank.RANK_D),
     MISSION377(R.string.mission377, R.string.mission377_des, R.string.mission377_des,
-            Arrays.asList(new Reward() {
+            Collections.singletonList(new Reward() {
                 @Override
                 public int value() {
                     return 580;
@@ -24816,7 +24816,7 @@ public enum MissionInfo {
                     }),
             Mission.Type.SPECIAL, Mission.Rank.RANK_D),
     MISSION378(R.string.mission378, R.string.mission378_des, R.string.mission378_des,
-            Arrays.asList(new Reward() {
+            Collections.singletonList(new Reward() {
                 @Override
                 public int value() {
                     return 580;
@@ -24867,7 +24867,7 @@ public enum MissionInfo {
                     }),
             Mission.Type.SPECIAL, Mission.Rank.RANK_D),
     MISSION379(R.string.mission379, R.string.mission379_des, R.string.mission379_des,
-            Arrays.asList(new Reward() {
+            Collections.singletonList(new Reward() {
                 @Override
                 public int value() {
                     return 580;
@@ -24918,7 +24918,7 @@ public enum MissionInfo {
                     }),
             Mission.Type.SPECIAL, Mission.Rank.RANK_D),
     MISSION380(R.string.mission380, R.string.mission380_des, R.string.mission380_des,
-            Arrays.asList(new Reward() {
+            Collections.singletonList(new Reward() {
                 @Override
                 public int value() {
                     return 580;
@@ -24969,7 +24969,7 @@ public enum MissionInfo {
                     }),
             Mission.Type.SPECIAL, Mission.Rank.RANK_D),
     MISSION381(R.string.mission381, R.string.mission381_des, R.string.mission381_des,
-            Arrays.asList(new Reward() {
+            Collections.singletonList(new Reward() {
                 @Override
                 public int value() {
                     return 580;
@@ -25022,7 +25022,7 @@ public enum MissionInfo {
 
     // CHUUNIN
     MISSION382(R.string.mission382, R.string.mission382_des, R.string.mission382_des,
-            Arrays.asList(new Reward() {
+            Collections.singletonList(new Reward() {
                 @Override
                 public int value() {
                     return 1000;
@@ -25073,7 +25073,7 @@ public enum MissionInfo {
                     }),
             Mission.Type.SPECIAL, Mission.Rank.RANK_C),
     MISSION383(R.string.mission383, R.string.mission383_des, R.string.mission383_des,
-            Arrays.asList(new Reward() {
+            Collections.singletonList(new Reward() {
                 @Override
                 public int value() {
                     return 1200;
@@ -25124,7 +25124,7 @@ public enum MissionInfo {
                     }),
             Mission.Type.SPECIAL, Mission.Rank.RANK_C),
     MISSION384(R.string.mission384, R.string.mission384_des, R.string.mission384_des,
-            Arrays.asList(new Reward() {
+            Collections.singletonList(new Reward() {
                 @Override
                 public int value() {
                     return 1200;
@@ -25175,7 +25175,7 @@ public enum MissionInfo {
                     }),
             Mission.Type.SPECIAL, Mission.Rank.RANK_C),
     MISSION385(R.string.mission385, R.string.mission385_des, R.string.mission385_des,
-            Arrays.asList(new Reward() {
+            Collections.singletonList(new Reward() {
                 @Override
                 public int value() {
                     return 1200;
@@ -25226,7 +25226,7 @@ public enum MissionInfo {
                     }),
             Mission.Type.SPECIAL, Mission.Rank.RANK_C),
     MISSION386(R.string.mission386, R.string.mission386_des, R.string.mission386_des,
-            Arrays.asList(new Reward() {
+            Collections.singletonList(new Reward() {
                 @Override
                 public int value() {
                     return 1200;
@@ -25277,7 +25277,7 @@ public enum MissionInfo {
                     }),
             Mission.Type.SPECIAL, Mission.Rank.RANK_C),
     MISSION387(R.string.mission387, R.string.mission387_des, R.string.mission387_des,
-            Arrays.asList(new Reward() {
+            Collections.singletonList(new Reward() {
                 @Override
                 public int value() {
                     return 1200;
@@ -25328,7 +25328,7 @@ public enum MissionInfo {
                     }),
             Mission.Type.SPECIAL, Mission.Rank.RANK_C),
     MISSION388(R.string.mission388, R.string.mission388_des, R.string.mission388_des,
-            Arrays.asList(new Reward() {
+            Collections.singletonList(new Reward() {
                 @Override
                 public int value() {
                     return 1200;
@@ -25379,7 +25379,7 @@ public enum MissionInfo {
                     }),
             Mission.Type.SPECIAL, Mission.Rank.RANK_C),
     MISSION389(R.string.mission389, R.string.mission389_des, R.string.mission389_des,
-            Arrays.asList(new Reward() {
+            Collections.singletonList(new Reward() {
                 @Override
                 public int value() {
                     return 1200;
@@ -25430,7 +25430,7 @@ public enum MissionInfo {
                     }),
             Mission.Type.SPECIAL, Mission.Rank.RANK_C),
     MISSION390(R.string.mission390, R.string.mission390_des, R.string.mission390_des,
-            Arrays.asList(new Reward() {
+            Collections.singletonList(new Reward() {
                 @Override
                 public int value() {
                     return 1200;
@@ -25481,7 +25481,7 @@ public enum MissionInfo {
                     }),
             Mission.Type.SPECIAL, Mission.Rank.RANK_C),
     MISSION391(R.string.mission391, R.string.mission391_des, R.string.mission391_des,
-            Arrays.asList(new Reward() {
+            Collections.singletonList(new Reward() {
                 @Override
                 public int value() {
                     return 1200;
@@ -25533,7 +25533,7 @@ public enum MissionInfo {
             Mission.Type.SPECIAL, Mission.Rank.RANK_C),
 
     MISSION392(R.string.mission392, R.string.mission392_des, R.string.mission392_des,
-            Arrays.asList(new Reward() {
+            Collections.singletonList(new Reward() {
                 @Override
                 public int value() {
                     return 2000;

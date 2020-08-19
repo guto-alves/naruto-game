@@ -242,15 +242,15 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            android:drawableStart="@drawable/layout_icones_gold"
-            android:drawableLeft="@drawable/layout_icones_gold"
             android:drawablePadding="3dp"
             android:gravity="center"
             android:text="@{String.valueOf(viewModel.character.ryous)}"
             android:textColor="@color/colorText"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/topImageView"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:drawableStartCompat="@drawable/layout_icones_gold"
+            app:drawableLeftCompat="@drawable/layout_icones_gold" />
 
         <LinearLayout
             android:layout_width="wrap_content"

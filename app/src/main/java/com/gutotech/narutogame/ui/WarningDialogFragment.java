@@ -18,11 +18,6 @@ import androidx.fragment.app.FragmentManager;
 import com.gutotech.narutogame.R;
 
 public class WarningDialogFragment extends DialogFragment {
-
-    public interface WarningDialogListener {
-        void onCloseClick(int requestCode);
-    }
-
     private static final String TAG = "WarningDialogFragment";
     private static final String EXTRA_TITLE = "title";
     private static final String EXTRA_MESSAGE = "message";
@@ -60,13 +55,6 @@ public class WarningDialogFragment extends DialogFragment {
                                                     int requestCode) {
         return newInstance(context.getString(titleId), context.getString(messageId),
                 context.getString(buttonTextId), null, requestCode);
-    }
-
-    public static WarningDialogFragment newInstance(Context context, @StringRes int titleId,
-                                                    @StringRes int messageId, @StringRes int buttonTextId,
-                                                    Fragment targetFragment) {
-        return newInstance(context.getString(titleId), context.getString(messageId),
-                context.getString(buttonTextId), targetFragment, 0);
     }
 
     public static WarningDialogFragment newInstance(String warningTitle, String warningMessage,
@@ -132,13 +120,17 @@ public class WarningDialogFragment extends DialogFragment {
 
         try {
             int requestCode = getArguments().getInt(EXTRA_REQUEST_CODE);
-            if (requestCode <= 10){
+            if (requestCode <= 10) {
                 mListener = (WarningDialogListener) getTargetFragment();
-            }else{
+            } else {
                 mListener = (WarningDialogListener) getActivity();
             }
         } catch (ClassCastException ignored) {
         }
+    }
+
+    public interface WarningDialogListener {
+        void onCloseClick(int requestCode);
     }
 
 }

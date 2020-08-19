@@ -41,9 +41,9 @@ import com.gutotech.narutogame.ui.loggedin.selectcharacter.CharacterSelectFragme
 import com.gutotech.narutogame.ui.loggedin.support.SupportFragment;
 import com.gutotech.narutogame.ui.playing.academy.AcademyJutsuFragment;
 import com.gutotech.narutogame.ui.playing.academy.AcademyTrainingFragment;
+import com.gutotech.narutogame.ui.playing.academy.CharacterJutsusFragment;
 import com.gutotech.narutogame.ui.playing.academy.ElementalJutsusFragment;
 import com.gutotech.narutogame.ui.playing.academy.GraduationsFragment;
-import com.gutotech.narutogame.ui.playing.academy.CharacterJutsusFragment;
 import com.gutotech.narutogame.ui.playing.battles.DojoBatalhaLutadorFragment;
 import com.gutotech.narutogame.ui.playing.battles.DojoBattlePvpFragment;
 import com.gutotech.narutogame.ui.playing.battles.DojoFragment;
@@ -69,9 +69,9 @@ import com.gutotech.narutogame.ui.playing.team.TeamParticipateFragment;
 import com.gutotech.narutogame.ui.playing.user.FormulasFragment;
 import com.gutotech.narutogame.ui.playing.user.MenssengerFragment;
 import com.gutotech.narutogame.ui.playing.user.VipPlayerFragment;
+import com.gutotech.narutogame.utils.BgMusicUtils;
 import com.gutotech.narutogame.utils.SettingsUtils;
 import com.gutotech.narutogame.utils.SingleLiveEvent;
-import com.gutotech.narutogame.utils.BgMusicUtils;
 import com.gutotech.narutogame.utils.SoundUtil;
 
 import java.util.ArrayList;
@@ -89,20 +89,126 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
     private final static int TEAM_GROUP = 5;
     private final static int RANKING_GROUP = 6;
 
+    // Chat
+    public final ObservableBoolean chatOpened = new ObservableBoolean(false);
+    public final ObservableField<String> message = new ObservableField<>("");
+
+    // Game Routines
+    public final ObservableField<String> healing = new ObservableField<>("--:--:--");
+    public final ObservableField<String> variousRoutines = new ObservableField<>("--:--:--");
     private MutableLiveData<List<MenuGroup>> mMenuGroups = new MutableLiveData<>();
     private MutableLiveData<SectionFragment> mCurrentSection = new MutableLiveData<>();
-
     private Character mCharacter;
     private CharacterRepository mCharacterRepository;
-
     private MutableLiveData<List<Integer>> mTitles;
-
     private SingleLiveEvent<Boolean> mFidelityAnimationEvent = new SingleLiveEvent<>();
-
     private GlobalAlertRepository mGlobalAlertRepository = GlobalAlertRepository.getInstance();
     private SingleLiveEvent<Map<String, String>> mShowAlerterEvent = new SingleLiveEvent<>();
-
     private MutableLiveData<Boolean> mShowConnectionWarning = new MutableLiveData<>();
+
+    // Bag
+    private MutableLiveData<List<Ramen>> mRamens = new MutableLiveData<>();
+    private MutableLiveData<List<Scroll>> mScrolls = new MutableLiveData<>();
+    private SingleLiveEvent<Void> mDismissBagDialogEvent = new SingleLiveEvent<>();
+    private SingleLiveEvent<Integer> mShowWarningDialogEvent = new SingleLiveEvent<>();
+
+    final BagItemsAdapter.OnItemClickListener onRamenClickListener = (itemClicked, position) -> {
+        if (mCharacter.isHospital()) {
+            return;
+        }
+
+        if (mCharacter.isNotItemsEnabled()) {
+            mDismissBagDialogEvent.call();
+            mShowWarningDialogEvent.setValue(R.string.cannot_use_items_during_the_battle);
+            return;
+        }
+
+        if (mCharacter.getFormulas().isFull()) {
+            mDismissBagDialogEvent.call();
+            mShowWarningDialogEvent.setValue(R.string.attributes_are_already_full);
+            return;
+        }
+
+        Ramen ramen = (Ramen) itemClicked;
+
+        mCharacter.getFormulas().addHeath(ramen.getRecovers());
+        mCharacter.getFormulas().addChakra(ramen.getRecovers());
+        mCharacter.getFormulas().addStamina(ramen.getRecovers());
+
+        ramen.setInventory(ramen.getInventory() - 1);
+
+        List<Ramen> ramens = mRamens.getValue();
+
+        if (ramen.getInventory() > 0) {
+            ramens.set(position, ramen);
+        } else {
+            ramens.remove(position);
+
+            if (ramens.size() == 0) {
+                ramens = null;
+            }
+        }
+
+        if (mCharacter.isMap()) {
+            MapRepository.getInstance().move(mCharacter.getMapId());
+        }
+
+        mCharacterRepository.save(mCharacter);
+        mRamens.setValue(ramens);
+    };
+
+    final BagItemsAdapter.OnItemClickListener onScrollClickListener = (itemClicked, position) -> {
+        if (mCharacter.isBattle()) {
+            mDismissBagDialogEvent.call();
+            mShowWarningDialogEvent.setValue(R.string.cannot_use_items_during_the_battle);
+            return;
+        }
+
+        Scroll scroll = (Scroll) itemClicked;
+
+        if (mCharacter.isTimeMission() || mCharacter.isDojoWaitQueue() || mCharacter.isHospital() ||
+                mCharacter.getGraduationId() == 0 || mCharacter.getMapId() == scroll.getVillage().ordinal()) {
+            return;
+        }
+
+        scroll.setInventory(scroll.getInventory() - 1);
+
+        List<Scroll> scrolls = mScrolls.getValue();
+
+        if (scroll.getInventory() > 0) {
+            scrolls.set(position, scroll);
+        } else {
+            scrolls.remove(position);
+
+            if (scrolls.size() == 0) {
+                scrolls = null;
+            }
+        }
+
+        mScrolls.setValue(scrolls);
+
+        mDismissBagDialogEvent.call();
+
+        if (mCharacter.isMap()) {
+            MapRepository.getInstance().exit(mCharacter.getMapId(), mCharacter.getId());
+        }
+
+        mCharacter.setMapId(scroll.getVillage().ordinal());
+        mCharacterRepository.save(mCharacter);
+        setCurrentSection(new VillageMapFragment());
+    };
+
+    private ChatRepository mChatRepository = ChatRepository.getInstance();
+    private String mChannel;
+    private MutableLiveData<List<Message>> mMessages = new MutableLiveData<>();
+    private SingleLiveEvent<Boolean> mStartChatAnimationEvent = new SingleLiveEvent<>();
+    private SingleLiveEvent<Void> mUpdateChannelsEvent = new SingleLiveEvent<>();
+    private Handler mHandler;
+    private long mCurrentTimestamp;
+
+    // Background Music
+    private BgMusicUtils mBgMusicUtils;
+    private boolean mBgMusicEnabled;
 
     public PlayingViewModel(@NonNull Application application) {
         super(application);
@@ -234,102 +340,10 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
         return mShowConnectionWarning;
     }
 
-    // Bag
-    private MutableLiveData<List<Ramen>> mRamens = new MutableLiveData<>();
-    private MutableLiveData<List<Scroll>> mScrolls = new MutableLiveData<>();
-    private SingleLiveEvent<Void> mDismissBagDialogEvent = new SingleLiveEvent<>();
-    private SingleLiveEvent<Integer> mShowWarningDialogEvent = new SingleLiveEvent<>();
-
     void updateBag() {
         mRamens.postValue(mCharacter.getBag().getRamenList());
         mScrolls.postValue(mCharacter.getBag().getScrollList());
     }
-
-    final BagItemsAdapter.OnItemClickListener onRamenClickListener = (itemClicked, position) -> {
-        if (mCharacter.isHospital()) {
-            return;
-        }
-
-        if (!mCharacter.isItemsEnabled()) {
-            mDismissBagDialogEvent.call();
-            mShowWarningDialogEvent.setValue(R.string.cannot_use_items_during_the_battle);
-            return;
-        }
-
-        if (mCharacter.getFormulas().isFull()) {
-            mDismissBagDialogEvent.call();
-            mShowWarningDialogEvent.setValue(R.string.attributes_are_already_full);
-            return;
-        }
-
-        Ramen ramen = (Ramen) itemClicked;
-
-        mCharacter.getFormulas().addHeath(ramen.getRecovers());
-        mCharacter.getFormulas().addChakra(ramen.getRecovers());
-        mCharacter.getFormulas().addStamina(ramen.getRecovers());
-
-        ramen.setInventory(ramen.getInventory() - 1);
-
-        List<Ramen> ramens = mRamens.getValue();
-
-        if (ramen.getInventory() > 0) {
-            ramens.set(position, ramen);
-        } else {
-            ramens.remove(position);
-
-            if (ramens.size() == 0) {
-                ramens = null;
-            }
-        }
-
-        if (mCharacter.isMap()) {
-            MapRepository.getInstance().move(mCharacter.getMapId());
-        }
-
-        mCharacterRepository.save(mCharacter);
-        mRamens.setValue(ramens);
-    };
-
-    final BagItemsAdapter.OnItemClickListener onScrollClickListener = (itemClicked, position) -> {
-        if (mCharacter.isBattle()) {
-            mDismissBagDialogEvent.call();
-            mShowWarningDialogEvent.setValue(R.string.cannot_use_items_during_the_battle);
-            return;
-        }
-
-        Scroll scroll = (Scroll) itemClicked;
-
-        if (mCharacter.isTimeMission() || mCharacter.isDojoWaitQueue() || mCharacter.isHospital() ||
-                mCharacter.getGraduationId() == 0 || mCharacter.getMapId() == scroll.getVillage().ordinal()) {
-            return;
-        }
-
-        scroll.setInventory(scroll.getInventory() - 1);
-
-        List<Scroll> scrolls = mScrolls.getValue();
-
-        if (scroll.getInventory() > 0) {
-            scrolls.set(position, scroll);
-        } else {
-            scrolls.remove(position);
-
-            if (scrolls.size() == 0) {
-                scrolls = null;
-            }
-        }
-
-        mScrolls.setValue(scrolls);
-
-        mDismissBagDialogEvent.call();
-
-        if (mCharacter.isMap()) {
-            MapRepository.getInstance().exit(mCharacter.getMapId(), mCharacter.getId());
-        }
-
-        mCharacter.setMapId(scroll.getVillage().ordinal());
-        mCharacterRepository.save(mCharacter);
-        setCurrentSection(new VillageMapFragment());
-    };
 
     LiveData<List<Ramen>> getRamens() {
         return mRamens;
@@ -346,7 +360,6 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
     LiveData<Integer> getShowWarningDialogEvent() {
         return mShowWarningDialogEvent;
     }
-
 
     // Menu
     public void onChangeImageButtonPressed() {
@@ -376,10 +389,6 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
     private void setCurrentSection(int groupPosition, int childPosition) {
         mCurrentSection.setValue(mMenuGroups.getValue().get(groupPosition)
                 .sections.get(childPosition));
-    }
-
-    private void setCurrentSection(SectionFragment section) {
-        mCurrentSection.setValue(section);
     }
 
     private void buildMenu() {
@@ -501,15 +510,9 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
         return mCurrentSection;
     }
 
-
-    // Chat
-    public final ObservableBoolean chatOpened = new ObservableBoolean(false);
-    public final ObservableField<String> message = new ObservableField<>("");
-    private ChatRepository mChatRepository = ChatRepository.getInstance();
-    private String mChannel;
-    private MutableLiveData<List<Message>> mMessages = new MutableLiveData<>();
-    private SingleLiveEvent<Boolean> mStartChatAnimationEvent = new SingleLiveEvent<>();
-    private SingleLiveEvent<Void> mUpdateChannelsEvent = new SingleLiveEvent<>();
+    private void setCurrentSection(SectionFragment section) {
+        mCurrentSection.setValue(section);
+    }
 
     public void onChatClick() {
         chatOpened.set(!chatOpened.get());
@@ -563,13 +566,6 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
     LiveData<Void> getUpdateChannelsEvent() {
         return mUpdateChannelsEvent;
     }
-
-
-    // Game Routines
-    public final ObservableField<String> healing = new ObservableField<>("--:--:--");
-    public final ObservableField<String> variousRoutines = new ObservableField<>("--:--:--");
-    private Handler mHandler;
-    private long mCurrentTimestamp;
 
     private void startGameRoutines() {
         FirebaseFunctionsUtils.getServerTime(currentTimestamp -> {
@@ -663,11 +659,6 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
             }
         });
     }
-
-
-    // Background Music
-    private BgMusicUtils mBgMusicUtils;
-    private boolean mBgMusicEnabled;
 
     void checkForSettingsChanged() {
         mBgMusicEnabled = SettingsUtils.get(getApplication(), SettingsUtils.BG_MUSIC_KEY);

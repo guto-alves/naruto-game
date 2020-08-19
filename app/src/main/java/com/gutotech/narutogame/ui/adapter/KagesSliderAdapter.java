@@ -40,7 +40,7 @@ public class KagesSliderAdapter extends SliderViewAdapter<KagesSliderAdapter.Sli
             Character kage = mKages.get(position);
 
             viewHolder.villageImageView.setImageResource(kage.getVillage().homeResId);
-            StorageUtils.downloadKageImage(viewHolder.profileImageView.getContext(),
+            StorageUtils.loadKageImage(viewHolder.profileImageView.getContext(),
                     viewHolder.profileImageView, kage.getNinja().getId());
             viewHolder.nameTextView.setText(kage.getNick());
             viewHolder.descriptionTextView.setText(mContext.getString(

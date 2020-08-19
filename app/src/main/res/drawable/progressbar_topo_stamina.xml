@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:id="@+id/background">
+    <item>
         <bitmap android:src="@drawable/layout_barras_topo_barras_topo_bg" />
     </item>
 
-    <item android:id="@+id/progress">
+    <item>
         <clip>
             <bitmap android:src="@drawable/layout_barras_topo_barra_topo_stamina_fill" />
         </clip>

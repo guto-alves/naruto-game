@@ -10,25 +10,15 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.gutotech.narutogame.R;
+import com.gutotech.narutogame.data.firebase.StorageUtils;
 import com.gutotech.narutogame.data.model.Jutsu;
 import com.gutotech.narutogame.data.model.JutsuInfo;
 import com.gutotech.narutogame.ui.playing.battles.BuffDebuffInfoPopupWindow;
-import com.gutotech.narutogame.data.firebase.StorageUtils;
 
 import java.util.List;
 
 public class BuffsDebuffStatusAdapter
         extends RecyclerView.Adapter<BuffsDebuffStatusAdapter.ViewHolder> {
-
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        private ImageView buffDebuffImageView;
-
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
-            buffDebuffImageView = itemView.findViewById(R.id.buffDebuffImageView);
-        }
-    }
-
     private Context mContext;
     private List<Jutsu> mBuffsDebuffsList;
 
@@ -50,7 +40,7 @@ public class BuffsDebuffStatusAdapter
             Jutsu jutsu = mBuffsDebuffsList.get(position);
             JutsuInfo jutsuInfo = jutsu.getJutsuInfo();
 
-            StorageUtils.downloadJutsu(holder.buffDebuffImageView, jutsuInfo.image);
+            StorageUtils.loadJutsu(holder.buffDebuffImageView, jutsuInfo.image);
 
             holder.itemView.setOnClickListener(v -> showBuffDebuffInfo(v, jutsu));
         }
@@ -70,5 +60,14 @@ public class BuffsDebuffStatusAdapter
         BuffDebuffInfoPopupWindow popupWindow = new BuffDebuffInfoPopupWindow(mContext);
         popupWindow.setBuffOrDebuff(jutsu);
         popupWindow.showAsDropDown(anchor);
+    }
+
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        private ImageView buffDebuffImageView;
+
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+            buffDebuffImageView = itemView.findViewById(R.id.buffDebuffImageView);
+        }
     }
 }

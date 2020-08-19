@@ -10,8 +10,6 @@
     <string name="nav_header_desc" translatable="false">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="action_error">Error</string>
-    <string name="hello_blank_fragment">Hello</string>
     <string name="section_title">Section title</string>
 
     <string name="type_your_account_email">Type your account email</string>
@@ -30,7 +28,6 @@
     <string name="remove">Remove</string>
     <string name="button_change_image">Change Image</string>
     <string name="train">Train</string>
-    <string name="enter_the_clan">Enter the Clan</string>
     <string name="button_play_lucky">Play!</string>
     <string name="receive">Receive</string>
     <string name="button_not_received">Not received</string>
@@ -43,7 +40,6 @@
 
     <string name="title_activity_logado_selecionar" translatable="false">LogadoSelecionarActivity</string>
     <string name="title_activity_personagem_logado" translatable="false">PersonagemLogadoActivity</string>
-    <string name="select_your_character">SELECT YOUR CHARACTER</string>
 
     <!-- PERSONAGEM LOGADO -->
     <!-- Grupo Usuário -->
@@ -52,20 +48,15 @@
 
     <!-- Grupo Character -->
     <string name="section_character_status">CHARACTER STATUS</string>
-    <string name="section_clans">CLANS</string>
-    <string name="section_summons">SUMMONS</string>
-    <string name="section_story_mode">STORY MODE</string>
     <string name="section_ninja_lucky">NINJA LUCKY</string>
     <string name="section_ninja_fidelity">NINJA FIDELITY</string>
 
     <!-- Grupo Academia -->
     <string name="section_graduations">GRADUATIONS</string>
     <string name="section_attribute_training">ATTRIBUTE TRAINING</string>
-    <string name="secao_treinamento_de_jutsus">TREINAMENTO DE JUTSUS</string>
     <string name="section_learned_jutsus">LEARN JUTSUS</string>
 
     <!-- Grupo Sensei -->
-    <string name="section_sensei" translatable="false">SENSEI</string>
 
     <!-- Grupo Vila atual -->
     <string name="section_initial_tasks">INITIAL TASKS</string>
@@ -76,13 +67,9 @@
 
     <!-- Grupo Combates -->
     <string name="section_dojo" translatable="false">DOJO</string>
-    <string name="section_dojo_4x4" translatable="false">DOJO 4X4</string>
-    <string name="section_arena" translatable="false">ARENA</string>
-    <string name="section_battle_log">BATTLE LOG</string>
 
     <!-- Grupo Equipe e Organização -->
     <string name="section_create_a_team">CREATE A TEAM</string>
-    <string name="section_equipe_detalhe">TEAM</string>
 
     <!-- Grupo Ranking -->
     <string name="section_ninjas_ranking">NINJAS RANKING</string>
@@ -99,14 +86,8 @@
     <string name="intelligence">Intelligence</string>
     <string name="resistance">Resistance</string>
     <string name="energy">Energy</string>
-    <string name="life">Life</string>
 
     <string name="chat_naruto_game" translatable="false">CHAT NARUTO GAME</string>
-    <string name="file">File</string>
-    <string name="manual_training">Manual Training</string>
-    <string name="quantity">Quantity</string>
-    <string name="dojo_npc_fighters">Dojo NPC Fighters</string>
-    <string name="dojo_pvp_fighters">Dojo PVP Fighters</string>
 
     <!-- Section HOME -->
     <string name="section_home" translatable="false">HOME</string>
@@ -138,7 +119,6 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="name_field_requered">The name field is required</string>
     <string name="email_field_requered">The email field is required</string>
     <string name="password_field_requered">The password field is required</string>
-    <string name="confirm_password_field_requered">The confirm password field is required</string>
     <string name="email_already_exists">Email already exists</string>
     <string name="different_passwords">The \'Password\' and \'Confirm Password\' fields are different</string>
 
@@ -211,9 +191,6 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="leaf">Leaf</string>
     <string name="label_character">Character:</string>
 
-    <string name="section_dojo_challenge">DOJO CHALLENGE</string>
-
-    <string name="forgot_my_password">I forgot my password</string>
     <string name="email_and_password_not_found">Email and password not found</string>
     <string name="error_to_the_sign_in">Error to the sign in</string>
     <string name="email_isnt_verified">Email has not been verified yet</string>
@@ -228,28 +205,20 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="participate">Participate</string>
     <string name="being_a_leader">Being a Leader</string>
     <string name="teams">Teams</string>
-    <string name="_4x4" translatable="false">4x4</string>
     <string name="ninjas" translatable="false">Ninjas</string>
     <string name="tasks">Initial Tasks</string>
     <string name="section_mission_status">MISSION STATUS</string>
     <string name="ramen_shop" translatable="false">Ramen Shop</string>
     <string name="ninja_shop" translatable="false">Ninja Shop</string>
     <string name="village_map">Village Map</string>
-    <string name="dojo_4x4" translatable="false">Dojo 4x4</string>
-    <string name="arena" translatable="false">Arena</string>
     <string name="messenger">Messenger</string>
     <string name="game_formulas">Game Formulas</string>
-    <string name="logout">Logout</string>
-    <string name="clans">Clans</string>
-    <string name="story_mode">Story Mode</string>
     <string name="ninja_lucky">Ninja Lucky</string>
-    <string name="summons">Summons</string>
     <string name="status" translatable="false">Status</string>
     <string name="ninja_fidelity">Ninja Fidelity</string>
     <string name="attribute_training">Attribute Training</string>
     <string name="jutsu_training">Jutsu Training</string>
     <string name="leaned_jutsus">Learn Jutsus</string>
-    <string name="clan_jutsus">Clan Jutsus</string>
     <string name="grades">Grades</string>
     <string name="choose_your_character">CHOOSE YOUR CHARACTER</string>
     <string name="error_nick_length">Your character name cannot be longer than 10 characters</string>
@@ -257,7 +226,6 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="warning">Warning!</string>
     <string name="name_already_taken">That name was already taken</string>
     <string name="no_characters_selected">No characters selected</string>
-    <string name="section_rank_4X4">RANK 4X4</string>
     <string name="mission_status">Mission Status</string>
     <string name="section_join_a_team">JOIN A TEAM</string>
     <string name="section_jutsu_training">JUTSUS TRAINING</string>
@@ -268,7 +236,6 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="resume_of_missions">Resume of Missions</string>
     <string name="extras_information">Extras Information</string>
     <string name="label_total_de_horas_jogadas">Total Hours Played:</string>
-    <string name="label_total_de_treino">Total Training:</string>
     <string name="label_pontos_distribu_dos">Distributed Points:</string>
     <string name="label_wins_npc">NPC Wins:</string>
     <string name="label_wins_dojo_pvp">Dojo PVP Wins:</string>
@@ -292,12 +259,7 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
         training it!\n\nTo find out more details about each Attribute and help you distribute your
         points in the best possible way, go to</string>
     <string name="attribute_training_title">LEARN ABOUT THE TRAINING ATTRIBUTES</string>
-    <string name="training_completed">TRAINING COMPLETED</string>
     <string name="distributed_points">DISTRIBUTED POINTS</string>
-    <string name="voc_pode_fazer_o_treino_manual_v_rias_vezes_by_dia">You can do the Manual Training
-        many times a day.</string>
-    <string name="you_will_spent">You will spent %d</string>
-    <string name="chakra_icon">Chakra icon</string>
     <string name="battle_log">Battle Log</string>
     <string name="be_a_team_leader_title">I WANT TO BE A TEAM LEADER</string>
     <string name="be_a_team_leader_description">Be a Leader is a important thing, help your team
@@ -306,38 +268,20 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="create_team">Create Team</string>
     <string name="requirements">Requirements</string>
     <string name="_2000_ryous_e_ser_chunnin">2000 Ryous and be Chuunin</string>
-    <string name="_3_credits">3 Credits</string>
-    <string name="error_select_an_method_to_create_team">Select an method to create an Team</string>
     <string name="naruto_game_says">Naruto Game says:</string>
     <string name="error_the_name_of_team_cant_be_empty">The name of Team can\'t be empty</string>
     <string name="filter">Filter</string>
     <string name="leader_name">Leader Name</string>
     <string name="team_name">Team Name</string>
     <string name="members_quantity">Members quantity</string>
-    <string name="quero_ser_membro_de_equipe">I WANT TO BE A MEMBER</string>
-    <string name="quero_ser_membro_de_equipe_description">Choose the Team and click Participate to
-        send a request to join this Team</string>
     <string name="details">Details</string>
     <string name="section_team">TEAM</string>
     <string name="items_available">Items Available</string>
     <string name="chances_of_win">Chances of Win</string>
-    <string name="limit_of_attributes_training">WEEKLY LIMIT OF TRAINING</string>
-    <string name="next_ability_point">NEXT ABILITY POINT</string>
-    <string name="icon_bar">//</string>
-    <string name="ability_point_bar_description">When the Training Bar be filled, you will receive
-        one point to distribute in your Attributes! But this will become a challenge for you!</string>
-    <string name="limit_of_traning_bar_description">All Ninjas can train your daily limit of training
-        normally, for those who can\'t train the limit on the same day, can train on the next day
-        and consecutively.</string>
-    <string name="you_earned_ability_points">You earned %d ability points</string>
     <string name="problem">PROBLEM!</string>
-    <string name="you_dont_have_chakra_for_this_training">You don\'t have enough Chakra and Stamina
-        for this training.</string>
     <string name="label_title">Title:</string>
     <string name="label_class">Class:</string>
     <string name="label_number_of_days_played">Number of days played:</string>
-    <string name="label_ranking_vila">Ranking (Village):</string>
-    <string name="label_ranking_general">Ranking (General):</string>
     <string name="label_score">Score:</string>
     <string name="label_team">Team:</string>
     <string name="none">None</string>
@@ -348,15 +292,10 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="button_cancel">Cancel</string>
     <string name="remove_character_while_logged_in">You cannot remove this character while logged in!</string>
     <string name="close">Close</string>
-    <string name="sender">%s:</string>
-    <string name="top_of_chat_content_description">Top of chat</string>
     <string name="warning_already_played_today">• You\'ve played in lucky ninja today!</string>
-    <string name="credits_daily">1\nCredit</string>
     <string name="ryous_daily">500\nRyous</string>
     <string name="ryous_weekly">1500\nRyous</string>
-    <string name="credits_weekly">3 Credits</string>
     <string name="warning_dont_have_enough_ryous">• You do not have enough ryous</string>
-    <string name="warning_dont_have_enough_credits">• You do not have enough credits</string>
     <string name="warning_havent_played_the_entire_week_yet">• You haven\'t played the entire week yet.</string>
     <string name="sunday">Sunday</string>
     <string name="tuesday">Tuesday</string>
@@ -403,7 +342,6 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="shio_tyashu_ramen">Shio Tyashu-Ramen</string>
     <string name="shio_gyoza_ramen">Shio Gyoza-Ramen</string>
     <string name="warning_items_purchased">Items purchased successfully</string>
-    <string name="requires_grades">Requires Grade: %s</string>
     <string name="warning_1">Warning</string>
     <string name="about_the_ninja_jutsus">ABOUT THE NINJA JUTSUS</string>
     <string name="jutsu">Jutsu</string>
@@ -973,7 +911,6 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="scroll">Scroll</string>
     <string name="scrolls">Scrolls</string>
     <string name="ramen">Ramen</string>
-    <string name="ranged_weapons">Ranged Weapons</string>
     <string name="item_quantity">x %d</string>
     <string name="ranged_weapon">Ranged Weapon</string>
     <string name="melee_weapon">Melee Weapon</string>
@@ -1012,7 +949,6 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="dojo_npc_daily_des">All Ninja have an daily limit of battles against NPC\'s in
         game, that limit is 10 battles. This limit is renewed every day at Midnight (00:00 hour)</string>
     <string name="npc_daily_combat">%d of 10 NPC Daily Combat</string>
-    <string name="updating_the_list_of_fighters">Updating the list of fighters…</string>
     <string name="too_weak_to_fight">You can\'t fight on this terrible health, recover yourself and try again</string>
     <string name="dojo_challenge">DOJO CHALLENGE</string>
     <string name="npc_battle">NPC Battle</string>
@@ -1020,7 +956,6 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="label_heath">Health: %d</string>
     <string name="label_chakra">Chakra: %d</string>
     <string name="label_stamina">Stamina: %d</string>
-    <string name="dojo_timer">%02d:%02d</string>
     <string name="label_graduation_and_lvl">%s - Lvl %d</string>
     <string name="label_and_level">%s - Level %d</string>
     <string name="too_bad">TOO BAD!</string>
@@ -1048,13 +983,10 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="missed">missed</string>
     <string name="attributes_summary">Attributes Summary</string>
     <string name="label_atk_tai_buk">Attack ( Tai / Buk ): %d</string>
-    <string name="label_def_tai_buk">Defense ( Tai / Buk ): %d</string>
-    <string name="label_def_nin_gen">Defense ( Nin / Gen ): %d</string>
     <string name="label_accuracy">Accuracy: %d</string>
     <string name="label_atk_nin_gen">Attack ( Nin / Gen ): %d</string>
     <string name="label_usage_interval">Usage interval: %d shifts</string>
     <string name="label_consumes">Consumes:</string>
-    <string name="attribute_icon">Attribute icon</string>
     <string name="label_base_defense">Base Defense: %d</string>
     <string name="label_base_defense1">Base Defense:</string>
     <string name="combat_values">Combat values</string>
@@ -1161,8 +1093,6 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="section_hospital_room">HOSPITAL ROOM</string>
     <string name="hospital">Hospital</string>
     <string name="game_routines">Game Routines</string>
-    <string name="atualiza_o_ranking_de_ninjas">Updates the ranking of ninjas</string>
-    <string name="atualiza_o_ranking_de_equipes_e_conquista">Updates team ranking</string>
     <string name="various_routines_description">Clears the daily exp
         earned on the teams. Renew daily NPC combats and duel counters and daily missions.</string>
     <string name="recovers_description">Recovers 20% of its attributes.</string>
@@ -1172,10 +1102,6 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="attack_tai_buk">Attack ( Tai / Buk )</string>
     <string name="attack_nin_gen">Attack ( Nin / Gen )</string>
     <string name="jutsu_is_not_yet_available">The selected jutsu is not yet available</string>
-    <string name="loyalty_rewards">LOYALTY REWARDS</string>
-    <string name="loyalty_rewards_description">By logging in daily you can collect rewards for your
-        character. You must log into the game for 8 days in a row to get all the rewards and start
-        over. If you do not log in one of the days, the counter will return to the first day.</string>
     <string name="effects_on_your_character">Effects on your character</string>
     <string name="effects_on_your_enemy">Effects on your enemy</string>
     <string name="it_is_not_your_turn_to_attack">Isn\'t your turn!</string>
@@ -1209,14 +1135,11 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="all">All</string>
     <string name="general">General</string>
     <string name="coming_soon">Coming soon</string>
-    <string name="ryous_icon">Ryous icon</string>
     <string name="is_not_at_a_level_suitable_for_you">The ninja you chose to battle is not at a level
         suitable for you!</string>
     <string name="player_unavailable_to_fight">Player unavailable to fight</string>
     <string name="move_around_the_map">To move around the map, just double-click on the square where
         you want to go.</string>
-    <string name="training_points_for_your_participation">\nFor your participation you received 50
-        training points!</string>
     <string name="looking_for_opponents">LOOKING FOR OPPONENTS</string>
     <string name="looking_for_opponents_description">We are currently looking for an opponent of
         the same level as yours, if we don\'t find the battle it could happen with an opponent with
@@ -1231,7 +1154,6 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="button_message_to_members">Message to Members</string>
     <string name="button_leave_the_team">Leave the Team</string>
     <string name="team_members">Team Members: %s</string>
-    <string name="requirement">Requirement</string>
     <string name="chakra_formula">Chakra Formula</string>
     <string name="hp_formula">HP Formula</string>
     <string name="stamina_formula">Stamina Formula</string>
@@ -1247,7 +1169,6 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="fidelity_rewards_description">To log every day you can collect rewards for your
         character. You should enter the game for 8 consecutive days to get all the rewards and
         start again. If you do not log one day, the counter will return to the first day.</string>
-    <string name="fidelity_reward_1_description">%d Ryous</string>
     <string name="value_in_ryous">%d Ryous</string>
     <string name="value_in_experience">%d Experience</string>
     <string name="reward_in_ramen">%d Shio Tyashu-Ramen</string>
@@ -2422,11 +2343,7 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="save">Save</string>
     <string name="sound_fx">Sound FX</string>
     <string name="plus" translatable="false">+%d</string>
-    <string name="percent" translatable="false">%d %%</string>
     <string name="upgrade">Upgrade</string>
-    <string name="tsuru_kame" translatable="false">Tsuru-Kame</string>
-    <string name="tsuru_kame_des">A look-like turtle shell, this shield has a huge defensive power,
-        and also can throw bombs and senbons.</string>
     <string name="congrats_learned_new_element">CONGRATS, YOU\'VE LEARNED HOW TO MANIPULATE A NEW ELEMENT!</string>
     <string name="learned_new_element_desc">Go to <annotation link="link">Elemental Jutsus</annotation> and check what you can learn!</string>
     <string name="unlearned">Unlearned</string>
@@ -2447,7 +2364,7 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="communication_error">Communication error</string>
     <string name="failed_to_connect">Failed to Connect</string>
     <string name="failed_to_connect_description">Cannot connect to server.\nPlease check your network.</string>
-    <string name="ok">Ok</string>
+    <string name="ok">OK</string>
     <string name="watch_video_to_leave_the_hospital">Watch video to leave the hospital</string>
     <string name="defeating_enemy_ninjas">Defeating enemy ninjas</string>
     <string name="label_n_from_n_times">%d from %d times</string>

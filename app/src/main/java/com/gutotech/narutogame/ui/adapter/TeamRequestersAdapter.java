@@ -48,7 +48,7 @@ public class TeamRequestersAdapter extends RecyclerView.Adapter<TeamRequestersAd
         if (mRequesters != null) {
             final Character character = mRequesters.get(i);
 
-            StorageUtils.downloadDojo(mContext, holder.characterImageView, character.getNinja().getId());
+            StorageUtils.loadDojo(mContext, holder.characterImageView, character.getNinja().getId());
 
             holder.nickTextView.setText(character.getNick());
             holder.levelTextView.setText(String.valueOf(character.getLevel()));

@@ -56,7 +56,7 @@ public class LotteryItemsAdapter extends RecyclerView.Adapter<LotteryItemsAdapte
         if (mLotteryItems != null) {
             LotteryItem item = mLotteryItems.get(i);
 
-            StorageUtils.downloadLotteryItem(holder.itemImageView, item.getImage());
+            StorageUtils.loadLotteryItem(holder.itemImageView, item.getImage());
             holder.descriptionTextView.setText(item.getDescription());
             holder.chanceTextView.setText(String.format(Locale.US,
                     "%d%%", item.getChancesOfWin()));

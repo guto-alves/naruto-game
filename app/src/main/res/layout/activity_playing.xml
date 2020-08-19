@@ -392,6 +392,7 @@
                                     android:background="@android:color/white"
                                     android:ems="10"
                                     android:imeOptions="actionSend"
+                                    android:importantForAutofill="no"
                                     android:inputType="textShortMessage"
                                     android:maxLength="60"
                                     android:text="@={viewModel.message}" />

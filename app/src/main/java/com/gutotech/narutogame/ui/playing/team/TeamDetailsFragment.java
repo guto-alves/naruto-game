@@ -56,7 +56,7 @@ public class TeamDetailsFragment extends Fragment implements SectionFragment,
                 binding.teamImageView.setBackgroundResource(R.drawable.layout_foto_equipe);
                 binding.removeImageButton.setVisibility(View.GONE);
             } else {
-                StorageUtils.downloadTeamImage(getContext(), binding.teamImageView, team.getImage());
+                StorageUtils.loadTeamImage(getContext(), binding.teamImageView, team.getImage());
                 binding.removeImageButton.setVisibility(View.VISIBLE);
             }
 

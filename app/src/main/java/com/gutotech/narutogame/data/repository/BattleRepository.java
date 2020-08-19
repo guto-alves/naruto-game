@@ -10,7 +10,6 @@ import com.google.firebase.database.MutableData;
 import com.google.firebase.database.ServerValue;
 import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
-
 import com.gutotech.narutogame.data.firebase.FirebaseConfig;
 import com.gutotech.narutogame.data.model.Battle;
 import com.gutotech.narutogame.data.model.CharOn;
@@ -20,12 +19,14 @@ import java.util.Map;
 
 public class BattleRepository {
     private static final BattleRepository ourInstance = new BattleRepository();
+    private DatabaseReference mBattleReference;
+    private ValueEventListener mBattleEventListener;
+
+    private BattleRepository() {
+    }
 
     public static BattleRepository getInstance() {
         return ourInstance;
-    }
-
-    private BattleRepository() {
     }
 
     public String generateId(String label) {
@@ -37,17 +38,16 @@ public class BattleRepository {
         save(battle, true);
     }
 
-
     public void save(Battle battle, boolean updateAttackStart) {
         Map<String, Object> map = battle.toMap();
 
         if (updateAttackStart) {
             map.put("attackStart", ServerValue.TIMESTAMP);
-            updateChildren(map);
         } else {
             map.remove("attackStart");
-            updateChildren(map);
         }
+
+        updateChildren(map);
     }
 
     private void updateChildren(Map<String, Object> battleMap) {
@@ -125,10 +125,6 @@ public class BattleRepository {
             }
         });
     }
-
-
-    private DatabaseReference mBattleReference;
-    private ValueEventListener mBattleEventListener;
 
     public void addBattleListener(String battleId, Callback<Battle> callback) {
         removeBattleListener();

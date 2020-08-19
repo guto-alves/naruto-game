@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
 
@@ -84,50 +85,50 @@
                 android:id="@+id/atkNinGenTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/layout_icones_atk_magico"
-                android:drawableLeft="@drawable/layout_icones_atk_magico"
                 android:drawablePadding="5dp"
                 android:gravity="center_vertical"
                 android:text="@{@string/label_atk_nin_gen(jutsu.atk)}"
                 android:textColor="@android:color/white"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                app:drawableLeftCompat="@drawable/layout_icones_atk_magico"
+                app:drawableStartCompat="@drawable/layout_icones_atk_magico" />
 
             <TextView
                 android:id="@+id/atkTaiBukTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/layout_icones_atk_fisico"
-                android:drawableLeft="@drawable/layout_icones_atk_fisico"
                 android:drawablePadding="5dp"
                 android:gravity="center_vertical"
                 android:text="@{@string/label_atk_tai_buk(jutsu.atk)}"
                 android:textColor="@android:color/white"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                app:drawableLeftCompat="@drawable/layout_icones_atk_fisico"
+                app:drawableStartCompat="@drawable/layout_icones_atk_fisico" />
 
             <TextView
                 android:id="@+id/defTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/layout_icones_shield"
-                android:drawableLeft="@drawable/layout_icones_shield"
                 android:drawablePadding="5dp"
                 android:gravity="center_vertical"
                 android:text="@{@string/label_base_defense(jutsu.baseDefense)}"
                 android:textColor="@android:color/white"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                app:drawableStartCompat="@drawable/layout_icones_shield"
+                app:drawableLeftCompat="@drawable/layout_icones_shield" />
 
             <TextView
                 android:id="@+id/accTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/layout_icones_precisao"
-                android:drawableLeft="@drawable/layout_icones_precisao"
                 android:drawablePadding="5dp"
                 android:gravity="center_vertical"
                 android:text="@{@string/label_accuracy(jutsu.accuracy)}"
                 android:textColor="@android:color/white"
                 android:textSize="12sp"
-                android:visibility="gone" />
+                android:visibility="gone"
+                app:drawableLeftCompat="@drawable/layout_icones_precisao"
+                app:drawableStartCompat="@drawable/layout_icones_precisao" />
 
             <LinearLayout
                 android:id="@+id/accLinearLayout"
@@ -141,13 +142,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="3dp"
                     android:layout_marginRight="3dp"
-                    android:drawableStart="@drawable/layout_icones_precisao"
-                    android:drawableLeft="@drawable/layout_icones_precisao"
                     android:drawablePadding="5dp"
                     android:gravity="center_vertical"
                     android:text="@string/label_accuracy2"
                     android:textColor="@android:color/white"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    app:drawableLeftCompat="@drawable/layout_icones_precisao"
+                    app:drawableStartCompat="@drawable/layout_icones_precisao" />
 
                 <TextView
                     android:id="@+id/accChanceTextView"
@@ -204,23 +205,23 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
                     android:layout_marginRight="16dp"
-                    android:drawableStart="@drawable/layout_icones_p_chakra"
-                    android:drawableLeft="@drawable/layout_icones_p_chakra"
                     android:gravity="center_vertical"
                     android:text="@{String.valueOf(jutsu.consumesChakra)}"
                     android:textColor="@android:color/white"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    app:drawableStartCompat="@drawable/layout_icones_p_chakra"
+                    app:drawableLeftCompat="@drawable/layout_icones_p_chakra" />
 
                 <TextView
                     android:id="@+id/textView90"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:drawableStart="@drawable/layout_icones_p_stamina"
-                    android:drawableLeft="@drawable/layout_icones_p_stamina"
                     android:gravity="center_vertical"
                     android:text="@{String.valueOf(jutsu.consumesStamina)}"
                     android:textColor="@android:color/white"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    app:drawableLeftCompat="@drawable/layout_icones_p_stamina"
+                    app:drawableStartCompat="@drawable/layout_icones_p_stamina" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

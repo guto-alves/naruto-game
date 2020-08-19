@@ -446,8 +446,8 @@ public class Character extends BaseObservable implements Serializable {
         this.bag = bag;
     }
 
-    public boolean isItemsEnabled() {
-        return itemsEnabled;
+    public boolean isNotItemsEnabled() {
+        return !itemsEnabled;
     }
 
     public void setItemsEnabled(boolean itemsEnabled) {
@@ -658,13 +658,13 @@ public class Character extends BaseObservable implements Serializable {
         return fidelityReward;
     }
 
-    public boolean hasFidelityReward() {
-        return fidelityReward;
-    }
-
     public void setFidelityReward(boolean fidelityReward) {
         this.fidelityReward = fidelityReward;
         notifyPropertyChanged(BR.fidelityReward);
+    }
+
+    public boolean hasFidelityReward() {
+        return fidelityReward;
     }
 
     public long getLastSeenInMillis() {

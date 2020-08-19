@@ -12,7 +12,6 @@ import com.gutotech.narutogame.data.repository.ChatRepository;
 import com.gutotech.narutogame.data.repository.TeamRepository;
 import com.gutotech.narutogame.ui.adapter.TeamMembersAdapter;
 import com.gutotech.narutogame.ui.adapter.TeamRequestersAdapter;
-import com.gutotech.narutogame.utils.SingleLiveEvent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -74,10 +73,6 @@ public class TeamDetailsViewModel extends ViewModel implements
     public void setTeamImage(String imagePath) {
         mTeam.getValue().setImage(imagePath);
         mTeamRepository.save(mTeam.getValue());
-    }
-
-    public void onSendMessage() {
-
     }
 
     public void onDeleteTeamClick() {

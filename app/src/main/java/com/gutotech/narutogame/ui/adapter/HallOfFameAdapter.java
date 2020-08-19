@@ -60,7 +60,7 @@ public class HallOfFameAdapter extends RecyclerView.Adapter<HallOfFameAdapter.My
         if (mKages != null) {
             final Character character = mKages.get(i);
 
-            StorageUtils.downloadDojo(mContext, holder.characterImageView, character.getNinja().getId());
+            StorageUtils.loadDojo(mContext, holder.characterImageView, character.getNinja().getId());
 
             holder.nickTextView.setText(character.getNick());
             holder.levelTextView.setText(String.valueOf(character.getLevel()));

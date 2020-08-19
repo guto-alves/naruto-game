@@ -254,60 +254,56 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <TableLayout
+            <LinearLayout
                 android:id="@+id/tableLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
+                android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/trainingResultLayout">
 
-                <TableRow
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                <Button
+                    style="@style/ButtonTheme"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="16dp"
+                    android:background="@{viewModel.elementSelected == Element.SUITON? @drawable/bg_button_orange: @drawable/bg_button}"
+                    android:onClick="@{() -> viewModel.onElementButtonPressed(Element.SUITON)}"
+                    android:text="Suiton" />
 
-                    <Button
-                        style="@style/ButtonTheme"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginRight="16dp"
-                        android:background="@{viewModel.elementSelected == Element.SUITON? @drawable/bg_button_orange: @drawable/bg_button}"
-                        android:onClick="@{() -> viewModel.onElementButtonPressed(Element.SUITON)}"
-                        android:text="Suiton" />
+                <Button
+                    style="@style/ButtonTheme"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:background="@{viewModel.elementSelected == Element.KATON? @drawable/bg_button_orange: @drawable/bg_button}"
+                    android:onClick="@{() -> viewModel.onElementButtonPressed(Element.KATON)}"
+                    android:text="Katon" />
 
-                    <Button
-                        style="@style/ButtonTheme"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginRight="8dp"
-                        android:background="@{viewModel.elementSelected == Element.KATON? @drawable/bg_button_orange: @drawable/bg_button}"
-                        android:onClick="@{() -> viewModel.onElementButtonPressed(Element.KATON)}"
-                        android:text="Katon" />
+                <Button
+                    style="@style/ButtonTheme"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="16dp"
+                    android:background="@{viewModel.elementSelected == Element.FUUTON? @drawable/bg_button_orange: @drawable/bg_button}"
+                    android:onClick="@{() -> viewModel.onElementButtonPressed(Element.FUUTON)}"
+                    android:text="Fuuton" />
 
-                    <Button
-                        style="@style/ButtonTheme"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginRight="16dp"
-                        android:background="@{viewModel.elementSelected == Element.FUUTON? @drawable/bg_button_orange: @drawable/bg_button}"
-                        android:onClick="@{() -> viewModel.onElementButtonPressed(Element.FUUTON)}"
-                        android:text="Fuuton" />
+                <Button
+                    style="@style/ButtonTheme"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:background="@{viewModel.elementSelected == Element.DOTON? @drawable/bg_button_orange: @drawable/bg_button}"
+                    android:onClick="@{() -> viewModel.onElementButtonPressed(Element.DOTON)}"
+                    android:text="Doton" />
 
-                    <Button
-                        style="@style/ButtonTheme"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginRight="8dp"
-                        android:background="@{viewModel.elementSelected == Element.DOTON? @drawable/bg_button_orange: @drawable/bg_button}"
-                        android:onClick="@{() -> viewModel.onElementButtonPressed(Element.DOTON)}"
-                        android:text="Doton" />
+                <Button
+                    android:id="@+id/button13"
+                    style="@style/ButtonTheme"
+                    android:background="@{viewModel.elementSelected == Element.RAITON? @drawable/bg_button_orange: @drawable/bg_button}"
+                    android:onClick="@{() -> viewModel.onElementButtonPressed(Element.RAITON)}"
+                    android:text="Raiton" />
 
-                    <Button
-                        android:id="@+id/button13"
-                        style="@style/ButtonTheme"
-                        android:background="@{viewModel.elementSelected == Element.RAITON? @drawable/bg_button_orange: @drawable/bg_button}"
-                        android:onClick="@{() -> viewModel.onElementButtonPressed(Element.RAITON)}"
-                        android:text="Raiton" />
-                </TableRow>
-
-            </TableLayout>
+            </LinearLayout>
 
             <ImageView
                 android:id="@+id/imageView19"

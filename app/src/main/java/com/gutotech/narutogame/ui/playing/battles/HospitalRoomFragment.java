@@ -45,7 +45,7 @@ public class HospitalRoomFragment extends Fragment implements SectionFragment,
         FragmentHospitalRoomBinding binding = DataBindingUtil.inflate(inflater,
                 R.layout.fragment_hospital_room, container, false);
 
-        StorageUtils.downloadProfileForMsg(getContext(), binding.profileImageView);
+        StorageUtils.loadProfileForMsg(getContext(), binding.profileImageView);
 
         CharOn.character.setMapId(CharOn.character.getVillage().ordinal());
 

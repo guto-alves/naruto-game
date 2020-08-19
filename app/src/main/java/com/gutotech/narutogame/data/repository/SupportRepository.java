@@ -2,8 +2,6 @@ package com.gutotech.narutogame.data.repository;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -20,6 +18,8 @@ import java.util.List;
 
 public class SupportRepository {
     private static final SupportRepository sInstance = new SupportRepository();
+    private DatabaseReference mTicketResponsesReference;
+    private ChildEventListener mTicketResponseEventListener;
 
     private SupportRepository() {
     }
@@ -64,7 +64,6 @@ public class SupportRepository {
         });
     }
 
-
     public void addAnswer(String ticketId, TicketResponse ticketResponse) {
         DatabaseReference ticketsReference = FirebaseConfig.getDatabase()
                 .child("ticket-responses")
@@ -73,9 +72,6 @@ public class SupportRepository {
 
         ticketsReference.setValue(ticketResponse);
     }
-
-    private DatabaseReference mTicketResponsesReference;
-    private ChildEventListener mTicketResponseEventListener;
 
     public void getTicketResponses(String ticketId, Callback<List<TicketResponse>> callback) {
         removeTicketResponsesListener();

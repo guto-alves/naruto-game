@@ -249,12 +249,12 @@
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="3dp"
                             android:layout_marginRight="3dp"
-                            android:drawableStart="@drawable/layout_icones_p_hp"
-                            android:drawableLeft="@drawable/layout_icones_p_hp"
                             android:drawablePadding="3dp"
                             android:gravity="center_vertical"
                             android:text="@string/health"
-                            android:textColor="@android:color/white" />
+                            android:textColor="@android:color/white"
+                            app:drawableStartCompat="@drawable/layout_icones_p_hp"
+                            app:drawableLeftCompat="@drawable/layout_icones_p_hp" />
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
@@ -310,12 +310,12 @@
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="3dp"
                             android:layout_marginRight="3dp"
-                            android:drawableStart="@drawable/layout_icones_p_chakra"
-                            android:drawableLeft="@drawable/layout_icones_p_chakra"
                             android:drawablePadding="3dp"
                             android:gravity="center_vertical"
                             android:text="@string/chakra"
-                            android:textColor="@android:color/white" />
+                            android:textColor="@android:color/white"
+                            app:drawableStartCompat="@drawable/layout_icones_p_chakra"
+                            app:drawableLeftCompat="@drawable/layout_icones_p_chakra" />
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
@@ -370,12 +370,12 @@
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="3dp"
                             android:layout_marginRight="3dp"
-                            android:drawableStart="@drawable/layout_icones_p_stamina"
-                            android:drawableLeft="@drawable/layout_icones_p_stamina"
                             android:drawablePadding="3dp"
                             android:gravity="center_vertical"
                             android:text="@string/stamina"
-                            android:textColor="@android:color/white" />
+                            android:textColor="@android:color/white"
+                            app:drawableLeftCompat="@drawable/layout_icones_p_stamina"
+                            app:drawableStartCompat="@drawable/layout_icones_p_stamina" />
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"

@@ -152,14 +152,12 @@ public class Attributes extends BaseObservable {
 
         getDistributedPoints().set(attributeId, newTotal);
 
-        if (total - quantity >= 0) {
-            totalFreePoints += quantity;
-            totalRedistributePoints -= quantity;
-        } else {
+        if (total - quantity < 0) {
             quantity = quantity - (quantity - total);
-            totalFreePoints += quantity;
-            totalRedistributePoints -= quantity;
         }
+
+        totalFreePoints += quantity;
+        totalRedistributePoints -= quantity;
     }
 
     public List<Integer> asList() {

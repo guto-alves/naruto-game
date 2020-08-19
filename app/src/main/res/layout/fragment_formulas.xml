@@ -85,15 +85,15 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginLeft="8dp"
-                    android:drawableStart="@drawable/layout_icones_p_hp"
-                    android:drawableLeft="@drawable/layout_icones_p_hp"
                     android:drawablePadding="8dp"
                     android:gravity="center"
                     android:text="@string/health"
                     android:textColor="@color/colorText"
                     android:textSize="12sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:drawableStartCompat="@drawable/layout_icones_p_hp"
+                    app:drawableLeftCompat="@drawable/layout_icones_p_hp" />
 
                 <TextView
                     android:id="@+id/descriptionTextView17"
@@ -114,15 +114,15 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginRight="16dp"
-                    android:drawableStart="@drawable/layout_icones_ene"
-                    android:drawableLeft="@drawable/layout_icones_ene"
                     android:gravity="center"
                     android:text="* 6"
                     android:textColor="@color/colorText"
                     android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/descriptionTextView17" />
+                    app:layout_constraintTop_toBottomOf="@+id/descriptionTextView17"
+                    app:drawableStartCompat="@drawable/layout_icones_ene"
+                    app:drawableLeftCompat="@drawable/layout_icones_ene" />
 
                 <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/guideline567"
@@ -149,15 +149,15 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginLeft="8dp"
-                    android:drawableStart="@drawable/layout_icones_p_chakra"
-                    android:drawableLeft="@drawable/layout_icones_p_chakra"
                     android:drawablePadding="8dp"
                     android:gravity="center_vertical"
                     android:text="@string/chakra"
                     android:textColor="@color/colorText"
                     android:textSize="12sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:drawableStartCompat="@drawable/layout_icones_p_chakra"
+                    app:drawableLeftCompat="@drawable/layout_icones_p_chakra" />
 
                 <TextView
                     android:id="@+id/descriptionTextView18"
@@ -193,35 +193,35 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:drawableStart="@drawable/layout_icones_ene"
-                        android:drawableLeft="@drawable/layout_icones_ene"
                         android:gravity="center"
                         android:text="* 6 + "
                         android:textColor="@color/colorText"
-                        android:textSize="12sp" />
+                        android:textSize="12sp"
+                        app:drawableLeftCompat="@drawable/layout_icones_ene"
+                        app:drawableStartCompat="@drawable/layout_icones_ene" />
 
                     <TextView
                         android:id="@+id/ninTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:drawableStart="@drawable/layout_icones_nin"
-                        android:drawableLeft="@drawable/layout_icones_nin"
                         android:drawablePadding="3dp"
                         android:gravity="center_vertical"
                         android:text="* 7 + "
                         android:textColor="@color/colorText"
-                        android:textSize="12sp" />
+                        android:textSize="12sp"
+                        app:drawableLeftCompat="@drawable/layout_icones_nin"
+                        app:drawableStartCompat="@drawable/layout_icones_nin" />
 
                     <TextView
                         android:id="@+id/genTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:drawableStart="@drawable/layout_icones_gen"
-                        android:drawableLeft="@drawable/layout_icones_gen"
                         android:drawablePadding="3dp"
                         android:gravity="center_vertical"
                         android:text="* 7"
-                        android:textColor="@color/colorText" />
+                        android:textColor="@color/colorText"
+                        app:drawableLeftCompat="@drawable/layout_icones_gen"
+                        app:drawableStartCompat="@drawable/layout_icones_gen" />
                 </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -242,15 +242,15 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginLeft="8dp"
-                    android:drawableStart="@drawable/layout_icones_p_stamina"
-                    android:drawableLeft="@drawable/layout_icones_p_stamina"
                     android:drawablePadding="8dp"
                     android:gravity="center"
                     android:text="@string/stamina"
                     android:textColor="@color/colorText"
                     android:textSize="12sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:drawableStartCompat="@drawable/layout_icones_p_stamina"
+                    app:drawableLeftCompat="@drawable/layout_icones_p_stamina" />
 
                 <TextView
                     android:id="@+id/descriptionTextView19"
@@ -279,35 +279,35 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:drawableStart="@drawable/layout_icones_ene"
-                        android:drawableLeft="@drawable/layout_icones_ene"
                         android:gravity="center"
                         android:text="* 6 + "
                         android:textColor="@color/colorText"
-                        android:textSize="12sp" />
+                        android:textSize="12sp"
+                        app:drawableStartCompat="@drawable/layout_icones_ene"
+                        app:drawableLeftCompat="@drawable/layout_icones_ene" />
 
                     <TextView
                         android:id="@+id/taiTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:drawableStart="@drawable/layout_icones_tai"
-                        android:drawableLeft="@drawable/layout_icones_tai"
                         android:drawablePadding="3dp"
                         android:gravity="center_vertical"
                         android:text="* 7 + "
                         android:textColor="@color/colorText"
-                        android:textSize="12sp" />
+                        android:textSize="12sp"
+                        app:drawableStartCompat="@drawable/layout_icones_tai"
+                        app:drawableLeftCompat="@drawable/layout_icones_tai" />
 
                     <TextView
                         android:id="@+id/bukTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:drawableStart="@drawable/layout_icones_ken"
-                        android:drawableLeft="@drawable/layout_icones_ken"
                         android:drawablePadding="3dp"
                         android:gravity="center_vertical"
                         android:text="* 7"
-                        android:textColor="@color/colorText" />
+                        android:textColor="@color/colorText"
+                        app:drawableStartCompat="@drawable/layout_icones_ken"
+                        app:drawableLeftCompat="@drawable/layout_icones_ken" />
                 </LinearLayout>
 
                 <androidx.constraintlayout.widget.Guideline
@@ -336,15 +336,15 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginLeft="8dp"
-                    android:drawableStart="@drawable/layout_icones_atk_fisico"
-                    android:drawableLeft="@drawable/layout_icones_atk_fisico"
                     android:drawablePadding="8dp"
                     android:gravity="center_vertical"
                     android:text="@string/attack_tai_buk"
                     android:textColor="@color/colorText"
                     android:textSize="12sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:drawableLeftCompat="@drawable/layout_icones_atk_fisico"
+                    app:drawableStartCompat="@drawable/layout_icones_atk_fisico" />
 
                 <TextView
                     android:id="@+id/descriptionTextView110"
@@ -365,8 +365,6 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginRight="16dp"
-                    android:drawableStart="@drawable/layout_icones_forc"
-                    android:drawableLeft="@drawable/layout_icones_forc"
                     android:gravity="center"
                     android:text="/ 2"
                     android:textColor="@color/colorText"
@@ -374,7 +372,9 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/descriptionTextView110"
-                    tools:ignore="RtlHardcoded" />
+                    tools:ignore="RtlHardcoded"
+                    app:drawableStartCompat="@drawable/layout_icones_forc"
+                    app:drawableLeftCompat="@drawable/layout_icones_forc" />
 
                 <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/guideline3710"
@@ -402,15 +402,15 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginLeft="8dp"
-                    android:drawableStart="@drawable/layout_icones_atk_magico"
-                    android:drawableLeft="@drawable/layout_icones_atk_magico"
                     android:drawablePadding="8dp"
                     android:gravity="center_vertical"
                     android:text="@string/attack_nin_gen"
                     android:textColor="@color/colorText"
                     android:textSize="12sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:drawableLeftCompat="@drawable/layout_icones_atk_magico"
+                    app:drawableStartCompat="@drawable/layout_icones_atk_magico" />
 
                 <TextView
                     android:id="@+id/descriptionTextView111"
@@ -431,15 +431,15 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginRight="16dp"
-                    android:drawableStart="@drawable/layout_icones_inte"
-                    android:drawableLeft="@drawable/layout_icones_inte"
                     android:gravity="center"
                     android:text="/ 2"
                     android:textColor="@color/colorText"
                     android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/descriptionTextView111" />
+                    app:layout_constraintTop_toBottomOf="@+id/descriptionTextView111"
+                    app:drawableStartCompat="@drawable/layout_icones_inte"
+                    app:drawableLeftCompat="@drawable/layout_icones_inte" />
 
                 <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/guideline3711"
@@ -467,15 +467,15 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginLeft="8dp"
-                    android:drawableStart="@drawable/layout_icones_shield_magico"
-                    android:drawableLeft="@drawable/layout_icones_shield_magico"
                     android:drawablePadding="8dp"
                     android:gravity="center_vertical"
                     android:text="@string/defense_nin_gen"
                     android:textColor="@color/colorText"
                     android:textSize="12sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:drawableLeftCompat="@drawable/layout_icones_shield_magico"
+                    app:drawableStartCompat="@drawable/layout_icones_shield_magico" />
 
                 <TextView
                     android:id="@+id/descriptionTextView14"
@@ -496,15 +496,15 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginRight="16dp"
-                    android:drawableStart="@drawable/layout_icones_defense"
-                    android:drawableLeft="@drawable/layout_icones_defense"
                     android:gravity="center"
                     android:text="/ 2"
                     android:textColor="@color/colorText"
                     android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/descriptionTextView14" />
+                    app:layout_constraintTop_toBottomOf="@+id/descriptionTextView14"
+                    app:drawableStartCompat="@drawable/layout_icones_defense"
+                    app:drawableLeftCompat="@drawable/layout_icones_defense" />
 
                 <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/guideline374"
@@ -531,15 +531,15 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginLeft="8dp"
-                    android:drawableStart="@drawable/layout_icones_shield_fisico"
-                    android:drawableLeft="@drawable/layout_icones_shield_fisico"
                     android:drawablePadding="8dp"
                     android:gravity="center_vertical"
                     android:text="@string/defense_tai_buk"
                     android:textColor="@color/colorText"
                     android:textSize="12sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:drawableLeftCompat="@drawable/layout_icones_shield_fisico"
+                    app:drawableStartCompat="@drawable/layout_icones_shield_fisico" />
 
                 <TextView
                     android:id="@+id/descriptionTextView15"
@@ -559,15 +559,15 @@
                     android:layout_marginTop="3dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginRight="16dp"
-                    android:drawableStart="@drawable/layout_icones_defense"
-                    android:drawableLeft="@drawable/layout_icones_defense"
                     android:gravity="center"
                     android:text="/ 2"
                     android:textColor="@color/colorText"
                     android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/descriptionTextView15" />
+                    app:layout_constraintTop_toBottomOf="@+id/descriptionTextView15"
+                    app:drawableStartCompat="@drawable/layout_icones_defense"
+                    app:drawableLeftCompat="@drawable/layout_icones_defense" />
 
                 <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/guideline375"
@@ -595,15 +595,15 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginLeft="8dp"
-                    android:drawableStart="@drawable/layout_icones_precisao"
-                    android:drawableLeft="@drawable/layout_icones_precisao"
                     android:drawablePadding="8dp"
                     android:gravity="center_vertical"
                     android:text="@string/accuracy"
                     android:textColor="@color/colorText"
                     android:textSize="12sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:drawableLeftCompat="@drawable/layout_icones_precisao"
+                    app:drawableStartCompat="@drawable/layout_icones_precisao" />
 
                 <TextView
                     android:id="@+id/descriptionTextView16"
@@ -623,15 +623,15 @@
                     android:layout_marginTop="3dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginRight="16dp"
-                    android:drawableStart="@drawable/layout_icones_conhe"
-                    android:drawableLeft="@drawable/layout_icones_conhe"
                     android:gravity="center"
                     android:text="* 1"
                     android:textColor="@color/colorText"
                     android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/descriptionTextView16" />
+                    app:layout_constraintTop_toBottomOf="@+id/descriptionTextView16"
+                    app:drawableStartCompat="@drawable/layout_icones_conhe"
+                    app:drawableLeftCompat="@drawable/layout_icones_conhe" />
 
                 <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/guideline376"
@@ -658,15 +658,15 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginLeft="8dp"
-                    android:drawableStart="@drawable/layout_icones_poder_ninja"
-                    android:drawableLeft="@drawable/layout_icones_poder_ninja"
                     android:drawablePadding="8dp"
                     android:gravity="center_vertical"
                     android:text="@string/ninja_power"
                     android:textColor="@color/colorText"
                     android:textSize="12sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:drawableLeftCompat="@drawable/layout_icones_poder_ninja"
+                    app:drawableStartCompat="@drawable/layout_icones_poder_ninja" />
 
                 <TextView
                     android:id="@+id/descriptionTextView177"
@@ -706,45 +706,45 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:drawableStart="@drawable/layout_icones_ene"
-                            android:drawableLeft="@drawable/layout_icones_ene"
                             android:gravity="center"
                             android:text="* 200 + ( "
                             android:textColor="@color/colorText"
-                            android:textSize="12sp" />
+                            android:textSize="12sp"
+                            app:drawableLeftCompat="@drawable/layout_icones_ene"
+                            app:drawableStartCompat="@drawable/layout_icones_ene" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:drawableStart="@drawable/layout_icones_forc"
-                            android:drawableLeft="@drawable/layout_icones_forc"
                             android:drawablePadding="3dp"
                             android:gravity="center_vertical"
                             android:text=" + "
                             android:textColor="@color/colorText"
-                            android:textSize="12sp" />
+                            android:textSize="12sp"
+                            app:drawableLeftCompat="@drawable/layout_icones_forc"
+                            app:drawableStartCompat="@drawable/layout_icones_forc" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:drawableStart="@drawable/layout_icones_inte"
-                            android:drawableLeft="@drawable/layout_icones_inte"
                             android:drawablePadding="3dp"
                             android:gravity="center_vertical"
                             android:text=" + "
                             android:textColor="@color/colorText"
-                            android:textSize="12sp" />
+                            android:textSize="12sp"
+                            app:drawableStartCompat="@drawable/layout_icones_inte"
+                            app:drawableLeftCompat="@drawable/layout_icones_inte" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:drawableStart="@drawable/layout_icones_defense"
-                            android:drawableLeft="@drawable/layout_icones_defense"
                             android:drawablePadding="3dp"
                             android:gravity="center_vertical"
                             android:text=" ) * 150 +"
                             android:textColor="@color/colorText"
-                            android:textSize="12sp" />
+                            android:textSize="12sp"
+                            app:drawableLeftCompat="@drawable/layout_icones_defense"
+                            app:drawableStartCompat="@drawable/layout_icones_defense" />
 
                     </LinearLayout>
 
@@ -763,46 +763,46 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:drawableStart="@drawable/layout_icones_nin"
-                            android:drawableLeft="@drawable/layout_icones_nin"
                             android:drawablePadding="3dp"
                             android:gravity="center_vertical"
                             android:text=" + "
                             android:textColor="@color/colorText"
-                            android:textSize="12sp" />
+                            android:textSize="12sp"
+                            app:drawableLeftCompat="@drawable/layout_icones_nin"
+                            app:drawableStartCompat="@drawable/layout_icones_nin" />
 
                         <TextView
                             android:id="@+id/genTextView2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:drawableStart="@drawable/layout_icones_gen"
-                            android:drawableLeft="@drawable/layout_icones_gen"
                             android:drawablePadding="3dp"
                             android:gravity="center_vertical"
                             android:text="+ "
                             android:textColor="@color/colorText"
-                            android:textSize="12sp" />
+                            android:textSize="12sp"
+                            app:drawableLeftCompat="@drawable/layout_icones_gen"
+                            app:drawableStartCompat="@drawable/layout_icones_gen" />
 
                         <TextView
                             android:id="@+id/textView43"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:drawableStart="@drawable/layout_icones_tai"
-                            android:drawableLeft="@drawable/layout_icones_tai"
                             android:gravity="center"
                             android:text="+ "
                             android:textColor="@color/colorText"
-                            android:textSize="12sp" />
+                            android:textSize="12sp"
+                            app:drawableLeftCompat="@drawable/layout_icones_tai"
+                            app:drawableStartCompat="@drawable/layout_icones_tai" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:drawableStart="@drawable/layout_icones_ken"
-                            android:drawableLeft="@drawable/layout_icones_ken"
                             android:gravity="center"
                             android:text=" ) * 200 +"
                             android:textColor="@color/colorText"
-                            android:textSize="12sp" />
+                            android:textSize="12sp"
+                            app:drawableStartCompat="@drawable/layout_icones_ken"
+                            app:drawableLeftCompat="@drawable/layout_icones_ken" />
 
                     </LinearLayout>
 
@@ -822,24 +822,24 @@
                             android:id="@+id/ninTextView5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:drawableStart="@drawable/layout_icones_agi"
-                            android:drawableLeft="@drawable/layout_icones_agi"
                             android:drawablePadding="3dp"
                             android:gravity="center_vertical"
                             android:text=" + "
                             android:textColor="@color/colorText"
-                            android:textSize="12sp" />
+                            android:textSize="12sp"
+                            app:drawableStartCompat="@drawable/layout_icones_agi"
+                            app:drawableLeftCompat="@drawable/layout_icones_agi" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:drawableStart="@drawable/layout_icones_conhe"
-                            android:drawableLeft="@drawable/layout_icones_conhe"
                             android:drawablePadding="3dp"
                             android:gravity="center_vertical"
                             android:text=" ) * 100"
                             android:textColor="@color/colorText"
-                            android:textSize="12sp" />
+                            android:textSize="12sp"
+                            app:drawableLeftCompat="@drawable/layout_icones_conhe"
+                            app:drawableStartCompat="@drawable/layout_icones_conhe" />
 
                     </LinearLayout>
 

@@ -12,17 +12,16 @@ import com.gutotech.narutogame.data.model.Character;
 import com.gutotech.narutogame.data.model.Village;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class RankNinjasRepository {
     private static final RankNinjasRepository ourInstance = new RankNinjasRepository();
 
-    public static RankNinjasRepository getInstance() {
-        return ourInstance;
+    private RankNinjasRepository() {
     }
 
-    private RankNinjasRepository() {
+    public static RankNinjasRepository getInstance() {
+        return ourInstance;
     }
 
     public void filter(Village village, String nick, boolean online, Callback<List<Character>> callback) {

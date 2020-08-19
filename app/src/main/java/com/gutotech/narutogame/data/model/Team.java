@@ -37,7 +37,6 @@ public class Team {
         setCurrentExp(newTotalExp);
     }
 
-
     public String getName() {
         return name;
     }

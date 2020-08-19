@@ -100,7 +100,7 @@ public class VillageMapAdapter extends RecyclerView.Adapter<VillageMapAdapter.Vi
                         holder.backgroundImageView.setImageResource(R.drawable.layout_map_red2);
                     }
 
-                    StorageUtils.downloadSprite(holder.spriteImageView, character.getNinja().getId());
+                    StorageUtils.loadSprite(holder.spriteImageView, character.getNinja().getId());
                     holder.spriteImageView.setVisibility(View.VISIBLE);
                 }
             } else if (!IS_PLACE_ENTRY) {

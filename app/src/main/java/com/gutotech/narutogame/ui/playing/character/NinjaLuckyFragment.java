@@ -2,17 +2,16 @@ package com.gutotech.narutogame.ui.playing.character;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import com.google.android.gms.ads.AdRequest;
 import com.gutotech.narutogame.R;
@@ -28,6 +27,7 @@ import java.security.SecureRandom;
 public class NinjaLuckyFragment extends Fragment implements SectionFragment {
     private NinjaLuckyViewModel mViewModel;
     private FragmentNinjaLuckyBinding mBinding;
+    private int mAnimationEndCount;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -73,12 +73,14 @@ public class NinjaLuckyFragment extends Fragment implements SectionFragment {
         new AnimationTask(mBinding.slot4ImageView).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
 
-    private int mAnimationEndCount;
+    @Override
+    public int getDescription() {
+        return R.string.ninja_lucky;
+    }
 
-    public class AnimationTask extends AsyncTask<Void, Integer, Void> {
-        private final SecureRandom random = new SecureRandom();
+    private class AnimationTask extends AsyncTask<Void, Integer, Void> {
         final int INITIAL_SCROLL = -1333;
-
+        private final SecureRandom random = new SecureRandom();
         private ImageView slotImageView;
 
         AnimationTask(ImageView slotImageView) {
@@ -126,10 +128,5 @@ public class NinjaLuckyFragment extends Fragment implements SectionFragment {
                 mViewModel.onAnimationEnd();
             }
         }
-    }
-
-    @Override
-    public int getDescription() {
-        return R.string.ninja_lucky;
     }
 }

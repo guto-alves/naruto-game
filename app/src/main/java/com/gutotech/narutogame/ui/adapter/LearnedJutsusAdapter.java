@@ -86,7 +86,7 @@ public class LearnedJutsusAdapter extends RecyclerView.Adapter<LearnedJutsusAdap
                 mLearnedJutsusListener.onVisibilityChanged(jutsu);
             });
 
-            StorageUtils.downloadJutsu(holder.jutsuImageView, jutsuInfo.image);
+            StorageUtils.loadJutsu(holder.jutsuImageView, jutsuInfo.image);
             holder.jutsuImageView.setOnClickListener(v -> showJutsuInfo(v, jutsu, jutsuInfo));
 
             String name = mContext.getString(jutsuInfo.name);

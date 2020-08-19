@@ -72,7 +72,7 @@ public class CharsInPositionAdapter extends RecyclerView.Adapter<CharsInPosition
                 holder.backgroundImageView.setImageResource(R.drawable.layout_map_red2);
             }
 
-            StorageUtils.downloadSprite(holder.spriteImageView, character.getNinja().getId());
+            StorageUtils.loadSprite(holder.spriteImageView, character.getNinja().getId());
 
             if (character.equals(CharOn.character)) {
                 holder.charInfoTextView.setText(R.string.you_are_here);

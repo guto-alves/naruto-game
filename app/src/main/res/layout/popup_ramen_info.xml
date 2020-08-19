@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
 
@@ -49,13 +50,13 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:drawableStart="@drawable/layout_icones_p_hp"
-                    android:drawableLeft="@drawable/layout_icones_p_hp"
                     android:drawablePadding="3dp"
                     android:gravity="center"
                     android:text="@string/recovers"
                     android:textColor="@android:color/white"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    app:drawableStartCompat="@drawable/layout_icones_p_hp"
+                    app:drawableLeftCompat="@drawable/layout_icones_p_hp" />
 
                 <TextView
                     android:id="@+id/hpTextView"
@@ -85,13 +86,13 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:drawableStart="@drawable/layout_icones_p_chakra"
-                    android:drawableLeft="@drawable/layout_icones_p_chakra"
                     android:drawablePadding="3dp"
                     android:gravity="center"
                     android:text="@string/recovers"
                     android:textColor="@android:color/white"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    app:drawableStartCompat="@drawable/layout_icones_p_chakra"
+                    app:drawableLeftCompat="@drawable/layout_icones_p_chakra" />
 
                 <TextView
                     android:id="@+id/chakraTextView"
@@ -121,13 +122,13 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:drawableStart="@drawable/layout_icones_p_stamina"
-                    android:drawableLeft="@drawable/layout_icones_p_stamina"
                     android:drawablePadding="3dp"
                     android:gravity="center"
                     android:text="@string/recovers"
                     android:textColor="@android:color/white"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    app:drawableStartCompat="@drawable/layout_icones_p_stamina"
+                    app:drawableLeftCompat="@drawable/layout_icones_p_stamina" />
 
                 <TextView
                     android:id="@+id/staminaTextView"

@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.gutotech.narutogame.data.model.Battle;
-import com.gutotech.narutogame.data.model.Npc;
 
 public class DojoBatalhaLutadorViewModelFactory implements ViewModelProvider.Factory {
     private Battle battle;

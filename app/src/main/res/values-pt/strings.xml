@@ -23,7 +23,6 @@
     <string name="button_play">Jogar</string>
     <string name="full_address">Endereço Completo</string>
     <string name="remove">Remover</string>
-    <string name="enter_the_clan">Entrar no Clã</string>
     <string name="train">Treinar</string>
     <string name="Play">Jogar</string>
     <string name="forgot_password">Esqueceu a Senha?</string>
@@ -33,7 +32,6 @@
         você receberá sua nova senha em seu email</string>
     <string name="type_your_account_email">Digite o email da sua conta</string>
     <string name="section_change_password">TROQUE SUA SENHA</string>
-    <string name="secao_treinamento_de_jutsus">TREINAMENTO DE JUTSUS</string>
     <string name="section_attribute_training">TREINAMENTO DE ATRIBUTOS</string>
     <string name="section_support">SUPORTE</string>
     <string name="section_character_status">STATUS DO PERSONAGEM</string>
@@ -62,8 +60,6 @@
     <string name="section_title">Título da seção</string>
     <string name="title">Título</string>
     <string name="section_support_new_ticket">NOVO TICKET DE SUPORTE</string>
-    <string name="section_dojo_challenge">DOJO CHALLENGE</string>
-    <string name="forgot_my_password">Esqueci minha senha</string>
     <string name="invalid_email">Campo \'Email\' com valor inválido!</string>
     <string name="new_invalid_password">Campo \'Nova Senha\' com valor inválido! No mínimo são requeridos 6
         caractéres e os caractéres permitidos são: 0–9 A-Z _.</string>
@@ -79,9 +75,7 @@
     <string name="weak_password">Senha fraca</string>
     <string name="section_read_news">LER NOTÍCIAS</string>
     <string name="email_field_requered">Campo \'Email\' é obrigatório</string>
-    <string name="confirm_password_field_requered">Campo \'Confirmar Senha\' é obrigatório</string>
     <string name="password_field_requered">Campo \"Senha\" é obrigatório</string>
-    <string name="action_error">Erro</string>
     <string name="account_is_not_registered">Conta não está cadastrada</string>
     <string name="email_and_password_not_found">Email e senha não correspendem</string>
     <string name="error_to_the_sign_in">Erro ao entrar</string>
@@ -104,15 +98,12 @@
     <string name="label_character">Personagem:</string>
     <string name="email_isnt_verified">Email não foi verificado ainda</string>
     <string name="retype_the_new_password">Redigite a Nova Senha</string>
-    <string name="life">Vida</string>
     <string name="button_accept">Aceitar</string>
     <string name="section_initial_tasks">TAREFAS INICIAIS</string>
     <string name="section_ninja_lucky">SORTE NINJA</string>
     <string name="section_ninjas_ranking">RANKING DE NINJAS</string>
     <string name="section_teams_ranking">RANKING DE EQUIPES</string>
-    <string name="section_story_mode">MODO HISTÓRIA</string>
     <string name="section_graduations">GRADUAÇÕES</string>
-    <string name="section_clans">CLÃS</string>
     <string name="strength">Força</string>
     <string name="intelligence">Inteligência</string>
     <string name="resistance">Resistência</string>
@@ -122,30 +113,22 @@
     <string name="ranking">Ranking</string>
     <string name="academy">Academia</string>
     <string name="agility">Agilidade</string>
-    <string name="file">Arquivo</string>
     <string name="battles">Combates</string>
     <string name="attribute_training">Treinamento de Atributos</string>
     <string name="button_play_lucky">Jogar!</string>
     <string name="button_change_image">Trocar Imagem</string>
-    <string name="clans">Clãs</string>
-    <string name="clan_jutsus">Jutsus de Clã</string>
     <string name="character">Personagem</string>
     <string name="current_village">Vila Atual</string>
     <string name="energy">Energia</string>
-    <string name="select_your_character">ESCOLHA SEU PERSONAGEM</string>
     <string name="game_formulas">Fórmulas do Jogo</string>
     <string name="grades">Graduações</string>
-    <string name="hello_blank_fragment">Olá</string>
     <string name="jutsu_training">Treinamento de Jutsus</string>
     <string name="leaned_jutsus">Aprender Jutsus</string>
-    <string name="logout">Sair</string>
     <string name="messenger">Mensageiro</string>
     <string name="ninja_fidelity">Fidelidade Ninja</string>
     <string name="ninja_lucky">Sorte Ninja</string>
     <string name="team">Equipe</string>
     <string name="tasks">Tarefas</string>
-    <string name="summons">Invocações</string>
-    <string name="story_mode">Modo História</string>
     <string name="user">Usuário</string>
     <string name="choose_your_character">ESCOLHA SEU PERSONAGEM</string>
     <string name="section_mission_status">STATUS DA MISSÃO</string>
@@ -158,9 +141,7 @@
     <string name="section_messenger">MENSAGEIRO</string>
     <string name="section_formulas">FÓRMULAS</string>
     <string name="section_ninja_fidelity">FIDELIDADE NINJA</string>
-    <string name="section_rank_4X4">RANK 4X4</string>
     <string name="mission_status">Status da Missão</string>
-    <string name="section_summons">INVOCAÇÕES</string>
     <string name="participate">Participar</string>
     <string name="section_create_a_team">CRIAR UMA EQUIPE</string>
     <string name="section_join_a_team">PARTICIPAR DE UMA EQUIPE</string>
@@ -171,14 +152,12 @@
     <string name="vip_player">Jogador VIP</string>
     <string name="section_missions">MISSÕES</string>
     <string name="section_village_map">MAPA DA VILA</string>
-    <string name="section_equipe_detalhe">EQUIPE</string>
     <string name="missions">Missões</string>
     <string name="village_map">Mapa da Vila</string>
     <string name="combat_overview">Resumo de Combates</string>
     <string name="resume_of_missions">Resumo de Missões</string>
     <string name="extras_information">Informações Extras</string>
     <string name="label_total_de_horas_jogadas">Total de Horas Jogadas:</string>
-    <string name="label_total_de_treino">Total de Treino:</string>
     <string name="label_pontos_distribu_dos">Pontos Distribuídos:</string>
     <string name="label_wins_npc">Vitórias NPC:</string>
     <string name="label_wins_dojo_pvp">Vitórias Dojo PVP:</string>
@@ -202,14 +181,7 @@
         portanto, jamais deixe de treina-lo!\n\nPara saber maiores detalhes sobre cada Atributo e te
         ajudar a distribuir seus pontos dá melhor maneira possível, vá para</string>
     <string name="attribute_training_title">ENTENDA O TREINAMENTO DE ATRIBUTOS</string>
-    <string name="training_completed">TREINAMENTO CONCLUÍDO</string>
     <string name="distributed_points">PONTOS DISTRIBUIDOS</string>
-    <string name="manual_training">Treinamento Manual</string>
-    <string name="quantity">Quantidade</string>
-    <string name="voc_pode_fazer_o_treino_manual_v_rias_vezes_by_dia">Você pode fazer o treino manual
-        várias vezes por dia.</string>
-    <string name="you_will_spent">Você gastará %d</string>
-    <string name="chakra_icon">Icone chakra</string>
     <string name="battle_log">Histórico de Batalhas</string>
     <string name="be_a_team_leader_title">QUERO LIDERAR UMA EQUIPE</string>
     <string name="be_a_team_leader_description">É muito importante liderar uma equipe, ensine seus
@@ -218,48 +190,27 @@
     <string name="create_team">Criar Equipe</string>
     <string name="requirements">Requerimentos</string>
     <string name="_2000_ryous_e_ser_chunnin">2000 Ryous e ser Chunnin</string>
-    <string name="_3_credits">3 Créditos</string>
-    <string name="error_select_an_method_to_create_team">Selecione uma forma de criar a equipe!</string>
     <string name="naruto_game_says">Naruto Game diz:</string>
     <string name="error_the_name_of_team_cant_be_empty">Nome da equipe não pode ficar em branco!</string>
     <string name="filter">Filtrar</string>
     <string name="leader_name">Nome do Líder</string>
     <string name="team_name">Nome da equipe</string>
     <string name="members_quantity">Qtd de Integrantes</string>
-    <string name="quero_ser_membro_de_equipe">QUERO SER MEMBRO DE EQUIPE</string>
-    <string name="quero_ser_membro_de_equipe_description">Escolha a Equipe de seu amigo e clique no
-        botão participar para enviar um pedido para entrar na team.</string>
     <string name="details">Detalhes</string>
     <string name="section_team">EQUIPE</string>
     <string name="items_available">Itens Disponíveis</string>
     <string name="chances_of_win">Chances de Ganhar</string>
-    <string name="limit_of_attributes_training">LIMITE DE TREINAMENTO SEMANAL</string>
-    <string name="next_ability_point">PRÓXIMO PONTO DE HABILIDADE</string>
-    <string name="icon_bar">//</string>
-    <string name="ability_point_bar_description">Quando a barra de treinamento se completar, você
-        receberá um ponto para treinar seus atributos! Porém seu desafio será cada vez mais difícil!</string>
-    <string name="limit_of_traning_bar_description">Todos os ninjas podem treinar o seu limite
-        diário normalmente, para aqueles que não conseguirem treinar o limite no mesmo dia, podem
-        treinar no dia seguinte e assim consecutivamente. O limite de treino diário, aumenta conforme
-        sua graduação, um Jounin tem mais limite por dia que um Genin, por exemplo.</string>
     <string name="button_graduate">Graduar</string>
     <string name="button_filter">Filtrar</string>
-    <string name="section_battle_log">HISTÓRICO DE BATALHA</string>
-    <string name="you_earned_ability_points">Você ganhou %d em pontos de habilidade.</string>
-    <string name="you_dont_have_chakra_for_this_training">Você não possui Chakra suficiente para
-        esse treinamento.</string>
     <string name="problem">PROBLEMA!</string>
     <string name="label_title">Title:</string>
     <string name="label_class">Classe:</string>
     <string name="label_number_of_days_played">Qtd. dias jogados:</string>
-    <string name="label_ranking_vila">Ranking (Vila):</string>
-    <string name="label_ranking_general">Ranking (Geral):</string>
     <string name="label_score">Score:</string>
     <string name="label_team">Equipe:</string>
     <string name="none">Nenhum(a)</string>
     <string name="ramen">Ramen</string>
     <string name="scroll">Pergaminho</string>
-    <string name="ranged_weapons">Armas de longo alcance</string>
     <string name="item_quantity">x %d</string>
     <string name="item">Item</string>
     <string name="section_change_image">TROCAR IMAGEM</string>
@@ -269,15 +220,10 @@
     <string name="remove_character_while_logged_in">Você não pode remover esse personagem estando
         logado nele!</string>
     <string name="close">Fechar</string>
-    <string name="sender">%s:%s</string>
-    <string name="top_of_chat_content_description">Topo do chat</string>
     <string name="warning_already_played_today">• Você já jogou no sorte ninja hoje!</string>
-    <string name="credits_daily">1\nCrédito</string>
     <string name="ryous_daily">500\nRyous</string>
     <string name="ryous_weekly">1500\nRyous</string>
-    <string name="credits_weekly">3 Créditos</string>
     <string name="warning_dont_have_enough_ryous">• Você não tem ryous suficientes</string>
-    <string name="warning_dont_have_enough_credits">• Você não tem créditos suficientes</string>
     <string name="warning_havent_played_the_entire_week_yet">• Você não jogou todos os dias da semana ainda!</string>
     <string name="sunday">Domindo</string>
     <string name="monday">Segunda</string>
@@ -322,7 +268,6 @@
     <string name="shio_tyashu_ramen">Shio Tyashu-Ramen</string>
     <string name="shio_gyoza_ramen">Shio Gyoza-Ramen</string>
     <string name="warning_items_purchased">Item(s) comprado(s) com sucesso</string>
-    <string name="requires_grades">Requer graduação: %s</string>
     <string name="warning_1">Aviso</string>
     <string name="about_the_ninja_jutsus">SOBRE OS JUTSUS NINJAS</string>
     <string name="jutsu">Jutsu</string>
@@ -891,14 +836,11 @@
     <string name="scroll_to_grass">Pergaminho de Teletransporte para Grama</string>
     <string name="scroll_to_grass_des">Ao utilizar esse pergaminho seu personagem é automaticamamente
         teletransportado para o mapa da vila da Grama</string>
-    <string name="dojo_npc_fighters">Batalhas do Dojo NPC</string>
-    <string name="dojo_pvp_fighters">Batalhas do Dojo PVP</string>
     <string name="dojo_npc_daily_des">Todos os Ninjas possuem um limite diário de combates contra os
         NPC do jogo, esse limite é de 10 combates. Esse limite é resetado todos os dias apartir da
         Meia Noite ( 00:00 horas )</string>
     <string name="dojo_npc_daily_challenges">BATALHAS DIÁRIAS DO DOJO NPC</string>
     <string name="npc_daily_combat">%d de 10 Combates NPC Diários</string>
-    <string name="updating_the_list_of_fighters">Atualizando a lista de lutadores…</string>
     <string name="too_weak_to_fight">Você está muito fraco para lutar, recupere seus atributos e
         tente novamente!</string>
     <string name="dojo_challenge">DESAFIO DOJO</string>
@@ -907,7 +849,6 @@
     <string name="label_heath">Vida: %d</string>
     <string name="label_chakra">Chakra: %d</string>
     <string name="label_stamina">Stamina: %d</string>
-    <string name="dojo_timer">%02d:%02d</string>
     <string name="label_graduation_and_lvl">%s - Lvl %d</string>
     <string name="label_and_level">%s - Level %d</string>
     <string name="too_bad">QUE PENA!</string>
@@ -935,13 +876,10 @@
     <string name="missed">errou o golpe</string>
     <string name="attributes_summary">Resumo dos Atributos</string>
     <string name="label_atk_tai_buk">Ataque ( Tai / Buk ): %d</string>
-    <string name="label_def_nin_gen">Defesa ( Nin / Gen ): %d</string>
-    <string name="label_def_tai_buk">Defesa ( Tai / Buk ): %d</string>
     <string name="label_accuracy">Precisão: %d</string>
     <string name="label_atk_nin_gen">Ataque ( Nin / Gen ): %d</string>
     <string name="label_usage_interval">Intervalo de uso: %d turno(s)</string>
     <string name="label_consumes">Consome:</string>
-    <string name="attribute_icon">Attribute icon</string>
     <string name="label_base_defense">Defesa Base: %d</string>
     <string name="label_base_defense1">Defesa Base:</string>
     <string name="combat_values">Valores para Combate</string>
@@ -1049,9 +987,7 @@
     <string name="section_hospital_room">QUARTO DO HOSPITAL</string>
     <string name="hospital">Hospital</string>
     <string name="game_routines">Rotinas do Jogo</string>
-    <string name="atualiza_o_ranking_de_ninjas">Atualiza o ranking de ninjas</string>
-    <string name="atualiza_o_ranking_de_equipes_e_conquista">Atualiza o ranking de equipes</string>
-    <string name="various_routines_description">Limpa o exp diário ganho nas equipes. Renova os 
+    <string name="various_routines_description">Limpa o exp diário ganho nas equipes. Renova os
         combates NPCs diários e os contadores dos duelos e missões diárias.</string>
     <string name="recovers_description">Recupera 20% dos seus atributos.</string>
     <string name="label_healing">Healing: %s</string>
@@ -1060,11 +996,6 @@
     <string name="attack_tai_buk">Ataque ( Tai / Buk )</string>
     <string name="attack_nin_gen">Ataque ( Nin / Gen )</string>
     <string name="jutsu_is_not_yet_available">Jutsu selecionado ainda não está diponível!</string>
-    <string name="loyalty_rewards">RECOMPENSAS DE FIDELIDADE</string>
-    <string name="loyalty_rewards_description">Ao logar diariamente você pode coletar recompensas
-        para seu personagem. Você deve entrar no jogo durante 8 dias seguidos para conseguir todas
-        as recompensas e começar de novo. Caso você não logue um dos dias, o contador irá retornar
-        para o primeiro dia.</string>
     <string name="effects_on_your_character">Efeitos no seu personagem</string>
     <string name="effects_on_your_enemy">Efeitos no seu inimigo</string>
     <string name="it_is_not_your_turn_to_attack">Não é sua vez de atacar!</string>
@@ -1099,13 +1030,11 @@
     <string name="all">Todos</string>
     <string name="general">Geral</string>
     <string name="coming_soon">Em breve</string>
-    <string name="ryous_icon">Ryous icone</string>
     <string name="is_not_at_a_level_suitable_for_you">O ninja que você escolheu para batalhar, não
         esta em um nível adequado para você!</string>
     <string name="player_unavailable_to_fight">Jogador indisponível para lutar</string>
     <string name="move_around_the_map">Para movimentar-se pelo mapa, basta clicar duas vezes no quadrado
         aonde deseja ir.</string>
-    <string name="training_points_for_your_participation">\nPela sua participação você recebeu 50 pontos de treino!</string>
     <string name="looking_for_opponents">PROCURANDO OPONENTES</string>
     <string name="looking_for_opponents_description">Estamos no momento procurando um oponente do
         mesmo level que o seu, caso não encontremos a batalha poderá acontecer com um oponente com
@@ -1121,7 +1050,6 @@
     <string name="button_message_to_members">Mensagem para Membros</string>
     <string name="button_leave_the_team">Sair da Equipe</string>
     <string name="team_members">Integrantes da Equipe: %s</string>
-    <string name="requirement">Requerimento</string>
     <string name="chakra_formula">Fórmula do Chakra</string>
     <string name="hp_formula">Fórmula da Vida</string>
     <string name="stamina_formula">Fórmula da Stamina</string>
@@ -1138,7 +1066,6 @@
         para seu personagem. Você deve entrar no jogo durante 8 dias seguidos para conseguir todas
         as recompensas e começar de novo. Caso você não logue um dos dias, o contador irá retornar
         para o primeiro dia.</string>
-    <string name="fidelity_reward_1_description">100 de Ryous</string>
     <string name="value_in_ryous">%d Ryous</string>
     <string name="value_in_experience">%d de Experiência</string>
     <string name="reward_in_ramen">%d Shio Tyashu-Ramen</string>
@@ -2374,9 +2301,6 @@
     <string name="save">Salvar</string>
     <string name="sound_fx">Efeitos Sonoros</string>
     <string name="upgrade">Equipar</string>
-    <string name="tsuru_kame_des">Tsuru-Kame é um escudo muito resistente com aparência de um casco
-        de tartaruga. Além da defesa, ele possui um sistema de armas internas, capaz de atirar bombas
-        e senbons.</string>
     <string name="congrats_learned_new_element">Parabéns, você aprendeu um novo Elemento!</string>
     <string name="learned_new_element_desc">Vá ate as <annotation link="link">Jutsus Elementais</annotation>
         e veja os novos jutsus que te esperam!</string>

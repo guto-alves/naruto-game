@@ -1,13 +1,10 @@
 package com.gutotech.narutogame.data.repository;
 
-import android.util.Log;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -15,8 +12,8 @@ import com.google.firebase.database.MutableData;
 import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
 import com.gutotech.narutogame.data.firebase.FirebaseConfig;
-import com.gutotech.narutogame.data.model.Character;
 import com.gutotech.narutogame.data.model.CharOn;
+import com.gutotech.narutogame.data.model.Character;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,7 +22,12 @@ import java.util.Map;
 
 public class MapRepository {
     private static final MapRepository sInstance = new MapRepository();
-
+    private DatabaseReference mMapReference;
+    private ValueEventListener mMapValueEventListener;
+    // Map battle requests
+    private boolean mRequestResult;
+    private DatabaseReference mBattleRequestsReference;
+    private ValueEventListener mBattleRequestsEventListener;
     private MapRepository() {
     }
 
@@ -50,9 +52,6 @@ public class MapRepository {
 
         mapReference.removeValue();
     }
-
-    private DatabaseReference mMapReference;
-    private ValueEventListener mMapValueEventListener;
 
     public LiveData<Map<Integer, List<Character>>> load(int villageId) {
         close();
@@ -100,10 +99,6 @@ public class MapRepository {
             mMapValueEventListener = null;
         }
     }
-
-
-    // Map battle requests
-    private boolean mRequestResult;
 
     public synchronized void requestBattle(String playerId, String oppId, Callback<Boolean> callback) {
         DatabaseReference requestsReference = FirebaseConfig.getDatabase()
@@ -158,9 +153,6 @@ public class MapRepository {
         map.put(oppId, battleId);
         databaseReference.updateChildren(map);
     }
-
-    private DatabaseReference mBattleRequestsReference;
-    private ValueEventListener mBattleRequestsEventListener;
 
     public void addBattleRequestListener(String playerId, Callback<String> callback) {
         removeBattleRequestsListener();

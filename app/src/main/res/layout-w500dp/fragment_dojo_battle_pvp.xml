@@ -579,7 +579,7 @@
                     android:background="@drawable/layout_bg_gradu_lvl"
                     android:onClick="@{() -> viewModel.filterJutsus(Jutsu.Type.ATK)}"
                     android:textColor="#FFD274"
-                    android:textSize="10dp"
+                    android:textSize="10sp"
                     app:layout_constraintBottom_toBottomOf="@+id/buffAndDebuffsButton"
                     app:layout_constraintEnd_toStartOf="@+id/buffAndDebuffsButton"
                     app:layout_constraintTop_toTopOf="@+id/buffAndDebuffsButton" />
@@ -595,7 +595,7 @@
                     android:onClick="@{() -> viewModel.filterJutsus(Jutsu.Type.BUFF)}"
                     android:text="@string/buffs_and_debuffs"
                     android:textColor="#FFD274"
-                    android:textSize="10dp"
+                    android:textSize="10sp"
                     app:layout_constraintBottom_toBottomOf="@+id/weaponsButton"
                     app:layout_constraintEnd_toStartOf="@+id/weaponsButton"
                     app:layout_constraintTop_toTopOf="@+id/weaponsButton" />
@@ -610,7 +610,7 @@
                     android:onClick="@{() -> viewModel.filterJutsus(Jutsu.Type.WEAPON)}"
                     android:text="@string/weapons"
                     android:textColor="#FFD274"
-                    android:textSize="10dp"
+                    android:textSize="10sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/guideline26"
                     app:layout_constraintTop_toTopOf="@+id/barraMeusJutsusImageView" />

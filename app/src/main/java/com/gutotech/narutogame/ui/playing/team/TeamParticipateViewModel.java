@@ -12,7 +12,6 @@ import com.gutotech.narutogame.data.model.Team;
 import com.gutotech.narutogame.data.repository.TeamRepository;
 import com.gutotech.narutogame.ui.adapter.TeamsParticipateAdapter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class TeamParticipateViewModel extends ViewModel implements

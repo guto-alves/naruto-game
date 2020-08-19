@@ -83,9 +83,9 @@ public class ItemShopAdapter extends RecyclerView.Adapter<ItemShopAdapter.ViewHo
             ShopItem itemShop = mShopItems.get(i);
 
             if (itemShop instanceof Ramen) {
-                StorageUtils.downloadRamen(mContext, holder.itemImageView, itemShop.getImage());
+                StorageUtils.loadRamen(mContext, holder.itemImageView, itemShop.getImage());
             } else {
-                StorageUtils.downloadScroll(mContext, holder.itemImageView, itemShop.getImage());
+                StorageUtils.loadScroll(mContext, holder.itemImageView, itemShop.getImage());
             }
 
             holder.itemImageView.setOnClickListener(v -> {

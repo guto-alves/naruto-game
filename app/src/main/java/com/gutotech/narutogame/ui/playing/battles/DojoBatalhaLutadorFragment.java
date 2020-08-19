@@ -172,7 +172,7 @@ public class DojoBatalhaLutadorFragment extends Fragment implements SectionFragm
     }
 
     private void showBattleResult(@StringRes int title, SpannableStringBuilder description) {
-        StorageUtils.downloadProfileForMsg(getActivity(), mBinding.battleResultLayout.profileImageView);
+        StorageUtils.loadProfileForMsg(getActivity(), mBinding.battleResultLayout.profileImageView);
         mBinding.battleResultLayout.titleTextView.setText(title);
         mBinding.battleResultLayout.descriptionTextView.setText(description);
         mBinding.battleResultLayout.msgConstraintLayout.setVisibility(View.VISIBLE);

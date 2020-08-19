@@ -50,7 +50,7 @@ public class CharacterSelectAdapter extends RecyclerView.Adapter<CharacterSelect
         if (mCharactersList != null) {
             Character character = mCharactersList.get(position);
 
-            StorageUtils.downloadSmallProfile(holder.profileImageView.getContext(),
+            StorageUtils.loadSmallProfile(holder.profileImageView.getContext(),
                     holder.profileImageView, character.getNinja().getId());
 
             holder.profileImageView.setOnClickListener(v -> {

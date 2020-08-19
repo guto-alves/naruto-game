@@ -89,7 +89,7 @@ public class JutsusLearnAdapter extends RecyclerView.Adapter<JutsusLearnAdapter.
             final Jutsu jutsu = mJutsusList.get(i);
             JutsuInfo jutsuInfo = jutsu.getJutsuInfo();
 
-            StorageUtils.downloadJutsu(holder.jutsuImageView, jutsuInfo.image);
+            StorageUtils.loadJutsu(holder.jutsuImageView, jutsuInfo.image);
             holder.nameTextView.setText(jutsuInfo.name);
             holder.descriptionTextView.setText(jutsuInfo.description);
 

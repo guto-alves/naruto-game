@@ -23,25 +23,6 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
         void onNewsClick(News news);
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder {
-        private TextView dateTextView;
-        private TextView titleTextView;
-        private TextView messageTextView;
-        private TextView postedByTextView;
-        private ImageView detailImageView;
-        private LinearLayout linearLayout;
-
-        public MyViewHolder(@NonNull View itemView) {
-            super(itemView);
-            dateTextView = itemView.findViewById(R.id.dateTextView);
-            titleTextView = itemView.findViewById(R.id.titleTextView);
-            messageTextView = itemView.findViewById(R.id.messageTextView);
-            postedByTextView = itemView.findViewById(R.id.postedByTextView);
-            detailImageView = itemView.findViewById(R.id.detailImageView);
-            linearLayout = itemView.findViewById(R.id.linearLayout);
-        }
-    }
-
     private final int LATEST_NEWS = 0;
 
     private Context mContext;
@@ -110,5 +91,24 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
     public void setNewsList(List<News> newsList) {
         mNewsList = newsList;
         notifyDataSetChanged();
+    }
+
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
+        private TextView dateTextView;
+        private TextView titleTextView;
+        private TextView messageTextView;
+        private TextView postedByTextView;
+        private ImageView detailImageView;
+        private LinearLayout linearLayout;
+
+        public MyViewHolder(@NonNull View itemView) {
+            super(itemView);
+            dateTextView = itemView.findViewById(R.id.dateTextView);
+            titleTextView = itemView.findViewById(R.id.titleTextView);
+            messageTextView = itemView.findViewById(R.id.messageTextView);
+            postedByTextView = itemView.findViewById(R.id.postedByTextView);
+            detailImageView = itemView.findViewById(R.id.detailImageView);
+            linearLayout = itemView.findViewById(R.id.linearLayout);
+        }
     }
 }

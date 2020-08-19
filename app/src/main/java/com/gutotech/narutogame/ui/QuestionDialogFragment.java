@@ -18,17 +18,9 @@ import com.gutotech.narutogame.R;
 
 public class QuestionDialogFragment extends DialogFragment {
 
-    public interface QuestionDialogListener {
-        void onPositiveClick(int requestCode);
-
-        default void onNegativeClick(int requestCode) {
-        }
-    }
-
     private static final String DIALOG_TAG = "QuestionDialogFragment";
     private static final String EXTRA_QUESTION = "question";
     private static final String EXTRA_REQUEST_CODE = "requestCode";
-
     private QuestionDialogListener mListener;
 
     public static QuestionDialogFragment newInstance(String question) {
@@ -99,12 +91,19 @@ public class QuestionDialogFragment extends DialogFragment {
 
         try {
             mListener = (QuestionDialogListener) getTargetFragment();
-        } catch (ClassCastException ignored) {
-            ignored.printStackTrace();
+        } catch (ClassCastException e) {
+            e.printStackTrace();
             try {
                 mListener = (QuestionDialogListener) getActivity();
             } catch (ClassCastException ignored1) {
             }
+        }
+    }
+
+    public interface QuestionDialogListener {
+        void onPositiveClick(int requestCode);
+
+        default void onNegativeClick(int requestCode) {
         }
     }
 }
