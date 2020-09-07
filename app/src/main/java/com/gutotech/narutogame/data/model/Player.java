@@ -17,6 +17,7 @@ public class Player extends BaseObservable {
     private String city;
     private boolean signedIn;
     private int totalCharacters;
+    private boolean isQuickRegistration;
 
     public Player() {
     }
@@ -129,5 +130,13 @@ public class Player extends BaseObservable {
 
     public void setTotalCharacters(int totalCharacters) {
         this.totalCharacters = totalCharacters;
+    }
+
+    public boolean isQuickRegistration() {
+        return isQuickRegistration;
+    }
+
+    public void setQuickRegistration(boolean quickRegistration) {
+        isQuickRegistration = quickRegistration;
     }
 }

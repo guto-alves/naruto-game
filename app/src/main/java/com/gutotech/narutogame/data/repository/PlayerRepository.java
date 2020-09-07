@@ -172,4 +172,28 @@ public class PlayerRepository {
             }
         });
     }
+
+    public void isQuickRegistration(Callback<Boolean> callback) {
+        DatabaseReference reference = FirebaseConfig.getDatabase()
+                .child("players")
+                .child(AuthRepository.getInstance().getUid())
+                .child("quickRegistration");
+
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                boolean quickRegistration = false;
+
+                if (dataSnapshot.exists()) {
+                    quickRegistration = dataSnapshot.getValue(Boolean.class);
+                }
+
+                callback.call(quickRegistration);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
+    }
 }

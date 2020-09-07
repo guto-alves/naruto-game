@@ -35,28 +35,35 @@ public class CharacterCreateViewModel extends ViewModel
     public final ObservableInt currentGroupIndex = new ObservableInt(0);
     public final ObservableField<Classe> classSelected = new ObservableField<>(Classe.TAI);
 
+    private CharacterRepository mCharacterRepository;
+    private AuthRepository mAuthRepository;
+
     private Character mChar;
 
     private List<Ninja> mAllNinjasList;
     private MutableLiveData<List<Ninja>> mCurrentNinjasGroupList = new MutableLiveData<>();
 
-    private CharacterRepository mCharacterRepository;
-
     private ResultListener mListener;
 
     private SingleLiveEvent<Void> mImpossibleToCreateEvent = new SingleLiveEvent<>();
 
+    private SingleLiveEvent<Void> mShowFastSignDialogEvent = new SingleLiveEvent<>();
+
     public CharacterCreateViewModel() {
         mCharacterRepository = CharacterRepository.getInstance();
+        mAuthRepository = AuthRepository.getInstance();
 
-        mChar = new Character(AuthRepository.getInstance().getUid());
+        mChar = Character.create();
+
+        if (mAuthRepository.isSignedIn()) {
+            PlayerRepository.getInstance().getTotalCharacters(totalCharacters -> {
+                if (totalCharacters >= 6) {
+                    mImpossibleToCreateEvent.call();
+                }
+            });
+        }
+
         mChar.setJutsus(JutsuRepository.getInstance().getBasicJutsus(Classe.TAI));
-
-        PlayerRepository.getInstance().getTotalCharacters(totalCharacters -> {
-            if (totalCharacters >= 6) {
-                mImpossibleToCreateEvent.call();
-            }
-        });
 
         mAllNinjasList = Arrays.asList(Ninja.values());
         loadCurrentGroup();
@@ -89,24 +96,32 @@ public class CharacterCreateViewModel extends ViewModel
         if (isValidNick()) {
             mListener.onStarted();
 
-            mCharacterRepository.checkByRepeatedNick(mChar.getNick().trim(), result -> {
-                if (result) {
-                    mChar.setId(UUID.randomUUID().toString());
-                    mCharacterRepository.save(mChar);
-
-                    NinjaLucky ninjaLucky = new NinjaLucky();
-                    ninjaLucky.deselectAllDaysPlayed();
-                    NinjaLuckyRepository.getInstance().save(mChar.getId(), ninjaLucky);
-
-                    NinjaStatisticsRepository.getInstance().add(mChar.getNinja());
-                    PlayerRepository.getInstance().setTotalCharacters(true);
-
-                    mListener.onSuccess();
+            mCharacterRepository.checkByRepeatedNick(mChar.getNick().trim(), isUnique -> {
+                if (isUnique) {
+                    if (mAuthRepository.isSignedIn()) {
+                        createCharacter();
+                        mListener.onSuccess();
+                    } else {
+                        mShowFastSignDialogEvent.call();
+                    }
                 } else {
                     mListener.onFailure(R.string.name_already_taken);
                 }
             });
         }
+    }
+
+    public void createCharacter() {
+        mChar.setPlayerId(mAuthRepository.getUid());
+        mChar.setId(UUID.randomUUID().toString());
+        mCharacterRepository.save(mChar);
+
+        NinjaLucky ninjaLucky = new NinjaLucky();
+        ninjaLucky.deselectAllDaysPlayed();
+        NinjaLuckyRepository.getInstance().save(mChar.getId(), ninjaLucky);
+
+        NinjaStatisticsRepository.getInstance().add(mChar.getNinja());
+        PlayerRepository.getInstance().setTotalCharacters(true);
     }
 
     private void loadCurrentGroup() {
@@ -160,5 +175,9 @@ public class CharacterCreateViewModel extends ViewModel
 
     LiveData<Void> getImpossibleToCreateEvent() {
         return mImpossibleToCreateEvent;
+    }
+
+    LiveData<Void> getShowFastSignDialogEvent() {
+        return mShowFastSignDialogEvent;
     }
 }

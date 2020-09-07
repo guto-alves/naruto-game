@@ -60,8 +60,14 @@ public class AuthRepository {
                 if (getCurrentUser().isEmailVerified()) {
                     emitter.onComplete();
                 } else {
-                    emitter.onError(R.string.email_isnt_verified);
-                    signOut();
+                    PlayerRepository.getInstance().isQuickRegistration(isQuickRegistration -> {
+                        if (isQuickRegistration) {
+                            emitter.onComplete();
+                        } else {
+                            emitter.onError(R.string.email_isnt_verified);
+                            signOut();
+                        }
+                    });
                 }
             } else {
                 int resId;

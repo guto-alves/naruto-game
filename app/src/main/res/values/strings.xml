@@ -104,9 +104,9 @@
     <string name="create_an_account">Create an Account</string>
     <string name="just_a_bit_now">JUST A BIT NOW!</string>
     <string name="fullfill_the_form_below">Fulfill the form below to create your account and starts your adventure.
-You will receive an email to confirm your account, then you NEED TO USE AN VALID EMAIL to play Naruto Game!</string>
-    <string name="full_name">Full Name</string>
-    <string name="email" translatable="false">Email</string>
+You will receive an email to confirm your account, then you <b>NEED TO USE A VALID EMAIL</b> to play Naruto Game!</string>
+    <string name="full_name">Your Full Name</string>
+    <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="signup">Sign Up</string>
@@ -115,7 +115,7 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="new_invalid_password">The given password is invalid. [Password should be at least 6 characters]</string>
     <string name="invalid_email">Invalid email</string>
     <string name="weak_password">Weak Password</string>
-    <string name="error_to_the_signup">Error to the signup</string>
+    <string name="error_to_the_signup">Error to the sign up</string>
     <string name="name_field_requered">The name field is required</string>
     <string name="email_field_requered">The email field is required</string>
     <string name="password_field_requered">The password field is required</string>
@@ -129,8 +129,8 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="comment">Comment</string>
 
     <!-- Section RECOVER PASSWORD-->
-    <string name="if_you_do_not_remember_your_password">If you do not remember your password, action
-        your email account below and click \"send\". In a few minutes you will receive your new password</string>
+    <string name="if_you_do_not_remember_your_password">If you do not remember your password, enter
+        your email account below and click \"Recover Password\". In a few seconds you will receive your new password.</string>
     <string name="section_i_forgot_my_password">"I FORGOT MY PASSWORD "</string>
     <string name="password_was_sent">THE PASSWORD WAS SENT SUCCESSFULLY</string>
 
@@ -2416,5 +2416,6 @@ You will receive an email to confirm your account, then you NEED TO USE AN VALID
     <string name="rewarded_ad_wasnt_loaded_yet_warning">The rewarded ad wasn\'t loaded yet.</string>
     <string name="or">or</string>
     <string name="batalha">Battle</string>
+    <string name="play_now">Play now</string>
 
 </resources>

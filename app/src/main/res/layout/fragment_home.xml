@@ -27,8 +27,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
-                android:orientation="vertical"
-                android:visibility="visible">
+                android:orientation="vertical">
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
@@ -89,9 +88,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="16dp"
+                    android:padding="8dp"
                     android:text="@string/forgot_password"
-                    android:textColor="@android:color/holo_blue_light" />
+                    android:textColor="@android:color/holo_blue_light"
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/createAccountTextView"
@@ -99,8 +100,10 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="16dp"
+                    android:padding="8dp"
                     android:text="@string/create_an_account"
-                    android:textColor="@android:color/holo_blue_light" />
+                    android:textColor="@android:color/holo_blue_light"
+                    android:textSize="16sp" />
             </LinearLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -143,7 +146,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/newsRecyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="120dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"

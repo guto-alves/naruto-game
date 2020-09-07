@@ -27,6 +27,7 @@ import com.gutotech.narutogame.ui.ResultListener;
 import com.gutotech.narutogame.ui.home.readnews.ReadNewsFragment;
 import com.gutotech.narutogame.ui.home.signup.SignUpFragment;
 import com.gutotech.narutogame.ui.loggedin.LoggedInActivity;
+import com.gutotech.narutogame.ui.loggedin.newcharacteer.CharacterCreateFragment;
 import com.gutotech.narutogame.utils.FragmentUtils;
 import com.gutotech.narutogame.ui.home.passwordrecovery.PasswordRecoveryFragment;
 import com.gutotech.narutogame.utils.SoundUtil;
@@ -63,7 +64,7 @@ public class HomeFragment extends Fragment implements ResultListener, SectionFra
 
             binding.createAccountTextView.setOnClickListener(v -> {
                 SoundUtil.play(getContext(), R.raw.sound_btn06);
-                FragmentUtils.goTo(getActivity(), new SignUpFragment());
+                FragmentUtils.goTo(getActivity(), new CharacterCreateFragment());
             });
         }
 

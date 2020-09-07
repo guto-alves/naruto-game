@@ -12,6 +12,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/layout_menu_repete"
         android:fillViewport="true">
 
         <LinearLayout
@@ -19,18 +20,16 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingLeft="16dp"
-            android:paddingTop="16dp"
+            android:paddingTop="32dp"
             android:paddingRight="16dp"
             android:paddingBottom="32dp">
 
-            <include
-                android:id="@+id/msgLayout"
-                layout="@layout/section_msg" />
-
-            <include
-                android:id="@+id/accountCreatedMsgLayout"
-                layout="@layout/section_msg"
-                android:visibility="gone" />
+            <ImageView
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:scaleType="centerCrop"
+                android:src="@drawable/layout_cadastro_rapido" />
 
             <LinearLayout
                 android:id="@+id/formToSignupLinearLayout"
@@ -52,7 +51,7 @@
                         style="@style/EditTextCustomTheme"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/full_name"
+                        android:hint="@string/name"
                         android:inputType="textCapWords|textCapSentences"
                         android:text="@={viewModel.player.name}" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -120,11 +119,17 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <Button
-                    style="@style/ButtonTheme"
+                    android:id="@+id/playNowButton"
+                    android:layout_width="194dp"
+                    android:layout_height="80dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="32dp"
-                    android:onClick="@{() -> viewModel.onSignupButtonPressed(false)}"
-                    android:text="@string/signup" />
+                    android:background="@drawable/layout_cadastro_rapido_jogar"
+                    android:onClick="@{() -> viewModel.onSignupButtonPressed(true)}"
+                    android:text="@string/play_now"
+                    android:textColor="#421115"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

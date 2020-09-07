@@ -67,31 +67,35 @@ public class Character extends BaseObservable implements Serializable {
     public Character() {
     }
 
-    public Character(String playerId) {
-        this.playerId = playerId;
-        nick = "";
-        level = 1;
-        setNinja(Ninja.NARUTO);
-        setProfilePath("1/1");
-        setVillage(Village.FOLHA);
-        setClasse(Classe.TAI);
-        setAttributes(new Attributes(classe));
-        updateFormulas();
-        full();
-        ryous = 500;
-        score = 1000;
-        levelUpExp = 1200;
-        combatOverview = new CombatOverview();
-        resumeOfMissions = new ResumeOfMissions();
-        extrasInformation = new ExtrasInformation();
-        mapPosition = -1;
-        fidelityReward = true;
+    public static Character create() {
+        Character character = new Character();
 
-        bag = new Bag();
+        character.setNick("");
+        character.setLevel(1);
+        character.setNinja(Ninja.NARUTO);
+        character.setProfilePath("1/1");
+        character.setVillage(Village.FOLHA);
+        character.setClasse(Classe.TAI);
+        character.setAttributes(new Attributes(character.getClasse()));
+        character.updateFormulas();
+        character.full();
+        character.setRyous(500);
+        character.setScore(1000);
+        character.setLevelUpExp(1200);
+        character.setCombatOverview(new CombatOverview());
+        character.setResumeOfMissions(new ResumeOfMissions());
+        character.setExtrasInformation(new ExtrasInformation());
+        character.setMapPosition(-1);
+        character.setFidelityReward(true);
+
+        Bag bag = new Bag();
         bag.addRamen(new Ramen(
                 "nissin", R.string.ninja_snack, R.string.ninja_snack_description,
                 25, 100), 10);
-        itemsEnabled = true;
+        character.setBag(bag);
+        character.setItemsEnabled(true);
+
+        return character;
     }
 
     public void updateFormulas() {

@@ -20,8 +20,8 @@ public class SignUpViewModel extends ViewModel {
     private ResultListener mAuthListener;
 
     public SignUpViewModel() {
-        mPlayer = new MutableLiveData<>(new Player());
         mAuthRepository = AuthRepository.getInstance();
+        mPlayer = new MutableLiveData<>(new Player());
     }
 
     public LiveData<Player> getPlayer() {
@@ -32,7 +32,7 @@ public class SignUpViewModel extends ViewModel {
         mAuthListener = authListener;
     }
 
-    public void onSignupButtonPressed() {
+    public void onSignupButtonPressed(boolean isQuickRegistration) {
         mAuthListener.onStarted();
 
         if (isValidPlayer()) {
@@ -44,13 +44,16 @@ public class SignUpViewModel extends ViewModel {
                         @Override
                         public void onComplete() {
                             mPlayer.getValue().setId(mAuthRepository.getUid());
-
+                            mPlayer.getValue().setQuickRegistration(isQuickRegistration);
                             PlayerRepository.getInstance().savePlayer(mPlayer.getValue());
 
                             mPlayer.setValue(new Player());
                             confirmPassword = "";
 
-                            mAuthRepository.signOut();
+                            if (!isQuickRegistration) {
+                                mAuthRepository.signOut();
+                            }
+
                             mAuthListener.onSuccess();
                         }
 

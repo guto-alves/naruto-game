@@ -12,10 +12,10 @@ import com.gutotech.narutogame.data.model.News;
 import com.gutotech.narutogame.data.model.NinjaStatistics;
 import com.gutotech.narutogame.data.repository.AuthRepository;
 import com.gutotech.narutogame.data.repository.GameStatusRepository;
+import com.gutotech.narutogame.data.repository.KageRepository;
 import com.gutotech.narutogame.data.repository.NewsRepository;
 import com.gutotech.narutogame.data.repository.NinjaStatisticsRepository;
 import com.gutotech.narutogame.data.repository.PlayerRepository;
-import com.gutotech.narutogame.data.repository.KageRepository;
 import com.gutotech.narutogame.ui.ResultListener;
 import com.gutotech.narutogame.utils.SingleLiveEvent;
 
@@ -40,12 +40,13 @@ public class HomeViewModel extends ViewModel {
     public void onPlayButtonPressed() {
         if (validateFields()) {
             mAuthListener.onStarted();
+
             mAuthRepository.signIn(email.get(), password.get(),
                     new AuthRepository.Completable() {
                         @Override
                         public void onComplete() {
-                            mPlayerRepository.setSignedIn(true, successful -> {
-                                if (successful) {
+                            mPlayerRepository.setSignedIn(true, signInResult -> {
+                                if (signInResult) {
                                     GameStatusRepository.getInstance().getStatus(status -> {
                                         if (status.equals(GameStatusRepository.VERSION_NAME)) {
                                             mAuthListener.onSuccess();
