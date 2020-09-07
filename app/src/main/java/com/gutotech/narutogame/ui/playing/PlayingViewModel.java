@@ -2,6 +2,7 @@ package com.gutotech.narutogame.ui.playing;
 
 import android.app.Application;
 import android.os.Handler;
+import android.os.Looper;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ExpandableListView;
@@ -571,7 +572,7 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
         FirebaseFunctionsUtils.getServerTime(currentTimestamp -> {
             mCurrentTimestamp = currentTimestamp;
 
-            mHandler = new Handler();
+            mHandler = new Handler(Looper.getMainLooper());
             Runnable mRunnable = new Runnable() {
                 @Override
                 public void run() {

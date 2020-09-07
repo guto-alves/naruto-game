@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -47,7 +48,7 @@ public class SplashActivity extends AppCompatActivity implements
     protected void onStart() {
         super.onStart();
 
-        Handler handler = new Handler();
+        Handler handler = new Handler(Looper.getMainLooper());
         handler.postDelayed(() -> NetworkUtils.getInstance().addListener(connected -> {
             if (connected) {
                 if (mConnectionWarningDialog.isVisible()) {
