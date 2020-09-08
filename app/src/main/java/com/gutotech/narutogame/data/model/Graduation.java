@@ -29,7 +29,7 @@ public enum Graduation {
             new Requirement() {
                 @Override
                 public int getValue() {
-                    return 10;
+                    return 3;
                 }
 
                 @Override
@@ -55,7 +55,7 @@ public enum Graduation {
 
                 @Override
                 public String toString(Context context) {
-                    return context.getString(R.string.requires_lerned_jutsus, getValue());
+                    return context.getString(R.string.requires_learned_jutsus, getValue());
                 }
             },
             new Requirement() {
@@ -123,7 +123,7 @@ public enum Graduation {
 
                         @Override
                         public String toString(Context context) {
-                            return context.getString(R.string.requires_lerned_jutsus, getValue());
+                            return context.getString(R.string.requires_learned_jutsus, getValue());
                         }
                     },
                     new Requirement() {
@@ -192,7 +192,7 @@ public enum Graduation {
 
                         @Override
                         public String toString(Context context) {
-                            return context.getString(R.string.requires_lerned_jutsus, getValue());
+                            return context.getString(R.string.requires_learned_jutsus, getValue());
                         }
                     },
                     new Requirement() {
@@ -261,7 +261,7 @@ public enum Graduation {
 
                         @Override
                         public String toString(Context context) {
-                            return context.getString(R.string.requires_lerned_jutsus, getValue());
+                            return context.getString(R.string.requires_learned_jutsus, getValue());
                         }
                     },
                     new Requirement() {
@@ -330,7 +330,7 @@ public enum Graduation {
 
                         @Override
                         public String toString(Context context) {
-                            return context.getString(R.string.requires_lerned_jutsus, getValue());
+                            return context.getString(R.string.requires_learned_jutsus, getValue());
                         }
                     },
                     new Requirement() {
@@ -399,7 +399,7 @@ public enum Graduation {
 
                         @Override
                         public String toString(Context context) {
-                            return context.getString(R.string.requires_lerned_jutsus, getValue());
+                            return context.getString(R.string.requires_learned_jutsus, getValue());
                         }
                     },
                     new Requirement() {

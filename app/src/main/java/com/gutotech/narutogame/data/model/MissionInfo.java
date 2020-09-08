@@ -15,7 +15,7 @@ public enum MissionInfo {
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
-                    return 25;
+                    return 85;
                 }
 
                 @Override
@@ -30,7 +30,7 @@ public enum MissionInfo {
             }, new Reward() {
                 @Override
                 public int value() {
-                    return 800;
+                    return 7034;
                 }
 
                 @Override
@@ -60,11 +60,11 @@ public enum MissionInfo {
                 }
             }),
             Mission.Type.TIME, Mission.Rank.TASK),
-    TASK2(R.string.task_second_lesson, R.string.task_second_lesson_des, R.string.task_msg_finished2,
+    TASK9(R.string.task_second_lesson, R.string.task_lesson_9_des, R.string.task_msg_finished5,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
-                    return 25;
+                    return 85;
                 }
 
                 @Override
@@ -79,252 +79,7 @@ public enum MissionInfo {
             }, new Reward() {
                 @Override
                 public int value() {
-                    return 800;
-                }
-
-                @Override
-                public void receive() {
-                    CharOn.character.incrementExp(value());
-                }
-
-                @Override
-                public CharSequence toString(Context context) {
-                    return context.getString(R.string.label_experience_points, value());
-                }
-            }),
-            Collections.singletonList(new Requirement() {
-                @Override
-                public Object value() {
-                    return 1;
-                }
-
-                @Override
-                public boolean check() {
-                    return CharOn.character.getLevel() >= (int) value();
-                }
-
-                @Override
-                public String toString(Context context) {
-                    return "Lvl. " + (int) value();
-                }
-            }),
-            Mission.Type.TIME, Mission.Rank.TASK),
-    TASK3(R.string.task_third_lesson, R.string.task_third_lesson_des, R.string.task_msg_finished2,
-            Arrays.asList(new Reward() {
-                @Override
-                public int value() {
-                    return 25;
-                }
-
-                @Override
-                public void receive() {
-                    CharOn.character.addRyous(value());
-                }
-
-                @Override
-                public CharSequence toString(Context context) {
-                    return context.getString(R.string.ry, value());
-                }
-            }, new Reward() {
-                @Override
-                public int value() {
-                    return 1000;
-                }
-
-                @Override
-                public void receive() {
-                    CharOn.character.incrementExp(value());
-                }
-
-                @Override
-                public CharSequence toString(Context context) {
-                    return context.getString(R.string.label_experience_points, value());
-                }
-            }),
-            Collections.singletonList(new Requirement() {
-                @Override
-                public Object value() {
-                    return 2;
-                }
-
-                @Override
-                public boolean check() {
-                    return CharOn.character.getLevel() >= (int) value();
-                }
-
-                @Override
-                public String toString(Context context) {
-                    return "Lvl. " + (int) value();
-                }
-            }),
-            Mission.Type.TIME, Mission.Rank.TASK),
-    TASK4(R.string.task_lesson_four, R.string.task_lesson_four_des, R.string.task_msg_finished2,
-            Arrays.asList(new Reward() {
-                @Override
-                public int value() {
-                    return 25;
-                }
-
-                @Override
-                public void receive() {
-                    CharOn.character.addRyous(value());
-                }
-
-                @Override
-                public CharSequence toString(Context context) {
-                    return context.getString(R.string.ry, value());
-                }
-            }, new Reward() {
-                @Override
-                public int value() {
-                    return 1000;
-                }
-
-                @Override
-                public void receive() {
-                    CharOn.character.incrementExp(value());
-                }
-
-                @Override
-                public CharSequence toString(Context context) {
-                    return context.getString(R.string.label_experience_points, value());
-                }
-            }),
-            Collections.singletonList(new Requirement() {
-                @Override
-                public Object value() {
-                    return 2;
-                }
-
-                @Override
-                public boolean check() {
-                    return CharOn.character.getLevel() >= (int) value();
-                }
-
-                @Override
-                public String toString(Context context) {
-                    return "Lvl. " + (int) value();
-                }
-            }),
-            Mission.Type.TIME, Mission.Rank.TASK),
-    TASK5(R.string.task_fifth_lesson, R.string.task_fifth_lesson_des, R.string.task_msg_finished2,
-            Arrays.asList(new Reward() {
-                @Override
-                public int value() {
-                    return 25;
-                }
-
-                @Override
-                public void receive() {
-                    CharOn.character.addRyous(value());
-                }
-
-                @Override
-                public CharSequence toString(Context context) {
-                    return context.getString(R.string.ry, value());
-                }
-            }, new Reward() {
-                @Override
-                public int value() {
-                    return 1200;
-                }
-
-                @Override
-                public void receive() {
-                    CharOn.character.incrementExp(value());
-                }
-
-                @Override
-                public CharSequence toString(Context context) {
-                    return context.getString(R.string.label_experience_points, value());
-                }
-            }),
-            Collections.singletonList(new Requirement() {
-                @Override
-                public Object value() {
-                    return 3;
-                }
-
-                @Override
-                public boolean check() {
-                    return CharOn.character.getLevel() >= (int) value();
-                }
-
-                @Override
-                public String toString(Context context) {
-                    return "Lvl. " + (int) value();
-                }
-            }),
-            Mission.Type.TIME, Mission.Rank.TASK),
-    TASK6(R.string.task_sixth_lesson, R.string.task_sixth_lesson_des, R.string.task_msg_finished3,
-            Arrays.asList(new Reward() {
-                @Override
-                public int value() {
-                    return 25;
-                }
-
-                @Override
-                public void receive() {
-                    CharOn.character.addRyous(value());
-                }
-
-                @Override
-                public CharSequence toString(Context context) {
-                    return context.getString(R.string.ry, value());
-                }
-            }, new Reward() {
-                @Override
-                public int value() {
-                    return 1200;
-                }
-
-                @Override
-                public void receive() {
-                    CharOn.character.incrementExp(value());
-                }
-
-                @Override
-                public CharSequence toString(Context context) {
-                    return context.getString(R.string.label_experience_points, value());
-                }
-            }),
-            Collections.singletonList(new Requirement() {
-                @Override
-                public Object value() {
-                    return 3;
-                }
-
-                @Override
-                public boolean check() {
-                    return CharOn.character.getLevel() >= (int) value();
-                }
-
-                @Override
-                public String toString(Context context) {
-                    return "Lvl. " + (int) value();
-                }
-            }),
-            Mission.Type.TIME, Mission.Rank.TASK),
-    TASK7(R.string.task_seventh_lesson, R.string.task_seventh_lesson_des, R.string.task_msg_finished4,
-            Arrays.asList(new Reward() {
-                @Override
-                public int value() {
-                    return 25;
-                }
-
-                @Override
-                public void receive() {
-                    CharOn.character.addRyous(value());
-                }
-
-                @Override
-                public CharSequence toString(Context context) {
-                    return context.getString(R.string.ry, value());
-                }
-            }, new Reward() {
-                @Override
-                public int value() {
-                    return 1400;
+                    return 1334;
                 }
 
                 @Override
@@ -354,11 +109,11 @@ public enum MissionInfo {
                 }
             }),
             Mission.Type.TIME, Mission.Rank.TASK),
-    TASK8(R.string.task_lesson_eight, R.string.task_lesson_eight_des, R.string.task_msg_finished4,
+    TASK10(R.string.task_third_lesson, R.string.task_tenth_lesson_des, R.string.task_msg_finished10,
             Arrays.asList(new Reward() {
                 @Override
                 public int value() {
-                    return 25;
+                    return 85;
                 }
 
                 @Override
@@ -373,105 +128,7 @@ public enum MissionInfo {
             }, new Reward() {
                 @Override
                 public int value() {
-                    return 1600;
-                }
-
-                @Override
-                public void receive() {
-                    CharOn.character.incrementExp(value());
-                }
-
-                @Override
-                public CharSequence toString(Context context) {
-                    return context.getString(R.string.label_experience_points, value());
-                }
-            }),
-            Collections.singletonList(new Requirement() {
-                @Override
-                public Object value() {
-                    return 4;
-                }
-
-                @Override
-                public boolean check() {
-                    return CharOn.character.getLevel() >= (int) value();
-                }
-
-                @Override
-                public String toString(Context context) {
-                    return "Lvl. " + (int) value();
-                }
-            }),
-            Mission.Type.TIME, Mission.Rank.TASK),
-    TASK9(R.string.task_lesson_9, R.string.task_lesson_9_des, R.string.task_msg_finished5,
-            Arrays.asList(new Reward() {
-                @Override
-                public int value() {
-                    return 25;
-                }
-
-                @Override
-                public void receive() {
-                    CharOn.character.addRyous(value());
-                }
-
-                @Override
-                public CharSequence toString(Context context) {
-                    return context.getString(R.string.ry, value());
-                }
-            }, new Reward() {
-                @Override
-                public int value() {
-                    return 1600;
-                }
-
-                @Override
-                public void receive() {
-                    CharOn.character.incrementExp(value());
-                }
-
-                @Override
-                public CharSequence toString(Context context) {
-                    return context.getString(R.string.label_experience_points, value());
-                }
-            }),
-            Collections.singletonList(new Requirement() {
-                @Override
-                public Object value() {
-                    return 4;
-                }
-
-                @Override
-                public boolean check() {
-                    return CharOn.character.getLevel() >= (int) value();
-                }
-
-                @Override
-                public String toString(Context context) {
-                    return "Lvl. " + (int) value();
-                }
-            }),
-            Mission.Type.TIME, Mission.Rank.TASK),
-    TASK10(R.string.task_tenth_lesson, R.string.task_tenth_lesson_des, R.string.task_msg_finished10,
-            Arrays.asList(new Reward() {
-                @Override
-                public int value() {
-                    return 25;
-                }
-
-                @Override
-                public void receive() {
-                    CharOn.character.addRyous(value());
-                }
-
-                @Override
-                public CharSequence toString(Context context) {
-                    return context.getString(R.string.ry, value());
-                }
-            }, new Reward() {
-                @Override
-                public int value() {
-                    return 1600;
+                    return 3830;
                 }
 
                 @Override

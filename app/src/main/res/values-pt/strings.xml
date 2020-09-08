@@ -1168,9 +1168,9 @@
     <string name="cursed">Amaldiçoado</string>
     <string name="sound_scientist">Cientista do Som</string>
     <string name="survivor">Cobaia</string>
-    <string name="requires_initial_tasks">Você precisa ter completado 10 tarefas ou mais</string>
+    <string name="requires_initial_tasks">Você precisa ter completado 3 tarefas ou mais</string>
     <string name="requires_missions_rank">Você precisa ter completado %d Missões Rank %s ou mais</string>
-    <string name="requires_lerned_jutsus">Ter %d Jutsus Aprendidos</string>
+    <string name="requires_learned_jutsus">Ter %d Jutsus Aprendidos</string>
     <string name="requires_wins_npc">Ter %d Vitória NPC</string>
     <string name="requires_wins_pvp">Ter %d Vitórias PVP</string>
     <string name="requires_you_need_to_be_level">Você precisa estar no Level %d ou superior</string>

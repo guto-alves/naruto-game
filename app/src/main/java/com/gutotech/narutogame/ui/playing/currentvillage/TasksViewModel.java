@@ -23,7 +23,7 @@ import java.util.EnumSet;
 import java.util.List;
 
 public class TasksViewModel extends AndroidViewModel implements TasksAdapter.OnAcceptClickListener {
-    private static final long ONE_MINUTE = 60000;
+    private static final long DURATION = 30000;
 
     private MutableLiveData<List<TimeMission>> mTasks = new MutableLiveData<>();
     private SingleLiveEvent<Boolean> mShowProgressBarEvent = new SingleLiveEvent<>();
@@ -37,7 +37,7 @@ public class TasksViewModel extends AndroidViewModel implements TasksAdapter.OnA
         List<TimeMission> tasks = new ArrayList<>();
 
         for (MissionInfo missionInfo : EnumSet.range(MissionInfo.TASK1, MissionInfo.TASK10)) {
-            tasks.add(new TimeMission(missionInfo.name(), ONE_MINUTE));
+            tasks.add(new TimeMission(missionInfo.name(), DURATION));
         }
 
         if (CharOn.character.getMissionsFinishedId() != null) {
