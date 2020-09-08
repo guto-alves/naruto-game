@@ -9,6 +9,10 @@
         <variable
             name="character"
             type="com.gutotech.narutogame.data.model.Character" />
+
+        <variable
+            name="titles"
+            type="com.gutotech.narutogame.data.model.Title[]" />
     </data>
 
     <ScrollView
@@ -84,7 +88,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
-                            android:text='@{character.titleIndex == 0 ? "" : context.getString(character.titles.get(character.titleIndex - 1))}'
+                            android:text='@{character.selectedTitle == 0 ? "" : context.getString(titles[character.getSelectedTitleIndex()].text)}'
                             android:textColor="#937b4d"
                             android:textSize="10sp"
                             app:layout_constraintEnd_toEndOf="@+id/nickTextView"

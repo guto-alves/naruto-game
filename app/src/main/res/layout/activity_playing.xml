@@ -9,9 +9,15 @@
 
         <import type="android.text.TextUtils" />
 
+        <import type="com.gutotech.narutogame.data.model.Title" />
+
         <variable
             name="viewModel"
             type="com.gutotech.narutogame.ui.playing.PlayingViewModel" />
+
+        <variable
+            name="titles"
+            type="Title[]" />
     </data>
 
     <androidx.drawerlayout.widget.DrawerLayout
@@ -102,7 +108,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="2dp"
-                                android:text='@{viewModel.character.titleIndex == 0 ? "" : context.getString(viewModel.character.titles.get(viewModel.character.titleIndex - 1))}'
+                                android:text='@{viewModel.character.selectedTitle == 0 ? "" : context.getString(titles[viewModel.character.getSelectedTitleIndex()].text)}'
                                 android:textColor="#937B4D"
                                 android:textSize="10sp"
                                 app:layout_constraintEnd_toEndOf="@+id/nickTextView"
@@ -134,7 +140,7 @@
                         android:layout_marginLeft="32dp"
                         android:layout_marginRight="32dp"
                         android:background="@android:color/white"
-                        android:selectedItemPosition="@={viewModel.character.titleIndex}"
+                        android:selectedItemPosition="@={viewModel.character.selectedTitle}"
                         android:spinnerMode="dialog" />
 
                     <LinearLayout

@@ -1253,12 +1253,12 @@ You will receive an email to confirm your account, then you <b>NEED TO USE A VAL
     <string name="leaf_sannin">Leaf Sannin</string>
     <string name="hero">Hero</string>
     <string name="sand_sealer">Sand Sealer</string>
-    <string name="cloud_head_ninja">Cloud Head Ninja</string>
+    <string name="cloud_captain">Cloud Captain</string>
     <string name="stone_hunter">Stone Hunter</string>
-    <string name="swordsman_of_the_mist">Swordsman of the Mist</string>
+    <string name="mist_swordsman">Mist Swordsman</string>
     <string name="orphan">Orphan</string>
     <string name="cursed">Cursed</string>
-    <string name="sound_cientist">Sound Scientist</string>
+    <string name="sound_scientist">Sound Scientist</string>
     <string name="survivor">Survivor</string>
     <string name="requires_initial_tasks">You must have completed 10 Initial Tasks</string>
     <string name="requires_lerned_jutsus">Have %d Learned Jutsus</string>
@@ -2417,5 +2417,6 @@ You will receive an email to confirm your account, then you <b>NEED TO USE A VAL
     <string name="or">or</string>
     <string name="batalha">Battle</string>
     <string name="play_now">Play now</string>
+    <string name="online">Online</string>
 
 </resources>

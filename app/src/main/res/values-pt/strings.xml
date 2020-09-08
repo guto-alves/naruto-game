@@ -1161,12 +1161,12 @@
     <string name="leaf_sannin">Sannin da Folha</string>
     <string name="hero">Herói</string>
     <string name="sand_sealer">Selador da Areia</string>
-    <string name="cloud_head_ninja">Capitão da Nuvem</string>
+    <string name="cloud_captain">Capitão da Nuvem</string>
     <string name="stone_hunter">Caçador da Pedra</string>
-    <string name="swordsman_of_the_mist">Caçador da Névoa</string>
+    <string name="mist_swordsman">Caçador da Névoa</string>
     <string name="orphan">Órfão</string>
     <string name="cursed">Amaldiçoado</string>
-    <string name="sound_cientist">Cientista do Som</string>
+    <string name="sound_scientist">Cientista do Som</string>
     <string name="survivor">Cobaia</string>
     <string name="requires_initial_tasks">Você precisa ter completado 10 tarefas ou mais</string>
     <string name="requires_missions_rank">Você precisa ter completado %d Missões Rank %s ou mais</string>
@@ -2380,5 +2380,6 @@
 
     <string name="play_now">Jogar agora</string>]
     <string name="email">E-mail</string>
+    <string name="online">Online</string>
 
 </resources>

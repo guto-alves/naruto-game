@@ -5,12 +5,6 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
-
-import androidx.annotation.NonNull;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.databinding.DataBindingUtil;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,11 +12,17 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.databinding.DataBindingUtil;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.gutotech.narutogame.R;
+import com.gutotech.narutogame.data.firebase.StorageUtils;
 import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.model.Character;
+import com.gutotech.narutogame.data.model.Title;
 import com.gutotech.narutogame.databinding.DialogRankCharacterBinding;
-import com.gutotech.narutogame.data.firebase.StorageUtils;
 import com.gutotech.narutogame.utils.DateCustom;
 
 import java.util.ArrayList;
@@ -31,6 +31,7 @@ import java.util.List;
 public class RankingNinjasAdapter extends RecyclerView.Adapter<RankingNinjasAdapter.MyViewHolder> {
     private Context mContext;
     private List<Character> mNinjas;
+    private final Title[] TITLES = Title.values();
 
     public RankingNinjasAdapter(Context context) {
         mContext = context;
@@ -58,10 +59,10 @@ public class RankingNinjasAdapter extends RecyclerView.Adapter<RankingNinjasAdap
 
             holder.nickTextView.setOnClickListener(v -> showDetails(character));
 
-            if (character.getTitleIndex() != 0) {
+            if (character.getSelectedTitle() != 0) {
                 holder.titleTextView.setVisibility(View.VISIBLE);
-                holder.titleTextView.setText(mContext.getString(
-                        character.getTitles().get(character.getTitleIndex() - 1)));
+                holder.titleTextView.setText(
+                        mContext.getString(TITLES[character.getSelectedTitleIndex()].getText()));
             } else {
                 holder.titleTextView.setVisibility(View.GONE);
             }
@@ -141,13 +142,15 @@ public class RankingNinjasAdapter extends RecyclerView.Adapter<RankingNinjasAdap
         DialogRankCharacterBinding binding = DataBindingUtil.inflate(LayoutInflater.from(mContext),
                 R.layout.dialog_rank_character, null, false);
 
+        binding.setTitles(Title.values());
+
         binding.setCharacter(character);
         profileDialog.setContentView(binding.getRoot());
 
         List<String> titles = new ArrayList<>();
 
-        for (int titleId : character.getTitles()) {
-            titles.add(mContext.getString(titleId));
+        for (int titleIndex : character.getTitles()) {
+            titles.add(mContext.getString(TITLES[titleIndex].getText()));
         }
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(mContext,

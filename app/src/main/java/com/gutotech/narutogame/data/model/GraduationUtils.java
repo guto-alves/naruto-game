@@ -55,7 +55,7 @@ public class GraduationUtils {
                 case 4:
                     return R.string.anbu;
                 case 5:
-                    return R.string.swordsman_of_the_mist;
+                    return R.string.mist_swordsman;
                 case 6:
                     return R.string.hero;
             }
@@ -89,7 +89,7 @@ public class GraduationUtils {
                 case 4:
                     return R.string.anbu;
                 case 5:
-                    return R.string.cloud_head_ninja;
+                    return R.string.cloud_captain;
                 case 6:
                     return R.string.hero;
             }
@@ -123,7 +123,7 @@ public class GraduationUtils {
                 case 4:
                     return R.string.anbu;
                 case 5:
-                    return R.string.sound_cientist;
+                    return R.string.sound_scientist;
                 case 6:
                     return R.string.cursed;
             }

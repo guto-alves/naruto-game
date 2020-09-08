@@ -32,7 +32,7 @@ public class Npc implements Serializable {
         character.getAttributes().updateFormulas(character.getClasse(),
                 character.getLevel() - (random.nextInt(2) + 1));
         character.full();
-        character.setTitleIndex(0);
+        character.setSelectedTitle(0);
     }
 
     private Character mCharacter;

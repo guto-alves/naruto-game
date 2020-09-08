@@ -1,7 +1,6 @@
 package com.gutotech.narutogame.data.model;
 
 import androidx.annotation.Nullable;
-import androidx.annotation.StringRes;
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 import androidx.databinding.library.baseAdapters.BR;
@@ -27,8 +26,8 @@ public class Character extends BaseObservable implements Serializable {
     private int currentExp;
     private int levelUpExp;
     private long ryous;
-    private int titleIndex;
-    private List<Integer> titles;
+    private List<Integer> titles = new ArrayList<>();
+    private int selectedTitle;
     private int score;
     private int graduationId;
     private String team;
@@ -69,7 +68,6 @@ public class Character extends BaseObservable implements Serializable {
 
     public static Character create() {
         Character character = new Character();
-
         character.setNick("");
         character.setLevel(1);
         character.setNinja(Ninja.NARUTO);
@@ -87,6 +85,7 @@ public class Character extends BaseObservable implements Serializable {
         character.setExtrasInformation(new ExtrasInformation());
         character.setMapPosition(-1);
         character.setFidelityReward(true);
+        character.getTitles().add(Title.NONE.ordinal());
 
         Bag bag = new Bag();
         bag.addRamen(new Ramen(
@@ -96,6 +95,11 @@ public class Character extends BaseObservable implements Serializable {
         character.setItemsEnabled(true);
 
         return character;
+    }
+
+    @Exclude
+    public int getSelectedTitleIndex() {
+        return titles.get(selectedTitle);
     }
 
     public void updateFormulas() {
@@ -148,8 +152,8 @@ public class Character extends BaseObservable implements Serializable {
         setRyous(getRyous() - ryousSpent);
     }
 
-    public void addTitle(@StringRes int titleId) {
-        titles.add(titleId);
+    public void addTitle(int titleIndex) {
+        titles.add(titleIndex);
         notifyPropertyChanged(BR.titles);
     }
 
@@ -497,20 +501,17 @@ public class Character extends BaseObservable implements Serializable {
     }
 
     @Bindable
-    public int getTitleIndex() {
-        return titleIndex;
+    public int getSelectedTitle() {
+        return selectedTitle;
     }
 
-    public void setTitleIndex(int titleIndex) {
-        this.titleIndex = titleIndex;
-        notifyPropertyChanged(BR.titleIndex);
+    public void setSelectedTitle(int selectedTitle) {
+        this.selectedTitle = selectedTitle;
+        notifyPropertyChanged(BR.selectedTitle);
     }
 
     @Bindable
     public List<Integer> getTitles() {
-        if (titles == null) {
-            titles = new ArrayList<>();
-        }
         return titles;
     }
 

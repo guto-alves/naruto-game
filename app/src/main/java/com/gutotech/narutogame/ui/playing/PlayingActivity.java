@@ -34,6 +34,7 @@ import com.daimajia.androidanimations.library.YoYo;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.Battle;
 import com.gutotech.narutogame.data.model.CharOn;
+import com.gutotech.narutogame.data.model.Title;
 import com.gutotech.narutogame.data.network.NetworkUtils;
 import com.gutotech.narutogame.data.repository.AuthRepository;
 import com.gutotech.narutogame.databinding.ActivityPlayingBinding;
@@ -109,20 +110,23 @@ public class PlayingActivity extends AppCompatActivity implements
             }
         });
 
-        mViewModel.getTitles().observe(this, titlesId -> {
-            List<String> titles = new ArrayList<>();
-            titles.add(getString(R.string.none));
+        mBinding.setTitles(Title.values());
 
-            for (int titleId : titlesId) {
-                titles.add(getString(titleId));
+        mViewModel.getTitles().observe(this, titleIndices -> {
+            List<String> titleList = new ArrayList<>();
+
+            Title[] titles = Title.values();
+
+            for (int titleIndex : titleIndices) {
+                titleList.add(getString(titles[titleIndex].getText()));
             }
 
-            ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
-                    android.R.layout.simple_spinner_item, titles);
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                    this, android.R.layout.simple_spinner_item, titleList);
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
             mBinding.titlesSpinner.setAdapter(adapter);
-            mBinding.titlesSpinner.setSelection(mViewModel.getCharacter().getTitleIndex());
+            mBinding.titlesSpinner.setSelection(mViewModel.getCharacter().getSelectedTitle());
         });
 
         mViewModel.getShowWarningDialogEvent().observe(this, resid -> {

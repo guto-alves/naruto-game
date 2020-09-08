@@ -41,34 +41,33 @@ public class HomeViewModel extends ViewModel {
         if (validateFields()) {
             mAuthListener.onStarted();
 
-            mAuthRepository.signIn(email.get(), password.get(),
-                    new AuthRepository.Completable() {
-                        @Override
-                        public void onComplete() {
-                            mPlayerRepository.setSignedIn(true, signInResult -> {
-                                if (signInResult) {
-                                    GameStatusRepository.getInstance().getStatus(status -> {
-                                        if (status.equals(GameStatusRepository.VERSION_NAME)) {
-                                            mAuthListener.onSuccess();
-                                        } else {
-                                            mPlayerRepository.setSignedIn(false, null);
-                                            mAuthRepository.signOut();
-                                            mAuthListener.onFailure(0);
-                                            mStartMaintenanceActivityEvent.call();
-                                        }
-                                    });
+            mAuthRepository.signIn(email.get(), password.get(), new AuthRepository.Completable() {
+                @Override
+                public void onComplete() {
+                    mPlayerRepository.setSignedIn(true, signInResult -> {
+                        if (signInResult) {
+                            GameStatusRepository.getInstance().getStatus(status -> {
+                                if (status.equals(GameStatusRepository.VERSION_NAME)) {
+                                    mAuthListener.onSuccess();
                                 } else {
+                                    mPlayerRepository.setSignedIn(false, null);
                                     mAuthRepository.signOut();
-                                    mAuthListener.onFailure(R.string.error_multiple_logins);
+                                    mAuthListener.onFailure(0);
+                                    mStartMaintenanceActivityEvent.call();
                                 }
                             });
-                        }
-
-                        @Override
-                        public void onError(int resId) {
-                            mAuthListener.onFailure(resId);
+                        } else {
+                            mAuthRepository.signOut();
+                            mAuthListener.onFailure(R.string.error_multiple_logins);
                         }
                     });
+                }
+
+                @Override
+                public void onError(int resId) {
+                    mAuthListener.onFailure(resId);
+                }
+            });
         }
     }
 

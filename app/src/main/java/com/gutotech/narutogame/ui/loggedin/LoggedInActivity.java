@@ -3,21 +3,18 @@ package com.gutotech.narutogame.ui.loggedin;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
-import androidx.core.view.GravityCompat;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.drawerlayout.widget.DrawerLayout;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
+
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
@@ -30,9 +27,9 @@ import com.gutotech.narutogame.data.repository.PlayerRepository;
 import com.gutotech.narutogame.ui.MaintenanceActivity;
 import com.gutotech.narutogame.ui.WarningDialogFragment;
 import com.gutotech.narutogame.ui.adapter.ExpandableAdapter;
+import com.gutotech.narutogame.utils.BgMusicUtils;
 import com.gutotech.narutogame.utils.FragmentUtils;
 import com.gutotech.narutogame.utils.SettingsUtils;
-import com.gutotech.narutogame.utils.BgMusicUtils;
 import com.gutotech.narutogame.utils.SoundUtil;
 
 public class LoggedInActivity extends AppCompatActivity

@@ -8,6 +8,7 @@ import com.gutotech.narutogame.data.model.Graduation;
 import com.gutotech.narutogame.data.model.GraduationUtils;
 import com.gutotech.narutogame.data.model.Score;
 import com.gutotech.narutogame.data.model.Scroll;
+import com.gutotech.narutogame.data.model.Village;
 import com.gutotech.narutogame.data.repository.CharacterRepository;
 import com.gutotech.narutogame.ui.adapter.GraduationsAdapter;
 import com.gutotech.narutogame.utils.SingleLiveEvent;
@@ -25,7 +26,7 @@ public class GraduationsViewModel extends ViewModel implements GraduationsAdapte
     @Override
     public synchronized void onGraduateClick(int graduationId, Graduation graduation) {
         CharOn.character.setGraduationId(graduationId);
-        CharOn.character.addTitle(GraduationUtils.getName(graduationId));
+        CharOn.character.addTitle(CharOn.character.getVillage().getTitleIndex(graduationId));
         CharOn.character.incrementScore(Score.GRADUATION);
         CharacterRepository.getInstance().save(CharOn.character);
         mUpdateGraduationsEvent.call();
