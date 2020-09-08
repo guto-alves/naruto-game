@@ -2,6 +2,10 @@ package com.gutotech.narutogame.ui.home.home;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
@@ -9,28 +13,23 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
-
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.repository.AuthRepository;
 import com.gutotech.narutogame.databinding.FragmentHomeBinding;
 import com.gutotech.narutogame.ui.MaintenanceActivity;
 import com.gutotech.narutogame.ui.ProgressDialogFragment;
+import com.gutotech.narutogame.ui.ResultListener;
 import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.adapter.KagesSliderAdapter;
-import com.gutotech.narutogame.ui.adapter.NinjaStatisticsAdapter;
 import com.gutotech.narutogame.ui.adapter.NewsAdapter;
-import com.gutotech.narutogame.ui.ResultListener;
+import com.gutotech.narutogame.ui.adapter.NinjaStatisticsAdapter;
+import com.gutotech.narutogame.ui.home.passwordrecovery.PasswordRecoveryFragment;
 import com.gutotech.narutogame.ui.home.readnews.ReadNewsFragment;
 import com.gutotech.narutogame.ui.loggedin.LoggedInActivity;
 import com.gutotech.narutogame.ui.loggedin.newcharacter.CharacterCreateFragment;
 import com.gutotech.narutogame.utils.FragmentUtils;
-import com.gutotech.narutogame.ui.home.passwordrecovery.PasswordRecoveryFragment;
 import com.gutotech.narutogame.utils.SoundUtil;
-import com.smarteist.autoimageslider.IndicatorAnimations;
+import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
 import com.smarteist.autoimageslider.SliderAnimations;
 
 import es.dmoral.toasty.Toasty;
@@ -94,7 +93,7 @@ public class HomeFragment extends Fragment implements ResultListener, SectionFra
         KagesSliderAdapter kagesSliderAdapter = new KagesSliderAdapter(getContext());
         binding.kagesSliderView.setSliderAdapter(kagesSliderAdapter);
         binding.kagesSliderView.startAutoCycle();
-        binding.kagesSliderView.setIndicatorAnimation(IndicatorAnimations.WORM);
+        binding.kagesSliderView.setIndicatorAnimation(IndicatorAnimationType.WORM);
         binding.kagesSliderView.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION);
         viewModel.getKages().observe(getViewLifecycleOwner(), kages -> {
             if (kages.size() > 0) {
@@ -120,7 +119,7 @@ public class HomeFragment extends Fragment implements ResultListener, SectionFra
 
     @Override
     public void onStarted() {
-        mProgressDialog.openDialog(getParentFragmentManager());
+        mProgressDialog.openDialog(getFragmentManager());
     }
 
     @Override

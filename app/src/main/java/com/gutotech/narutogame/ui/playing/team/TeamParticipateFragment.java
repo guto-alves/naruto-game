@@ -45,7 +45,7 @@ public class TeamParticipateFragment extends Fragment implements SectionFragment
         viewModel.getShowWarningDialogEvent().observe(getViewLifecycleOwner(), resid -> {
             WarningDialogFragment warningDialogFragment = WarningDialogFragment.newInstance(
                     getContext(), resid);
-            warningDialogFragment.openDialog(getParentFragmentManager());
+            warningDialogFragment.openDialog(getFragmentManager());
             SoundUtil.play(getContext(), R.raw.sound_pop);
         });
 

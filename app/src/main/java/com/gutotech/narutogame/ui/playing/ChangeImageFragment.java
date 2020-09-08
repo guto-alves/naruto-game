@@ -53,7 +53,7 @@ public class ChangeImageFragment extends Fragment implements SectionFragment,
 
         QuestionDialogFragment questionDialog = QuestionDialogFragment.newInstance(
                 getString(R.string.question_change_profile_image), this);
-        questionDialog.openDialog(getParentFragmentManager());
+        questionDialog.openDialog(getFragmentManager());
         SoundUtil.play(requireContext(), R.raw.sound_pop);
     };
 

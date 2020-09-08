@@ -35,7 +35,7 @@ public class RamenShopFragment extends Fragment implements SectionFragment {
         binding.setViewModel(viewModel);
 
         ItemShopAdapter adapter = new ItemShopAdapter(getActivity(),
-                getParentFragmentManager(), viewModel);
+                getFragmentManager(), viewModel);
         binding.ramensRecyclerView.setHasFixedSize(true);
         binding.ramensRecyclerView.setAdapter(adapter);
         adapter.setItemsList(ShopUtils.getRamens());
@@ -52,7 +52,7 @@ public class RamenShopFragment extends Fragment implements SectionFragment {
     private void showWarningDialog(@StringRes int resid) {
         WarningDialogFragment dialog = WarningDialogFragment.newInstance(getContext(), resid);
         dialog.setCancelable(true);
-        dialog.openDialog(getParentFragmentManager());
+        dialog.openDialog(getFragmentManager());
         SoundUtil.play(getContext(), R.raw.get_item02);
     }
 

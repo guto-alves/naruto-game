@@ -44,7 +44,7 @@ public class MissionsFragment extends Fragment implements SectionFragment {
         viewModel.getShowWarningDialogEvent().observe(getViewLifecycleOwner(), aVoid -> {
             WarningDialogFragment warningDialog = WarningDialogFragment.newInstance(
                     getContext(), R.string.reached_the_limit_of_daily_time_missions);
-            warningDialog.openDialog(getParentFragmentManager());
+            warningDialog.openDialog(getFragmentManager());
         });
 
         if (CharOn.character.isSpecialMission()) {
@@ -55,7 +55,7 @@ public class MissionsFragment extends Fragment implements SectionFragment {
 
         viewModel.getShowProgressBarEvent().observe(getViewLifecycleOwner(), show -> {
             if (show) {
-                mProgressDialog.show(getParentFragmentManager());
+                mProgressDialog.show(getFragmentManager());
             } else {
                 mProgressDialog.dismiss();
             }

@@ -60,7 +60,7 @@ public class DojoNPCFightersFragment extends Fragment {
         ProgressDialogFragment progressDialogFragment = new ProgressDialogFragment();
         viewModel.getProgressDialogEvent().observe(getViewLifecycleOwner(), visible -> {
             if (visible) {
-                progressDialogFragment.openDialog(getParentFragmentManager());
+                progressDialogFragment.openDialog(getFragmentManager());
             } else {
                 progressDialogFragment.dismiss();
             }

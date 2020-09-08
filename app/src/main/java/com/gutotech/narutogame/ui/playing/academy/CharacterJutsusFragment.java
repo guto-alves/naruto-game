@@ -69,11 +69,11 @@ public class CharacterJutsusFragment extends Fragment implements SectionFragment
                                 mBinding.scrollView.smoothScrollTo(0, mBinding.scrollView.getBottom() + 1000)
                         );
                     });
-            dialog.show(getParentFragmentManager(), "EnhanceJutsuDialogFragment");
+            dialog.show(getFragmentManager(), "EnhanceJutsuDialogFragment");
             SoundUtil.play(getContext(), R.raw.sound_pop);
         } else {
             WarningDialogFragment.newInstance(getContext(), R.string.you_dont_have_enough_skill_points)
-                    .openDialog(getParentFragmentManager());
+                    .openDialog(getFragmentManager());
             SoundUtil.play(getContext(), R.raw.attention2);
         }
     }

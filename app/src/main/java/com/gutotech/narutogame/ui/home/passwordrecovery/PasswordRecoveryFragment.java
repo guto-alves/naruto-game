@@ -46,7 +46,7 @@ public class PasswordRecoveryFragment extends Fragment implements ResultListener
 
     @Override
     public void onStarted() {
-        mProgressDialogFragment.openDialog(getParentFragmentManager());
+        mProgressDialogFragment.openDialog(getFragmentManager());
     }
 
     @Override

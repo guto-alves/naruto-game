@@ -101,7 +101,7 @@ public class TeamDetailsFragment extends Fragment implements SectionFragment,
         binding.leaveTeamButton.setOnClickListener(v -> {
             QuestionDialogFragment questionDialogFragment = QuestionDialogFragment.newInstance(
                     getString(R.string.question_leave_the_team), this);
-            questionDialogFragment.openDialog(getParentFragmentManager());
+            questionDialogFragment.openDialog(getFragmentManager());
             SoundUtil.play(requireContext(), R.raw.attention2);
         });
 

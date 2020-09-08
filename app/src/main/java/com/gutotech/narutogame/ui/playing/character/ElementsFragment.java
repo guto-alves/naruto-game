@@ -83,7 +83,7 @@ public class ElementsFragment extends Fragment implements SectionFragment,
                     getString(R.string.learn_element_question,
                             mViewModel.getElementSelected().getValue().name),
                     this, LEARN_ELEMENT_REQUEST_CODE);
-            dialog.openDialog(getParentFragmentManager());
+            dialog.openDialog(getFragmentManager());
             SoundUtil.play(requireContext(), R.raw.sound_pop);
         });
 
@@ -91,7 +91,7 @@ public class ElementsFragment extends Fragment implements SectionFragment,
             QuestionDialogFragment dialog = QuestionDialogFragment.newInstance(
                     getString(R.string.unlearning_warning),
                     this, UNLEAR_ELEMENT_REQUEST_CODE);
-            dialog.openDialog(getParentFragmentManager());
+            dialog.openDialog(getFragmentManager());
             SoundUtil.play(requireContext(), R.raw.sound_pop);
         });
 
@@ -145,7 +145,7 @@ public class ElementsFragment extends Fragment implements SectionFragment,
     private void unlearnElement() {
         if (CharOn.character.getRyous() < 3000) {
             WarningDialogFragment.newInstance(getContext(), R.string.warning_dont_have_enough_ryous)
-                    .openDialog(getParentFragmentManager());
+                    .openDialog(getFragmentManager());
             SoundUtil.play(getContext(), R.raw.attention2);
             return;
         }

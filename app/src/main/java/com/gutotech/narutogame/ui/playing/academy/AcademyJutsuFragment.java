@@ -61,7 +61,7 @@ public class AcademyJutsuFragment extends Fragment implements SectionFragment {
 
         mBinding.jutsusRecyclerView.setHasFixedSize(true);
         JutsusLearnAdapter adapter = new JutsusLearnAdapter(getActivity(),
-                getParentFragmentManager(), viewModel);
+                getFragmentManager(), viewModel);
         mBinding.jutsusRecyclerView.setAdapter(adapter);
 
         viewModel.getJutsus().observe(getViewLifecycleOwner(), adapter::setJutsusList);

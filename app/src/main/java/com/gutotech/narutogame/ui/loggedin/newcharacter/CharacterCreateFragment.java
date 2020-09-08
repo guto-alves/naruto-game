@@ -68,7 +68,7 @@ public class CharacterCreateFragment extends Fragment implements SectionFragment
         mViewModel.getImpossibleToCreateEvent().observe(getViewLifecycleOwner(), aVoid -> {
             WarningDialogFragment.newInstance(getContext(), R.string.problem,
                     R.string.max_limit_of_character_warning, this, 0)
-                    .openDialog(getParentFragmentManager());
+                    .openDialog(getFragmentManager());
             SoundUtil.play(getContext(), R.raw.attention2);
         });
 
@@ -101,7 +101,7 @@ public class CharacterCreateFragment extends Fragment implements SectionFragment
 
     @Override
     public void onStarted() {
-        mProgressDialog.openDialog(getParentFragmentManager());
+        mProgressDialog.openDialog(getFragmentManager());
     }
 
     @Override

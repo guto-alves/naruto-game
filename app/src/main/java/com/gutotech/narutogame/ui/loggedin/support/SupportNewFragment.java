@@ -160,7 +160,7 @@ public class SupportNewFragment extends Fragment {
 
             WarningDialogFragment warningDialog = WarningDialogFragment.newInstance(
                     getContext(), message.toString());
-            warningDialog.openDialog(getParentFragmentManager());
+            warningDialog.openDialog(getFragmentManager());
             SoundUtil.play(getContext(), R.raw.attention2);
         });
 

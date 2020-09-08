@@ -77,7 +77,7 @@ class FastSignUpDialogFragment : DialogFragment() {
         fun show(fragment: Fragment) {
             val dialog = FastSignUpDialogFragment()
             dialog.setTargetFragment(fragment, 0)
-            dialog.show(fragment.parentFragmentManager, "FastSignUpDialogFragment")
+            dialog.show(fragment.childFragmentManager, "FastSignUpDialogFragment")
         }
     }
 }

@@ -58,7 +58,7 @@ public class PasswordChangeFragment extends Fragment implements SectionFragment,
 
     @Override
     public void onStarted() {
-        progressDialog.show(getParentFragmentManager(), "ProgressDialog");
+        progressDialog.show(getFragmentManager(), "ProgressDialog");
     }
 
     @Override

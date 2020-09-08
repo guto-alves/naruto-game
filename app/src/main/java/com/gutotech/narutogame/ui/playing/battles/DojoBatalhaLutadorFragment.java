@@ -208,7 +208,7 @@ public class DojoBatalhaLutadorFragment extends Fragment implements SectionFragm
 
     private void showWarningDialog(@StringRes int resid) {
         WarningDialogFragment dialog = WarningDialogFragment.newInstance(getContext(), resid);
-        dialog.openDialog(getParentFragmentManager());
+        dialog.openDialog(getFragmentManager());
         SoundUtil.play(getContext(), R.raw.attention2);
     }
 

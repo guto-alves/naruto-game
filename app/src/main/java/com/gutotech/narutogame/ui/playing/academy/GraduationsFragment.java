@@ -32,7 +32,7 @@ public class GraduationsFragment extends Fragment implements SectionFragment {
 
         binding.graduationsRecyclerView.setHasFixedSize(true);
         GraduationsAdapter adapter = new GraduationsAdapter(getActivity(),
-                getParentFragmentManager(), viewModel);
+                getChildFragmentManager(), viewModel);
         binding.graduationsRecyclerView.setAdapter(adapter);
 
         viewModel.getUpdateGraduationsEvent().observe(getViewLifecycleOwner(), aVoid -> {

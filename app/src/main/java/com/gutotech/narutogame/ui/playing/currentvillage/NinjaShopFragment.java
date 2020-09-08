@@ -33,7 +33,7 @@ public class NinjaShopFragment extends Fragment implements SectionFragment {
         binding.setViewModel(viewModel);
 
         ItemShopAdapter adapter = new ItemShopAdapter(getActivity(),
-                getParentFragmentManager(), viewModel);
+                getFragmentManager(), viewModel);
         binding.shopItemsRecyclerView.setHasFixedSize(true);
         binding.shopItemsRecyclerView.setAdapter(adapter);
 
@@ -43,7 +43,7 @@ public class NinjaShopFragment extends Fragment implements SectionFragment {
             WarningDialogFragment warningDialog = WarningDialogFragment.newInstance(
                     getContext(), resid);
             warningDialog.setCancelable(true);
-            warningDialog.openDialog(getParentFragmentManager());
+            warningDialog.openDialog(getFragmentManager());
             SoundUtil.play(getContext(), R.raw.get_item02);
         });
 

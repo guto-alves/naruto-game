@@ -48,7 +48,7 @@ public class SignUpFragment extends Fragment implements ResultListener, SectionF
 
     @Override
     public void onStarted() {
-        mProgressDialog.show(getParentFragmentManager(), "ProgressDialog");
+        mProgressDialog.show(getChildFragmentManager(), "ProgressDialog");
     }
 
     @Override

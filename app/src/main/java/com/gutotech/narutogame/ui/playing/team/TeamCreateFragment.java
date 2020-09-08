@@ -43,7 +43,7 @@ public class TeamCreateFragment extends Fragment implements SectionFragment {
         mProgressDialog = new ProgressDialogFragment();
 
         viewModel.getShowProgressDialogEvent().observe(getViewLifecycleOwner(), aVoid ->
-                mProgressDialog.openDialog(getParentFragmentManager()));
+                mProgressDialog.openDialog(getFragmentManager()));
 
         viewModel.getDismissProgressDialogEvent().observe(getViewLifecycleOwner(), aVoid ->
                 mProgressDialog.dismiss());
@@ -57,7 +57,7 @@ public class TeamCreateFragment extends Fragment implements SectionFragment {
 
     private void showDialog(@StringRes int resid) {
         WarningDialogFragment dialog = WarningDialogFragment.newInstance(getContext(), resid);
-        dialog.openDialog(getParentFragmentManager());
+        dialog.openDialog(getFragmentManager());
         SoundUtil.play(getContext(), R.raw.attention2);
     }
 

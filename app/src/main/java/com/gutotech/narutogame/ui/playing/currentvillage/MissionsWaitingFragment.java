@@ -67,7 +67,7 @@ public class MissionsWaitingFragment extends Fragment implements SectionFragment
     private void showQuestionDialog() {
         QuestionDialogFragment questionDialog = QuestionDialogFragment.newInstance(
                 getString(R.string.question_cancel_mission), this);
-        questionDialog.openDialog(getParentFragmentManager());
+        questionDialog.openDialog(getFragmentManager());
         SoundUtil.play(getContext(), R.raw.attention2);
     }
 
