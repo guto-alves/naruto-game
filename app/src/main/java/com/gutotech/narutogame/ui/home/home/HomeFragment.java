@@ -57,12 +57,12 @@ public class HomeFragment extends Fragment implements ResultListener, SectionFra
 
             binding.forgotPasswordTextView.setOnClickListener(v -> {
                 SoundUtil.play(getContext(), R.raw.sound_btn06);
-                FragmentUtils.goTo(getActivity(), new PasswordRecoveryFragment());
+                FragmentUtils.goTo(getActivity(), new PasswordRecoveryFragment(), true);
             });
 
             binding.createAccountTextView.setOnClickListener(v -> {
                 SoundUtil.play(getContext(), R.raw.sound_btn06);
-                FragmentUtils.goTo(getActivity(), new CharacterCreateFragment());
+                FragmentUtils.goTo(getActivity(), new CharacterCreateFragment(), true);
             });
         }
 
@@ -92,9 +92,9 @@ public class HomeFragment extends Fragment implements ResultListener, SectionFra
 
         KagesSliderAdapter kagesSliderAdapter = new KagesSliderAdapter(getContext());
         binding.kagesSliderView.setSliderAdapter(kagesSliderAdapter);
-        binding.kagesSliderView.startAutoCycle();
         binding.kagesSliderView.setIndicatorAnimation(IndicatorAnimationType.WORM);
         binding.kagesSliderView.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION);
+        binding.kagesSliderView.startAutoCycle();
         viewModel.getKages().observe(getViewLifecycleOwner(), kages -> {
             if (kages.size() > 0) {
                 binding.kagesCardView.setVisibility(View.VISIBLE);
@@ -112,19 +112,19 @@ public class HomeFragment extends Fragment implements ResultListener, SectionFra
         args.putSerializable("news", news);
         ReadNewsFragment readNewsFragment = new ReadNewsFragment();
         readNewsFragment.setArguments(args);
-        FragmentUtils.goTo(getActivity(), readNewsFragment);
+        FragmentUtils.goTo(getActivity(), readNewsFragment, true);
     };
 
     private final ProgressDialogFragment mProgressDialog = new ProgressDialogFragment();
 
     @Override
     public void onStarted() {
-        mProgressDialog.openDialog(getFragmentManager());
+        mProgressDialog.openDialog(getChildFragmentManager());
     }
 
     @Override
     public void onSuccess() {
-        mProgressDialog.dismiss();
+        mProgressDialog.close();
         startActivity(new Intent(getActivity(), LoggedInActivity.class));
         getActivity().finish();
         SoundUtil.play(getContext(), R.raw.sound_btn03);
@@ -132,7 +132,7 @@ public class HomeFragment extends Fragment implements ResultListener, SectionFra
 
     @Override
     public void onFailure(int resId) {
-        mProgressDialog.dismiss();
+        mProgressDialog.close();
 
         if (resId != 0) {
             Toasty.error(getActivity(), resId).show();

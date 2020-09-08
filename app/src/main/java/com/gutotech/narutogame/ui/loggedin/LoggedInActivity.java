@@ -88,15 +88,15 @@ public class LoggedInActivity extends AppCompatActivity
             }
         });
 
-        GameStatusRepository.getInstance().registerGameStatusListener(status -> {
-            if (!status.equals(GameStatusRepository.VERSION_NAME)) {
-                GameStatusRepository.getInstance().removeGameStatusListener();
-                PlayerRepository.getInstance().setSignedIn(false, null);
-                AuthRepository.getInstance().signOut();
-                finish();
-                startActivity(new Intent(this, MaintenanceActivity.class));
-            }
-        });
+//        GameStatusRepository.getInstance().registerGameStatusListener(status -> {
+//            if (!status.equals(GameStatusRepository.VERSION_NAME)) {
+//                GameStatusRepository.getInstance().removeGameStatusListener();
+//                PlayerRepository.getInstance().setSignedIn(false, null);
+//                AuthRepository.getInstance().signOut();
+//                finish();
+//                startActivity(new Intent(this, MaintenanceActivity.class));
+//            }
+//        });
 
         mDrawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(

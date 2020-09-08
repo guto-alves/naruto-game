@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android" android:dither="true">
+    <item android:drawable="@drawable/layout_map_blue2" android:state_pressed="true" />
+    <item android:drawable="@drawable/layout_map_blue2" android:state_focused="true" />
+    <item android:drawable="@drawable/layout_map_blue2" android:state_drag_hovered="true" />
+    <item android:drawable="@drawable/layout_map_blue2" android:state_hovered="true" />
+    <item android:drawable="@drawable/layout_map_blank2" />
+</selector>

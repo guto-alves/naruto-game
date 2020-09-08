@@ -1,21 +1,20 @@
 package com.gutotech.narutogame.ui.playing.battles;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.gutotech.narutogame.R;
-import com.gutotech.narutogame.databinding.FragmentDojoNpcFightersBinding;
 import com.gutotech.narutogame.data.model.CharOn;
+import com.gutotech.narutogame.databinding.FragmentDojoNpcFightersBinding;
 import com.gutotech.narutogame.ui.ProgressDialogFragment;
 
 public class DojoNPCFightersFragment extends Fragment {
@@ -29,7 +28,8 @@ public class DojoNPCFightersFragment extends Fragment {
         FragmentDojoNpcFightersBinding binding = DataBindingUtil.inflate(inflater,
                 R.layout.fragment_dojo_npc_fighters, container, false);
 
-        DojoNpcFightersViewModel viewModel = new ViewModelProvider(this)
+        DojoNpcFightersViewModel viewModel = new ViewModelProvider(this,
+                ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication()))
                 .get(DojoNpcFightersViewModel.class);
 
         binding.setViewModel(viewModel);

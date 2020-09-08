@@ -9,7 +9,7 @@
         android:id="@+id/roundTextView"
         style="@style/ButtonTheme"
         android:background="@drawable/bg_button"
-        android:text="Round 23"
+        android:text="Round 27"
         android:textColor="@android:color/white"
         android:textStyle="bold" />
 </LinearLayout>

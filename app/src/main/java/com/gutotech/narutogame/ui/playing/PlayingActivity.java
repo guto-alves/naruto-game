@@ -6,28 +6,27 @@ import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-
-import androidx.databinding.DataBindingUtil;
-import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
-
-import androidx.core.view.GravityCompat;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
+
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GestureDetectorCompat;
+import androidx.core.view.GravityCompat;
+import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
@@ -75,7 +74,9 @@ public class PlayingActivity extends AppCompatActivity implements
         configuration.densityDpi = (int) getResources().getDisplayMetrics().xdpi;
         getBaseContext().getResources().updateConfiguration(configuration, metrics);
 
-        mViewModel = new ViewModelProvider(this).get(PlayingViewModel.class);
+        mViewModel = new ViewModelProvider(this,
+                ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication()))
+                .get(PlayingViewModel.class);
 
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_playing);
         mBinding.setLifecycleOwner(this);
@@ -352,15 +353,26 @@ public class PlayingActivity extends AppCompatActivity implements
 
     // Pinch to zoom
     private ScaleGestureDetector mScaleGestureDetector;
+    private GestureDetectorCompat mGestureDetector;
 
     public void registerScaleGestureDetector(ScaleGestureDetector scaleGestureDetector) {
         mScaleGestureDetector = scaleGestureDetector;
     }
 
+    public void registerGestureListener(GestureDetectorCompat gestureDetector) {
+        mGestureDetector = gestureDetector;
+    }
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        Log.e("MyTag", "onTouchEvent");
         if (mScaleGestureDetector != null) {
             mScaleGestureDetector.onTouchEvent(event);
+        }
+
+        if (mGestureDetector != null) {
+            mGestureDetector.onTouchEvent(event);
+            Log.e("MyTag", "onTouchEvent -> GestureDetector");
         }
 
         return super.onTouchEvent(event);

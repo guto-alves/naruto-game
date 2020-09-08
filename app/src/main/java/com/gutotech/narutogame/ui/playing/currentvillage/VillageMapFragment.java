@@ -2,6 +2,10 @@ package com.gutotech.narutogame.ui.playing.currentvillage;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.ScaleGestureDetector;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
@@ -9,18 +13,13 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.view.LayoutInflater;
-import android.view.ScaleGestureDetector;
-import android.view.View;
-import android.view.ViewGroup;
-
 import com.gutotech.narutogame.R;
+import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.model.Village;
 import com.gutotech.narutogame.databinding.FragmentVillageMapBinding;
 import com.gutotech.narutogame.ui.ProgressDialogFragment;
 import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.adapter.VillageMapAdapter;
-import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.ui.playing.PlayingActivity;
 import com.gutotech.narutogame.utils.FragmentUtils;
 import com.gutotech.narutogame.utils.SoundUtil;
@@ -66,17 +65,17 @@ public class VillageMapFragment extends Fragment implements SectionFragment {
             }
         });
 
-        ScaleGestureDetector mScaleGestureDetector = new ScaleGestureDetector(getActivity(),
-                new ScaleGestureDetector.SimpleOnScaleGestureListener() {
-                    @Override
-                    public boolean onScale(ScaleGestureDetector detector) {
-                        mScaleFactor *= detector.getScaleFactor();
-                        mScaleFactor = Math.max(0.1f, Math.min(mScaleFactor, 1.5f));
-                        binding.villageMapRecyclerView.setScaleX(mScaleFactor);
-                        binding.villageMapRecyclerView.setScaleY(mScaleFactor);
-                        return true;
-                    }
-                });
+        ScaleGestureDetector mScaleGestureDetector = new ScaleGestureDetector(
+                getActivity(), new ScaleGestureDetector.SimpleOnScaleGestureListener() {
+            @Override
+            public boolean onScale(ScaleGestureDetector detector) {
+                mScaleFactor *= detector.getScaleFactor();
+                mScaleFactor = Math.max(0.1f, Math.min(mScaleFactor, 1.5f));
+                binding.villageMapRecyclerView.setScaleX(mScaleFactor);
+                binding.villageMapRecyclerView.setScaleY(mScaleFactor);
+                return true;
+            }
+        });
 
         ((PlayingActivity) getActivity()).registerScaleGestureDetector(mScaleGestureDetector);
 

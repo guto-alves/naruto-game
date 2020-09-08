@@ -23,7 +23,13 @@ public class FragmentUtils {
     }
 
     public static void goTo(FragmentActivity activity, Fragment fragment, boolean addToBackStack) {
-        FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
+        FragmentManager fragmentManager = activity.getSupportFragmentManager();
+
+        if (!addToBackStack) {
+            fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        }
+
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.container, fragment);
 
         if (addToBackStack) {

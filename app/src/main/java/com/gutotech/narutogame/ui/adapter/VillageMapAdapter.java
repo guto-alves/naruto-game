@@ -9,15 +9,16 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.view.GestureDetectorCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.gutotech.narutogame.R;
-import com.gutotech.narutogame.data.model.Character;
+import com.gutotech.narutogame.data.firebase.StorageUtils;
 import com.gutotech.narutogame.data.model.CharOn;
+import com.gutotech.narutogame.data.model.Character;
 import com.gutotech.narutogame.ui.playing.currentvillage.VillageMapPopupWindow;
 import com.gutotech.narutogame.ui.playing.currentvillage.VillageMapViewModel;
-import com.gutotech.narutogame.data.firebase.StorageUtils;
 import com.gutotech.narutogame.utils.SoundUtil;
 
 import java.security.SecureRandom;
@@ -33,11 +34,13 @@ public class VillageMapAdapter extends RecyclerView.Adapter<VillageMapAdapter.Vi
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
+        private ConstraintLayout constraintLayout;
         private ImageView backgroundImageView;
         private ImageView spriteImageView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            constraintLayout = itemView.findViewById(R.id.constraintLayout);
             backgroundImageView = itemView.findViewById(R.id.backgroundImageView);
             spriteImageView = itemView.findViewById(R.id.spriteImageView);
         }
@@ -113,45 +116,55 @@ public class VillageMapAdapter extends RecyclerView.Adapter<VillageMapAdapter.Vi
             mPopupWindow.setCharactersList(mMap.get(position), position);
         }
 
-        holder.itemView.setOnTouchListener(new View.OnTouchListener() {
-            private GestureDetectorCompat mDetector = new GestureDetectorCompat(mContext,
-                    new GestureDetector.SimpleOnGestureListener() {
-                        @Override
-                        public boolean onDown(MotionEvent e) {
-                            return true;
-                        }
+        holder.constraintLayout.setOnTouchListener(new View.OnTouchListener() {
+            private GestureDetectorCompat mDetector = new GestureDetectorCompat(
+                    mContext, new GestureDetector.SimpleOnGestureListener() {
+                @Override
+                public boolean onDown(MotionEvent e) {
+                    return true;
+                }
 
-                        @Override
-                        public boolean onSingleTapUp(MotionEvent e) {
-                            if (mMap == null) {
-                                return true;
-                            }
-                            mPopupWindow.setCharactersList(mMap.get(position), position);
+                @Override
+                public boolean onSingleTapUp(MotionEvent e) {
+                    if (mMap == null) {
+                        return true;
+                    }
+                    mPopupWindow.setCharactersList(mMap.get(position), position);
 
-                            int xoff;
-                            int yoff;
+                    int xoff;
+                    int yoff;
 
-                            if (position % VillageMapViewModel.TOTAL_COLUMNS < 5) {
-                                xoff = holder.itemView.getWidth() + 5;
-                            } else {
-                                xoff = -(mPopupWindow.getContentView().getWidth() + 5);
-                            }
+                    if (position % VillageMapViewModel.TOTAL_COLUMNS < 5) {
+                        xoff = holder.itemView.getWidth() + 5;
+                    } else {
+                        xoff = -(mPopupWindow.getContentView().getWidth() + 5);
+                    }
 
-                            yoff = -holder.itemView.getHeight() + 5;
+                    yoff = -holder.itemView.getHeight() + 5;
 
-                            mPopupWindow.showAsDropDown(holder.itemView, xoff, yoff);
-                            return true;
-                        }
+                    mPopupWindow.showAsDropDown(holder.itemView, xoff, yoff);
+                    return true;
+                }
 
-                        @Override
-                        public boolean onDoubleTap(MotionEvent e) {
-                            mOnMapClickListener.onDoubleClick(position);
-                            return true;
-                        }
-                    });
+                @Override
+                public boolean onDoubleTap(MotionEvent e) {
+                    mOnMapClickListener.onDoubleClick(position);
+                    return true;
+                }
+            });
 
             @Override
             public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        holder.constraintLayout.setPressed(true);
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        holder.constraintLayout.setPressed(false);
+                        break;
+                }
+
+                v.performClick();
                 return mDetector.onTouchEvent(event);
             }
         });

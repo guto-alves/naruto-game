@@ -1,7 +1,5 @@
 package com.gutotech.narutogame.ui;
 
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,7 +19,7 @@ public class ProgressDialogFragment extends DialogFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        getDialog().getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         return inflater.inflate(R.layout.dialog_progress, container, false);
     }
 
@@ -35,5 +33,11 @@ public class ProgressDialogFragment extends DialogFragment {
     public void show(FragmentManager fragmentManager) {
         setCancelable(false);
         show(fragmentManager, DIALOG_TAG);
+    }
+
+    public void close() {
+        if (isVisible()) {
+            dismiss();
+        }
     }
 }

@@ -1,16 +1,16 @@
 package com.gutotech.narutogame.ui.home.halloffame;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
+import com.google.android.gms.ads.AdRequest;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.databinding.FragmentHallOfFameBinding;
 import com.gutotech.narutogame.ui.SectionFragment;
@@ -41,6 +41,8 @@ public class HallOfFameFragment extends Fragment implements SectionFragment {
         viewModel.getKages().observe(getViewLifecycleOwner(), hallOfFameAdapter::setKages);
 
         FragmentUtils.setSectionTitle(getActivity(), R.string.section_hall_of_fame);
+
+        binding.adView.loadAd(new AdRequest.Builder().build());
 
         return binding.getRoot();
     }

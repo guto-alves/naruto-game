@@ -1,62 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@android:color/transparent"
-    android:orientation="vertical"
     tools:context=".ui.playing.battles.DojoFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        android:id="@+id/linearLayout2"
         android:orientation="vertical">
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/dojoNpcButton"
-                style="@style/ButtonTheme"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:text="@string/dojo_npc" />
-
-            <Button
-                android:id="@+id/dojoPvpButton"
-                style="@style/ButtonTheme"
-                android:text="@string/dojo_pvp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/linearLayout"
             android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:layout_marginTop="16dp"
+            android:layout_height="wrap_content"
             android:gravity="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/msgLayout">
+            android:orientation="vertical">
 
-            <com.google.android.gms.ads.AdView
-                android:id="@+id/adView"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:adSize="BANNER"
-                app:adUnitId="@string/admob_banner_ad" />
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/dojoNpcButton"
+                    style="@style/ButtonTheme"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginRight="16dp"
+                    android:text="@string/dojo_npc" />
+
+                <Button
+                    android:id="@+id/dojoPvpButton"
+                    style="@style/ButtonTheme"
+                    android:text="@string/dojo_pvp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/msgLayout">
+
+                <com.google.android.gms.ads.AdView
+                    android:id="@+id/adView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:adSize="BANNER"
+                    app:adUnitId="@string/admob_banner_ad" />
+            </LinearLayout>
+
         </LinearLayout>
 
+        <FrameLayout
+            android:id="@+id/frameContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></FrameLayout>
+
     </LinearLayout>
-
-    <FrameLayout
-        android:id="@+id/frameContainer"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"></FrameLayout>
-
-</LinearLayout>
+</layout>
