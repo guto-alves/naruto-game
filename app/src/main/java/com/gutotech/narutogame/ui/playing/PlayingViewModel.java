@@ -37,7 +37,7 @@ import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.adapter.BagItemsAdapter;
 import com.gutotech.narutogame.ui.loggedin.accountinfo.UserDataFragment;
 import com.gutotech.narutogame.ui.loggedin.changepassword.PasswordChangeFragment;
-import com.gutotech.narutogame.ui.loggedin.newcharacteer.CharacterCreateFragment;
+import com.gutotech.narutogame.ui.loggedin.newcharacter.CharacterCreateFragment;
 import com.gutotech.narutogame.ui.loggedin.selectcharacter.CharacterSelectFragment;
 import com.gutotech.narutogame.ui.loggedin.support.SupportFragment;
 import com.gutotech.narutogame.ui.playing.academy.AcademyJutsuFragment;

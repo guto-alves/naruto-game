@@ -19,19 +19,19 @@ import java.util.List;
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> {
 
-    public interface NewsClickListener {
-        void onNewsClick(News news);
+    public interface OnNewsClickListener {
+        void onNewsClicked(News news);
     }
 
     private final int LATEST_NEWS = 0;
 
     private Context mContext;
     private List<News> mNewsList;
-    private NewsClickListener mNewsClickListener;
+    private OnNewsClickListener mOnNewsClickListener;
 
-    public NewsAdapter(Context context, NewsClickListener listener) {
+    public NewsAdapter(Context context, OnNewsClickListener listener) {
         mContext = context;
-        mNewsClickListener = listener;
+        mOnNewsClickListener = listener;
     }
 
     @NonNull
@@ -60,7 +60,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
                 myViewHolder.messageTextView.setText(news.getMessage());
             }
 
-            myViewHolder.itemView.setOnClickListener(v -> mNewsClickListener.onNewsClick(news));
+            myViewHolder.itemView.setOnClickListener(v -> mOnNewsClickListener.onNewsClicked(news));
 
             if (position % 2 == 0) {
                 myViewHolder.detailImageView.setImageResource(R.drawable.layout_home_detalhe);

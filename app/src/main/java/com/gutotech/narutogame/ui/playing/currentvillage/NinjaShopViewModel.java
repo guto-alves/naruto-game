@@ -80,7 +80,7 @@ public class NinjaShopViewModel extends ViewModel implements
                             return context.getString(R.string.requires_grade,
                                     context.getString(GraduationUtils.getName(getValue())));
                         }
-                    }), Village.FOLHA));
+                    }), Village.LEAF));
             mItems.add(new Scroll("2", R.string.scroll_to_sand, R.string.scroll_to_sand_des,
                     Collections.singletonList(new Requirement() {
                         public int getValue() {
@@ -97,7 +97,7 @@ public class NinjaShopViewModel extends ViewModel implements
                             return context.getString(R.string.requires_grade,
                                     context.getString(GraduationUtils.getName(getValue())));
                         }
-                    }), Village.AREIA));
+                    }), Village.SAND));
             mItems.add(new Scroll("3", R.string.scroll_to_mist, R.string.scroll_to_mist_des,
                     Collections.singletonList(new Requirement() {
                         public int getValue() {
@@ -114,7 +114,7 @@ public class NinjaShopViewModel extends ViewModel implements
                             return context.getString(R.string.requires_grade,
                                     context.getString(GraduationUtils.getName(getValue())));
                         }
-                    }), Village.NEVOA));
+                    }), Village.MIST));
             mItems.add(new Scroll("4", R.string.scroll_to_stone, R.string.scroll_to_stone_des,
                     Collections.singletonList(new Requirement() {
                         public int getValue() {
@@ -131,7 +131,7 @@ public class NinjaShopViewModel extends ViewModel implements
                             return context.getString(R.string.requires_grade,
                                     context.getString(GraduationUtils.getName(getValue())));
                         }
-                    }), Village.PEDRA));
+                    }), Village.STONE));
             mItems.add(new Scroll("5", R.string.scroll_to_cloud, R.string.scroll_to_cloud_des,
                     Collections.singletonList(new Requirement() {
                         public int getValue() {
@@ -148,7 +148,7 @@ public class NinjaShopViewModel extends ViewModel implements
                             return context.getString(R.string.requires_grade,
                                     context.getString(GraduationUtils.getName(getValue())));
                         }
-                    }), Village.NUVEM));
+                    }), Village.CLOUD));
             mItems.add(new Scroll("6", R.string.scroll_to_akatsuki, R.string.scroll_to_akatsuki_des,
                     Collections.singletonList(new Requirement() {
                         public int getValue() {
@@ -182,7 +182,7 @@ public class NinjaShopViewModel extends ViewModel implements
                             return context.getString(R.string.requires_grade,
                                     context.getString(GraduationUtils.getName(getValue())));
                         }
-                    }), Village.SOM));
+                    }), Village.SOUND));
             mItems.add(new Scroll("8", R.string.scroll_to_rain, R.string.scroll_to_rain_des,
                     Collections.singletonList(new Requirement() {
                         public int getValue() {
@@ -199,7 +199,7 @@ public class NinjaShopViewModel extends ViewModel implements
                             return context.getString(R.string.requires_grade,
                                     context.getString(GraduationUtils.getName(getValue())));
                         }
-                    }), Village.CHUVA));
+                    }), Village.RAIN));
             mItems.add(new Scroll("9", R.string.scroll_to_snow, R.string.scroll_to_snow_des,
                     Collections.singletonList(new Requirement() {
                         public int getValue() {
@@ -216,7 +216,7 @@ public class NinjaShopViewModel extends ViewModel implements
                             return context.getString(R.string.requires_grade,
                                     context.getString(GraduationUtils.getName(getValue())));
                         }
-                    }), Village.NEVE));
+                    }), Village.SNOW));
             mItems.add(new Scroll("10", R.string.scroll_to_waterfall, R.string.scroll_to_waterfall_des,
                     Collections.singletonList(new Requirement() {
                         public int getValue() {
@@ -233,7 +233,7 @@ public class NinjaShopViewModel extends ViewModel implements
                             return context.getString(R.string.requires_grade,
                                     context.getString(GraduationUtils.getName(getValue())));
                         }
-                    }), Village.CACHOEIRA));
+                    }), Village.WATERFALL));
             mItems.add(new Scroll("11", R.string.scroll_to_hot_springs, R.string.scroll_to_hot_springs_des,
                     Collections.singletonList(new Requirement() {
                         public int getValue() {
@@ -250,7 +250,7 @@ public class NinjaShopViewModel extends ViewModel implements
                             return context.getString(R.string.requires_grade,
                                     context.getString(GraduationUtils.getName(getValue())));
                         }
-                    }), Village.FONTES_TERMAIS));
+                    }), Village.HOT_SPRINGS));
             mItems.add(new Scroll("12", R.string.scroll_to_grass, R.string.scroll_to_grass_des,
                     Collections.singletonList(new Requirement() {
                         public int getValue() {
@@ -267,7 +267,7 @@ public class NinjaShopViewModel extends ViewModel implements
                             return context.getString(R.string.requires_grade,
                                     context.getString(GraduationUtils.getName(getValue())));
                         }
-                    }), Village.GRAMA));
+                    }), Village.GRASS));
         }
 
         return mItems;

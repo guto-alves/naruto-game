@@ -16,7 +16,7 @@ import com.gutotech.narutogame.ui.home.halloffame.HallOfFameFragment;
 import com.gutotech.narutogame.ui.home.home.HomeFragment;
 import com.gutotech.narutogame.ui.loggedin.accountinfo.UserDataFragment;
 import com.gutotech.narutogame.ui.loggedin.changepassword.PasswordChangeFragment;
-import com.gutotech.narutogame.ui.loggedin.newcharacteer.CharacterCreateFragment;
+import com.gutotech.narutogame.ui.loggedin.newcharacter.CharacterCreateFragment;
 import com.gutotech.narutogame.ui.loggedin.selectcharacter.CharacterSelectFragment;
 import com.gutotech.narutogame.ui.loggedin.support.SupportFragment;
 

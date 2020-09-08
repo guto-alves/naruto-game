@@ -8,7 +8,7 @@ public class GraduationUtils {
 
     @StringRes
     public static int getName(int graduationId, Village village) {
-        if (village == Village.FOLHA) {
+        if (village == Village.LEAF) {
             switch (graduationId) {
                 case 0:
                     return R.string.student;
@@ -25,7 +25,7 @@ public class GraduationUtils {
                 case 6:
                     return R.string.hero;
             }
-        } else if (village == Village.AREIA) {
+        } else if (village == Village.SAND) {
             switch (graduationId) {
                 case 0:
                     return R.string.student;
@@ -42,7 +42,7 @@ public class GraduationUtils {
                 case 6:
                     return R.string.hero;
             }
-        } else if (village == Village.NEVOA) {
+        } else if (village == Village.MIST) {
             switch (graduationId) {
                 case 0:
                     return R.string.student;
@@ -59,7 +59,7 @@ public class GraduationUtils {
                 case 6:
                     return R.string.hero;
             }
-        } else if (village == Village.PEDRA) {
+        } else if (village == Village.STONE) {
             switch (graduationId) {
                 case 0:
                     return R.string.student;
@@ -76,7 +76,7 @@ public class GraduationUtils {
                 case 6:
                     return R.string.hero;
             }
-        } else if (village == Village.NUVEM) {
+        } else if (village == Village.CLOUD) {
             switch (graduationId) {
                 case 0:
                     return R.string.student;
@@ -110,7 +110,7 @@ public class GraduationUtils {
                 case 6:
                     return R.string.villain;
             }
-        } else if (village == Village.SOM) {
+        } else if (village == Village.SOUND) {
             switch (graduationId) {
                 case 0:
                     return R.string.survivor;
@@ -127,7 +127,7 @@ public class GraduationUtils {
                 case 6:
                     return R.string.cursed;
             }
-        } else if (village == Village.CHUVA) {
+        } else if (village == Village.RAIN) {
             switch (graduationId) {
                 case 0:
                     return R.string.orphan;

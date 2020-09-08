@@ -9,15 +9,15 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.gutotech.narutogame.R;
-import com.gutotech.narutogame.data.model.Ninja;
 import com.gutotech.narutogame.data.firebase.StorageUtils;
+import com.gutotech.narutogame.data.model.Ninja;
 
 import java.util.List;
 
 public class ChooseNinjaAdapter extends RecyclerView.Adapter<ChooseNinjaAdapter.ViewHolder> {
 
     public interface NinjaListener {
-        void onNinjaClick(Ninja ninja);
+        void onNinjaClicked(Ninja ninja);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -31,7 +31,7 @@ public class ChooseNinjaAdapter extends RecyclerView.Adapter<ChooseNinjaAdapter.
 
     private List<Ninja> mNinjasList;
     private NinjaListener mListener;
-    private int mPositionSelected;
+    private int mSelectedPosition;
 
     public ChooseNinjaAdapter(NinjaListener listener) {
         mListener = listener;
@@ -53,15 +53,15 @@ public class ChooseNinjaAdapter extends RecyclerView.Adapter<ChooseNinjaAdapter.
             StorageUtils.loadSmallProfile(holder.ninjaImageView.getContext(),
                     holder.ninjaImageView, ninja.getId());
 
-            if (mPositionSelected == position) {
+            if (mSelectedPosition == position) {
                 holder.ninjaImageView.setAlpha(1f);
             } else {
                 holder.ninjaImageView.setAlpha(0.5f);
             }
 
             holder.ninjaImageView.setOnClickListener(v -> {
-                mListener.onNinjaClick(ninja);
-                mPositionSelected = position;
+                mListener.onNinjaClicked(ninja);
+                mSelectedPosition = position;
                 notifyDataSetChanged();
             });
         }
@@ -74,8 +74,8 @@ public class ChooseNinjaAdapter extends RecyclerView.Adapter<ChooseNinjaAdapter.
 
     public void setNinjasId(List<Ninja> ninjasList) {
         mNinjasList = ninjasList;
-        mPositionSelected = 0;
-        mListener.onNinjaClick(mNinjasList.get(0));
+        mSelectedPosition = 0;
+        mListener.onNinjaClicked(mNinjasList.get(0));
         notifyDataSetChanged();
     }
 }

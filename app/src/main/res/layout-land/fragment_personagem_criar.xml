@@ -11,14 +11,14 @@
 
         <variable
             name="viewModel"
-            type="com.gutotech.narutogame.ui.loggedin.newcharacteer.CharacterCreateViewModel" />
+            type="com.gutotech.narutogame.ui.loggedin.newcharacter.CharacterCreateViewModel" />
     </data>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
-        tools:context=".ui.loggedin.newcharacteer.CharacterCreateFragment">
+        tools:context=".ui.loggedin.newcharacter.CharacterCreateFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -111,50 +111,50 @@
                             <ImageButton
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:alpha="@{viewModel.character.village == Village.FOLHA ? 1.0f : 0.7f}"
-                                android:background="@{viewModel.character.village == Village.FOLHA ? @color/colorGreen : @android:color/transparent}"
+                                android:alpha="@{viewModel.character.village == Village.LEAF ? 1.0f : 0.7f}"
+                                android:background="@{viewModel.character.village == Village.LEAF ? @color/colorGreen : @android:color/transparent}"
                                 android:contentDescription="@string/leaf"
-                                android:onClick="@{() -> viewModel.onVillageSelected(Village.FOLHA)}"
+                                android:onClick="@{() -> viewModel.onVillageSelected(Village.LEAF)}"
                                 android:padding="5dp"
                                 android:src="@drawable/layout_vilas2_1" />
 
                             <ImageButton
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:alpha="@{viewModel.character.village == Village.AREIA ? 1.0f : 0.7f}"
-                                android:background="@{viewModel.character.village == Village.AREIA ? @color/colorGreen : @android:color/transparent}"
+                                android:alpha="@{viewModel.character.village == Village.SAND ? 1.0f : 0.7f}"
+                                android:background="@{viewModel.character.village == Village.SAND ? @color/colorGreen : @android:color/transparent}"
                                 android:contentDescription="@string/sand"
-                                android:onClick="@{() -> viewModel.onVillageSelected(Village.AREIA)}"
+                                android:onClick="@{() -> viewModel.onVillageSelected(Village.SAND)}"
                                 android:padding="5dp"
                                 android:src="@drawable/layout_vilas2_2" />
 
                             <ImageButton
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:alpha="@{viewModel.character.village == Village.NEVOA ? 1.0f : 0.7f}"
-                                android:background="@{viewModel.character.village == Village.NEVOA ? @color/colorGreen : @android:color/transparent}"
+                                android:alpha="@{viewModel.character.village == Village.MIST ? 1.0f : 0.7f}"
+                                android:background="@{viewModel.character.village == Village.MIST ? @color/colorGreen : @android:color/transparent}"
                                 android:contentDescription="@string/mist"
-                                android:onClick="@{() -> viewModel.onVillageSelected(Village.NEVOA)}"
+                                android:onClick="@{() -> viewModel.onVillageSelected(Village.MIST)}"
                                 android:padding="5dp"
                                 android:src="@drawable/layout_vilas2_3" />
 
                             <ImageButton
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:alpha="@{viewModel.character.village == Village.PEDRA ? 1.0f : 0.7f}"
-                                android:background="@{viewModel.character.village == Village.PEDRA ? @color/colorGreen : @android:color/transparent}"
+                                android:alpha="@{viewModel.character.village == Village.STONE ? 1.0f : 0.7f}"
+                                android:background="@{viewModel.character.village == Village.STONE ? @color/colorGreen : @android:color/transparent}"
                                 android:contentDescription="@string/stone"
-                                android:onClick="@{() -> viewModel.onVillageSelected(Village.PEDRA)}"
+                                android:onClick="@{() -> viewModel.onVillageSelected(Village.STONE)}"
                                 android:padding="5dp"
                                 android:src="@drawable/layout_vilas2_4" />
 
                             <ImageButton
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:alpha="@{viewModel.character.village == Village.NUVEM ? 1.0f : 0.7f}"
-                                android:background="@{viewModel.character.village == Village.NUVEM ? @color/colorGreen : @android:color/transparent}"
+                                android:alpha="@{viewModel.character.village == Village.CLOUD ? 1.0f : 0.7f}"
+                                android:background="@{viewModel.character.village == Village.CLOUD ? @color/colorGreen : @android:color/transparent}"
                                 android:contentDescription="@string/cloud"
-                                android:onClick="@{() -> viewModel.onVillageSelected(Village.NUVEM)}"
+                                android:onClick="@{() -> viewModel.onVillageSelected(Village.CLOUD)}"
                                 android:padding="5dp"
                                 android:src="@drawable/layout_vilas2_5" />
 
@@ -171,20 +171,20 @@
                             <ImageButton
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:alpha="@{viewModel.character.village == Village.SOM ? 1.0f : 0.7f}"
-                                android:background="@{viewModel.character.village == Village.SOM ? @color/colorGreen : @android:color/transparent}"
+                                android:alpha="@{viewModel.character.village == Village.SOUND ? 1.0f : 0.7f}"
+                                android:background="@{viewModel.character.village == Village.SOUND ? @color/colorGreen : @android:color/transparent}"
                                 android:contentDescription="@string/sound"
-                                android:onClick="@{() -> viewModel.onVillageSelected(Village.SOM)}"
+                                android:onClick="@{() -> viewModel.onVillageSelected(Village.SOUND)}"
                                 android:padding="5dp"
                                 android:src="@drawable/layout_vilas2_7" />
 
                             <ImageButton
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:alpha="@{viewModel.character.village == Village.CHUVA ? 1.0f : 0.7f}"
-                                android:background="@{viewModel.character.village == Village.CHUVA ? @color/colorGreen : @android:color/transparent}"
+                                android:alpha="@{viewModel.character.village == Village.RAIN ? 1.0f : 0.7f}"
+                                android:background="@{viewModel.character.village == Village.RAIN ? @color/colorGreen : @android:color/transparent}"
                                 android:contentDescription="@string/rain"
-                                android:onClick="@{() -> viewModel.onVillageSelected(Village.CHUVA)}"
+                                android:onClick="@{() -> viewModel.onVillageSelected(Village.RAIN)}"
                                 android:padding="5dp"
                                 android:src="@drawable/layout_vilas2_8" />
                         </LinearLayout>

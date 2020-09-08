@@ -23,7 +23,7 @@ import android.widget.ExpandableListView;
 import android.widget.ImageView;
 
 import com.gutotech.narutogame.R;
-import com.gutotech.narutogame.ui.adapter.ExpandableAdapter;
+import com.gutotech.narutogame.ui.adapter.ExpandableListAdapter;
 import com.gutotech.narutogame.utils.FragmentUtils;
 import com.gutotech.narutogame.utils.SettingsUtils;
 import com.gutotech.narutogame.utils.BgMusicUtils;
@@ -63,7 +63,7 @@ public class HomeActivity extends AppCompatActivity {
                 .playOn(logoImageView);
 
         ExpandableListView expandableListView = findViewById(R.id.menuExpandableListView);
-        ExpandableAdapter adapter = new ExpandableAdapter();
+        ExpandableListAdapter adapter = new ExpandableListAdapter();
         expandableListView.setAdapter(adapter);
         expandableListView.setOnChildClickListener(viewModel);
         expandableListView.expandGroup(HomeViewModel.MAIN_GROUP);

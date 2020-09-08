@@ -294,23 +294,23 @@ public class NinjaLuckyViewModel extends ViewModel {
 
         mLotteryItems.add(new LotteryItem("20368", R.string.scroll_konoha_20x, 5,
                 () -> CharOn.character.getBag().addScroll(
-                        new Scroll("1", Village.FOLHA), 4))
+                        new Scroll("1", Village.LEAF), 4))
         );
         mLotteryItems.add(new LotteryItem("20369", R.string.scroll_sand_20x, 5,
                 () -> CharOn.character.getBag().addScroll(
-                        new Scroll("2", Village.AREIA), 4))
+                        new Scroll("2", Village.SAND), 4))
         );
         mLotteryItems.add(new LotteryItem("20370", R.string.scroll_mist_20x, 5,
                 () -> CharOn.character.getBag().addScroll(
-                        new Scroll("3", Village.NEVOA), 4))
+                        new Scroll("3", Village.MIST), 4))
         );
         mLotteryItems.add(new LotteryItem("20371", R.string.scroll_stone_20x, 5,
                 () -> CharOn.character.getBag().addScroll(
-                        new Scroll("4", Village.PEDRA), 4))
+                        new Scroll("4", Village.STONE), 4))
         );
         mLotteryItems.add(new LotteryItem("20372", R.string.scroll_cloud_20x, 5,
                 () -> CharOn.character.getBag().addScroll(
-                        new Scroll("5", Village.NUVEM), 4))
+                        new Scroll("5", Village.CLOUD), 4))
         );
         mLotteryItems.add(new LotteryItem("20373", R.string.scroll_akatsuki_20x, 5,
                 () -> CharOn.character.getBag().addScroll(
@@ -318,27 +318,27 @@ public class NinjaLuckyViewModel extends ViewModel {
         );
         mLotteryItems.add(new LotteryItem("20374", R.string.scroll_sound_20x, 5,
                 () -> CharOn.character.getBag().addScroll(
-                        new Scroll("7", Village.SOM), 4))
+                        new Scroll("7", Village.SOUND), 4))
         );
         mLotteryItems.add(new LotteryItem("20375", R.string.scroll_rain_20x, 5,
                 () -> CharOn.character.getBag().addScroll(
-                        new Scroll("8", Village.CHUVA), 4))
+                        new Scroll("8", Village.RAIN), 4))
         );
         mLotteryItems.add(new LotteryItem("20382", R.string.scroll_snow_20x, 5,
                 () -> CharOn.character.getBag().addScroll(
-                        new Scroll("9", Village.NEVE), 4))
+                        new Scroll("9", Village.SNOW), 4))
         );
         mLotteryItems.add(new LotteryItem("20383", R.string.scroll_waterfall_20x, 5,
                 () -> CharOn.character.getBag().addScroll(
-                        new Scroll("10", Village.CACHOEIRA), 4))
+                        new Scroll("10", Village.WATERFALL), 4))
         );
         mLotteryItems.add(new LotteryItem("20384", R.string.scroll_hot_springs_20x, 5,
                 () -> CharOn.character.getBag().addScroll(
-                        new Scroll("11", Village.FONTES_TERMAIS), 4))
+                        new Scroll("11", Village.HOT_SPRINGS), 4))
         );
         mLotteryItems.add(new LotteryItem("20385", R.string.scroll_grass_20x, 5,
                 () -> CharOn.character.getBag().addScroll(
-                        new Scroll("12", Village.GRAMA), 4))
+                        new Scroll("12", Village.GRASS), 4))
         );
 
         return mLotteryItems;

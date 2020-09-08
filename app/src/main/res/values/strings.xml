@@ -1129,9 +1129,9 @@ You will receive an email to confirm your account, then you <b>NEED TO USE A VAL
     <string name="sound">Sound</string>
     <string name="rain">Rain</string>
     <string name="snow">Snow</string>
-    <string name="waterfall">Cachoeira</string>
-    <string name="hot_springs">Fontes Termais</string>
-    <string name="grass">Grama</string>
+    <string name="waterfall">Waterfall</string>
+    <string name="hot_springs">Hot Springs</string>
+    <string name="grass">Grass</string>
     <string name="all">All</string>
     <string name="general">General</string>
     <string name="coming_soon">Coming soon</string>

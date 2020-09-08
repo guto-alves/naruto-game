@@ -25,9 +25,8 @@ import com.gutotech.narutogame.ui.adapter.NinjaStatisticsAdapter;
 import com.gutotech.narutogame.ui.adapter.NewsAdapter;
 import com.gutotech.narutogame.ui.ResultListener;
 import com.gutotech.narutogame.ui.home.readnews.ReadNewsFragment;
-import com.gutotech.narutogame.ui.home.signup.SignUpFragment;
 import com.gutotech.narutogame.ui.loggedin.LoggedInActivity;
-import com.gutotech.narutogame.ui.loggedin.newcharacteer.CharacterCreateFragment;
+import com.gutotech.narutogame.ui.loggedin.newcharacter.CharacterCreateFragment;
 import com.gutotech.narutogame.utils.FragmentUtils;
 import com.gutotech.narutogame.ui.home.passwordrecovery.PasswordRecoveryFragment;
 import com.gutotech.narutogame.utils.SoundUtil;
@@ -74,7 +73,7 @@ public class HomeFragment extends Fragment implements ResultListener, SectionFra
         binding.newsRecyclerView.setHasFixedSize(true);
         binding.newsRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(),
                 LinearLayout.HORIZONTAL));
-        NewsAdapter newsAdapter = new NewsAdapter(getActivity(), mNewsClickListener);
+        NewsAdapter newsAdapter = new NewsAdapter(getActivity(), mOnNewsClickListener);
         binding.newsRecyclerView.setAdapter(newsAdapter);
         viewModel.getNews().observe(getViewLifecycleOwner(),
                 news -> {
@@ -109,7 +108,7 @@ public class HomeFragment extends Fragment implements ResultListener, SectionFra
         return binding.getRoot();
     }
 
-    private final NewsAdapter.NewsClickListener mNewsClickListener = news -> {
+    private final NewsAdapter.OnNewsClickListener mOnNewsClickListener = news -> {
         Bundle args = new Bundle();
         args.putSerializable("news", news);
         ReadNewsFragment readNewsFragment = new ReadNewsFragment();

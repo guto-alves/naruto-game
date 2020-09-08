@@ -26,7 +26,7 @@ import com.gutotech.narutogame.data.repository.GameStatusRepository;
 import com.gutotech.narutogame.data.repository.PlayerRepository;
 import com.gutotech.narutogame.ui.MaintenanceActivity;
 import com.gutotech.narutogame.ui.WarningDialogFragment;
-import com.gutotech.narutogame.ui.adapter.ExpandableAdapter;
+import com.gutotech.narutogame.ui.adapter.ExpandableListAdapter;
 import com.gutotech.narutogame.utils.BgMusicUtils;
 import com.gutotech.narutogame.utils.FragmentUtils;
 import com.gutotech.narutogame.utils.SettingsUtils;
@@ -70,7 +70,7 @@ public class LoggedInActivity extends AppCompatActivity
                 .playOn(logoImageView);
 
         ExpandableListView expandableListView = findViewById(R.id.menuExpandableListView);
-        ExpandableAdapter adapter = new ExpandableAdapter();
+        ExpandableListAdapter adapter = new ExpandableListAdapter();
         expandableListView.setAdapter(adapter);
         expandableListView.setOnChildClickListener(viewModel);
         expandableListView.expandGroup(LoggedInViewModel.CHARACTER_GROUP);

@@ -1,4 +1,4 @@
-package com.gutotech.narutogame.ui.loggedin.newcharacteer;
+package com.gutotech.narutogame.ui.loggedin.newcharacter;
 
 import android.text.TextUtils;
 
@@ -84,7 +84,7 @@ public class CharacterCreateViewModel extends ViewModel
     }
 
     @Override
-    public void onNinjaClick(Ninja ninja) {
+    public void onNinjaClicked(Ninja ninja) {
         mChar.setNinja(ninja);
         mChar.setProfilePath(String.format(Locale.US,
                 "images/profile/%d/1.png", ninja.getId()));

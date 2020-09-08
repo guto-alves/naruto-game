@@ -43,7 +43,7 @@ import com.gutotech.narutogame.databinding.NavHeaderPlayingBinding;
 import com.gutotech.narutogame.ui.WarningDialogFragment;
 import com.gutotech.narutogame.ui.adapter.BagItemsAdapter;
 import com.gutotech.narutogame.ui.adapter.ChatMessagesAdapter;
-import com.gutotech.narutogame.ui.adapter.ExpandableLoggedinAdapter;
+import com.gutotech.narutogame.ui.adapter.ExpandableListLoggedinAdapter;
 import com.gutotech.narutogame.ui.home.HomeActivity;
 import com.gutotech.narutogame.utils.FragmentUtils;
 import com.gutotech.narutogame.utils.SoundUtil;
@@ -86,7 +86,7 @@ public class PlayingActivity extends AppCompatActivity implements
         mBinding.navView.addHeaderView(navHeaderBinding.getRoot());
         navHeaderBinding.setViewModel(mViewModel);
 
-        ExpandableLoggedinAdapter menuAdapter = new ExpandableLoggedinAdapter();
+        ExpandableListLoggedinAdapter menuAdapter = new ExpandableListLoggedinAdapter();
         mBinding.expandableListView.setAdapter(menuAdapter);
         mViewModel.getMenuGroups().observe(this, menuAdapter::setMenuGroups);
         mBinding.expandableListView.setOnChildClickListener(mViewModel);

@@ -56,7 +56,7 @@ public class VipPlayerViewModel extends ViewModel {
 
         mNinjas = new ArrayList<>(Arrays.asList(Ninja.values()));
         mClasses = new ArrayList<>(Arrays.asList(Classe.values()));
-        mVillages = new ArrayList<>(EnumSet.range(Village.FOLHA, Village.CHUVA));
+        mVillages = new ArrayList<>(EnumSet.range(Village.LEAF, Village.RAIN));
 
         mNinjas.remove(mCharacter.getNinja().ordinal());
         mClasses.remove(mCharacter.getClasse().ordinal());

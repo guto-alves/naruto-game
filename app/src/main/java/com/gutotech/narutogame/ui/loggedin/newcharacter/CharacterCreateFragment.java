@@ -1,4 +1,4 @@
-package com.gutotech.narutogame.ui.loggedin.newcharacteer;
+package com.gutotech.narutogame.ui.loggedin.newcharacter;
 
 import android.app.AlertDialog;
 import android.content.Intent;

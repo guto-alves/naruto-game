@@ -31,7 +31,7 @@ public class KageRepository {
         MutableLiveData<List<Character>> data = new MutableLiveData<>();
         List<Character> kages = new ArrayList<>();
 
-        for (Village village : EnumSet.range(Village.FOLHA, Village.CHUVA)) {
+        for (Village village : EnumSet.range(Village.LEAF, Village.RAIN)) {
             getKage(village, kage -> {
                 if (kage != null) {
                     kages.add(kage);

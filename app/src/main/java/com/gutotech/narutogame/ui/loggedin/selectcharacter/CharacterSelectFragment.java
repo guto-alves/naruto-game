@@ -22,7 +22,7 @@ import com.gutotech.narutogame.databinding.FragmentPersonagemSelecionarBinding;
 import com.gutotech.narutogame.ui.ResultListener;
 import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.adapter.CharacterSelectAdapter;
-import com.gutotech.narutogame.ui.loggedin.newcharacteer.CharacterCreateFragment;
+import com.gutotech.narutogame.ui.loggedin.newcharacter.CharacterCreateFragment;
 import com.gutotech.narutogame.ui.playing.PlayingActivity;
 import com.gutotech.narutogame.utils.FragmentUtils;
 import com.gutotech.narutogame.utils.SoundUtil;

@@ -72,7 +72,7 @@ public class Character extends BaseObservable implements Serializable {
         character.setLevel(1);
         character.setNinja(Ninja.NARUTO);
         character.setProfilePath("1/1");
-        character.setVillage(Village.FOLHA);
+        character.setVillage(Village.LEAF);
         character.setClasse(Classe.TAI);
         character.setAttributes(new Attributes(character.getClasse()));
         character.updateFormulas();

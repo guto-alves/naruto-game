@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public enum Graduation {
-    ESTUDANTE(4000, null),
+    STUDENT(4000, null),
     GENIN(6000, Arrays.asList(
             new Requirement() {
                 @Override
