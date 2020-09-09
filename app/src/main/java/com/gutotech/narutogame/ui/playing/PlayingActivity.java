@@ -30,6 +30,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.Battle;
 import com.gutotech.narutogame.data.model.CharOn;
@@ -347,6 +349,11 @@ public class PlayingActivity extends AppCompatActivity implements
 
     public void onLogoutClick(View view) {
         mViewModel.logout();
+        GoogleSignIn.getClient(
+                this,
+                new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).build()
+        ).signOut();
+
         startActivity(new Intent(PlayingActivity.this, HomeActivity.class));
         finish();
     }
@@ -420,5 +427,4 @@ public class PlayingActivity extends AppCompatActivity implements
         super.onDestroy();
         mViewModel.destroy();
     }
-
 }

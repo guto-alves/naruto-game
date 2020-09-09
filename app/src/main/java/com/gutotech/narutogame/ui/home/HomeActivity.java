@@ -2,31 +2,27 @@ package com.gutotech.narutogame.ui.home;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.view.View;
+import android.widget.ExpandableListView;
+import android.widget.ImageView;
+
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.google.android.material.navigation.NavigationView;
-
-import android.util.DisplayMetrics;
-import android.view.View;
-
-import androidx.core.view.GravityCompat;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.drawerlayout.widget.DrawerLayout;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
-
-import android.widget.ExpandableListView;
-import android.widget.ImageView;
-
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.ui.adapter.ExpandableListAdapter;
+import com.gutotech.narutogame.utils.BgMusicUtils;
 import com.gutotech.narutogame.utils.FragmentUtils;
 import com.gutotech.narutogame.utils.SettingsUtils;
-import com.gutotech.narutogame.utils.BgMusicUtils;
 import com.gutotech.narutogame.utils.SoundUtil;
 
 public class HomeActivity extends AppCompatActivity {

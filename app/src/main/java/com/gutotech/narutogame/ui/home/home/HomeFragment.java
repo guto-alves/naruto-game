@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
@@ -13,6 +14,16 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.SignInButton;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.GoogleAuthProvider;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.repository.AuthRepository;
 import com.gutotech.narutogame.databinding.FragmentHomeBinding;
@@ -35,23 +46,28 @@ import com.smarteist.autoimageslider.SliderAnimations;
 import es.dmoral.toasty.Toasty;
 
 public class HomeFragment extends Fragment implements ResultListener, SectionFragment {
+    private static final int RC_SIGN_IN = 9001;
+
+    private HomeViewModel mViewModel;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        HomeViewModel viewModel = new ViewModelProvider(this).get(HomeViewModel.class);
+        mViewModel = new ViewModelProvider(this,
+                ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication()))
+                .get(HomeViewModel.class);
 
         FragmentHomeBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home,
                 container, false);
-        binding.setViewModel(viewModel);
+        binding.setViewModel(mViewModel);
 
-        viewModel.setAuthListener(this);
+        mViewModel.setAuthListener(this);
 
         if (AuthRepository.getInstance().isSignedIn()) {
             binding.loginLinearLayout.setVisibility(View.GONE);
         } else {
             binding.passwordEditText.setOnEditorActionListener((v, actionId, event) -> {
-                viewModel.onPlayButtonPressed();
+                mViewModel.onPlayButtonPressed();
                 return true;
             });
 
@@ -64,9 +80,22 @@ public class HomeFragment extends Fragment implements ResultListener, SectionFra
                 SoundUtil.play(getContext(), R.raw.sound_btn06);
                 FragmentUtils.goTo(getActivity(), new CharacterCreateFragment(), true);
             });
+
+            GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                    .requestIdToken(getString(R.string.default_web_client_id))
+                    .requestEmail()
+                    .build();
+
+            GoogleSignInClient googleSignInClient = GoogleSignIn.getClient(getActivity(), gso);
+
+            binding.signInButton.setSize(SignInButton.SIZE_STANDARD);
+            binding.signInButton.setOnClickListener(v -> {
+                Intent signInIntent = googleSignInClient.getSignInIntent();
+                startActivityForResult(signInIntent, RC_SIGN_IN);
+            });
         }
 
-        viewModel.getStartMaintenanceActivityEvent().observe(getViewLifecycleOwner(), aVoid ->
+        mViewModel.getStartMaintenanceActivityEvent().observe(getViewLifecycleOwner(), aVoid ->
                 startActivity(new Intent(getActivity(), MaintenanceActivity.class)));
 
         binding.newsRecyclerView.setHasFixedSize(true);
@@ -74,7 +103,7 @@ public class HomeFragment extends Fragment implements ResultListener, SectionFra
                 LinearLayout.HORIZONTAL));
         NewsAdapter newsAdapter = new NewsAdapter(getActivity(), mOnNewsClickListener);
         binding.newsRecyclerView.setAdapter(newsAdapter);
-        viewModel.getNews().observe(getViewLifecycleOwner(),
+        mViewModel.getNews().observe(getViewLifecycleOwner(),
                 news -> {
                     if (news.size() > 0) {
                         binding.newsRecyclerView.setVisibility(View.VISIBLE);
@@ -87,7 +116,7 @@ public class HomeFragment extends Fragment implements ResultListener, SectionFra
         binding.ninjaStatisticsRecyclerView.setHasFixedSize(true);
         NinjaStatisticsAdapter ninjaStatisticsAdapter = new NinjaStatisticsAdapter(getActivity());
         binding.ninjaStatisticsRecyclerView.setAdapter(ninjaStatisticsAdapter);
-        viewModel.getNinjaStatistics().observe(getViewLifecycleOwner(),
+        mViewModel.getNinjaStatistics().observe(getViewLifecycleOwner(),
                 ninjaStatisticsAdapter::setNinjaStatisticsList);
 
         KagesSliderAdapter kagesSliderAdapter = new KagesSliderAdapter(getContext());
@@ -95,7 +124,7 @@ public class HomeFragment extends Fragment implements ResultListener, SectionFra
         binding.kagesSliderView.setIndicatorAnimation(IndicatorAnimationType.WORM);
         binding.kagesSliderView.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION);
         binding.kagesSliderView.startAutoCycle();
-        viewModel.getKages().observe(getViewLifecycleOwner(), kages -> {
+        mViewModel.getKages().observe(getViewLifecycleOwner(), kages -> {
             if (kages.size() > 0) {
                 binding.kagesCardView.setVisibility(View.VISIBLE);
             }
@@ -139,6 +168,37 @@ public class HomeFragment extends Fragment implements ResultListener, SectionFra
         }
 
         SoundUtil.play(getContext(), R.raw.attention2);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == RC_SIGN_IN) {
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            try {
+                GoogleSignInAccount account = task.getResult(ApiException.class);
+                firebaseAuthWithGoogle(account.getIdToken());
+            } catch (ApiException e) {
+                Toast.makeText(getContext(), "Google sign in failed", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    private void firebaseAuthWithGoogle(String idToken) {
+        AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
+        FirebaseAuth.getInstance().signInWithCredential(credential)
+                .addOnCompleteListener(getActivity(), task -> {
+                    if (task.isSuccessful()) {
+                        onSuccess();
+                    } else {
+                        Toast.makeText(
+                                getContext(),
+                                "Sign in with Google credential failed",
+                                Toast.LENGTH_SHORT
+                        ).show();
+                    }
+                });
     }
 
     @Override

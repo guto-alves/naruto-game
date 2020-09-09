@@ -1,17 +1,18 @@
 package com.gutotech.narutogame.ui.home.home;
 
+import android.app.Application;
 import android.text.TextUtils;
 
+import androidx.annotation.NonNull;
 import androidx.databinding.ObservableField;
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.ViewModel;
 
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.Character;
 import com.gutotech.narutogame.data.model.News;
 import com.gutotech.narutogame.data.model.NinjaStatistics;
 import com.gutotech.narutogame.data.repository.AuthRepository;
-import com.gutotech.narutogame.data.repository.GameStatusRepository;
 import com.gutotech.narutogame.data.repository.KageRepository;
 import com.gutotech.narutogame.data.repository.NewsRepository;
 import com.gutotech.narutogame.data.repository.NinjaStatisticsRepository;
@@ -21,7 +22,7 @@ import com.gutotech.narutogame.utils.SingleLiveEvent;
 
 import java.util.List;
 
-public class HomeViewModel extends ViewModel {
+public class HomeViewModel extends AndroidViewModel {
     public final ObservableField<String> email = new ObservableField<>("");
     public final ObservableField<String> password = new ObservableField<>("");
 
@@ -32,7 +33,8 @@ public class HomeViewModel extends ViewModel {
 
     private SingleLiveEvent<Void> mStartMaintenanceActivityEvent = new SingleLiveEvent<>();
 
-    public HomeViewModel() {
+    public HomeViewModel(@NonNull Application application) {
+        super(application);
         mAuthRepository = AuthRepository.getInstance();
         mPlayerRepository = PlayerRepository.getInstance();
     }
@@ -48,7 +50,7 @@ public class HomeViewModel extends ViewModel {
                         if (signInResult) {
 //                            GameStatusRepository.getInstance().getStatus(status -> {
 //                                if (status.equals(GameStatusRepository.VERSION_NAME)) {
-                                    mAuthListener.onSuccess();
+                            mAuthListener.onSuccess();
 //                                } else {
 //                                    mPlayerRepository.setSignedIn(false, null);
 //                                    mAuthRepository.signOut();
@@ -107,4 +109,5 @@ public class HomeViewModel extends ViewModel {
     LiveData<Void> getStartMaintenanceActivityEvent() {
         return mStartMaintenanceActivityEvent;
     }
+
 }
