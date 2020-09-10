@@ -45,6 +45,7 @@ public class CharacterCreateViewModel extends ViewModel
 
     private ResultListener mListener;
 
+    private SingleLiveEvent<Boolean> mShowProgressBarEvent = new SingleLiveEvent<>();
     private SingleLiveEvent<Void> mImpossibleToCreateEvent = new SingleLiveEvent<>();
 
     private SingleLiveEvent<Void> mShowFastSignDialogEvent = new SingleLiveEvent<>();
@@ -94,9 +95,11 @@ public class CharacterCreateViewModel extends ViewModel
         mChar.setNick(mChar.getNick().trim());
 
         if (isValidNick()) {
+            mShowProgressBarEvent.setValue(true);
             mListener.onStarted();
 
             mCharacterRepository.checkByRepeatedNick(mChar.getNick().trim(), isUnique -> {
+                mShowProgressBarEvent.setValue(false);
                 if (isUnique) {
                     if (mAuthRepository.isSignedIn()) {
                         createCharacter();
@@ -175,6 +178,10 @@ public class CharacterCreateViewModel extends ViewModel
 
     LiveData<Void> getImpossibleToCreateEvent() {
         return mImpossibleToCreateEvent;
+    }
+
+    LiveData<Boolean> getShowProgressBarEvent() {
+        return mShowProgressBarEvent;
     }
 
     LiveData<Void> getShowFastSignDialogEvent() {

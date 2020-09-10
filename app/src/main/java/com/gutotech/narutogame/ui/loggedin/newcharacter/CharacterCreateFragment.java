@@ -72,8 +72,17 @@ public class CharacterCreateFragment extends Fragment implements SectionFragment
             SoundUtil.play(getContext(), R.raw.attention2);
         });
 
+        mViewModel.getShowProgressBarEvent().observe(getViewLifecycleOwner(), visible -> {
+            if (visible) {
+                mProgressDialog.openDialog(getFragmentManager());
+            } else {
+                mProgressDialog.close();
+            }
+        });
+
         mViewModel.getShowFastSignDialogEvent().observe(getViewLifecycleOwner(), aVoid ->
-                FastSignUpDialogFragment.show(this));
+                FastSignUpDialogFragment.show(this, getFragmentManager())
+        );
 
         binding.adView.loadAd(new AdRequest.Builder().build());
 
@@ -101,21 +110,17 @@ public class CharacterCreateFragment extends Fragment implements SectionFragment
 
     @Override
     public void onStarted() {
-        mProgressDialog.openDialog(getFragmentManager());
+//        mProgressDialog.openDialog(getFragmentManager());
     }
 
     @Override
     public void onSuccess() {
-        mProgressDialog.dismiss();
         showAlert(R.string.ninja_successfully_created, R.string.congratulations_character_created);
         FragmentUtils.goTo(getActivity(), new CharacterSelectFragment());
     }
 
     @Override
     public void onFailure(int resId) {
-        if (mProgressDialog.isVisible()) {
-            mProgressDialog.dismiss();
-        }
         showAlert(R.string.warning, resId);
         SoundUtil.play(getContext(), R.raw.attention2);
     }

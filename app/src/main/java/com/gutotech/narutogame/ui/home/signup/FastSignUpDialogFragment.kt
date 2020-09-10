@@ -1,24 +1,20 @@
 package com.gutotech.narutogame.ui.home.signup
 
-import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
-import androidx.annotation.StringRes
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
 import com.gutotech.narutogame.R
 import com.gutotech.narutogame.databinding.DialogFastSignupBinding
 import com.gutotech.narutogame.ui.ResultListener
-import com.gutotech.narutogame.ui.loggedin.LoggedInActivity
-import com.gutotech.narutogame.utils.SoundUtil
 import es.dmoral.toasty.Toasty
 
 class FastSignUpDialogFragment : DialogFragment() {
@@ -74,10 +70,10 @@ class FastSignUpDialogFragment : DialogFragment() {
 
     companion object {
         @JvmStatic
-        fun show(fragment: Fragment) {
+        fun show(fragment: Fragment, fragmentManager: FragmentManager) {
             val dialog = FastSignUpDialogFragment()
             dialog.setTargetFragment(fragment, 0)
-            dialog.show(fragment.childFragmentManager, "FastSignUpDialogFragment")
+            dialog.show(fragmentManager, "FastSignUpDialogFragment")
         }
     }
 }
