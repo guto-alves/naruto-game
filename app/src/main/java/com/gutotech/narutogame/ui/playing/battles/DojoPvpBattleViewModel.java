@@ -40,7 +40,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-public class DojoBattlePvpViewModel extends AndroidViewModel
+public class DojoPvpBattleViewModel extends AndroidViewModel
         implements JutsusAdapter.OnJutsuClickListener {
     private static final SecureRandom random = new SecureRandom();
 
@@ -75,7 +75,7 @@ public class DojoBattlePvpViewModel extends AndroidViewModel
     private SingleLiveEvent<Void> mShowDrawnEvent = new SingleLiveEvent<>();
     private SingleLiveEvent<Void> mShowInactivatedEvent = new SingleLiveEvent<>();
 
-    public DojoBattlePvpViewModel(@NonNull Application application) {
+    public DojoPvpBattleViewModel(@NonNull Application application) {
         super(application);
         mBattle = new Battle();
         mFighters = new Fighters();

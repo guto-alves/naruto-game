@@ -2381,5 +2381,7 @@
     <string name="play_now">Jogar agora</string>]
     <string name="email">E-mail</string>
     <string name="online">Online</string>
+    <string name="error_sign_in_with_google_credential">Sign in with Google credential failed</string>
+    <string name="google_sign_in_failed">Login do Google falhou</string>
 
 </resources>

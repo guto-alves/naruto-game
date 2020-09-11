@@ -2,8 +2,12 @@ package com.gutotech.narutogame.data.firebase;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.widget.ImageView;
+
+import androidx.core.content.ContextCompat;
+import androidx.swiperefreshlayout.widget.CircularProgressDrawable;
 
 import com.bumptech.glide.Glide;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
@@ -28,11 +32,17 @@ public class StorageUtils {
     }
 
     public static void downloadImage(Context context, StorageReference imageReference,
-                                     ImageView imageView) {
+                                     ImageView imageView, Drawable drawable) {
         Glide.with(context)
                 .using(new FirebaseImageLoader())
                 .load(imageReference)
+                .placeholder(drawable)
                 .into(imageView);
+    }
+
+    public static void downloadImage(Context context, StorageReference imageReference,
+                                     ImageView imageView) {
+        downloadImage(context, imageReference, imageView, null);
     }
 
     public static void loadProfileForMsg(Context context, ImageView imageView) {
@@ -59,8 +69,19 @@ public class StorageUtils {
         }
 
         StorageReference imageReference = FirebaseConfig.getStorage().child(path);
-        downloadImage(context, imageReference, imageView);
+
+        loadProfile(context, imageView, imageReference);
     }
+
+    public static void loadProfile(Context context, ImageView imageView, StorageReference imageReference) {
+        CircularProgressDrawable drawable = new CircularProgressDrawable(context);
+        drawable.setColorSchemeColors(ContextCompat.getColor(context, android.R.color.holo_blue_light));
+        drawable.setStrokeWidth(10f);
+        drawable.setCenterRadius(50f);
+        drawable.start();
+        downloadImage(context, imageReference, imageView, drawable);
+    }
+
 
     public static void loadSmallProfile(Context context, ImageView imageView, int ninjaId) {
         StorageReference imageRef = FirebaseConfig.getStorage()

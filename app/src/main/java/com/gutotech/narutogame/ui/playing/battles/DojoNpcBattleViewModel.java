@@ -31,7 +31,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
-public class DojoBatalhaLutadorViewModel extends ViewModel
+public class DojoNpcBattleViewModel extends ViewModel
         implements JutsusAdapter.OnJutsuClickListener {
     public final ObservableField<String> countDown = new ObservableField<>("--:--");
 
@@ -65,7 +65,7 @@ public class DojoBatalhaLutadorViewModel extends ViewModel
     SingleLiveEvent<Void> showDrawnEvent = new SingleLiveEvent<>();
     SingleLiveEvent<Void> showInactivatedEvent = new SingleLiveEvent<>();
 
-    DojoBatalhaLutadorViewModel(Battle battle) {
+    DojoNpcBattleViewModel(Battle battle) {
         mBattle = battle;
         mBattleRepository = BattleRepository.getInstance();
 

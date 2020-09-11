@@ -45,8 +45,8 @@ import com.gutotech.narutogame.ui.playing.academy.AcademyTrainingFragment;
 import com.gutotech.narutogame.ui.playing.academy.CharacterJutsusFragment;
 import com.gutotech.narutogame.ui.playing.academy.ElementalJutsusFragment;
 import com.gutotech.narutogame.ui.playing.academy.GraduationsFragment;
-import com.gutotech.narutogame.ui.playing.battles.DojoBatalhaLutadorFragment;
-import com.gutotech.narutogame.ui.playing.battles.DojoBattlePvpFragment;
+import com.gutotech.narutogame.ui.playing.battles.DojoNpcBattleFragment;
+import com.gutotech.narutogame.ui.playing.battles.DojoPvpBattleFragment;
 import com.gutotech.narutogame.ui.playing.battles.DojoFragment;
 import com.gutotech.narutogame.ui.playing.battles.DojoRandomWaitFragment;
 import com.gutotech.narutogame.ui.playing.battles.HospitalRoomFragment;
@@ -453,9 +453,9 @@ public class PlayingViewModel extends AndroidViewModel implements ExpandableList
             sections4.add(new HospitalRoomFragment());
         } else if (mCharacter.isBattle()) {
             if (mCharacter.getBattleId().contains(Battle.DOJO_NPC)) {
-                sections4.add(new DojoBatalhaLutadorFragment());
+                sections4.add(new DojoNpcBattleFragment());
             } else {
-                sections4.add(new DojoBattlePvpFragment());
+                sections4.add(new DojoPvpBattleFragment());
             }
         } else if (mCharacter.isDojoWaitQueue()) {
             sections4.add(new DojoRandomWaitFragment());

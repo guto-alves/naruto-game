@@ -109,11 +109,6 @@ public class CharacterCreateFragment extends Fragment implements SectionFragment
     private final ProgressDialogFragment mProgressDialog = new ProgressDialogFragment();
 
     @Override
-    public void onStarted() {
-//        mProgressDialog.openDialog(getFragmentManager());
-    }
-
-    @Override
     public void onSuccess() {
         showAlert(R.string.ninja_successfully_created, R.string.congratulations_character_created);
         FragmentUtils.goTo(getActivity(), new CharacterSelectFragment());

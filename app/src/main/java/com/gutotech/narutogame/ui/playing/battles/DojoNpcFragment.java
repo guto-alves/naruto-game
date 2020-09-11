@@ -17,9 +17,9 @@ import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.databinding.FragmentDojoNpcFightersBinding;
 import com.gutotech.narutogame.ui.ProgressDialogFragment;
 
-public class DojoNPCFightersFragment extends Fragment {
+public class DojoNpcFragment extends Fragment {
 
-    public DojoNPCFightersFragment() {
+    public DojoNpcFragment() {
     }
 
     @Override
@@ -28,13 +28,13 @@ public class DojoNPCFightersFragment extends Fragment {
         FragmentDojoNpcFightersBinding binding = DataBindingUtil.inflate(inflater,
                 R.layout.fragment_dojo_npc_fighters, container, false);
 
-        DojoNpcFightersViewModel viewModel = new ViewModelProvider(this,
+        DojoNpcViewModel viewModel = new ViewModelProvider(this,
                 ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication()))
-                .get(DojoNpcFightersViewModel.class);
+                .get(DojoNpcViewModel.class);
 
         binding.setViewModel(viewModel);
 
-        binding.npcDailyCombatProgressBar.setMax(DojoNpcFightersViewModel.MAX_DAILY_COMBAT);
+        binding.npcDailyCombatProgressBar.setMax(DojoNpcViewModel.MAX_DAILY_COMBAT);
         binding.npcDailyCombatProgressBar.setProgress(CharOn.character.getNpcDailyCombat());
         binding.npcDailyCombatTextView.setText(getString(R.string.npc_daily_combat,
                 CharOn.character.getNpcDailyCombat()));

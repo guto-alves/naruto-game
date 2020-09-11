@@ -1,5 +1,6 @@
 package com.gutotech.narutogame.ui.home.home;
 
+import android.app.Activity;
 import android.app.Application;
 import android.text.TextUtils;
 
@@ -8,10 +9,13 @@ import androidx.databinding.ObservableField;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.Character;
 import com.gutotech.narutogame.data.model.News;
 import com.gutotech.narutogame.data.model.NinjaStatistics;
+import com.gutotech.narutogame.data.model.Player;
 import com.gutotech.narutogame.data.repository.AuthRepository;
 import com.gutotech.narutogame.data.repository.KageRepository;
 import com.gutotech.narutogame.data.repository.NewsRepository;
@@ -39,6 +43,35 @@ public class HomeViewModel extends AndroidViewModel {
         mPlayerRepository = PlayerRepository.getInstance();
     }
 
+    public void registerPlayerInfo(GoogleSignInAccount account) {
+        Player newPlayer = new Player();
+        newPlayer.setId(mAuthRepository.getUid());
+        newPlayer.setName(account.getDisplayName());
+        newPlayer.setEmail(account.getEmail());
+        mPlayerRepository.savePlayer(newPlayer);
+    }
+
+    public void signWithGoogle(Activity activity, GoogleSignInAccount account) {
+        mAuthRepository.signInAuthWithGoogle(activity, account.getIdToken(), new AuthRepository.Completable() {
+            @Override
+            public void onComplete() {
+                mPlayerRepository.getCurrentPlayer(player -> {
+                    if (player == null) {
+                        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(activity);
+                        registerPlayerInfo(account);
+                    }
+
+                    mAuthListener.onSuccess();
+                });
+            }
+
+            @Override
+            public void onError(int resId) {
+                mAuthListener.onFailure(resId);
+            }
+        });
+    }
+
     public void onPlayButtonPressed() {
         if (validateFields()) {
             mAuthListener.onStarted();
@@ -47,6 +80,7 @@ public class HomeViewModel extends AndroidViewModel {
                 @Override
                 public void onComplete() {
                     mPlayerRepository.setSignedIn(true, signInResult -> {
+                        // TODO descomentar
                         if (signInResult) {
 //                            GameStatusRepository.getInstance().getStatus(status -> {
 //                                if (status.equals(GameStatusRepository.VERSION_NAME)) {
@@ -109,5 +143,4 @@ public class HomeViewModel extends AndroidViewModel {
     LiveData<Void> getStartMaintenanceActivityEvent() {
         return mStartMaintenanceActivityEvent;
     }
-
 }

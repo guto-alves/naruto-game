@@ -1,15 +1,14 @@
 package com.gutotech.narutogame.ui.playing.currentvillage;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
@@ -32,7 +31,10 @@ public class MissionsWaitingFragment extends Fragment implements SectionFragment
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_missions_waiting,
                 container, false);
 
-        mViewModel = new ViewModelProvider(this).get(MissionsWaitingViewModel.class);
+        mViewModel = new ViewModelProvider(
+                this,
+                ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication())
+        ).get(MissionsWaitingViewModel.class);
         mBinding.setViewModel(mViewModel);
 
         mViewModel.getMissionInfo().observe(getViewLifecycleOwner(), missionInfo -> {

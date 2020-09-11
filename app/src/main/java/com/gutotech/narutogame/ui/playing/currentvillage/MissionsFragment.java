@@ -1,15 +1,14 @@
 package com.gutotech.narutogame.ui.playing.currentvillage;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.google.android.gms.ads.AdRequest;
 import com.gutotech.narutogame.R;
@@ -30,8 +29,10 @@ public class MissionsFragment extends Fragment implements SectionFragment {
         FragmentMissionsBinding binding = DataBindingUtil.inflate(inflater,
                 R.layout.fragment_missions, container, false);
 
-        MissionsViewModel viewModel = new ViewModelProvider(this)
-                .get(MissionsViewModel.class);
+        MissionsViewModel viewModel = new ViewModelProvider(
+                this,
+                ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication())
+        ).get(MissionsViewModel.class);
 
         binding.setViewModel(viewModel);
 

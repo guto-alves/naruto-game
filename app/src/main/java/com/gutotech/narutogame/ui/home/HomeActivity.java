@@ -35,7 +35,7 @@ public class HomeActivity extends AppCompatActivity {
         Configuration configuration = getResources().getConfiguration();
         configuration.fontScale = 1f; // 0.85 small size, 1 normal size, 1,15 big etc
         DisplayMetrics metrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        getDisplay().getMetrics(metrics);
         metrics.scaledDensity = configuration.fontScale * metrics.density;
         configuration.densityDpi = (int) getResources().getDisplayMetrics().xdpi;
         getBaseContext().getResources().updateConfiguration(configuration, metrics);

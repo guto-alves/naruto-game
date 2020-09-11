@@ -3,6 +3,14 @@ package com.gutotech.narutogame.ui.playing.battles;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.text.SpannableStringBuilder;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
+import android.text.style.RelativeSizeSpan;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.PopupWindow;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
@@ -10,22 +18,15 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.text.SpannableStringBuilder;
-import android.text.method.LinkMovementMethod;
-import android.text.style.ClickableSpan;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.PopupWindow;
-
 import com.google.android.gms.ads.AdRequest;
 import com.gutotech.narutogame.R;
+import com.gutotech.narutogame.data.firebase.StorageUtils;
 import com.gutotech.narutogame.data.model.BattleLog;
 import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.model.Formulas;
 import com.gutotech.narutogame.data.model.Jutsu;
 import com.gutotech.narutogame.data.repository.BattleRepository;
-import com.gutotech.narutogame.databinding.FragmentDojoBatalhaLutadorBinding;
+import com.gutotech.narutogame.databinding.FragmentDojoNpcBattleBinding;
 import com.gutotech.narutogame.databinding.PopupAttributesStatusBinding;
 import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.WarningDialogFragment;
@@ -33,27 +34,26 @@ import com.gutotech.narutogame.ui.adapter.BattleLogAdapter;
 import com.gutotech.narutogame.ui.adapter.BuffsDebuffStatusAdapter;
 import com.gutotech.narutogame.ui.adapter.JutsusAdapter;
 import com.gutotech.narutogame.utils.FragmentUtils;
-import com.gutotech.narutogame.data.firebase.StorageUtils;
 import com.gutotech.narutogame.utils.SoundUtil;
 import com.gutotech.narutogame.utils.SpannableStringBuilderCustom;
 
-public class DojoBatalhaLutadorFragment extends Fragment implements SectionFragment {
-    private FragmentDojoBatalhaLutadorBinding mBinding;
-    private DojoBatalhaLutadorViewModel mViewModel;
+public class DojoNpcBattleFragment extends Fragment implements SectionFragment {
+    private FragmentDojoNpcBattleBinding mBinding;
+    private DojoNpcBattleViewModel mViewModel;
 
-    public DojoBatalhaLutadorFragment() {
+    public DojoNpcBattleFragment() {
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_dojo_batalha_lutador,
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_dojo_npc_battle,
                 container, false);
 
         BattleRepository.getInstance().get(CharOn.character.getBattleId(), battle -> {
             mViewModel = new ViewModelProvider(this,
-                    new DojoBatalhaLutadorViewModelFactory(battle))
-                    .get(DojoBatalhaLutadorViewModel.class);
+                    new DojoNpcBattleViewModelFactory(battle))
+                    .get(DojoNpcBattleViewModel.class);
 
             mBinding.setViewModel(mViewModel);
 
@@ -109,7 +109,9 @@ public class DojoBatalhaLutadorFragment extends Fragment implements SectionFragm
                                 mViewModel.exit();
                                 FragmentUtils.goTo(getActivity(), new DojoFragment());
                             }
-                        });
+                        },
+                        new RelativeSizeSpan(1.5f)
+                );
                 showBattleResult(R.string.end_of_the_battle, description.getString());
                 SoundUtil.play(getContext(), R.raw.win);
             });
@@ -125,7 +127,9 @@ public class DojoBatalhaLutadorFragment extends Fragment implements SectionFragm
                                 mViewModel.exit();
                                 CharOn.character.setHospital(true);
                             }
-                        });
+                        },
+                        new RelativeSizeSpan(1.5f)
+                );
                 showBattleResult(R.string.too_bad, description.getString());
                 SoundUtil.play(getContext(), R.raw.lose);
             });
@@ -141,7 +145,9 @@ public class DojoBatalhaLutadorFragment extends Fragment implements SectionFragm
                                 mViewModel.exit();
                                 CharOn.character.setHospital(true);
                             }
-                        });
+                        },
+                        new RelativeSizeSpan(1.5f)
+                );
                 showBattleResult(R.string.empate, description.getString());
             });
 
@@ -155,7 +161,9 @@ public class DojoBatalhaLutadorFragment extends Fragment implements SectionFragm
                                 mViewModel.exit();
                                 CharOn.character.setHospital(true);
                             }
-                        });
+                        },
+                        new RelativeSizeSpan(1.5f)
+                );
                 description.append();
                 description.append(getString(R.string.to_preceed));
                 showBattleResult(R.string.too_bad, description.getString());

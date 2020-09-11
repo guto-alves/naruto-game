@@ -16,7 +16,7 @@ import com.gutotech.narutogame.data.repository.CharacterRepository;
 import com.gutotech.narutogame.utils.SingleLiveEvent;
 import com.gutotech.narutogame.utils.SoundUtil;
 
-public class DojoNpcFightersViewModel extends AndroidViewModel {
+public class DojoNpcViewModel extends AndroidViewModel {
     static final int MAX_DAILY_COMBAT = 10;
 
     private Fighters mFighters = new Fighters();
@@ -26,7 +26,7 @@ public class DojoNpcFightersViewModel extends AndroidViewModel {
     private SingleLiveEvent<Npc> mShowFightersEvent = new SingleLiveEvent<>();
     private SingleLiveEvent<Boolean> mProgressDialogEvent = new SingleLiveEvent<>();
 
-    public DojoNpcFightersViewModel(@NonNull Application application) {
+    public DojoNpcViewModel(@NonNull Application application) {
         super(application);
     }
 

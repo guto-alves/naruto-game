@@ -1,6 +1,5 @@
 package com.gutotech.narutogame.ui.loggedin;
 
-import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -21,10 +20,6 @@ import com.daimajia.androidanimations.library.YoYo;
 import com.google.android.material.navigation.NavigationView;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.network.NetworkUtils;
-import com.gutotech.narutogame.data.repository.AuthRepository;
-import com.gutotech.narutogame.data.repository.GameStatusRepository;
-import com.gutotech.narutogame.data.repository.PlayerRepository;
-import com.gutotech.narutogame.ui.MaintenanceActivity;
 import com.gutotech.narutogame.ui.WarningDialogFragment;
 import com.gutotech.narutogame.ui.adapter.ExpandableListAdapter;
 import com.gutotech.narutogame.utils.BgMusicUtils;
@@ -45,7 +40,7 @@ public class LoggedInActivity extends AppCompatActivity
         Configuration configuration = getResources().getConfiguration();
         configuration.fontScale = 1f; // 0.85 small size, 1 normal size, 1,15 big etc
         DisplayMetrics metrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        getDisplay().getMetrics(metrics);
         metrics.scaledDensity = configuration.fontScale * metrics.density;
         configuration.densityDpi = (int) getResources().getDisplayMetrics().xdpi;
         getBaseContext().getResources().updateConfiguration(configuration, metrics);
@@ -88,6 +83,7 @@ public class LoggedInActivity extends AppCompatActivity
             }
         });
 
+        // TODO descomentar isso
 //        GameStatusRepository.getInstance().registerGameStatusListener(status -> {
 //            if (!status.equals(GameStatusRepository.VERSION_NAME)) {
 //                GameStatusRepository.getInstance().removeGameStatusListener();

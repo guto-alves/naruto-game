@@ -8,7 +8,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
@@ -71,7 +70,7 @@ public class PlayingActivity extends AppCompatActivity implements
         Configuration configuration = getResources().getConfiguration();
         configuration.fontScale = (float) 1; // 0.85 small size, 1 normal size, 1,15 big etc
         DisplayMetrics metrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        getDisplay().getMetrics(metrics);
         metrics.scaledDensity = configuration.fontScale * metrics.density;
         configuration.densityDpi = (int) getResources().getDisplayMetrics().xdpi;
         getBaseContext().getResources().updateConfiguration(configuration, metrics);
@@ -358,7 +357,7 @@ public class PlayingActivity extends AppCompatActivity implements
         finish();
     }
 
-    // Pinch to zoom
+
     private ScaleGestureDetector mScaleGestureDetector;
     private GestureDetectorCompat mGestureDetector;
 
@@ -372,27 +371,30 @@ public class PlayingActivity extends AppCompatActivity implements
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        Log.e("MyTag", "onTouchEvent");
         if (mScaleGestureDetector != null) {
             mScaleGestureDetector.onTouchEvent(event);
         }
 
         if (mGestureDetector != null) {
             mGestureDetector.onTouchEvent(event);
-            Log.e("MyTag", "onTouchEvent -> GestureDetector");
         }
 
         return super.onTouchEvent(event);
     }
 
     @Override
-    public boolean dispatchTouchEvent(MotionEvent ev) {
+    public boolean dispatchTouchEvent(MotionEvent event) {
         if (mScaleGestureDetector != null) {
-            mScaleGestureDetector.onTouchEvent(ev);
+            mScaleGestureDetector.onTouchEvent(event);
         }
 
-        return super.dispatchTouchEvent(ev);
+        if (mGestureDetector != null && !mBinding.drawerLayout.isDrawerVisible(GravityCompat.START)) {
+            mGestureDetector.onTouchEvent(event);
+        }
+
+        return super.dispatchTouchEvent(event);
     }
+
 
     public void closeDrawer() {
         mBinding.drawerLayout.closeDrawer(GravityCompat.START);

@@ -21,9 +21,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthCredential;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.GoogleAuthProvider;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.repository.AuthRepository;
 import com.gutotech.narutogame.databinding.FragmentHomeBinding;
@@ -53,9 +50,10 @@ public class HomeFragment extends Fragment implements ResultListener, SectionFra
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        mViewModel = new ViewModelProvider(this,
-                ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication()))
-                .get(HomeViewModel.class);
+        mViewModel = new ViewModelProvider(
+                this,
+                ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication())
+        ).get(HomeViewModel.class);
 
         FragmentHomeBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home,
                 container, false);
@@ -71,12 +69,12 @@ public class HomeFragment extends Fragment implements ResultListener, SectionFra
                 return true;
             });
 
-            binding.forgotPasswordTextView.setOnClickListener(v -> {
+            binding.forgotPasswordButton.setOnClickListener(v -> {
                 SoundUtil.play(getContext(), R.raw.sound_btn06);
                 FragmentUtils.goTo(getActivity(), new PasswordRecoveryFragment(), true);
             });
 
-            binding.createAccountTextView.setOnClickListener(v -> {
+            binding.createAccountButton.setOnClickListener(v -> {
                 SoundUtil.play(getContext(), R.raw.sound_btn06);
                 FragmentUtils.goTo(getActivity(), new CharacterCreateFragment(), true);
             });
@@ -87,8 +85,8 @@ public class HomeFragment extends Fragment implements ResultListener, SectionFra
                     .build();
 
             GoogleSignInClient googleSignInClient = GoogleSignIn.getClient(getActivity(), gso);
-
             binding.signInButton.setSize(SignInButton.SIZE_STANDARD);
+            binding.signInButton.setColorScheme(SignInButton.COLOR_DARK);
             binding.signInButton.setOnClickListener(v -> {
                 Intent signInIntent = googleSignInClient.getSignInIntent();
                 startActivityForResult(signInIntent, RC_SIGN_IN);
@@ -178,27 +176,13 @@ public class HomeFragment extends Fragment implements ResultListener, SectionFra
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             try {
                 GoogleSignInAccount account = task.getResult(ApiException.class);
-                firebaseAuthWithGoogle(account.getIdToken());
+                mViewModel.signWithGoogle(getActivity(), account);
             } catch (ApiException e) {
-                Toast.makeText(getContext(), "Google sign in failed", Toast.LENGTH_SHORT).show();
+                if (e.getStatusCode() != 12501) {
+                    Toast.makeText(getContext(), R.string.google_sign_in_failed, Toast.LENGTH_SHORT).show();
+                }
             }
         }
-    }
-
-    private void firebaseAuthWithGoogle(String idToken) {
-        AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
-        FirebaseAuth.getInstance().signInWithCredential(credential)
-                .addOnCompleteListener(getActivity(), task -> {
-                    if (task.isSuccessful()) {
-                        onSuccess();
-                    } else {
-                        Toast.makeText(
-                                getContext(),
-                                "Sign in with Google credential failed",
-                                Toast.LENGTH_SHORT
-                        ).show();
-                    }
-                });
     }
 
     @Override

@@ -2418,5 +2418,7 @@ You will receive an email to confirm your account, then you <b>NEED TO USE A VAL
     <string name="batalha">Battle</string>
     <string name="play_now">Play now</string>
     <string name="online">Online</string>
+    <string name="error_sign_in_with_google_credential">Sign in with Google credential failed</string>
+    <string name="google_sign_in_failed">Google sign in failed</string>
 
 </resources>

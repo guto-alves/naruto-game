@@ -48,8 +48,12 @@ public class ProfilesAdapter extends RecyclerView.Adapter<ProfilesAdapter.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         if (mProfileList != null) {
             StorageReference storageReference = mProfileList.get(position);
-            StorageUtils.downloadImage(holder.profileImageView.getContext(), storageReference,
-                    holder.profileImageView);
+
+            StorageUtils.loadProfile(
+                    holder.profileImageView.getContext(),
+                    holder.profileImageView,
+                    storageReference
+            );
 
             holder.itemView.setOnClickListener(v ->
                     mOnProfileClickListener.onProfileClick(storageReference.getPath())

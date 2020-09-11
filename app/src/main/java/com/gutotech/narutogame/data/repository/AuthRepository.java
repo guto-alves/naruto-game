@@ -1,9 +1,11 @@
 package com.gutotech.narutogame.data.repository;
 
+import android.app.Activity;
 import android.util.Log;
 
 import androidx.annotation.StringRes;
 
+import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthInvalidUserException;
@@ -11,6 +13,7 @@ import com.google.firebase.auth.FirebaseAuthRecentLoginRequiredException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.ui.ResultListener;
@@ -86,6 +89,19 @@ public class AuthRepository {
                 emitter.onError(resId);
             }
         });
+    }
+
+    public void signInAuthWithGoogle(Activity activity, String idToken, Completable emitter) {
+        AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
+
+        FirebaseAuth.getInstance().signInWithCredential(credential)
+                .addOnCompleteListener(activity, task -> {
+                    if (task.isSuccessful()) {
+                        emitter.onComplete();
+                    } else {
+                        emitter.onError(R.string.error_sign_in_with_google_credential);
+                    }
+                });
     }
 
     public void sendPasswordResetEmail(String emailAddress, ResultListener listener) {

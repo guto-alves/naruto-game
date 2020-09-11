@@ -46,7 +46,7 @@
                     android:id="@+id/loginLinearLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="24dp"
+                    android:layout_marginBottom="16dp"
                     android:orientation="vertical">
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -94,8 +94,8 @@
 
                     <ImageButton
                         android:id="@+id/playImageButton"
-                        android:layout_width="120dp"
-                        android:layout_height="45dp"
+                        android:layout_width="130dp"
+                        android:layout_height="50dp"
                         android:layout_gravity="center"
                         android:layout_marginTop="24dp"
                         android:background="@android:color/transparent"
@@ -112,23 +112,22 @@
                         android:layout_marginTop="8dp" />
 
                     <Button
-                        android:id="@+id/forgotPasswordTextView"
-                        style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                        android:id="@+id/forgotPasswordButton"
+                        style="@style/Widget.AppCompat.Button.Borderless"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginTop="16dp"
+                        android:layout_marginTop="8dp"
                         android:padding="16dp"
                         android:text="@string/forgot_password"
                         android:textColor="@android:color/holo_blue_light" />
 
                     <Button
-                        android:id="@+id/createAccountTextView"
-                        style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                        android:id="@+id/createAccountButton"
+                        style="@style/Widget.AppCompat.Button.Borderless"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginTop="8dp"
                         android:padding="16dp"
                         android:text="@string/create_an_account"
                         android:textColor="@android:color/holo_blue_light" />
