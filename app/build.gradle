@@ -76,6 +76,8 @@ dependencies {
 
     // MaskFormatter
     implementation 'com.github.rtoshiro.mflibrary:mflibrary:1.0.0'
+
+    implementation 'com.getkeepsafe.taptargetview:taptargetview:1.13.0'
 }
 
 apply plugin: 'com.google.gms.google-services'

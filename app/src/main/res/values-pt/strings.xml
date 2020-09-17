@@ -2383,5 +2383,24 @@
     <string name="online">Online</string>
     <string name="error_sign_in_with_google_credential">Sign in with Google credential failed</string>
     <string name="google_sign_in_failed">Login do Google falhou</string>
+    <string name="tour_welcome">Bem-vindo ao Naruto Game!</string>
+    <string name="tour_welcome_desc">Seu caminho para se tornar um Heroi começa agora! <b>Batalhe e realize missões</b> para ganhar experiência. Você poderá aguardar para recuperar seus status ou comer Ramen!</string>
+    <string name="tour_your_character">Seu Personagem</string>
+    <string name="tour_battle_your_character_desc">Esse é seu Personagem e informações importantes sobre ele aparecerão aqui. Você perderá o combate se a sua Vida, Chakra ou Stamina ficarem abaixo de 10.</string>
+    <string name="tour_battle_your_enemy">Seu Inimigo</string>
+    <string name="tour_battle_your_enemy_desc">Esse é seu Inimigo, para vencê-lo você precisa fazer sua Vida, Chakra ou Stamina ficarem abaixo de 10.</string>
+    <string name="tour_battle_battle_summary">Resumo da Batalha</string>
+    <string name="tour_battle_battle_summary_desc">Fique de olho nesta parte da Batalha, em uma Batalha PVP você terá apenas 1:30 para atacar! Aqui também irá mostrar o dano causado e se algum efeito aconteceu, como um golpe Crítico, por exemplo.</string>
+    <string name="tour_battle_your_scams">Seus Golpes</string>
+    <string name="tour_battle_your_scams_desc">Aqui ficam seus Golpes. É importante treina-los sempre para que possam ficar mais poderosos e assim derrotar os inimigos mais facilmente.</string>
+    <string name="tour_battle_summarizing">Resumindo</string>
+    <string name="tour_battle_summarizing_desc">Durante a Batalha aparecerão icones em você e em seu inimigo que mostram o total de seus atributos e informações relevantes para um bom desempenho no combate, é importante que analise essas informações para melhor aproveitamento no combate!</string>
+    <string name="tour_battle_jutsu_information">Informações do Jutsu</string>
+    <string name="tour_battle_jutsu_information_desc">Para ver informações de um Jutsu antes de usar, basta pressiona-lo!</string>
+    <string name="tour_home_open_the_nav_drawer">Abra o Menu de Navegação</string>
+    <string name="tour_home_open_the_nav_drawer_desc">Toque no ícone de menu para ver detalhes do seu personagem, a lista de menus, o chat do Naruto Game &amp; muito mais!</string>
+    <string name="tour_grades_desc">Na seção de Graduações você pode ver todos os requisitos para se tornar um Genin, Chunin e assim por diante!</string>
+    <string name="tour_get_started_now">Comece Agora</string>
+    <string name="tour_get_started_now_desc">Você pode começar a fazer as Tarefas Iniciais e lutar contra NPCs do Dojo para se tornar um Genin!</string>
 
 </resources>

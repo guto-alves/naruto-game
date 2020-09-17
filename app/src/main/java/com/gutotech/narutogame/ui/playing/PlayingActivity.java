@@ -29,6 +29,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
+import com.getkeepsafe.taptargetview.TapTarget;
+import com.getkeepsafe.taptargetview.TapTargetSequence;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.gutotech.narutogame.R;
@@ -46,6 +48,7 @@ import com.gutotech.narutogame.ui.adapter.ChatMessagesAdapter;
 import com.gutotech.narutogame.ui.adapter.ExpandableListLoggedinAdapter;
 import com.gutotech.narutogame.ui.home.HomeActivity;
 import com.gutotech.narutogame.utils.FragmentUtils;
+import com.gutotech.narutogame.utils.SettingsUtils;
 import com.gutotech.narutogame.utils.SoundUtil;
 import com.tapadoo.alerter.Alerter;
 
@@ -75,9 +78,10 @@ public class PlayingActivity extends AppCompatActivity implements
         configuration.densityDpi = (int) getResources().getDisplayMetrics().xdpi;
         getBaseContext().getResources().updateConfiguration(configuration, metrics);
 
-        mViewModel = new ViewModelProvider(this,
-                ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication()))
-                .get(PlayingViewModel.class);
+        mViewModel = new ViewModelProvider(
+                this,
+                ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication())
+        ).get(PlayingViewModel.class);
 
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_playing);
         mBinding.setLifecycleOwner(this);
@@ -398,6 +402,86 @@ public class PlayingActivity extends AppCompatActivity implements
 
     public void closeDrawer() {
         mBinding.drawerLayout.closeDrawer(GravityCompat.START);
+    }
+
+    @Override
+    protected void onResumeFragments() {
+        super.onResumeFragments();
+
+        boolean showHomeTour = SettingsUtils.get(this, SettingsUtils.HOME_TOUR_KEY);
+
+        if (showHomeTour) {
+            SettingsUtils.set(this, SettingsUtils.HOME_TOUR_KEY, false);
+
+            Toolbar toolbar = findViewById(R.id.toolbar);
+            TapTarget firstTapTarget = TapTarget.forToolbarNavigationIcon(toolbar,
+                    getString(R.string.tour_home_open_the_nav_drawer),
+                    getString(R.string.tour_home_open_the_nav_drawer_desc))
+                    .id(1)
+                    .transparentTarget(true)
+                    .outerCircleAlpha(0.96f)
+                    .cancelable(false);
+
+            TapTarget welcomeTapTarget = TapTarget.forView(mBinding.dummyView,
+                    getString(R.string.tour_welcome),
+                    getString(R.string.tour_welcome_desc))
+                    .id(2)
+                    .targetRadius(150)
+                    .transparentTarget(true)
+                    .cancelable(false)
+                    .outerCircleAlpha(0.96f);
+
+            TapTarget gradesTapTarget = TapTarget.forView(mBinding.expandableListView,
+                    getString(R.string.grades),
+                    getString(R.string.tour_grades_desc))
+                    .id(3)
+                    .targetRadius(150)
+                    .outerCircleAlpha(0.96f)
+                    .cancelable(false);
+
+            TapTarget getStartedTapTarget = TapTarget.forView(mBinding.expandableListView,
+                    getString(R.string.tour_get_started_now),
+                    getString(R.string.tour_get_started_now_desc))
+                    .id(4)
+                    .targetRadius(150)
+                    .outerCircleAlpha(0.96f);
+
+            TapTargetSequence sequence =
+                    new TapTargetSequence(this)
+                            .targets(
+                                    firstTapTarget,
+                                    welcomeTapTarget,
+                                    gradesTapTarget,
+                                    getStartedTapTarget
+                            );
+
+            sequence.listener(new TapTargetSequence.Listener() {
+                @Override
+                public void onSequenceFinish() {
+                }
+
+                @Override
+                public void onSequenceStep(TapTarget lastTarget, boolean targetClicked) {
+                    if (lastTarget.id() == 1) {
+                        mBinding.drawerLayout.openDrawer(GravityCompat.START);
+                    } else if (lastTarget.id() == 2) {
+                        mBinding.expandableListView.expandGroup(PlayingViewModel.ACADEMY_GROUP);
+                        mBinding.scrollView.scrollTo(0, mBinding.expandableListView.getScrollY() + 350);
+                    } else if (lastTarget.id() == 3) {
+                        mBinding.expandableListView.collapseGroup(PlayingViewModel.ACADEMY_GROUP);
+                        mBinding.expandableListView.expandGroup(PlayingViewModel.CURRENT_VILLAGE_GROUP);
+                        mBinding.expandableListView.expandGroup(PlayingViewModel.BATTLES_GROUP);
+                        mBinding.scrollView.scrollTo(0, mBinding.expandableListView.getScrollY() + 700);
+                    }
+                }
+
+                @Override
+                public void onSequenceCanceled(TapTarget lastTarget) {
+                }
+            });
+
+            sequence.start();
+        }
     }
 
     @Override

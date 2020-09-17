@@ -18,6 +18,8 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.getkeepsafe.taptargetview.TapTarget;
+import com.getkeepsafe.taptargetview.TapTargetSequence;
 import com.google.android.gms.ads.AdRequest;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.firebase.StorageUtils;
@@ -34,6 +36,7 @@ import com.gutotech.narutogame.ui.adapter.BattleLogAdapter;
 import com.gutotech.narutogame.ui.adapter.BuffsDebuffStatusAdapter;
 import com.gutotech.narutogame.ui.adapter.JutsusAdapter;
 import com.gutotech.narutogame.utils.FragmentUtils;
+import com.gutotech.narutogame.utils.SettingsUtils;
 import com.gutotech.narutogame.utils.SoundUtil;
 import com.gutotech.narutogame.utils.SpannableStringBuilderCustom;
 
@@ -176,7 +179,71 @@ public class DojoNpcBattleFragment extends Fragment implements SectionFragment {
         mBinding.adView.loadAd(new AdRequest.Builder().build());
         mBinding.adView1.loadAd(new AdRequest.Builder().build());
 
+        showTour();
+
         return mBinding.getRoot();
+    }
+
+    private void showTour() {
+        boolean showBattleTour = SettingsUtils.get(getContext(), SettingsUtils.BATTLE_TOUR_KEY);
+
+        if (showBattleTour) {
+            SettingsUtils.set(getContext(), SettingsUtils.BATTLE_TOUR_KEY, false);
+
+            new TapTargetSequence(getActivity())
+                    .targets(
+                            TapTarget.forView(mBinding.playerProfileImageView,
+                                    getString(R.string.tour_your_character),
+                                    getString(R.string.tour_battle_your_character_desc))
+                                    .outerCircleAlpha(0.96f)
+                                    .dimColorInt(Color.BLACK)
+                                    .targetRadius(60)
+                                    .drawShadow(true)
+                                    .transparentTarget(true)
+                                    .cancelable(false),
+                            TapTarget.forView(mBinding.opponentLinearLayout,
+                                    getString(R.string.tour_battle_your_enemy),
+                                    getString(R.string.tour_battle_your_enemy_desc))
+                                    .outerCircleAlpha(0.96f)
+                                    .dimColorInt(Color.BLACK)
+                                    .targetRadius(70)
+                                    .drawShadow(true)
+                                    .transparentTarget(true)
+                                    .cancelable(false),
+                            TapTarget.forView(mBinding.battleLogRecyclerView,
+                                    getString(R.string.tour_battle_battle_summary),
+                                    getString(R.string.tour_battle_battle_summary_desc))
+                                    .outerCircleAlpha(0.96f)
+                                    .dimColorInt(Color.BLACK)
+                                    .targetRadius(70)
+                                    .transparentTarget(true)
+                                    .cancelable(false),
+                            TapTarget.forView(mBinding.myJutsusRecyclerView,
+                                    getString(R.string.tour_battle_your_scams),
+                                    getString(R.string.tour_battle_your_scams_desc))
+                                    .outerCircleAlpha(0.96f)
+                                    .dimColorInt(Color.BLACK)
+                                    .targetRadius(60)
+                                    .transparentTarget(true)
+                                    .cancelable(false),
+                            TapTarget.forView(mBinding.myJutsusRecyclerView,
+                                    getString(R.string.tour_battle_jutsu_information),
+                                    getString(R.string.tour_battle_jutsu_information_desc))
+                                    .outerCircleAlpha(0.96f)
+                                    .dimColor(android.R.color.black)
+                                    .transparentTarget(true)
+                                    .targetRadius(60)
+                                    .cancelable(false),
+                            TapTarget.forView(mBinding.myStatusImageView,
+                                    getString(R.string.tour_battle_summarizing),
+                                    getString(R.string.tour_battle_summarizing_desc))
+                                    .outerCircleAlpha(0.96f)
+                                    .dimColor(android.R.color.black)
+                                    .targetRadius(50)
+                                    .transparentTarget(true)
+                                    .cancelable(false)
+                    ).start();
+        }
     }
 
     private void showBattleResult(@StringRes int title, SpannableStringBuilder description) {

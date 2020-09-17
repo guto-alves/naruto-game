@@ -84,9 +84,9 @@ import java.util.Map;
 public class PlayingViewModel extends AndroidViewModel implements ExpandableListView.OnChildClickListener {
     private final static int USER_GROUP = 0;
     private final static int CHARACTER_GROUP = 1;
-    private final static int ACADEMY_GROUP = 2;
-    private final static int CURRENT_VILLAGE_GROUP = 3;
-    private final static int BATTLES_GROUP = 4;
+    public final static int ACADEMY_GROUP = 2;
+    public final static int CURRENT_VILLAGE_GROUP = 3;
+    public final static int BATTLES_GROUP = 4;
     private final static int TEAM_GROUP = 5;
     private final static int RANKING_GROUP = 6;
 

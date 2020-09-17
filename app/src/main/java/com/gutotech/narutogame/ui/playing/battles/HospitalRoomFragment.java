@@ -1,14 +1,13 @@
 package com.gutotech.narutogame.ui.playing.battles;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
@@ -18,12 +17,12 @@ import com.google.android.gms.ads.rewarded.RewardedAd;
 import com.google.android.gms.ads.rewarded.RewardedAdCallback;
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
 import com.gutotech.narutogame.R;
+import com.gutotech.narutogame.data.firebase.StorageUtils;
+import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.databinding.FragmentHospitalRoomBinding;
 import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.WarningDialogFragment;
-import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.utils.FragmentUtils;
-import com.gutotech.narutogame.data.firebase.StorageUtils;
 import com.gutotech.narutogame.utils.SoundUtil;
 
 import es.dmoral.toasty.Toasty;
@@ -59,12 +58,12 @@ public class HospitalRoomFragment extends Fragment implements SectionFragment,
                 WarningDialogFragment warningDialog = WarningDialogFragment.newInstance(
                         getContext(), R.string.paid_hospital, this,
                         LEAVE_THE_HOSPITAL_REQUEST_CODE);
-                warningDialog.openDialog(getChildFragmentManager());
+                warningDialog.openDialog(getFragmentManager());
                 SoundUtil.play(getContext(), R.raw.sound_pop);
             } else {
                 WarningDialogFragment warningDialog = WarningDialogFragment.newInstance(
                         getContext(), R.string.dont_enough_money_for_treatment);
-                warningDialog.openDialog(getChildFragmentManager());
+                warningDialog.openDialog(getFragmentManager());
                 SoundUtil.play(getContext(), R.raw.attention2);
             }
         });

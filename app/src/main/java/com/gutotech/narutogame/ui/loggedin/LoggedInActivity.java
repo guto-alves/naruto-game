@@ -165,5 +165,4 @@ public class LoggedInActivity extends AppCompatActivity
             mBgMusicUtils.release();
         }
     }
-
 }

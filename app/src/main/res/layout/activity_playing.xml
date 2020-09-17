@@ -53,6 +53,11 @@
                     android:gravity="center"
                     android:orientation="vertical">
 
+                    <View
+                        android:id="@+id/dummyView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
                     <!-- Character info -->
                     <LinearLayout
                         android:layout_width="wrap_content"
