@@ -1,5 +1,6 @@
 package com.gutotech.narutogame.ui.loggedin;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -20,6 +21,10 @@ import com.daimajia.androidanimations.library.YoYo;
 import com.google.android.material.navigation.NavigationView;
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.network.NetworkUtils;
+import com.gutotech.narutogame.data.repository.AuthRepository;
+import com.gutotech.narutogame.data.repository.GameStatusRepository;
+import com.gutotech.narutogame.data.repository.PlayerRepository;
+import com.gutotech.narutogame.ui.MaintenanceActivity;
 import com.gutotech.narutogame.ui.WarningDialogFragment;
 import com.gutotech.narutogame.ui.adapter.ExpandableListAdapter;
 import com.gutotech.narutogame.utils.BgMusicUtils;
@@ -83,16 +88,15 @@ public class LoggedInActivity extends AppCompatActivity
             }
         });
 
-        // TODO descomentar isso
-//        GameStatusRepository.getInstance().registerGameStatusListener(status -> {
-//            if (!status.equals(GameStatusRepository.VERSION_NAME)) {
-//                GameStatusRepository.getInstance().removeGameStatusListener();
-//                PlayerRepository.getInstance().setSignedIn(false, null);
-//                AuthRepository.getInstance().signOut();
-//                finish();
-//                startActivity(new Intent(this, MaintenanceActivity.class));
-//            }
-//        });
+        GameStatusRepository.getInstance().registerGameStatusListener(status -> {
+            if (!status.equals(GameStatusRepository.VERSION_NAME)) {
+                GameStatusRepository.getInstance().removeGameStatusListener();
+                PlayerRepository.getInstance().setSignedIn(false, null);
+                AuthRepository.getInstance().signOut();
+                finish();
+                startActivity(new Intent(this, MaintenanceActivity.class));
+            }
+        });
 
         mDrawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(

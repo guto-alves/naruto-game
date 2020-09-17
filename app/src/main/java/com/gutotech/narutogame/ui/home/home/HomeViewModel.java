@@ -17,6 +17,7 @@ import com.gutotech.narutogame.data.model.News;
 import com.gutotech.narutogame.data.model.NinjaStatistics;
 import com.gutotech.narutogame.data.model.Player;
 import com.gutotech.narutogame.data.repository.AuthRepository;
+import com.gutotech.narutogame.data.repository.GameStatusRepository;
 import com.gutotech.narutogame.data.repository.KageRepository;
 import com.gutotech.narutogame.data.repository.NewsRepository;
 import com.gutotech.narutogame.data.repository.NinjaStatisticsRepository;
@@ -80,18 +81,17 @@ public class HomeViewModel extends AndroidViewModel {
                 @Override
                 public void onComplete() {
                     mPlayerRepository.setSignedIn(true, signInResult -> {
-                        // TODO descomentar
                         if (signInResult) {
-//                            GameStatusRepository.getInstance().getStatus(status -> {
-//                                if (status.equals(GameStatusRepository.VERSION_NAME)) {
-                            mAuthListener.onSuccess();
-//                                } else {
-//                                    mPlayerRepository.setSignedIn(false, null);
-//                                    mAuthRepository.signOut();
-//                                    mAuthListener.onFailure(0);
-//                                    mStartMaintenanceActivityEvent.call();
-//                                }
-//                            });
+                            GameStatusRepository.getInstance().getStatus(status -> {
+                                if (status.equals(GameStatusRepository.VERSION_NAME)) {
+                                    mAuthListener.onSuccess();
+                                } else {
+                                    mPlayerRepository.setSignedIn(false, null);
+                                    mAuthRepository.signOut();
+                                    mAuthListener.onFailure(0);
+                                    mStartMaintenanceActivityEvent.call();
+                                }
+                            });
                         } else {
                             mAuthRepository.signOut();
                             mAuthListener.onFailure(R.string.error_multiple_logins);
