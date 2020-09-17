@@ -6,10 +6,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:drawablePadding="3dp"
-    android:ellipsize="marquee"
+    android:ellipsize="end"
     android:gravity="center_vertical"
     android:singleLine="true"
     android:textAlignment="inherit"
     android:textColor="#c6dde6"
-    app:drawableStartCompat="@drawable/layout_chat_chat_channel"
-    app:drawableLeftCompat="@drawable/layout_chat_chat_channel" />
+    app:drawableLeftCompat="@drawable/layout_chat_chat_channel"
+    app:drawableStartCompat="@drawable/layout_chat_chat_channel" />
