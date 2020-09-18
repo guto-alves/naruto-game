@@ -2438,5 +2438,5 @@ You will receive an email to confirm your account, then you <b>NEED TO USE A VAL
     <string name="tour_home_open_the_nav_drawer_desc">Tap the menu icon to see details about your character, menu list, Naruto Game Chat &amp; more!</string>
     <string name="tour_grades_desc">In the Graduations section you can see all the requirements to become a Genin, Chunin and so on!</string>
     <string name="tour_get_started_now">Get Started Now</string>
-    <string name="tour_get_started_now_desc">You can start doing the Initial Tasks and fight Dojo NPCs be become a Genin!</string>
+    <string name="tour_get_started_now_desc">You can start doing the Initial Tasks and fight NPCs from the Dojo to become a Genin!</string>
 </resources>

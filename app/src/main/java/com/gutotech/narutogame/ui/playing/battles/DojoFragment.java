@@ -55,12 +55,12 @@ public class DojoFragment extends Fragment implements SectionFragment {
                 getContext(), new OnSwipeGestureListener() {
             @Override
             public void onSwipeLeft() {
-                goToDojoNpc();
+                goToDojoPvp();
             }
 
             @Override
             public void onSwipeRight() {
-                goToDojoPvp();
+                goToDojoNpc();
             }
         });
 

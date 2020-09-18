@@ -49,9 +49,7 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
-                android:layout_marginBottom="16dp"
                 android:visibility="gone"
-                app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
@@ -62,13 +60,15 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
                 android:background="@drawable/layout_combate_bg_topo_combate"
                 app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent">
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/battleResultLayout">
 
                 <LinearLayout
                     android:id="@+id/infoFightersLinearLayout"
@@ -305,16 +305,6 @@
                             android:text="@{viewModel.countDown}"
                             android:textColor="@android:color/white" />
 
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/battleLogRecyclerView"
-                            android:layout_width="match_parent"
-                            android:layout_height="80dp"
-                            android:layout_marginTop="8dp"
-                            android:background="@drawable/layout_combate_bg_log"
-                            android:paddingLeft="4dp"
-                            android:paddingRight="4dp"
-                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-
                     </LinearLayout>
 
                     <LinearLayout
@@ -520,6 +510,35 @@
 
                 </LinearLayout>
 
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/battleLogRecyclerView"
+                    android:layout_width="300dp"
+                    android:layout_height="80dp"
+                    android:layout_marginStart="36dp"
+                    android:layout_marginLeft="36dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="32dp"
+                    android:layout_marginRight="32dp"
+                    android:background="@drawable/layout_combate_bg_log"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/infoFightersLinearLayout" />
+
+                <TextView
+                    android:id="@+id/movementTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/waiting_your_move"
+                    android:textColor="@android:color/holo_orange_dark"
+                    android:textSize="8sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/battleLogRecyclerView" />
+
                 <ImageView
                     android:id="@+id/barraMeusJutsusImageView"
                     android:layout_width="0dp"
@@ -534,18 +553,6 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/movementTextView" />
-
-                <TextView
-                    android:id="@+id/movementTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="@string/waiting_your_move"
-                    android:textColor="@android:color/holo_orange_dark"
-                    android:textSize="8sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/infoFightersLinearLayout" />
 
                 <TextView
                     android:id="@+id/textView42"

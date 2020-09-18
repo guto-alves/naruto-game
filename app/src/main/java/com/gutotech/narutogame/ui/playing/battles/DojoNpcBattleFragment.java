@@ -215,7 +215,7 @@ public class DojoNpcBattleFragment extends Fragment implements SectionFragment {
                                     getString(R.string.tour_battle_battle_summary_desc))
                                     .outerCircleAlpha(0.96f)
                                     .dimColorInt(Color.BLACK)
-                                    .targetRadius(70)
+                                    .targetRadius(180)
                                     .transparentTarget(true)
                                     .cancelable(false),
                             TapTarget.forView(mBinding.myJutsusRecyclerView,

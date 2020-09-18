@@ -466,12 +466,12 @@ public class PlayingActivity extends AppCompatActivity implements
                         mBinding.drawerLayout.openDrawer(GravityCompat.START);
                     } else if (lastTarget.id() == 2) {
                         mBinding.expandableListView.expandGroup(PlayingViewModel.ACADEMY_GROUP);
-                        mBinding.scrollView.scrollTo(0, mBinding.expandableListView.getScrollY() + 350);
+                        mBinding.scrollView.scrollTo(0, mBinding.expandableListView.getScrollY() + 400);
                     } else if (lastTarget.id() == 3) {
                         mBinding.expandableListView.collapseGroup(PlayingViewModel.ACADEMY_GROUP);
                         mBinding.expandableListView.expandGroup(PlayingViewModel.CURRENT_VILLAGE_GROUP);
                         mBinding.expandableListView.expandGroup(PlayingViewModel.BATTLES_GROUP);
-                        mBinding.scrollView.scrollTo(0, mBinding.expandableListView.getScrollY() + 700);
+                        mBinding.scrollView.scrollTo(0, mBinding.expandableListView.getScrollY() + 750);
                     }
                 }
 
