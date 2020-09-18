@@ -9,7 +9,7 @@
 In the game you will be a ninja and your mission is to develop your skills and chart your own ninja path to become Kage!
 
 ## Download
-Just waiting for the [Uptodown](https://en.uptodown.com/android) review to update the app version to [3.0](https://github.com/guto-alves/naruto-game/releases/tag/v3.0)!
+Just waiting for the [Uptodown](https://en.uptodown.com/android) to release version [3.0](https://github.com/guto-alves/naruto-game/releases/tag/v3.0)! (This may take a few days)
 
 
 ## Screenshots
