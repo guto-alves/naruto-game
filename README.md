@@ -9,7 +9,7 @@
 In the game you will be a ninja and your mission is to develop your skills and chart your own ninja path to become Kage!
 
 ## Download
-<a href="https://naruto-game.uptodown.com/android" target="_blank">
+<a href="https://naruto-game.en.uptodown.com/android" target="_blank">
   <img src="https://user-images.githubusercontent.com/48946749/80045244-2f095100-84dd-11ea-9152-f25f85fd3351.png"> 
 <a/>
 
