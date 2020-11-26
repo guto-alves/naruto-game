@@ -9,7 +9,7 @@ android {
         applicationId "com.gutotech.narutogame"
         minSdkVersion 16
         targetSdkVersion 30
-        versionCode 8
+        versionCode 7
         versionName "3.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         android.defaultConfig.vectorDrawables.useSupportLibrary = true
