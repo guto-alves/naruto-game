@@ -79,14 +79,14 @@ And you also should have a Firebase Account (https://firebase.google.com)
           <br>
           <li>
             <b>Realtime Database</b>
-            - Create the Realtime Database and configure it to start in <b>test mode</b> rules. Then, initialize the database with the game status (download <a href="https://github.com/guto-alves/naruto-game/blob/master/game-status.json">game-status.json</a>() and import it into the Realtime Database).
+            - Create the Realtime Database and configure it to start in <b>test mode</b> rules. Then, initialize the database with the game status (download <a href="https://github.com/guto-alves/naruto-game/blob/master/game-status.json">game-status.json</a>) and import it into the Realtime Database).
         <p><img height="200" src="https://user-images.githubusercontent.com/48946749/110722164-9bbe3480-81f0-11eb-930c-35c32376280d.png">
         <img height="250" src="https://user-images.githubusercontent.com/48946749/110722387-e93aa180-81f0-11eb-9361-38b1a9968f75.png">
         <img height="200" src="https://user-images.githubusercontent.com/48946749/110722470-138c5f00-81f1-11eb-9802-e3bae458e874.png"></p>
           </li>
           <li>
             <b>Authentication</b> 
-            - All you need to do here is to enable the sign-in providers Email/Password and Google, as in the image below:
+            - All you need to do here is to <b>enable the sign-in providers Email/Password and Google</b>, as in the image below:
             <p><img width="800" height="300" src="https://user-images.githubusercontent.com/48946749/110723018-205d8280-81f2-11eb-9655-3fe94a0b0aca.png"></p>
           </li>
           <br>
