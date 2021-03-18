@@ -1,33 +1,26 @@
 package com.gutotech.narutogame.ui.adapter;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.text.style.StyleSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.Message;
 import com.gutotech.narutogame.utils.SpannableStringBuilderCustom;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import static android.graphics.Typeface.BOLD;
 
 public class ChatMessagesAdapter extends RecyclerView.Adapter<ChatMessagesAdapter.ViewHolder> {
-
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView messageTextView;
-
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
-            messageTextView = itemView.findViewById(R.id.messageTextView);
-        }
-    }
-
     private List<Message> mMessageList;
 
     @NonNull
@@ -47,6 +40,7 @@ public class ChatMessagesAdapter extends RecyclerView.Adapter<ChatMessagesAdapte
             stringBuilder.append(message.getSender() + ": ", new StyleSpan(BOLD));
             stringBuilder.append(message.getMessage());
             holder.messageTextView.setText(stringBuilder.getString());
+            holder.dateTextView.setText(toDate(message.getTimestamp()));
         }
     }
 
@@ -58,5 +52,22 @@ public class ChatMessagesAdapter extends RecyclerView.Adapter<ChatMessagesAdapte
     public void setMessageList(List<Message> messageList) {
         mMessageList = messageList;
         notifyDataSetChanged();
+    }
+
+    private String toDate(long timestamp) {
+        Date date = new Date(timestamp);
+        SimpleDateFormat sfd = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault());
+        return sfd.format(date);
+    }
+
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        private final TextView messageTextView;
+        private final TextView dateTextView;
+
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+            messageTextView = itemView.findViewById(R.id.messageTextView);
+            dateTextView = itemView.findViewById(R.id.dateTextView);
+        }
     }
 }

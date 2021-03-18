@@ -7,14 +7,18 @@ import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ServerValue;
 import com.gutotech.narutogame.data.firebase.FirebaseConfig;
 import com.gutotech.narutogame.data.model.Message;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class ChatRepository {
     private static final ChatRepository sInstance = new ChatRepository();
+    private DatabaseReference mMessagesRef;
+    private ChildEventListener mMessagesEventListener;
 
     private ChatRepository() {
     }
@@ -29,7 +33,10 @@ public class ChatRepository {
         String key = messageRef.child("chats").child(channel).push().getKey();
         message.setId(key);
 
-        messageRef.child("chats").child(channel).child(key).setValue(message);
+        Map<String, Object> map = message.toMap();
+        map.put("timestamp", ServerValue.TIMESTAMP);
+
+        messageRef.child("chats").child(channel).child(key).updateChildren(map);
     }
 
     public void deleteMessages(String channel) {
@@ -39,9 +46,6 @@ public class ChatRepository {
 
         channelRef.removeValue();
     }
-
-    private DatabaseReference mMessagesRef;
-    private ChildEventListener mMessagesEventListener;
 
     public void addOnMessagesListener(String channel, MessagesListener listener) {
         removeMessagesListener();

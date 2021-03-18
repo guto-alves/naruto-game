@@ -45,9 +45,9 @@ import com.gutotech.narutogame.ui.playing.academy.AcademyTrainingFragment;
 import com.gutotech.narutogame.ui.playing.academy.CharacterJutsusFragment;
 import com.gutotech.narutogame.ui.playing.academy.ElementalJutsusFragment;
 import com.gutotech.narutogame.ui.playing.academy.GraduationsFragment;
+import com.gutotech.narutogame.ui.playing.battles.DojoFragment;
 import com.gutotech.narutogame.ui.playing.battles.DojoNpcBattleFragment;
 import com.gutotech.narutogame.ui.playing.battles.DojoPvpBattleFragment;
-import com.gutotech.narutogame.ui.playing.battles.DojoFragment;
 import com.gutotech.narutogame.ui.playing.battles.DojoRandomWaitFragment;
 import com.gutotech.narutogame.ui.playing.battles.HospitalRoomFragment;
 import com.gutotech.narutogame.ui.playing.battles.LogBatalhaFragment;
@@ -82,11 +82,11 @@ import java.util.Locale;
 import java.util.Map;
 
 public class PlayingViewModel extends AndroidViewModel implements ExpandableListView.OnChildClickListener {
-    private final static int USER_GROUP = 0;
-    private final static int CHARACTER_GROUP = 1;
     public final static int ACADEMY_GROUP = 2;
     public final static int CURRENT_VILLAGE_GROUP = 3;
     public final static int BATTLES_GROUP = 4;
+    private final static int USER_GROUP = 0;
+    private final static int CHARACTER_GROUP = 1;
     private final static int TEAM_GROUP = 5;
     private final static int RANKING_GROUP = 6;
 
