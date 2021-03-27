@@ -41,7 +41,7 @@ In the game you will be a ninja and your mission is to develop your skills and c
 Naruto Game is a game developed by fans for fans (completely free), where players choose from some of the most attractive manga/anime characters to participate online in Naruto RPG adventures with your friends.<br>
 Original characters and illustrations © Copyright 2002 by Masashi Kishimoto. All rights reserved
 
-## Contribute
+## Contributing
 Any contributions to this repository are most welcome.
 
 ### Running locally
