@@ -16,7 +16,7 @@ In the game you will be a ninja and your mission is to develop your skills and c
 ## Table of contents
 * [Download](#download)
 * [Screenshots](#screenshots)
-* [Contribute](#contribute)
+* [Contribute](#contributing)
 * [Disclaimer](#disclaimer)
 
 ## Screenshots
