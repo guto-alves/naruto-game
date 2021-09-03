@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.CharOn;
@@ -34,6 +35,15 @@ public class DojoPvpFragment extends Fragment {
             binding.goToTheQueueButton.setOnClickListener(v ->
                     CharOn.character.setDojoWaitQueue(true));
         }
+
+        DojoPvpViewModel viewModel = new ViewModelProvider(getActivity())
+                .get(DojoPvpViewModel.class);
+
+        viewModel.getTotalPlayers()
+                .observe(getViewLifecycleOwner(),
+                        (totalPlayers) -> {
+                            binding.totalPlayersTextView.setText(getString(R.string.total_players_in_queue, totalPlayers));
+                        });
 
         return binding.getRoot();
     }

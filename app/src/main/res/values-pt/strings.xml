@@ -2402,5 +2402,6 @@
     <string name="tour_grades_desc">Na seção de Graduações você pode ver todos os requisitos para se tornar um Genin, Chunin e assim por diante!</string>
     <string name="tour_get_started_now">Comece Agora</string>
     <string name="tour_get_started_now_desc">Você pode começar a fazer as Tarefas Iniciais e lutar contra NPCs do Dojo para se tornar um Genin!</string>
+    <string name="total_players_in_queue">Total de players na fila: %d</string>
 
 </resources>

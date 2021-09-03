@@ -116,6 +116,14 @@
                         android:textColor="#ff7d1c"
                         android:textSize="10sp" />
 
+                    <TextView
+                        android:id="@+id/totalPlayersTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:textColor="#ff7d1c"
+                        android:textSize="10sp" />
+
                 </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
 

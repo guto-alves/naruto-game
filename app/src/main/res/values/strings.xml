@@ -2439,4 +2439,5 @@ You will receive an email to confirm your account, then you <b>NEED TO USE A VAL
     <string name="tour_grades_desc">In the Graduations section you can see all the requirements to become a Genin, Chunin and so on!</string>
     <string name="tour_get_started_now">Get Started Now</string>
     <string name="tour_get_started_now_desc">You can start doing the Initial Tasks and fight NPCs from the Dojo to become a Genin!</string>
+    <string name="total_players_in_queue">Total players in the queue: %d</string>
 </resources>

@@ -2,6 +2,7 @@ package com.gutotech.narutogame.data.repository;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.lifecycle.MutableLiveData;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -18,12 +19,15 @@ import java.util.Map;
 
 public class DojoWaitingRoomRepository {
     private static final DojoWaitingRoomRepository ourInstance = new DojoWaitingRoomRepository();
+    private Character mOpponent;
+    private DatabaseReference mBattleIdReference;
+    private ValueEventListener mEventListener;
+
+    private DojoWaitingRoomRepository() {
+    }
 
     public static DojoWaitingRoomRepository getInstance() {
         return ourInstance;
-    }
-
-    private DojoWaitingRoomRepository() {
     }
 
     public void isWaitingRoom(Callback<Boolean> callback) {
@@ -42,8 +46,6 @@ public class DojoWaitingRoomRepository {
             }
         });
     }
-
-    private Character mOpponent;
 
     public void findOpponent(Callback<Character> callback) {
         mOpponent = null;
@@ -96,6 +98,24 @@ public class DojoWaitingRoomRepository {
         waitingRoomReference.removeValue();
     }
 
+    public MutableLiveData<Long> getTotalPlayersInQueue() {
+        MutableLiveData<Long> totalPlayers = new MutableLiveData<>(0L);
+
+        FirebaseConfig.getDatabase()
+                .child("dojo-waiting-room")
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        totalPlayers.setValue(dataSnapshot.getChildrenCount());
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                    }
+                });
+
+        return totalPlayers;
+    }
 
     public void saveBattleIdForListeners(String battleId, String playerId, String oppId) {
         DatabaseReference databaseReference = FirebaseConfig.getDatabase()
@@ -114,9 +134,6 @@ public class DojoWaitingRoomRepository {
 
         battleIdReference.removeValue();
     }
-
-    private DatabaseReference mBattleIdReference;
-    private ValueEventListener mEventListener;
 
     public void addListener(Callback<String> callback) {
         removeListener();
