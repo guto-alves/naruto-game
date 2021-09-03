@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class GameStatusRepository {
-    public static String VERSION_NAME = "3.0";
+    public static String VERSION_NAME = "3.0.1";
 
     private static final GameStatusRepository sInstance = new GameStatusRepository();
 
