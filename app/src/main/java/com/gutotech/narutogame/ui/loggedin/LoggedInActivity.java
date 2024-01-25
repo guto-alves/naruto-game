@@ -2,6 +2,7 @@ package com.gutotech.narutogame.ui.loggedin;
 
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
@@ -45,7 +46,9 @@ public class LoggedInActivity extends AppCompatActivity
         Configuration configuration = getResources().getConfiguration();
         configuration.fontScale = 1f; // 0.85 small size, 1 normal size, 1,15 big etc
         DisplayMetrics metrics = new DisplayMetrics();
-        getDisplay().getMetrics(metrics);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            getDisplay().getMetrics(metrics);
+        }
         metrics.scaledDensity = configuration.fontScale * metrics.density;
         configuration.densityDpi = (int) getResources().getDisplayMetrics().xdpi;
         getBaseContext().getResources().updateConfiguration(configuration, metrics);

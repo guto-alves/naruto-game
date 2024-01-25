@@ -12,9 +12,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.gutotech.narutogame.R;
+import com.gutotech.narutogame.data.firebase.StorageUtils;
 import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.model.Reward;
-import com.gutotech.narutogame.data.firebase.StorageUtils;
 import com.gutotech.narutogame.utils.SoundUtil;
 
 import java.util.List;

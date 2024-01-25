@@ -13,11 +13,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.gutotech.narutogame.R;
+import com.gutotech.narutogame.data.firebase.StorageUtils;
 import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.model.GraduationUtils;
 import com.gutotech.narutogame.data.model.Member;
 import com.gutotech.narutogame.data.repository.TeamRepository;
-import com.gutotech.narutogame.data.firebase.StorageUtils;
 
 import java.util.List;
 

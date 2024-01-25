@@ -8,8 +8,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.gutotech.narutogame.R;
-import com.gutotech.narutogame.data.model.Character;
 import com.gutotech.narutogame.data.firebase.StorageUtils;
+import com.gutotech.narutogame.data.model.Character;
 import com.smarteist.autoimageslider.SliderViewAdapter;
 
 import java.util.List;

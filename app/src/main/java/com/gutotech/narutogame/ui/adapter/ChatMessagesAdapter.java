@@ -1,5 +1,7 @@
 package com.gutotech.narutogame.ui.adapter;
 
+import static android.graphics.Typeface.BOLD;
+
 import android.text.style.StyleSpan;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,8 +19,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-
-import static android.graphics.Typeface.BOLD;
 
 public class ChatMessagesAdapter extends RecyclerView.Adapter<ChatMessagesAdapter.ViewHolder> {
     private List<Message> mMessageList;

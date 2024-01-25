@@ -105,7 +105,7 @@ public class Jutsu extends BaseObservable implements Serializable {
     }
 
     public boolean isBuffOrDebuff(JutsuInfo jutsuInfo) {
-        return jutsuInfo.type == Jutsu.Type.BUFF || jutsuInfo.type == Jutsu.Type.DEBUFF;
+        return jutsuInfo.type == Type.BUFF || jutsuInfo.type == Type.DEBUFF;
     }
 
     @Override

@@ -1,14 +1,13 @@
 package com.gutotech.narutogame.ui.playing.character;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.CharOn;

@@ -1,12 +1,6 @@
 package com.gutotech.narutogame.ui.adapter;
 
 import android.content.Context;
-
-import androidx.annotation.NonNull;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.fragment.app.FragmentManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,16 +9,21 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.gutotech.narutogame.R;
+import com.gutotech.narutogame.data.firebase.StorageUtils;
 import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.model.ElementalJutsu;
 import com.gutotech.narutogame.data.model.GraduationUtils;
+import com.gutotech.narutogame.data.model.Jutsu;
 import com.gutotech.narutogame.data.model.JutsuInfo;
 import com.gutotech.narutogame.data.model.Requirement;
 import com.gutotech.narutogame.ui.playing.RequirementDialogFragment;
 import com.gutotech.narutogame.ui.playing.academy.LearnJutsuInfoPopupWindow;
-import com.gutotech.narutogame.data.firebase.StorageUtils;
-import com.gutotech.narutogame.data.model.Jutsu;
 
 import java.util.HashSet;
 import java.util.List;

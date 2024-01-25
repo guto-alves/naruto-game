@@ -8,8 +8,8 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.gutotech.narutogame.R;
-import com.gutotech.narutogame.data.model.Character;
 import com.gutotech.narutogame.data.model.CharOn;
+import com.gutotech.narutogame.data.model.Character;
 import com.gutotech.narutogame.data.model.Mission;
 import com.gutotech.narutogame.data.repository.AuthRepository;
 import com.gutotech.narutogame.data.repository.CharacterRepository;

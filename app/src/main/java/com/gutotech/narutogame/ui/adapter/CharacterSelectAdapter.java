@@ -9,8 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.gutotech.narutogame.R;
-import com.gutotech.narutogame.data.model.Character;
 import com.gutotech.narutogame.data.firebase.StorageUtils;
+import com.gutotech.narutogame.data.model.Character;
 
 import java.util.List;
 

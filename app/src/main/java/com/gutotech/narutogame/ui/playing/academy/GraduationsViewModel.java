@@ -5,10 +5,8 @@ import androidx.lifecycle.ViewModel;
 
 import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.model.Graduation;
-import com.gutotech.narutogame.data.model.GraduationUtils;
 import com.gutotech.narutogame.data.model.Score;
 import com.gutotech.narutogame.data.model.Scroll;
-import com.gutotech.narutogame.data.model.Village;
 import com.gutotech.narutogame.data.repository.CharacterRepository;
 import com.gutotech.narutogame.ui.adapter.GraduationsAdapter;
 import com.gutotech.narutogame.utils.SingleLiveEvent;

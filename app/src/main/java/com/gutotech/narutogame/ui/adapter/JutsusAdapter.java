@@ -1,11 +1,6 @@
 package com.gutotech.narutogame.ui.adapter;
 
 import android.content.Context;
-
-import androidx.annotation.NonNull;
-import androidx.core.view.GestureDetectorCompat;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -16,10 +11,14 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.core.view.GestureDetectorCompat;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.gutotech.narutogame.R;
+import com.gutotech.narutogame.data.firebase.StorageUtils;
 import com.gutotech.narutogame.data.model.Jutsu;
 import com.gutotech.narutogame.data.model.JutsuInfo;
-import com.gutotech.narutogame.data.firebase.StorageUtils;
 import com.gutotech.narutogame.utils.SoundUtil;
 
 import java.util.List;
@@ -56,7 +55,7 @@ public class JutsusAdapter extends RecyclerView.Adapter<JutsusAdapter.ViewHolder
 
     @NonNull
     @Override
-    public JutsusAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View itemView = LayoutInflater.from(viewGroup.getContext()).inflate(
                 R.layout.adapter_battle_jutsu_item, viewGroup, false);
         return new ViewHolder(itemView);

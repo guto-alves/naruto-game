@@ -42,7 +42,7 @@ public class EnhancementsAdapter extends RecyclerView.Adapter<EnhancementsAdapte
 
     @NonNull
     @Override
-    public EnhancementsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View itemView = LayoutInflater.from(viewGroup.getContext()).inflate(
                 R.layout.adapter_enhancement, viewGroup, false);
         return new ViewHolder(itemView);

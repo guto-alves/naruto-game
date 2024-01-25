@@ -9,9 +9,9 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.gutotech.narutogame.data.firebase.FirebaseFunctionsUtils;
 import com.gutotech.narutogame.data.model.CharOn;
-import com.gutotech.narutogame.data.model.TimeMission;
 import com.gutotech.narutogame.data.model.Mission;
 import com.gutotech.narutogame.data.model.MissionInfo;
+import com.gutotech.narutogame.data.model.TimeMission;
 import com.gutotech.narutogame.data.repository.MissionRepository;
 import com.gutotech.narutogame.ui.adapter.TasksAdapter;
 import com.gutotech.narutogame.utils.NotificationsUtils;

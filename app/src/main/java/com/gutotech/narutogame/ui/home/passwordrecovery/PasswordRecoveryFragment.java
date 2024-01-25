@@ -1,6 +1,9 @@
 package com.gutotech.narutogame.ui.home.passwordrecovery;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -8,15 +11,11 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.databinding.FragmentRecuperarSenhaBinding;
 import com.gutotech.narutogame.ui.ProgressDialogFragment;
-import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.ui.ResultListener;
+import com.gutotech.narutogame.ui.SectionFragment;
 import com.gutotech.narutogame.utils.FragmentUtils;
 import com.gutotech.narutogame.utils.SoundUtil;
 

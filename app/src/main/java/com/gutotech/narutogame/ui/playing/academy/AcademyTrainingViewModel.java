@@ -5,8 +5,8 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.gutotech.narutogame.data.model.Attributes;
-import com.gutotech.narutogame.data.model.Character;
 import com.gutotech.narutogame.data.model.CharOn;
+import com.gutotech.narutogame.data.model.Character;
 import com.gutotech.narutogame.data.repository.CharacterRepository;
 import com.gutotech.narutogame.ui.adapter.DistributedPointsAdapter;
 import com.gutotech.narutogame.utils.SingleLiveEvent;

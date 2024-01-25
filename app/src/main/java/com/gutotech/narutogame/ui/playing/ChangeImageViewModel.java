@@ -5,8 +5,8 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.google.firebase.storage.StorageReference;
-import com.gutotech.narutogame.data.model.CharOn;
 import com.gutotech.narutogame.data.firebase.StorageUtils;
+import com.gutotech.narutogame.data.model.CharOn;
 
 import java.util.List;
 

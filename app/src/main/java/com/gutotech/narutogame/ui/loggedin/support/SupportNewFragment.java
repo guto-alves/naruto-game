@@ -1,5 +1,7 @@
 package com.gutotech.narutogame.ui.loggedin.support;
 
+import static android.content.Context.INPUT_METHOD_SERVICE;
+
 import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -11,14 +13,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
-
-import androidx.annotation.NonNull;
-
-import androidx.core.content.ContextCompat;
-import androidx.databinding.DataBindingUtil;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,12 +21,18 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 
+import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
+import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+
 import com.gutotech.narutogame.R;
+import com.gutotech.narutogame.data.firebase.StorageUtils;
 import com.gutotech.narutogame.databinding.FragmentSupportNewBinding;
 import com.gutotech.narutogame.ui.WarningDialogFragment;
 import com.gutotech.narutogame.utils.DateCustom;
 import com.gutotech.narutogame.utils.FragmentUtils;
-import com.gutotech.narutogame.data.firebase.StorageUtils;
 import com.gutotech.narutogame.utils.SoundUtil;
 
 import java.util.ArrayList;
@@ -40,8 +40,6 @@ import java.util.List;
 import java.util.Locale;
 
 import es.dmoral.toasty.Toasty;
-
-import static android.content.Context.INPUT_METHOD_SERVICE;
 
 public class SupportNewFragment extends Fragment {
     private static final int PERMISSION_REQUEST_READ_EXTERNAL_STORAGE = 1;

@@ -1,5 +1,6 @@
 package com.gutotech.narutogame.data.model;
 
+import com.google.firebase.storage.StorageReference;
 import com.gutotech.narutogame.data.firebase.StorageUtils;
 
 import java.io.Serializable;
@@ -24,9 +25,15 @@ public class Npc implements Serializable {
         character.setProfilePath("");
 
         StorageUtils.listAll(String.format(Locale.US, "images/profile/%d/", ninja.getId()),
-                profiles -> character.setProfilePath(
-                        profiles.get(random.nextInt(profiles.size()))
-                                .getPath())
+                profiles -> {
+                    if (profiles.isEmpty()) {
+                        character.setProfilePath("images/profile/1/1.png");
+                    } else {
+                        int index = random.nextInt(profiles.size());
+                        StorageReference reference = profiles.get(index);
+                        character.setProfilePath(reference.getPath());
+                    }
+                }
         );
 
         character.getAttributes().updateFormulas(character.getClasse(),

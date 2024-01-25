@@ -1,5 +1,6 @@
 package com.gutotech.narutogame.utils;
 
+import android.Manifest;
 import android.app.AlarmManager;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -7,8 +8,10 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Build;
 
+import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
@@ -26,8 +29,7 @@ public class NotificationsUtils {
             CharSequence name = "Notification";
             int importance = NotificationManager.IMPORTANCE_DEFAULT;
 
-            NotificationChannel channel = new NotificationChannel(
-                    NotificationsUtils.CHANNEL_ID, name, importance);
+            NotificationChannel channel = new NotificationChannel(NotificationsUtils.CHANNEL_ID, name, importance);
 
             NotificationManager notificationManager = context.getSystemService(NotificationManager.class);
             notificationManager.createNotificationChannel(channel);
@@ -37,21 +39,19 @@ public class NotificationsUtils {
     public static void setAlarm(Context context, long when) {
         Intent intent = new Intent(context, AlarmReceiver.class);
         intent.putExtra(EXTRA_CHAR_NAME, CharOn.character.getNick());
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0,
+                intent, PendingIntent.FLAG_IMMUTABLE);
 
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         if (alarmManager != null) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                alarmManager.setExact(AlarmManager.RTC_WAKEUP, when, pendingIntent);
-            } else {
-                alarmManager.set(AlarmManager.RTC_WAKEUP, when, pendingIntent);
-            }
+            alarmManager.setExact(AlarmManager.RTC_WAKEUP, when, pendingIntent);
         }
     }
 
     public static void cancelAlarm(Context context) {
         Intent intent = new Intent(context, AlarmReceiver.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0,
+                intent, PendingIntent.FLAG_IMMUTABLE);
 
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         if (alarmManager != null) {

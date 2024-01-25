@@ -1,17 +1,16 @@
 package com.gutotech.narutogame.ui.home.readnews;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
 import com.gutotech.narutogame.R;
 import com.gutotech.narutogame.data.model.News;
@@ -47,7 +46,7 @@ public class ReadNewsFragment extends Fragment {
             mViewModel.getLikeEvent().observe(getViewLifecycleOwner(), liked -> {
                 if (liked) {
                     binding.likeButton.setCompoundDrawablesWithIntrinsicBounds(
-                            R.drawable.ic_check_white_24dp, 0, 0, 0);
+                            es.dmoral.toasty.R.drawable.ic_check_white_24dp, 0, 0, 0);
                 } else {
                     binding.likeButton.setCompoundDrawablesWithIntrinsicBounds(
                             R.drawable.ic_like_30dp, 0, 0, 0);
