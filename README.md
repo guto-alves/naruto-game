@@ -1,12 +1,12 @@
-<h1 align="center">
+<div align="center">
   <img  alt="Logo" src="app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png" />  
-</h1>
+</div>
 
 <h1 align="center">
   Naruto Game  
 </h1>
 
-In the game you will be a ninja and your mission is to develop your skills and chart your own ninja path to become Kage!
+In the game, you'll be a ninja and your mission is to develop your skills and chart your own ninja path to becoming a Kage!
 
 ## Table of contents
 - [Table of contents](#table-of-contents)
